@@ -1,0 +1,24 @@
+package {{package}};
+
+import lombok.*;
+
+{{#javaDoc}}
+    {{#documentationLink}}<a href="{{documentationLink}}">{{name}}</a>{{/documentationLink}}
+{{/javaDoc}}
+@Getter
+@Setter
+@NoArgsConstructor
+public class {{className}}{{#superClass}} extends {{superClass}}{{/superClass}} {
+{{#properties}}
+    {{#javaDoc}}
+        {{description}}
+    {{/javaDoc}}
+    {{#nonNull}}
+    @NonNull
+    {{/nonNull}}
+    {{#jsonName}}
+    @com.fasterxml.jackson.annotation.JsonProperty("{{jsonName}}")
+    {{/jsonName}}
+    private {{type}} {{fieldName}};
+{{/properties}}
+}
