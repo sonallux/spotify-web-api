@@ -19,6 +19,13 @@
     <description>A Java wrapper for Spotify's Web API using Retrofit</description>
     <url>https://github.com/jsone-studios/spotify-web-api</url>
 
+    <properties>
+        <retrofit.version>2.9.0</retrofit.version>
+
+        <!-- This version should match the OkHttp version Retrofit is using -->
+        <mockwebserver.version>3.14.9</mockwebserver.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.squareup.retrofit2</groupId>
