@@ -57,7 +57,7 @@
         <!-- Dependencies -->
         <lombok.version>1.18.12</lombok.version>
 
-        <jackson.version>2.10.5</jackson.version>
+        <jackson.version>2.11.2</jackson.version>
         <slf4j-simple.version>1.7.30</slf4j-simple.version>
         <guava.version>29.0-jre</guava.version>
 
