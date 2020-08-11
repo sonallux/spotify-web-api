@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,8 @@ public class JavaGenerator {
         var objectTemplate = new ObjectTemplate().loadTemplate(this.templateCompiler);
         var apiTemplate = new ApiTemplate().loadTemplate(this.templateCompiler);
 
-        var outputFolder = Path.of("spotify-web-api-java", "src", "main", "java");
+        var outputFolder = Path.of("spotify-web-api-java", "src", "main", "generated");
+        Files.deleteIfExists(outputFolder);
         var javaPackage = new JavaPackage("de", "jsone_studios", "spotify", "api");
 
         adjustApiDocumentation(apiDocumentation);
