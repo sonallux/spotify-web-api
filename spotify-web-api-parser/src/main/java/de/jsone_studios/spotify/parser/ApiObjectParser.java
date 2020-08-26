@@ -26,7 +26,9 @@ class ApiObjectParser {
                 objects.add(object);
             }
         }
-        for (var object : MissingApiInformation.getMissingObjects()) {
+        //Apply fixes and add missing objects
+        ApiObjectFixes.fixApiObjects(objects);
+        for (var object : ApiObjectFixes.getMissingObjects()) {
             if (objects.contains(object)) {
                 log.warn("Object {} is no longer missing", object.getName());
             }

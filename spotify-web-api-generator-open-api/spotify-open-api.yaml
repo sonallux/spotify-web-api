@@ -6351,10 +6351,6 @@ components:
         publisher:
           type: string
           description: The publisher of the show.
-        total_episodes:
-          type: integer
-          description: Total number of episodes in the show.
-          format: int32
         type:
           type: string
           description: 'The object type: “show”.'
@@ -6496,7 +6492,7 @@ components:
           description: Part of the response when Track Relinking is applied. If true
             , the track is playable in the given market. Otherwise false.
         linked_from:
-          $ref: '#/components/schemas/TrackObject'
+          $ref: '#/components/schemas/LinkedTrackObject'
         name:
           type: string
           description: The name of the track.

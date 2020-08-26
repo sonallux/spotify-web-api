@@ -6,13 +6,16 @@ import de.jsone_studios.spotify.parser.model.SpotifyApiDocumentation;
 import de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Slf4j
 public class JavaGenerator {
@@ -29,7 +32,7 @@ public class JavaGenerator {
         var apiTemplate = new ApiTemplate().loadTemplate(this.templateCompiler);
 
         var outputFolder = Path.of("spotify-web-api-java", "src", "main", "generated");
-        Files.deleteIfExists(outputFolder);
+        deleteDirectory(outputFolder);
         var javaPackage = new JavaPackage("de", "jsone_studios", "spotify", "api");
 
         adjustApiDocumentation(apiDocumentation);
@@ -47,6 +50,14 @@ public class JavaGenerator {
         }
 
         //TODO: Generate de.jsone_studios.spotify.api.authentication.Scope
+    }
+
+    private static void deleteDirectory(Path dir) throws IOException {
+        try (Stream<Path> walk = Files.walk(dir)) {
+            walk.sorted(Comparator.reverseOrder())
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+        }
     }
 
     private Reader loadTemplate(String name) {
