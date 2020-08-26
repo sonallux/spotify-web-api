@@ -56,7 +56,7 @@ public class Track {
     /**
      * Part of the response when Track Relinking is applied, and the requested track has been replaced with different track. The track in the linked_from object contains information about the originally requested track.
      */
-    private Track linked_from;
+    private LinkedTrack linked_from;
     /**
      * The name of the track.
      */

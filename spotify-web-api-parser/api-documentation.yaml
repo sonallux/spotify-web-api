@@ -1216,9 +1216,6 @@ objects:
   - name: publisher
     type: String
     description: The publisher of the show.
-  - name: total_episodes
-    type: Integer
-    description: Total number of episodes in the show.
   - name: type
     type: String
     description: 'The object type: “show”.'
@@ -1345,7 +1342,7 @@ objects:
     description: Part of the response when Track Relinking is applied. If true , the
       track is playable in the given market. Otherwise false.
   - name: linked_from
-    type: TrackObject
+    type: LinkedTrackObject
     description: Part of the response when Track Relinking is applied, and the requested
       track has been replaced with different track. The track in the linked_from object
       contains information about the originally requested track.

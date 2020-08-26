@@ -32,7 +32,8 @@ class ApiEndpointParser {
                 categories.add(category);
             }
         }
-        MissingApiInformation.fixApiEndpoints(categories);
+        //Apply fixes
+        ApiEndpointFixes.fixApiEndpoints(categories);
         categories.sort(Comparator.comparing(SpotifyApiCategory::getId));
         return categories;
     }

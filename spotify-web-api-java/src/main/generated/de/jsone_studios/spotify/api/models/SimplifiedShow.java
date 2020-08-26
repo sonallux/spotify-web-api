@@ -62,10 +62,6 @@ public class SimplifiedShow {
      */
     private String publisher;
     /**
-     * Total number of episodes in the show.
-     */
-    private Integer total_episodes;
-    /**
      * The object type: “show”.
      */
     private String type;
