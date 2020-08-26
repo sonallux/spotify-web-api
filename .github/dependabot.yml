@@ -9,5 +9,5 @@ updates:
     reviewers:
       - jsone-studios
     ignore:
-      - dependency-name: 'mockwebserver'
+      - dependency-name: 'com.squareup.okhttp3:mockwebserver'
         versions: ['4.x']
