@@ -12,11 +12,10 @@ public interface SearchApi {
     /**
      * <h3>Search for an Item</h3>
      * Get Spotify Catalog information about albums, artists, playlists, tracks, shows or episodes that match a keyword string.
-     * <h3>Response</h3>
-     * On success: On error:
      * 
-     * @param q Search query keywords and optional field filters and operators. For example: q=roadhouse%20blues.
-     * @param type A comma-separated list of item types to search across. Valid types are: album , artist, playlist, track, show and episode. Search results include hits from all the specified item types. For example: q=name:abacab&type=album,track returns both albums and tracks with “abacab” included in their name.
+     * @param q Search query keywords and optional field filters and operators. For example: q&#x3D;roadhouse%20blues.
+     * @param type A comma-separated list of item types to search across. Valid types are: album , artist, playlist, track, show and episode. Search results include hits from all the specified item types. For example: q&#x3D;name:abacab&amp;type&#x3D;album,track returns both albums and tracks with “abacab” included in their name.
+     * @return On success: On error:
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-search">Search for an Item</a>
      */
     @GET("/search")
@@ -25,12 +24,11 @@ public interface SearchApi {
     /**
      * <h3>Search for an Item</h3>
      * Get Spotify Catalog information about albums, artists, playlists, tracks, shows or episodes that match a keyword string.
-     * <h3>Response</h3>
-     * On success: On error:
      * 
-     * @param q Search query keywords and optional field filters and operators. For example: q=roadhouse%20blues.
-     * @param type A comma-separated list of item types to search across. Valid types are: album , artist, playlist, track, show and episode. Search results include hits from all the specified item types. For example: q=name:abacab&type=album,track returns both albums and tracks with “abacab” included in their name.
+     * @param q Search query keywords and optional field filters and operators. For example: q&#x3D;roadhouse%20blues.
+     * @param type A comma-separated list of item types to search across. Valid types are: album , artist, playlist, track, show and episode. Search results include hits from all the specified item types. For example: q&#x3D;name:abacab&amp;type&#x3D;album,track returns both albums and tracks with “abacab” included in their name.
      * @param queryParameters A map of optional query parameters
+     * @return On success: On error:
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-search">Search for an Item</a>
      */
     @GET("/search")

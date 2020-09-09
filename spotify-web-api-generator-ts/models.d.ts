@@ -539,7 +539,7 @@ export interface ExternalId {
     /**
      * Universal Product Code
      */
-    upc: object;
+    upc: string;
 }
 
 export interface ExternalUrl extends Record<string, any> {

@@ -30,7 +30,7 @@ public class Track {
      */
     private Integer duration_ms;
     /**
-     * Whether or not the track has explicit lyrics ( true = yes it does; false = no it does not OR unknown).
+     * Whether or not the track has explicit lyrics ( true &#x3D; yes it does; false &#x3D; no it does not OR unknown).
      */
     private Boolean explicit;
     /**
@@ -70,7 +70,7 @@ public class Track {
      */
     private String preview_url;
     /**
-     * Part of the response when Track Relinking is applied, the original track is not available in the given market, and Spotify did not have any tracks to relink it with. The track response will still contain metadata for the original track, and a restrictions object containing the reason why the track is not available: "restrictions" : {"reason" : "market"}
+     * Part of the response when Track Relinking is applied, the original track is not available in the given market, and Spotify did not have any tracks to relink it with. The track response will still contain metadata for the original track, and a restrictions object containing the reason why the track is not available: &quot;restrictions&quot; : {&quot;reason&quot; : &quot;market&quot;}
      */
     private java.util.List<TrackRestriction> restrictions;
     /**

@@ -22,7 +22,7 @@ public class SimplifiedShow {
      */
     private String description;
     /**
-     * Whether or not the show has explicit content (true = yes it does; false = no it does not OR unknown).
+     * Whether or not the show has explicit content (true &#x3D; yes it does; false &#x3D; no it does not OR unknown).
      */
     private Boolean explicit;
     /**

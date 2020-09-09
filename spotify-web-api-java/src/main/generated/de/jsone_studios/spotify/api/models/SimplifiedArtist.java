@@ -23,7 +23,7 @@ public class SimplifiedArtist {
      */
     private String name;
     /**
-     * The object type: "artist"
+     * The object type: &quot;artist&quot;
      */
     private String type;
     /**

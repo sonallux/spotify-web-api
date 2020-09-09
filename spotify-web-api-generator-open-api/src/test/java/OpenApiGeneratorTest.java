@@ -16,8 +16,7 @@ public class OpenApiGeneratorTest {
 
         var openApiGenerator = new OpenApiGenerator();
         var openApi = openApiGenerator.generate(apiDocumentation);
-        String spotifyApiString = openApiGenerator.apiToString();
-        new OpenApiValidator().validateByContent(spotifyApiString);
+        String spotifyApiString = Yaml.create().writeValueAsString(openApi);
 
         var hasErrors = false;
         var result = new OpenApiValidator().validateByContent(spotifyApiString);
@@ -32,7 +31,7 @@ public class OpenApiGeneratorTest {
         if (!hasErrors) {
             System.out.println("No errors on OpenApi Definition found");
             try (var outputStream = Files.newOutputStream(Path.of(SWAGGER_FILE))) {
-                openApiGenerator.writeToStream(outputStream);
+                Yaml.create().writeValue(outputStream, openApi);
             }
         }
     }

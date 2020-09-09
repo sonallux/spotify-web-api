@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 public class RemoveTracksPlaylistRequest {
     /**
-     * An array of objects containing Spotify URIs of the tracks or episodes to remove. For example: { "tracks": [{ "uri": "spotify:track:4iV5W9uYEdYUVa79Axb7Rh" },{ "uri": "spotify:track:1301WleyT98MSxVHPZCA6M" }] }. A maximum of 100 objects can be sent at once.
+     * An array of objects containing Spotify URIs of the tracks or episodes to remove. For example: { &quot;tracks&quot;: [{ &quot;uri&quot;: &quot;spotify:track:4iV5W9uYEdYUVa79Axb7Rh&quot; },{ &quot;uri&quot;: &quot;spotify:track:1301WleyT98MSxVHPZCA6M&quot; }] }. A maximum of 100 objects can be sent at once.
      */
     @NonNull
     private java.util.List<String> tracks;

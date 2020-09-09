@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 public class UnfollowArtistsUsersRequest {
     /**
-     * A JSON array of the artist or user Spotify IDs. For example: {ids:["74ASZWbe4lXaubB36ztrGX", "08td7MxkoHQkXnWAYD8d6Q"]}. A maximum of 50 IDs can be sent in one request. Note: if the ids parameter is present in the query string, any IDs listed here in the body will be ignored.
+     * A JSON array of the artist or user Spotify IDs. For example: {ids:[&quot;74ASZWbe4lXaubB36ztrGX&quot;, &quot;08td7MxkoHQkXnWAYD8d6Q&quot;]}. A maximum of 50 IDs can be sent in one request. Note: if the ids parameter is present in the query string, any IDs listed here in the body will be ignored.
      */
     private java.util.List<String> ids;
 }

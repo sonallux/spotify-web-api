@@ -22,7 +22,7 @@ public class SimplifiedEpisode {
      */
     private Integer duration_ms;
     /**
-     * Whether or not the episode has explicit content (true = yes it does; false = no it does not OR unknown).
+     * Whether or not the episode has explicit content (true &#x3D; yes it does; false &#x3D; no it does not OR unknown).
      */
     private Boolean explicit;
     /**
@@ -62,11 +62,11 @@ public class SimplifiedEpisode {
      */
     private String name;
     /**
-     * The date the episode was first released, for example "1981-12-15". Depending on the precision, it might be shown as "1981" or "1981-12".
+     * The date the episode was first released, for example &quot;1981-12-15&quot;. Depending on the precision, it might be shown as &quot;1981&quot; or &quot;1981-12&quot;.
      */
     private String release_date;
     /**
-     * The precision with which release_date value is known: "year", "month", or "day".
+     * The precision with which release_date value is known: &quot;year&quot;, &quot;month&quot;, or &quot;day&quot;.
      */
     private String release_date_precision;
     /**

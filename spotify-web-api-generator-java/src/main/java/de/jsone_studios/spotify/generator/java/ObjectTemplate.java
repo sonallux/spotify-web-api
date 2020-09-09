@@ -1,6 +1,7 @@
 package de.jsone_studios.spotify.generator.java;
 
 import com.google.common.base.Strings;
+import com.samskivert.mustache.Escapers;
 import de.jsone_studios.spotify.generator.java.util.JavaPackage;
 import de.jsone_studios.spotify.generator.java.util.JavaUtils;
 import de.jsone_studios.spotify.parser.model.SpotifyObject;
@@ -59,7 +60,7 @@ class ObjectTemplate extends AbstractTemplate<SpotifyObject> {
             context.put("fieldName", property.getName());
         }
 
-        context.put("description", property.getDescription());
+        context.put("description", Escapers.HTML.escape(property.getDescription()));
         context.put("type", JavaUtils.mapToJavaType(property.getType()));
         if (property.getNonNull() != null && property.getNonNull()) {
             context.put("nonNull", true);

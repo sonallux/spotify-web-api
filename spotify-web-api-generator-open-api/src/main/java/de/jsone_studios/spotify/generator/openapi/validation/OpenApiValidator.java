@@ -19,8 +19,8 @@ import java.io.IOException;
 public class OpenApiValidator {
     private static final String SCHEMA_FILE = "/open-api-spec-schema.json";
 
-    private static ObjectMapper yamlMapper = Yaml.mapper();
-    private static ObjectMapper jsonMapper = Json.mapper();
+    private static final ObjectMapper YAML_MAPPER = Yaml.mapper();
+    private static final ObjectMapper JSON_MAPPER = Json.mapper();
 
     public ValidationResponse validateByContent(String content) throws Exception {
         ValidationResponse output = new ValidationResponse();
@@ -64,7 +64,7 @@ public class OpenApiValidator {
     }
 
     private JsonSchema getSchemaV3() throws Exception {
-        JsonNode schemaObject = jsonMapper.readTree(OpenApiValidator.class.getResourceAsStream(SCHEMA_FILE));
+        JsonNode schemaObject = JSON_MAPPER.readTree(OpenApiValidator.class.getResourceAsStream(SCHEMA_FILE));
         ObjectNode oNode = (ObjectNode) schemaObject;
         if (oNode.get("id") != null) {
             oNode.remove("id");
@@ -88,7 +88,7 @@ public class OpenApiValidator {
 
     private JsonNode readNode(String text) {
         try {
-            return yamlMapper.readTree(text);
+            return YAML_MAPPER.readTree(text);
         } catch (IOException e) {
             return null;
         }

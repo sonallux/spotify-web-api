@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 public class ChangePlaylistDetailsRequest {
     /**
-     * The new name for the playlist, for example "My New Playlist Title"
+     * The new name for the playlist, for example &quot;My New Playlist Title&quot;
      */
     private String name;
     /**
