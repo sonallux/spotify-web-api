@@ -38,7 +38,7 @@ public class AudioFeatures {
      */
     private Float instrumentalness;
     /**
-     * The key the track is in. Integers map to pitches using standard Pitch Class notation . E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on.
+     * The key the track is in. Integers map to pitches using standard Pitch Class notation . E.g. 0 &#x3D; C, 1 &#x3D; C♯/D♭, 2 &#x3D; D, and so on.
      */
     private Integer key;
     /**

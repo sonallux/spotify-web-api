@@ -18,7 +18,7 @@ public class Section {
      */
     private Float duration;
     /**
-     * The confidence, from 0.0 to 1.0, of the reliability of the section’s "designation".
+     * The confidence, from 0.0 to 1.0, of the reliability of the section’s &quot;designation&quot;.
      */
     private Float confidence;
     /**

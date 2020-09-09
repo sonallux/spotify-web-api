@@ -18,7 +18,7 @@ public class Artist {
      */
     private Followers followers;
     /**
-     * A list of the genres the artist is associated with. For example: "Prog Rock" , "Post-Grunge". (If not yet classified, the array is empty.)
+     * A list of the genres the artist is associated with. For example: &quot;Prog Rock&quot; , &quot;Post-Grunge&quot;. (If not yet classified, the array is empty.)
      */
     private java.util.List<String> genres;
     /**
@@ -42,7 +42,7 @@ public class Artist {
      */
     private Integer popularity;
     /**
-     * The object type: "artist"
+     * The object type: &quot;artist&quot;
      */
     private String type;
     /**

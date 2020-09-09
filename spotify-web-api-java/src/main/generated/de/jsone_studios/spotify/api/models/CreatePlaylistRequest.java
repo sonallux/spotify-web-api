@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 public class CreatePlaylistRequest {
     /**
-     * The name for the new playlist, for example "Your Coolest Playlist" . This name does not need to be unique; a user may have several playlists with the same name.
+     * The name for the new playlist, for example &quot;Your Coolest Playlist&quot; . This name does not need to be unique; a user may have several playlists with the same name.
      */
     @NonNull
     private String name;

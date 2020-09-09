@@ -2,12 +2,8 @@ package de.jsone_studios.spotify.parser;
 
 import de.jsone_studios.spotify.parser.model.SpotifyApiCategory;
 import de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint;
-import de.jsone_studios.spotify.parser.model.SpotifyObject;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.ParameterLocation.*;
@@ -16,35 +12,11 @@ import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.Parameter
 class ApiEndpointFixes {
 
     static void fixApiEndpoints(List<SpotifyApiCategory> categories) {
-        removeQueryParameterFromEndpointUrl(categories);
-        fixResponses(categories);
         fixTopArtistsTracksEndpoint(categories);
         fixChangePlaylistsDetails(categories);
         fixGetInfoAboutUsersCurrentPlayback(categories);
         fixAddTracksToPlaylist(categories);
         fixStartAUsersPlayback(categories);
-    }
-
-    private static void fixResponses(List<SpotifyApiCategory> categories) {
-        try {
-            var responseTypeMapper = new ResponseTypeMapper();
-            responseTypeMapper.update(categories);
-            responseTypeMapper.save();
-
-            for (var category : categories) {
-                for (var endpoint : category.getEndpoints()) {
-                    var endpointResponse = responseTypeMapper.getEndpointResponse(category.getId(), endpoint.getId());
-                    if (endpointResponse == null || endpointResponse.getResponseTypes().isEmpty()) {
-                        log.warn("Missing response type in {} for {} {} with response: \n{}\n", category.getId(),
-                                endpoint.getHttpMethod(), endpoint.getId(), endpoint.getResponseDescription());
-                        continue;
-                    }
-                    endpoint.setResponseTypes(endpointResponse.getResponseTypes());
-                }
-            }
-        } catch (IOException | NoSuchAlgorithmException e) {
-            log.error("Failed to load missing response types", e);
-        }
     }
 
     private static void fixTopArtistsTracksEndpoint(List<SpotifyApiCategory> categories) {
@@ -75,18 +47,6 @@ class ApiEndpointFixes {
         } else {
             paramPath.setType("String");
         }
-    }
-
-    private static void removeQueryParameterFromEndpointUrl(List<SpotifyApiCategory> categories) {
-        categories.stream()
-                .flatMap(c -> c.getEndpoints().stream())
-                .forEach(e -> {
-                    //Remove query parameter from url
-                    var queryParamStart = e.getPath().indexOf('?');
-                    if (queryParamStart != -1) {
-                        e.setPath(e.getPath().substring(0, queryParamStart));
-                    }
-                });
     }
 
     private static void fixGetInfoAboutUsersCurrentPlayback(List<SpotifyApiCategory> categories) {

@@ -1,6 +1,7 @@
 package de.jsone_studios.spotify.generator.java;
 
 import com.google.common.base.CaseFormat;
+import com.samskivert.mustache.Escapers;
 import de.jsone_studios.spotify.generator.java.util.JavaPackage;
 import de.jsone_studios.spotify.generator.java.util.JavaUtils;
 import de.jsone_studios.spotify.parser.model.SpotifyApiCategory;
@@ -36,7 +37,7 @@ class ApiTemplate extends AbstractTemplate<SpotifyApiCategory> {
     @Override
     Map<String, Object> buildContext(SpotifyApiCategory category, Map<String, Object> context) {
         context.put("modelsPackage", getBasePackage().child("models").getName());
-        context.put("description", category.getName());
+        context.put("name", category.getName());
         context.put("className", getClassName(category));
         context.put("documentationLink", category.getLink());
         context.put("endpoints", category.getEndpoints().stream().flatMap(e -> buildEndpointContext(e).stream()).collect(Collectors.toList()));
@@ -48,8 +49,8 @@ class ApiTemplate extends AbstractTemplate<SpotifyApiCategory> {
         var methodName = CaseFormat.LOWER_HYPHEN.to(CaseFormat.LOWER_CAMEL, JavaUtils.shrinkEndpointId(endpoint));
         baseContext.put("methodName", methodName);
         baseContext.put("name", endpoint.getName());
-        baseContext.put("description", endpoint.getDescription());
-        baseContext.put("responseDescription", endpoint.getResponseDescription());
+        baseContext.put("description", Escapers.HTML.escape(endpoint.getDescription()));
+        baseContext.put("responseDescription", Escapers.HTML.escape(endpoint.getResponseDescription()));
         if (endpoint.getScopes().size() > 0) {
             baseContext.put("scopes", String.join(", ", endpoint.getScopes()));
         }
@@ -176,7 +177,7 @@ class ApiTemplate extends AbstractTemplate<SpotifyApiCategory> {
             this.annotation = annotation;
             this.type = type;
             this.fieldName = JavaUtils.escapeFieldName(fieldName);
-            this.description = description;
+            this.description = Escapers.HTML.escape(description);
         }
 
         public String asMethodArgument() {

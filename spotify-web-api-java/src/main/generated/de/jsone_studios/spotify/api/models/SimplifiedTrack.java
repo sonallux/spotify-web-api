@@ -26,7 +26,7 @@ public class SimplifiedTrack {
      */
     private Integer duration_ms;
     /**
-     * Whether or not the track has explicit lyrics ( true = yes it does; false = no it does not OR unknown).
+     * Whether or not the track has explicit lyrics ( true &#x3D; yes it does; false &#x3D; no it does not OR unknown).
      */
     private Boolean explicit;
     /**

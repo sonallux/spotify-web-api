@@ -5,7 +5,7 @@ import retrofit2.Call;
 import retrofit2.http.*;
 
 {{#javaDoc}}
-    <a href="{{documentationLink}}">{{description}}</a>
+    <a href="{{documentationLink}}">{{name}}</a>
 {{/javaDoc}}
 public interface {{className}} {
 {{#endpoints}}
@@ -13,8 +13,6 @@ public interface {{className}} {
     {{#javaDoc}}
         <h3>{{name}}</h3>
         {{description}}
-        <h3>Response</h3>
-        {{responseDescription}}
         {{#scopes}}
         <h3>Required OAuth scopes</h3>
         <code>{{scopes}}</code>
@@ -23,6 +21,7 @@ public interface {{className}} {
         {{#javaDocParams}}
         {{.}}
         {{/javaDocParams}}
+        @return {{responseDescription}}
         @see <a href="{{documentationLink}}">{{name}}</a>
     {{/javaDoc}}
     @{{httpMethod}}("{{path}}")

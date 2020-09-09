@@ -20,27 +20,28 @@ import java.util.*;
 
 public class ResponseTypeMapper {
 
-    private static final String RESPONSE_TYPES_FILE = "spotify-web-api-parser/missing-response-types.yaml";
-
+    private final Path responseTypesFile;
     private final Map<String, Map<String, EndpointResponse>> responseTypes;
     private final MessageDigest md5Digest;
     private final ObjectMapper objectMapper;
 
-    public ResponseTypeMapper() throws IOException, NoSuchAlgorithmException {
-        objectMapper = Yaml.create();
-        md5Digest = MessageDigest.getInstance("MD5");
+    public ResponseTypeMapper(Path responseTypesFile) throws IOException, NoSuchAlgorithmException {
+        this.responseTypesFile = responseTypesFile;
+        this.objectMapper = Yaml.create();
+        this.md5Digest = MessageDigest.getInstance("MD5");
         this.responseTypes = load();
     }
 
     private Map<String, Map<String, EndpointResponse>> load() throws IOException {
-        var inputStream = Files.newInputStream(Path.of(RESPONSE_TYPES_FILE));
-        return objectMapper.readValue(inputStream, new TypeReference<>() {});
+        try (var inputStream = Files.newInputStream(this.responseTypesFile)) {
+            return objectMapper.readValue(inputStream, new TypeReference<>() {});
+        }
     }
 
     public void save() throws IOException {
-        var outputStream = Files.newOutputStream(Path.of(RESPONSE_TYPES_FILE));
-        objectMapper.writeValue(outputStream, responseTypes);
-        outputStream.close();
+        try (var outputStream = Files.newOutputStream(this.responseTypesFile)) {
+            objectMapper.writeValue(outputStream, responseTypes);
+        }
     }
 
     public void update(List<SpotifyApiCategory> categories) {
@@ -85,7 +86,7 @@ public class ResponseTypeMapper {
         }
     }
 
-    private String readString(Scanner scanner, String defaultValue) {
+    private static String readString(Scanner scanner, String defaultValue) {
         var string = scanner.nextLine().trim();
         if (string.isEmpty()) {
             return defaultValue;
@@ -94,7 +95,7 @@ public class ResponseTypeMapper {
         }
     }
 
-    private int readInt(Scanner scanner, int defaultValue) {
+    private static int readInt(Scanner scanner, int defaultValue) {
         try {
             return Integer.parseInt(scanner.nextLine().trim());
         } catch (NumberFormatException e) {

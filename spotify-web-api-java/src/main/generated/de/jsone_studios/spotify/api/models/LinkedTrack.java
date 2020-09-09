@@ -19,7 +19,7 @@ public class LinkedTrack {
      */
     private String id;
     /**
-     * The object type: "track".
+     * The object type: &quot;track&quot;.
      */
     private String type;
     /**

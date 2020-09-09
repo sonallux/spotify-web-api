@@ -2,9 +2,13 @@ package de.jsone_studios.spotify.parser;
 
 import de.jsone_studios.spotify.parser.model.SpotifyApiCategory;
 import de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -12,14 +16,24 @@ import java.util.stream.Collectors;
 
 import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.ParameterLocation.*;
 
+@RequiredArgsConstructor
 @Slf4j
 class ApiEndpointParser {
+
+    private final boolean isInteractive;
+
     private String documentationUrl;
     private String endpointUrl;
+    private ResponseTypeMapper responseTypeMapper;
 
-    List<SpotifyApiCategory> parseSpotifyApiCategories(List<Elements> sections, String documentationUrl, String endpointUrl) throws ApiParseException {
+    List<SpotifyApiCategory> parseSpotifyApiCategories(List<Elements> sections, String documentationUrl, String endpointUrl, Path responseTypesFile) throws ApiParseException {
         this.documentationUrl = documentationUrl;
         this.endpointUrl = endpointUrl;
+        try {
+            this.responseTypeMapper = new ResponseTypeMapper(responseTypesFile);
+        } catch (IOException | NoSuchAlgorithmException e) {
+            throw new ApiParseException("Failed to initialize response type mapper", e);
+        }
 
         var categories = new ArrayList<SpotifyApiCategory>();
         //The First section is the Reference Index and the last the Objects Index
@@ -27,15 +41,40 @@ class ApiEndpointParser {
             var category = parseSpotifyApiCategory(element);
             if (categories.contains(category)) {
                 throw new ApiParseException("Category " + category.getId() + " is defined twice");
-            }
-            else {
+            } else {
                 categories.add(category);
             }
         }
+
+        addResponseTypes(categories);
+
         //Apply fixes
         ApiEndpointFixes.fixApiEndpoints(categories);
         categories.sort(Comparator.comparing(SpotifyApiCategory::getId));
         return categories;
+    }
+
+    private void addResponseTypes(List<SpotifyApiCategory> categories) {
+        try {
+            if (isInteractive) {
+                responseTypeMapper.update(categories);
+                responseTypeMapper.save();
+            }
+
+            for (var category : categories) {
+                for (var endpoint : category.getEndpoints()) {
+                    var endpointResponse = responseTypeMapper.getEndpointResponse(category.getId(), endpoint.getId());
+                    if (endpointResponse == null || endpointResponse.getResponseTypes().isEmpty()) {
+                        log.warn("Missing response type in {} for {} {} with response: \n{}\n", category.getId(),
+                                endpoint.getHttpMethod(), endpoint.getId(), endpoint.getResponseDescription());
+                        continue;
+                    }
+                    endpoint.setResponseTypes(endpointResponse.getResponseTypes());
+                }
+            }
+        } catch (IOException e) {
+            log.error("Failed to load missing response types", e);
+        }
     }
 
     private SpotifyApiCategory parseSpotifyApiCategory(Elements elements) throws ApiParseException {
@@ -49,8 +88,7 @@ class ApiEndpointParser {
             var endpoint = parseSpotifyApiEndpoint(element);
             if (endpoints.contains(endpoint)) {
                 throw new ApiParseException("Endpoint " + endpoint.getId() + " already defined in category " + id);
-            }
-            else {
+            } else {
                 endpoints.add(endpoint);
             }
         }
@@ -78,6 +116,12 @@ class ApiEndpointParser {
             }
         } else {
             throw new ApiParseException("Found multiple urls for endpoint: " + id);
+        }
+
+        //Remove query parameter from url
+        var queryParamStart = path.indexOf('?');
+        if (queryParamStart != -1) {
+            path = path.substring(0, queryParamStart);
         }
 
         String responseDescription = null;

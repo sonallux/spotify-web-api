@@ -17,7 +17,7 @@ category-library:
   endpoint-check-users-saved-albums:
     md5Hash: d10a9416d418dc7dad219993d616f9dd
     responseTypes:
-    - type: Array[Boolean]
+    - type: "Array[Boolean]"
       status: 200
   endpoint-save-albums-user:
     md5Hash: 19919aea8f482e256cae99cf6bc3b274
@@ -27,22 +27,22 @@ category-library:
   endpoint-get-users-saved-tracks:
     md5Hash: 10803149b4b7b04800080fef9e7c37ee
     responseTypes:
-    - type: PagingObject[SavedTrackObject]
+    - type: "PagingObject[SavedTrackObject]"
       status: 200
   endpoint-check-users-saved-tracks:
     md5Hash: d10a9416d418dc7dad219993d616f9dd
     responseTypes:
-    - type: Array[Boolean]
+    - type: "Array[Boolean]"
       status: 200
   endpoint-get-users-saved-albums:
     md5Hash: f3203979bbe0706528da45615f7d56b4
     responseTypes:
-    - type: PagingObject[SavedAlbumObject]
+    - type: "PagingObject[SavedAlbumObject]"
       status: 200
   endpoint-get-users-saved-shows:
     md5Hash: cf238954e11da60aa4c660c25eb6aa88
     responseTypes:
-    - type: PagingObject[SavedShowObject]
+    - type: "PagingObject[SavedShowObject]"
       status: 200
   endpoint-remove-shows-user:
     md5Hash: fd9b946a6b4d9fb154cb4cb29fc68170
@@ -52,7 +52,7 @@ category-library:
   endpoint-check-users-saved-shows:
     md5Hash: d10684b67a57c42b4aec1cce0cd004b9
     responseTypes:
-    - type: Array[Boolean]
+    - type: "Array[Boolean]"
       status: 200
   endpoint-save-shows-user:
     md5Hash: cd6d80ec9cff4ec01eeaae29fb8ed5ed
@@ -73,7 +73,7 @@ category-shows:
   endpoint-get-a-shows-episodes:
     md5Hash: d5f6b29bdae57e26b8c44ee039a36aa5
     responseTypes:
-    - type: PagingObject[SimplifiedEpisodeObject]
+    - type: "PagingObject[SimplifiedEpisodeObject]"
       status: 200
 category-playlists:
   endpoint-upload-custom-playlist-cover:
@@ -89,17 +89,17 @@ category-playlists:
   endpoint-get-list-users-playlists:
     md5Hash: eea5adfe672a2a2436f67cba3794b42e
     responseTypes:
-    - type: PagingObject[SimplifiedPlaylistObject]
+    - type: "PagingObject[SimplifiedPlaylistObject]"
       status: 200
   endpoint-get-playlists-tracks:
     md5Hash: 2cfca3c857f56f272ed2daccca59e4e9
     responseTypes:
-    - type: PagingObject[TrackObject | EpisodeObject]
+    - type: "PagingObject[TrackObject | EpisodeObject]"
       status: 200
   endpoint-get-a-list-of-current-users-playlists:
     md5Hash: 377206f9f6c9226eb0f7676b4cef693f
     responseTypes:
-    - type: PagingObject[SimplifiedPlaylistObject]
+    - type: "PagingObject[SimplifiedPlaylistObject]"
       status: 200
   endpoint-get-playlist:
     md5Hash: 778d8492a59fa2846699045edf0487d
@@ -114,7 +114,7 @@ category-playlists:
   endpoint-get-playlist-cover:
     md5Hash: 8ff4cea0b337cf8b9b2da5224b6d09c5
     responseTypes:
-    - type: Array[ImageObject]
+    - type: "Array[ImageObject]"
       status: 200
   endpoint-create-playlist:
     md5Hash: 7012fb16fe1c45658c64303c1b08d1e1
@@ -147,7 +147,7 @@ category-albums:
   endpoint-get-an-albums-tracks:
     md5Hash: 4f03b9714e147b208c8ba3f509c75490
     responseTypes:
-    - type: PagingObject[TrackObject]
+    - type: "PagingObject[TrackObject]"
       status: 200
   endpoint-get-an-album:
     md5Hash: 4f03b9714e147b208c8ba3f509c75490
@@ -248,7 +248,7 @@ category-player:
   endpoint-get-recently-played:
     md5Hash: d556eea84f214b413d608f5ecbae7016
     responseTypes:
-    - type: CursorPagingObject[PlayHistoryObject]
+    - type: "CursorPagingObject[PlayHistoryObject]"
       status: 200
     - type: Void
       status: 204
@@ -308,7 +308,7 @@ category-follow:
   endpoint-check-current-user-follows:
     md5Hash: d10a9416d418dc7dad219993d616f9dd
     responseTypes:
-    - type: Array[Boolean]
+    - type: "Array[Boolean]"
       status: 200
   endpoint-get-followed:
     md5Hash: 20a1cf3577d38d495ce6b597556ebce0
@@ -318,7 +318,7 @@ category-follow:
   endpoint-check-if-user-follows-playlist:
     md5Hash: d10a9416d418dc7dad219993d616f9dd
     responseTypes:
-    - type: Array[Boolean]
+    - type: "Array[Boolean]"
       status: 200
   endpoint-unfollow-artists-users:
     md5Hash: 6cd171fa371ec9765c99e1f8acf363b2
@@ -359,7 +359,7 @@ category-artists:
   endpoint-get-an-artists-albums:
     md5Hash: 9243b319a331d9f894d17702e3f4c835
     responseTypes:
-    - type: PagingObject[SimplifiedAlbumObject]
+    - type: "PagingObject[SimplifiedAlbumObject]"
       status: 200
   endpoint-get-an-artist:
     md5Hash: d8b8817a7b07df889f2bbe751a048747
@@ -387,5 +387,5 @@ category-personalization:
   endpoint-get-users-top-artists-and-tracks:
     md5Hash: 1a499dda1f384ef31bedeaadc7ee0199
     responseTypes:
-    - type: PagingObject[ArtistObject | TrackObject]
+    - type: "PagingObject[ArtistObject | TrackObject]"
       status: 200

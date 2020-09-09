@@ -2,7 +2,6 @@ package de.jsone_studios.spotify.generator.openapi;
 
 import com.google.common.base.Strings;
 import de.jsone_studios.spotify.parser.model.*;
-import io.swagger.v3.core.util.Yaml;
 import io.swagger.v3.oas.models.*;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.media.*;
@@ -12,11 +11,8 @@ import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.oas.models.security.*;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.tags.Tag;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,52 +21,44 @@ import java.util.stream.Collectors;
 import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.ParameterLocation.BODY;
 
 @Slf4j
-@Getter
 public class OpenApiGenerator {
 
     private static final String MEDIA_TYPE_JSON = "application/json";
     private static final Pattern ARRAY_TYPE_PATTERN = Pattern.compile("^Array\\[(.+)]$");
     private static final Pattern PAGING_OBJECT_TYPE_PATTERN = Pattern.compile("^PagingObject\\[(.+)]$");
     private static final Pattern CURSOR_PAGING_OBJECT_TYPE_PATTERN = Pattern.compile("^CursorPagingObject\\[(.+)]$");
-    private static final String SPOTIFY_SECURITY = "spotify_auth";
+    private static final String SPOTIFY_SECURITY_SCHEME = "spotify_auth";
 
     //TODO: possible response status codes: https://developer.spotify.com/documentation/web-api/#response-status-codes
 
     private OpenAPI openAPI;
-    private CloneHelper cloneHelper;
+    private final CloneHelper cloneHelper;
 
     public OpenApiGenerator() {
-        this.openAPI = new OpenAPI();
         this.cloneHelper = new CloneHelper();
     }
 
-    public String apiToString() {
-        return Yaml.pretty(openAPI);
-    }
-
-    public void writeToStream(OutputStream outputStream) throws IOException {
-        Yaml.pretty().writeValue(outputStream, openAPI);
-    }
-
     public OpenAPI generate(SpotifyApiDocumentation apiDocumentation) {
-        return openAPI
+        this.openAPI = new OpenAPI();
+        this.openAPI
                 .externalDocs(new ExternalDocumentation()
-                        .url(apiDocumentation.getApiDocumentationUrl())
-                        .description("Find more info on the official Spotify Web API Reference")
+                    .url(apiDocumentation.getApiDocumentationUrl())
+                    .description("Find more info on the official Spotify Web API Reference")
                 )
-            .info(new Info()
-                .title("Spotify Web API")
-                .version("0.0.1")
-            )
-            .servers(List.of(new Server().url(apiDocumentation.getEndpointUrl())))
-            .components(new Components()
-                    .schemas(generateSchemaObjects(apiDocumentation.getObjects()))
-                    .addResponses("ErrorResponse", getDefaultErrorResponse())
-                    .securitySchemes(Map.of(SPOTIFY_SECURITY, getSpotifySecurityScheme(apiDocumentation.getScopes())))
-            )
-            .tags(generateTags(apiDocumentation.getCategories()))
-            .paths(generatePaths(apiDocumentation.getCategories()))
+                .info(new Info()
+                        .title("Spotify Web API")
+                        .version("0.0.1")
+                )
+                .servers(List.of(new Server().url(apiDocumentation.getEndpointUrl())))
+                .components(new Components()
+                        .schemas(generateSchemaObjects(apiDocumentation.getObjects()))
+                        .addResponses("ErrorResponse", getDefaultErrorResponse())
+                        .securitySchemes(Map.of(SPOTIFY_SECURITY_SCHEME, getSpotifySecurityScheme(apiDocumentation.getScopes())))
+                )
+                .tags(generateTags(apiDocumentation.getCategories()))
+                .paths(generatePaths(apiDocumentation.getCategories()))
         ;
+        return openAPI;
     }
 
     private SecurityScheme getSpotifySecurityScheme(SpotifyScopes scopes) {
@@ -144,7 +132,7 @@ public class OpenApiGenerator {
                 .parameters(parameters)
                 .requestBody(requestBody)
                 .responses(apiResponses)
-                .security(List.of(new SecurityRequirement().addList(SPOTIFY_SECURITY, endpoint.getScopes())))
+                .security(List.of(new SecurityRequirement().addList(SPOTIFY_SECURITY_SCHEME, endpoint.getScopes())))
         ;
     }
 
