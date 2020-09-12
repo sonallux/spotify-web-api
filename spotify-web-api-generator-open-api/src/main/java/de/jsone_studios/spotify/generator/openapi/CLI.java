@@ -1,8 +1,10 @@
 package de.jsone_studios.spotify.generator.openapi;
 
+import com.fasterxml.jackson.databind.ObjectWriter;
 import de.jsone_studios.spotify.generator.openapi.validation.OpenApiValidator;
 import de.jsone_studios.spotify.parser.Yaml;
 import de.jsone_studios.spotify.parser.model.SpotifyApiDocumentation;
+import io.swagger.v3.oas.models.OpenAPI;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 
@@ -13,6 +15,8 @@ import java.nio.file.Path;
 import static java.nio.file.StandardOpenOption.*;
 
 public class CLI implements Runnable {
+
+    private static final ObjectWriter OPEN_API_YAML = io.swagger.v3.core.util.Yaml.pretty();
 
     @Option(names = {"-f", "--file"}, required = true, description = "The web API documentation file to a generate a Java wrapper for")
     Path apiDocumentationFile;
@@ -30,24 +34,27 @@ public class CLI implements Runnable {
     public void run() {
         var apiDocumentation = readApiDocumentation();
 
+        var openApiGenerator = new OpenApiGenerator();
+        var openAPI = openApiGenerator.generate(apiDocumentation);
+
         if (shouldValidate) {
-            validate(apiDocumentation);
+            validate(openAPI);
         }
 
         try (var outputStream = Files.newOutputStream(outputFile, CREATE, TRUNCATE_EXISTING, WRITE)) {
-            Yaml.create().writeValue(outputStream, apiDocumentation);
+            OPEN_API_YAML.writeValue(outputStream, openAPI);
         } catch (IOException e) {
             System.err.println("Failed to write generated file: " + e.getMessage());
             System.exit(1);
         }
     }
 
-    private void validate(SpotifyApiDocumentation apiDocumentation) {
+    private void validate(OpenAPI openAPI) {
         try {
-            String spotifyApiString = Yaml.create().writeValueAsString(apiDocumentation);
+            String openApiString = OPEN_API_YAML.writeValueAsString(openAPI);
 
             var hasErrors = false;
-            var result = new OpenApiValidator().validateByContent(spotifyApiString);
+            var result = new OpenApiValidator().validateByContent(openApiString);
             for (var msg : result.getMessages()) {
                 hasErrors = true;
                 System.err.println("Validation result: " + msg);
