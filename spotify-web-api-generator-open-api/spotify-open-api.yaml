@@ -201,7 +201,7 @@ paths:
                     format: int32
                   previous:
                     type: string
-                    description: URL to the previous page of items.
+                    description: URL to the previous page of items. ( null if none)
                   total:
                     type: integer
                     description: The total number of items available to return.
