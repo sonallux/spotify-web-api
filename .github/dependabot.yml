@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: maven
-    directory: "/"
+    directory: '/'
     schedule:
       interval: weekly
       time: '01:00'
@@ -10,4 +10,4 @@ updates:
       - jsone-studios
     ignore:
       - dependency-name: 'com.squareup.okhttp3:mockwebserver'
-        versions: ['4.x']
+        versions: ['[4.0,)']
