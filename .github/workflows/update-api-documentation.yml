@@ -1,0 +1,27 @@
+name: Update API documentation
+on:
+  schedule:
+    # runs every day at 02:02 UTC
+    - cron: '2 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Parse web API
+        run: ./scripts/update-api-documentation.sh
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3.3.0
+        with:
+          commit-message: 'Update web API documentation'
+          branch: 'automated-api-documentation-update'
+          delete-branch: true
+          base: master
+          title: 'Update web API documentation'
+          body: 'Automated Spotify web API documentation update'
+      - name: Check outputs
+        run: echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
