@@ -10,13 +10,6 @@ import java.io.Reader;
 import java.nio.file.Path;
 import java.util.stream.Collectors;
 
-/**
- * Generates typescript definitions for the SpotifyObjects
- *
- * The main spotify objects (artist, album, track and playlist) share a few common properties (id, type, href and uri)
- * Therefore I propose to have an abstract SpotifyObject which has these four properties.
- * All other main spotify object definitions should inherit from SpotifyObject
- */
 public class TSGenerator {
     private final Mustache.Compiler templateCompiler;
 
@@ -32,11 +25,10 @@ public class TSGenerator {
     }
 
     public void generate(SpotifyApiDocumentation apiDocumentation, Path outputFile) throws IOException {
-        var mainSpotifyObjects = apiDocumentation.getObjects().stream()
-                .filter(TSGenerator::isMainSpotifyObject)
-                .collect(Collectors.toList());
-
-        mainSpotifyObjects.forEach(System.out::println);
+        //var mainSpotifyObjects = apiDocumentation.getObjects().stream()
+        //        .filter(TSGenerator::isMainSpotifyObject)
+        //        .collect(Collectors.toList());
+        //mainSpotifyObjects.forEach(System.out::println);
 
         var objectTemplate = new ObjectTemplate().loadTemplate(templateCompiler);
         objectTemplate.generate(apiDocumentation.getObjects(), outputFile);
