@@ -15,7 +15,7 @@ then
   exit 1
 fi
 
-java -jar $cliJarFile -f $API_DOCUMENTATION_FILE -o $OUTPUT_FILE --validate
+java -jar $cliJarFile -f $API_DOCUMENTATION_FILE -o $OUTPUT_FILE
 generationExitCode=$?
 if [ "$generationExitCode" != "0" ]
 then
