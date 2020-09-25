@@ -68,11 +68,11 @@ tags:
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
     url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-tracks
-- name: category-user-profile
-  description: User Profile API
+- name: category-users-profile
+  description: Users Profile API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-user-profile
+    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-users-profile
 paths:
   /albums/{id}:
     get:
@@ -141,6 +141,13 @@ paths:
         required: true
         schema:
           type: string
+      - name: market
+        in: query
+        description: An ISO 3166-1 alpha-2 country code or the string from_token.
+          Provide this parameter if you want to apply Track Relinking.
+        required: false
+        schema:
+          type: string
       - name: limit
         in: query
         description: "The maximum number of tracks to return. Default: 20. Minimum:\
@@ -157,13 +164,6 @@ paths:
         schema:
           type: integer
           format: int32
-      - name: market
-        in: query
-        description: An ISO 3166-1 alpha-2 country code or the string from_token.
-          Provide this parameter if you want to apply Track Relinking.
-        required: false
-        schema:
-          type: string
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
@@ -780,8 +780,7 @@ paths:
           \ current UTC time."
         required: false
         schema:
-          type: integer
-          format: int32
+          type: string
       - name: limit
         in: query
         description: "The maximum number of items to return. Default: 20. Minimum:\
@@ -925,6 +924,28 @@ paths:
         required: true
         schema:
           type: string
+      - name: limit
+        in: query
+        description: "The target size of the list of recommended tracks. For seeds\
+          \ with unusually small pools or when highly restrictive filtering is applied,\
+          \ it may be impossible to generate the requested number of recommended tracks.\
+          \ Debugging information for such cases is available in the response. Default:\
+          \ 20. Minimum: 1. Maximum: 100."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: market
+        in: query
+        description: "An ISO 3166-1 alpha-2 country code or the string from_token.\
+          \ Provide this parameter if you want to apply Track Relinking. Because min_*,\
+          \ max_* and target_* are applied to pools before relinking, the generated\
+          \ results may not precisely match the filters applied. Original, non-relinked\
+          \ tracks are available via the linked_from attribute of the relinked track\
+          \ response."
+        required: false
+        schema:
+          type: string
       - name: seed_artists
         in: query
         description: "A comma separated list of Spotify IDs for seed artists. Up to\
@@ -949,54 +970,416 @@ paths:
         required: true
         schema:
           type: string
-      - name: limit
+      - name: min_acousticness
         in: query
-        description: "The target size of the list of recommended tracks. For seeds\
-          \ with unusually small pools or when highly restrictive filtering is applied,\
-          \ it may be impossible to generate the requested number of recommended tracks.\
-          \ Debugging information for such cases is available in the response. Default:\
-          \ 20. Minimum: 1. Maximum: 100."
-        required: false
-        schema:
-          type: integer
-          format: int32
-      - name: market
-        in: query
-        description: "An ISO 3166-1 alpha-2 country code or the string from_token.\
-          \ Provide this parameter if you want to apply Track Relinking. Because min_*,\
-          \ max_* and target_* are applied to pools before relinking, the generated\
-          \ results may not precisely match the filters applied. Original, non-relinked\
-          \ tracks are available via the linked_from attribute of the relinked track\
-          \ response."
-        required: false
-        schema:
-          type: string
-      - name: min_*
-        in: query
-        description: "Multiple values. For each tunable track attribute, a hard floor\
-          \ on the selected track attribute’s value can be provided. See tunable track\
-          \ attributes below for the list of available options. For example, min_tempo=140\
-          \ would restrict results to only those tracks with a tempo of greater than\
-          \ 140 beats per minute."
+        description: "For each tunable track attribute, a hard floor on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, min_tempo=140 would\
+          \ restrict results to only those tracks with a tempo of greater than 140\
+          \ beats per minute."
         required: false
         schema:
           type: number
-      - name: max_*
+      - name: max_acousticness
         in: query
-        description: "Multiple values. For each tunable track attribute, a hard ceiling\
-          \ on the selected track attribute’s value can be provided. See tunable track\
-          \ attributes below for the list of available options. For example, max_instrumentalness=0.35\
+        description: "For each tunable track attribute, a hard ceiling on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, max_instrumentalness=0.35\
           \ would filter out most tracks that are likely to be instrumental."
         required: false
         schema:
           type: number
-      - name: target_*
+      - name: target_acousticness
         in: query
-        description: "Multiple values. For each of the tunable track attributes (below)\
-          \ a target value may be provided. Tracks with the attribute values nearest\
-          \ to the target values will be preferred. For example, you might request\
-          \ target_energy=0.6 and target_danceability=0.8. All target values will\
-          \ be weighed equally in ranking results."
+        description: "For each of the tunable track attributes (below) a target value\
+          \ may be provided. Tracks with the attribute values nearest to the target\
+          \ values will be preferred. For example, you might request target_energy=0.6\
+          \ and target_danceability=0.8. All target values will be weighed equally\
+          \ in ranking results."
+        required: false
+        schema:
+          type: number
+      - name: min_danceability
+        in: query
+        description: "For each tunable track attribute, a hard floor on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, min_tempo=140 would\
+          \ restrict results to only those tracks with a tempo of greater than 140\
+          \ beats per minute."
+        required: false
+        schema:
+          type: number
+      - name: max_danceability
+        in: query
+        description: "For each tunable track attribute, a hard ceiling on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, max_instrumentalness=0.35\
+          \ would filter out most tracks that are likely to be instrumental."
+        required: false
+        schema:
+          type: number
+      - name: target_danceability
+        in: query
+        description: "For each of the tunable track attributes (below) a target value\
+          \ may be provided. Tracks with the attribute values nearest to the target\
+          \ values will be preferred. For example, you might request target_energy=0.6\
+          \ and target_danceability=0.8. All target values will be weighed equally\
+          \ in ranking results."
+        required: false
+        schema:
+          type: number
+      - name: min_duration_ms
+        in: query
+        description: "For each tunable track attribute, a hard floor on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, min_tempo=140 would\
+          \ restrict results to only those tracks with a tempo of greater than 140\
+          \ beats per minute."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: max_duration_ms
+        in: query
+        description: "For each tunable track attribute, a hard ceiling on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, max_instrumentalness=0.35\
+          \ would filter out most tracks that are likely to be instrumental."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: target_duration_ms
+        in: query
+        description: Target duration of the track (ms)
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: min_energy
+        in: query
+        description: "For each tunable track attribute, a hard floor on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, min_tempo=140 would\
+          \ restrict results to only those tracks with a tempo of greater than 140\
+          \ beats per minute."
+        required: false
+        schema:
+          type: number
+      - name: max_energy
+        in: query
+        description: "For each tunable track attribute, a hard ceiling on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, max_instrumentalness=0.35\
+          \ would filter out most tracks that are likely to be instrumental."
+        required: false
+        schema:
+          type: number
+      - name: target_energy
+        in: query
+        description: "For each of the tunable track attributes (below) a target value\
+          \ may be provided. Tracks with the attribute values nearest to the target\
+          \ values will be preferred. For example, you might request target_energy=0.6\
+          \ and target_danceability=0.8. All target values will be weighed equally\
+          \ in ranking results."
+        required: false
+        schema:
+          type: number
+      - name: min_instrumentalness
+        in: query
+        description: "For each tunable track attribute, a hard floor on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, min_tempo=140 would\
+          \ restrict results to only those tracks with a tempo of greater than 140\
+          \ beats per minute."
+        required: false
+        schema:
+          type: number
+      - name: max_instrumentalness
+        in: query
+        description: "For each tunable track attribute, a hard ceiling on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, max_instrumentalness=0.35\
+          \ would filter out most tracks that are likely to be instrumental."
+        required: false
+        schema:
+          type: number
+      - name: target_instrumentalness
+        in: query
+        description: "For each of the tunable track attributes (below) a target value\
+          \ may be provided. Tracks with the attribute values nearest to the target\
+          \ values will be preferred. For example, you might request target_energy=0.6\
+          \ and target_danceability=0.8. All target values will be weighed equally\
+          \ in ranking results."
+        required: false
+        schema:
+          type: number
+      - name: min_key
+        in: query
+        description: "For each tunable track attribute, a hard floor on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, min_tempo=140 would\
+          \ restrict results to only those tracks with a tempo of greater than 140\
+          \ beats per minute."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: max_key
+        in: query
+        description: "For each tunable track attribute, a hard ceiling on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, max_instrumentalness=0.35\
+          \ would filter out most tracks that are likely to be instrumental."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: target_key
+        in: query
+        description: "For each of the tunable track attributes (below) a target value\
+          \ may be provided. Tracks with the attribute values nearest to the target\
+          \ values will be preferred. For example, you might request target_energy=0.6\
+          \ and target_danceability=0.8. All target values will be weighed equally\
+          \ in ranking results."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: min_liveness
+        in: query
+        description: "For each tunable track attribute, a hard floor on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, min_tempo=140 would\
+          \ restrict results to only those tracks with a tempo of greater than 140\
+          \ beats per minute."
+        required: false
+        schema:
+          type: number
+      - name: max_liveness
+        in: query
+        description: "For each tunable track attribute, a hard ceiling on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, max_instrumentalness=0.35\
+          \ would filter out most tracks that are likely to be instrumental."
+        required: false
+        schema:
+          type: number
+      - name: target_liveness
+        in: query
+        description: "For each of the tunable track attributes (below) a target value\
+          \ may be provided. Tracks with the attribute values nearest to the target\
+          \ values will be preferred. For example, you might request target_energy=0.6\
+          \ and target_danceability=0.8. All target values will be weighed equally\
+          \ in ranking results."
+        required: false
+        schema:
+          type: number
+      - name: min_loudness
+        in: query
+        description: "For each tunable track attribute, a hard floor on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, min_tempo=140 would\
+          \ restrict results to only those tracks with a tempo of greater than 140\
+          \ beats per minute."
+        required: false
+        schema:
+          type: number
+      - name: max_loudness
+        in: query
+        description: "For each tunable track attribute, a hard ceiling on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, max_instrumentalness=0.35\
+          \ would filter out most tracks that are likely to be instrumental."
+        required: false
+        schema:
+          type: number
+      - name: target_loudness
+        in: query
+        description: "For each of the tunable track attributes (below) a target value\
+          \ may be provided. Tracks with the attribute values nearest to the target\
+          \ values will be preferred. For example, you might request target_energy=0.6\
+          \ and target_danceability=0.8. All target values will be weighed equally\
+          \ in ranking results."
+        required: false
+        schema:
+          type: number
+      - name: min_mode
+        in: query
+        description: "For each tunable track attribute, a hard floor on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, min_tempo=140 would\
+          \ restrict results to only those tracks with a tempo of greater than 140\
+          \ beats per minute."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: max_mode
+        in: query
+        description: "For each tunable track attribute, a hard ceiling on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, max_instrumentalness=0.35\
+          \ would filter out most tracks that are likely to be instrumental."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: target_mode
+        in: query
+        description: "For each of the tunable track attributes (below) a target value\
+          \ may be provided. Tracks with the attribute values nearest to the target\
+          \ values will be preferred. For example, you might request target_energy=0.6\
+          \ and target_danceability=0.8. All target values will be weighed equally\
+          \ in ranking results."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: min_popularity
+        in: query
+        description: "For each tunable track attribute, a hard floor on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, min_tempo=140 would\
+          \ restrict results to only those tracks with a tempo of greater than 140\
+          \ beats per minute."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: max_popularity
+        in: query
+        description: "For each tunable track attribute, a hard ceiling on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, max_instrumentalness=0.35\
+          \ would filter out most tracks that are likely to be instrumental."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: target_popularity
+        in: query
+        description: "For each of the tunable track attributes (below) a target value\
+          \ may be provided. Tracks with the attribute values nearest to the target\
+          \ values will be preferred. For example, you might request target_energy=0.6\
+          \ and target_danceability=0.8. All target values will be weighed equally\
+          \ in ranking results."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: min_speechiness
+        in: query
+        description: "For each tunable track attribute, a hard floor on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, min_tempo=140 would\
+          \ restrict results to only those tracks with a tempo of greater than 140\
+          \ beats per minute."
+        required: false
+        schema:
+          type: number
+      - name: max_speechiness
+        in: query
+        description: "For each tunable track attribute, a hard ceiling on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, max_instrumentalness=0.35\
+          \ would filter out most tracks that are likely to be instrumental."
+        required: false
+        schema:
+          type: number
+      - name: target_speechiness
+        in: query
+        description: "For each of the tunable track attributes (below) a target value\
+          \ may be provided. Tracks with the attribute values nearest to the target\
+          \ values will be preferred. For example, you might request target_energy=0.6\
+          \ and target_danceability=0.8. All target values will be weighed equally\
+          \ in ranking results."
+        required: false
+        schema:
+          type: number
+      - name: min_tempo
+        in: query
+        description: "For each tunable track attribute, a hard floor on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, min_tempo=140 would\
+          \ restrict results to only those tracks with a tempo of greater than 140\
+          \ beats per minute."
+        required: false
+        schema:
+          type: number
+      - name: max_tempo
+        in: query
+        description: "For each tunable track attribute, a hard ceiling on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, max_instrumentalness=0.35\
+          \ would filter out most tracks that are likely to be instrumental."
+        required: false
+        schema:
+          type: number
+      - name: target_tempo
+        in: query
+        description: Target tempo (BPM)
+        required: false
+        schema:
+          type: number
+      - name: min_time_signature
+        in: query
+        description: "For each tunable track attribute, a hard floor on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, min_tempo=140 would\
+          \ restrict results to only those tracks with a tempo of greater than 140\
+          \ beats per minute."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: max_time_signature
+        in: query
+        description: "For each tunable track attribute, a hard ceiling on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, max_instrumentalness=0.35\
+          \ would filter out most tracks that are likely to be instrumental."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: target_time_signature
+        in: query
+        description: "For each of the tunable track attributes (below) a target value\
+          \ may be provided. Tracks with the attribute values nearest to the target\
+          \ values will be preferred. For example, you might request target_energy=0.6\
+          \ and target_danceability=0.8. All target values will be weighed equally\
+          \ in ranking results."
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: min_valence
+        in: query
+        description: "For each tunable track attribute, a hard floor on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, min_tempo=140 would\
+          \ restrict results to only those tracks with a tempo of greater than 140\
+          \ beats per minute."
+        required: false
+        schema:
+          type: number
+      - name: max_valence
+        in: query
+        description: "For each tunable track attribute, a hard ceiling on the selected\
+          \ track attribute’s value can be provided. See tunable track attributes\
+          \ below for the list of available options. For example, max_instrumentalness=0.35\
+          \ would filter out most tracks that are likely to be instrumental."
+        required: false
+        schema:
+          type: number
+      - name: target_valence
+        in: query
+        description: "For each of the tunable track attributes (below) a target value\
+          \ may be provided. Tracks with the attribute values nearest to the target\
+          \ values will be preferred. For example, you might request target_energy=0.6\
+          \ and target_danceability=0.8. All target values will be weighed equally\
+          \ in ranking results."
         required: false
         schema:
           type: number
@@ -1248,19 +1631,20 @@ paths:
         required: true
         schema:
           type: string
-      - name: limit
-        in: query
-        description: "The maximum number of items to return. Default: 20. Minimum:\
-          \ 1. Maximum: 50."
-        required: false
-        schema:
-          type: string
       - name: after
         in: query
         description: The last artist ID retrieved from the previous request.
         required: false
         schema:
           type: string
+      - name: limit
+        in: query
+        description: "The maximum number of items to return. Default: 20. Minimum:\
+          \ 1. Maximum: 50."
+        required: false
+        schema:
+          type: integer
+          format: int32
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
@@ -1669,7 +2053,8 @@ paths:
           \ 1. Maximum: 50."
         required: false
         schema:
-          type: string
+          type: integer
+          format: int32
       - name: offset
         in: query
         description: "The index of the first object to return. Default: 0 (i.e., the\
@@ -1884,7 +2269,8 @@ paths:
           \ 1. Maximum: 50"
         required: false
         schema:
-          type: string
+          type: integer
+          format: int32
       - name: offset
         in: query
         description: "The index of the first show to return. Default: 0 (the first\
@@ -1987,7 +2373,7 @@ paths:
     delete:
       tags:
       - category-library
-      summary: Remove User's Saved Tracks
+      summary: Remove User's Saved Shows
       description: Delete one or more shows from current Spotify user’s library.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
@@ -2053,13 +2439,21 @@ paths:
         required: true
         schema:
           type: string
+      - name: market
+        in: query
+        description: An ISO 3166-1 alpha-2 country code or the string from_token.
+          Provide this parameter if you want to apply Track Relinking.
+        required: false
+        schema:
+          type: string
       - name: limit
         in: query
         description: "The maximum number of objects to return. Default: 20. Minimum:\
           \ 1. Maximum: 50."
         required: false
         schema:
-          type: string
+          type: integer
+          format: int32
       - name: offset
         in: query
         description: "The index of the first object to return. Default: 0 (i.e., the\
@@ -2068,13 +2462,6 @@ paths:
         schema:
           type: integer
           format: int32
-      - name: market
-        in: query
-        description: An ISO 3166-1 alpha-2 country code or the string from_token.
-          Provide this parameter if you want to apply Track Relinking.
-        required: false
-        schema:
-          type: string
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
@@ -2156,6 +2543,22 @@ paths:
         required: true
         schema:
           type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  description: "A JSON array of the Spotify IDs. For example: [\"\
+                    4iV5W9uYEdYUVa79Axb7Rh\", \"1301WleyT98MSxVHPZCA6M\"] A maximum\
+                    \ of 50 items can be specified in one request. Note: if the ids\
+                    \ parameter is present in the query string, any IDs listed here\
+                    \ in the body will be ignored."
+                  items:
+                    type: string
+        required: false
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
@@ -2202,6 +2605,22 @@ paths:
         required: true
         schema:
           type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  description: "A JSON array of the Spotify IDs. For example: [\"\
+                    4iV5W9uYEdYUVa79Axb7Rh\", \"1301WleyT98MSxVHPZCA6M\"] A maximum\
+                    \ of 50 items can be specified in one request. Note: if the ids\
+                    \ parameter is present in the query string, any IDs listed here\
+                    \ in the body will be ignored."
+                  items:
+                    type: string
+        required: false
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
@@ -2241,6 +2660,15 @@ paths:
         required: true
         schema:
           type: string
+      - name: time_range
+        in: query
+        description: "Over what time frame the affinities are computed. Valid values:\
+          \ long_term (calculated from several years of data and including all new\
+          \ data as it becomes available), medium_term (approximately last 6 months),\
+          \ short_term (approximately last 4 weeks). Default: medium_term"
+        required: false
+        schema:
+          type: string
       - name: limit
         in: query
         description: "The number of entities to return. Default: 20. Minimum: 1. Maximum:\
@@ -2257,15 +2685,6 @@ paths:
         schema:
           type: integer
           format: int32
-      - name: time_range
-        in: query
-        description: "Over what time frame the affinities are computed. Valid values:\
-          \ long_term (calculated from several years of data and including all new\
-          \ data as it becomes available), medium_term (approximately last 6 months),\
-          \ short_term (approximately last 4 weeks). Default: medium_term"
-        required: false
-        schema:
-          type: string
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
@@ -2320,7 +2739,7 @@ paths:
     post:
       tags:
       - category-player
-      summary: Add an item to the end of the user's current playback queue.
+      summary: Add an item to queue
       description: Add an item to the end of the user’s current playback queue.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
@@ -2411,6 +2830,13 @@ paths:
         url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-information-about-the-users-current-playback
       operationId: endpoint-get-information-about-the-users-current-playback
       parameters:
+      - name: Authorization
+        in: header
+        description: "A valid access token from the Spotify Accounts service: see\
+          \ the Web API Authorization Guide for details."
+        required: true
+        schema:
+          type: string
       - name: market
         in: query
         description: An ISO 3166-1 alpha-2 country code or the string from_token.
@@ -2426,18 +2852,8 @@ paths:
           \ value in the item field. Note: This parameter was introduced to allow\
           \ existing clients to maintain their current behaviour and might be deprecated\
           \ in the future. In addition to providing this parameter, make sure that\
-          \ your client properly handles cases of new types in the future by checking\
-          \ against the currently_playing_type field."
+          \ your client properly handles cases of new"
         required: false
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: "A valid access token from the Spotify Accounts service: see\
-          \ the Web API Authorization Guide for details. The access token must have\
-          \ been issued on behalf of a user. The access token must have the user-read-playback-state\
-          \ scope authorized in order to read information."
-        required: true
         schema:
           type: string
       responses:
@@ -3058,7 +3474,7 @@ paths:
           type: string
       - name: state
         in: query
-        description: "true : Shuffle user’s playback false : Do not shuffle user’\
+        description: "true : Shuffle user’s playback. false : Do not shuffle user’\
           s playback."
         required: true
         schema:
@@ -3110,6 +3526,17 @@ paths:
         required: true
         schema:
           type: string
+      - name: market
+        in: query
+        description: "An ISO 3166-1 alpha-2 country code or the string from_token.\
+          \ Provide this parameter if you want to apply Track Relinking. For episodes,\
+          \ if a valid user access token is specified in the request header, the country\
+          \ associated with the user account will take priority over this parameter.\
+          \ Note: If neither market or user country are provided, the episode is considered\
+          \ unavailable for the client."
+        required: true
+        schema:
+          type: string
       - name: fields
         in: query
         description: "Filters for the query: a comma-separated list of the fields\
@@ -3140,17 +3567,6 @@ paths:
         schema:
           type: integer
           format: int32
-      - name: market
-        in: query
-        description: "An ISO 3166-1 alpha-2 country code or the string from_token.\
-          \ Provide this parameter if you want to apply Track Relinking. For episodes,\
-          \ if a valid user access token is specified in the request header, the country\
-          \ associated with the user account will take priority over this parameter.\
-          \ Note: If neither market or user country are provided, the episode is considered\
-          \ unavailable for the client."
-        required: true
-        schema:
-          type: string
       - name: additional_types
         in: query
         description: "A comma-separated list of item types that your client supports\
@@ -3219,32 +3635,38 @@ paths:
     put:
       tags:
       - category-playlists
-      summary: Replace a Playlist's Items
-      description: "Replace all the items in a playlist, overwriting its existing\
-        \ items. This powerful request can be useful for replacing items, re-ordering\
-        \ existing items, or clearing the playlist."
+      summary: Reorder or Replace a Playlist's Items
+      description: "Either reorder or replace items in a playlist depending on the\
+        \ request’s parameters. To reorder items, include range_start, insert_before,\
+        \ range_length and snapshot_id in the request’s body. To replace items, include\
+        \ uris as either a query parameter or in the request’s body. Replacing items\
+        \ in a playlist will overwrite its existing items. This operation can be used\
+        \ for replacing or clearing items in a playlist. Note: Replace and reorder\
+        \ are mutually exclusive operations which share the same endpoint, but have\
+        \ different parameters. These operations can’t be applied together in a single\
+        \ request."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-replace-playlists-tracks
-      operationId: endpoint-replace-playlists-tracks
+        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-reorder-or-replace-playlists-tracks
+      operationId: endpoint-reorder-or-replace-playlists-tracks
       parameters:
       - name: Authorization
         in: header
         description: "A valid access token from the Spotify Accounts service: see\
           \ the Web API Authorization Guide for details. The access token must have\
-          \ been issued on behalf of the user. Setting items in the current user’\
-          s public playlists requires authorization of the playlist-modify-public\
-          \ scope; setting items in the current user’s private playlist (including\
-          \ collaborative playlists) requires the playlist-modify-private scope. See\
-          \ Using Scopes."
+          \ been issued on behalf of the user. Reordering or replacing items in the\
+          \ current user’s public playlists requires authorization of the playlist-modify-public\
+          \ scope; reordering or replacing items in the current user’s private playlist\
+          \ (including collaborative playlists) requires the playlist-modify-private\
+          \ scope. See Using Scopes."
         required: true
         schema:
           type: string
       - name: Content-Type
         in: header
-        description: "if URIs are passed in the request body, otherwise ignored._\
+        description: "Required if URIs are passed in the request body, otherwise ignored.\
           \ The content type of the request body: application/json"
-        required: true
+        required: false
         schema:
           type: string
       - name: playlist_id
@@ -3269,24 +3691,62 @@ paths:
               properties:
                 uris:
                   type: array
-                  description: "A JSON array of the Spotify URIs to set, can be track\
-                    \ or episode URIs. For example: {\"uris\": [\"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\"\
-                    , \"spotify:track:1301WleyT98MSxVHPZCA6M\", \"spotify:episode:512ojhOuo1ktJprKbVcKyQ\"\
-                    ]} Currently, a maximum of 100 items can be set. Note: if the\
-                    \ uris parameter is present in the query string, any URIs listed\
-                    \ here in the body will be ignored."
+                  description: ""
                   items:
                     type: string
+                range_start:
+                  type: integer
+                  description: The position of the first item to be reordered.
+                  format: int32
+                insert_before:
+                  type: integer
+                  description: "The position where the items should be inserted. To\
+                    \ reorder the items to the end of the playlist, simply set insert_before\
+                    \ to the position after the last item. Examples: To reorder the\
+                    \ first item to the last position in a playlist with 10 items,\
+                    \ set range_start to 0, and insert_before to 10. To reorder the\
+                    \ last item in a playlist with 10 items to the start of the playlist,\
+                    \ set range_start to 9, and insert_before to 0."
+                  format: int32
+                range_length:
+                  type: integer
+                  description: "The amount of items to be reordered. Defaults to 1\
+                    \ if not set. The range of items to be reordered begins from the\
+                    \ range_start position, and includes the range_length subsequent\
+                    \ items. Example: To move the items at index 9-10 to the start\
+                    \ of the playlist, range_start is set to 9, and range_length is\
+                    \ set to 2."
+                  format: int32
+                snapshot_id:
+                  type: string
+                  description: The playlist’s snapshot ID against which you want to
+                    make the changes.
         required: false
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
+        "200":
+          description: "On a successful reorder operation, the response body contains\
+            \ a snapshot_id in JSON format and the HTTP status code in the response\
+            \ header is 200 OK. The snapshot_id can be used to identify your playlist\
+            \ version in future requests. On a successful replace operation, the HTTP\
+            \ status code in the response header is 201 Created. On error, the header\
+            \ status code is an error code, the response body contains an error object,\
+            \ and the existing playlist is unmodified. Trying to set an item when\
+            \ you do not have the user’s authorization returns error 403 Forbidden."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotIdObject'
         "201":
-          description: "On success, the HTTP status code in the response header is\
-            \ 201 Created. On error, the header status code is an error code, the\
-            \ response body contains an error object, and the existing playlist is\
-            \ unmodified. Trying to set an item when you do not have the user’s authorization\
-            \ returns error 403 Forbidden."
+          description: "On a successful reorder operation, the response body contains\
+            \ a snapshot_id in JSON format and the HTTP status code in the response\
+            \ header is 200 OK. The snapshot_id can be used to identify your playlist\
+            \ version in future requests. On a successful replace operation, the HTTP\
+            \ status code in the response header is 201 Created. On error, the header\
+            \ status code is an error code, the response body contains an error object,\
+            \ and the existing playlist is unmodified. Trying to set an item when\
+            \ you do not have the user’s authorization returns error 403 Forbidden."
       security:
       - spotify_auth:
         - playlist-modify-public
@@ -3326,6 +3786,17 @@ paths:
         required: true
         schema:
           type: string
+      - name: position
+        in: query
+        description: "The position to insert the items, a zero-based index. For example,\
+          \ to insert the items in the first position: position=0; to insert the items\
+          \ in the third position: position=2 . If omitted, the items will be appended\
+          \ to the playlist. Items are added in the order they are listed in the query\
+          \ string or request body."
+        required: false
+        schema:
+          type: integer
+          format: int32
       - name: uris
         in: query
         description: "A comma-separated list of Spotify URIs to add, can be track\
@@ -3338,17 +3809,6 @@ paths:
         required: false
         schema:
           type: string
-      - name: position
-        in: query
-        description: "The position to insert the items, a zero-based index. For example,\
-          \ to insert the items in the first position: position=0; to insert the items\
-          \ in the third position: position=2 . If omitted, the items will be appended\
-          \ to the playlist. Items are added in the order they are listed in the query\
-          \ string or request body."
-        required: false
-        schema:
-          type: integer
-          format: int32
       requestBody:
         content:
           application/json:
@@ -3424,7 +3884,7 @@ paths:
           type: string
       - name: playlist_id
         in: path
-        description: The Spotify ID for the playlist.
+        description: The Spotify ID
         required: true
         schema:
           type: string
@@ -3498,20 +3958,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: fields
-        in: query
-        description: "Filters for the query: a comma-separated list of the fields\
-          \ to return. If omitted, all fields are returned. For example, to get just\
-          \ the playlist’s description and URI: fields=description,uri. A dot separator\
-          \ can be used to specify non-reoccurring fields, while parentheses can be\
-          \ used to specify reoccurring fields within objects. For example, to get\
-          \ just the added date and user ID of the adder: fields=tracks.items(added_at,added_by.id).\
-          \ Use multiple parentheses to drill down into nested objects, for example:\
-          \ fields=tracks.items(track(name,href,album(name,href))). Fields can be\
-          \ excluded by prefixing them with an exclamation mark, for example: fields=tracks.items(track(name,href,album(!name,href)))"
-        required: false
-        schema:
-          type: string
       - name: market
         in: query
         description: "An ISO 3166-1 alpha-2 country code or the string from_token.\
@@ -3520,6 +3966,20 @@ paths:
           \ associated with the user account will take priority over this parameter.\
           \ Note: If neither market or user country are provided, the episode is considered\
           \ unavailable for the client."
+        required: false
+        schema:
+          type: string
+      - name: fields
+        in: query
+        description: "Filters for the query: a comma-separated list of the fields\
+          \ to return. If omitted, all fields are returned. For example, to get just\
+          \ the playlist’’s description and URI: fields=description,uri. A dot separator\
+          \ can be used to specify non-reoccurring fields, while parentheses can be\
+          \ used to specify reoccurring fields within objects. For example, to get\
+          \ just the added date and user ID of the adder: fields=tracks.items(added_at,added_by.id).\
+          \ Use multiple parentheses to drill down into nested objects, for example:\
+          \ fields=tracks.items(track(name,href,album(name,href))). Fields can be\
+          \ excluded by prefixing them with an exclamation mark, for example: fields=tracks.items(track(name,href,album(!name,href)))"
         required: false
         schema:
           type: string
@@ -3745,7 +4205,7 @@ paths:
       - name: Content-Type
         in: header
         description: "The content type of the request body: application/json"
-        required: true
+        required: false
         schema:
           type: string
       - name: user_id
@@ -3842,17 +4302,17 @@ paths:
           type: string
       - name: limit
         in: query
-        description: "The maximum number of playlists to return. Default: 20. Minimum:\
-          \ 1. Maximum: 50."
+        description: "‘The maximum number of playlists to return. Default: 20. Minimum:\
+          \ 1. Maximum: 50.’"
         required: false
         schema:
           type: integer
           format: int32
       - name: offset
         in: query
-        description: "The index of the first playlist to return. Default: 0 (the first\
-          \ object). Maximum offset: 100.000. Use with limit to get the next set of\
-          \ playlists."
+        description: "‘The index of the first playlist to return. Default: 0 (the\
+          \ first object). Maximum offset: 100.000. Use with limit to get the next\
+          \ set of playlists.’"
         required: false
         schema:
           type: integer
@@ -4150,8 +4610,8 @@ paths:
       parameters:
       - name: Authorization
         in: header
-        description: "A valid access token from the Spotify Accounts service: see\
-          \ the Web API Authorization Guide for details."
+        description: "valid access token from the Spotify Accounts service: see the\
+          \ Web API Authorization Guide for details."
         required: true
         schema:
           type: string
@@ -4159,6 +4619,18 @@ paths:
         in: path
         description: The Spotify ID for the show.
         required: true
+        schema:
+          type: string
+      - name: market
+        in: query
+        description: "An ISO 3166-1 alpha-2 country code. If a country code is specified,\
+          \ only shows and episodes that are available in that market will be returned.\
+          \ If a valid user access token is specified in the request header, the country\
+          \ associated with the user account will take priority over this parameter.\
+          \ Note: If neither market or user country are provided, the content is considered\
+          \ unavailable for the client. Users can view the country that is associated\
+          \ with their account in the account settings."
+        required: false
         schema:
           type: string
       - name: limit
@@ -4177,18 +4649,6 @@ paths:
         schema:
           type: integer
           format: int32
-      - name: market
-        in: query
-        description: "An ISO 3166-1 alpha-2 country code. If a country code is specified,\
-          \ only shows and episodes that are available in that market will be returned.\
-          \ If a valid user access token is specified in the request header, the country\
-          \ associated with the user account will take priority over this parameter.\
-          \ Note: If neither market or user country are provided, the content is considered\
-          \ unavailable for the client. Users can view the country that is associated\
-          \ with their account in the account settings."
-        required: false
-        schema:
-          type: string
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
@@ -4310,8 +4770,8 @@ paths:
       parameters:
       - name: Authorization
         in: header
-        description: "A valid access token from the Spotify Accounts service: see\
-          \ the Web API Authorization Guide for details."
+        description: "valid access token from the Spotify Accounts service: see the\
+          \ Web API Authorization Guide for details."
         required: true
         schema:
           type: string
@@ -4423,7 +4883,7 @@ paths:
       - category-tracks
       summary: Get Several Tracks
       description: Get Spotify catalog information for multiple tracks based on their
-        Spotify IDs.
+        Spotify
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
         url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-several-tracks
@@ -4517,7 +4977,7 @@ paths:
   /me:
     get:
       tags:
-      - category-user-profile
+      - category-users-profile
       summary: Get Current User's Profile
       description: Get detailed profile information about the current user (including
         the current user’s username).
@@ -4560,7 +5020,7 @@ paths:
   /users/{user_id}:
     get:
       tags:
-      - category-user-profile
+      - category-users-profile
       summary: Get a User's Profile
       description: Get public profile information about a Spotify user.
       externalDocs:

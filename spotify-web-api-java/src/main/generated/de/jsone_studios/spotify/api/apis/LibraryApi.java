@@ -137,20 +137,20 @@ public interface LibraryApi {
     Call<Void> removeAlbumsUser(@Body RemoveAlbumsUserRequest requestBody);
 
     /**
-     * <h3>Remove User's Saved Tracks</h3>
+     * <h3>Remove User's Saved Shows</h3>
      * Delete one or more shows from current Spotify user’s library.
      * <h3>Required OAuth scopes</h3>
      * <code>user-library-modify</code>
      * 
      * @param ids A comma-separated list of Spotify IDs for the shows to be deleted from the user’s library.
      * @return On success, the HTTP status code in the response header is 200 OK. On error, the header status code is an error code and the response body contains an error object. A 403 Forbidden while trying to add a show when you do not have the user’s authorisation.
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-remove-shows-user">Remove User's Saved Tracks</a>
+     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-remove-shows-user">Remove User's Saved Shows</a>
      */
     @DELETE("/me/shows")
     Call<Void> removeShowsUser(@Query("ids") String ids);
 
     /**
-     * <h3>Remove User's Saved Tracks</h3>
+     * <h3>Remove User's Saved Shows</h3>
      * Delete one or more shows from current Spotify user’s library.
      * <h3>Required OAuth scopes</h3>
      * <code>user-library-modify</code>
@@ -158,7 +158,7 @@ public interface LibraryApi {
      * @param ids A comma-separated list of Spotify IDs for the shows to be deleted from the user’s library.
      * @param market An ISO 3166-1 alpha-2 country code. If a country code is specified, only shows that are available in that market will be removed. If a valid user access token is specified in the request header, the country associated with the user account will take priority over this parameter. Note: If neither market or user country are provided, the content is considered unavailable for the client. Users can view the country that is associated with their account in the account settings.
      * @return On success, the HTTP status code in the response header is 200 OK. On error, the header status code is an error code and the response body contains an error object. A 403 Forbidden while trying to add a show when you do not have the user’s authorisation.
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-remove-shows-user">Remove User's Saved Tracks</a>
+     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-remove-shows-user">Remove User's Saved Shows</a>
      */
     @DELETE("/me/shows")
     Call<Void> removeShowsUser(@Query("ids") String ids, @Query("market") String market);
@@ -175,6 +175,20 @@ public interface LibraryApi {
      */
     @DELETE("/me/tracks")
     Call<Void> removeTracksUser(@Query("ids") String ids);
+
+    /**
+     * <h3>Remove User's Saved Tracks</h3>
+     * Remove one or more tracks from the current user’s ‘Your Music’ library.
+     * <h3>Required OAuth scopes</h3>
+     * <code>user-library-modify</code>
+     * 
+     * @param ids A comma-separated list of the Spotify IDs. For example: ids&#x3D;4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M. Maximum: 50 IDs.
+     * @param requestBody The request body
+     * @return On success, the HTTP status code in the response header is 200 Success. On error, the header status code is an error code and the response body contains an error object. Trying to remove an album when you do not have the user’s authorization returns error 403 Forbidden.
+     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-remove-tracks-user">Remove User's Saved Tracks</a>
+     */
+    @DELETE("/me/tracks")
+    Call<Void> removeTracksUser(@Query("ids") String ids, @Body RemoveTracksUserRequest requestBody);
 
     /**
      * <h3>Save Albums for Current User</h3>
@@ -214,4 +228,18 @@ public interface LibraryApi {
      */
     @PUT("/me/tracks")
     Call<Void> saveTracksUser(@Query("ids") String ids);
+
+    /**
+     * <h3>Save Tracks for User</h3>
+     * Save one or more tracks to the current user’s ‘Your Music’ library.
+     * <h3>Required OAuth scopes</h3>
+     * <code>user-library-modify</code>
+     * 
+     * @param ids A comma-separated list of the Spotify IDs. For example: ids&#x3D;4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M. Maximum: 50 IDs.
+     * @param requestBody The request body
+     * @return On success, the HTTP status code in the response header is 200 OK. On error, the header status code is an error code and the response body contains an error object. Trying to add a track when you do not have the user’s authorization, or when you have over 10.000 tracks in Your Music, returns error 403 Forbidden.
+     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-save-tracks-user">Save Tracks for User</a>
+     */
+    @PUT("/me/tracks")
+    Call<Void> saveTracksUser(@Query("ids") String ids, @Body SaveTracksUserRequest requestBody);
 }

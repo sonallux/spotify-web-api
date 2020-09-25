@@ -166,7 +166,11 @@ class ApiEndpointParser {
                 var description = entry.selectFirst("small");
                 var type = entry.child(1).text();
                 var requiredText = entry.child(2).text();
-                parameters.add(new SpotifyApiEndpoint.Parameter(location, name, description, type, "required".equalsIgnoreCase(requiredText)));
+                if (description == null) {
+                    parameters.add(new SpotifyApiEndpoint.Parameter(location, name, "", type, "required".equalsIgnoreCase(requiredText)));
+                } else {
+                    parameters.add(new SpotifyApiEndpoint.Parameter(location, name, description, type, "required".equalsIgnoreCase(requiredText)));
+                }
             }
         }
         return parameters;

@@ -44,7 +44,7 @@ public interface TracksApi {
 
     /**
      * <h3>Get Several Tracks</h3>
-     * Get Spotify catalog information for multiple tracks based on their Spotify IDs.
+     * Get Spotify catalog information for multiple tracks based on their Spotify
      * 
      * @param ids A comma-separated list of the Spotify IDs for the tracks. Maximum: 50 IDs.
      * @return On success, the HTTP status code in the response header is 200 OK and the response body contains an object whose key is tracks and whose value is an array of track objects in JSON format. Objects are returned in the order requested. If an object is not found, a null value is returned in the appropriate position. Duplicate ids in the query will result in duplicate objects in the response. On error, the header status code is an error code and the response body contains an error object.
@@ -55,7 +55,7 @@ public interface TracksApi {
 
     /**
      * <h3>Get Several Tracks</h3>
-     * Get Spotify catalog information for multiple tracks based on their Spotify IDs.
+     * Get Spotify catalog information for multiple tracks based on their Spotify
      * 
      * @param ids A comma-separated list of the Spotify IDs for the tracks. Maximum: 50 IDs.
      * @param market An ISO 3166-1 alpha-2 country code or the string from_token. Provide this parameter if you want to apply Track Relinking.

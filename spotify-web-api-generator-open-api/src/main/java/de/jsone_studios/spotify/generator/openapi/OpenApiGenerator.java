@@ -292,7 +292,7 @@ public class OpenApiGenerator {
             return new StringSchema();
         } else if ("Integer".equals(type)) {
             return new IntegerSchema();
-        } else if ("Float".equals(type)) {
+        } else if ("Float".equals(type) || "Number".equals(type)) {
             return new NumberSchema();
         } else if ("Boolean".equals(type)) {
             return new BooleanSchema();

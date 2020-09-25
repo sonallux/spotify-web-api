@@ -81,11 +81,6 @@ category-playlists:
     responseTypes:
     - type: Void
       status: 202
-  endpoint-reorder-playlists-tracks:
-    md5Hash: a10995797ad723df423499694f18d307
-    responseTypes:
-    - type: SnapshotIdObject
-      status: 200
   endpoint-get-list-users-playlists:
     md5Hash: eea5adfe672a2a2436f67cba3794b42e
     responseTypes:
@@ -106,11 +101,6 @@ category-playlists:
     responseTypes:
     - type: PlaylistObject
       status: 200
-  endpoint-replace-playlists-tracks:
-    md5Hash: d6351a98f9084a6f74ffaa3f930142b4
-    responseTypes:
-    - type: Void
-      status: 201
   endpoint-get-playlist-cover:
     md5Hash: 8ff4cea0b337cf8b9b2da5224b6d09c5
     responseTypes:
@@ -138,6 +128,13 @@ category-playlists:
     responseTypes:
     - type: SnapshotIdObject
       status: 200
+  endpoint-reorder-or-replace-playlists-tracks:
+    md5Hash: 827051ec305d5441c34f1f3838a86ffe
+    responseTypes:
+    - type: SnapshotIdObject
+      status: 200
+    - type: Void
+      status: 201
 category-albums:
   endpoint-get-multiple-albums:
     md5Hash: 77319ca6098dfb62202e3286b53f71c4
@@ -293,17 +290,6 @@ category-browse:
     responseTypes:
     - type: GenreSeedsObject
       status: 200
-category-user-profile:
-  endpoint-get-users-profile:
-    md5Hash: b7d08dfede5425edd8becfd11e8aca3e
-    responseTypes:
-    - type: PublicUserObject
-      status: 200
-  endpoint-get-current-users-profile:
-    md5Hash: fd355e6ca4e790cf94f8f058f814c25a
-    responseTypes:
-    - type: PrivateUserObject
-      status: 200
 category-follow:
   endpoint-check-current-user-follows:
     md5Hash: d10a9416d418dc7dad219993d616f9dd
@@ -388,4 +374,15 @@ category-personalization:
     md5Hash: 1a499dda1f384ef31bedeaadc7ee0199
     responseTypes:
     - type: "PagingObject[ArtistObject | TrackObject]"
+      status: 200
+category-users-profile:
+  endpoint-get-users-profile:
+    md5Hash: b7d08dfede5425edd8becfd11e8aca3e
+    responseTypes:
+    - type: PublicUserObject
+      status: 200
+  endpoint-get-current-users-profile:
+    md5Hash: fd355e6ca4e790cf94f8f058f814c25a
+    responseTypes:
+    - type: PrivateUserObject
       status: 200
