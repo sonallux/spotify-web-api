@@ -84,8 +84,12 @@ class ApiScopesParser {
     private String fixEndpoint(String endpoint) {
         if ("get-shows-episodes".equals(endpoint)) {
             return "endpoint-get-a-shows-episodes";
-        } else if ("check-user-following-playlist".equals(endpoint)){
+        } else if ("check-user-following-playlist".equals(endpoint)) {
             return "endpoint-check-if-user-follows-playlist";
+        } else if ("reorder-playlists-tracks".equals(endpoint)) {
+            return "endpoint-reorder-or-replace-playlists-tracks";
+        } else if ("replace-playlists-tracks".equals(endpoint)) {
+            return "endpoint-reorder-or-replace-playlists-tracks";
         } else {
             return "endpoint-" + endpoint.replace("several", "multiple");
         }

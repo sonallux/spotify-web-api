@@ -12,26 +12,9 @@ import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.Parameter
 class ApiEndpointFixes {
 
     static void fixApiEndpoints(List<SpotifyApiCategory> categories) {
-        fixTopArtistsTracksEndpoint(categories);
         fixChangePlaylistsDetails(categories);
         fixGetInfoAboutUsersCurrentPlayback(categories);
-        fixAddTracksToPlaylist(categories);
         fixStartAUsersPlayback(categories);
-    }
-
-    private static void fixTopArtistsTracksEndpoint(List<SpotifyApiCategory> categories) {
-        var paramLimit = categories.stream()
-                .filter(c -> "category-personalization".equals(c.getId()))
-                .flatMap(c -> c.getEndpoints().stream())
-                .filter(e -> "endpoint-get-users-top-artists-and-tracks".equals(e.getId()))
-                .flatMap(e -> e.getParameters().stream())
-                .filter(p -> p.getLocation() == QUERY && "limit".equals(p.getName()) && "String".equals(p.getType()))
-                .findFirst().orElse(null);
-        if (paramLimit == null) {
-            log.warn("users-top-artists-and-tracks wrong limit parameter type has been fixed");
-        } else {
-            paramLimit.setType("Integer");
-        }
     }
 
     private static void fixChangePlaylistsDetails(List<SpotifyApiCategory> categories) {
@@ -55,29 +38,10 @@ class ApiEndpointFixes {
                 .flatMap(c -> c.getEndpoints().stream())
                 .filter(e -> "endpoint-get-information-about-the-users-current-playback".equals(e.getId()))
                 .findFirst().orElseThrow(() -> new RuntimeException("Can not find endpoint-get-information-about-the-users-current-playback"));
-        if (endpoint.getParameters().stream().filter(p -> "Authorization".equals(p.getName())).count() == 1) {
-            log.warn("Authorization header for endpoint-get-information-about-the-users-current-playback has been fixed");
-            return;
-        }
-
-        endpoint.getParameters().add(new SpotifyApiEndpoint.Parameter(HEADER, "Authorization",
-                "A valid access token from the Spotify Accounts service: see the Web API Authorization Guide for details. The access token must have been issued on behalf of a user. The access token must have the user-read-playback-state scope authorized in order to read information.",
-                "String", true));
-        endpoint.getScopes().add("user-read-playback-state");
-    }
-
-    private static void fixAddTracksToPlaylist(List<SpotifyApiCategory> categories) {
-        var param = categories.stream()
-                .filter(c -> "category-playlists".equals(c.getId()))
-                .flatMap(c -> c.getEndpoints().stream())
-                .filter(e -> "endpoint-add-tracks-to-playlist".equals(e.getId()))
-                .flatMap(e -> e.getParameters().stream())
-                .filter(p -> p.getLocation() == QUERY && "uri".equals(p.getName()))
-                .findFirst().orElse(null);
-        if (param == null) {
-            log.warn("endpoint-add-tracks-to-playlist query param name has been fixed");
+        if (endpoint.getScopes().size() != 0) {
+            log.warn("endpoint-get-information-about-the-users-current-playback missing scope has been fixed");
         } else {
-            param.setName("uris");
+            endpoint.getScopes().add("user-read-playback-state");
         }
     }
 
@@ -111,7 +75,7 @@ class ApiEndpointFixes {
         }
 
         var offsetParam = endpoint.getParameters().stream()
-                .filter(p -> "offset".equals(p.getName()) && "Object".equals(p.getDescription()))
+                .filter(p -> "offset".equals(p.getName()) && "object".equals(p.getDescription()))
                 .findFirst().orElse(null);
         if (offsetParam == null){
             log.warn("endpoint-start-a-users-playback offset param has been fixed");

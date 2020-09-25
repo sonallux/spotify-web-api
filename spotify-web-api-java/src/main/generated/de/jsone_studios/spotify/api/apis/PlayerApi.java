@@ -10,20 +10,20 @@ import retrofit2.http.*;
 public interface PlayerApi {
 
     /**
-     * <h3>Add an item to the end of the user's current playback queue.</h3>
+     * <h3>Add an item to queue</h3>
      * Add an item to the end of the user’s current playback queue.
      * <h3>Required OAuth scopes</h3>
      * <code>user-modify-playback-state</code>
      * 
      * @param uri The uri of the item to add to the queue. Must be a track or an episode uri.
      * @return A completed request will return a 204 NO CONTENT response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the Get Information About The User’s Current Playback endpoint to check that your issued command was handled correctly by the player. If the device is not found, the request will return 404 NOT FOUND response code. If the user making the request is non-premium, a 403 FORBIDDEN response code will be returned.
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-add-to-queue">Add an item to the end of the user's current playback queue.</a>
+     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-add-to-queue">Add an item to queue</a>
      */
     @POST("/me/player/queue")
     Call<Void> addToQueue(@Query("uri") String uri);
 
     /**
-     * <h3>Add an item to the end of the user's current playback queue.</h3>
+     * <h3>Add an item to queue</h3>
      * Add an item to the end of the user’s current playback queue.
      * <h3>Required OAuth scopes</h3>
      * <code>user-modify-playback-state</code>
@@ -31,7 +31,7 @@ public interface PlayerApi {
      * @param uri The uri of the item to add to the queue. Must be a track or an episode uri.
      * @param device_id The id of the device this command is targeting. If not supplied, the user’s currently active device is the target.
      * @return A completed request will return a 204 NO CONTENT response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the Get Information About The User’s Current Playback endpoint to check that your issued command was handled correctly by the player. If the device is not found, the request will return 404 NOT FOUND response code. If the user making the request is non-premium, a 403 FORBIDDEN response code will be returned.
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-add-to-queue">Add an item to the end of the user's current playback queue.</a>
+     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-add-to-queue">Add an item to queue</a>
      */
     @POST("/me/player/queue")
     Call<Void> addToQueue(@Query("uri") String uri, @Query("device_id") String device_id);
@@ -331,7 +331,7 @@ public interface PlayerApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-modify-playback-state</code>
      * 
-     * @param state true : Shuffle user’s playback false : Do not shuffle user’s playback.
+     * @param state true : Shuffle user’s playback. false : Do not shuffle user’s playback.
      * @return A completed request will return a 204 NO CONTENT response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the Get Information About The User’s Current Playback endpoint to check that your issued command was handled correctly by the player. If the device is not found, the request will return 404 NOT FOUND response code. If the user making the request is non-premium, a 403 FORBIDDEN response code will be returned.
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-toggle-shuffle-for-users-playback">Toggle Shuffle For User’s Playback</a>
      */
@@ -344,7 +344,7 @@ public interface PlayerApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-modify-playback-state</code>
      * 
-     * @param state true : Shuffle user’s playback false : Do not shuffle user’s playback.
+     * @param state true : Shuffle user’s playback. false : Do not shuffle user’s playback.
      * @param device_id The id of the device this command is targeting. If not supplied, the user’s currently active device is the target.
      * @return A completed request will return a 204 NO CONTENT response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the Get Information About The User’s Current Playback endpoint to check that your issued command was handled correctly by the player. If the device is not found, the request will return 404 NOT FOUND response code. If the user making the request is non-premium, a 403 FORBIDDEN response code will be returned.
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-toggle-shuffle-for-users-playback">Toggle Shuffle For User’s Playback</a>
