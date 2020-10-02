@@ -22,7 +22,7 @@ public interface ArtistsApi {
 
     /**
      * <h3>Get an Artist's Albums</h3>
-     * Get Spotify catalog information about an artist’s albums. Optional parameters can be specified in the query string to filter and sort the response.
+     * Get Spotify catalog information about an artist’s albums.
      * 
      * @param id The Spotify ID for the artist.
      * @return On success, the HTTP status code in the response header is 200 OK and the response body contains an array of simplified album objects (wrapped in a paging object) in JSON format. On error, the header status code is an error code and the response body contains an error object.
@@ -33,7 +33,7 @@ public interface ArtistsApi {
 
     /**
      * <h3>Get an Artist's Albums</h3>
-     * Get Spotify catalog information about an artist’s albums. Optional parameters can be specified in the query string to filter and sort the response.
+     * Get Spotify catalog information about an artist’s albums.
      * 
      * @param id The Spotify ID for the artist.
      * @param queryParameters A map of optional query parameters
