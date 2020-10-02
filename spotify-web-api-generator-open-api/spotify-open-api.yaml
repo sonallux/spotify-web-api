@@ -304,8 +304,7 @@ paths:
       tags:
       - category-artists
       summary: Get an Artist's Albums
-      description: Get Spotify catalog information about an artist’s albums. Optional
-        parameters can be specified in the query string to filter and sort the response.
+      description: Get Spotify catalog information about an artist’s albums.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
         url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-artists-albums
