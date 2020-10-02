@@ -1632,8 +1632,7 @@ categories:
   - id: endpoint-get-an-artists-albums
     name: Get an Artist's Albums
     link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-artists-albums
-    description: Get Spotify catalog information about an artist’s albums. Optional
-      parameters can be specified in the query string to filter and sort the response.
+    description: Get Spotify catalog information about an artist’s albums.
     httpMethod: GET
     path: "/artists/{id}/albums"
     parameters:
