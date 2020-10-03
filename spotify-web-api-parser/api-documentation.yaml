@@ -274,7 +274,7 @@ objects:
     description: A link to the Web API endpoint providing full details of the track.
   - name: type
     type: String
-    description: "The object type, e.g. “artist”, “playlist”, “album”."
+    description: "The object type, e.g. “artist”, “playlist”, “album”, “show”."
   - name: uri
     type: String
     description: The Spotify URI for the context.
@@ -489,6 +489,17 @@ objects:
   - name: error
     type: ErrorDetailsObject
     description: ""
+- name: ExplicitContentSettingsObject
+  id: object-explicitcontentsettingsobject
+  link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-explicitcontentsettingsobject
+  properties:
+  - name: filter_enabled
+    type: Boolean
+    description: "When true, indicates that explicit content should not be played."
+  - name: filter_locked
+    type: Boolean
+    description: "When true, indicates that the explicit content setting is locked\
+      \ and can’t be changed by the user."
 - name: ExternalIdObject
   id: object-externalidobject
   link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-externalidobject
@@ -703,6 +714,10 @@ objects:
       \ account. Important! This email address is unverified; there is no proof that\
       \ it actually belongs to the user. This field is only available when the current\
       \ user has granted access to the user-read-email scope."
+  - name: explicit_content
+    type: ExplicitContentSettingsObject
+    description: The user’s explicit content settings. This field is only available
+      when the current user has granted access to the user-read-private scope.
   - name: external_urls
     type: ExternalUrlObject
     description: Known external URLs for this user.
@@ -3248,8 +3263,7 @@ categories:
       required: true
     - location: QUERY
       name: ids
-      description: A comma-separated list of Spotify IDs for the shows to be added
-        to the user’s library.
+      description: "A comma-separated list of the Spotify IDs. Maximum: 50 IDs."
       type: String
       required: true
     responseDescription: "On success, the HTTP status code in the response header\
@@ -4976,8 +4990,9 @@ categories:
       description: "A valid access token from the Spotify Accounts service: see the\
         \ Web API Authorization Guide for details. The access token must have been\
         \ issued on behalf of the current user. Reading the user’s email address requires\
-        \ the user-read-email scope; reading country and product subscription level\
-        \ requires the user-read-private scope. See Using Scopes."
+        \ the user-read-email scope; reading country, product subscription level and\
+        \ explicit content settings requires the user-read-private scope. See Using\
+        \ Scopes."
       type: String
       required: true
     responseDescription: "On success, the HTTP status code in the response header\
