@@ -22,6 +22,10 @@ public class PrivateUser {
      */
     private String email;
     /**
+     * The user’s explicit content settings. This field is only available when the current user has granted access to the user-read-private scope.
+     */
+    private ExplicitContentSettings explicit_content;
+    /**
      * Known external URLs for this user.
      */
     private ExternalUrl external_urls;

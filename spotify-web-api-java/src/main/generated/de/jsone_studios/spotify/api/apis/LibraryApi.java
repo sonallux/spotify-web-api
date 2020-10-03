@@ -209,7 +209,7 @@ public interface LibraryApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-library-modify</code>
      * 
-     * @param ids A comma-separated list of Spotify IDs for the shows to be added to the user’s library.
+     * @param ids A comma-separated list of the Spotify IDs. Maximum: 50 IDs.
      * @return On success, the HTTP status code in the response header is 200 OK. On error, the header status code is an error code and the response body contains an error object. A 403 Forbidden while trying to add a show when you do not have the user’s authorisation or when the user already has have over 10,000 items saved in library.
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-save-shows-user">Save Shows for Current User</a>
      */

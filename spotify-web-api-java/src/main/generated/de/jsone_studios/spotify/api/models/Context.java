@@ -18,7 +18,7 @@ public class Context {
      */
     private String href;
     /**
-     * The object type, e.g. “artist”, “playlist”, “album”.
+     * The object type, e.g. “artist”, “playlist”, “album”, “show”.
      */
     private String type;
     /**
