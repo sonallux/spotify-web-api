@@ -42,6 +42,6 @@ jobs:
           delete-branch: true
           base: master
           title: 'Update web API documentation'
-          body: 'Automated Spotify web API documentation update'
+          body: 'Automated Spotify web API documentation update from run: ${{ github.run_id }} ${{ github.run_number }}'
       - name: Check outputs
         run: echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
