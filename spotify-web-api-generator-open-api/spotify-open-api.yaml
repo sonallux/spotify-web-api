@@ -2352,8 +2352,7 @@ paths:
           type: string
       - name: ids
         in: query
-        description: A comma-separated list of Spotify IDs for the shows to be added
-          to the user’s library.
+        description: "A comma-separated list of the Spotify IDs. Maximum: 50 IDs."
         required: true
         schema:
           type: string
@@ -4990,8 +4989,9 @@ paths:
         description: "A valid access token from the Spotify Accounts service: see\
           \ the Web API Authorization Guide for details. The access token must have\
           \ been issued on behalf of the current user. Reading the user’s email address\
-          \ requires the user-read-email scope; reading country and product subscription\
-          \ level requires the user-read-private scope. See Using Scopes."
+          \ requires the user-read-email scope; reading country, product subscription\
+          \ level and explicit content settings requires the user-read-private scope.\
+          \ See Using Scopes."
         required: true
         schema:
           type: string
@@ -5422,7 +5422,8 @@ components:
             track.
         type:
           type: string
-          description: "The object type, e.g. “artist”, “playlist”, “album”."
+          description: "The object type, e.g. “artist”, “playlist”, “album”, “show”\
+            ."
         uri:
           type: string
           description: The Spotify URI for the context.
@@ -5678,6 +5679,19 @@ components:
       properties:
         error:
           $ref: '#/components/schemas/ErrorDetailsObject'
+    ExplicitContentSettingsObject:
+      type: object
+      properties:
+        filter_enabled:
+          type: boolean
+          description: "When true, indicates that explicit content should not be played."
+        filter_locked:
+          type: boolean
+          description: "When true, indicates that the explicit content setting is\
+            \ locked and can’t be changed by the user."
+      externalDocs:
+        description: Find more info on the official Spotify Web API Reference
+        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-explicitcontentsettingsobject
     ExternalIdObject:
       type: object
       properties:
@@ -6057,6 +6071,8 @@ components:
             \ their account. Important! This email address is unverified; there is\
             \ no proof that it actually belongs to the user. This field is only available\
             \ when the current user has granted access to the user-read-email scope."
+        explicit_content:
+          $ref: '#/components/schemas/ExplicitContentSettingsObject'
         external_urls:
           $ref: '#/components/schemas/ExternalUrlObject'
         followers:
