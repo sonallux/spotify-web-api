@@ -22,16 +22,20 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
       - name: Build tools
-        run: mvn -B package
+        run: ./mvnw -B package
       - name: Parse web API
         run: ./scripts/update-api-documentation.sh
       - name: Generate Java
         run: ./scripts/generate-java.sh
       - name: Generate Open API
         run: ./scripts/generate-open-api.sh
+      - name: Generate TypeScript
+        run: ./scripts/generate-ts.sh
+      - name: Test
+        run: ./mvnw -B verify
       - name: Create Pull Request
         id: cpr
-        uses: peter-evans/create-pull-request@v3.3.0
+        uses: peter-evans/create-pull-request@v3.4.0
         with:
           commit-message: 'Update web API documentation'
           branch: 'automated-api-documentation-update'
