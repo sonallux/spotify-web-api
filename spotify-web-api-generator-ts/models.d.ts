@@ -277,7 +277,7 @@ export interface Context {
      */
     href: string;
     /**
-     * The object type, e.g. “artist”, “playlist”, “album”.
+     * The object type, e.g. “artist”, “playlist”, “album”, “show”.
      */
     type: string;
     /**
@@ -522,6 +522,20 @@ export interface ErrorDetails {
 
 export interface ErrorResponse {
     error: ErrorDetails;
+}
+
+/**
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-explicitcontentsettingsobject
+ */
+export interface ExplicitContentSettings {
+    /**
+     * When true, indicates that explicit content should not be played.
+     */
+    filter_enabled: boolean;
+    /**
+     * When true, indicates that the explicit content setting is locked and can’t be changed by the user.
+     */
+    filter_locked: boolean;
 }
 
 /**
@@ -770,6 +784,10 @@ export interface PrivateUser {
      * The user’s email address, as entered by the user when creating their account. Important! This email address is unverified; there is no proof that it actually belongs to the user. This field is only available when the current user has granted access to the user-read-email scope.
      */
     email: string;
+    /**
+     * The user’s explicit content settings. This field is only available when the current user has granted access to the user-read-private scope.
+     */
+    explicit_content: ExplicitContentSettings;
     /**
      * Known external URLs for this user.
      */
