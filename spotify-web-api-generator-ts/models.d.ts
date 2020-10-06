@@ -63,6 +63,10 @@ export interface Album {
      */
     release_date_precision: string;
     /**
+     * Included in the response when a content restriction is applied. See Restriction Object for more details.
+     */
+    restrictions: AlbumRestriction;
+    /**
      * The tracks of the album.
      */
     tracks: SimplifiedTrack[];
@@ -74,6 +78,16 @@ export interface Album {
      * The Spotify URI for the album.
      */
     uri: string;
+}
+
+/**
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-albumrestrictionobject
+ */
+export interface AlbumRestriction {
+    /**
+     * The reason for the restriction. Supported values:
+     */
+    reason: string;
 }
 
 export interface Albums {
@@ -1132,6 +1146,10 @@ export interface SimplifiedAlbum {
      */
     name: string;
     /**
+     * Included in the response when a content restriction is applied. See Restriction Object for more details.
+     */
+    restrictions: AlbumRestriction;
+    /**
      * The object type: “album”
      */
     type: string;
@@ -1381,6 +1399,10 @@ export interface SimplifiedTrack {
      */
     preview_url: string;
     /**
+     * Included in the response when a content restriction is applied. See Restriction Object for more details.
+     */
+    restrictions: TrackRestriction;
+    /**
      * The number of the track. If an album has several discs, the track number is the number on the specified disc.
      */
     track_number: number;
@@ -1484,9 +1506,9 @@ export interface Track {
      */
     preview_url: string;
     /**
-     * Part of the response when Track Relinking is applied, the original track is not available in the given market, and Spotify did not have any tracks to relink it with. The track response will still contain metadata for the original track, and a restrictions object containing the reason why the track is not available: "restrictions" : {"reason" : "market"}
+     * Included in the response when a content restriction is applied. See Restriction Object for more details.
      */
-    restrictions: TrackRestriction[];
+    restrictions: TrackRestriction;
     /**
      * The number of the track. If an album has several discs, the track number is the number on the specified disc.
      */
@@ -1501,9 +1523,12 @@ export interface Track {
     uri: string;
 }
 
+/**
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-trackrestrictionobject
+ */
 export interface TrackRestriction {
     /**
-     * The reason why a track is not available.
+     * The reason for the restriction. Supported values:
      */
     reason: string;
 }

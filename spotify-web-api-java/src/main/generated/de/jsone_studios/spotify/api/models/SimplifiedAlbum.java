@@ -46,6 +46,10 @@ public class SimplifiedAlbum {
      */
     private String name;
     /**
+     * Included in the response when a content restriction is applied. See Restriction Object for more details.
+     */
+    private AlbumRestriction restrictions;
+    /**
      * The object type: “album”
      */
     private String type;
