@@ -70,9 +70,9 @@ public class Track {
      */
     private String preview_url;
     /**
-     * Part of the response when Track Relinking is applied, the original track is not available in the given market, and Spotify did not have any tracks to relink it with. The track response will still contain metadata for the original track, and a restrictions object containing the reason why the track is not available: &quot;restrictions&quot; : {&quot;reason&quot; : &quot;market&quot;}
+     * Included in the response when a content restriction is applied. See Restriction Object for more details.
      */
-    private java.util.List<TrackRestriction> restrictions;
+    private TrackRestriction restrictions;
     /**
      * The number of the track. If an album has several discs, the track number is the number on the specified disc.
      */

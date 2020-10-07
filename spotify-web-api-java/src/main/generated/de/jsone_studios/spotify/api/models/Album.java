@@ -70,6 +70,10 @@ public class Album {
      */
     private String release_date_precision;
     /**
+     * Included in the response when a content restriction is applied. See Restriction Object for more details.
+     */
+    private AlbumRestriction restrictions;
+    /**
      * The tracks of the album.
      */
     private java.util.List<SimplifiedTrack> tracks;
