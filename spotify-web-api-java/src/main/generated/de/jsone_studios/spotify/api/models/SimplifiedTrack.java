@@ -58,6 +58,10 @@ public class SimplifiedTrack {
      */
     private String preview_url;
     /**
+     * Included in the response when a content restriction is applied. See Restriction Object for more details.
+     */
+    private TrackRestriction restrictions;
+    /**
      * The number of the track. If an album has several discs, the track number is the number on the specified disc.
      */
     private Integer track_number;
