@@ -26,10 +26,11 @@ public class SpotifyApiEndpoint {
     private List<Parameter> parameters;
     private String responseDescription;
     private List<String> scopes;
+    private String notes;
     private List<ResponseType> responseTypes;
 
-    public SpotifyApiEndpoint(@NonNull String id, String name, String link, String description, String httpMethod, String path, List<Parameter> parameters, String responseDescription, List<String> scopes) {
-        this(id, name, link, description, httpMethod, path, parameters, responseDescription, scopes, new ArrayList<>());
+    public SpotifyApiEndpoint(@NonNull String id, String name, String link, String description, String httpMethod, String path, List<Parameter> parameters, String responseDescription, List<String> scopes, String notes) {
+        this(id, name, link, description, httpMethod, path, parameters, responseDescription, scopes, notes, new ArrayList<>());
     }
 
     @Getter

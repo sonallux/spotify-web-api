@@ -4,6 +4,7 @@ import de.jsone_studios.spotify.parser.model.SpotifyApiCategory;
 import de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -105,7 +106,7 @@ class ApiEndpointParser {
         String httpMethod;
         String path;
 
-        var codeBlocks = elements.select(".highlighter-rouge code");
+        var codeBlocks = elements.select(".hidden-xs .highlighter-rouge code");
         if (codeBlocks.size() == 1) {
             var parts = codeBlocks.get(0).text().split(" ");
             httpMethod = parts[0].toUpperCase();
@@ -126,6 +127,7 @@ class ApiEndpointParser {
 
         String responseDescription = null;
         List<SpotifyApiEndpoint.Parameter> parameters = null;
+        String notes = null;
 
         var h5Sections = ParseUtils.splitAt(elements, "h5");
         for (Elements h5Section : h5Sections) {
@@ -135,6 +137,9 @@ class ApiEndpointParser {
                     break;
                 case "Response":
                     responseDescription = parseResponseParameters(h5Section);
+                    break;
+                case "Notes":
+                    notes = parseNotes(h5Section);
                     break;
                 default:
                     log.warn("Unknown h5 section in endpoint " + id + ": " + h5Section.get(0).text());
@@ -150,7 +155,7 @@ class ApiEndpointParser {
 
         var scopes = extractScopes(id, parameters);
 
-        return new SpotifyApiEndpoint(id, name, link, description, httpMethod, path, parameters, responseDescription, scopes);
+        return new SpotifyApiEndpoint(id, name, link, description, httpMethod, path, parameters, responseDescription, scopes, notes);
     }
 
     private List<SpotifyApiEndpoint.Parameter> parseRequestParameters(Elements elements) {
@@ -198,24 +203,24 @@ class ApiEndpointParser {
         return responseSection.text();
     }
 
+    private String parseNotes(Elements elements) {
+        var responseSection = elements.select("p");
+        //Remove p, if it is just a link to the spotify web console
+        responseSection.removeIf(e -> "Try in our Web Console".equalsIgnoreCase(e.text()));
+        return responseSection.stream()
+                .map(Element::text)
+                .collect(Collectors.joining("\n"));
+    }
+
     private List<String> extractScopes(String id, List<SpotifyApiEndpoint.Parameter> parameters) {
         var authHeader = parameters.stream().filter(p -> "Authorization".equals(p.getName())).findFirst();
         if (authHeader.isEmpty()) {
-            if (!"endpoint-get-information-about-the-users-current-playback".equals(id)) {
-                log.warn("Endpoint {} has no Authorization header", id);
-            }
+            log.warn("Endpoint {} has no Authorization header", id);
             return new ArrayList<>();
         }
         return authHeader.get().getDescriptionElement()
                 .select("code.highlighter-rouge").stream()
-                .map(e -> fixScope(e.text()))
+                .map(e -> e.text().trim())
                 .collect(Collectors.toList());
-    }
-
-    private String fixScope(String scope) {
-        if ("user-libary-read".equals(scope)) {
-            return "user-library-read";
-        }
-        return scope.split(" ")[0];
     }
 }

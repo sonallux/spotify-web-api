@@ -15,6 +15,8 @@ class ApiEndpointFixes {
         fixChangePlaylistsDetails(categories);
         fixGetInfoAboutUsersCurrentPlayback(categories);
         fixStartAUsersPlayback(categories);
+        fixGetUsersSavedShowsScope(categories);
+        fixCheckUsersSavedShowsScope(categories);
     }
 
     private static void fixChangePlaylistsDetails(List<SpotifyApiCategory> categories) {
@@ -92,6 +94,34 @@ class ApiEndpointFixes {
             log.warn("endpoint-start-a-users-playback position_ms param has been fixed");
         } else {
             positionMsParam.setDescription("Indicates from what position to start playback. Must be a positive number. Passing in a position that is greater than the length of the track will cause the player to start playing the next song.");
+        }
+    }
+
+    private static void fixGetUsersSavedShowsScope(List<SpotifyApiCategory> categories) {
+        var endpoint = categories.stream()
+                .filter(c -> "category-library".equals(c.getId()))
+                .flatMap(c -> c.getEndpoints().stream())
+                .filter(e -> "endpoint-get-users-saved-shows".equals(e.getId()))
+                .filter(e -> e.getScopes().contains("user-libary-read"))
+                .findFirst().orElse(null);
+        if (endpoint == null) {
+            log.warn("endpoint-get-users-saved-shows scope user-libary-read has been fixed");
+        } else {
+            endpoint.setScopes(List.of("user-library-read"));
+        }
+    }
+
+    private static void fixCheckUsersSavedShowsScope(List<SpotifyApiCategory> categories) {
+        var endpoint = categories.stream()
+                .filter(c -> "category-library".equals(c.getId()))
+                .flatMap(c -> c.getEndpoints().stream())
+                .filter(e -> "endpoint-check-users-saved-shows".equals(e.getId()))
+                .filter(e -> e.getScopes().contains("user-libary-read"))
+                .findFirst().orElse(null);
+        if (endpoint == null) {
+            log.warn("endpoint-check-users-saved-shows scope user-libary-read has been fixed");
+        } else {
+            endpoint.setScopes(List.of("user-library-read"));
         }
     }
 }
