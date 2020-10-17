@@ -75,6 +75,7 @@ public class JavaGenerator {
                 parameters,
                 "On success, the HTTP status code in the response header is 200 OK and the response body contains a paging object of Artists. On error, the header status code is an error code and the response body contains an error object.",
                 topArtistsAndTracks.getScopes(),
+                topArtistsAndTracks.getNotes(),
                 List.of(new SpotifyApiEndpoint.ResponseType("PagingObject[ArtistObject]", 200, null))
         );
         var topTracks = new SpotifyApiEndpoint(
@@ -87,6 +88,7 @@ public class JavaGenerator {
                 parameters,
                 "On success, the HTTP status code in the response header is 200 OK and the response body contains a paging object of Tracks. On error, the header status code is an error code and the response body contains an error object.",
                 topArtistsAndTracks.getScopes(),
+                topArtistsAndTracks.getNotes(),
                 List.of(new SpotifyApiEndpoint.ResponseType("PagingObject[TrackObject]", 200, null))
         );
 
