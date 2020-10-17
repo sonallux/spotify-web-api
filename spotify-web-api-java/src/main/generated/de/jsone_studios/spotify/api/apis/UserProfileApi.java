@@ -5,9 +5,9 @@ import retrofit2.Call;
 import retrofit2.http.*;
 
 /**
- * <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#category-users-profile">Users Profile API</a>
+ * <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#category-user-profile">User Profile API</a>
  */
-public interface UsersProfileApi {
+public interface UserProfileApi {
 
     /**
      * <h3>Get Current User's Profile</h3>

@@ -68,11 +68,11 @@ tags:
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
     url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-tracks
-- name: category-users-profile
-  description: Users Profile API
+- name: category-user-profile
+  description: User Profile API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-users-profile
+    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-user-profile
 paths:
   /albums/{id}:
     get:
@@ -4881,7 +4881,7 @@ paths:
       - category-tracks
       summary: Get Several Tracks
       description: Get Spotify catalog information for multiple tracks based on their
-        Spotify
+        Spotify IDs.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
         url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-several-tracks
@@ -4975,7 +4975,7 @@ paths:
   /me:
     get:
       tags:
-      - category-users-profile
+      - category-user-profile
       summary: Get Current User's Profile
       description: Get detailed profile information about the current user (including
         the current user’s username).
@@ -5019,7 +5019,7 @@ paths:
   /users/{user_id}:
     get:
       tags:
-      - category-users-profile
+      - category-user-profile
       summary: Get a User's Profile
       description: Get public profile information about a Spotify user.
       externalDocs:
