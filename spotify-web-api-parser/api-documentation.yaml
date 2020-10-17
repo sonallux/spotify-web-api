@@ -4925,7 +4925,7 @@ categories:
     name: Get Several Tracks
     link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-several-tracks
     description: Get Spotify catalog information for multiple tracks based on their
-      Spotify
+      Spotify IDs.
     httpMethod: GET
     path: /tracks
     parameters:
@@ -4991,9 +4991,9 @@ categories:
     responseTypes:
     - type: TrackObject
       status: 200
-- id: category-users-profile
-  name: Users Profile API
-  link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-users-profile
+- id: category-user-profile
+  name: User Profile API
+  link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-user-profile
   endpoints:
   - id: endpoint-get-current-users-profile
     name: Get Current User's Profile

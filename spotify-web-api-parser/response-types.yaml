@@ -375,7 +375,7 @@ category-personalization:
     responseTypes:
     - type: "PagingObject[ArtistObject | TrackObject]"
       status: 200
-category-users-profile:
+category-user-profile:
   endpoint-get-users-profile:
     md5Hash: b7d08dfede5425edd8becfd11e8aca3e
     responseTypes:

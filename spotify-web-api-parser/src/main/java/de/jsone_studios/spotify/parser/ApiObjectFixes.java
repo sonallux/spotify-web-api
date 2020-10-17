@@ -206,9 +206,6 @@ class ApiObjectFixes {
         //SnapshotIdObject
         objects.add(new SpotifyObject("SnapshotIdObject", List.of(new SpotifyObject.Property("snapshot_id", "String", "The snapshot_id can be used to identify your playlist version in future requests."))));
 
-        //TrackRestrictionObject
-        objects.add(new SpotifyObject("TrackRestrictionObject", List.of(new SpotifyObject.Property("reason", "String", "The reason why a track is not available."))));
-
         //TracksObject
         objects.add(new SpotifyObject("TracksObject", List.of(new SpotifyObject.Property("tracks", "Array[TrackObject]"))));
 
