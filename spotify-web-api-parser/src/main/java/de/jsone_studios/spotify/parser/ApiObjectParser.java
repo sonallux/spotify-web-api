@@ -47,9 +47,10 @@ class ApiObjectParser {
         var spotifyObject = new SpotifyObject(objectName, id, link);
         for (var prop : objectHeader.nextElementSibling().select("tbody > tr")) {
             var name = prop.selectFirst("code").text();
-            var description = prop.selectFirst("small");
+            var descriptionElement = prop.selectFirst("small");
+            var description = Html2Markdown.convert(descriptionElement);
             var type = prop.child(1).text();
-            var property = new SpotifyObject.Property(name, type, description.text());
+            var property = new SpotifyObject.Property(name, type, description);
             if (spotifyObject.getProperties().contains(property)) {
                 throw new ApiParseException(String.format("Property %s of Object %s is defined twice", name, objectName));
             }
