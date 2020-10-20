@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.ParameterLocation.*;
 
@@ -103,7 +102,7 @@ class ApiEndpointParser {
         var id = header.attributes().get("id");
         var link = documentationUrl + "/#" + id;
         var name = header.text();
-        var description = elements.select("p").first().text();
+        var description = Html2Markdown.convert(elements.select("p").first());
         String httpMethod;
         String path;
 

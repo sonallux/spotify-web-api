@@ -7,11 +7,11 @@ import lombok.*;
 @NoArgsConstructor
 public class ErrorDetails {
     /**
-     * The HTTP status code that is also returned in the response header.
+     * <p>The HTTP status code that is also returned in the response header.</p>
      */
     private Integer status;
     /**
-     * A short description of the cause of the error.
+     * <p>A short description of the cause of the error.</p>
      */
     private String message;
 }

@@ -10,67 +10,67 @@ import lombok.*;
 @NoArgsConstructor
 public class SimplifiedTrack {
     /**
-     * The artists who performed the track. Each artist object includes a link in href to more detailed information about the artist.
+     * <p>The artists who performed the track. Each artist object includes a link in <code>href</code> to more detailed information about the artist.</p>
      */
     private java.util.List<SimplifiedArtist> artists;
     /**
-     * A list of the countries in which the track can be played, identified by their ISO 3166-1 alpha-2 code.
+     * <p>A list of the countries in which the track can be played, identified by their <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a> code.</p>
      */
     private java.util.List<String> available_markets;
     /**
-     * The disc number (usually 1 unless the album consists of more than one disc).
+     * <p>The disc number (usually <code>1</code> unless the album consists of more than one disc).</p>
      */
     private Integer disc_number;
     /**
-     * The track length in milliseconds.
+     * <p>The track length in milliseconds.</p>
      */
     private Integer duration_ms;
     /**
-     * Whether or not the track has explicit lyrics ( true &#x3D; yes it does; false &#x3D; no it does not OR unknown).
+     * <p>Whether or not the track has explicit lyrics ( <code>true</code> = yes it does; <code>false</code> = no it does not OR unknown).</p>
      */
     private Boolean explicit;
     /**
-     * External URLs for this track.
+     * <p>External URLs for this track.</p>
      */
     private ExternalUrl external_urls;
     /**
-     * A link to the Web API endpoint providing full details of the track.
+     * <p>A link to the Web API endpoint providing full details of the track.</p>
      */
     private String href;
     /**
-     * The Spotify ID for the track.
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the track.</p>
      */
     private String id;
     /**
-     * Part of the response when Track Relinking is applied. If true , the track is playable in the given market. Otherwise false.
+     * <p>Part of the response when <a href="https://developer.spotify.com/documentation/general/guides/track-relinking-guide/">Track Relinking</a> is applied. If <code>true</code> , the track is playable in the given market. Otherwise <code>false</code>.</p>
      */
     private Boolean is_playable;
     /**
-     * Part of the response when Track Relinking is applied and is only part of the response if the track linking, in fact, exists. The requested track has been replaced with a different track. The track in the linked_from object contains information about the originally requested track.
+     * <p>Part of the response when <a href="https://developer.spotify.com/documentation/general/guides/track-relinking-guide/">Track Relinking</a> is applied and is only part of the response if the track linking, in fact, exists. The requested track has been replaced with a different track. The track in the <code>linked_from</code> object contains information about the originally requested track.</p>
      */
     private LinkedTrack linked_from;
     /**
-     * The name of the track.
+     * <p>The name of the track.</p>
      */
     private String name;
     /**
-     * A URL to a 30 second preview (MP3 format) of the track.
+     * <p>A URL to a 30 second preview (MP3 format) of the track.</p>
      */
     private String preview_url;
     /**
-     * Included in the response when a content restriction is applied. See Restriction Object for more details.
+     * <p>Included in the response when a content restriction is applied. See <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#track-restriction-object">Restriction Object</a> for more details.</p>
      */
     private TrackRestriction restrictions;
     /**
-     * The number of the track. If an album has several discs, the track number is the number on the specified disc.
+     * <p>The number of the track. If an album has several discs, the track number is the number on the specified disc.</p>
      */
     private Integer track_number;
     /**
-     * The object type: “track”.
+     * <p>The object type: &quot;track&quot;.</p>
      */
     private String type;
     /**
-     * The Spotify URI for the track.
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the track.</p>
      */
     private String uri;
 }

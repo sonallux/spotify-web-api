@@ -10,11 +10,11 @@ import lombok.*;
 @NoArgsConstructor
 public class ResumePoint {
     /**
-     * Whether or not the episode has been fully played by the user.
+     * <p>Whether or not the episode has been fully played by the user.</p>
      */
     private Boolean fully_played;
     /**
-     * The user’s most recent position in the episode in milliseconds.
+     * <p>The user's most recent position in the episode in milliseconds.</p>
      */
     private Integer resume_position_ms;
 }

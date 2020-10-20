@@ -21,7 +21,6 @@
 
     <properties>
         <jsoup.version>1.13.1</jsoup.version>
-        <flexmark.version>0.62.2</flexmark.version>
     </properties>
 
     <dependencies>

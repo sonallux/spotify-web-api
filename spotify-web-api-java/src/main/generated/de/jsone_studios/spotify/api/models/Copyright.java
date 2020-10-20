@@ -7,11 +7,11 @@ import lombok.*;
 @NoArgsConstructor
 public class Copyright {
     /**
-     * The copyright text for this album.
+     * <p>The copyright text for this album.</p>
      */
     private String text;
     /**
-     * The type of copyright: C &#x3D; the copyright, P &#x3D; the sound recording (performance) copyright.
+     * <p>The type of copyright: C = the copyright, P = the sound recording (performance) copyright.</p>
      */
     private String type;
 }

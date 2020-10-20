@@ -7,27 +7,27 @@ import lombok.*;
 @NoArgsConstructor
 public class SimplifiedArtist {
     /**
-     * Known external URLs for this artist.
+     * <p>Known external URLs for this artist.</p>
      */
     private ExternalUrl external_urls;
     /**
-     * A link to the Web API endpoint providing full details of the artist.
+     * <p>A link to the Web API endpoint providing full details of the artist.</p>
      */
     private String href;
     /**
-     * The Spotify ID for the artist.
+     * <p>The Spotify ID for the artist.</p>
      */
     private String id;
     /**
-     * The name of the artist.
+     * <p>The name of the artist.</p>
      */
     private String name;
     /**
-     * The object type: &quot;artist&quot;
+     * <p>The object type: &quot;artist&quot;</p>
      */
     private String type;
     /**
-     * The Spotify URI for the artist.
+     * <p>The Spotify URI for the artist.</p>
      */
     private String uri;
 }

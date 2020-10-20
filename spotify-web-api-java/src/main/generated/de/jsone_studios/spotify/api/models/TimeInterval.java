@@ -10,15 +10,15 @@ import lombok.*;
 @NoArgsConstructor
 public class TimeInterval {
     /**
-     * The starting point (in seconds) of the time interval.
+     * <p>The starting point (in seconds) of the time interval.</p>
      */
     private Float start;
     /**
-     * The duration (in seconds) of the time interval.
+     * <p>The duration (in seconds) of the time interval.</p>
      */
     private Float duration;
     /**
-     * The confidence, from 0.0 to 1.0, of the reliability of the interval.
+     * <p>The confidence, from 0.0 to 1.0, of the reliability of the interval.</p>
      */
     private Float confidence;
 }

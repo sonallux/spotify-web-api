@@ -33,7 +33,7 @@ public class Html2Markdown {
 
     public static String convert(List<? extends Node> nodes) {
         return nodes.stream()
-                .map(Html2Markdown::convert)
+                .map(CONVERTER::convert)
                 .collect(Collectors.joining("\n"))
                 .trim();
     }

@@ -11,13 +11,13 @@ public interface FollowApi {
 
     /**
      * <h3>Get Following State for Artists/Users</h3>
-     * Check to see if the current user is following one or more artists or other Spotify users.
+     * <p>Check to see if the current user is following one or more artists or other Spotify users.</p>
      * <h3>Required OAuth scopes</h3>
      * <code>user-follow-read</code>
      * 
-     * @param type The ID type: either artist or user.
-     * @param ids A comma-separated list of the artist or the user Spotify IDs to check. For example: ids&#x3D;74ASZWbe4lXaubB36ztrGX,08td7MxkoHQkXnWAYD8d6Q. A maximum of 50 IDs can be sent in one request.
-     * @return On success, the HTTP status code in the response header is 200 OK and the response body contains a JSON array of true or false values, in the same order in which the ids were specified. On error, the header status code is an error code and the response body contains an error object.
+     * @param type <p>The ID type: either <code>artist</code> or <code>user</code>.</p>
+     * @param ids <p>A comma-separated list of the artist or the user <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a> to check. For example: <code>ids=74ASZWbe4lXaubB36ztrGX,08td7MxkoHQkXnWAYD8d6Q</code>. A maximum of 50 IDs can be sent in one request.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains a JSON array of <code>true</code> or <code>false</code> values, in the same order in which the <code>ids</code> were specified. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-check-current-user-follows">Get Following State for Artists/Users</a>
      */
     @GET("/me/following/contains")
@@ -25,13 +25,13 @@ public interface FollowApi {
 
     /**
      * <h3>Check if Users Follow a Playlist</h3>
-     * Check to see if one or more Spotify users are following a specified playlist.
+     * <p>Check to see if one or more Spotify users are following a specified playlist.</p>
      * <h3>Required OAuth scopes</h3>
      * <code>playlist-read-private</code>
      * 
-     * @param playlist_id The Spotify ID of the playlist.
-     * @param ids A comma-separated list of Spotify User IDs ; the ids of the users that you want to check to see if they follow the playlist. Maximum: 5 ids.
-     * @return On success, the HTTP status code in the response header is 200 OK and the response body contains a JSON array of true or false values, in the same order in which the ids were specified. On error, the header status code is an error code and the response body contains an error object.
+     * @param playlist_id <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> of the playlist.</p>
+     * @param ids <p>A comma-separated list of <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify User IDs</a> ; the ids of the users that you want to check to see if they follow the playlist. Maximum: 5 ids.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains a JSON array of <code>true</code> or <code>false</code> values, in the same order in which the <code>ids</code> were specified. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-check-if-user-follows-playlist">Check if Users Follow a Playlist</a>
      */
     @GET("/playlists/{playlist_id}/followers/contains")
@@ -39,13 +39,13 @@ public interface FollowApi {
 
     /**
      * <h3>Follow Artists or Users</h3>
-     * Add the current user as a follower of one or more artists or other Spotify users.
+     * <p>Add the current user as a follower of one or more artists or other Spotify users.</p>
      * <h3>Required OAuth scopes</h3>
      * <code>user-follow-modify</code>
      * 
-     * @param type The ID type: either artist or user.
-     * @param requestBody the request body
-     * @return On success, the HTTP status code in the response header is 204 No Content and the response body is empty. On error, the header status code is an error code and the response body contains an error object.
+     * @param type <p>The ID type: either <code>artist</code> or <code>user</code>.</p>
+     * @param requestBody <p>the request body</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>204</code> No Content and the response body is empty. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-follow-artists-users">Follow Artists or Users</a>
      */
     @PUT("/me/following")
@@ -53,12 +53,12 @@ public interface FollowApi {
 
     /**
      * <h3>Follow a Playlist</h3>
-     * Add the current user as a follower of a playlist.
+     * <p>Add the current user as a follower of a playlist.</p>
      * <h3>Required OAuth scopes</h3>
      * <code>user-follow-modify</code>
      * 
-     * @param playlist_id The Spotify ID of the playlist. Any playlist can be followed, regardless of its public/private status, as long as you know its playlist ID.
-     * @return On success, the HTTP status code in the response header is 200 OK and the response body is empty. On error, the header status code is an error code and the response body contains an error object.
+     * @param playlist_id <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> of the playlist. Any playlist can be followed, regardless of its <a href="https://developer.spotify.com/documentation/general/guides/working-with-playlists/#public-private-and-collaborative-status">public/private status</a>, as long as you know its playlist ID.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body is empty. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-follow-playlist">Follow a Playlist</a>
      */
     @PUT("/playlists/{playlist_id}/followers")
@@ -66,13 +66,13 @@ public interface FollowApi {
 
     /**
      * <h3>Follow a Playlist</h3>
-     * Add the current user as a follower of a playlist.
+     * <p>Add the current user as a follower of a playlist.</p>
      * <h3>Required OAuth scopes</h3>
      * <code>user-follow-modify</code>
      * 
-     * @param playlist_id The Spotify ID of the playlist. Any playlist can be followed, regardless of its public/private status, as long as you know its playlist ID.
-     * @param requestBody The request body
-     * @return On success, the HTTP status code in the response header is 200 OK and the response body is empty. On error, the header status code is an error code and the response body contains an error object.
+     * @param playlist_id <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> of the playlist. Any playlist can be followed, regardless of its <a href="https://developer.spotify.com/documentation/general/guides/working-with-playlists/#public-private-and-collaborative-status">public/private status</a>, as long as you know its playlist ID.</p>
+     * @param requestBody <p>The request body</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body is empty. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-follow-playlist">Follow a Playlist</a>
      */
     @PUT("/playlists/{playlist_id}/followers")
@@ -80,12 +80,12 @@ public interface FollowApi {
 
     /**
      * <h3>Get User's Followed Artists</h3>
-     * Get the current user’s followed artists.
+     * <p>Get the current user's followed artists.</p>
      * <h3>Required OAuth scopes</h3>
      * <code>user-follow-modify</code>
      * 
-     * @param type The ID type: currently only artist is supported.
-     * @return On success, the HTTP status code in the response header is 200 OK and the response body contains an artists object. The artists object in turn contains a cursor-based paging object of Artists. On error, the header status code is an error code and the response body contains an error object.
+     * @param type <p>The ID type: currently only <code>artist</code> is supported.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an <code>artists</code> object. The <code>artists</code> object in turn contains a <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#cursor-based-paging-object">cursor-based paging object</a> of <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full">Artists</a>. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-followed">Get User's Followed Artists</a>
      */
     @GET("/me/following")
@@ -93,13 +93,13 @@ public interface FollowApi {
 
     /**
      * <h3>Get User's Followed Artists</h3>
-     * Get the current user’s followed artists.
+     * <p>Get the current user's followed artists.</p>
      * <h3>Required OAuth scopes</h3>
      * <code>user-follow-modify</code>
      * 
-     * @param type The ID type: currently only artist is supported.
-     * @param queryParameters A map of optional query parameters
-     * @return On success, the HTTP status code in the response header is 200 OK and the response body contains an artists object. The artists object in turn contains a cursor-based paging object of Artists. On error, the header status code is an error code and the response body contains an error object.
+     * @param type <p>The ID type: currently only <code>artist</code> is supported.</p>
+     * @param queryParameters <p>A map of optional query parameters</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an <code>artists</code> object. The <code>artists</code> object in turn contains a <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#cursor-based-paging-object">cursor-based paging object</a> of <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full">Artists</a>. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-followed">Get User's Followed Artists</a>
      */
     @GET("/me/following")
@@ -107,13 +107,13 @@ public interface FollowApi {
 
     /**
      * <h3>Unfollow Artists or Users</h3>
-     * Remove the current user as a follower of one or more artists or other Spotify users.
+     * <p>Remove the current user as a follower of one or more artists or other Spotify users.</p>
      * <h3>Required OAuth scopes</h3>
      * <code>user-follow-modify</code>
      * 
-     * @param type The ID type: either artist or user.
-     * @param requestBody the request body
-     * @return On success, the HTTP status code in the response header is 204 No Content and the response body is empty. On error, the header status code is an error code and the response body contains an error object.
+     * @param type <p>The ID type: either <code>artist</code> or <code>user</code>.</p>
+     * @param requestBody <p>the request body</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>204</code> No Content and the response body is empty. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-unfollow-artists-users">Unfollow Artists or Users</a>
      */
     @DELETE("/me/following")
@@ -121,12 +121,12 @@ public interface FollowApi {
 
     /**
      * <h3>Unfollow Playlist</h3>
-     * Remove the current user as a follower of a playlist.
+     * <p>Remove the current user as a follower of a playlist.</p>
      * <h3>Required OAuth scopes</h3>
      * <code>playlist-modify-public, playlist-modify-private</code>
      * 
-     * @param playlist_id The Spotify ID of the playlist that is to be no longer followed.
-     * @return On success, the HTTP status code in the response header is 200 OK and the response body is empty. On error, the header status code is an error code and the response body contains an error object.
+     * @param playlist_id <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> of the playlist that is to be no longer followed.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body is empty. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-unfollow-playlist">Unfollow Playlist</a>
      */
     @DELETE("/playlists/{playlist_id}/followers")

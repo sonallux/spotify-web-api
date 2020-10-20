@@ -10,15 +10,15 @@ import lombok.*;
 @NoArgsConstructor
 public class Image {
     /**
-     * The image height in pixels. If unknown: null or not returned.
+     * <p>The image height in pixels. If unknown: null or not returned.</p>
      */
     private Integer height;
     /**
-     * The source URL of the image.
+     * <p>The source URL of the image.</p>
      */
     private String url;
     /**
-     * The image width in pixels. If unknown: null or not returned.
+     * <p>The image width in pixels. If unknown: null or not returned.</p>
      */
     private Integer width;
 }

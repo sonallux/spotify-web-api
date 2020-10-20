@@ -18,7 +18,8 @@ public class Html2MarkdownTest {
                 new String[]{"<ul><li>foo</li><li>bar</li></ul>", "- foo\n- bar"},
                 new String[]{"“Spanish (Mexico)”", "\"Spanish (Mexico)\""},
                 new String[]{"foo<br><br>", "foo"},
-                new String[]{"<p>Text</p><div>\t</div>", "Text"}
+                new String[]{"<p>Text</p><div>\t</div>", "Text"},
+                new String[]{"<p>Test</p><p>Bar</p>", "Test\n\nBar"}
         );
     }
 
@@ -36,6 +37,14 @@ public class Html2MarkdownTest {
         var node2 = Jsoup.parse("<div></div>");
         var markdown = Html2Markdown.convert(List.of(node1, node2));
         Assertions.assertEquals("Test", markdown);
+    }
+
+    @Test
+    void preserveNewlines() {
+        var node1 = Jsoup.parse("<p>Test</p>");
+        var node2 = Jsoup.parse("<p>Bar</p>");
+        var markdown = Html2Markdown.convert(List.of(node1, node2));
+        Assertions.assertEquals("Test\n\nBar", markdown);
     }
 
     @Test

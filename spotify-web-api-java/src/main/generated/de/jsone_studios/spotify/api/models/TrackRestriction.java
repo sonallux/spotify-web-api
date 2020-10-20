@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 public class TrackRestriction {
     /**
-     * The reason for the restriction. Supported values:
+     * <p>The reason for the restriction. Supported values:</p>
      */
     private String reason;
 }

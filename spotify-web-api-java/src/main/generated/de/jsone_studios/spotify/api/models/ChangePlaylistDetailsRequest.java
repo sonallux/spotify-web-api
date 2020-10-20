@@ -7,20 +7,20 @@ import lombok.*;
 @NoArgsConstructor
 public class ChangePlaylistDetailsRequest {
     /**
-     * The new name for the playlist, for example &quot;My New Playlist Title&quot;
+     * <p>The new name for the playlist, for example <code>&quot;My New Playlist Title&quot;</code></p>
      */
     private String name;
     /**
-     * If true the playlist will be public, if false it will be private.
+     * <p>If <code>true</code> the playlist will be public, if <code>false</code> it will be private.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("public")
     private Boolean _public;
     /**
-     * If true , the playlist will become collaborative and other users will be able to modify the playlist in their Spotify client. Note: You can only set collaborative to true on non-public playlists.
+     * <p>If <code>true</code> , the playlist will become collaborative and other users will be able to modify the playlist in their Spotify client. <em>Note: You can only set <code>collaborative</code> to <code>true</code> on non-public playlists.</em></p>
      */
     private Boolean collaborative;
     /**
-     * Value for playlist description as displayed in Spotify Clients and in the Web API.
+     * <p>Value for playlist description as displayed in Spotify Clients and in the Web API.</p>
      */
     private String description;
 }
