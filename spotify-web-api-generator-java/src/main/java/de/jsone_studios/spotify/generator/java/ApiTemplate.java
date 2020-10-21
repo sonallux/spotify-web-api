@@ -1,9 +1,9 @@
 package de.jsone_studios.spotify.generator.java;
 
 import com.google.common.base.CaseFormat;
-import com.samskivert.mustache.Escapers;
 import de.jsone_studios.spotify.generator.java.util.JavaPackage;
 import de.jsone_studios.spotify.generator.java.util.JavaUtils;
+import de.jsone_studios.spotify.generator.java.util.Markdown2Html;
 import de.jsone_studios.spotify.parser.model.SpotifyApiCategory;
 import de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint;
 import lombok.Getter;
@@ -49,8 +49,11 @@ class ApiTemplate extends AbstractTemplate<SpotifyApiCategory> {
         var methodName = CaseFormat.LOWER_HYPHEN.to(CaseFormat.LOWER_CAMEL, JavaUtils.shrinkEndpointId(endpoint));
         baseContext.put("methodName", methodName);
         baseContext.put("name", endpoint.getName());
-        baseContext.put("description", Escapers.HTML.escape(endpoint.getDescription()));
-        baseContext.put("responseDescription", Escapers.HTML.escape(endpoint.getResponseDescription()));
+        baseContext.put("description", Markdown2Html.convertToSingleLine(endpoint.getDescription()));
+        baseContext.put("responseDescription", Markdown2Html.convertToSingleLine(endpoint.getResponseDescription()));
+        if (endpoint.getNotes() != null) {
+            baseContext.put("notes", Markdown2Html.convertToSingleLine(endpoint.getNotes()));
+        }
         if (endpoint.getScopes().size() > 0) {
             baseContext.put("scopes", String.join(", ", endpoint.getScopes()));
         }
@@ -177,7 +180,7 @@ class ApiTemplate extends AbstractTemplate<SpotifyApiCategory> {
             this.annotation = annotation;
             this.type = type;
             this.fieldName = JavaUtils.escapeFieldName(fieldName);
-            this.description = Escapers.HTML.escape(description);
+            this.description = Markdown2Html.convertToSingleLine(description);
         }
 
         public String asMethodArgument() {

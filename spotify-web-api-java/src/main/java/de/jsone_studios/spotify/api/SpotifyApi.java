@@ -10,7 +10,6 @@ import retrofit2.Retrofit;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.nio.file.attribute.UserDefinedFileAttributeView;
 
 public interface SpotifyApi {
 

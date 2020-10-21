@@ -10,75 +10,75 @@ import lombok.*;
 @NoArgsConstructor
 public class SimplifiedEpisode {
     /**
-     * A URL to a 30 second preview (MP3 format) of the episode. null if not available.
+     * <p>A URL to a 30 second preview (MP3 format) of the episode. <code>null</code> if not available.</p>
      */
     private String audio_preview_url;
     /**
-     * A description of the episode.
+     * <p>A description of the episode.</p>
      */
     private String description;
     /**
-     * The episode length in milliseconds.
+     * <p>The episode length in milliseconds.</p>
      */
     private Integer duration_ms;
     /**
-     * Whether or not the episode has explicit content (true &#x3D; yes it does; false &#x3D; no it does not OR unknown).
+     * <p>Whether or not the episode has explicit content (true = yes it does; false = no it does not OR unknown).</p>
      */
     private Boolean explicit;
     /**
-     * External URLs for this episode.
+     * <p>External URLs for this episode.</p>
      */
     private ExternalUrl external_urls;
     /**
-     * A link to the Web API endpoint providing full details of the episode.
+     * <p>A link to the Web API endpoint providing full details of the episode.</p>
      */
     private String href;
     /**
-     * The Spotify ID for the episode.
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the episode.</p>
      */
     private String id;
     /**
-     * The cover art for the episode in various sizes, widest first.
+     * <p>The cover art for the episode in various sizes, widest first.</p>
      */
     private java.util.List<Image> images;
     /**
-     * True if the episode is hosted outside of Spotify’s CDN.
+     * <p>True if the episode is hosted outside of Spotify's CDN.</p>
      */
     private Boolean is_externally_hosted;
     /**
-     * True if the episode is playable in the given market. Otherwise false.
+     * <p>True if the episode is playable in the given market. Otherwise false.</p>
      */
     private Boolean is_playable;
     /**
-     * Note: This field is deprecated and might be removed in the future. Please use the languages field instead. The language used in the episode, identified by a ISO 639 code.
+     * <p><strong>Note: This field is deprecated and might be removed in the future. Please use the <code>languages</code> field instead.</strong> The language used in the episode, identified by a <a href="https://en.wikipedia.org/wiki/ISO_639">ISO 639</a> code.</p>
      */
     private String language;
     /**
-     * A list of the languages used in the episode, identified by their ISO 639 code.
+     * <p>A list of the languages used in the episode, identified by their <a href="https://en.wikipedia.org/wiki/ISO_639">ISO 639</a> code.</p>
      */
     private java.util.List<String> languages;
     /**
-     * The name of the episode.
+     * <p>The name of the episode.</p>
      */
     private String name;
     /**
-     * The date the episode was first released, for example &quot;1981-12-15&quot;. Depending on the precision, it might be shown as &quot;1981&quot; or &quot;1981-12&quot;.
+     * <p>The date the episode was first released, for example <code>&quot;1981-12-15&quot;</code>. Depending on the precision, it might be shown as <code>&quot;1981&quot;</code> or <code>&quot;1981-12&quot;</code>.</p>
      */
     private String release_date;
     /**
-     * The precision with which release_date value is known: &quot;year&quot;, &quot;month&quot;, or &quot;day&quot;.
+     * <p>The precision with which <code>release_date</code> value is known: <code>&quot;year&quot;</code>, <code>&quot;month&quot;</code>, or <code>&quot;day&quot;</code>.</p>
      */
     private String release_date_precision;
     /**
-     * The user’s most recent position in the episode. Set if the supplied access token is a user token and has the scope ‘user-read-playback-position’.
+     * <p>The user's most recent position in the episode. Set if the supplied access token is a user token and has the scope 'user-read-playback-position'.</p>
      */
     private ResumePoint resume_point;
     /**
-     * The object type: “episode”.
+     * <p>The object type: &quot;episode&quot;.</p>
      */
     private String type;
     /**
-     * The Spotify URI for the episode.
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the episode.</p>
      */
     private String uri;
 }

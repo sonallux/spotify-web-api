@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 public class Devices {
     /**
-     * A list of 0..n Device objects
+     * <p>A list of 0..n Device objects</p>
      */
     private java.util.List<Device> devices;
 }

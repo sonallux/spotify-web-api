@@ -10,31 +10,31 @@ import lombok.*;
 @NoArgsConstructor
 public class Device {
     /**
-     * The device ID. This may be null.
+     * <p>The device ID. This may be <code>null</code>.</p>
      */
     private String id;
     /**
-     * If this device is the currently active device.
+     * <p>If this device is the currently active device.</p>
      */
     private Boolean is_active;
     /**
-     * If this device is currently in a private session.
+     * <p>If this device is currently in a private session.</p>
      */
     private Boolean is_private_session;
     /**
-     * Whether controlling this device is restricted. At present if this is “true” then no Web API commands will be accepted by this device.
+     * <p>Whether controlling this device is restricted. At present if this is &quot;true&quot; then no Web API commands will be accepted by this device.</p>
      */
     private Boolean is_restricted;
     /**
-     * The name of the device.
+     * <p>The name of the device.</p>
      */
     private String name;
     /**
-     * Device type, such as “computer”, “smartphone” or “speaker”.
+     * <p>Device type, such as &quot;computer&quot;, &quot;smartphone&quot; or &quot;speaker&quot;.</p>
      */
     private String type;
     /**
-     * The current volume in percent. This may be null.
+     * <p>The current volume in percent. This may be null.</p>
      */
     private Integer volume_percent;
 }

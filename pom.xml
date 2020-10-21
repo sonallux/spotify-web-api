@@ -62,6 +62,7 @@
         <slf4j-simple.version>1.7.30</slf4j-simple.version>
         <guava.version>29.0-jre</guava.version>
         <picocli.version>4.5.1</picocli.version>
+        <flexmark.version>0.62.2</flexmark.version>
 
         <!-- Test Dependencies -->
         <junit.version>5.7.0</junit.version>

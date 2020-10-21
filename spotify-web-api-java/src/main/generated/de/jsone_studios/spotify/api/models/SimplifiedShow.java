@@ -10,63 +10,63 @@ import lombok.*;
 @NoArgsConstructor
 public class SimplifiedShow {
     /**
-     * A list of the countries in which the show can be played, identified by their ISO 3166-1 alpha-2 code.
+     * <p>A list of the countries in which the show can be played, identified by their <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a> code.</p>
      */
     private java.util.List<String> available_markets;
     /**
-     * The copyright statements of the show.
+     * <p>The copyright statements of the show.</p>
      */
     private java.util.List<Copyright> copyrights;
     /**
-     * A description of the show.
+     * <p>A description of the show.</p>
      */
     private String description;
     /**
-     * Whether or not the show has explicit content (true &#x3D; yes it does; false &#x3D; no it does not OR unknown).
+     * <p>Whether or not the show has explicit content (true = yes it does; false = no it does not OR unknown).</p>
      */
     private Boolean explicit;
     /**
-     * External URLs for this show.
+     * <p>External URLs for this show.</p>
      */
     private ExternalUrl external_urls;
     /**
-     * A link to the Web API endpoint providing full details of the show.
+     * <p>A link to the Web API endpoint providing full details of the show.</p>
      */
     private String href;
     /**
-     * The Spotify ID for the show.
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the show.</p>
      */
     private String id;
     /**
-     * The cover art for the show in various sizes, widest first.
+     * <p>The cover art for the show in various sizes, widest first.</p>
      */
     private java.util.List<Image> images;
     /**
-     * True if all of the show’s episodes are hosted outside of Spotify’s CDN. This field might be null in some cases.
+     * <p>True if all of the show's episodes are hosted outside of Spotify's CDN. This field might be <code>null</code> in some cases.</p>
      */
     private Boolean is_externally_hosted;
     /**
-     * A list of the languages used in the show, identified by their ISO 639 code.
+     * <p>A list of the languages used in the show, identified by their <a href="https://en.wikipedia.org/wiki/ISO_639">ISO 639</a> code.</p>
      */
     private java.util.List<String> languages;
     /**
-     * The media type of the show.
+     * <p>The media type of the show.</p>
      */
     private String media_type;
     /**
-     * The name of the episode.
+     * <p>The name of the episode.</p>
      */
     private String name;
     /**
-     * The publisher of the show.
+     * <p>The publisher of the show.</p>
      */
     private String publisher;
     /**
-     * The object type: “show”.
+     * <p>The object type: &quot;show&quot;.</p>
      */
     private String type;
     /**
-     * The Spotify URI for the show.
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the show.</p>
      */
     private String uri;
 }
