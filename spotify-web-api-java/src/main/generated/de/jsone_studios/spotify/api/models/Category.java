@@ -10,19 +10,19 @@ import lombok.*;
 @NoArgsConstructor
 public class Category {
     /**
-     * A link to the Web API endpoint returning full details of the category.
+     * <p>A link to the Web API endpoint returning full details of the category.</p>
      */
     private String href;
     /**
-     * The category icon, in various sizes.
+     * <p>The category icon, in various sizes.</p>
      */
     private java.util.List<Image> icons;
     /**
-     * The Spotify category ID of the category.
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify category ID</a> of the category.</p>
      */
     private String id;
     /**
-     * The name of the category.
+     * <p>The name of the category.</p>
      */
     private String name;
 }

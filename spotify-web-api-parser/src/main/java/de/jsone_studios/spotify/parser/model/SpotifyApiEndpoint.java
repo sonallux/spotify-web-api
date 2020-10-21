@@ -1,8 +1,6 @@
 package de.jsone_studios.spotify.parser.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.jsoup.nodes.Element;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,18 +47,8 @@ public class SpotifyApiEndpoint {
         @EqualsAndHashCode.Include
         private String name;
         private String description;
-        @JsonIgnore
-        private Element descriptionElement;
         private String type;
         private boolean required;
-
-        public Parameter(ParameterLocation location, String name, Element descriptionElement, String type, boolean required) {
-            this(location, name, descriptionElement.text(), descriptionElement, type, required);
-        }
-
-        public Parameter(ParameterLocation location, String name, String description, String type, boolean required) {
-            this(location, name, description, null, type, required);
-        }
     }
 
     public enum ParameterLocation {

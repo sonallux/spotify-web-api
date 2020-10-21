@@ -10,19 +10,19 @@ import lombok.*;
 @NoArgsConstructor
 public class Context {
     /**
-     * External URLs for this context.
+     * <p>External URLs for this context.</p>
      */
     private ExternalUrl external_urls;
     /**
-     * A link to the Web API endpoint providing full details of the track.
+     * <p>A link to the Web API endpoint providing full details of the track.</p>
      */
     private String href;
     /**
-     * The object type, e.g. “artist”, “playlist”, “album”, “show”.
+     * <p>The object type, e.g. &quot;artist&quot;, &quot;playlist&quot;, &quot;album&quot;, &quot;show&quot;.</p>
      */
     private String type;
     /**
-     * The Spotify URI for the context.
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the context.</p>
      */
     private String uri;
 }

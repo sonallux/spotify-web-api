@@ -10,19 +10,19 @@ import lombok.*;
 @NoArgsConstructor
 public class PlaylistTrack {
     /**
-     * The date and time the track or episode was added. Note that some very old playlists may return null in this field.
+     * <p>The date and time the track or episode was added. <em>Note that some very old playlists may return <code>null</code> in this field.</em></p>
      */
     private java.time.LocalDateTime added_at;
     /**
-     * The Spotify user who added the track or episode. Note that some very old playlists may return null in this field.
+     * <p>The Spotify user who added the track or episode. <em>Note that some very old playlists may return <code>null</code> in this field.</em></p>
      */
     private PublicUser added_by;
     /**
-     * Whether this track or episode is a local file or not.
+     * <p>Whether this track or episode is a <a href="https://developer.spotify.com/web-api/local-files-spotify-playlists/">local file</a> or not.</p>
      */
     private Boolean is_local;
     /**
-     * Information about the track or episode.
+     * <p>Information about the track or episode.</p>
      */
     private java.util.Map<String, Object> track;
 }

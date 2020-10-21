@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.regex.Pattern;
 
 import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.ParameterLocation.*;
 
@@ -102,7 +102,7 @@ class ApiEndpointParser {
         var id = header.attributes().get("id");
         var link = documentationUrl + "/#" + id;
         var name = header.text();
-        var description = elements.select("p").first().text();
+        var description = Html2Markdown.convert(elements.select("p").first());
         String httpMethod;
         String path;
 
@@ -136,10 +136,10 @@ class ApiEndpointParser {
                     parameters = parseRequestParameters(h5Section);
                     break;
                 case "Response":
-                    responseDescription = parseResponseParameters(h5Section);
+                    responseDescription = parseResponseParameters(h5Section.subList(1, h5Section.size()));
                     break;
                 case "Notes":
-                    notes = parseNotes(h5Section);
+                    notes = parseNotes(h5Section.subList(1, h5Section.size()));
                     break;
                 default:
                     log.warn("Unknown h5 section in endpoint " + id + ": " + h5Section.get(0).text());
@@ -166,16 +166,16 @@ class ApiEndpointParser {
             for (var entry : table.select("tbody > tr")) {
                 var name = entry.selectFirst("code").text();
                 if (location == PATH) {
+                    // Remove surrounding curly brackets
                     name = name.substring(1, name.length() - 1);
                 }
-                var description = entry.selectFirst("small");
+
+                var descriptionElement = entry.selectFirst("small");
+                var description = descriptionElement == null ? "" : Html2Markdown.convert(descriptionElement);
                 var type = entry.child(1).text();
                 var requiredText = entry.child(2).text();
-                if (description == null) {
-                    parameters.add(new SpotifyApiEndpoint.Parameter(location, name, "", type, "required".equalsIgnoreCase(requiredText)));
-                } else {
-                    parameters.add(new SpotifyApiEndpoint.Parameter(location, name, description, type, "required".equalsIgnoreCase(requiredText)));
-                }
+
+                parameters.add(new SpotifyApiEndpoint.Parameter(location, name, description, type, "required".equalsIgnoreCase(requiredText)));
             }
         }
         return parameters;
@@ -196,20 +196,16 @@ class ApiEndpointParser {
         }
     }
 
-    private String parseResponseParameters(Elements elements) {
-        var responseSection = elements.select("p");
-        //Remove p, if it is just a link to the spotify web console
-        responseSection.removeIf(e -> "Try in our Web Console".equalsIgnoreCase(e.text()));
-        return responseSection.text();
+    private String parseResponseParameters(List<Element> elements) {
+        //Remove, if it is just a link to the spotify web console
+        elements.removeIf(e -> "Try in our Web Console".equalsIgnoreCase(e.text()));
+        return Html2Markdown.convert(elements);
     }
 
-    private String parseNotes(Elements elements) {
-        var responseSection = elements.select("p");
-        //Remove p, if it is just a link to the spotify web console
-        responseSection.removeIf(e -> "Try in our Web Console".equalsIgnoreCase(e.text()));
-        return responseSection.stream()
-                .map(Element::text)
-                .collect(Collectors.joining("\n"));
+    private String parseNotes(List<Element> elements) {
+        //Remove, if it is just a link to the spotify web console
+        elements.removeIf(e -> "Try in our Web Console".equalsIgnoreCase(e.text()));
+        return Html2Markdown.convert(elements);
     }
 
     private List<String> extractScopes(String id, List<SpotifyApiEndpoint.Parameter> parameters) {
@@ -218,9 +214,13 @@ class ApiEndpointParser {
             log.warn("Endpoint {} has no Authorization header", id);
             return new ArrayList<>();
         }
-        return authHeader.get().getDescriptionElement()
-                .select("code.highlighter-rouge").stream()
-                .map(e -> e.text().trim())
-                .collect(Collectors.toList());
+
+        var codePattern = Pattern.compile("`([a-z-]+)`");
+        var matcher = codePattern.matcher(authHeader.get().getDescription());
+        var scopes = new ArrayList<String>();
+        while (matcher.find()) {
+            scopes.add(matcher.group(1));
+        }
+        return scopes;
     }
 }

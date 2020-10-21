@@ -10,43 +10,43 @@ import lombok.*;
 @NoArgsConstructor
 public class Artist {
     /**
-     * Known external URLs for this artist.
+     * <p>Known external URLs for this artist.</p>
      */
     private ExternalUrl external_urls;
     /**
-     * Information about the followers of the artist.
+     * <p>Information about the followers of the artist.</p>
      */
     private Followers followers;
     /**
-     * A list of the genres the artist is associated with. For example: &quot;Prog Rock&quot; , &quot;Post-Grunge&quot;. (If not yet classified, the array is empty.)
+     * <p>A list of the genres the artist is associated with. For example: <code>&quot;Prog Rock&quot;</code> , <code>&quot;Post-Grunge&quot;</code>. (If not yet classified, the array is empty.)</p>
      */
     private java.util.List<String> genres;
     /**
-     * A link to the Web API endpoint providing full details of the artist.
+     * <p>A link to the Web API endpoint providing full details of the artist.</p>
      */
     private String href;
     /**
-     * The Spotify ID for the artist.
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the artist.</p>
      */
     private String id;
     /**
-     * Images of the artist in various sizes, widest first.
+     * <p>Images of the artist in various sizes, widest first.</p>
      */
     private java.util.List<Image> images;
     /**
-     * The name of the artist.
+     * <p>The name of the artist.</p>
      */
     private String name;
     /**
-     * The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist’s popularity is calculated from the popularity of all the artist’s tracks.
+     * <p>The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist's popularity is calculated from the popularity of all the artist's tracks.</p>
      */
     private Integer popularity;
     /**
-     * The object type: &quot;artist&quot;
+     * <p>The object type: <code>&quot;artist&quot;</code></p>
      */
     private String type;
     /**
-     * The Spotify URI for the artist.
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the artist.</p>
      */
     private String uri;
 }

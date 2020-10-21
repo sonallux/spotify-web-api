@@ -10,35 +10,35 @@ import lombok.*;
 @NoArgsConstructor
 public class PublicUser {
     /**
-     * The name displayed on the user’s profile. null if not available.
+     * <p>The name displayed on the user's profile. <code>null</code> if not available.</p>
      */
     private String display_name;
     /**
-     * Known public external URLs for this user.
+     * <p>Known public external URLs for this user.</p>
      */
     private ExternalUrl external_urls;
     /**
-     * Information about the followers of this user.
+     * <p>Information about the followers of this user.</p>
      */
     private Followers followers;
     /**
-     * A link to the Web API endpoint for this user.
+     * <p>A link to the Web API endpoint for this user.</p>
      */
     private String href;
     /**
-     * The Spotify user ID for this user.
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify user ID</a> for this user.</p>
      */
     private String id;
     /**
-     * The user’s profile image.
+     * <p>The user's profile image.</p>
      */
     private java.util.List<Image> images;
     /**
-     * The object type: “user”
+     * <p>The object type: &quot;user&quot;</p>
      */
     private String type;
     /**
-     * The Spotify URI for this user.
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for this user.</p>
      */
     private String uri;
 }

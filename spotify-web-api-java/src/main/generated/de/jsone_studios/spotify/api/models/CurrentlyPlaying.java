@@ -10,27 +10,27 @@ import lombok.*;
 @NoArgsConstructor
 public class CurrentlyPlaying {
     /**
-     * A Context Object. Can be null.
+     * <p>A Context Object. Can be <code>null</code>.</p>
      */
     private Context context;
     /**
-     * The object type of the currently playing item. Can be one of track, episode, ad or unknown.
+     * <p>The object type of the currently playing item. Can be one of <code>track</code>, <code>episode</code>, <code>ad</code> or <code>unknown</code>.</p>
      */
     private String currently_playing_type;
     /**
-     * If something is currently playing, return true.
+     * <p>If something is currently playing, return <code>true</code>.</p>
      */
     private Boolean is_playing;
     /**
-     * The currently playing track or episode. Can be null.
+     * <p>The currently playing track or episode. Can be <code>null</code>.</p>
      */
     private java.util.Map<String, Object> item;
     /**
-     * Progress into the currently playing track or episode. Can be null.
+     * <p>Progress into the currently playing track or episode. Can be <code>null</code>.</p>
      */
     private Integer progress_ms;
     /**
-     * Unix Millisecond Timestamp when data was fetched
+     * <p>Unix Millisecond Timestamp when data was fetched</p>
      */
     private Integer timestamp;
 }

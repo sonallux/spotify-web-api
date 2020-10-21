@@ -3,15 +3,15 @@
  */
 export interface Album {
     /**
-     * The type of the album: album, single, or compilation.
+     * The type of the album: `album`, `single`, or `compilation`.
      */
     album_type: string;
     /**
-     * The artists of the album. Each artist object includes a link in href to more detailed information about the artist.
+     * The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
      */
     artists: Artist[];
     /**
-     * The markets in which the album is available: ISO 3166-1 alpha-2 country codes. Note that an album is considered available in a market when at least 1 of its tracks is available in that market.
+     * The markets in which the album is available: [ISO 3166-1 alpha-2 country codes](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Note that an album is considered available in a market when at least 1 of its tracks is available in that market.
      */
     available_markets: string[];
     /**
@@ -27,7 +27,7 @@ export interface Album {
      */
     external_urls: ExternalUrl;
     /**
-     * A list of the genres used to classify the album. For example: “Prog Rock” , “Post-Grunge”. (If not yet classified, the array is empty.)
+     * A list of the genres used to classify the album. For example: "Prog Rock" , "Post-Grunge". (If not yet classified, the array is empty.)
      */
     genres: string[];
     /**
@@ -51,19 +51,19 @@ export interface Album {
      */
     name: string;
     /**
-     * The popularity of the album. The value will be between 0 and 100, with 100 being the most popular. The popularity is calculated from the popularity of the album’s individual tracks.
+     * The popularity of the album. The value will be between 0 and 100, with 100 being the most popular. The popularity is calculated from the popularity of the album's individual tracks.
      */
     popularity: number;
     /**
-     * The date the album was first released, for example “1981-12-15”. Depending on the precision, it might be shown as “1981” or “1981-12”.
+     * The date the album was first released, for example "1981-12-15". Depending on the precision, it might be shown as "1981" or "1981-12".
      */
     release_date: string;
     /**
-     * The precision with which release_date value is known: “year” , “month” , or “day”.
+     * The precision with which release_date value is known: "year" , "month" , or "day".
      */
     release_date_precision: string;
     /**
-     * Included in the response when a content restriction is applied. See Restriction Object for more details.
+     * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-restriction-object) for more details.
      */
     restrictions: AlbumRestriction;
     /**
@@ -71,7 +71,7 @@ export interface Album {
      */
     tracks: SimplifiedTrack[];
     /**
-     * The object type: “album”
+     * The object type: "album"
      */
     type: string;
     /**
@@ -107,7 +107,7 @@ export interface Artist {
      */
     followers: Followers;
     /**
-     * A list of the genres the artist is associated with. For example: "Prog Rock" , "Post-Grunge". (If not yet classified, the array is empty.)
+     * A list of the genres the artist is associated with. For example: `"Prog Rock"` , `"Post-Grunge"`. (If not yet classified, the array is empty.)
      */
     genres: string[];
     /**
@@ -115,7 +115,7 @@ export interface Artist {
      */
     href: string;
     /**
-     * The Spotify ID for the artist.
+     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the artist.
      */
     id: string;
     /**
@@ -127,15 +127,15 @@ export interface Artist {
      */
     name: string;
     /**
-     * The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist’s popularity is calculated from the popularity of all the artist’s tracks.
+     * The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist's popularity is calculated from the popularity of all the artist's tracks.
      */
     popularity: number;
     /**
-     * The object type: "artist"
+     * The object type: `"artist"`
      */
     type: string;
     /**
-     * The Spotify URI for the artist.
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the artist.
      */
     uri: string;
 }
@@ -203,11 +203,11 @@ export interface AudioFeatures {
      */
     id: string;
     /**
-     * Predicts whether a track contains no vocals. “Ooh” and “aah” sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly “vocal”. The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0.
+     * Predicts whether a track contains no vocals. "Ooh" and "aah" sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly "vocal". The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0.
      */
     instrumentalness: number;
     /**
-     * The key the track is in. Integers map to pitches using standard Pitch Class notation . E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on.
+     * The key the track is in. Integers map to pitches using standard [Pitch Class notation](https://en.wikipedia.org/wiki/Pitch_class) . E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on.
      */
     key: number;
     /**
@@ -239,7 +239,7 @@ export interface AudioFeatures {
      */
     track_href: string;
     /**
-     * The object type: “audio_features”
+     * The object type: "audio_features"
      */
     type: string;
     /**
@@ -269,7 +269,7 @@ export interface Category {
      */
     icons: Image[];
     /**
-     * The Spotify category ID of the category.
+     * The [Spotify category ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) of the category.
      */
     id: string;
     /**
@@ -291,11 +291,11 @@ export interface Context {
      */
     href: string;
     /**
-     * The object type, e.g. “artist”, “playlist”, “album”, “show”.
+     * The object type, e.g. "artist", "playlist", "album", "show".
      */
     type: string;
     /**
-     * The Spotify URI for the context.
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the context.
      */
     uri: string;
 }
@@ -328,23 +328,23 @@ export interface CurrentPlayback {
  */
 export interface CurrentlyPlaying {
     /**
-     * A Context Object. Can be null.
+     * A Context Object. Can be `null`.
      */
     context: Context;
     /**
-     * The object type of the currently playing item. Can be one of track, episode, ad or unknown.
+     * The object type of the currently playing item. Can be one of `track`, `episode`, `ad` or `unknown`.
      */
     currently_playing_type: string;
     /**
-     * If something is currently playing, return true.
+     * If something is currently playing, return `true`.
      */
     is_playing: boolean;
     /**
-     * The currently playing track or episode. Can be null.
+     * The currently playing track or episode. Can be `null`.
      */
     item: Track | Episode;
     /**
-     * Progress into the currently playing track or episode. Can be null.
+     * Progress into the currently playing track or episode. Can be `null`.
      */
     progress_ms: number;
     /**
@@ -384,7 +384,7 @@ export interface CursorPaging<T> {
      */
     limit: number;
     /**
-     * URL to the next page of items. ( null if none)
+     * URL to the next page of items. ( `null` if none)
      */
     next: string;
     /**
@@ -398,7 +398,7 @@ export interface CursorPaging<T> {
  */
 export interface Device {
     /**
-     * The device ID. This may be null.
+     * The device ID. This may be `null`.
      */
     id: string;
     /**
@@ -410,7 +410,7 @@ export interface Device {
      */
     is_private_session: boolean;
     /**
-     * Whether controlling this device is restricted. At present if this is “true” then no Web API commands will be accepted by this device.
+     * Whether controlling this device is restricted. At present if this is "true" then no Web API commands will be accepted by this device.
      */
     is_restricted: boolean;
     /**
@@ -418,7 +418,7 @@ export interface Device {
      */
     name: string;
     /**
-     * Device type, such as “computer”, “smartphone” or “speaker”.
+     * Device type, such as "computer", "smartphone" or "speaker".
      */
     type: string;
     /**
@@ -442,7 +442,7 @@ export interface Devices {
  */
 export interface Episode {
     /**
-     * A URL to a 30 second preview (MP3 format) of the episode. null if not available.
+     * A URL to a 30 second preview (MP3 format) of the episode. `null` if not available.
      */
     audio_preview_url: string;
     /**
@@ -466,7 +466,7 @@ export interface Episode {
      */
     href: string;
     /**
-     * The Spotify ID for the episode.
+     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the episode.
      */
     id: string;
     /**
@@ -474,7 +474,7 @@ export interface Episode {
      */
     images: Image[];
     /**
-     * True if the episode is hosted outside of Spotify’s CDN.
+     * True if the episode is hosted outside of Spotify's CDN.
      */
     is_externally_hosted: boolean;
     /**
@@ -482,11 +482,11 @@ export interface Episode {
      */
     is_playable: boolean;
     /**
-     * Note: This field is deprecated and might be removed in the future. Please use the languages field instead. The language used in the episode, identified by a ISO 639 code.
+     * **Note: This field is deprecated and might be removed in the future. Please use the `languages` field instead.** The language used in the episode, identified by a [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code.
      */
     language: string;
     /**
-     * A list of the languages used in the episode, identified by their ISO 639 code.
+     * A list of the languages used in the episode, identified by their [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code.
      */
     languages: string[];
     /**
@@ -494,15 +494,15 @@ export interface Episode {
      */
     name: string;
     /**
-     * The date the episode was first released, for example "1981-12-15". Depending on the precision, it might be shown as "1981" or "1981-12".
+     * The date the episode was first released, for example `"1981-12-15"`. Depending on the precision, it might be shown as `"1981"` or `"1981-12"`.
      */
     release_date: string;
     /**
-     * The precision with which release_date value is known: "year", "month", or "day".
+     * The precision with which `release_date` value is known: `"year"`, `"month"`, or `"day"`.
      */
     release_date_precision: string;
     /**
-     * The user’s most recent position in the episode. Set if the supplied access token is a user token and has the scope user-read-playback-position.
+     * The user's most recent position in the episode. Set if the supplied access token is a user token and has the scope `user-read-playback-position`.
      */
     resume_point: ResumePoint;
     /**
@@ -510,11 +510,11 @@ export interface Episode {
      */
     show: SimplifiedShow;
     /**
-     * The object type: “episode”.
+     * The object type: "episode".
      */
     type: string;
     /**
-     * The Spotify URI for the episode.
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the episode.
      */
     uri: string;
 }
@@ -543,11 +543,11 @@ export interface ErrorResponse {
  */
 export interface ExplicitContentSettings {
     /**
-     * When true, indicates that explicit content should not be played.
+     * When `true`, indicates that explicit content should not be played.
      */
     filter_enabled: boolean;
     /**
-     * When true, indicates that the explicit content setting is locked and can’t be changed by the user.
+     * When `true`, indicates that the explicit content setting is locked and can't be changed by the user.
      */
     filter_locked: boolean;
 }
@@ -557,15 +557,15 @@ export interface ExplicitContentSettings {
  */
 export interface ExternalId {
     /**
-     * International Article Number
+     * [International Article Number](http://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29)
      */
     ean: string;
     /**
-     * International Standard Recording Code
+     * [International Standard Recording Code](http://en.wikipedia.org/wiki/International_Standard_Recording_Code)
      */
     isrc: string;
     /**
-     * Universal Product Code
+     * [Universal Product Code](http://en.wikipedia.org/wiki/Universal_Product_Code)
      */
     upc: string;
 }
@@ -662,7 +662,7 @@ export interface Paging<T> {
      */
     limit: number;
     /**
-     * URL to the next page of items. ( null if none)
+     * URL to the next page of items. ( `null` if none)
      */
     next: string;
     /**
@@ -670,7 +670,7 @@ export interface Paging<T> {
      */
     offset: number;
     /**
-     * URL to the previous page of items. ( null if none)
+     * URL to the previous page of items. ( `null` if none)
      */
     previous: string;
     /**
@@ -702,7 +702,7 @@ export interface PlayHistory {
  */
 export interface Playlist {
     /**
-     * true if the owner allows other users to modify the playlist.
+     * `true` if the owner allows other users to modify the playlist.
      */
     collaborative: boolean;
     /**
@@ -714,11 +714,11 @@ export interface Playlist {
      */
     href: string;
     /**
-     * The Spotify ID for the playlist.
+     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the playlist.
      */
     id: string;
     /**
-     * Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See Working with Playlists. Note: If returned, the source URL for the image (url) is temporary and will expire in less than a day.
+     * Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](https://developer.spotify.com/documentation/general/guides/working-with-playlists/). *Note: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day.*
      */
     images: Image[];
     /**
@@ -730,7 +730,7 @@ export interface Playlist {
      */
     owner: PublicUser;
     /**
-     * The playlist’s public/private status: true the playlist is public, false the playlist is private, null the playlist status is not relevant. For more about public/private status, see Working with Playlists
+     * The playlist's public/private status: `true` the playlist is public, `false` the playlist is private, `null` the playlist status is not relevant. For more about public/private status, see [Working with Playlists](https://developer.spotify.com/documentation/general/guides/working-with-playlists/)
      */
     public: boolean;
     /**
@@ -738,15 +738,15 @@ export interface Playlist {
      */
     snapshot_id: string;
     /**
-     * A collection containing a link (href) to the Web API endpoint where full details of the playlist’s tracks can be retrieved, along with the total number of items in the playlist.
+     * A collection containing a link (`href`) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the `total` number of items in the playlist.
      */
     tracks: PlaylistTrack[];
     /**
-     * The object type: “playlist”
+     * The object type: "playlist"
      */
     type: string;
     /**
-     * The Spotify URI for the playlist.
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the playlist.
      */
     uri: string;
 }
@@ -760,15 +760,15 @@ export interface PlaylistPaging {
  */
 export interface PlaylistTrack {
     /**
-     * The date and time the track or episode was added. Note that some very old playlists may return null in this field.
+     * The date and time the track or episode was added. *Note that some very old playlists may return `null` in this field.*
      */
     added_at: string;
     /**
-     * The Spotify user who added the track or episode. Note that some very old playlists may return null in this field.
+     * The Spotify user who added the track or episode. *Note that some very old playlists may return `null` in this field.*
      */
     added_by: PublicUser;
     /**
-     * Whether this track or episode is a local file or not.
+     * Whether this track or episode is a [local file](https://developer.spotify.com/web-api/local-files-spotify-playlists/) or not.
      */
     is_local: boolean;
     /**
@@ -787,19 +787,19 @@ export interface PlaylistTracksInfo {
  */
 export interface PrivateUser {
     /**
-     * The country of the user, as set in the user’s account profile. An ISO 3166-1 alpha-2 country code. This field is only available when the current user has granted access to the user-read-private scope.
+     * The country of the user, as set in the user's account profile. An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). *This field is only available when the current user has granted access to the [user-read-private](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes) scope.*
      */
     country: string;
     /**
-     * The name displayed on the user’s profile. null if not available.
+     * The name displayed on the user's profile. `null` if not available.
      */
     display_name: string;
     /**
-     * The user’s email address, as entered by the user when creating their account. Important! This email address is unverified; there is no proof that it actually belongs to the user. This field is only available when the current user has granted access to the user-read-email scope.
+     * The user's email address, as entered by the user when creating their account. ***Important!** This email address is unverified; there is no proof that it actually belongs to the user.* *This field is only available when the current user has granted access to the [user-read-email](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes) scope.*
      */
     email: string;
     /**
-     * The user’s explicit content settings. This field is only available when the current user has granted access to the user-read-private scope.
+     * The user's explicit content settings. *This field is only available when the current user has granted access to the [user-read-private](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes) scope.*
      */
     explicit_content: ExplicitContentSettings;
     /**
@@ -815,23 +815,23 @@ export interface PrivateUser {
      */
     href: string;
     /**
-     * The Spotify user ID for the user.
+     * The [Spotify user ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the user.
      */
     id: string;
     /**
-     * The user’s profile image.
+     * The user's profile image.
      */
     images: Image[];
     /**
-     * The user’s Spotify subscription level: “premium”, “free”, etc. (The subscription level “open” can be considered the same as “free”.) This field is only available when the current user has granted access to the user-read-private scope.
+     * The user's Spotify subscription level: "premium", "free", etc. (The subscription level "open" can be considered the same as "free".) *This field is only available when the current user has granted access to the [user-read-private](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes) scope.*
      */
     product: string;
     /**
-     * The object type: “user”
+     * The object type: "user"
      */
     type: string;
     /**
-     * The Spotify URI for the user.
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the user.
      */
     uri: string;
 }
@@ -841,7 +841,7 @@ export interface PrivateUser {
  */
 export interface PublicUser {
     /**
-     * The name displayed on the user’s profile. null if not available.
+     * The name displayed on the user's profile. `null` if not available.
      */
     display_name: string;
     /**
@@ -857,19 +857,19 @@ export interface PublicUser {
      */
     href: string;
     /**
-     * The Spotify user ID for this user.
+     * The [Spotify user ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for this user.
      */
     id: string;
     /**
-     * The user’s profile image.
+     * The user's profile image.
      */
     images: Image[];
     /**
-     * The object type: “user”
+     * The object type: "user"
      */
     type: string;
     /**
-     * The Spotify URI for this user.
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for this user.
      */
     uri: string;
 }
@@ -879,7 +879,7 @@ export interface PublicUser {
  */
 export interface RecommendationSeed {
     /**
-     * The number of tracks available after min_* and max_* filters have been applied.
+     * The number of tracks available after min_\* and max_\* filters have been applied.
      */
     afterFilteringSize: number;
     /**
@@ -887,11 +887,11 @@ export interface RecommendationSeed {
      */
     afterRelinkingSize: number;
     /**
-     * A link to the full track or artist data for this seed. For tracks this will be a link to a Track Object. For artists a link to an Artist Object. For genre seeds, this value will be null.
+     * A link to the full track or artist data for this seed. For tracks this will be a link to a [Track Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full). For artists a link to [an Artist Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full). For genre seeds, this value will be `null`.
      */
     href: string;
     /**
-     * The id used to select this seed. This will be the same as the string used in the seed_artists, seed_tracks or seed_genres parameter.
+     * The id used to select this seed. This will be the same as the string used in the `seed_artists`, `seed_tracks` or `seed_genres` parameter.
      */
     id: string;
     /**
@@ -899,7 +899,7 @@ export interface RecommendationSeed {
      */
     initialPoolSize: number;
     /**
-     * The entity type of this seed. One of artist, track or genre.
+     * The entity type of this seed. One of `artist`, `track` or `genre`.
      */
     type: string;
 }
@@ -909,11 +909,11 @@ export interface RecommendationSeed {
  */
 export interface RecommendationsResponse {
     /**
-     * An array of recommendation seed objects.
+     * An array of [recommendation seed objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#recommendations-seed-object).
      */
     seeds: RecommendationSeed[];
     /**
-     * An array of track object (simplified) ordered according to the parameters supplied.
+     * An array of [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-simplified) ordered according to the parameters supplied.
      */
     tracks: SimplifiedTrack[];
 }
@@ -927,7 +927,7 @@ export interface ResumePoint {
      */
     fully_played: boolean;
     /**
-     * The user’s most recent position in the episode in milliseconds.
+     * The user's most recent position in the episode in milliseconds.
      */
     resume_position_ms: number;
 }
@@ -1036,7 +1036,7 @@ export interface Segment {
  */
 export interface Show {
     /**
-     * A list of the countries in which the show can be played, identified by their ISO 3166-1 alpha-2 code.
+     * A list of the countries in which the show can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.
      */
     available_markets: string[];
     /**
@@ -1048,7 +1048,7 @@ export interface Show {
      */
     description: string;
     /**
-     * A list of the show’s episodes.
+     * A list of the show's episodes.
      */
     episodes: SimplifiedEpisode[];
     /**
@@ -1064,7 +1064,7 @@ export interface Show {
      */
     href: string;
     /**
-     * The Spotify ID for the show.
+     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the show.
      */
     id: string;
     /**
@@ -1072,11 +1072,11 @@ export interface Show {
      */
     images: Image[];
     /**
-     * True if all of the show’s episodes are hosted outside of Spotify’s CDN. This field might be null in some cases.
+     * True if all of the show's episodes are hosted outside of Spotify's CDN. This field might be `null` in some cases.
      */
     is_externally_hosted: boolean;
     /**
-     * A list of the languages used in the show, identified by their ISO 639 code.
+     * A list of the languages used in the show, identified by their [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code.
      */
     languages: string[];
     /**
@@ -1092,11 +1092,11 @@ export interface Show {
      */
     publisher: string;
     /**
-     * The object type: “show”.
+     * The object type: "show".
      */
     type: string;
     /**
-     * The Spotify URI for the show.
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the show.
      */
     uri: string;
 }
@@ -1110,19 +1110,19 @@ export interface Shows {
  */
 export interface SimplifiedAlbum {
     /**
-     * The field is present when getting an artist’s albums. Possible values are “album”, “single”, “compilation”, “appears_on”. Compare to album_type this field represents relationship between the artist and the album.
+     * The field is present when getting an artist's albums. Possible values are "album", "single", "compilation", "appears_on". Compare to album_type this field represents relationship between the artist and the album.
      */
     album_group: string;
     /**
-     * The type of the album: one of “album”, “single”, or “compilation”.
+     * The type of the album: one of "album", "single", or "compilation".
      */
     album_type: string;
     /**
-     * The artists of the album. Each artist object includes a link in href to more detailed information about the artist.
+     * The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
      */
     artists: SimplifiedArtist[];
     /**
-     * The markets in which the album is available: ISO 3166-1 alpha-2 country codes. Note that an album is considered available in a market when at least 1 of its tracks is available in that market.
+     * The markets in which the album is available: [ISO 3166-1 alpha-2 country codes](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Note that an album is considered available in a market when at least 1 of its tracks is available in that market.
      */
     available_markets: string[];
     /**
@@ -1134,7 +1134,7 @@ export interface SimplifiedAlbum {
      */
     href: string;
     /**
-     * The Spotify ID for the album.
+     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the album.
      */
     id: string;
     /**
@@ -1146,15 +1146,15 @@ export interface SimplifiedAlbum {
      */
     name: string;
     /**
-     * Included in the response when a content restriction is applied. See Restriction Object for more details.
+     * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-restriction-object) for more details.
      */
     restrictions: AlbumRestriction;
     /**
-     * The object type: “album”
+     * The object type: "album"
      */
     type: string;
     /**
-     * The Spotify URI for the album.
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the album.
      */
     uri: string;
 }
@@ -1191,7 +1191,7 @@ export interface SimplifiedArtist {
  */
 export interface SimplifiedEpisode {
     /**
-     * A URL to a 30 second preview (MP3 format) of the episode. null if not available.
+     * A URL to a 30 second preview (MP3 format) of the episode. `null` if not available.
      */
     audio_preview_url: string;
     /**
@@ -1215,7 +1215,7 @@ export interface SimplifiedEpisode {
      */
     href: string;
     /**
-     * The Spotify ID for the episode.
+     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the episode.
      */
     id: string;
     /**
@@ -1223,7 +1223,7 @@ export interface SimplifiedEpisode {
      */
     images: Image[];
     /**
-     * True if the episode is hosted outside of Spotify’s CDN.
+     * True if the episode is hosted outside of Spotify's CDN.
      */
     is_externally_hosted: boolean;
     /**
@@ -1231,11 +1231,11 @@ export interface SimplifiedEpisode {
      */
     is_playable: boolean;
     /**
-     * Note: This field is deprecated and might be removed in the future. Please use the languages field instead. The language used in the episode, identified by a ISO 639 code.
+     * **Note: This field is deprecated and might be removed in the future. Please use the `languages` field instead.** The language used in the episode, identified by a [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code.
      */
     language: string;
     /**
-     * A list of the languages used in the episode, identified by their ISO 639 code.
+     * A list of the languages used in the episode, identified by their [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code.
      */
     languages: string[];
     /**
@@ -1243,23 +1243,23 @@ export interface SimplifiedEpisode {
      */
     name: string;
     /**
-     * The date the episode was first released, for example "1981-12-15". Depending on the precision, it might be shown as "1981" or "1981-12".
+     * The date the episode was first released, for example `"1981-12-15"`. Depending on the precision, it might be shown as `"1981"` or `"1981-12"`.
      */
     release_date: string;
     /**
-     * The precision with which release_date value is known: "year", "month", or "day".
+     * The precision with which `release_date` value is known: `"year"`, `"month"`, or `"day"`.
      */
     release_date_precision: string;
     /**
-     * The user’s most recent position in the episode. Set if the supplied access token is a user token and has the scope ‘user-read-playback-position’.
+     * The user's most recent position in the episode. Set if the supplied access token is a user token and has the scope 'user-read-playback-position'.
      */
     resume_point: ResumePoint;
     /**
-     * The object type: “episode”.
+     * The object type: "episode".
      */
     type: string;
     /**
-     * The Spotify URI for the episode.
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the episode.
      */
     uri: string;
 }
@@ -1285,7 +1285,7 @@ export interface SimplifiedPlaylist {
  */
 export interface SimplifiedShow {
     /**
-     * A list of the countries in which the show can be played, identified by their ISO 3166-1 alpha-2 code.
+     * A list of the countries in which the show can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.
      */
     available_markets: string[];
     /**
@@ -1309,7 +1309,7 @@ export interface SimplifiedShow {
      */
     href: string;
     /**
-     * The Spotify ID for the show.
+     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the show.
      */
     id: string;
     /**
@@ -1317,11 +1317,11 @@ export interface SimplifiedShow {
      */
     images: Image[];
     /**
-     * True if all of the show’s episodes are hosted outside of Spotify’s CDN. This field might be null in some cases.
+     * True if all of the show's episodes are hosted outside of Spotify's CDN. This field might be `null` in some cases.
      */
     is_externally_hosted: boolean;
     /**
-     * A list of the languages used in the show, identified by their ISO 639 code.
+     * A list of the languages used in the show, identified by their [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code.
      */
     languages: string[];
     /**
@@ -1337,11 +1337,11 @@ export interface SimplifiedShow {
      */
     publisher: string;
     /**
-     * The object type: “show”.
+     * The object type: "show".
      */
     type: string;
     /**
-     * The Spotify URI for the show.
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the show.
      */
     uri: string;
 }
@@ -1351,15 +1351,15 @@ export interface SimplifiedShow {
  */
 export interface SimplifiedTrack {
     /**
-     * The artists who performed the track. Each artist object includes a link in href to more detailed information about the artist.
+     * The artists who performed the track. Each artist object includes a link in `href` to more detailed information about the artist.
      */
     artists: SimplifiedArtist[];
     /**
-     * A list of the countries in which the track can be played, identified by their ISO 3166-1 alpha-2 code.
+     * A list of the countries in which the track can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.
      */
     available_markets: string[];
     /**
-     * The disc number (usually 1 unless the album consists of more than one disc).
+     * The disc number (usually `1` unless the album consists of more than one disc).
      */
     disc_number: number;
     /**
@@ -1367,7 +1367,7 @@ export interface SimplifiedTrack {
      */
     duration_ms: number;
     /**
-     * Whether or not the track has explicit lyrics ( true = yes it does; false = no it does not OR unknown).
+     * Whether or not the track has explicit lyrics ( `true` = yes it does; `false` = no it does not OR unknown).
      */
     explicit: boolean;
     /**
@@ -1379,15 +1379,15 @@ export interface SimplifiedTrack {
      */
     href: string;
     /**
-     * The Spotify ID for the track.
+     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the track.
      */
     id: string;
     /**
-     * Part of the response when Track Relinking is applied. If true , the track is playable in the given market. Otherwise false.
+     * Part of the response when [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/) is applied. If `true` , the track is playable in the given market. Otherwise `false`.
      */
     is_playable: boolean;
     /**
-     * Part of the response when Track Relinking is applied and is only part of the response if the track linking, in fact, exists. The requested track has been replaced with a different track. The track in the linked_from object contains information about the originally requested track.
+     * Part of the response when [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/) is applied and is only part of the response if the track linking, in fact, exists. The requested track has been replaced with a different track. The track in the `linked_from` object contains information about the originally requested track.
      */
     linked_from: LinkedTrack;
     /**
@@ -1399,7 +1399,7 @@ export interface SimplifiedTrack {
      */
     preview_url: string;
     /**
-     * Included in the response when a content restriction is applied. See Restriction Object for more details.
+     * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-restriction-object) for more details.
      */
     restrictions: TrackRestriction;
     /**
@@ -1407,11 +1407,11 @@ export interface SimplifiedTrack {
      */
     track_number: number;
     /**
-     * The object type: “track”.
+     * The object type: "track".
      */
     type: string;
     /**
-     * The Spotify URI for the track.
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the track.
      */
     uri: string;
 }
@@ -1446,19 +1446,19 @@ export interface TimeInterval {
  */
 export interface Track {
     /**
-     * The album on which the track appears. The album object includes a link in href to full information about the album.
+     * The album on which the track appears. The album object includes a link in `href` to full information about the album.
      */
     album: SimplifiedAlbum;
     /**
-     * The artists who performed the track. Each artist object includes a link in href to more detailed information about the artist.
+     * The artists who performed the track. Each artist object includes a link in `href` to more detailed information about the artist.
      */
     artists: Artist[];
     /**
-     * A list of the countries in which the track can be played, identified by their ISO 3166-1 alpha-2 code.
+     * A list of the countries in which the track can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.
      */
     available_markets: string[];
     /**
-     * The disc number (usually 1 unless the album consists of more than one disc).
+     * The disc number (usually `1` unless the album consists of more than one disc).
      */
     disc_number: number;
     /**
@@ -1466,7 +1466,7 @@ export interface Track {
      */
     duration_ms: number;
     /**
-     * Whether or not the track has explicit lyrics ( true = yes it does; false = no it does not OR unknown).
+     * Whether or not the track has explicit lyrics ( `true` = yes it does; `false` = no it does not OR unknown).
      */
     explicit: boolean;
     /**
@@ -1482,31 +1482,33 @@ export interface Track {
      */
     href: string;
     /**
-     * The Spotify ID for the track.
+     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the track.
      */
     id: string;
     /**
-     * Part of the response when Track Relinking is applied. If true , the track is playable in the given market. Otherwise false.
+     * Part of the response when [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/) is applied. If `true` , the track is playable in the given market. Otherwise `false`.
      */
     is_playable: boolean;
     /**
-     * Part of the response when Track Relinking is applied, and the requested track has been replaced with different track. The track in the linked_from object contains information about the originally requested track.
+     * Part of the response when [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/) is applied, and the requested track has been replaced with different track. The track in the `linked_from` object contains information about the originally requested track.
      */
     linked_from: LinkedTrack;
     /**
      * The name of the track.
      */
     name: string;
-    /**
-     * The popularity of the track. The value will be between 0 and 100, with 100 being the most popular. The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are. Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. Note that the popularity value may lag actual popularity by a few days: the value is not updated in real time.
-     */
+/**
+ *         The popularity of the track. The value will be between 0 and 100, with 100 being the most popular.
+ * The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are.
+ * Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. Note that the popularity value may lag actual popularity by a few days: the value is not updated in real time.
+ */
     popularity: number;
     /**
-     * A link to a 30 second preview (MP3 format) of the track. Can be null
+     * A link to a 30 second preview (MP3 format) of the track. Can be `null`
      */
     preview_url: string;
     /**
-     * Included in the response when a content restriction is applied. See Restriction Object for more details.
+     * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-restriction-object) for more details.
      */
     restrictions: TrackRestriction;
     /**
@@ -1514,11 +1516,11 @@ export interface Track {
      */
     track_number: number;
     /**
-     * The object type: “track”.
+     * The object type: "track".
      */
     type: string;
     /**
-     * The Spotify URI for the track.
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the track.
      */
     uri: string;
 }
@@ -1558,11 +1560,11 @@ export interface TuneableTrack {
      */
     energy: number;
     /**
-     * Predicts whether a track contains no vocals. “Ooh” and “aah” sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly “vocal”. The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0.
+     * Predicts whether a track contains no vocals. "Ooh" and "aah" sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly "vocal". The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0.
      */
     instrumentalness: number;
     /**
-     * The key the track is in. Integers map to pitches using standard Pitch Class notation. E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on.
+     * The key the track is in. Integers map to pitches using standard [Pitch Class notation](https://en.wikipedia.org/wiki/Pitch_class). E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on.
      */
     key: number;
     /**
@@ -1578,7 +1580,7 @@ export interface TuneableTrack {
      */
     mode: number;
     /**
-     * The popularity of the track. The value will be between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are. Note: When applying track relinking via the market parameter, it is expected to find relinked tracks with popularities that do not match min_*, max_*and target_* popularities. These relinked tracks are accurate replacements for unplayable tracks with the expected popularity scores. Original, non-relinked tracks are available via the linked_from attribute of the relinked track response.
+     * The popularity of the track. The value will be between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are. *Note: When applying track relinking via the `market` parameter, it is expected to find relinked tracks with popularities that do not match `min_*`, `max_*`and `target_*` popularities. These relinked tracks are accurate replacements for unplayable tracks with the expected popularity scores. Original, non-relinked tracks are available via the `linked_from` attribute of the [relinked track response](https://developer.spotify.com/documentation/general/guides/track-relinking-guide).*
      */
     popularity: number;
     /**

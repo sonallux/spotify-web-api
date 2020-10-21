@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 public class AlbumRestriction {
     /**
-     * The reason for the restriction. Supported values:
+     * <p>The reason for the restriction. Supported values:</p>
      */
     private String reason;
 }

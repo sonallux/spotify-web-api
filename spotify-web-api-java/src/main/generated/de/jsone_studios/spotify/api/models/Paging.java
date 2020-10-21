@@ -10,31 +10,31 @@ import lombok.*;
 @NoArgsConstructor
 public class Paging<T> {
     /**
-     * A link to the Web API endpoint returning the full result of the request
+     * <p>A link to the Web API endpoint returning the full result of the request</p>
      */
     private String href;
     /**
-     * The requested data.
+     * <p>The requested data.</p>
      */
     private java.util.List<T> items;
     /**
-     * The maximum number of items in the response (as set in the query or by default).
+     * <p>The maximum number of items in the response (as set in the query or by default).</p>
      */
     private Integer limit;
     /**
-     * URL to the next page of items. ( null if none)
+     * <p>URL to the next page of items. ( <code>null</code> if none)</p>
      */
     private String next;
     /**
-     * The offset of the items returned (as set in the query or by default)
+     * <p>The offset of the items returned (as set in the query or by default)</p>
      */
     private Integer offset;
     /**
-     * URL to the previous page of items. ( null if none)
+     * <p>URL to the previous page of items. ( <code>null</code> if none)</p>
      */
     private String previous;
     /**
-     * The total number of items available to return.
+     * <p>The total number of items available to return.</p>
      */
     private Integer total;
 }

@@ -10,15 +10,15 @@ import lombok.*;
 @NoArgsConstructor
 public class PlayHistory {
     /**
-     * The context the track was played from.
+     * <p>The context the track was played from.</p>
      */
     private Context context;
     /**
-     * The date and time the track was played.
+     * <p>The date and time the track was played.</p>
      */
     private java.time.LocalDateTime played_at;
     /**
-     * The track the user listened to.
+     * <p>The track the user listened to.</p>
      */
     private SimplifiedTrack track;
 }
