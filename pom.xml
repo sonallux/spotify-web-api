@@ -57,7 +57,7 @@
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
 
         <!-- Dependencies -->
-        <lombok.version>1.18.12</lombok.version>
+        <lombok.version>1.18.16</lombok.version>
         <jackson.version>2.11.2</jackson.version>
         <slf4j-simple.version>1.7.30</slf4j-simple.version>
         <guava.version>29.0-jre</guava.version>
