@@ -60,7 +60,7 @@
         <lombok.version>1.18.12</lombok.version>
         <jackson.version>2.11.2</jackson.version>
         <slf4j-simple.version>1.7.30</slf4j-simple.version>
-        <guava.version>29.0-jre</guava.version>
+        <guava.version>30.0-jre</guava.version>
         <picocli.version>4.5.2</picocli.version>
         <flexmark.version>0.62.2</flexmark.version>
 
