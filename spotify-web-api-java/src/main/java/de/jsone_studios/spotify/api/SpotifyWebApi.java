@@ -25,7 +25,7 @@ public class SpotifyWebApi implements SpotifyApi {
     private final SearchApi searchApi;
     private final ShowsApi showsApi;
     private final TracksApi tracksApi;
-    private final UserProfileApi userProfileApi;
+    private final UsersProfileApi usersProfileApi;
 
     public SpotifyWebApi(Retrofit retrofit) {
         this.retrofit = retrofit;
@@ -41,7 +41,7 @@ public class SpotifyWebApi implements SpotifyApi {
         this.searchApi = retrofit.create(SearchApi.class);
         this.showsApi = retrofit.create(ShowsApi.class);
         this.tracksApi = retrofit.create(TracksApi.class);
-        this.userProfileApi = retrofit.create(UserProfileApi.class);
+        this.usersProfileApi = retrofit.create(UsersProfileApi.class);
     }
 
     public SpotifyWebApi(OkHttpClient okHttpClient) {
@@ -136,7 +136,7 @@ public class SpotifyWebApi implements SpotifyApi {
     }
 
     @Override
-    public UserProfileApi getUserProfileApi() {
-        return userProfileApi;
+    public UsersProfileApi getUsersProfileApi() {
+        return usersProfileApi;
     }
 }

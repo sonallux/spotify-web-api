@@ -68,11 +68,11 @@ tags:
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
     url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-tracks
-- name: category-user-profile
-  description: User Profile API
+- name: category-users-profile
+  description: Users Profile API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-user-profile
+    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-users-profile
 paths:
   /albums/{id}:
     get:
@@ -5150,7 +5150,7 @@ paths:
   /me:
     get:
       tags:
-      - category-user-profile
+      - category-users-profile
       summary: Get Current User's Profile
       description: |-
         Get detailed profile information about the current user (including the
@@ -5196,7 +5196,7 @@ paths:
   /users/{user_id}:
     get:
       tags:
-      - category-user-profile
+      - category-users-profile
       summary: Get a User's Profile
       description: Get public profile information about a Spotify user.
       externalDocs:

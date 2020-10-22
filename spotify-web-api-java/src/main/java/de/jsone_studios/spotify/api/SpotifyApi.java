@@ -82,5 +82,5 @@ public interface SpotifyApi {
 
     TracksApi getTracksApi();
 
-    UserProfileApi getUserProfileApi();
+    UsersProfileApi getUsersProfileApi();
 }

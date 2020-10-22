@@ -5289,9 +5289,9 @@ categories:
     responseTypes:
     - type: TrackObject
       status: 200
-- id: category-user-profile
-  name: User Profile API
-  link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-user-profile
+- id: category-users-profile
+  name: Users Profile API
+  link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-users-profile
   endpoints:
   - id: endpoint-get-current-users-profile
     name: Get Current User's Profile
