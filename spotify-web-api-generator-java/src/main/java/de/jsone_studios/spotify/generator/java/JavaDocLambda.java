@@ -23,7 +23,7 @@ public class JavaDocLambda implements Mustache.Lambda {
             if (line.isBlank()) {
                 out.write(intend + " * \n");
             } else {
-                out.write(intend + " * " + line.substring(intendCount).stripTrailing() + "\n");
+                out.write(intend + " * " + line.substring(intendCount) + "\n");
             }
         }
         out.write(intend + " */\n");
