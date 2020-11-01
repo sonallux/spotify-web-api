@@ -3,7 +3,7 @@ package de.jsone_studios.spotify.generator.ts;
 import com.google.common.base.Strings;
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
-import de.jsone_studios.spotify.parser.model.SpotifyObject;
+import de.jsone_studios.spotify.core.model.SpotifyObject;
 
 import java.io.IOException;
 import java.nio.file.Files;

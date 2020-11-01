@@ -1,5 +1,4 @@
-package de.jsone_studios.spotify.parser;
-
+package de.jsone_studios.spotify.core;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;

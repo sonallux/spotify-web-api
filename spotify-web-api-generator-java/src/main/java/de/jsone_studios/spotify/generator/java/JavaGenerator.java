@@ -2,8 +2,8 @@ package de.jsone_studios.spotify.generator.java;
 
 import com.samskivert.mustache.Mustache;
 import de.jsone_studios.spotify.generator.java.util.JavaPackage;
-import de.jsone_studios.spotify.parser.model.SpotifyApiDocumentation;
-import de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint;
+import de.jsone_studios.spotify.core.model.SpotifyApiDocumentation;
+import de.jsone_studios.spotify.core.model.SpotifyApiEndpoint;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;

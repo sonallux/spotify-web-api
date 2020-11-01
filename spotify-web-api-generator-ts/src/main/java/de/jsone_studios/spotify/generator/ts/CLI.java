@@ -1,7 +1,7 @@
 package de.jsone_studios.spotify.generator.ts;
 
-import de.jsone_studios.spotify.parser.Yaml;
-import de.jsone_studios.spotify.parser.model.SpotifyApiDocumentation;
+import de.jsone_studios.spotify.core.Yaml;
+import de.jsone_studios.spotify.core.model.SpotifyApiDocumentation;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 

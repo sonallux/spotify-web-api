@@ -1,11 +1,13 @@
 package de.jsone_studios.spotify.parser;
 
-import de.jsone_studios.spotify.parser.model.SpotifyObject;
+import de.jsone_studios.spotify.core.model.SpotifyObject;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.util.*;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 @Slf4j
 class ApiObjectParser {

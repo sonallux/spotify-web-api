@@ -1,12 +1,12 @@
 package de.jsone_studios.spotify.parser;
 
-import de.jsone_studios.spotify.parser.model.SpotifyApiCategory;
+import de.jsone_studios.spotify.core.model.SpotifyApiCategory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.SortedMap;
 
-import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.ParameterLocation.PATH;
+import static de.jsone_studios.spotify.core.model.SpotifyApiEndpoint.ParameterLocation.PATH;
 
 @Slf4j
 class ApiEndpointFixes {

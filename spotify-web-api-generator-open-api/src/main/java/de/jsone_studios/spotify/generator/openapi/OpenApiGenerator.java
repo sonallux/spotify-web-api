@@ -1,7 +1,7 @@
 package de.jsone_studios.spotify.generator.openapi;
 
 import com.google.common.base.Strings;
-import de.jsone_studios.spotify.parser.model.*;
+import de.jsone_studios.spotify.core.model.*;
 import io.swagger.v3.oas.models.*;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.media.*;
@@ -18,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.ParameterLocation.BODY;
+import static de.jsone_studios.spotify.core.model.SpotifyApiEndpoint.ParameterLocation.BODY;
 
 @Slf4j
 public class OpenApiGenerator {
@@ -42,8 +42,8 @@ public class OpenApiGenerator {
         this.openAPI = new OpenAPI();
         this.openAPI
                 .externalDocs(new ExternalDocumentation()
-                    .url(apiDocumentation.getApiDocumentationUrl())
-                    .description("Find more info on the official Spotify Web API Reference")
+                        .url(apiDocumentation.getApiDocumentationUrl())
+                        .description("Find more info on the official Spotify Web API Reference")
                 )
                 .info(new Info()
                         .title("Spotify Web API")

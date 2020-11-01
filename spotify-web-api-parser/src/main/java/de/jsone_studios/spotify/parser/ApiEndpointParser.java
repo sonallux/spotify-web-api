@@ -1,7 +1,7 @@
 package de.jsone_studios.spotify.parser;
 
-import de.jsone_studios.spotify.parser.model.SpotifyApiCategory;
-import de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint;
+import de.jsone_studios.spotify.core.model.SpotifyApiCategory;
+import de.jsone_studios.spotify.core.model.SpotifyApiEndpoint;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Element;
@@ -10,10 +10,13 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 
-import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.ParameterLocation.*;
+import static de.jsone_studios.spotify.core.model.SpotifyApiEndpoint.ParameterLocation.*;
 
 @RequiredArgsConstructor
 @Slf4j
