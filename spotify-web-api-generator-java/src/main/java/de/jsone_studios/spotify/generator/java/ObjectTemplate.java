@@ -1,10 +1,10 @@
 package de.jsone_studios.spotify.generator.java;
 
 import com.google.common.base.Strings;
+import de.jsone_studios.spotify.core.model.SpotifyObject;
 import de.jsone_studios.spotify.generator.java.util.JavaPackage;
 import de.jsone_studios.spotify.generator.java.util.JavaUtils;
 import de.jsone_studios.spotify.generator.java.util.Markdown2Html;
-import de.jsone_studios.spotify.parser.model.SpotifyObject;
 
 import java.util.HashMap;
 import java.util.List;

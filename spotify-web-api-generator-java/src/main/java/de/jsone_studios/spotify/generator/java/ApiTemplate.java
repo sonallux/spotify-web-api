@@ -1,11 +1,11 @@
 package de.jsone_studios.spotify.generator.java;
 
 import com.google.common.base.CaseFormat;
+import de.jsone_studios.spotify.core.model.SpotifyApiCategory;
+import de.jsone_studios.spotify.core.model.SpotifyApiEndpoint;
 import de.jsone_studios.spotify.generator.java.util.JavaPackage;
 import de.jsone_studios.spotify.generator.java.util.JavaUtils;
 import de.jsone_studios.spotify.generator.java.util.Markdown2Html;
-import de.jsone_studios.spotify.parser.model.SpotifyApiCategory;
-import de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.ParameterLocation.*;
+import static de.jsone_studios.spotify.core.model.SpotifyApiEndpoint.ParameterLocation.*;
 
 class ApiTemplate extends AbstractTemplate<SpotifyApiCategory> {
 

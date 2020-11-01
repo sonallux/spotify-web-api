@@ -10,6 +10,7 @@ and a java wrapper for Spotify's Web API.
 
 | Module | Description |
 | --- | --- |
+| [spotify-web-api-core](spotify-web-api-core/README.md) | Contains the model for the Spotify Web API Reference | 
 | [spotify-web-api-parser](spotify-web-api-parser/README.md) | The parser for the Spotify Web API Reference | 
 | [spotify-web-api-generator-open-api](spotify-web-api-generator-open-api/README.md) | Generates an Open API Specification for Spotify's Web API |
 | [spotify-web-api-generator-java](spotify-web-api-generator-java/README.md) | Generates a Java wrapper for Spotify's Web API |

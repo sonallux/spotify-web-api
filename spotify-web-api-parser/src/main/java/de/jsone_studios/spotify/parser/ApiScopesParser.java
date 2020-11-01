@@ -1,8 +1,8 @@
 package de.jsone_studios.spotify.parser;
 
-import de.jsone_studios.spotify.parser.model.SpotifyApiCategory;
-import de.jsone_studios.spotify.parser.model.SpotifyScope;
-import de.jsone_studios.spotify.parser.model.SpotifyScopes;
+import de.jsone_studios.spotify.core.model.SpotifyApiCategory;
+import de.jsone_studios.spotify.core.model.SpotifyScope;
+import de.jsone_studios.spotify.core.model.SpotifyScopes;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,7 +10,6 @@ import org.jsoup.nodes.Element;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.SortedMap;
 import java.util.stream.Collectors;
 

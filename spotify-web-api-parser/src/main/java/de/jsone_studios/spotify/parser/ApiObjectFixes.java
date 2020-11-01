@@ -1,6 +1,6 @@
 package de.jsone_studios.spotify.parser;
 
-import de.jsone_studios.spotify.parser.model.SpotifyObject;
+import de.jsone_studios.spotify.core.model.SpotifyObject;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;

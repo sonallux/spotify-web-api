@@ -1,6 +1,6 @@
 package de.jsone_studios.spotify.generator.java.util;
 
-import de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint;
+import de.jsone_studios.spotify.core.model.SpotifyApiEndpoint;
 
 import java.util.Arrays;
 import java.util.List;

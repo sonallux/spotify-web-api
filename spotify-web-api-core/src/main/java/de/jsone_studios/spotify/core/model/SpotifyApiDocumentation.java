@@ -1,4 +1,4 @@
-package de.jsone_studios.spotify.parser.model;
+package de.jsone_studios.spotify.core.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.SortedMap;
 
 @Getter
 @Setter

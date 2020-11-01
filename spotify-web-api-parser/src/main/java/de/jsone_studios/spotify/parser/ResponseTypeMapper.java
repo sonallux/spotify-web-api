@@ -2,8 +2,9 @@ package de.jsone_studios.spotify.parser;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.jsone_studios.spotify.parser.model.SpotifyApiCategory;
-import de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint;
+import de.jsone_studios.spotify.core.Yaml;
+import de.jsone_studios.spotify.core.model.SpotifyApiCategory;
+import de.jsone_studios.spotify.core.model.SpotifyApiEndpoint;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

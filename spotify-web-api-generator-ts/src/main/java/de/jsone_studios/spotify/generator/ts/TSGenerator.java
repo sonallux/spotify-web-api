@@ -1,8 +1,8 @@
 package de.jsone_studios.spotify.generator.ts;
 
 import com.samskivert.mustache.Mustache;
-import de.jsone_studios.spotify.parser.model.SpotifyApiDocumentation;
-import de.jsone_studios.spotify.parser.model.SpotifyObject;
+import de.jsone_studios.spotify.core.model.SpotifyApiDocumentation;
+import de.jsone_studios.spotify.core.model.SpotifyObject;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

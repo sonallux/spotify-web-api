@@ -14,6 +14,7 @@
     <url>https://github.com/jsone-studios/spotify-web-api</url>
 
     <modules>
+        <module>spotify-web-api-core</module>
         <module>spotify-web-api-java</module>
         <module>spotify-web-api-parser</module>
         <module>spotify-web-api-generator-java</module>

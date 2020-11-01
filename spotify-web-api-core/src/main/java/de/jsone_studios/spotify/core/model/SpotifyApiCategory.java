@@ -1,4 +1,4 @@
-package de.jsone_studios.spotify.parser.model;
+package de.jsone_studios.spotify.core.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

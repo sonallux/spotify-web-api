@@ -1,4 +1,4 @@
-package de.jsone_studios.spotify.parser.model;
+package de.jsone_studios.spotify.core.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

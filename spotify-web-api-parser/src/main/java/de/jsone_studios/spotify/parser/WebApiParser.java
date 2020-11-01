@@ -1,6 +1,6 @@
 package de.jsone_studios.spotify.parser;
 
-import de.jsone_studios.spotify.parser.model.SpotifyApiDocumentation;
+import de.jsone_studios.spotify.core.model.SpotifyApiDocumentation;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

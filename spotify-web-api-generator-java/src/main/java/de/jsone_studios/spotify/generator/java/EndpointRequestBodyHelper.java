@@ -1,15 +1,15 @@
 package de.jsone_studios.spotify.generator.java;
 
 import com.google.common.base.CaseFormat;
+import de.jsone_studios.spotify.core.model.SpotifyApiDocumentation;
+import de.jsone_studios.spotify.core.model.SpotifyApiEndpoint;
+import de.jsone_studios.spotify.core.model.SpotifyObject;
 import de.jsone_studios.spotify.generator.java.util.JavaUtils;
-import de.jsone_studios.spotify.parser.model.SpotifyApiDocumentation;
-import de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint;
-import de.jsone_studios.spotify.parser.model.SpotifyObject;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.ParameterLocation.BODY;
+import static de.jsone_studios.spotify.core.model.SpotifyApiEndpoint.ParameterLocation.BODY;
 
 class EndpointRequestBodyHelper {
     public static List<SpotifyObject> getEndpointRequestBodies(SpotifyApiDocumentation documentation) {
