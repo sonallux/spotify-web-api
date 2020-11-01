@@ -1,8 +1,12 @@
 package de.jsone_studios.spotify.parser.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.SortedMap;
 
 @Getter
 @Setter
@@ -17,5 +21,15 @@ public class SpotifyApiCategory {
     private String id;
     private String name;
     private String link;
-    private List<SpotifyApiEndpoint> endpoints;
+    private SortedMap<String, SpotifyApiEndpoint> endpoints;
+
+    @JsonIgnore
+    public List<SpotifyApiEndpoint> getEndpointList() {
+        return new ArrayList<>(endpoints.values());
+    }
+
+    @JsonIgnore
+    public Optional<SpotifyApiEndpoint> getEndpoint(String id) {
+        return Optional.ofNullable(endpoints.get(id));
+    }
 }

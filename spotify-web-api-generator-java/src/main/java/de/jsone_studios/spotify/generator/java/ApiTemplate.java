@@ -40,7 +40,7 @@ class ApiTemplate extends AbstractTemplate<SpotifyApiCategory> {
         context.put("name", category.getName());
         context.put("className", getClassName(category));
         context.put("documentationLink", category.getLink());
-        context.put("endpoints", category.getEndpoints().stream().flatMap(e -> buildEndpointContext(e).stream()).collect(Collectors.toList()));
+        context.put("endpoints", category.getEndpointList().stream().flatMap(e -> buildEndpointContext(e).stream()).collect(Collectors.toList()));
         return context;
     }
 

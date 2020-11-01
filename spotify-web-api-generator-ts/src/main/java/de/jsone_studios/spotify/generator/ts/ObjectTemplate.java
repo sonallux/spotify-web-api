@@ -8,6 +8,7 @@ import de.jsone_studios.spotify.parser.model.SpotifyObject;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,13 +24,13 @@ public class ObjectTemplate {
         return this;
     }
 
-    void generate(List<SpotifyObject> spotifyObjects, Path outputFile) throws IOException {
+    void generate(Collection<SpotifyObject> spotifyObjects, Path outputFile) throws IOException {
         try (var writer = Files.newBufferedWriter(outputFile, CREATE, TRUNCATE_EXISTING, WRITE)) {
             template.execute(generateContext(spotifyObjects), writer);
         }
     }
 
-    private Map<String, Object> generateContext(List<SpotifyObject> spotifyObjects) {
+    private Map<String, Object> generateContext(Collection<SpotifyObject> spotifyObjects) {
         return Map.of(
                 "tsDoc", new TSDocLambda(),
                 "objects", spotifyObjects.stream()

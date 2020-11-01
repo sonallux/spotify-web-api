@@ -29,7 +29,7 @@ public class JavaGenerator {
 
         adjustApiDocumentation(apiDocumentation);
 
-        for (var object : apiDocumentation.getObjects()) {
+        for (var object : apiDocumentation.getObjectList()) {
             objectTemplate.generate(object, outputFolder, javaPackage);
         }
 
@@ -37,7 +37,7 @@ public class JavaGenerator {
             objectTemplate.generate(object, outputFolder, javaPackage);
         }
 
-        for (var category : apiDocumentation.getCategories()) {
+        for (var category : apiDocumentation.getCategoryList()) {
             apiTemplate.generate(category, outputFolder, javaPackage);
         }
 
@@ -54,13 +54,11 @@ public class JavaGenerator {
     }
 
     private void separateUsersTopArtistsAndTracks(SpotifyApiDocumentation apiDocumentation) throws GeneratorException {
-        var category = apiDocumentation.getCategories().stream()
-                .filter(c -> "category-personalization".equals(c.getId()))
-                .findFirst().orElseThrow(() -> new GeneratorException("Can not find category-personalization"));
+        var category = apiDocumentation.getCategory("category-personalization")
+                .orElseThrow(() -> new GeneratorException("Can not find category-personalization"));
 
-        var topArtistsAndTracks = category.getEndpoints().stream()
-                .filter(e -> "endpoint-get-users-top-artists-and-tracks".equals(e.getId()))
-                .findFirst().orElseThrow(() -> new GeneratorException("Can not find endpoint-get-users-top-artists-and-tracks"));
+        var topArtistsAndTracks = category.getEndpoint("endpoint-get-users-top-artists-and-tracks")
+                .orElseThrow(() -> new GeneratorException("Can not find endpoint-get-users-top-artists-and-tracks"));
 
         var parameters = new ArrayList<>(topArtistsAndTracks.getParameters());
         parameters.removeIf(p -> "type".equals(p.getName()));
@@ -92,11 +90,8 @@ public class JavaGenerator {
                 List.of(new SpotifyApiEndpoint.ResponseType("PagingObject[TrackObject]", 200, null))
         );
 
-        if (!category.getEndpoints().removeIf(e -> "endpoint-get-users-top-artists-and-tracks".equals(e.getId()))) {
-            throw new GeneratorException("Can not find remove endpoint-get-users-top-artists-and-tracks");
-        }
-
-        category.getEndpoints().add(topArtists);
-        category.getEndpoints().add(topTracks);
+        category.getEndpoints().remove("endpoint-get-users-top-artists-and-tracks");
+        category.getEndpoints().put(topArtists.getId(), topArtists);
+        category.getEndpoints().put(topTracks.getId(), topTracks);
     }
 }

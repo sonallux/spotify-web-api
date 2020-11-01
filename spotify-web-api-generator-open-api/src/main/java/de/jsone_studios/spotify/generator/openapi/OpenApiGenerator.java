@@ -51,12 +51,12 @@ public class OpenApiGenerator {
                 )
                 .servers(List.of(new Server().url(apiDocumentation.getEndpointUrl())))
                 .components(new Components()
-                        .schemas(generateSchemaObjects(apiDocumentation.getObjects()))
+                        .schemas(generateSchemaObjects(apiDocumentation.getObjectList()))
                         .addResponses("ErrorResponse", getDefaultErrorResponse())
                         .securitySchemes(Map.of(SPOTIFY_SECURITY_SCHEME, getSpotifySecurityScheme(apiDocumentation.getScopes())))
                 )
-                .tags(generateTags(apiDocumentation.getCategories()))
-                .paths(generatePaths(apiDocumentation.getCategories()))
+                .tags(generateTags(apiDocumentation.getCategoryList()))
+                .paths(generatePaths(apiDocumentation.getCategoryList()))
         ;
         return openAPI;
     }
@@ -76,10 +76,10 @@ public class OpenApiGenerator {
         ;
     }
 
-    private Paths generatePaths(List<SpotifyApiCategory> categories) {
+    private Paths generatePaths(Collection<SpotifyApiCategory> categories) {
         var paths = new Paths();
         for (var category : categories) {
-            for (var endpoint : category.getEndpoints()) {
+            for (var endpoint : category.getEndpointList()) {
                 var path = paths.computeIfAbsent(endpoint.getPath(), s -> new PathItem());
                 var operation = generateOperation(endpoint);
                 operation.addTagsItem(category.getId());
@@ -213,7 +213,7 @@ public class OpenApiGenerator {
                                 .schema(new Schema().$ref("#/components/schemas/ErrorResponseObject"))));
     }
 
-    public List<Tag> generateTags(List<SpotifyApiCategory> categories) {
+    public List<Tag> generateTags(Collection<SpotifyApiCategory> categories) {
         return categories.stream()
                 .map(c -> new Tag()
                         .name(c.getId())
@@ -229,7 +229,7 @@ public class OpenApiGenerator {
                 .description("Find more info on the official Spotify Web API Reference");
     }
 
-    private Map<String, Schema> generateSchemaObjects(List<SpotifyObject> objects) {
+    private Map<String, Schema> generateSchemaObjects(Collection<SpotifyObject> objects) {
         var schemas = new LinkedHashMap<String, Schema>();
 
         SpotifyObject pagingObject = null;

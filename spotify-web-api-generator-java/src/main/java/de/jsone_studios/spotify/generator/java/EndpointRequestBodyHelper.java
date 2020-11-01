@@ -13,8 +13,8 @@ import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.Parameter
 
 class EndpointRequestBodyHelper {
     public static List<SpotifyObject> getEndpointRequestBodies(SpotifyApiDocumentation documentation) {
-        return documentation.getCategories().stream()
-                .flatMap(c -> c.getEndpoints().stream())
+        return documentation.getCategoryList().stream()
+                .flatMap(c -> c.getEndpointList().stream())
                 .filter(e -> e.getParameters().stream().anyMatch(p -> p.getLocation() == BODY))
                 .map(EndpointRequestBodyHelper::getEndpointRequestBody)
                 .collect(Collectors.toList());

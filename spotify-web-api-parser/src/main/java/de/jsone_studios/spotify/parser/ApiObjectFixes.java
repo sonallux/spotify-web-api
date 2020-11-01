@@ -5,18 +5,18 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedMap;
 
 @Slf4j
 class ApiObjectFixes {
 
-    static void fixApiObjects(List<SpotifyObject> objects) {
+    static void fixApiObjects(SortedMap<String, SpotifyObject> objects) {
         fixLinkedTrackObjectReferenceInTrackObject(objects);
     }
 
-    private static void fixLinkedTrackObjectReferenceInTrackObject(List<SpotifyObject> categories) {
-        var linkedFromProperty = categories.stream()
-                .filter(o -> "TrackObject".equals(o.getName()))
-                .flatMap(o -> o.getProperties().stream())
+    private static void fixLinkedTrackObjectReferenceInTrackObject(SortedMap<String, SpotifyObject> categories) {
+        var linkedFromProperty = categories.get("TrackObject")
+                .getProperties().stream()
                 .filter(p -> "linked_from".equals(p.getName()) && "".equals(p.getType()))
                 .findFirst().orElse(null);
         if (linkedFromProperty == null) {

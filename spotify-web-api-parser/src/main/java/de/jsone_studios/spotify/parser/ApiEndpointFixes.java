@@ -4,13 +4,14 @@ import de.jsone_studios.spotify.parser.model.SpotifyApiCategory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.SortedMap;
 
 import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.ParameterLocation.PATH;
 
 @Slf4j
 class ApiEndpointFixes {
 
-    static void fixApiEndpoints(List<SpotifyApiCategory> categories) {
+    static void fixApiEndpoints(SortedMap<String, SpotifyApiCategory> categories) {
         fixChangePlaylistsDetails(categories);
         fixGetInfoAboutUsersCurrentPlayback(categories);
         fixStartAUsersPlayback(categories);
@@ -18,14 +19,13 @@ class ApiEndpointFixes {
         fixCheckUsersSavedShowsScope(categories);
     }
 
-    private static void fixChangePlaylistsDetails(List<SpotifyApiCategory> categories) {
-        var paramPath = categories.stream()
-                .filter(c -> "category-playlists".equals(c.getId()))
-                .flatMap(c -> c.getEndpoints().stream())
-                .filter(e -> "endpoint-change-playlist-details".equals(e.getId()))
-                .flatMap(e -> e.getParameters().stream())
-                .filter(p -> p.getLocation() == PATH && "playlist_id".equals(p.getName()))
-                .findFirst().orElse(null);
+    private static void fixChangePlaylistsDetails(SortedMap<String, SpotifyApiCategory> categories) {
+        var paramPath = categories.get("category-playlists")
+                .getEndpoint("endpoint-change-playlist-details")
+                .flatMap(e -> e.getParameters().stream()
+                        .filter(p -> p.getLocation() == PATH && "playlist_id".equals(p.getName()))
+                        .findFirst())
+                .orElse(null);
         if (paramPath == null) {
             log.warn("change-playlist-details wrong playlist_id parameter type has been fixed");
         } else {
@@ -33,12 +33,13 @@ class ApiEndpointFixes {
         }
     }
 
-    private static void fixGetInfoAboutUsersCurrentPlayback(List<SpotifyApiCategory> categories) {
-        var endpoint = categories.stream()
-                .filter(c -> "category-player".equals(c.getId()))
-                .flatMap(c -> c.getEndpoints().stream())
-                .filter(e -> "endpoint-get-information-about-the-users-current-playback".equals(e.getId()))
-                .findFirst().orElseThrow(() -> new RuntimeException("Can not find endpoint-get-information-about-the-users-current-playback"));
+    private static void fixGetInfoAboutUsersCurrentPlayback(SortedMap<String, SpotifyApiCategory> categories) {
+        var endpoint = categories.get("category-player")
+                .getEndpoints().get("endpoint-get-information-about-the-users-current-playback");
+        if (endpoint == null) {
+            log.warn("endpoint-get-information-about-the-users-current-playback is not present.");
+            return;
+        }
         if (endpoint.getScopes().size() != 0) {
             log.warn("endpoint-get-information-about-the-users-current-playback missing scope has been fixed");
         } else {
@@ -46,12 +47,9 @@ class ApiEndpointFixes {
         }
     }
 
-    private static void fixStartAUsersPlayback(List<SpotifyApiCategory> categories) {
-        var endpoint = categories.stream()
-                .filter(c -> "category-player".equals(c.getId()))
-                .flatMap(c -> c.getEndpoints().stream())
-                .filter(e -> "endpoint-start-a-users-playback".equals(e.getId()))
-                .findFirst().orElse(null);
+    private static void fixStartAUsersPlayback(SortedMap<String, SpotifyApiCategory> categories) {
+        var endpoint = categories.get("category-player")
+                .getEndpoints().get("endpoint-start-a-users-playback");
         if (endpoint == null) {
             log.warn("endpoint-start-a-users-playback is not present.");
             return;
@@ -96,28 +94,20 @@ class ApiEndpointFixes {
         }
     }
 
-    private static void fixGetUsersSavedShowsScope(List<SpotifyApiCategory> categories) {
-        var endpoint = categories.stream()
-                .filter(c -> "category-library".equals(c.getId()))
-                .flatMap(c -> c.getEndpoints().stream())
-                .filter(e -> "endpoint-get-users-saved-shows".equals(e.getId()))
-                .filter(e -> e.getScopes().contains("user-libary-read"))
-                .findFirst().orElse(null);
-        if (endpoint == null) {
+    private static void fixGetUsersSavedShowsScope(SortedMap<String, SpotifyApiCategory> categories) {
+        var endpoint = categories.get("category-library")
+                .getEndpoints().get("endpoint-get-users-saved-shows");
+        if (!endpoint.getScopes().contains("user-libary-read")) {
             log.warn("endpoint-get-users-saved-shows scope user-libary-read has been fixed");
         } else {
             endpoint.setScopes(List.of("user-library-read"));
         }
     }
 
-    private static void fixCheckUsersSavedShowsScope(List<SpotifyApiCategory> categories) {
-        var endpoint = categories.stream()
-                .filter(c -> "category-library".equals(c.getId()))
-                .flatMap(c -> c.getEndpoints().stream())
-                .filter(e -> "endpoint-check-users-saved-shows".equals(e.getId()))
-                .filter(e -> e.getScopes().contains("user-libary-read"))
-                .findFirst().orElse(null);
-        if (endpoint == null) {
+    private static void fixCheckUsersSavedShowsScope(SortedMap<String, SpotifyApiCategory> categories) {
+        var endpoint = categories.get("category-library")
+                .getEndpoints().get("endpoint-check-users-saved-shows");
+        if (!endpoint.getScopes().contains("user-libary-read")) {
             log.warn("endpoint-check-users-saved-shows scope user-libary-read has been fixed");
         } else {
             endpoint.setScopes(List.of("user-library-read"));
