@@ -30,7 +30,7 @@ public class TSGenerator {
         //mainSpotifyObjects.forEach(System.out::println);
 
         var objectTemplate = new ObjectTemplate().loadTemplate(templateCompiler);
-        objectTemplate.generate(apiDocumentation.getObjects(), outputFile);
+        objectTemplate.generate(apiDocumentation.getObjectList(), outputFile);
     }
 
     private static boolean isMainSpotifyObject(SpotifyObject spotifyObject) {

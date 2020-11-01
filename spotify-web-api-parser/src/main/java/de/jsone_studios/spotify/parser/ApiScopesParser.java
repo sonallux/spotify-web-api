@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.SortedMap;
 import java.util.stream.Collectors;
 
 class ApiScopesParser {
@@ -95,7 +96,7 @@ class ApiScopesParser {
         }
     }
 
-    void validateScopes(SpotifyScopes scopes, List<SpotifyApiCategory> categories) throws ApiParseException {
+    void validateScopes(SpotifyScopes scopes, SortedMap<String, SpotifyApiCategory> categories) throws ApiParseException {
         var error = new StringBuilder();
 
         //Validate if endpoints referenced by scopes are present
@@ -104,8 +105,8 @@ class ApiScopesParser {
                 if (link.getEndpoint() == null) {
                     continue;
                 }
-                var endpoint = categories.stream()
-                        .flatMap(c -> c.getEndpoints().stream())
+                var endpoint = categories.values().stream()
+                        .flatMap(c -> c.getEndpointList().stream())
                         .filter(e -> e.getId().equals(link.getEndpoint()))
                         .findFirst();
                 if (endpoint.isEmpty()) {
@@ -115,7 +116,7 @@ class ApiScopesParser {
         }
 
         //Validate if scopes referenced by endpoints are present
-        var endpointScopes = categories.stream().flatMap(c -> c.getEndpoints().stream())
+        var endpointScopes = categories.values().stream().flatMap(c -> c.getEndpointList().stream())
                 .flatMap(e -> e.getScopes().stream())
                 .distinct()
                 .collect(Collectors.toList());

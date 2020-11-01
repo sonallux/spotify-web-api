@@ -47,7 +47,7 @@ public class ResponseTypeMapper {
     public void update(List<SpotifyApiCategory> categories) {
         var scanner = new Scanner(System.in);
         for (var category : categories) {
-            for (var endpoint : category.getEndpoints()) {
+            for (var endpoint : category.getEndpointList()) {
                 var currentHash = calculateMD5Hash(endpoint);
                 var endpointResponse = getEndpointResponse(category.getId(), endpoint.getId());
                 if (endpointResponse != null && endpointResponse.getResponseTypes().size() != 0 && currentHash.equals(endpointResponse.getMd5Hash())) {

@@ -5,38 +5,35 @@ import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 class ApiObjectParser {
 
     private String baseUrl;
 
-    List<SpotifyObject> parseSpotifyObjects(List<Elements> sections, String baseUrl) throws ApiParseException{
+    SortedMap<String, SpotifyObject> parseSpotifyObjects(List<Elements> sections, String baseUrl) throws ApiParseException{
         this.baseUrl = baseUrl;
-        var objects = new ArrayList<SpotifyObject>();
+        var objects = new TreeMap<String, SpotifyObject>();
         var objectSection = sections.get(sections.size() - 1);//Last section is the Objects Index
         for (var element : objectSection.select("h3")) {
             var object = parseSpotifyObject(element);
-            if (objects.contains(object)) {
+            if (objects.containsKey(object.getName())) {
                 throw new ApiParseException("Object is defined twice: " + object.getName());
             } else {
-                objects.add(object);
+                objects.put(object.getName(), object);
             }
         }
         //Apply fixes and add missing objects
         ApiObjectFixes.fixApiObjects(objects);
         for (var object : ApiObjectFixes.getMissingObjects()) {
-            if (objects.contains(object)) {
+            if (objects.containsKey(object.getName())) {
                 log.warn("Object {} is no longer missing", object.getName());
             }
             else {
-                objects.add(object);
+                objects.put(object.getName(), object);
             }
         }
-        objects.sort(Comparator.comparing(SpotifyObject::getName));
         return objects;
     }
 

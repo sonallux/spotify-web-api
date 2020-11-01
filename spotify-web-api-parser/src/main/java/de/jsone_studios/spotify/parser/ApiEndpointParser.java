@@ -10,9 +10,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import static de.jsone_studios.spotify.parser.model.SpotifyApiEndpoint.ParameterLocation.*;
@@ -27,7 +25,7 @@ class ApiEndpointParser {
     private String endpointUrl;
     private ResponseTypeMapper responseTypeMapper;
 
-    List<SpotifyApiCategory> parseSpotifyApiCategories(List<Elements> sections, String documentationUrl, String endpointUrl, Path responseTypesFile) throws ApiParseException {
+    SortedMap<String, SpotifyApiCategory> parseSpotifyApiCategories(List<Elements> sections, String documentationUrl, String endpointUrl, Path responseTypesFile) throws ApiParseException {
         this.documentationUrl = documentationUrl;
         this.endpointUrl = endpointUrl;
         try {
@@ -36,14 +34,14 @@ class ApiEndpointParser {
             throw new ApiParseException("Failed to initialize response type mapper", e);
         }
 
-        var categories = new ArrayList<SpotifyApiCategory>();
+        var categories = new TreeMap<String, SpotifyApiCategory>();
         //The First section is the Reference Index and the last the Objects Index
         for (var element : sections.subList(1, sections.size() - 1)) {
             var category = parseSpotifyApiCategory(element);
-            if (categories.contains(category)) {
+            if (categories.containsKey(category.getId())) {
                 throw new ApiParseException("Category " + category.getId() + " is defined twice");
             } else {
-                categories.add(category);
+                categories.put(category.getId(), category);
             }
         }
 
@@ -51,19 +49,18 @@ class ApiEndpointParser {
 
         //Apply fixes
         ApiEndpointFixes.fixApiEndpoints(categories);
-        categories.sort(Comparator.comparing(SpotifyApiCategory::getId));
         return categories;
     }
 
-    private void addResponseTypes(List<SpotifyApiCategory> categories) {
+    private void addResponseTypes(SortedMap<String, SpotifyApiCategory> categories) {
         try {
             if (isInteractive) {
-                responseTypeMapper.update(categories);
+                responseTypeMapper.update(new ArrayList<>(categories.values()));
                 responseTypeMapper.save();
             }
 
-            for (var category : categories) {
-                for (var endpoint : category.getEndpoints()) {
+            for (var category : categories.values()) {
+                for (var endpoint : category.getEndpointList()) {
                     var endpointResponse = responseTypeMapper.getEndpointResponse(category.getId(), endpoint.getId());
                     if (endpointResponse == null || endpointResponse.getResponseTypes().isEmpty()) {
                         log.warn("Missing response type in {} for {} {} with response: \n{}\n", category.getId(),
@@ -84,16 +81,15 @@ class ApiEndpointParser {
         var link = documentationUrl + "/#" + id;
         var name = header.text();
 
-        var endpoints = new ArrayList<SpotifyApiEndpoint>();
+        var endpoints = new TreeMap<String, SpotifyApiEndpoint>();
         for (var element : ParseUtils.splitAt(elements, "h2")) {
             var endpoint = parseSpotifyApiEndpoint(element);
-            if (endpoints.contains(endpoint)) {
+            if (endpoints.containsKey(endpoint.getId())) {
                 throw new ApiParseException("Endpoint " + endpoint.getId() + " already defined in category " + id);
             } else {
-                endpoints.add(endpoint);
+                endpoints.put(endpoint.getId(), endpoint);
             }
         }
-        endpoints.sort(Comparator.comparing(SpotifyApiEndpoint::getId));
         return new SpotifyApiCategory(id, name, link, endpoints);
     }
 
