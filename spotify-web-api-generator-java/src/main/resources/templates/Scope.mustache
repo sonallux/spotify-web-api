@@ -1,0 +1,24 @@
+package {{package}};
+
+{{#javaDoc}}
+    <a href="{{url}}">Authorization Scopes</a>
+{{/javaDoc}}
+public enum Scope {
+{{#scopes}}
+    {{#javaDoc}}
+        {{description}}
+        @see <a href="{{link}}">{{name}}</a>
+    {{/javaDoc}}
+    {{enumName}}("{{name}}"){{#last}};{{/last}}{{^last}},{{/last}}
+{{/scopes}}
+
+    private final String scopeName;
+
+    Scope(String scopeName) {
+        this.scopeName = scopeName;
+    }
+
+    public String getName() {
+        return scopeName;
+    }
+}

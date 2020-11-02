@@ -33,6 +33,7 @@ abstract class AbstractTemplate<T> {
         try (var writer = Files.newBufferedWriter(outputFile, CREATE, TRUNCATE_EXISTING, WRITE)) {
             var context = new HashMap<String, Object>();
             context.put("package", javaPackage.getName());
+            context.put("basePackage", basePackage.getName());
             context.put("javaDoc", new JavaDocLambda());
             template.execute(buildContext(t, context), writer);
         }

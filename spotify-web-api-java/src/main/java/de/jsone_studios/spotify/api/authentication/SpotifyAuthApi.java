@@ -56,7 +56,7 @@ public class SpotifyAuthApi
         }
         else
         {
-            scope = scopes.stream().map(Scope::getScope).reduce((scope1, scope2) -> scope1 + " " + scope2).get();
+            scope = scopes.stream().map(Scope::getName).reduce((scope1, scope2) -> scope1 + " " + scope2).get();
         }
 
         return new HttpUrl.Builder()
