@@ -25,7 +25,7 @@ public class JavaGenerator {
 
     public void generate(SpotifyApiDocumentation apiDocumentation, Path outputFolder, JavaPackage javaPackage) throws IOException, GeneratorException {
         var objectTemplate = new ObjectTemplate().loadTemplate(this.templateCompiler);
-        var apiTemplate = new ApiTemplate().loadTemplate(this.templateCompiler);
+        var apiTemplate = new CategoryTemplate().loadTemplate(this.templateCompiler);
 
         adjustApiDocumentation(apiDocumentation);
 
@@ -40,6 +40,10 @@ public class JavaGenerator {
         for (var category : apiDocumentation.getCategoryList()) {
             apiTemplate.generate(category, outputFolder, javaPackage);
         }
+
+        new SpotifyApiTemplate()
+                .loadTemplate(this.templateCompiler)
+                .generate(apiDocumentation, outputFolder, javaPackage);
 
         //TODO: Generate de.jsone_studios.spotify.api.authentication.Scope
     }

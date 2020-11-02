@@ -3,13 +3,23 @@ package de.jsone_studios.spotify.api;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.jsone_studios.spotify.api.apis.*;
+import de.jsone_studios.spotify.api.models.ErrorDetails;
+import de.jsone_studios.spotify.api.models.ErrorResponse;
+import lombok.Getter;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
-public class SpotifyWebApi implements SpotifyApi {
-    public static final String SPOTIFY_WEB_API_ENDPOINT = "https://api.spotify.com/v1/";
+import java.io.IOException;
+import java.lang.annotation.Annotation;
+
+@Getter
+public class SpotifyApi {
+    public static final String SPOTIFY_WEB_API_ENDPOINT = "https://api.spotify.com/v1";
 
     private final Retrofit retrofit;
 
@@ -27,7 +37,7 @@ public class SpotifyWebApi implements SpotifyApi {
     private final TracksApi tracksApi;
     private final UsersProfileApi usersProfileApi;
 
-    public SpotifyWebApi(Retrofit retrofit) {
+    public SpotifyApi(Retrofit retrofit) {
         this.retrofit = retrofit;
         this.albumsApi = retrofit.create(AlbumsApi.class);
         this.artistsApi = retrofit.create(ArtistsApi.class);
@@ -44,19 +54,19 @@ public class SpotifyWebApi implements SpotifyApi {
         this.usersProfileApi = retrofit.create(UsersProfileApi.class);
     }
 
-    public SpotifyWebApi(OkHttpClient okHttpClient) {
+    public SpotifyApi(OkHttpClient okHttpClient) {
         this(createDefaultRetrofit(okHttpClient, HttpUrl.get(SPOTIFY_WEB_API_ENDPOINT)));
     }
 
-    public SpotifyWebApi(OkHttpClient okHttpClient, HttpUrl baseUrl) {
+    public SpotifyApi(OkHttpClient okHttpClient, HttpUrl baseUrl) {
         this(createDefaultRetrofit(okHttpClient, baseUrl));
     }
 
-    public SpotifyWebApi(HttpUrl baseUrl) {
+    public SpotifyApi(HttpUrl baseUrl) {
         this(new OkHttpClient(), baseUrl);
     }
 
-    public SpotifyWebApi() {
+    public SpotifyApi() {
         this(new OkHttpClient());
     }
 
@@ -70,73 +80,46 @@ public class SpotifyWebApi implements SpotifyApi {
                 .build();
     }
 
-    @Override
-    public Retrofit getRetrofit() {
-        return retrofit;
+    public <T> T callApiAndReturnBody(Call<T> call) throws SpotifyApiException {
+        return getBody(callApi(call));
     }
 
-    @Override
-    public AlbumsApi getAlbumsApi() {
-        return albumsApi;
+    public <T> retrofit2.Response<T> callApi(Call<T> call) throws SpotifyApiException {
+        try {
+            return call.execute();
+        }
+        catch (IOException e) {
+            throw new SpotifyApiException("Failed to make api call", e);
+        }
     }
 
-    @Override
-    public ArtistsApi getArtistsApi() {
-        return artistsApi;
+    public <T> T getBody(retrofit2.Response<T> response) throws SpotifyApiException {
+        if (response.isSuccessful() && response.body() != null) {
+            return response.body();
+        }
+
+        throw new SpotifyApiException("Api call failed", getErrorBody(response));
     }
 
-    @Override
-    public BrowseApi getBrowseApi() {
-        return browseApi;
+    public ErrorDetails getErrorBody(retrofit2.Response<?> response) throws SpotifyApiException {
+        if (response.errorBody() == null) {
+            throw new SpotifyApiException("Failed to get error body", getErrorDetailsFromResponse(response));
+        }
+        try {
+            Converter<ResponseBody, ErrorResponse> converter = retrofit.responseBodyConverter(ErrorResponse.class, new Annotation[0]);
+            ErrorResponse errorResponse = converter.convert(response.errorBody());
+            if (errorResponse != null) {
+                return errorResponse.getError();
+            }
+        }
+        catch (IOException ignore) {}
+        throw new SpotifyApiException("Failed to parse error body", getErrorDetailsFromResponse(response));
     }
 
-    @Override
-    public EpisodesApi getEpisodesApi() {
-        return episodesApi;
-    }
-
-    @Override
-    public FollowApi getFollowApi() {
-        return followApi;
-    }
-
-    @Override
-    public LibraryApi getLibraryApi() {
-        return libraryApi;
-    }
-
-    @Override
-    public PersonalizationApi getPersonalizationApi() {
-        return personalizationApi;
-    }
-
-    @Override
-    public PlayerApi getPlayerApi() {
-        return playerApi;
-    }
-
-    @Override
-    public PlaylistsApi getPlaylistApi() {
-        return playlistsApi;
-    }
-
-    @Override
-    public SearchApi getSearchApi() {
-        return searchApi;
-    }
-
-    @Override
-    public ShowsApi getShowsApi() {
-        return showsApi;
-    }
-
-    @Override
-    public TracksApi getTracksApi() {
-        return tracksApi;
-    }
-
-    @Override
-    public UsersProfileApi getUsersProfileApi() {
-        return usersProfileApi;
+    public ErrorDetails getErrorDetailsFromResponse(retrofit2.Response<?> response) {
+        ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setStatus(response.code());
+        errorDetails.setMessage(response.message());
+        return errorDetails;
     }
 }
