@@ -17,11 +17,11 @@ import java.util.stream.Collectors;
 
 import static de.jsone_studios.spotify.core.model.SpotifyApiEndpoint.ParameterLocation.*;
 
-class ApiTemplate extends AbstractTemplate<SpotifyApiCategory> {
+class CategoryTemplate extends AbstractTemplate<SpotifyApiCategory> {
 
     @Override
     String templateName() {
-        return "api";
+        return "category";
     }
 
     @Override
@@ -31,14 +31,14 @@ class ApiTemplate extends AbstractTemplate<SpotifyApiCategory> {
 
     @Override
     String getFileName(SpotifyApiCategory category) {
-        return JavaUtils.getFileName(getClassName(category));
+        return JavaUtils.getFileName(JavaUtils.getClassName(category));
     }
 
     @Override
     Map<String, Object> buildContext(SpotifyApiCategory category, Map<String, Object> context) {
         context.put("modelsPackage", getBasePackage().child("models").getName());
         context.put("name", category.getName());
-        context.put("className", getClassName(category));
+        context.put("className", JavaUtils.getClassName(category));
         context.put("documentationLink", category.getLink());
         context.put("endpoints", category.getEndpointList().stream().flatMap(e -> buildEndpointContext(e).stream()).collect(Collectors.toList()));
         return context;
@@ -136,10 +136,6 @@ class ApiTemplate extends AbstractTemplate<SpotifyApiCategory> {
             return JavaUtils.mapToJavaType(endpoint.getResponseTypes().get(0).getType());
         }
         return "";
-    }
-
-    private String getClassName(SpotifyApiCategory category) {
-        return category.getName().replace(" ", "").replace("API", "Api");
     }
 
     private void fixDuplicateEndpointArguments(SpotifyApiEndpoint endpoint) {

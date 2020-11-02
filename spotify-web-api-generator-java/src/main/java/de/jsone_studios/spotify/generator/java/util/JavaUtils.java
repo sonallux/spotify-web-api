@@ -1,5 +1,6 @@
 package de.jsone_studios.spotify.generator.java.util;
 
+import de.jsone_studios.spotify.core.model.SpotifyApiCategory;
 import de.jsone_studios.spotify.core.model.SpotifyApiEndpoint;
 
 import java.util.Arrays;
@@ -66,5 +67,9 @@ public class JavaUtils {
         } else {
             return getObjectClassName(type);
         }
+    }
+
+    public static String getClassName(SpotifyApiCategory category) {
+        return category.getName().replace(" ", "").replace("API", "Api");
     }
 }

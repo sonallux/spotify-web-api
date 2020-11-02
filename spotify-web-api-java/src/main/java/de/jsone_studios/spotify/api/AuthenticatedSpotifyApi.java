@@ -8,7 +8,7 @@ import retrofit2.Call;
 
 import java.io.IOException;
 
-public class AuthenticatedSpotifyApi extends SpotifyWebApi {
+public class AuthenticatedSpotifyApi extends SpotifyApi {
     private final AuthenticationProvider authProvider;
     private final SpotifyAuthApi authApi;
 
