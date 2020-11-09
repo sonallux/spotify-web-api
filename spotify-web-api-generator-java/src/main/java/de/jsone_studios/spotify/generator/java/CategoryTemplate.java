@@ -74,7 +74,7 @@ class CategoryTemplate extends AbstractTemplate<SpotifyApiCategory> {
     }
 
     private List<List<Argument>> getArguments(SpotifyApiEndpoint endpoint) {
-        fixDuplicateEndpointArguments(endpoint);
+        fixDuplicateEndpointParameters(endpoint);
 
         List<Argument> requiredArgs = new ArrayList<>();
         endpoint.getParameters().stream()
@@ -138,7 +138,14 @@ class CategoryTemplate extends AbstractTemplate<SpotifyApiCategory> {
         return "";
     }
 
-    private void fixDuplicateEndpointArguments(SpotifyApiEndpoint endpoint) {
+    /**
+     * Fixes duplicated endpoint parameters.
+     * Some endpoints allow to pass data either via query argument or via body. As the url has a length limit,
+     * passing to much data in the query string might result in an error response. Therefore this method removes
+     * the option to pass the data via query argument and makes the body parameter mandatory.
+     * @param endpoint the spotify api endpoint to fix
+     */
+    private void fixDuplicateEndpointParameters(SpotifyApiEndpoint endpoint) {
         String paramName;
         switch (endpoint.getId()) {
             case "endpoint-remove-albums-user":

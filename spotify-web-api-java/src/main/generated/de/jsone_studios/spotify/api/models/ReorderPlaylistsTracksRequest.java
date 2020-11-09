@@ -1,12 +1,13 @@
 package de.jsone_studios.spotify.api.models;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class ReorderOrReplacePlaylistsTracksRequest {
-    private java.util.List<String> uris;
+public class ReorderPlaylistsTracksRequest {
     /**
      * <p>The position of the first item to be reordered.</p>
      */
