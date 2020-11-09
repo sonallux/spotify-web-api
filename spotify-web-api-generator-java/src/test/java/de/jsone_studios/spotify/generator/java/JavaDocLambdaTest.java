@@ -24,20 +24,20 @@ public class JavaDocLambdaTest {
                 Arguments.of("/**\n * Hallo World\n * \n * Hallo World\n */\n", "Hallo World\n\nHallo World"),
 
                 //intend of 2 spaces
-                Arguments.of("/**\n *   Hallo World\n * Hallo World\n */\n", "  Hallo World\nHallo World"),
-                Arguments.of("/**\n *   Hallo World\n * \n * Hallo World\n */\n", "  Hallo World\n\nHallo World"),
+                Arguments.of("  /**\n   * Hallo World\n   * Hallo World\n   */\n", "  Hallo World\nHallo World"),
+                Arguments.of("  /**\n   * Hallo World\n   * \n   * Hallo World\n   */\n", "  Hallo World\n\nHallo World"),
                 Arguments.of("/**\n * Hallo World\n *   Hallo World\n */\n", "Hallo World\n  Hallo World"),
                 Arguments.of("/**\n * Hallo World\n * \n *   Hallo World\n */\n", "Hallo World\n\n  Hallo World"),
 
                 //intend of 4 spaces
                 Arguments.of("/**\n * Hallo World\n * Hallo World\n */\n", "    Hallo World\n    Hallo World"),
-                Arguments.of("/**\n *   Hallo World\n * Hallo World\n */\n", "      Hallo World\n    Hallo World"),
+                Arguments.of("  /**\n   * Hallo World\n   * Hallo World\n   */\n", "      Hallo World\n    Hallo World"),
                 Arguments.of("/**\n * Hallo World\n *   Hallo World\n */\n", "    Hallo World\n      Hallo World"),
                 Arguments.of("/**\n * Hallo World\n * \n * Hallo World\n */\n", "    Hallo World\n\n    Hallo World"),
 
                 //intend of 8 spaces
                 Arguments.of("    /**\n     * Hallo World\n     * Hallo World\n     */\n", "        Hallo World\n        Hallo World"),
-                Arguments.of("    /**\n     *   Hallo World\n     * Hallo World\n     */\n", "          Hallo World\n        Hallo World"),
+                Arguments.of("      /**\n       * Hallo World\n       * Hallo World\n       */\n", "          Hallo World\n        Hallo World"),
                 Arguments.of("    /**\n     * Hallo World\n     *   Hallo World\n     */\n", "        Hallo World\n          Hallo World"),
                 Arguments.of("    /**\n     * Hallo World\n     * \n     * Hallo World\n     */\n", "        Hallo World\n\n        Hallo World")
 

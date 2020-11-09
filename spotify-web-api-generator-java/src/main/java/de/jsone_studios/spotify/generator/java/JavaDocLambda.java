@@ -5,7 +5,6 @@ import com.samskivert.mustache.Template;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.util.Arrays;
 
 public class JavaDocLambda implements Mustache.Lambda {
 
@@ -16,17 +15,27 @@ public class JavaDocLambda implements Mustache.Lambda {
             return;
         }
         var lines = fullText.split("\n");
-        var intendCount = Arrays.stream(lines).filter(s -> !s.isBlank()).mapToInt(this::countIndentation).min().orElse(0);
-        var intend = " ".repeat(intendCount >= 4 ? intendCount - 4 : intendCount);
-        out.write(intend + "/**\n");
+        var indentCount = countIndentation(lines[0]); // The first line determines the indentation
+        var indent = " ".repeat(indentCount >= 4 ? indentCount - 4 : indentCount);
+        out.write(indent + "/**\n");
         for (var line : lines) {
             if (line.isBlank()) {
-                out.write(intend + " * \n");
+                out.write(indent + " * \n");
             } else {
-                out.write(intend + " * " + line.substring(intendCount) + "\n");
+                out.write(indent + " * " + trimTrailing(line, indentCount) + "\n");
             }
         }
-        out.write(intend + " */\n");
+        out.write(indent + " */\n");
+    }
+
+    private String trimTrailing(String text, int maxCount) {
+        var i = 0;
+        for (; i < maxCount; i++) {
+            if (!Character.isWhitespace(text.codePointAt(i))) {
+                break;
+            }
+        }
+        return text.substring(i);
     }
 
     private int countIndentation(String text) {

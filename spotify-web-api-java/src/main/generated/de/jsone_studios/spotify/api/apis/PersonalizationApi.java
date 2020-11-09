@@ -1,11 +1,8 @@
 package de.jsone_studios.spotify.api.apis;
 
-import de.jsone_studios.spotify.api.models.Artist;
-import de.jsone_studios.spotify.api.models.Paging;
-import de.jsone_studios.spotify.api.models.Track;
+import de.jsone_studios.spotify.api.models.*;
 import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.QueryMap;
+import retrofit2.http.*;
 
 /**
  * <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#category-personalization">Personalization API</a>
