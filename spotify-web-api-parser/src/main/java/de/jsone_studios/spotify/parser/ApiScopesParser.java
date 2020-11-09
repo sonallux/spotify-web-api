@@ -9,8 +9,8 @@ import org.jsoup.nodes.Element;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 class ApiScopesParser {
@@ -30,18 +30,17 @@ class ApiScopesParser {
     }
 
     private SpotifyScopes parseScopes(Document document) throws ApiParseException {
-        var scopes = new ArrayList<SpotifyScope>();
+        var scopes = new TreeMap<String, SpotifyScope>();
 
         var content = document.body().selectFirst("div.post-content").children();
         var scopeElements = ParseUtils.splitAt(content, "h2").get(1);
         for (var scopeElement : scopeElements.select("div")) {
             var scope = parseScope(scopeElement);
-            if (scopes.contains(scope)) {
+            if (scopes.containsKey(scope.getId())) {
                 throw new ApiParseException("Scope is defined twice: " + scope.getId());
             }
-            scopes.add(scope);
+            scopes.put(scope.getId(), scope);
         }
-        scopes.sort(Comparator.comparing(SpotifyScope::getId));
         return new SpotifyScopes(scopesUrl, scopes);
     }
 
@@ -99,7 +98,7 @@ class ApiScopesParser {
         var error = new StringBuilder();
 
         //Validate if endpoints referenced by scopes are present
-        for (var scope : scopes.getScopes()) {
+        for (var scope : scopes.getScopeList()) {
             for (var link : scope.getEndpoints()) {
                 if (link.getEndpoint() == null) {
                     continue;
@@ -120,7 +119,7 @@ class ApiScopesParser {
                 .distinct()
                 .collect(Collectors.toList());
         for (var endpointScope : endpointScopes) {
-            var scope = scopes.getScopes().stream().filter(s -> s.getId().equals(endpointScope)).findFirst();
+            var scope = scopes.getScope(endpointScope);
             if (scope.isEmpty()) {
                 error.append(String.format("Endpoint has unknown scope: %s", endpointScope)).append("\n");
             }

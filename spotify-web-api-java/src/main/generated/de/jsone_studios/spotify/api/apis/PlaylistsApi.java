@@ -208,60 +208,45 @@ public interface PlaylistsApi {
     Call<SnapshotId> removeTracksPlaylist(@Path("playlist_id") String playlist_id, @Body RemoveTracksPlaylistRequest requestBody);
 
     /**
-     * <h3>Reorder or Replace a Playlist's Items</h3>
-     * <p>Either reorder or replace items in a playlist depending on the request's parameters. To reorder items, include <code>range_start</code>, <code>insert_before</code>, <code>range_length</code> and <code>snapshot_id</code> in the request's body. To replace items, include <code>uris</code> as either a query parameter or in the request's body. Replacing items in a playlist will overwrite its existing items. This operation can be used for replacing or clearing items in a playlist.</p> <p><strong>Note</strong>: Replace and reorder are mutually exclusive operations which share the same endpoint, but have different parameters. These operations can't be applied together in a single request.</p>
+     * <h3>Reorder items in a playlist</h3>
+     * <p>Reorder an item or a group of items in a playlist.</p>
      * <h3>Required OAuth scopes</h3>
      * <code>playlist-modify-public, playlist-modify-private</code>
      * 
      * @param playlist_id <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the playlist.</p>
-     * @return <p>On a successful <strong>reorder</strong> operation, the response body contains a <code>snapshot_id</code> in JSON format and the HTTP status code in the response header is <code>200</code> OK. The <code>snapshot_id</code> can be used to identify your playlist version in future requests.</p> <p>On a successful <strong>replace</strong> operation, the HTTP status code in the response header is <code>201</code> Created.</p> <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a>, the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>, and the existing playlist is unmodified. Trying to set an item when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-reorder-or-replace-playlists-tracks">Reorder or Replace a Playlist's Items</a>
+     * @return <p>On a successful <strong>reorder</strong> operation, the response body contains a <code>snapshot_id</code> in JSON format and the HTTP status code in the response header is <code>200</code> OK. The <code>snapshot_id</code> can be used to identify your playlist version in future requests.</p> <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a>, the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>, and the existing playlist is unmodified. Trying to set an item when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
+     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-reorder-or-replace-playlists-tracks">Reorder items in a playlist</a>
      */
     @PUT("/playlists/{playlist_id}/tracks")
-    Call<SnapshotId> reorderOrReplacePlaylistsTracks(@Path("playlist_id") String playlist_id);
+    Call<SnapshotId> reorderPlaylistsTracks(@Path("playlist_id") String playlist_id);
 
     /**
-     * <h3>Reorder or Replace a Playlist's Items</h3>
-     * <p>Either reorder or replace items in a playlist depending on the request's parameters. To reorder items, include <code>range_start</code>, <code>insert_before</code>, <code>range_length</code> and <code>snapshot_id</code> in the request's body. To replace items, include <code>uris</code> as either a query parameter or in the request's body. Replacing items in a playlist will overwrite its existing items. This operation can be used for replacing or clearing items in a playlist.</p> <p><strong>Note</strong>: Replace and reorder are mutually exclusive operations which share the same endpoint, but have different parameters. These operations can't be applied together in a single request.</p>
+     * <h3>Reorder items in a playlist</h3>
+     * <p>Reorder an item or a group of items in a playlist.</p>
      * <h3>Required OAuth scopes</h3>
      * <code>playlist-modify-public, playlist-modify-private</code>
      * 
      * @param playlist_id <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the playlist.</p>
      * @param requestBody <p>The request body</p>
-     * @return <p>On a successful <strong>reorder</strong> operation, the response body contains a <code>snapshot_id</code> in JSON format and the HTTP status code in the response header is <code>200</code> OK. The <code>snapshot_id</code> can be used to identify your playlist version in future requests.</p> <p>On a successful <strong>replace</strong> operation, the HTTP status code in the response header is <code>201</code> Created.</p> <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a>, the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>, and the existing playlist is unmodified. Trying to set an item when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-reorder-or-replace-playlists-tracks">Reorder or Replace a Playlist's Items</a>
+     * @return <p>On a successful <strong>reorder</strong> operation, the response body contains a <code>snapshot_id</code> in JSON format and the HTTP status code in the response header is <code>200</code> OK. The <code>snapshot_id</code> can be used to identify your playlist version in future requests.</p> <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a>, the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>, and the existing playlist is unmodified. Trying to set an item when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
+     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-reorder-or-replace-playlists-tracks">Reorder items in a playlist</a>
      */
     @PUT("/playlists/{playlist_id}/tracks")
-    Call<SnapshotId> reorderOrReplacePlaylistsTracks(@Path("playlist_id") String playlist_id, @Body ReorderOrReplacePlaylistsTracksRequest requestBody);
+    Call<SnapshotId> reorderPlaylistsTracks(@Path("playlist_id") String playlist_id, @Body ReorderPlaylistsTracksRequest requestBody);
 
     /**
-     * <h3>Reorder or Replace a Playlist's Items</h3>
-     * <p>Either reorder or replace items in a playlist depending on the request's parameters. To reorder items, include <code>range_start</code>, <code>insert_before</code>, <code>range_length</code> and <code>snapshot_id</code> in the request's body. To replace items, include <code>uris</code> as either a query parameter or in the request's body. Replacing items in a playlist will overwrite its existing items. This operation can be used for replacing or clearing items in a playlist.</p> <p><strong>Note</strong>: Replace and reorder are mutually exclusive operations which share the same endpoint, but have different parameters. These operations can't be applied together in a single request.</p>
+     * <h3>Replace items in a playlist</h3>
+     * <p>Replace all the items in a playlist, overwriting its existing items. This powerful request can be useful for replacing items, re-ordering existing items, or clearing the playlist.</p>
      * <h3>Required OAuth scopes</h3>
      * <code>playlist-modify-public, playlist-modify-private</code>
      * 
      * @param playlist_id <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the playlist.</p>
-     * @param uris <p>A comma-separated list of <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URIs</a> to set, can be track or episode URIs. For example: <code>uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQ</code><br> A maximum of 100 items can be set in one request.</p>
-     * @return <p>On a successful <strong>reorder</strong> operation, the response body contains a <code>snapshot_id</code> in JSON format and the HTTP status code in the response header is <code>200</code> OK. The <code>snapshot_id</code> can be used to identify your playlist version in future requests.</p> <p>On a successful <strong>replace</strong> operation, the HTTP status code in the response header is <code>201</code> Created.</p> <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a>, the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>, and the existing playlist is unmodified. Trying to set an item when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-reorder-or-replace-playlists-tracks">Reorder or Replace a Playlist's Items</a>
+     * @param requestBody <p>the request body</p>
+     * @return <p>On a successful <strong>replace</strong> operation, the HTTP status code in the response header is <code>201</code> Created.</p> <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a>, the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>, and the existing playlist is unmodified. Trying to set an item when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
+     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-reorder-or-replace-playlists-tracks">Replace items in a playlist</a>
      */
     @PUT("/playlists/{playlist_id}/tracks")
-    Call<SnapshotId> reorderOrReplacePlaylistsTracks(@Path("playlist_id") String playlist_id, @Query("uris") String uris);
-
-    /**
-     * <h3>Reorder or Replace a Playlist's Items</h3>
-     * <p>Either reorder or replace items in a playlist depending on the request's parameters. To reorder items, include <code>range_start</code>, <code>insert_before</code>, <code>range_length</code> and <code>snapshot_id</code> in the request's body. To replace items, include <code>uris</code> as either a query parameter or in the request's body. Replacing items in a playlist will overwrite its existing items. This operation can be used for replacing or clearing items in a playlist.</p> <p><strong>Note</strong>: Replace and reorder are mutually exclusive operations which share the same endpoint, but have different parameters. These operations can't be applied together in a single request.</p>
-     * <h3>Required OAuth scopes</h3>
-     * <code>playlist-modify-public, playlist-modify-private</code>
-     * 
-     * @param playlist_id <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the playlist.</p>
-     * @param uris <p>A comma-separated list of <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URIs</a> to set, can be track or episode URIs. For example: <code>uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQ</code><br> A maximum of 100 items can be set in one request.</p>
-     * @param requestBody <p>The request body</p>
-     * @return <p>On a successful <strong>reorder</strong> operation, the response body contains a <code>snapshot_id</code> in JSON format and the HTTP status code in the response header is <code>200</code> OK. The <code>snapshot_id</code> can be used to identify your playlist version in future requests.</p> <p>On a successful <strong>replace</strong> operation, the HTTP status code in the response header is <code>201</code> Created.</p> <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a>, the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>, and the existing playlist is unmodified. Trying to set an item when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-reorder-or-replace-playlists-tracks">Reorder or Replace a Playlist's Items</a>
-     */
-    @PUT("/playlists/{playlist_id}/tracks")
-    Call<SnapshotId> reorderOrReplacePlaylistsTracks(@Path("playlist_id") String playlist_id, @Query("uris") String uris, @Body ReorderOrReplacePlaylistsTracksRequest requestBody);
+    Call<Void> replacePlaylistsTracks(@Path("playlist_id") String playlist_id, @Body ReplacePlaylistsTracksRequest requestBody);
 
     /**
      * <h3>Upload a Custom Playlist Cover Image</h3>

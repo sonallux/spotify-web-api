@@ -1,8 +1,11 @@
 package de.jsone_studios.spotify.api.apis;
 
-import de.jsone_studios.spotify.api.models.*;
+import de.jsone_studios.spotify.api.models.Artist;
+import de.jsone_studios.spotify.api.models.Paging;
+import de.jsone_studios.spotify.api.models.Track;
 import retrofit2.Call;
-import retrofit2.http.*;
+import retrofit2.http.GET;
+import retrofit2.http.QueryMap;
 
 /**
  * <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#category-personalization">Personalization API</a>
@@ -15,7 +18,7 @@ public interface PersonalizationApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-top-read</code>
      * 
-     * @return <p>On success, the HTTP status code in the response header is 200 OK and the response body contains a paging object of Artists. On error, the header status code is an error code and the response body contains an error object.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200 OK</code> and the response body contains a <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object">paging object</a> of <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full">Artists</a>. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-users-top-artists-and-tracks">Get a User's Top Artists</a>
      */
     @GET("/me/top/artists")
@@ -28,7 +31,7 @@ public interface PersonalizationApi {
      * <code>user-top-read</code>
      * 
      * @param queryParameters <p>A map of optional query parameters</p>
-     * @return <p>On success, the HTTP status code in the response header is 200 OK and the response body contains a paging object of Artists. On error, the header status code is an error code and the response body contains an error object.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200 OK</code> and the response body contains a <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object">paging object</a> of <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full">Artists</a>. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-users-top-artists-and-tracks">Get a User's Top Artists</a>
      */
     @GET("/me/top/artists")
@@ -40,7 +43,7 @@ public interface PersonalizationApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-top-read</code>
      * 
-     * @return <p>On success, the HTTP status code in the response header is 200 OK and the response body contains a paging object of Tracks. On error, the header status code is an error code and the response body contains an error object.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200 OK</code> and the response body contains a <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object">paging object</a> of <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full">Tracks</a>. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-users-top-artists-and-tracks">Get a User's Top Tracks</a>
      */
     @GET("/me/top/tracks")
@@ -53,7 +56,7 @@ public interface PersonalizationApi {
      * <code>user-top-read</code>
      * 
      * @param queryParameters <p>A map of optional query parameters</p>
-     * @return <p>On success, the HTTP status code in the response header is 200 OK and the response body contains a paging object of Tracks. On error, the header status code is an error code and the response body contains an error object.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200 OK</code> and the response body contains a <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object">paging object</a> of <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full">Tracks</a>. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-users-top-artists-and-tracks">Get a User's Top Tracks</a>
      */
     @GET("/me/top/tracks")

@@ -5553,290 +5553,309 @@ categories:
 scopes:
   url: https://developer.spotify.com/documentation/general/guides/scopes
   scopes:
-  - id: app-remote-control
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#app-remote-control
-    description: Remote control playback of Spotify. This scope is currently available
-      to Spotify iOS and Android SDKs.
-    userDescription: Communicate with the Spotify app on your device.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/ios/
-      api: ios
-    - url: https://developer.spotify.com/documentation/android/
-      api: android
-  - id: playlist-modify-private
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#playlist-modify-private
-    description: Write access to a user's private playlists.
-    userDescription: Manage your private playlists.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/follow/follow-playlist/
-      api: web-api
-      endpoint: endpoint-follow-playlist
-    - url: https://developer.spotify.com/documentation/web-api/reference/follow/unfollow-playlist/
-      api: web-api
-      endpoint: endpoint-unfollow-playlist
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/add-tracks-to-playlist/
-      api: web-api
-      endpoint: endpoint-add-tracks-to-playlist
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/change-playlist-details/
-      api: web-api
-      endpoint: endpoint-change-playlist-details
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/create-playlist/
-      api: web-api
-      endpoint: endpoint-create-playlist
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/remove-tracks-playlist/
-      api: web-api
-      endpoint: endpoint-remove-tracks-playlist
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/reorder-playlists-tracks/
-      api: web-api
-      endpoint: endpoint-reorder-or-replace-playlists-tracks
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/replace-playlists-tracks/
-      api: web-api
-      endpoint: endpoint-reorder-or-replace-playlists-tracks
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/upload-custom-playlist-cover/
-      api: web-api
-      endpoint: endpoint-upload-custom-playlist-cover
-  - id: playlist-modify-public
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#playlist-modify-public
-    description: Write access to a user's public playlists.
-    userDescription: Manage your public playlists.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/follow/follow-playlist/
-      api: web-api
-      endpoint: endpoint-follow-playlist
-    - url: https://developer.spotify.com/documentation/web-api/reference/follow/unfollow-playlist/
-      api: web-api
-      endpoint: endpoint-unfollow-playlist
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/add-tracks-to-playlist/
-      api: web-api
-      endpoint: endpoint-add-tracks-to-playlist
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/change-playlist-details/
-      api: web-api
-      endpoint: endpoint-change-playlist-details
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/create-playlist/
-      api: web-api
-      endpoint: endpoint-create-playlist
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/remove-tracks-playlist/
-      api: web-api
-      endpoint: endpoint-remove-tracks-playlist
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/reorder-playlists-tracks/
-      api: web-api
-      endpoint: endpoint-reorder-or-replace-playlists-tracks
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/replace-playlists-tracks/
-      api: web-api
-      endpoint: endpoint-reorder-or-replace-playlists-tracks
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/upload-custom-playlist-cover/
-      api: web-api
-      endpoint: endpoint-upload-custom-playlist-cover
-  - id: playlist-read-collaborative
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#playlist-read-collaborative
-    description: Include collaborative playlists when requesting a user's playlists.
-    userDescription: Access your collaborative playlists.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/
-      api: web-api
-      endpoint: endpoint-get-a-list-of-current-users-playlists
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/get-list-users-playlists/
-      api: web-api
-      endpoint: endpoint-get-list-users-playlists
-  - id: playlist-read-private
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#playlist-read-private
-    description: Read access to user's private playlists.
-    userDescription: Access your private playlists.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/follow/check-user-following-playlist/
-      api: web-api
-      endpoint: endpoint-check-if-user-follows-playlist
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/
-      api: web-api
-      endpoint: endpoint-get-a-list-of-current-users-playlists
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/get-list-users-playlists/
-      api: web-api
-      endpoint: endpoint-get-list-users-playlists
-  - id: streaming
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#streaming
-    description: Control playback of a Spotify track. This scope is currently available
-      to the Web Playback SDK. The user must have a Spotify Premium account.
-    userDescription: Play content and control playback on your other devices.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-playback-sdk/
-      api: web-playback-sdk
-  - id: ugc-image-upload
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#ugc-image-upload
-    description: Write access to user-provided images.
-    userDescription: Upload images to Spotify on your behalf.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/playlists/upload-custom-playlist-cover/
-      api: web-api
-      endpoint: endpoint-upload-custom-playlist-cover
-  - id: user-follow-modify
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#user-follow-modify
-    description: Write/delete access to the list of artists and other users that the
-      user follows.
-    userDescription: Manage who you are following.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/follow/follow-artists-users/
-      api: web-api
-      endpoint: endpoint-follow-artists-users
-    - url: https://developer.spotify.com/documentation/web-api/reference/follow/unfollow-artists-users/
-      api: web-api
-      endpoint: endpoint-unfollow-artists-users
-  - id: user-follow-read
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#user-follow-read
-    description: Read access to the list of artists and other users that the user
-      follows.
-    userDescription: Access your followers and who you are following.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/follow/check-current-user-follows/
-      api: web-api
-      endpoint: endpoint-check-current-user-follows
-    - url: https://developer.spotify.com/documentation/web-api/reference/follow/get-followed/
-      api: web-api
-      endpoint: endpoint-get-followed
-  - id: user-library-modify
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#user-library-modify
-    description: Write/delete access to a user's "Your Music" library.
-    userDescription: Manage your saved content.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/library/remove-albums-user/
-      api: web-api
-      endpoint: endpoint-remove-albums-user
-    - url: https://developer.spotify.com/documentation/web-api/reference/library/remove-tracks-user/
-      api: web-api
-      endpoint: endpoint-remove-tracks-user
-    - url: https://developer.spotify.com/documentation/web-api/reference/library/save-albums-user/
-      api: web-api
-      endpoint: endpoint-save-albums-user
-    - url: https://developer.spotify.com/documentation/web-api/reference/library/save-tracks-user/
-      api: web-api
-      endpoint: endpoint-save-tracks-user
-  - id: user-library-read
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#user-library-read
-    description: Read access to a user's "Your Music" library.
-    userDescription: Access your saved content.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/library/check-users-saved-albums/
-      api: web-api
-      endpoint: endpoint-check-users-saved-albums
-    - url: https://developer.spotify.com/documentation/web-api/reference/library/check-users-saved-tracks/
-      api: web-api
-      endpoint: endpoint-check-users-saved-tracks
-    - url: https://developer.spotify.com/documentation/web-api/reference/library/get-users-saved-albums/
-      api: web-api
-      endpoint: endpoint-get-users-saved-albums
-    - url: https://developer.spotify.com/documentation/web-api/reference/library/get-users-saved-tracks/
-      api: web-api
-      endpoint: endpoint-get-users-saved-tracks
-  - id: user-modify-playback-state
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#user-modify-playback-state
-    description: Write access to a user’s playback state
-    userDescription: Control playback on your Spotify clients and Spotify Connect
-      devices.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/pause-a-users-playback/
-      api: web-api
-      endpoint: endpoint-pause-a-users-playback
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/seek-to-position-in-currently-playing-track/
-      api: web-api
-      endpoint: endpoint-seek-to-position-in-currently-playing-track
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/set-repeat-mode-on-users-playback/
-      api: web-api
-      endpoint: endpoint-set-repeat-mode-on-users-playback
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/set-volume-for-users-playback/
-      api: web-api
-      endpoint: endpoint-set-volume-for-users-playback
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/skip-users-playback-to-next-track/
-      api: web-api
-      endpoint: endpoint-skip-users-playback-to-next-track
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/skip-users-playback-to-previous-track/
-      api: web-api
-      endpoint: endpoint-skip-users-playback-to-previous-track
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/start-a-users-playback/
-      api: web-api
-      endpoint: endpoint-start-a-users-playback
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/toggle-shuffle-for-users-playback/
-      api: web-api
-      endpoint: endpoint-toggle-shuffle-for-users-playback
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/transfer-a-users-playback/
-      api: web-api
-      endpoint: endpoint-transfer-a-users-playback
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/seek-to-position-in-currently-playing-track/
-      api: web-api
-      endpoint: endpoint-seek-to-position-in-currently-playing-track
-  - id: user-read-currently-playing
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-currently-playing
-    description: Read access to a user’s currently playing content.
-    userDescription: Read your currently playing content.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/get-the-users-currently-playing-track/
-      api: web-api
-      endpoint: endpoint-get-the-users-currently-playing-track
-  - id: user-read-email
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-email
-    description: Read access to user’s email address.
-    userDescription: Get your real email address.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/users-profile/get-current-users-profile/
-      api: web-api
-      endpoint: endpoint-get-current-users-profile
-  - id: user-read-playback-position
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-playback-position
-    description: Read access to a user’s playback position in a content.
-    userDescription: Read your position in content you have played.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/episodes/get-an-episode/
-      api: web-api
-      endpoint: endpoint-get-an-episode
-    - url: https://developer.spotify.com/documentation/web-api/reference/episodes/get-several-episodes/
-      api: web-api
-      endpoint: endpoint-get-multiple-episodes
-    - url: https://developer.spotify.com/documentation/web-api/reference/shows/get-a-show/
-      api: web-api
-      endpoint: endpoint-get-a-show
-    - url: https://developer.spotify.com/documentation/web-api/reference/shows/get-several-shows/
-      api: web-api
-      endpoint: endpoint-get-multiple-shows
-    - url: https://developer.spotify.com/documentation/web-api/reference/shows/get-shows-episodes/
-      api: web-api
-      endpoint: endpoint-get-a-shows-episodes
-  - id: user-read-playback-state
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-playback-state
-    description: Read access to a user’s player state.
-    userDescription: Read your currently playing content and Spotify Connect devices
-      information.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/get-a-users-available-devices/
-      api: web-api
-      endpoint: endpoint-get-a-users-available-devices
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback/
-      api: web-api
-      endpoint: endpoint-get-information-about-the-users-current-playback
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/get-the-users-currently-playing-track/
-      api: web-api
-      endpoint: endpoint-get-the-users-currently-playing-track
-  - id: user-read-private
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-private
-    description: Read access to user’s subscription details (type of user account).
-    userDescription: Access your subscription details.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/search/search/
-      api: web-api
-      endpoint: endpoint-search
-    - url: https://developer.spotify.com/documentation/web-api/reference/users-profile/get-current-users-profile/
-      api: web-api
-      endpoint: endpoint-get-current-users-profile
-  - id: user-read-recently-played
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-recently-played
-    description: Read access to a user’s recently played tracks.
-    userDescription: Access your recently played items.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/player/get-recently-played/
-      api: web-api
-      endpoint: endpoint-get-recently-played
-  - id: user-top-read
-    link: https://developer.spotify.com/documentation/general/guides/scopes/#user-top-read
-    description: Read access to a user's top artists and tracks.
-    userDescription: Read your top artists and content.
-    endpoints:
-    - url: https://developer.spotify.com/documentation/web-api/reference/personalization/get-users-top-artists-and-tracks/
-      api: web-api
-      endpoint: endpoint-get-users-top-artists-and-tracks
+    app-remote-control:
+      id: app-remote-control
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#app-remote-control
+      description: Remote control playback of Spotify. This scope is currently available
+        to Spotify iOS and Android SDKs.
+      userDescription: Communicate with the Spotify app on your device.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/ios/
+        api: ios
+      - url: https://developer.spotify.com/documentation/android/
+        api: android
+    playlist-modify-private:
+      id: playlist-modify-private
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#playlist-modify-private
+      description: Write access to a user's private playlists.
+      userDescription: Manage your private playlists.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/follow/follow-playlist/
+        api: web-api
+        endpoint: endpoint-follow-playlist
+      - url: https://developer.spotify.com/documentation/web-api/reference/follow/unfollow-playlist/
+        api: web-api
+        endpoint: endpoint-unfollow-playlist
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/add-tracks-to-playlist/
+        api: web-api
+        endpoint: endpoint-add-tracks-to-playlist
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/change-playlist-details/
+        api: web-api
+        endpoint: endpoint-change-playlist-details
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/create-playlist/
+        api: web-api
+        endpoint: endpoint-create-playlist
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/remove-tracks-playlist/
+        api: web-api
+        endpoint: endpoint-remove-tracks-playlist
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/reorder-playlists-tracks/
+        api: web-api
+        endpoint: endpoint-reorder-or-replace-playlists-tracks
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/replace-playlists-tracks/
+        api: web-api
+        endpoint: endpoint-reorder-or-replace-playlists-tracks
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/upload-custom-playlist-cover/
+        api: web-api
+        endpoint: endpoint-upload-custom-playlist-cover
+    playlist-modify-public:
+      id: playlist-modify-public
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#playlist-modify-public
+      description: Write access to a user's public playlists.
+      userDescription: Manage your public playlists.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/follow/follow-playlist/
+        api: web-api
+        endpoint: endpoint-follow-playlist
+      - url: https://developer.spotify.com/documentation/web-api/reference/follow/unfollow-playlist/
+        api: web-api
+        endpoint: endpoint-unfollow-playlist
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/add-tracks-to-playlist/
+        api: web-api
+        endpoint: endpoint-add-tracks-to-playlist
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/change-playlist-details/
+        api: web-api
+        endpoint: endpoint-change-playlist-details
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/create-playlist/
+        api: web-api
+        endpoint: endpoint-create-playlist
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/remove-tracks-playlist/
+        api: web-api
+        endpoint: endpoint-remove-tracks-playlist
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/reorder-playlists-tracks/
+        api: web-api
+        endpoint: endpoint-reorder-or-replace-playlists-tracks
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/replace-playlists-tracks/
+        api: web-api
+        endpoint: endpoint-reorder-or-replace-playlists-tracks
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/upload-custom-playlist-cover/
+        api: web-api
+        endpoint: endpoint-upload-custom-playlist-cover
+    playlist-read-collaborative:
+      id: playlist-read-collaborative
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#playlist-read-collaborative
+      description: Include collaborative playlists when requesting a user's playlists.
+      userDescription: Access your collaborative playlists.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/
+        api: web-api
+        endpoint: endpoint-get-a-list-of-current-users-playlists
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/get-list-users-playlists/
+        api: web-api
+        endpoint: endpoint-get-list-users-playlists
+    playlist-read-private:
+      id: playlist-read-private
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#playlist-read-private
+      description: Read access to user's private playlists.
+      userDescription: Access your private playlists.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/follow/check-user-following-playlist/
+        api: web-api
+        endpoint: endpoint-check-if-user-follows-playlist
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/
+        api: web-api
+        endpoint: endpoint-get-a-list-of-current-users-playlists
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/get-list-users-playlists/
+        api: web-api
+        endpoint: endpoint-get-list-users-playlists
+    streaming:
+      id: streaming
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#streaming
+      description: Control playback of a Spotify track. This scope is currently available
+        to the Web Playback SDK. The user must have a Spotify Premium account.
+      userDescription: Play content and control playback on your other devices.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-playback-sdk/
+        api: web-playback-sdk
+    ugc-image-upload:
+      id: ugc-image-upload
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#ugc-image-upload
+      description: Write access to user-provided images.
+      userDescription: Upload images to Spotify on your behalf.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/upload-custom-playlist-cover/
+        api: web-api
+        endpoint: endpoint-upload-custom-playlist-cover
+    user-follow-modify:
+      id: user-follow-modify
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#user-follow-modify
+      description: Write/delete access to the list of artists and other users that
+        the user follows.
+      userDescription: Manage who you are following.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/follow/follow-artists-users/
+        api: web-api
+        endpoint: endpoint-follow-artists-users
+      - url: https://developer.spotify.com/documentation/web-api/reference/follow/unfollow-artists-users/
+        api: web-api
+        endpoint: endpoint-unfollow-artists-users
+    user-follow-read:
+      id: user-follow-read
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#user-follow-read
+      description: Read access to the list of artists and other users that the user
+        follows.
+      userDescription: Access your followers and who you are following.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/follow/check-current-user-follows/
+        api: web-api
+        endpoint: endpoint-check-current-user-follows
+      - url: https://developer.spotify.com/documentation/web-api/reference/follow/get-followed/
+        api: web-api
+        endpoint: endpoint-get-followed
+    user-library-modify:
+      id: user-library-modify
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#user-library-modify
+      description: Write/delete access to a user's "Your Music" library.
+      userDescription: Manage your saved content.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/library/remove-albums-user/
+        api: web-api
+        endpoint: endpoint-remove-albums-user
+      - url: https://developer.spotify.com/documentation/web-api/reference/library/remove-tracks-user/
+        api: web-api
+        endpoint: endpoint-remove-tracks-user
+      - url: https://developer.spotify.com/documentation/web-api/reference/library/save-albums-user/
+        api: web-api
+        endpoint: endpoint-save-albums-user
+      - url: https://developer.spotify.com/documentation/web-api/reference/library/save-tracks-user/
+        api: web-api
+        endpoint: endpoint-save-tracks-user
+    user-library-read:
+      id: user-library-read
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#user-library-read
+      description: Read access to a user's "Your Music" library.
+      userDescription: Access your saved content.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/library/check-users-saved-albums/
+        api: web-api
+        endpoint: endpoint-check-users-saved-albums
+      - url: https://developer.spotify.com/documentation/web-api/reference/library/check-users-saved-tracks/
+        api: web-api
+        endpoint: endpoint-check-users-saved-tracks
+      - url: https://developer.spotify.com/documentation/web-api/reference/library/get-users-saved-albums/
+        api: web-api
+        endpoint: endpoint-get-users-saved-albums
+      - url: https://developer.spotify.com/documentation/web-api/reference/library/get-users-saved-tracks/
+        api: web-api
+        endpoint: endpoint-get-users-saved-tracks
+    user-modify-playback-state:
+      id: user-modify-playback-state
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#user-modify-playback-state
+      description: Write access to a user’s playback state
+      userDescription: Control playback on your Spotify clients and Spotify Connect
+        devices.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/pause-a-users-playback/
+        api: web-api
+        endpoint: endpoint-pause-a-users-playback
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/seek-to-position-in-currently-playing-track/
+        api: web-api
+        endpoint: endpoint-seek-to-position-in-currently-playing-track
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/set-repeat-mode-on-users-playback/
+        api: web-api
+        endpoint: endpoint-set-repeat-mode-on-users-playback
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/set-volume-for-users-playback/
+        api: web-api
+        endpoint: endpoint-set-volume-for-users-playback
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/skip-users-playback-to-next-track/
+        api: web-api
+        endpoint: endpoint-skip-users-playback-to-next-track
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/skip-users-playback-to-previous-track/
+        api: web-api
+        endpoint: endpoint-skip-users-playback-to-previous-track
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/start-a-users-playback/
+        api: web-api
+        endpoint: endpoint-start-a-users-playback
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/toggle-shuffle-for-users-playback/
+        api: web-api
+        endpoint: endpoint-toggle-shuffle-for-users-playback
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/transfer-a-users-playback/
+        api: web-api
+        endpoint: endpoint-transfer-a-users-playback
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/seek-to-position-in-currently-playing-track/
+        api: web-api
+        endpoint: endpoint-seek-to-position-in-currently-playing-track
+    user-read-currently-playing:
+      id: user-read-currently-playing
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-currently-playing
+      description: Read access to a user’s currently playing content.
+      userDescription: Read your currently playing content.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/get-the-users-currently-playing-track/
+        api: web-api
+        endpoint: endpoint-get-the-users-currently-playing-track
+    user-read-email:
+      id: user-read-email
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-email
+      description: Read access to user’s email address.
+      userDescription: Get your real email address.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/users-profile/get-current-users-profile/
+        api: web-api
+        endpoint: endpoint-get-current-users-profile
+    user-read-playback-position:
+      id: user-read-playback-position
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-playback-position
+      description: Read access to a user’s playback position in a content.
+      userDescription: Read your position in content you have played.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/episodes/get-an-episode/
+        api: web-api
+        endpoint: endpoint-get-an-episode
+      - url: https://developer.spotify.com/documentation/web-api/reference/episodes/get-several-episodes/
+        api: web-api
+        endpoint: endpoint-get-multiple-episodes
+      - url: https://developer.spotify.com/documentation/web-api/reference/shows/get-a-show/
+        api: web-api
+        endpoint: endpoint-get-a-show
+      - url: https://developer.spotify.com/documentation/web-api/reference/shows/get-several-shows/
+        api: web-api
+        endpoint: endpoint-get-multiple-shows
+      - url: https://developer.spotify.com/documentation/web-api/reference/shows/get-shows-episodes/
+        api: web-api
+        endpoint: endpoint-get-a-shows-episodes
+    user-read-playback-state:
+      id: user-read-playback-state
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-playback-state
+      description: Read access to a user’s player state.
+      userDescription: Read your currently playing content and Spotify Connect devices
+        information.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/get-a-users-available-devices/
+        api: web-api
+        endpoint: endpoint-get-a-users-available-devices
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback/
+        api: web-api
+        endpoint: endpoint-get-information-about-the-users-current-playback
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/get-the-users-currently-playing-track/
+        api: web-api
+        endpoint: endpoint-get-the-users-currently-playing-track
+    user-read-private:
+      id: user-read-private
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-private
+      description: Read access to user’s subscription details (type of user account).
+      userDescription: Access your subscription details.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/search/search/
+        api: web-api
+        endpoint: endpoint-search
+      - url: https://developer.spotify.com/documentation/web-api/reference/users-profile/get-current-users-profile/
+        api: web-api
+        endpoint: endpoint-get-current-users-profile
+    user-read-recently-played:
+      id: user-read-recently-played
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-recently-played
+      description: Read access to a user’s recently played tracks.
+      userDescription: Access your recently played items.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/player/get-recently-played/
+        api: web-api
+        endpoint: endpoint-get-recently-played
+    user-top-read:
+      id: user-top-read
+      link: https://developer.spotify.com/documentation/general/guides/scopes/#user-top-read
+      description: Read access to a user's top artists and tracks.
+      userDescription: Read your top artists and content.
+      endpoints:
+      - url: https://developer.spotify.com/documentation/web-api/reference/personalization/get-users-top-artists-and-tracks/
+        api: web-api
+        endpoint: endpoint-get-users-top-artists-and-tracks

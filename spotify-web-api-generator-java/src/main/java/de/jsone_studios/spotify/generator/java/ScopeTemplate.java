@@ -27,7 +27,7 @@ public class ScopeTemplate extends AbstractTemplate<SpotifyScopes> {
     @Override
     Map<String, Object> buildContext(SpotifyScopes spotifyScopes, Map<String, Object> context) {
         context.put("url", spotifyScopes.getUrl());
-        var scopes = spotifyScopes.getScopes().stream()
+        var scopes = spotifyScopes.getScopeList().stream()
                 .map(scope -> new HashMap<>(Map.of(
                         "name", scope.getId(),
                         "enumName", CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, scope.getId()),
