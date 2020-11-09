@@ -63,7 +63,7 @@ public class OpenApiGenerator {
 
     private SecurityScheme getSpotifySecurityScheme(SpotifyScopes scopes) {
         var openApiScopes = new Scopes();
-        openApiScopes.putAll(scopes.getScopes().stream().collect(Collectors
+        openApiScopes.putAll(scopes.getScopeList().stream().collect(Collectors
                 .toMap(SpotifyScope::getId, SpotifyScope::getDescription)));
 
         return new SecurityScheme()
