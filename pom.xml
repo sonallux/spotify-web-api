@@ -59,7 +59,7 @@
 
         <!-- Dependencies -->
         <lombok.version>1.18.16</lombok.version>
-        <jackson.version>2.11.3</jackson.version>
+        <jackson.version>2.12.0</jackson.version>
         <slf4j-simple.version>1.7.30</slf4j-simple.version>
         <guava.version>29.0-jre</guava.version>
         <picocli.version>4.5.2</picocli.version>
