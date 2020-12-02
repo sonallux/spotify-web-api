@@ -7,7 +7,7 @@ updates:
       time: '01:00'
     open-pull-requests-limit: 10
     reviewers:
-      - jsone-studios
+      - sonallux
     ignore:
       - dependency-name: 'com.squareup.okhttp3:mockwebserver'
         versions: ['[4.0,)']

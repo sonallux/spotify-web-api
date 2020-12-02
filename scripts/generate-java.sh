@@ -5,7 +5,7 @@
 
 API_DOCUMENTATION_FILE=./spotify-web-api-parser/api-documentation.yaml
 OUTPUT_FOLDER=./spotify-web-api-java/src/main/generated/
-JAVA_PACKAGE_NAME="de.jsone_studios.spotify.api"
+JAVA_PACKAGE_NAME="de.sonallux.spotify.api"
 
 # Find a '*.cli-jar'
 cliJarFile=$(find ./spotify-web-api-generator-java/target -maxdepth 1 -type f -name "*-cli.jar" -print -quit)

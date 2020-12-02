@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>de.jsone-studios</groupId>
+        <groupId>de.sonallux</groupId>
         <artifactId>spotify-web-api-parent</artifactId>
         <version>2.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -17,7 +17,7 @@
 
     <name>spotify-web-api-java</name>
     <description>A Java wrapper for Spotify's Web API using Retrofit</description>
-    <url>https://github.com/jsone-studios/spotify-web-api</url>
+    <url>https://github.com/sonallux/spotify-web-api</url>
 
     <properties>
         <retrofit.version>2.9.0</retrofit.version>

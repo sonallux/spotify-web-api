@@ -43,6 +43,6 @@ jobs:
           base: master
           title: 'Update web API documentation'
           body: 'Automated Spotify web API documentation update from
-            [actions run](https://github.com/jsone-studios/spotify-web-api/actions/runs/${{ github.run_id }})'
+            [actions run](https://github.com/sonallux/spotify-web-api/actions/runs/${{ github.run_id }})'
       - name: Check outputs
         run: echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"

@@ -1,0 +1,137 @@
+package de.sonallux.spotify.core;
+
+import de.sonallux.spotify.core.model.SpotifyApiDocumentation;
+import de.sonallux.spotify.core.model.SpotifyApiEndpoint;
+import de.sonallux.spotify.core.model.SpotifyScope;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+public class EndpointSplitter {
+
+    public static void splitEndpoints(SpotifyApiDocumentation apiDocumentation) throws IllegalArgumentException {
+        splitUsersTopArtistsAndTracksEndpoint(apiDocumentation);
+        splitReorderOrReplacePlaylistsTracksEndpoint(apiDocumentation);
+    }
+
+    public static void splitUsersTopArtistsAndTracksEndpoint(SpotifyApiDocumentation apiDocumentation) throws IllegalArgumentException {
+        var category = apiDocumentation.getCategory("category-personalization")
+                .orElseThrow(() -> new IllegalArgumentException("Can not find category-personalization"));
+
+        var topArtistsAndTracks = category.getEndpoint("endpoint-get-users-top-artists-and-tracks")
+                .orElseThrow(() -> new IllegalArgumentException("Can not find endpoint-get-users-top-artists-and-tracks"));
+
+        var parameters = new ArrayList<>(topArtistsAndTracks.getParameters());
+        parameters.removeIf(p -> "type".equals(p.getName()));
+
+        var responseDescriptionArtists = "On success, the HTTP status code in the response header" +
+                " is `200 OK` and the response body contains a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object)" +
+                " of [Artists](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full)." +
+                " On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)" +
+                " and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).";
+
+        var responseDescriptionTracks = "On success, the HTTP status code in the response header" +
+                " is `200 OK` and the response body contains a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object)" +
+                " of [Tracks](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full)." +
+                " On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)" +
+                " and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).";
+
+        var topArtists = new SpotifyApiEndpoint(
+                "endpoint-get-users-top-artists",
+                "Get a User's Top Artists",
+                topArtistsAndTracks.getLink(),
+                "Get the current user’s top artists based on calculated affinity.",
+                "GET",
+                "/me/top/artists",
+                parameters,
+                responseDescriptionArtists,
+                topArtistsAndTracks.getScopes(),
+                topArtistsAndTracks.getNotes(),
+                List.of(new SpotifyApiEndpoint.ResponseType("PagingObject[ArtistObject]", 200, null))
+        );
+        var topTracks = new SpotifyApiEndpoint(
+                "endpoint-get-users-top-tracks",
+                "Get a User's Top Tracks",
+                topArtistsAndTracks.getLink(),
+                "Get the current user’s top tracks based on calculated affinity.",
+                "GET",
+                "/me/top/tracks",
+                parameters,
+                responseDescriptionTracks,
+                topArtistsAndTracks.getScopes(),
+                topArtistsAndTracks.getNotes(),
+                List.of(new SpotifyApiEndpoint.ResponseType("PagingObject[TrackObject]", 200, null))
+        );
+
+        category.getEndpoints().remove(topArtistsAndTracks.getId());
+        category.getEndpoints().put(topArtists.getId(), topArtists);
+        category.getEndpoints().put(topTracks.getId(), topTracks);
+
+        topArtistsAndTracks.getScopes().stream()
+                .map(apiDocumentation.getScopes()::getScope)
+                .filter(Optional::isPresent)
+                .forEach(scope -> {
+                    scope.get().getEndpoints().removeIf(e -> topArtistsAndTracks.getId().equals(e.getEndpoint()));
+                    scope.get().getEndpoints().add(new SpotifyScope.EndpointLink(topArtistsAndTracks.getLink(), "web-api", topArtists.getId()));
+                    scope.get().getEndpoints().add(new SpotifyScope.EndpointLink(topArtistsAndTracks.getLink(), "web-api", topTracks.getId()));
+                });
+    }
+
+    public static void splitReorderOrReplacePlaylistsTracksEndpoint(SpotifyApiDocumentation apiDocumentation) {
+        var category = apiDocumentation.getCategory("category-playlists")
+                .orElseThrow(() -> new IllegalArgumentException("Can not find category-playlists"));
+
+        var endpoint = category.getEndpoint("endpoint-reorder-or-replace-playlists-tracks")
+                .orElseThrow(() -> new IllegalArgumentException("Can not find endpoint-reorder-or-replace-playlists-tracks"));
+
+        var reorderParameterNames = List.of("Authorization", "Content-Type", "playlist_id", "range_start", "insert_before", "range_length", "snapshot_id");
+        var replaceParameterNames = List.of("Authorization", "Content-Type", "playlist_id", "uris");
+
+        var reorderResponseDescription = "On a successful **reorder** operation, the response" +
+                " body contains a `snapshot_id` in JSON format and the HTTP status code" +
+                " in the response header is `200` OK. The `snapshot_id` can be used to" +
+                " identify your playlist version in future requests.";
+
+        var replaceResponseDescription = "On a successful **replace** operation, the HTTP status" +
+                " code in the response header is `201` Created.";
+
+        var errorResponseDescription = "On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)," +
+                " the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)," +
+                " and the existing playlist is unmodified. Trying to set an item when you" +
+                " do not have the user's authorization returns error `403` Forbidden.";
+
+        var reorderEndpoint = new SpotifyApiEndpoint(
+                "endpoint-reorder-playlists-tracks",
+                "Reorder items in a playlist",
+                endpoint.getLink(),
+                "Reorder an item or a group of items in a playlist.",
+                endpoint.getHttpMethod(),
+                endpoint.getPath(),
+                endpoint.getParameters().stream().filter(p -> reorderParameterNames.contains(p.getName())).collect(Collectors.toList()),
+                reorderResponseDescription + "\n\n" + errorResponseDescription,
+                endpoint.getScopes(),
+                endpoint.getNotes(),
+                List.of(new SpotifyApiEndpoint.ResponseType("SnapshotIdObject", 200, null))
+        );
+
+        var replaceEndpoint = new SpotifyApiEndpoint(
+                "endpoint-replace-playlists-tracks",
+                "Replace items in a playlist",
+                endpoint.getLink(),
+                "Replace all the items in a playlist, overwriting its existing items. This powerful request can be useful for replacing items, re-ordering existing items, or clearing the playlist.",
+                endpoint.getHttpMethod(),
+                endpoint.getPath(),
+                endpoint.getParameters().stream().filter(p -> replaceParameterNames.contains(p.getName())).collect(Collectors.toList()),
+                replaceResponseDescription + "\n\n" + errorResponseDescription,
+                endpoint.getScopes(),
+                endpoint.getNotes(),
+                List.of(new SpotifyApiEndpoint.ResponseType("Void", 201, null))
+        );
+
+        category.getEndpoints().remove(endpoint.getId());
+        category.getEndpoints().put(reorderEndpoint.getId(), reorderEndpoint);
+        category.getEndpoints().put(replaceEndpoint.getId(), replaceEndpoint);
+    }
+}
