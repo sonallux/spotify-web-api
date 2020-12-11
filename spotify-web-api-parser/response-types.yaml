@@ -144,7 +144,7 @@ category-albums:
   endpoint-get-an-albums-tracks:
     md5Hash: 4f03b9714e147b208c8ba3f509c75490
     responseTypes:
-    - type: "PagingObject[TrackObject]"
+    - type: "PagingObject[SimplifiedTrackObject]"
       status: 200
   endpoint-get-an-album:
     md5Hash: 4f03b9714e147b208c8ba3f509c75490

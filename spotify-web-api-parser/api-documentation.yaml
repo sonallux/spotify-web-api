@@ -1723,7 +1723,7 @@ categories:
           \ contains an error object."
         scopes: []
         responseTypes:
-        - type: "PagingObject[TrackObject]"
+        - type: "PagingObject[SimplifiedTrackObject]"
           status: 200
       endpoint-get-multiple-albums:
         id: endpoint-get-multiple-albums

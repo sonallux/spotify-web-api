@@ -41,7 +41,7 @@ public interface AlbumsApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-albums-tracks">Get an Album's Tracks</a>
      */
     @GET("/albums/{id}/tracks")
-    Call<Paging<Track>> getAlbumsTracks(@Path("id") String id);
+    Call<Paging<SimplifiedTrack>> getAlbumsTracks(@Path("id") String id);
 
     /**
      * <h3>Get an Album's Tracks</h3>
@@ -53,7 +53,7 @@ public interface AlbumsApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-albums-tracks">Get an Album's Tracks</a>
      */
     @GET("/albums/{id}/tracks")
-    Call<Paging<Track>> getAlbumsTracks(@Path("id") String id, @QueryMap java.util.Map<String, Object> queryParameters);
+    Call<Paging<SimplifiedTrack>> getAlbumsTracks(@Path("id") String id, @QueryMap java.util.Map<String, Object> queryParameters);
 
     /**
      * <h3>Get Multiple Albums</h3>

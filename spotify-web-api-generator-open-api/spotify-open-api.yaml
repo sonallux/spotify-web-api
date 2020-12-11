@@ -187,7 +187,7 @@ paths:
                     type: array
                     description: The requested data.
                     items:
-                      $ref: '#/components/schemas/TrackObject'
+                      $ref: '#/components/schemas/SimplifiedTrackObject'
                   limit:
                     type: integer
                     description: The maximum number of items in the response (as set
