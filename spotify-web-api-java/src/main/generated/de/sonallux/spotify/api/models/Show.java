@@ -24,7 +24,7 @@ public class Show {
     /**
      * <p>A list of the show's episodes.</p>
      */
-    private java.util.List<SimplifiedEpisode> episodes;
+    private Paging<SimplifiedEpisode> episodes;
     /**
      * <p>Whether or not the show has explicit content (true = yes it does; false = no it does not OR unknown).</p>
      */

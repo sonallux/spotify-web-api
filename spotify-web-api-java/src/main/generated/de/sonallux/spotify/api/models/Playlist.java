@@ -13,6 +13,7 @@ public class Playlist {
      * <p><code>true</code> if the owner allows other users to modify the playlist.</p>
      */
     private Boolean collaborative;
+    private String description;
     /**
      * <p>Known external URLs for this playlist.</p>
      */
@@ -49,7 +50,7 @@ public class Playlist {
     /**
      * <p>A collection containing a link (<code>href</code>) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the <code>total</code> number of items in the playlist.</p>
      */
-    private Paging<java.util.Map<String, Object>> tracks;
+    private Paging<PlaylistTrack> tracks;
     /**
      * <p>The object type: &quot;playlist&quot;</p>
      */

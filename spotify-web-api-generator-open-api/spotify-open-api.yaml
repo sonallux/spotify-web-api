@@ -5309,10 +5309,41 @@ components:
         restrictions:
           $ref: '#/components/schemas/AlbumRestrictionObject'
         tracks:
-          type: array
+          type: object
+          properties:
+            href:
+              type: string
+              description: A link to the Web API endpoint returning the full result
+                of the request
+            items:
+              type: array
+              description: The requested data.
+              items:
+                $ref: '#/components/schemas/SimplifiedTrackObject'
+            limit:
+              type: integer
+              description: The maximum number of items in the response (as set in
+                the query or by default).
+              format: int32
+            next:
+              type: string
+              description: URL to the next page of items. ( `null` if none)
+            offset:
+              type: integer
+              description: The offset of the items returned (as set in the query or
+                by default)
+              format: int32
+            previous:
+              type: string
+              description: URL to the previous page of items. ( `null` if none)
+            total:
+              type: integer
+              description: The total number of items available to return.
+              format: int32
           description: The tracks of the album.
-          items:
-            $ref: '#/components/schemas/SimplifiedTrackObject'
+          externalDocs:
+            description: Find more info on the official Spotify Web API Reference
+            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
         type:
           type: string
           description: "The object type: \"album\""
@@ -5640,35 +5671,35 @@ components:
     CurrentPlaybackObject:
       type: object
       properties:
-        timestamp:
-          type: string
-          description: ""
-          format: date-time
-        device:
-          $ref: '#/components/schemas/DeviceObject'
-        progress_ms:
-          type: integer
-          description: ""
-          format: int32
-        is_playing:
-          type: boolean
-          description: ""
+        context:
+          $ref: '#/components/schemas/ContextObject'
         currently_playing_type:
           type: string
+          description: ""
+        device:
+          $ref: '#/components/schemas/DeviceObject'
+        is_playing:
+          type: boolean
           description: ""
         item:
           description: ""
           oneOf:
           - $ref: '#/components/schemas/TrackObject'
           - $ref: '#/components/schemas/EpisodeObject'
-        shuffle_state:
-          type: boolean
+        progress_ms:
+          type: integer
           description: ""
+          format: int32
         repeat_state:
           type: string
           description: ""
-        context:
-          $ref: '#/components/schemas/ContextObject'
+        shuffle_state:
+          type: boolean
+          description: ""
+        timestamp:
+          type: string
+          description: ""
+          format: date-time
     CurrentlyPlayingObject:
       type: object
       properties:
@@ -5866,14 +5897,14 @@ components:
     ErrorDetailsObject:
       type: object
       properties:
+        message:
+          type: string
+          description: A short description of the cause of the error.
         status:
           type: integer
           description: The HTTP status code that is also returned in the response
             header.
           format: int32
-        message:
-          type: string
-          description: A short description of the cause of the error.
     ErrorResponseObject:
       type: object
       properties:
@@ -6138,6 +6169,9 @@ components:
         collaborative:
           type: boolean
           description: '`true` if the owner allows other users to modify the playlist.'
+        description:
+          type: string
+          description: ""
         external_urls:
           $ref: '#/components/schemas/ExternalUrlObject'
         href:
@@ -6183,9 +6217,7 @@ components:
               type: array
               description: The requested data.
               items:
-                oneOf:
-                - $ref: '#/components/schemas/TrackObject'
-                - $ref: '#/components/schemas/EpisodeObject'
+                $ref: '#/components/schemas/PlaylistTrackObject'
             limit:
               type: integer
               description: The maximum number of items in the response (as set in
@@ -6568,7 +6600,7 @@ components:
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
             url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
-        playlist:
+        episode:
           type: object
           properties:
             href:
@@ -6579,7 +6611,7 @@ components:
               type: array
               description: The requested data.
               items:
-                $ref: '#/components/schemas/SimplifiedPlaylistObject'
+                $ref: '#/components/schemas/SimplifiedEpisodeObject'
             limit:
               type: integer
               description: The maximum number of items in the response (as set in
@@ -6604,7 +6636,7 @@ components:
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
             url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
-        track:
+        playlist:
           type: object
           properties:
             href:
@@ -6615,7 +6647,7 @@ components:
               type: array
               description: The requested data.
               items:
-                $ref: '#/components/schemas/TrackObject'
+                $ref: '#/components/schemas/SimplifiedPlaylistObject'
             limit:
               type: integer
               description: The maximum number of items in the response (as set in
@@ -6676,7 +6708,147 @@ components:
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
             url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
-        episode:
+        track:
+          type: object
+          properties:
+            href:
+              type: string
+              description: A link to the Web API endpoint returning the full result
+                of the request
+            items:
+              type: array
+              description: The requested data.
+              items:
+                $ref: '#/components/schemas/TrackObject'
+            limit:
+              type: integer
+              description: The maximum number of items in the response (as set in
+                the query or by default).
+              format: int32
+            next:
+              type: string
+              description: URL to the next page of items. ( `null` if none)
+            offset:
+              type: integer
+              description: The offset of the items returned (as set in the query or
+                by default)
+              format: int32
+            previous:
+              type: string
+              description: URL to the previous page of items. ( `null` if none)
+            total:
+              type: integer
+              description: The total number of items available to return.
+              format: int32
+          description: ""
+          externalDocs:
+            description: Find more info on the official Spotify Web API Reference
+            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+    SectionObject:
+      type: object
+      properties:
+        confidence:
+          type: number
+          description: "The confidence, from 0.0 to 1.0, of the reliability of the\
+            \ section’s \"designation\"."
+        duration:
+          type: number
+          description: The duration (in seconds) of the section.
+        key:
+          type: integer
+          description: ""
+          format: int32
+        key_confidence:
+          type: number
+          description: ""
+        loudness:
+          type: number
+          description: The overall loudness of the section in decibels (dB). Loudness
+            values are useful for comparing relative loudness of sections within tracks.
+        mode:
+          type: integer
+          description: ""
+          format: int32
+        mode_confidence:
+          type: number
+          description: ""
+        start:
+          type: number
+          description: The starting point (in seconds) of the section.
+        tempo:
+          type: number
+          description: "The overall estimated tempo of the section in beats per minute\
+            \ (BPM). In musical terminology, tempo is the speed or pace of a given\
+            \ piece and derives directly from the average beat duration."
+        tempo_confidence:
+          type: number
+          description: ""
+        time_signature:
+          type: integer
+          description: ""
+          format: int32
+        time_signature_confidence:
+          type: number
+          description: ""
+      externalDocs:
+        description: Find more info on the official Spotify Web API Reference
+        url: https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/#section-object
+    SegmentObject:
+      type: object
+      properties:
+        confidence:
+          type: number
+          description: ""
+        duration:
+          type: number
+          description: ""
+        loudness_end:
+          type: number
+          description: ""
+        loudness_max:
+          type: number
+          description: ""
+        loudness_max_time:
+          type: number
+          description: ""
+        loudness_start:
+          type: number
+          description: ""
+        pitches:
+          type: array
+          description: ""
+          items:
+            type: number
+        start:
+          type: number
+          description: ""
+        timbre:
+          type: array
+          description: ""
+          items:
+            type: number
+      externalDocs:
+        description: Find more info on the official Spotify Web API Reference
+        url: https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/#segment-object
+    ShowObject:
+      type: object
+      properties:
+        available_markets:
+          type: array
+          description: "A list of the countries in which the show can be played, identified\
+            \ by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
+            \ code."
+          items:
+            type: string
+        copyrights:
+          type: array
+          description: The copyright statements of the show.
+          items:
+            $ref: '#/components/schemas/CopyrightObject'
+        description:
+          type: string
+          description: A description of the show.
+        episodes:
           type: object
           properties:
             href:
@@ -6708,119 +6880,10 @@ components:
               type: integer
               description: The total number of items available to return.
               format: int32
-          description: ""
+          description: A list of the show's episodes.
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
             url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
-    SectionObject:
-      type: object
-      properties:
-        start:
-          type: number
-          description: The starting point (in seconds) of the section.
-        duration:
-          type: number
-          description: The duration (in seconds) of the section.
-        confidence:
-          type: number
-          description: "The confidence, from 0.0 to 1.0, of the reliability of the\
-            \ section’s \"designation\"."
-        loudness:
-          type: number
-          description: The overall loudness of the section in decibels (dB). Loudness
-            values are useful for comparing relative loudness of sections within tracks.
-        tempo:
-          type: number
-          description: "The overall estimated tempo of the section in beats per minute\
-            \ (BPM). In musical terminology, tempo is the speed or pace of a given\
-            \ piece and derives directly from the average beat duration."
-        tempo_confidence:
-          type: number
-          description: ""
-        key:
-          type: integer
-          description: ""
-          format: int32
-        key_confidence:
-          type: number
-          description: ""
-        mode:
-          type: integer
-          description: ""
-          format: int32
-        mode_confidence:
-          type: number
-          description: ""
-        time_signature:
-          type: integer
-          description: ""
-          format: int32
-        time_signature_confidence:
-          type: number
-          description: ""
-      externalDocs:
-        description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/#section-object
-    SegmentObject:
-      type: object
-      properties:
-        start:
-          type: number
-          description: ""
-        duration:
-          type: number
-          description: ""
-        confidence:
-          type: number
-          description: ""
-        loudness_start:
-          type: number
-          description: ""
-        loudness_max:
-          type: number
-          description: ""
-        loudness_max_time:
-          type: number
-          description: ""
-        loudness_end:
-          type: number
-          description: ""
-        pitches:
-          type: array
-          description: ""
-          items:
-            type: number
-        timbre:
-          type: array
-          description: ""
-          items:
-            type: number
-      externalDocs:
-        description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/#segment-object
-    ShowObject:
-      type: object
-      properties:
-        available_markets:
-          type: array
-          description: "A list of the countries in which the show can be played, identified\
-            \ by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ code."
-          items:
-            type: string
-        copyrights:
-          type: array
-          description: The copyright statements of the show.
-          items:
-            $ref: '#/components/schemas/CopyrightObject'
-        description:
-          type: string
-          description: A description of the show.
-        episodes:
-          type: array
-          description: A list of the show's episodes.
-          items:
-            $ref: '#/components/schemas/SimplifiedEpisodeObject'
         explicit:
           type: boolean
           description: Whether or not the show has explicit content (true = yes it
@@ -7218,16 +7281,16 @@ components:
     TimeIntervalObject:
       type: object
       properties:
-        start:
-          type: number
-          description: The starting point (in seconds) of the time interval.
-        duration:
-          type: number
-          description: The duration (in seconds) of the time interval.
         confidence:
           type: number
           description: "The confidence, from 0.0 to 1.0, of the reliability of the\
             \ interval."
+        duration:
+          type: number
+          description: The duration (in seconds) of the time interval.
+        start:
+          type: number
+          description: The starting point (in seconds) of the time interval.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
         url: https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/#time-interval-object

@@ -9,13 +9,13 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class Segment {
-    private Float start;
-    private Float duration;
     private Float confidence;
-    private Float loudness_start;
+    private Float duration;
+    private Float loudness_end;
     private Float loudness_max;
     private Float loudness_max_time;
-    private Float loudness_end;
+    private Float loudness_start;
     private java.util.List<Float> pitches;
+    private Float start;
     private java.util.List<Float> timbre;
 }

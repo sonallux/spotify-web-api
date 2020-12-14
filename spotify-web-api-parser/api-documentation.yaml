@@ -68,7 +68,7 @@ objects:
         \ See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-restriction-object)\
         \ for more details."
     - name: tracks
-      type: "Array[SimplifiedTrackObject]"
+      type: "PagingObject[SimplifiedTrackObject]"
       description: The tracks of the album.
     - name: type
       type: String
@@ -323,32 +323,32 @@ objects:
   CurrentPlaybackObject:
     name: CurrentPlaybackObject
     properties:
-    - name: timestamp
-      type: Timestamp
-      description: ""
-    - name: device
-      type: DeviceObject
-      description: ""
-    - name: progress_ms
-      type: Integer
-      description: ""
-    - name: is_playing
-      type: Boolean
+    - name: context
+      type: ContextObject
       description: ""
     - name: currently_playing_type
       type: String
       description: ""
+    - name: device
+      type: DeviceObject
+      description: ""
+    - name: is_playing
+      type: Boolean
+      description: ""
     - name: item
       type: TrackObject | EpisodeObject
       description: ""
-    - name: shuffle_state
-      type: Boolean
+    - name: progress_ms
+      type: Integer
       description: ""
     - name: repeat_state
       type: String
       description: ""
-    - name: context
-      type: ContextObject
+    - name: shuffle_state
+      type: Boolean
+      description: ""
+    - name: timestamp
+      type: Timestamp
       description: ""
   CurrentlyPlayingObject:
     name: CurrentlyPlayingObject
@@ -526,12 +526,12 @@ objects:
   ErrorDetailsObject:
     name: ErrorDetailsObject
     properties:
-    - name: status
-      type: Integer
-      description: The HTTP status code that is also returned in the response header.
     - name: message
       type: String
       description: A short description of the cause of the error.
+    - name: status
+      type: Integer
+      description: The HTTP status code that is also returned in the response header.
   ErrorResponseObject:
     name: ErrorResponseObject
     properties:
@@ -687,6 +687,9 @@ objects:
     - name: collaborative
       type: Boolean
       description: '`true` if the owner allows other users to modify the playlist.'
+    - name: description
+      type: String
+      description: ""
     - name: external_urls
       type: ExternalUrlObject
       description: Known external URLs for this playlist.
@@ -720,7 +723,7 @@ objects:
       description: The version identifier for the current playlist. Can be supplied
         in other requests to target a specific playlist version
     - name: tracks
-      type: "PagingObject[TrackObject | EpisodeObject]"
+      type: "PagingObject[PlaylistTrackObject]"
       description: "A collection containing a link (`href`) to the Web API endpoint\
         \ where full details of the playlist's tracks can be retrieved, along with\
         \ the `total` number of items in the playlist."
@@ -959,54 +962,54 @@ objects:
     - name: artist
       type: "PagingObject[ArtistObject]"
       description: ""
+    - name: episode
+      type: "PagingObject[SimplifiedEpisodeObject]"
+      description: ""
     - name: playlist
       type: "PagingObject[SimplifiedPlaylistObject]"
-      description: ""
-    - name: track
-      type: "PagingObject[TrackObject]"
       description: ""
     - name: show
       type: "PagingObject[SimplifiedShowObject]"
       description: ""
-    - name: episode
-      type: "PagingObject[SimplifiedEpisodeObject]"
+    - name: track
+      type: "PagingObject[TrackObject]"
       description: ""
   SectionObject:
     name: SectionObject
     link: https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/#section-object
     properties:
-    - name: start
-      type: Float
-      description: The starting point (in seconds) of the section.
-    - name: duration
-      type: Float
-      description: The duration (in seconds) of the section.
     - name: confidence
       type: Float
       description: "The confidence, from 0.0 to 1.0, of the reliability of the section’\
         s \"designation\"."
-    - name: loudness
+    - name: duration
       type: Float
-      description: The overall loudness of the section in decibels (dB). Loudness
-        values are useful for comparing relative loudness of sections within tracks.
-    - name: tempo
-      type: Float
-      description: "The overall estimated tempo of the section in beats per minute\
-        \ (BPM). In musical terminology, tempo is the speed or pace of a given piece\
-        \ and derives directly from the average beat duration."
-    - name: tempo_confidence
-      type: Float
-      description: ""
+      description: The duration (in seconds) of the section.
     - name: key
       type: Integer
       description: ""
     - name: key_confidence
       type: Float
       description: ""
+    - name: loudness
+      type: Float
+      description: The overall loudness of the section in decibels (dB). Loudness
+        values are useful for comparing relative loudness of sections within tracks.
     - name: mode
       type: Integer
       description: ""
     - name: mode_confidence
+      type: Float
+      description: ""
+    - name: start
+      type: Float
+      description: The starting point (in seconds) of the section.
+    - name: tempo
+      type: Float
+      description: "The overall estimated tempo of the section in beats per minute\
+        \ (BPM). In musical terminology, tempo is the speed or pace of a given piece\
+        \ and derives directly from the average beat duration."
+    - name: tempo_confidence
       type: Float
       description: ""
     - name: time_signature
@@ -1019,16 +1022,13 @@ objects:
     name: SegmentObject
     link: https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/#segment-object
     properties:
-    - name: start
+    - name: confidence
       type: Float
       description: ""
     - name: duration
       type: Float
       description: ""
-    - name: confidence
-      type: Float
-      description: ""
-    - name: loudness_start
+    - name: loudness_end
       type: Float
       description: ""
     - name: loudness_max
@@ -1037,11 +1037,14 @@ objects:
     - name: loudness_max_time
       type: Float
       description: ""
-    - name: loudness_end
+    - name: loudness_start
       type: Float
       description: ""
     - name: pitches
       type: "Array[Float]"
+      description: ""
+    - name: start
+      type: Float
       description: ""
     - name: timbre
       type: "Array[Float]"
@@ -1063,7 +1066,7 @@ objects:
       type: String
       description: A description of the show.
     - name: episodes
-      type: "Array[SimplifiedEpisodeObject]"
+      type: "PagingObject[SimplifiedEpisodeObject]"
       description: A list of the show's episodes.
     - name: explicit
       type: Boolean
@@ -1437,15 +1440,15 @@ objects:
     name: TimeIntervalObject
     link: https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/#time-interval-object
     properties:
-    - name: start
-      type: Float
-      description: The starting point (in seconds) of the time interval.
-    - name: duration
-      type: Float
-      description: The duration (in seconds) of the time interval.
     - name: confidence
       type: Float
       description: "The confidence, from 0.0 to 1.0, of the reliability of the interval."
+    - name: duration
+      type: Float
+      description: The duration (in seconds) of the time interval.
+    - name: start
+      type: Float
+      description: The starting point (in seconds) of the time interval.
   TrackObject:
     name: TrackObject
     id: object-trackobject

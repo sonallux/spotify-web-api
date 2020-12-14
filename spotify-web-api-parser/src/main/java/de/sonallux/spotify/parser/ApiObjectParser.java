@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -36,6 +37,12 @@ class ApiObjectParser {
                 objects.put(object.getName(), object);
             }
         }
+
+        // Sort object properties by name
+        for (var object : objects.values()) {
+            object.getProperties().sort(Comparator.comparing(SpotifyObject.Property::getName));
+        }
+
         return objects;
     }
 

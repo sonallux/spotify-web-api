@@ -8,8 +8,8 @@ import lombok.*;
 public class SearchResponse {
     private Paging<SimplifiedAlbum> album;
     private Paging<Artist> artist;
-    private Paging<SimplifiedPlaylist> playlist;
-    private Paging<Track> track;
-    private Paging<SimplifiedShow> show;
     private Paging<SimplifiedEpisode> episode;
+    private Paging<SimplifiedPlaylist> playlist;
+    private Paging<SimplifiedShow> show;
+    private Paging<Track> track;
 }

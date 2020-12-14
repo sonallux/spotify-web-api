@@ -69,7 +69,7 @@ export interface Album {
     /**
      * The tracks of the album.
      */
-    tracks: SimplifiedTrack[];
+    tracks: Paging<SimplifiedTrack>;
     /**
      * The object type: "album"
      */
@@ -312,15 +312,15 @@ export interface Copyright {
 }
 
 export interface CurrentPlayback {
-    timestamp: string;
-    device: Device;
-    progress_ms: number;
-    is_playing: boolean;
-    currently_playing_type: string;
-    item: Track | Episode;
-    shuffle_state: boolean;
-    repeat_state: string;
     context: Context;
+    currently_playing_type: string;
+    device: Device;
+    is_playing: boolean;
+    item: Track | Episode;
+    progress_ms: number;
+    repeat_state: string;
+    shuffle_state: boolean;
+    timestamp: string;
 }
 
 /**
@@ -525,13 +525,13 @@ export interface Episodes {
 
 export interface ErrorDetails {
     /**
-     * The HTTP status code that is also returned in the response header.
-     */
-    status: number;
-    /**
      * A short description of the cause of the error.
      */
     message: string;
+    /**
+     * The HTTP status code that is also returned in the response header.
+     */
+    status: number;
 }
 
 export interface ErrorResponse {
@@ -705,6 +705,7 @@ export interface Playlist {
      * `true` if the owner allows other users to modify the playlist.
      */
     collaborative: boolean;
+    description: string;
     /**
      * Known external URLs for this playlist.
      */
@@ -740,7 +741,7 @@ export interface Playlist {
     /**
      * A collection containing a link (`href`) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the `total` number of items in the playlist.
      */
-    tracks: Paging<Track | Episode>;
+    tracks: Paging<PlaylistTrack>;
     /**
      * The object type: "playlist"
      */
@@ -977,10 +978,10 @@ export interface SavedTrack {
 export interface SearchResponse {
     album: Paging<SimplifiedAlbum>;
     artist: Paging<Artist>;
-    playlist: Paging<SimplifiedPlaylist>;
-    track: Paging<Track>;
-    show: Paging<SimplifiedShow>;
     episode: Paging<SimplifiedEpisode>;
+    playlist: Paging<SimplifiedPlaylist>;
+    show: Paging<SimplifiedShow>;
+    track: Paging<Track>;
 }
 
 /**
@@ -988,30 +989,30 @@ export interface SearchResponse {
  */
 export interface Section {
     /**
-     * The starting point (in seconds) of the section.
-     */
-    start: number;
-    /**
-     * The duration (in seconds) of the section.
-     */
-    duration: number;
-    /**
      * The confidence, from 0.0 to 1.0, of the reliability of the section’s "designation".
      */
     confidence: number;
     /**
+     * The duration (in seconds) of the section.
+     */
+    duration: number;
+    key: number;
+    key_confidence: number;
+    /**
      * The overall loudness of the section in decibels (dB). Loudness values are useful for comparing relative loudness of sections within tracks.
      */
     loudness: number;
+    mode: number;
+    mode_confidence: number;
+    /**
+     * The starting point (in seconds) of the section.
+     */
+    start: number;
     /**
      * The overall estimated tempo of the section in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.
      */
     tempo: number;
     tempo_confidence: number;
-    key: number;
-    key_confidence: number;
-    mode: number;
-    mode_confidence: number;
     time_signature: number;
     time_signature_confidence: number;
 }
@@ -1020,14 +1021,14 @@ export interface Section {
  * https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/#segment-object
  */
 export interface Segment {
-    start: number;
-    duration: number;
     confidence: number;
-    loudness_start: number;
+    duration: number;
+    loudness_end: number;
     loudness_max: number;
     loudness_max_time: number;
-    loudness_end: number;
+    loudness_start: number;
     pitches: number[];
+    start: number;
     timbre: number[];
 }
 
@@ -1050,7 +1051,7 @@ export interface Show {
     /**
      * A list of the show's episodes.
      */
-    episodes: SimplifiedEpisode[];
+    episodes: Paging<SimplifiedEpisode>;
     /**
      * Whether or not the show has explicit content (true = yes it does; false = no it does not OR unknown).
      */
@@ -1428,17 +1429,17 @@ export interface SnapshotId {
  */
 export interface TimeInterval {
     /**
-     * The starting point (in seconds) of the time interval.
+     * The confidence, from 0.0 to 1.0, of the reliability of the interval.
      */
-    start: number;
+    confidence: number;
     /**
      * The duration (in seconds) of the time interval.
      */
     duration: number;
     /**
-     * The confidence, from 0.0 to 1.0, of the reliability of the interval.
+     * The starting point (in seconds) of the time interval.
      */
-    confidence: number;
+    start: number;
 }
 
 /**

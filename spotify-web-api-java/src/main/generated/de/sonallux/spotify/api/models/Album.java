@@ -76,7 +76,7 @@ public class Album {
     /**
      * <p>The tracks of the album.</p>
      */
-    private java.util.List<SimplifiedTrack> tracks;
+    private Paging<SimplifiedTrack> tracks;
     /**
      * <p>The object type: &quot;album&quot;</p>
      */
