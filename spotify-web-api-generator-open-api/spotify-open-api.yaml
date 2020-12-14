@@ -6173,12 +6173,45 @@ components:
           description: The version identifier for the current playlist. Can be supplied
             in other requests to target a specific playlist version
         tracks:
-          type: array
+          type: object
+          properties:
+            href:
+              type: string
+              description: A link to the Web API endpoint returning the full result
+                of the request
+            items:
+              type: array
+              description: The requested data.
+              items:
+                oneOf:
+                - $ref: '#/components/schemas/TrackObject'
+                - $ref: '#/components/schemas/EpisodeObject'
+            limit:
+              type: integer
+              description: The maximum number of items in the response (as set in
+                the query or by default).
+              format: int32
+            next:
+              type: string
+              description: URL to the next page of items. ( `null` if none)
+            offset:
+              type: integer
+              description: The offset of the items returned (as set in the query or
+                by default)
+              format: int32
+            previous:
+              type: string
+              description: URL to the previous page of items. ( `null` if none)
+            total:
+              type: integer
+              description: The total number of items available to return.
+              format: int32
           description: "A collection containing a link (`href`) to the Web API endpoint\
             \ where full details of the playlist's tracks can be retrieved, along\
             \ with the `total` number of items in the playlist."
-          items:
-            $ref: '#/components/schemas/PlaylistTrackObject'
+          externalDocs:
+            description: Find more info on the official Spotify Web API Reference
+            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
         type:
           type: string
           description: "The object type: \"playlist\""

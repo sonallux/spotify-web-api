@@ -49,7 +49,7 @@ public class Playlist {
     /**
      * <p>A collection containing a link (<code>href</code>) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the <code>total</code> number of items in the playlist.</p>
      */
-    private java.util.List<PlaylistTrack> tracks;
+    private Paging<java.util.Map<String, Object>> tracks;
     /**
      * <p>The object type: &quot;playlist&quot;</p>
      */

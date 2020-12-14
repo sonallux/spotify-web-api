@@ -740,7 +740,7 @@ export interface Playlist {
     /**
      * A collection containing a link (`href`) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the `total` number of items in the playlist.
      */
-    tracks: PlaylistTrack[];
+    tracks: Paging<Track | Episode>;
     /**
      * The object type: "playlist"
      */

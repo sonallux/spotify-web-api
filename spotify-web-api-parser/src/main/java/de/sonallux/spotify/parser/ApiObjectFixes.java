@@ -1,5 +1,6 @@
 package de.sonallux.spotify.parser;
 
+import com.vladsch.flexmark.util.format.Sort;
 import de.sonallux.spotify.core.model.SpotifyObject;
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,17 +13,30 @@ class ApiObjectFixes {
 
     static void fixApiObjects(SortedMap<String, SpotifyObject> objects) {
         fixLinkedTrackObjectReferenceInTrackObject(objects);
+        fixTracksTypeInPlaylistObject(objects);
     }
 
-    private static void fixLinkedTrackObjectReferenceInTrackObject(SortedMap<String, SpotifyObject> categories) {
-        var linkedFromProperty = categories.get("TrackObject")
+    private static void fixLinkedTrackObjectReferenceInTrackObject(SortedMap<String, SpotifyObject> objects) {
+        var linkedFromProperty = objects.get("TrackObject")
                 .getProperties().stream()
                 .filter(p -> "linked_from".equals(p.getName()) && "".equals(p.getType()))
                 .findFirst().orElse(null);
         if (linkedFromProperty == null) {
-            log.warn("TrackObject wrong type of parameter linked_from has been fixed");
+            log.warn("TrackObject wrong type of property linked_from has been fixed");
         } else {
             linkedFromProperty.setType("LinkedTrackObject");
+        }
+    }
+
+    private static void fixTracksTypeInPlaylistObject(SortedMap<String, SpotifyObject> objects) {
+        var tracksProperty = objects.get("PlaylistObject")
+            .getProperties().stream()
+            .filter(p -> "tracks".equals(p.getName()) && "Array[PlaylistTrackObject]".equals(p.getType()))
+            .findFirst().orElse(null);
+        if (tracksProperty == null) {
+            log.warn("PlaylistObject wrong type of property tracks has been fixed");
+        } else {
+            tracksProperty.setType("PagingObject[TrackObject | EpisodeObject]");
         }
     }
 
