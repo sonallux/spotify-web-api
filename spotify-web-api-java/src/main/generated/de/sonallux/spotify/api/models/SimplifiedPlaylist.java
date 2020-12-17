@@ -15,6 +15,7 @@ public class SimplifiedPlaylist {
     private String name;
     private PublicUser owner;
     @com.fasterxml.jackson.annotation.JsonProperty("public")
+    @lombok.experimental.Accessors(prefix = "_")
     private Boolean _public;
     private String snapshot_id;
     private PlaylistTracksInfo tracks;
