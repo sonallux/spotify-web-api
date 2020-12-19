@@ -1,6 +1,7 @@
 package de.sonallux.spotify.generator.openapi;
 
 import com.google.common.base.Strings;
+import de.sonallux.spotify.core.SpotifyWebApiUtils;
 import de.sonallux.spotify.core.model.*;
 import io.swagger.v3.oas.models.*;
 import io.swagger.v3.oas.models.info.Info;
@@ -15,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static de.sonallux.spotify.core.model.SpotifyApiEndpoint.ParameterLocation.BODY;
@@ -24,9 +24,6 @@ import static de.sonallux.spotify.core.model.SpotifyApiEndpoint.ParameterLocatio
 public class OpenApiGenerator {
 
     private static final String MEDIA_TYPE_JSON = "application/json";
-    private static final Pattern ARRAY_TYPE_PATTERN = Pattern.compile("^Array\\[(.+)]$");
-    private static final Pattern PAGING_OBJECT_TYPE_PATTERN = Pattern.compile("^PagingObject\\[(.+)]$");
-    private static final Pattern CURSOR_PAGING_OBJECT_TYPE_PATTERN = Pattern.compile("^CursorPagingObject\\[(.+)]$");
     private static final String SPOTIFY_SECURITY_SCHEME = "spotify_auth";
 
     //TODO: possible response status codes: https://developer.spotify.com/documentation/web-api/#response-status-codes
@@ -305,17 +302,17 @@ public class OpenApiGenerator {
             return null;
         } else if (customSchemas.containsKey(type)) {
             return new Schema().$ref("#/components/schemas/" + type);
-        } else if ((matcher = ARRAY_TYPE_PATTERN.matcher(type)).matches()) {
+        } else if ((matcher = SpotifyWebApiUtils.ARRAY_TYPE_PATTERN.matcher(type)).matches()) {
             var arrayItemSchema = getSchema(matcher.group(1), customSchemas);
             return new ArraySchema()
                     .items(arrayItemSchema);
-        } else if ((matcher = PAGING_OBJECT_TYPE_PATTERN.matcher(type)).matches()) {
+        } else if ((matcher = SpotifyWebApiUtils.PAGING_OBJECT_TYPE_PATTERN.matcher(type)).matches()) {
             var arrayItemSchema = getSchema(matcher.group(1), customSchemas);
             var pagingObjectSchema = cloneHelper.cloneSchema(customSchemas.get("PagingObject"));
             var pagingItemsSchema = (ArraySchema)pagingObjectSchema.getProperties().get("items");
             pagingItemsSchema.items(arrayItemSchema);
             return pagingObjectSchema;
-        } else if ((matcher = CURSOR_PAGING_OBJECT_TYPE_PATTERN.matcher(type)).matches()) {
+        } else if ((matcher = SpotifyWebApiUtils.CURSOR_PAGING_OBJECT_TYPE_PATTERN.matcher(type)).matches()) {
             var arrayItemSchema = getSchema(matcher.group(1), customSchemas);
             var pagingObjectSchema = cloneHelper.cloneSchema(customSchemas.get("CursorPagingObject"));
             var pagingItemsSchema = (ArraySchema)pagingObjectSchema.getProperties().get("items");
