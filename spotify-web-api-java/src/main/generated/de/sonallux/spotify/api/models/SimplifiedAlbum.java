@@ -46,6 +46,14 @@ public class SimplifiedAlbum {
      */
     private String name;
     /**
+     * <p>The date the album was first released, for example <code>1981</code>. Depending on the precision, it might be shown as <code>1981-12</code> or <code>1981-12-15</code>.</p>
+     */
+    private String release_date;
+    /**
+     * <p>The precision with which <code>release_date</code> value is known: <code>year</code> , <code>month</code> , or <code>day</code>.</p>
+     */
+    private String release_date_precision;
+    /**
      * <p>Included in the response when a content restriction is applied. See <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#album-restriction-object">Restriction Object</a> for more details.</p>
      */
     private AlbumRestriction restrictions;

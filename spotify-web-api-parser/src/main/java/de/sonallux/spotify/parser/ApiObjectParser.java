@@ -52,9 +52,22 @@ class ApiObjectParser {
         var objectName = objectHeader.text();
         var spotifyObject = new SpotifyObject(objectName, id, link);
         for (var prop : objectHeader.nextElementSibling().select("tbody > tr")) {
-            var name = prop.selectFirst("code").text();
-            var descriptionElement = prop.selectFirst("small");
-            var description = Html2Markdown.convert(descriptionElement);
+            /*
+            Properties have the following structure:
+            <tr>
+              <td>
+                <code>{name}</code>
+                <br>
+                {description}
+              </td>
+              <td>{type}</td>
+            </tr>
+             */
+            var nameElement = prop.selectFirst("code");
+            var name = nameElement.text();
+            var brElement = nameElement.nextElementSibling();
+            var descriptionElements = brElement.nextElementSiblings();
+            var description = Html2Markdown.convert(descriptionElements);
             var type = prop.child(1).text();
             var property = new SpotifyObject.Property(name, type, description);
             if (spotifyObject.getProperties().contains(property)) {

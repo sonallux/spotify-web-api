@@ -58,7 +58,7 @@ public interface PlayerApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-information-about-the-users-current-playback">Get Information About The User's Current Playback</a>
      */
     @GET("/me/player")
-    Call<CurrentPlayback> getInformationAboutUsersCurrentPlayback();
+    Call<CurrentlyPlayingContext> getInformationAboutUsersCurrentPlayback();
 
     /**
      * <h3>Get Information About The User's Current Playback</h3>
@@ -71,7 +71,7 @@ public interface PlayerApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-information-about-the-users-current-playback">Get Information About The User's Current Playback</a>
      */
     @GET("/me/player")
-    Call<CurrentPlayback> getInformationAboutUsersCurrentPlayback(@QueryMap java.util.Map<String, Object> queryParameters);
+    Call<CurrentlyPlayingContext> getInformationAboutUsersCurrentPlayback(@QueryMap java.util.Map<String, Object> queryParameters);
 
     /**
      * <h3>Get Current User's Recently Played Tracks</h3>

@@ -2,6 +2,9 @@ package de.sonallux.spotify.api.models;
 
 import lombok.*;
 
+/**
+ * <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#object-linkedtrackobject">LinkedTrackObject</a>
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,7 +18,7 @@ public class LinkedTrack {
      */
     private String href;
     /**
-     * <p>The Spotify ID for the track.</p>
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the track.</p>
      */
     private String id;
     /**
@@ -23,7 +26,7 @@ public class LinkedTrack {
      */
     private String type;
     /**
-     * <p>The Spotify URI for the track.</p>
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the track.</p>
      */
     private String uri;
 }

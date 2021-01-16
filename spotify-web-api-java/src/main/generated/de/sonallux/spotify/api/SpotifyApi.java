@@ -3,7 +3,7 @@ package de.sonallux.spotify.api;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.sonallux.spotify.api.apis.*;
-import de.sonallux.spotify.api.models.ErrorDetails;
+import de.sonallux.spotify.api.models.Error;
 import de.sonallux.spotify.api.models.ErrorResponse;
 import lombok.Getter;
 import okhttp3.HttpUrl;
@@ -101,7 +101,7 @@ public class SpotifyApi {
         throw new SpotifyApiException("Api call failed", getErrorBody(response));
     }
 
-    public ErrorDetails getErrorBody(retrofit2.Response<?> response) throws SpotifyApiException {
+    public Error getErrorBody(retrofit2.Response<?> response) throws SpotifyApiException {
         if (response.errorBody() == null) {
             throw new SpotifyApiException("Failed to get error body", getErrorDetailsFromResponse(response));
         }
@@ -116,10 +116,10 @@ public class SpotifyApi {
         throw new SpotifyApiException("Failed to parse error body", getErrorDetailsFromResponse(response));
     }
 
-    public ErrorDetails getErrorDetailsFromResponse(retrofit2.Response<?> response) {
-        ErrorDetails errorDetails = new ErrorDetails();
-        errorDetails.setStatus(response.code());
-        errorDetails.setMessage(response.message());
-        return errorDetails;
+    public Error getErrorDetailsFromResponse(retrofit2.Response<?> response) {
+        Error error = new Error();
+        error.setStatus(response.code());
+        error.setMessage(response.message());
+        return error;
     }
 }

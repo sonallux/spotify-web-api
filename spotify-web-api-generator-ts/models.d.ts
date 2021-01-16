@@ -85,7 +85,12 @@ export interface Album {
  */
 export interface AlbumRestriction {
     /**
-     * The reason for the restriction. Supported values:
+     * The reason for the restriction. Supported values:  
+     * 
+     * - `market` - The content item is not available in the given market.  
+     * - `product` - The content item is not available for the user's subscription type.  
+     * - `explicit` - The content item is explicit and the user's account is set to not play explicit content.  
+     * Additional reasons may be added in the future. **Note**: If you use this field, make sure that your application safely handles unknown values.
      */
     reason: string;
 }
@@ -300,27 +305,64 @@ export interface Context {
     uri: string;
 }
 
+/**
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-copyrightobject
+ */
 export interface Copyright {
     /**
-     * The copyright text for this album.
+     * The copyright text for this content.
      */
     text: string;
     /**
-     * The type of copyright: C = the copyright, P = the sound recording (performance) copyright.
+     * The type of copyright: `C` = the copyright, `P` = the sound recording (performance) copyright.
      */
     type: string;
 }
 
-export interface CurrentPlayback {
+/**
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-currentlyplayingcontextobject
+ */
+export interface CurrentlyPlayingContext {
+    /**
+     * Allows to update the user interface based on which playback actions are available within the current context.
+     */
+    actions: Disallows;
+    /**
+     * A Context Object. Can be `null`.
+     */
     context: Context;
+    /**
+     * The object type of the currently playing item. Can be one of `track`, `episode`, `ad` or `unknown`.
+     */
     currently_playing_type: string;
+    /**
+     * The device that is currently active.
+     */
     device: Device;
+    /**
+     * If something is currently playing, return `true`.
+     */
     is_playing: boolean;
+    /**
+     * The currently playing track or episode. Can be `null`.
+     */
     item: Track | Episode;
+    /**
+     * Progress into the currently playing track or episode. Can be `null`.
+     */
     progress_ms: number;
+    /**
+     * off, track, context
+     */
     repeat_state: string;
-    shuffle_state: boolean;
-    timestamp: string;
+    /**
+     * If shuffle is on or off.
+     */
+    shuffle_state: string;
+    /**
+     * Unix Millisecond Timestamp when data was fetched.
+     */
+    timestamp: number;
 }
 
 /**
@@ -438,6 +480,52 @@ export interface Devices {
 }
 
 /**
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-disallowsobject
+ */
+export interface Disallows {
+    /**
+     * Interrupting playback. Optional field.
+     */
+    interrupting_playback: boolean;
+    /**
+     * Pausing. Optional field.
+     */
+    pausing: boolean;
+    /**
+     * Resuming. Optional field.
+     */
+    resuming: boolean;
+    /**
+     * Seeking playback location. Optional field.
+     */
+    seeking: boolean;
+    /**
+     * Skipping to the next context. Optional field.
+     */
+    skipping_next: boolean;
+    /**
+     * Skipping to the previous context. Optional field.
+     */
+    skipping_prev: boolean;
+    /**
+     * Toggling repeat context flag. Optional field.
+     */
+    toggling_repeat_context: boolean;
+    /**
+     * Toggling repeat track flag. Optional field.
+     */
+    toggling_repeat_track: boolean;
+    /**
+     * Toggling shuffle flag. Optional field.
+     */
+    toggling_shuffle: boolean;
+    /**
+     * Transfering playback between devices. Optional field.
+     */
+    transferring_playback: boolean;
+}
+
+/**
  * https://developer.spotify.com/documentation/web-api/reference-beta/#object-episodeobject
  */
 export interface Episode {
@@ -523,19 +611,22 @@ export interface Episodes {
     episodes: Episode[];
 }
 
-export interface ErrorDetails {
+/**
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-errorobject
+ */
+export interface Error {
     /**
      * A short description of the cause of the error.
      */
     message: string;
     /**
-     * The HTTP status code that is also returned in the response header.
+     * The HTTP status code (also returned in the response header; see [Response Status Codes](https://developer.spotify.com/documentation/web-api/#response-status-codes) for more information).
      */
     status: number;
 }
 
 export interface ErrorResponse {
-    error: ErrorDetails;
+    error: Error;
 }
 
 /**
@@ -570,7 +661,14 @@ export interface ExternalId {
     upc: string;
 }
 
-export interface ExternalUrl extends Record<string, any> {
+/**
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-externalurlobject
+ */
+export interface ExternalUrl {
+    /**
+     * The [Spotify URL](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the object.
+     */
+    spotify: string;
 }
 
 export interface FeaturedPlaylist {
@@ -579,11 +677,11 @@ export interface FeaturedPlaylist {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference/object-model/#followers-object
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-followersobject
  */
 export interface Followers {
     /**
-     * A link to the Web API endpoint providing full details of the followers; null if not available. Please note that this will always be set to null, as the Web API does not support it at the moment.
+     * A link to the Web API endpoint providing full details of the followers; `null` if not available. Please note that this will always be set to null, as the Web API does not support it at the moment.
      */
     href: string;
     /**
@@ -601,11 +699,11 @@ export interface GenreSeeds {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference/object-model/#image-object
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-imageobject
  */
 export interface Image {
     /**
-     * The image height in pixels. If unknown: null or not returned.
+     * The image height in pixels. If unknown: `null` or not returned.
      */
     height: number;
     /**
@@ -613,11 +711,14 @@ export interface Image {
      */
     url: string;
     /**
-     * The image width in pixels. If unknown: null or not returned.
+     * The image width in pixels. If unknown: `null` or not returned.
      */
     width: number;
 }
 
+/**
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-linkedtrackobject
+ */
 export interface LinkedTrack {
     /**
      * Known external URLs for this track.
@@ -628,7 +729,7 @@ export interface LinkedTrack {
      */
     href: string;
     /**
-     * The Spotify ID for the track.
+     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the track.
      */
     id: string;
     /**
@@ -636,7 +737,7 @@ export interface LinkedTrack {
      */
     type: string;
     /**
-     * The Spotify URI for the track.
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the track.
      */
     uri: string;
 }
@@ -698,6 +799,41 @@ export interface PlayHistory {
 }
 
 /**
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-playererrorobject
+ */
+export interface PlayerError {
+    /**
+     * A short description of the cause of the error.
+     */
+    message: string;
+    /**
+     * - `NO_PREV_TRACK` - The command requires a previous track, but there is none in the context.
+     * - `NO_NEXT_TRACK` - The command requires a next track, but there is none in the context.
+     * - `NO_SPECIFIC_TRACK` - The requested track does not exist.
+     * - `ALREADY_PAUSED` - The command requires playback to not be paused.
+     * - `NOT_PAUSED` - The command requires playback to be paused.
+     * - `NOT_PLAYING_LOCALLY` - The command requires playback on the local device.
+     * - `NOT_PLAYING_TRACK` - The command requires that a track is currently playing.
+     * - `NOT_PLAYING_CONTEXT` - The command requires that a context is currently playing.
+     * - `ENDLESS_CONTEXT` - The shuffle command cannot be applied on an endless context.
+     * - `CONTEXT_DISALLOW` - The command could not be performed on the context.
+     * - `ALREADY_PLAYING` - The track should not be restarted if the same track and context is already playing, and there is a resume point.
+     * - `RATE_LIMITED` - The user is rate limited due to too frequent track play, also known as cat-on-the-keyboard spamming.
+     * - `REMOTE_CONTROL_DISALLOW` - The context cannot be remote-controlled.
+     * - `DEVICE_NOT_CONTROLLABLE` - Not possible to remote control the device.
+     * - `VOLUME_CONTROL_DISALLOW` - Not possible to remote control the device's volume.
+     * - `NO_ACTIVE_DEVICE` - Requires an active device and the user has none.
+     * - `PREMIUM_REQUIRED` - The request is prohibited for non-premium users.
+     * - `UNKNOWN` - Certain actions are restricted because of unknown reasons.
+     */
+    reason: string;
+    /**
+     * The HTTP status code. Either `404 NOT FOUND` or `403 FORBIDDEN`. Also returned in the response header.
+     */
+    status: number;
+}
+
+/**
  * https://developer.spotify.com/documentation/web-api/reference-beta/#object-playlistobject
  */
 export interface Playlist {
@@ -705,11 +841,18 @@ export interface Playlist {
      * `true` if the owner allows other users to modify the playlist.
      */
     collaborative: boolean;
+    /**
+     * The playlist description. *Only returned for modified, verified playlists, otherwise* `null`.
+     */
     description: string;
     /**
      * Known external URLs for this playlist.
      */
     external_urls: ExternalUrl;
+    /**
+     * Information about the followers of the playlist.
+     */
+    followers: Followers;
     /**
      * A link to the Web API endpoint providing full details of the playlist.
      */
@@ -739,7 +882,7 @@ export interface Playlist {
      */
     snapshot_id: string;
     /**
-     * A collection containing a link (`href`) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the `total` number of items in the playlist.
+     * Information about the tracks of the playlist. Note, a track object may be `null`. This can happen if a track is no longer available.
      */
     tracks: Paging<PlaylistTrack>;
     /**
@@ -778,8 +921,17 @@ export interface PlaylistTrack {
     track: Track | Episode;
 }
 
-export interface PlaylistTracksInfo {
+/**
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-playlisttracksrefobject
+ */
+export interface PlaylistTracksRef {
+    /**
+     * A link to the Web API endpoint where full details of the playlist's tracks can be retrieved.
+     */
     href: string;
+    /**
+     * Number of tracks in the playlist.
+     */
     total: number;
 }
 
@@ -906,9 +1058,9 @@ export interface RecommendationSeed {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-recommendationsresponseobject
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-recommendationsobject
  */
-export interface RecommendationsResponse {
+export interface Recommendations {
     /**
      * An array of [recommendation seed objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#recommendations-seed-object).
      */
@@ -1147,6 +1299,14 @@ export interface SimplifiedAlbum {
      */
     name: string;
     /**
+     * The date the album was first released, for example `1981`. Depending on the precision, it might be shown as `1981-12` or `1981-12-15`.
+     */
+    release_date: string;
+    /**
+     * The precision with which `release_date` value is known: `year` , `month` , or `day`.
+     */
+    release_date_precision: string;
+    /**
      * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-restriction-object) for more details.
      */
     restrictions: AlbumRestriction;
@@ -1160,6 +1320,9 @@ export interface SimplifiedAlbum {
     uri: string;
 }
 
+/**
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedartistobject
+ */
 export interface SimplifiedArtist {
     /**
      * Known external URLs for this artist.
@@ -1170,7 +1333,7 @@ export interface SimplifiedArtist {
      */
     href: string;
     /**
-     * The Spotify ID for the artist.
+     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the artist.
      */
     id: string;
     /**
@@ -1178,11 +1341,11 @@ export interface SimplifiedArtist {
      */
     name: string;
     /**
-     * The object type: "artist"
+     * The object type: `"artist"`
      */
     type: string;
     /**
-     * The Spotify URI for the artist.
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the artist.
      */
     uri: string;
 }
@@ -1265,19 +1428,61 @@ export interface SimplifiedEpisode {
     uri: string;
 }
 
+/**
+ * https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedplaylistobject
+ */
 export interface SimplifiedPlaylist {
+    /**
+     * `true` if the owner allows other users to modify the playlist.
+     */
     collaborative: boolean;
+    /**
+     * The playlist description. *Only returned for modified, verified playlists, otherwise* `null`.
+     */
     description: string;
+    /**
+     * Known external URLs for this playlist.
+     */
     external_urls: ExternalUrl;
+    /**
+     * A link to the Web API endpoint providing full details of the playlist.
+     */
     href: string;
+    /**
+     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the playlist.
+     */
     id: string;
+    /**
+     * Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](https://developer.spotify.com/documentation/general/guides/working-with-playlists/). *Note: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day.*
+     */
     images: Image[];
+    /**
+     * The name of the playlist.
+     */
     name: string;
+    /**
+     * The user who owns the playlist
+     */
     owner: PublicUser;
+    /**
+     * The playlist's public/private status: `true` the playlist is public, `false` the playlist is private, `null` the playlist status is not relevant. For more about public/private status, see [Working with Playlists](https://developer.spotify.com/documentation/general/guides/working-with-playlists/)
+     */
     public: boolean;
+    /**
+     * The version identifier for the current playlist. Can be supplied in other requests to target a specific playlist version
+     */
     snapshot_id: string;
-    tracks: PlaylistTracksInfo;
+    /**
+     * A collection containing a link ( `href` ) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the `total` number of tracks in the playlist. Note, a track object may be `null`. This can happen if a track is no longer available.
+     */
+    tracks: PlaylistTracksRef;
+    /**
+     * The object type: "playlist"
+     */
     type: string;
+    /**
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the playlist.
+     */
     uri: string;
 }
 
@@ -1384,6 +1589,10 @@ export interface SimplifiedTrack {
      */
     id: string;
     /**
+     * Whether or not the track is from a local file.
+     */
+    is_local: boolean;
+    /**
      * Part of the response when [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/) is applied. If `true` , the track is playable in the given market. Otherwise `false`.
      */
     is_playable: boolean;
@@ -1487,6 +1696,10 @@ export interface Track {
      */
     id: string;
     /**
+     * Whether or not the track is from a local file.
+     */
+    is_local: boolean;
+    /**
      * Part of the response when [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/) is applied. If `true` , the track is playable in the given market. Otherwise `false`.
      */
     is_playable: boolean;
@@ -1531,7 +1744,12 @@ export interface Track {
  */
 export interface TrackRestriction {
     /**
-     * The reason for the restriction. Supported values:
+     * The reason for the restriction. Supported values:  
+     * 
+     * - `market` - The content item is not available in the given market.  
+     * - `product` - The content item is not available for the user's subscription type.  
+     * - `explicit` - The content item is explicit and the user's account is set to not play explicit content.  
+     * Additional reasons may be added in the future. **Note**: If you use this field, make sure that your application safely handles unknown values.
      */
     reason: string;
 }
