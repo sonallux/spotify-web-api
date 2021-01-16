@@ -1,14 +1,14 @@
 package de.sonallux.spotify.api;
 
-import de.sonallux.spotify.api.models.ErrorDetails;
+import de.sonallux.spotify.api.models.Error;
 
 import java.io.IOException;
 
 public class SpotifyApiException extends IOException {
 
-    private ErrorDetails error;
+    private Error error;
 
-    public SpotifyApiException(ErrorDetails error) {
+    public SpotifyApiException(Error error) {
         super(error.getStatus() + " " + error.getMessage());
         this.error = error;
     }
@@ -17,17 +17,17 @@ public class SpotifyApiException extends IOException {
         super(message, cause);
     }
 
-    public SpotifyApiException(String message, ErrorDetails error) {
+    public SpotifyApiException(String message, Error error) {
         super(message + ": " + error.getStatus() + " " + error.getMessage());
         this.error = error;
     }
 
-    public SpotifyApiException(String message, ErrorDetails error, Throwable cause) {
+    public SpotifyApiException(String message, Error error, Throwable cause) {
         super(message + ": " + error.getStatus() + " " + error.getMessage(), cause);
         this.error = error;
     }
 
-    public ErrorDetails getError() {
+    public Error getError() {
         return error;
     }
 }

@@ -139,7 +139,7 @@ public interface BrowseApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-recommendations">Get Recommendations</a>
      */
     @GET("/recommendations")
-    Call<RecommendationsResponse> getRecommendations(@Query("seed_artists") String seed_artists, @Query("seed_genres") String seed_genres, @Query("seed_tracks") String seed_tracks);
+    Call<Recommendations> getRecommendations(@Query("seed_artists") String seed_artists, @Query("seed_genres") String seed_genres, @Query("seed_tracks") String seed_tracks);
 
     /**
      * <h3>Get Recommendations</h3>
@@ -153,5 +153,5 @@ public interface BrowseApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-recommendations">Get Recommendations</a>
      */
     @GET("/recommendations")
-    Call<RecommendationsResponse> getRecommendations(@Query("seed_artists") String seed_artists, @Query("seed_genres") String seed_genres, @Query("seed_tracks") String seed_tracks, @QueryMap java.util.Map<String, Object> queryParameters);
+    Call<Recommendations> getRecommendations(@Query("seed_artists") String seed_artists, @Query("seed_genres") String seed_genres, @Query("seed_tracks") String seed_tracks, @QueryMap java.util.Map<String, Object> queryParameters);
 }

@@ -186,7 +186,7 @@ category-player:
   endpoint-get-information-about-the-users-current-playback:
     md5Hash: e4e9369de07ae1306ece6d9e57339d15
     responseTypes:
-    - type: CurrentPlaybackObject
+    - type: CurrentlyPlayingContextObject
       status: 200
     - type: Void
       status: 204
@@ -283,7 +283,7 @@ category-browse:
   endpoint-get-recommendations:
     md5Hash: bcf6251778f5b1c5de39cf746f4b3373
     responseTypes:
-    - type: RecommendationsResponseObject
+    - type: RecommendationsObject
       status: 200
   endpoint-get-recommendation-genres:
     md5Hash: bcf6251778f5b1c5de39cf746f4b3373

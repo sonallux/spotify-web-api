@@ -15,7 +15,6 @@ class ApiObjectFixes {
         fixTracksTypeInPlaylistObject(objects);
         fixTracksTypeInAlbumObject(objects);
         fixEpisodesTypeInShowObject(objects);
-        fixMissingDescriptionInPlaylistObject(objects);
     }
 
     private static void fixLinkedTrackObjectReferenceInTrackObject(SortedMap<String, SpotifyObject> objects) {
@@ -63,18 +62,6 @@ class ApiObjectFixes {
             log.warn("ShowObject: wrong type of property episodes has been fixed");
         } else {
             tracksProperty.setType("PagingObject[SimplifiedEpisodeObject]");
-        }
-    }
-
-    private static void fixMissingDescriptionInPlaylistObject(SortedMap<String, SpotifyObject> objects) {
-        var playlistObject = objects.get("PlaylistObject");
-        var descriptionProperty = playlistObject.getProperties().stream()
-            .filter(p -> "description".equals(p.getName()))
-            .findFirst();
-        if (descriptionProperty.isPresent()) {
-            log.warn("PlaylistObject: missing description property has been added");
-        } else {
-            playlistObject.addProperty(new SpotifyObject.Property("description", "String"));
         }
     }
 
@@ -136,52 +123,18 @@ class ApiObjectFixes {
         objects.add(new SpotifyObject("CategoriesObject")
             .addProperty(new SpotifyObject.Property("categories", "PagingObject[CategoryObject]")));
 
-        //CopyrightObject
-        objects.add(new SpotifyObject("CopyrightObject")
-            .addProperty(new SpotifyObject.Property("text", "String", "The copyright text for this album."))
-            .addProperty(new SpotifyObject.Property("type", "String", "The type of copyright: C = the copyright, P = the sound recording (performance) copyright."))
-        );
-
-        //CurrentPlaybackObject
-        objects.add(new SpotifyObject("CurrentPlaybackObject")
-            .addProperty(new SpotifyObject.Property("timestamp", "Timestamp"))
-            .addProperty(new SpotifyObject.Property("device", "DeviceObject"))
-            .addProperty(new SpotifyObject.Property("progress_ms", "Integer"))
-            .addProperty(new SpotifyObject.Property("is_playing", "Boolean"))
-            .addProperty(new SpotifyObject.Property("currently_playing_type", "String"))
-            .addProperty(new SpotifyObject.Property("item", "TrackObject | EpisodeObject"))
-            .addProperty(new SpotifyObject.Property("shuffle_state", "Boolean"))
-            .addProperty(new SpotifyObject.Property("repeat_state", "String"))
-            .addProperty(new SpotifyObject.Property("context", "ContextObject"))
-        );
-
         //EpisodesObject
         objects.add(new SpotifyObject("EpisodesObject")
             .addProperty(new SpotifyObject.Property("episodes", "Array[EpisodeObject]")));
 
-        //ErrorDetailsObject
-        objects.add(new SpotifyObject("ErrorDetailsObject")
-            .addProperty(new SpotifyObject.Property("status", "Integer", "The HTTP status code that is also returned in the response header."))
-            .addProperty(new SpotifyObject.Property("message", "String", "A short description of the cause of the error."))
-        );
-
         //ErrorResponseObject
         objects.add(new SpotifyObject("ErrorResponseObject")
-            .addProperty(new SpotifyObject.Property("error", "ErrorDetailsObject")));
-
-        //ExternalUrlObject
-        objects.add(new SpotifyObject("ExternalUrlObject"));
+            .addProperty(new SpotifyObject.Property("error", "ErrorObject")));
 
         //FeaturedPlaylistObject
         objects.add(new SpotifyObject("FeaturedPlaylistObject")
             .addProperty(new SpotifyObject.Property("message", "String"))
             .addProperty(new SpotifyObject.Property("playlists", "PagingObject[SimplifiedPlaylistObject]"))
-        );
-
-        //FollowersObject
-        objects.add(new SpotifyObject("FollowersObject", "https://developer.spotify.com/documentation/web-api/reference/object-model/#followers-object")
-            .addProperty(new SpotifyObject.Property("href", "String", "A link to the Web API endpoint providing full details of the followers; null if not available. Please note that this will always be set to null, as the Web API does not support it at the moment."))
-            .addProperty(new SpotifyObject.Property("total", "Integer", "The total number of followers."))
         );
 
         //FollowingArtistsObject
@@ -192,22 +145,6 @@ class ApiObjectFixes {
         objects.add(new SpotifyObject("GenreSeedsObject")
             .addProperty(new SpotifyObject.Property("genres", "Array[String]")));
 
-        //ImageObject
-        objects.add(new SpotifyObject("ImageObject", "https://developer.spotify.com/documentation/web-api/reference/object-model/#image-object")
-            .addProperty(new SpotifyObject.Property("height", "Integer", "The image height in pixels. If unknown: null or not returned."))
-            .addProperty(new SpotifyObject.Property("url", "String", "The source URL of the image."))
-            .addProperty(new SpotifyObject.Property("width", "Integer", "The image width in pixels. If unknown: null or not returned."))
-        );
-
-        //LinkedTrackObject
-        objects.add(new SpotifyObject("LinkedTrackObject")
-            .addProperty(new SpotifyObject.Property("external_urls", "ExternalUrlObject", "Known external URLs for this track."))
-            .addProperty(new SpotifyObject.Property("href", "String", "A link to the Web API endpoint providing full details of the track."))
-            .addProperty(new SpotifyObject.Property("id", "String", "The Spotify ID for the track."))
-            .addProperty(new SpotifyObject.Property("type", "String", "The object type: \"track\"."))
-            .addProperty(new SpotifyObject.Property("uri", "String", "The Spotify URI for the track."))
-        );
-
         //NewReleasesObject
         objects.add(new SpotifyObject("NewReleasesObject")
             //.addProperty(new SpotifyObject.Property("message", "String"))//Note: property is specified, but it is not returned
@@ -217,12 +154,6 @@ class ApiObjectFixes {
         //PlaylistPagingObject
         objects.add(new SpotifyObject("PlaylistPagingObject")
             .addProperty(new SpotifyObject.Property("playlists", "PagingObject[SimplifiedPlaylistObject]")));
-
-        //PlaylistTracksInfo
-        objects.add(new SpotifyObject("PlaylistTracksInfo")
-            .addProperty(new SpotifyObject.Property("href", "String"))
-            .addProperty(new SpotifyObject.Property("total", "Integer"))
-        );
 
         //SearchResponseObject
         objects.add(new SpotifyObject("SearchResponseObject")
@@ -237,33 +168,6 @@ class ApiObjectFixes {
         //ShowsObject
         objects.add(new SpotifyObject("ShowsObject")
             .addProperty(new SpotifyObject.Property("shows", "Array[SimplifiedShowObject]")));
-
-        //SimplifiedArtistObject
-        objects.add(new SpotifyObject("SimplifiedArtistObject")
-            .addProperty(new SpotifyObject.Property("external_urls", "ExternalUrlObject", "Known external URLs for this artist."))
-            .addProperty(new SpotifyObject.Property("href", "String", "A link to the Web API endpoint providing full details of the artist."))
-            .addProperty(new SpotifyObject.Property("id", "String", "The Spotify ID for the artist."))
-            .addProperty(new SpotifyObject.Property("name", "String", "The name of the artist."))
-            .addProperty(new SpotifyObject.Property("type", "String", "The object type: \"artist\""))
-            .addProperty(new SpotifyObject.Property("uri", "String", "The Spotify URI for the artist."))
-        );
-
-        //SimplifiedPlaylistObject
-        objects.add(new SpotifyObject("SimplifiedPlaylistObject")
-            .addProperty(new SpotifyObject.Property("collaborative", "Boolean"))
-            .addProperty(new SpotifyObject.Property("description", "String"))
-            .addProperty(new SpotifyObject.Property("external_urls", "ExternalUrlObject"))
-            .addProperty(new SpotifyObject.Property("href", "String"))
-            .addProperty(new SpotifyObject.Property("id", "String"))
-            .addProperty(new SpotifyObject.Property("images", "Array[ImageObject]"))
-            .addProperty(new SpotifyObject.Property("name", "String"))
-            .addProperty(new SpotifyObject.Property("owner", "PublicUserObject"))
-            .addProperty(new SpotifyObject.Property("public", "Boolean"))
-            .addProperty(new SpotifyObject.Property("snapshot_id", "String"))
-            .addProperty(new SpotifyObject.Property("tracks", "PlaylistTracksInfo"))
-            .addProperty(new SpotifyObject.Property("type", "String"))
-            .addProperty(new SpotifyObject.Property("uri", "String"))
-        );
 
         //SnapshotIdObject
         objects.add(new SpotifyObject("SnapshotIdObject")

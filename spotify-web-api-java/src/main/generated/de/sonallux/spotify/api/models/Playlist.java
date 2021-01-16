@@ -13,11 +13,18 @@ public class Playlist {
      * <p><code>true</code> if the owner allows other users to modify the playlist.</p>
      */
     private Boolean collaborative;
+    /**
+     * <p>The playlist description. <em>Only returned for modified, verified playlists, otherwise</em> <code>null</code>.</p>
+     */
     private String description;
     /**
      * <p>Known external URLs for this playlist.</p>
      */
     private ExternalUrl external_urls;
+    /**
+     * <p>Information about the followers of the playlist.</p>
+     */
+    private Followers followers;
     /**
      * <p>A link to the Web API endpoint providing full details of the playlist.</p>
      */
@@ -49,7 +56,7 @@ public class Playlist {
      */
     private String snapshot_id;
     /**
-     * <p>A collection containing a link (<code>href</code>) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the <code>total</code> number of items in the playlist.</p>
+     * <p>Information about the tracks of the playlist. Note, a track object may be <code>null</code>. This can happen if a track is no longer available.</p>
      */
     private Paging<PlaylistTrack> tracks;
     /**

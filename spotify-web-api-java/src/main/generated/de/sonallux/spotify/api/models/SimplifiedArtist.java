@@ -2,6 +2,9 @@ package de.sonallux.spotify.api.models;
 
 import lombok.*;
 
+/**
+ * <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedartistobject">SimplifiedArtistObject</a>
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,7 +18,7 @@ public class SimplifiedArtist {
      */
     private String href;
     /**
-     * <p>The Spotify ID for the artist.</p>
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the artist.</p>
      */
     private String id;
     /**
@@ -23,11 +26,11 @@ public class SimplifiedArtist {
      */
     private String name;
     /**
-     * <p>The object type: &quot;artist&quot;</p>
+     * <p>The object type: <code>&quot;artist&quot;</code></p>
      */
     private String type;
     /**
-     * <p>The Spotify URI for the artist.</p>
+     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the artist.</p>
      */
     private String uri;
 }

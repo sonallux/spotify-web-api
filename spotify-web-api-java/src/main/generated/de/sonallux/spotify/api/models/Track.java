@@ -50,6 +50,10 @@ public class Track {
      */
     private String id;
     /**
+     * <p>Whether or not the track is from a local file.</p>
+     */
+    private Boolean is_local;
+    /**
      * <p>Part of the response when <a href="https://developer.spotify.com/documentation/general/guides/track-relinking-guide/">Track Relinking</a> is applied. If <code>true</code> , the track is playable in the given market. Otherwise <code>false</code>.</p>
      */
     private Boolean is_playable;

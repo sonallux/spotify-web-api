@@ -99,6 +99,7 @@
                 <version>${maven-javadoc-plugin.version}</version>
                 <configuration>
                     <release>${java.version}</release>
+                    <doclint>-html</doclint>
                 </configuration>
                 <executions>
                     <execution>
