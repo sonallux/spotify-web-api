@@ -67,7 +67,7 @@
 
         <!-- Test Dependencies -->
         <junit.version>5.7.0</junit.version>
-        <mockito-junit-jupiter.version>3.7.0</mockito-junit-jupiter.version>
+        <mockito-junit-jupiter.version>3.7.7</mockito-junit-jupiter.version>
     </properties>
 
     <distributionManagement>
