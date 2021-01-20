@@ -3,7 +3,7 @@ package de.sonallux.spotify.api.models;
 import lombok.*;
 
 /**
- * <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#object-errorobject">ErrorObject</a>
+ * <a href="https://developer.spotify.com/documentation/web-api/reference/#object-errorobject">ErrorObject</a>
  */
 @Getter
 @Setter

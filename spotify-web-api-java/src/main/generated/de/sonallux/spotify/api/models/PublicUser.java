@@ -3,7 +3,7 @@ package de.sonallux.spotify.api.models;
 import lombok.*;
 
 /**
- * <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#object-publicuserobject">PublicUserObject</a>
+ * <a href="https://developer.spotify.com/documentation/web-api/reference/#object-publicuserobject">PublicUserObject</a>
  */
 @Getter
 @Setter

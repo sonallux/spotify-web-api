@@ -3,7 +3,7 @@ package de.sonallux.spotify.api.models;
 import lombok.*;
 
 /**
- * <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#object-playhistoryobject">PlayHistoryObject</a>
+ * <a href="https://developer.spotify.com/documentation/web-api/reference/#object-playhistoryobject">PlayHistoryObject</a>
  */
 @Getter
 @Setter

@@ -1,10 +1,10 @@
-apiDocumentationUrl: https://developer.spotify.com/documentation/web-api/reference-beta
+apiDocumentationUrl: https://developer.spotify.com/documentation/web-api/reference
 endpointUrl: https://api.spotify.com/v1
 objects:
   AlbumObject:
     name: AlbumObject
     id: object-albumobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-albumobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-albumobject
     properties:
     - name: album_type
       type: String
@@ -65,7 +65,7 @@ objects:
     - name: restrictions
       type: AlbumRestrictionObject
       description: "Included in the response when a content restriction is applied.\
-        \ See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-restriction-object)\
+        \ See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject)\
         \ for more details."
     - name: tracks
       type: "PagingObject[SimplifiedTrackObject]"
@@ -79,7 +79,7 @@ objects:
   AlbumRestrictionObject:
     name: AlbumRestrictionObject
     id: object-albumrestrictionobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-albumrestrictionobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject
     properties:
     - name: reason
       type: String
@@ -99,7 +99,7 @@ objects:
   ArtistObject:
     name: ArtistObject
     id: object-artistobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-artistobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-artistobject
     properties:
     - name: external_urls
       type: ExternalUrlObject
@@ -179,7 +179,7 @@ objects:
   AudioFeaturesObject:
     name: AudioFeaturesObject
     id: object-audiofeaturesobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-audiofeaturesobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-audiofeaturesobject
     properties:
     - name: acousticness
       type: Float
@@ -282,7 +282,7 @@ objects:
   CategoryObject:
     name: CategoryObject
     id: object-categoryobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-categoryobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-categoryobject
     properties:
     - name: href
       type: String
@@ -300,7 +300,7 @@ objects:
   ContextObject:
     name: ContextObject
     id: object-contextobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-contextobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-contextobject
     properties:
     - name: external_urls
       type: ExternalUrlObject
@@ -319,7 +319,7 @@ objects:
   CopyrightObject:
     name: CopyrightObject
     id: object-copyrightobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-copyrightobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-copyrightobject
     properties:
     - name: text
       type: String
@@ -331,7 +331,7 @@ objects:
   CurrentlyPlayingContextObject:
     name: CurrentlyPlayingContextObject
     id: object-currentlyplayingcontextobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-currentlyplayingcontextobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-currentlyplayingcontextobject
     properties:
     - name: actions
       type: DisallowsObject
@@ -368,7 +368,7 @@ objects:
   CurrentlyPlayingObject:
     name: CurrentlyPlayingObject
     id: object-currentlyplayingobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-currentlyplayingobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-currentlyplayingobject
     properties:
     - name: context
       type: ContextObject
@@ -392,7 +392,7 @@ objects:
   CursorObject:
     name: CursorObject
     id: object-cursorobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-cursorobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-cursorobject
     properties:
     - name: after
       type: String
@@ -400,7 +400,7 @@ objects:
   CursorPagingObject:
     name: CursorPagingObject
     id: object-cursorpagingobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-cursorpagingobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-cursorpagingobject
     properties:
     - name: cursors
       type: CursorObject
@@ -425,7 +425,7 @@ objects:
   DeviceObject:
     name: DeviceObject
     id: object-deviceobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-deviceobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-deviceobject
     properties:
     - name: id
       type: String
@@ -453,7 +453,7 @@ objects:
   DevicesObject:
     name: DevicesObject
     id: object-devicesobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-devicesobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-devicesobject
     properties:
     - name: devices
       type: "Array[DeviceObject]"
@@ -461,7 +461,7 @@ objects:
   DisallowsObject:
     name: DisallowsObject
     id: object-disallowsobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-disallowsobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-disallowsobject
     properties:
     - name: interrupting_playback
       type: Boolean
@@ -496,7 +496,7 @@ objects:
   EpisodeObject:
     name: EpisodeObject
     id: object-episodeobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-episodeobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-episodeobject
     properties:
     - name: audio_preview_url
       type: String
@@ -576,7 +576,7 @@ objects:
   ErrorObject:
     name: ErrorObject
     id: object-errorobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-errorobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-errorobject
     properties:
     - name: message
       type: String
@@ -595,7 +595,7 @@ objects:
   ExplicitContentSettingsObject:
     name: ExplicitContentSettingsObject
     id: object-explicitcontentsettingsobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-explicitcontentsettingsobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-explicitcontentsettingsobject
     properties:
     - name: filter_enabled
       type: Boolean
@@ -607,7 +607,7 @@ objects:
   ExternalIdObject:
     name: ExternalIdObject
     id: object-externalidobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-externalidobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-externalidobject
     properties:
     - name: ean
       type: String
@@ -621,7 +621,7 @@ objects:
   ExternalUrlObject:
     name: ExternalUrlObject
     id: object-externalurlobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-externalurlobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-externalurlobject
     properties:
     - name: spotify
       type: String
@@ -639,7 +639,7 @@ objects:
   FollowersObject:
     name: FollowersObject
     id: object-followersobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-followersobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-followersobject
     properties:
     - name: href
       type: String
@@ -664,7 +664,7 @@ objects:
   ImageObject:
     name: ImageObject
     id: object-imageobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-imageobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-imageobject
     properties:
     - name: height
       type: Integer
@@ -678,7 +678,7 @@ objects:
   LinkedTrackObject:
     name: LinkedTrackObject
     id: object-linkedtrackobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-linkedtrackobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-linkedtrackobject
     properties:
     - name: external_urls
       type: ExternalUrlObject
@@ -706,7 +706,7 @@ objects:
   PagingObject:
     name: PagingObject
     id: object-pagingobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
     properties:
     - name: href
       type: String
@@ -734,7 +734,7 @@ objects:
   PlayHistoryObject:
     name: PlayHistoryObject
     id: object-playhistoryobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-playhistoryobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-playhistoryobject
     properties:
     - name: context
       type: ContextObject
@@ -748,7 +748,7 @@ objects:
   PlayerErrorObject:
     name: PlayerErrorObject
     id: object-playererrorobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-playererrorobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-playererrorobject
     properties:
     - name: message
       type: String
@@ -783,7 +783,7 @@ objects:
   PlaylistObject:
     name: PlaylistObject
     id: object-playlistobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-playlistobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject
     properties:
     - name: collaborative
       type: Boolean
@@ -847,7 +847,7 @@ objects:
   PlaylistTrackObject:
     name: PlaylistTrackObject
     id: object-playlisttrackobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-playlisttrackobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-playlisttrackobject
     properties:
     - name: added_at
       type: Timestamp
@@ -867,7 +867,7 @@ objects:
   PlaylistTracksRefObject:
     name: PlaylistTracksRefObject
     id: object-playlisttracksrefobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-playlisttracksrefobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-playlisttracksrefobject
     properties:
     - name: href
       type: String
@@ -879,7 +879,7 @@ objects:
   PrivateUserObject:
     name: PrivateUserObject
     id: object-privateuserobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-privateuserobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-privateuserobject
     properties:
     - name: country
       type: String
@@ -936,7 +936,7 @@ objects:
   PublicUserObject:
     name: PublicUserObject
     id: object-publicuserobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-publicuserobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-publicuserobject
     properties:
     - name: display_name
       type: String
@@ -967,7 +967,7 @@ objects:
   RecommendationSeedObject:
     name: RecommendationSeedObject
     id: object-recommendationseedobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-recommendationseedobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-recommendationseedobject
     properties:
     - name: afterFilteringSize
       type: Integer
@@ -979,8 +979,8 @@ objects:
     - name: href
       type: String
       description: "A link to the full track or artist data for this seed. For tracks\
-        \ this will be a link to a [Track Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full).\
-        \ For artists a link to [an Artist Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full).\
+        \ this will be a link to a [Track Object](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject).\
+        \ For artists a link to [an Artist Object](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject).\
         \ For genre seeds, this value will be `null`."
     - name: id
       type: String
@@ -995,19 +995,19 @@ objects:
   RecommendationsObject:
     name: RecommendationsObject
     id: object-recommendationsobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-recommendationsobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-recommendationsobject
     properties:
     - name: seeds
       type: "Array[RecommendationSeedObject]"
-      description: "An array of [recommendation seed objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#recommendations-seed-object)."
+      description: "An array of [recommendation seed objects](https://developer.spotify.com/documentation/web-api/reference/#object-recommendationseedobject)."
     - name: tracks
       type: "Array[SimplifiedTrackObject]"
-      description: "An array of [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-simplified)\
+      description: "An array of [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject)\
         \ ordered according to the parameters supplied."
   ResumePointObject:
     name: ResumePointObject
     id: object-resumepointobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-resumepointobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-resumepointobject
     properties:
     - name: fully_played
       type: Boolean
@@ -1018,7 +1018,7 @@ objects:
   SavedAlbumObject:
     name: SavedAlbumObject
     id: object-savedalbumobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-savedalbumobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-savedalbumobject
     properties:
     - name: added_at
       type: Timestamp
@@ -1033,7 +1033,7 @@ objects:
   SavedShowObject:
     name: SavedShowObject
     id: object-savedshowobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-savedshowobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-savedshowobject
     properties:
     - name: added_at
       type: Timestamp
@@ -1048,7 +1048,7 @@ objects:
   SavedTrackObject:
     name: SavedTrackObject
     id: object-savedtrackobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-savedtrackobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-savedtrackobject
     properties:
     - name: added_at
       type: Timestamp
@@ -1159,7 +1159,7 @@ objects:
   ShowObject:
     name: ShowObject
     id: object-showobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-showobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-showobject
     properties:
     - name: available_markets
       type: "Array[String]"
@@ -1225,7 +1225,7 @@ objects:
   SimplifiedAlbumObject:
     name: SimplifiedAlbumObject
     id: object-simplifiedalbumobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedalbumobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject
     properties:
     - name: album_group
       type: String
@@ -1275,7 +1275,7 @@ objects:
     - name: restrictions
       type: AlbumRestrictionObject
       description: "Included in the response when a content restriction is applied.\
-        \ See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-restriction-object)\
+        \ See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject)\
         \ for more details."
     - name: type
       type: String
@@ -1287,7 +1287,7 @@ objects:
   SimplifiedArtistObject:
     name: SimplifiedArtistObject
     id: object-simplifiedartistobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedartistobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedartistobject
     properties:
     - name: external_urls
       type: ExternalUrlObject
@@ -1312,7 +1312,7 @@ objects:
   SimplifiedEpisodeObject:
     name: SimplifiedEpisodeObject
     id: object-simplifiedepisodeobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedepisodeobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject
     properties:
     - name: audio_preview_url
       type: String
@@ -1383,7 +1383,7 @@ objects:
   SimplifiedPlaylistObject:
     name: SimplifiedPlaylistObject
     id: object-simplifiedplaylistobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedplaylistobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject
     properties:
     - name: collaborative
       type: Boolean
@@ -1440,7 +1440,7 @@ objects:
   SimplifiedShowObject:
     name: SimplifiedShowObject
     id: object-simplifiedshowobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedshowobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedshowobject
     properties:
     - name: available_markets
       type: "Array[String]"
@@ -1497,7 +1497,7 @@ objects:
   SimplifiedTrackObject:
     name: SimplifiedTrackObject
     id: object-simplifiedtrackobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedtrackobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject
     properties:
     - name: artists
       type: "Array[SimplifiedArtistObject]"
@@ -1553,7 +1553,7 @@ objects:
     - name: restrictions
       type: TrackRestrictionObject
       description: "Included in the response when a content restriction is applied.\
-        \ See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-restriction-object)\
+        \ See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-trackrestrictionobject)\
         \ for more details."
     - name: track_number
       type: Integer
@@ -1589,7 +1589,7 @@ objects:
   TrackObject:
     name: TrackObject
     id: object-trackobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-trackobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-trackobject
     properties:
     - name: album
       type: SimplifiedAlbumObject
@@ -1665,7 +1665,7 @@ objects:
     - name: restrictions
       type: TrackRestrictionObject
       description: "Included in the response when a content restriction is applied.\
-        \ See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-restriction-object)\
+        \ See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-trackrestrictionobject)\
         \ for more details."
     - name: track_number
       type: Integer
@@ -1681,7 +1681,7 @@ objects:
   TrackRestrictionObject:
     name: TrackRestrictionObject
     id: object-trackrestrictionobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-trackrestrictionobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-trackrestrictionobject
     properties:
     - name: reason
       type: String
@@ -1701,7 +1701,7 @@ objects:
   TuneableTrackObject:
     name: TuneableTrackObject
     id: object-tuneabletrackobject
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#object-tuneabletrackobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-tuneabletrackobject
     properties:
     - name: acousticness
       type: Float
@@ -1794,12 +1794,12 @@ categories:
   category-albums:
     id: category-albums
     name: Albums API
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-albums
+    link: https://developer.spotify.com/documentation/web-api/reference/#category-albums
     endpoints:
       endpoint-get-an-album:
         id: endpoint-get-an-album
         name: Get an Album
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-album
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-album
         description: Get Spotify catalog information for a single album.
         httpMethod: GET
         path: "/albums/{id}"
@@ -1830,7 +1830,7 @@ categories:
       endpoint-get-an-albums-tracks:
         id: endpoint-get-an-albums-tracks
         name: Get an Album's Tracks
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-albums-tracks
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-albums-tracks
         description: |-
           Get Spotify catalog information about an album's tracks.
           Optional parameters can be used to limit the number of tracks returned.
@@ -1877,7 +1877,7 @@ categories:
       endpoint-get-multiple-albums:
         id: endpoint-get-multiple-albums
         name: Get Multiple Albums
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-multiple-albums
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-multiple-albums
         description: Get Spotify catalog information for multiple albums identified
           by their Spotify IDs.
         httpMethod: GET
@@ -1903,7 +1903,7 @@ categories:
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK and the response body contains an object whose key is `\"\
-          albums\"` and whose value is an array of [album objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-object-full)\
+          albums\"` and whose value is an array of [album objects](https://developer.spotify.com/documentation/web-api/reference/#object-albumobject)\
           \ in JSON format.\n\nObjects are returned in the order requested. If an\
           \ object is not found, a `null` value is returned in the appropriate position.\
           \ Duplicate `ids` in the query will result in duplicate objects in the response.\
@@ -1916,12 +1916,12 @@ categories:
   category-artists:
     id: category-artists
     name: Artists API
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-artists
+    link: https://developer.spotify.com/documentation/web-api/reference/#category-artists
     endpoints:
       endpoint-get-an-artist:
         id: endpoint-get-an-artist
         name: Get an Artist
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-artist
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-artist
         description: Get Spotify catalog information for a single artist identified
           by their unique Spotify ID.
         httpMethod: GET
@@ -1938,7 +1938,7 @@ categories:
           type: String
           required: true
         responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains an [artist object](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full)\
+          \ is `200` OK and the response body contains an [artist object](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject)\
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
         scopes: []
@@ -1948,7 +1948,7 @@ categories:
       endpoint-get-an-artists-albums:
         id: endpoint-get-an-artists-albums
         name: Get an Artist's Albums
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-artists-albums
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-artists-albums
         description: Get Spotify catalog information about an artist's albums.
         httpMethod: GET
         path: "/artists/{id}/albums"
@@ -1996,8 +1996,8 @@ categories:
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK and the response body contains an array of simplified [album\
-          \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-object-simplified)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+          \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject)\
+          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
         scopes: []
@@ -2007,7 +2007,7 @@ categories:
       endpoint-get-an-artists-related-artists:
         id: endpoint-get-an-artists-related-artists
         name: Get an Artist's Related Artists
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-artists-related-artists
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-artists-related-artists
         description: "Get Spotify catalog information about artists similar to a given\
           \ artist. Similarity is based on analysis of the Spotify community's [listening\
           \ history](http://news.spotify.com/se/2010/02/03/related-artists/)."
@@ -2027,7 +2027,7 @@ categories:
           required: true
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK and the response body contains an object whose key is `\"\
-          artists\"` and whose value is an array of up to 20 [artist objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full)\
+          artists\"` and whose value is an array of up to 20 [artist objects](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject)\
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
         scopes: []
@@ -2037,7 +2037,7 @@ categories:
       endpoint-get-an-artists-top-tracks:
         id: endpoint-get-an-artists-top-tracks
         name: Get an Artist's Top Tracks
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-artists-top-tracks
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-artists-top-tracks
         description: Get Spotify catalog information about an artist's top tracks
           by country.
         httpMethod: GET
@@ -2062,7 +2062,7 @@ categories:
           required: true
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK and the response body contains an object whose key is `\"\
-          tracks\"` and whose value is an array of up to 10 [track objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full)\
+          tracks\"` and whose value is an array of up to 10 [track objects](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)\
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
         scopes: []
@@ -2072,7 +2072,7 @@ categories:
       endpoint-get-multiple-artists:
         id: endpoint-get-multiple-artists
         name: Get Multiple Artists
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-multiple-artists
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-multiple-artists
         description: Get Spotify catalog information for several artists based on
           their Spotify IDs.
         httpMethod: GET
@@ -2091,7 +2091,7 @@ categories:
           required: true
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK and the response body contains an object whose key is `\"\
-          artists\"` and whose value is an array of [artist objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full)\
+          artists\"` and whose value is an array of [artist objects](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject)\
           \ in JSON format.\n\nObjects are returned in the order requested. If an\
           \ object is not found, a `null` value is returned in the appropriate position.\
           \ Duplicate `ids` in the query will result in duplicate objects in the response.\
@@ -2104,12 +2104,12 @@ categories:
   category-browse:
     id: category-browse
     name: Browse API
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-browse
+    link: https://developer.spotify.com/documentation/web-api/reference/#category-browse
     endpoints:
       endpoint-get-a-categories-playlists:
         id: endpoint-get-a-categories-playlists
         name: Get a Category's Playlists
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-a-categories-playlists
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-categories-playlists
         description: Get a list of Spotify playlists tagged with a particular category.
         httpMethod: GET
         path: "/browse/categories/{category_id}/playlists"
@@ -2146,8 +2146,8 @@ categories:
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK and the response body contains an array of simplified [playlist\
-          \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#playlist-object-simplified)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+          \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject)\
+          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
           \nOnce you have retrieved the list, you can use [Get a Playlist](https://developer.spotify.com/web-api/get-playlist/)\
@@ -2160,7 +2160,7 @@ categories:
       endpoint-get-a-category:
         id: endpoint-get-a-category
         name: Get a Category
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-a-category
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-category
         description: "Get a single category used to tag items in Spotify (on, for\
           \ example, the Spotify player's \"Browse\" tab)."
         httpMethod: GET
@@ -2208,7 +2208,7 @@ categories:
       endpoint-get-categories:
         id: endpoint-get-categories
         name: Get All Categories
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-categories
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-categories
         description: "Get a list of categories used to tag items in Spotify (on, for\
           \ example, the Spotify player's \"Browse\" tab)."
         httpMethod: GET
@@ -2256,7 +2256,7 @@ categories:
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK and the response body contains an object with a `categories`\
           \ field, with an array of [category objects](#categoryobject) (wrapped in\
-          \ a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+          \ a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
           \nOnce you have retrieved the list, you can use [Get a Category](https://developer.spotify.com/web-api/get-category/)\
@@ -2268,7 +2268,7 @@ categories:
       endpoint-get-featured-playlists:
         id: endpoint-get-featured-playlists
         name: Get All Featured Playlists
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-featured-playlists
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-featured-playlists
         description: "Get a list of Spotify featured playlists (shown, for example,\
           \ on a Spotify player's 'Browse' tab)."
         httpMethod: GET
@@ -2328,8 +2328,8 @@ categories:
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK and the response body contains a `message` and a `playlists`\
           \ object. The `playlists` object contains an array of simplified [playlist\
-          \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#playlist-object-simplified)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+          \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject)\
+          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
           \nOnce you have retrieved the list of playlist objects, you can use [Get\
@@ -2343,7 +2343,7 @@ categories:
       endpoint-get-new-releases:
         id: endpoint-get-new-releases
         name: Get All New Releases
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-new-releases
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-new-releases
         description: "Get a list of new album releases featured in Spotify (shown,\
           \ for example, on a Spotify player's \"Browse\" tab)."
         httpMethod: GET
@@ -2376,11 +2376,11 @@ categories:
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK and the response body contains a `message` and an`albums`\
-          \ object. The `albums` object contains an array of simplified [album objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-object-simplified)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+          \ object. The `albums` object contains an array of simplified [album objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject)\
+          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
-          \nOnce you have retrieved the list, you can use [Get an Album's Tracks](https://developer.spotify.com/documentation/web-api/reference/albums/get-albums-tracks/)\
+          \nOnce you have retrieved the list, you can use [Get an Album's Tracks](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-albums-tracks)\
           \ to drill down further.\n\nThe results are returned in an order reflected\
           \ within the Spotify clients, and therefore may not be ordered by date."
         scopes: []
@@ -2390,9 +2390,9 @@ categories:
       endpoint-get-recommendation-genres:
         id: endpoint-get-recommendation-genres
         name: Get Recommendation Genres
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-recommendation-genres
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recommendation-genres
         description: "Retrieve a list of available genres seed parameter values for\
-          \ [recommendations](https://developer.spotify.com/documentation/web-api/reference/browse/get-recommendations/)."
+          \ [recommendations](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recommendations)."
         httpMethod: GET
         path: /recommendations/available-genre-seeds
         parameters:
@@ -2411,7 +2411,7 @@ categories:
       endpoint-get-recommendations:
         id: endpoint-get-recommendations
         name: Get Recommendations
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-recommendations
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recommendations
         description: "Recommendations are generated based on the available information\
           \ for a given seed entity and matched against similar artists and tracks.\
           \ If there is sufficient information about the provided seeds, a list of\
@@ -2831,12 +2831,12 @@ categories:
   category-episodes:
     id: category-episodes
     name: Episodes API
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-episodes
+    link: https://developer.spotify.com/documentation/web-api/reference/#category-episodes
     endpoints:
       endpoint-get-an-episode:
         id: endpoint-get-an-episode
         name: Get an Episode
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-episode
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-episode
         description: |-
           Get Spotify catalog information for a single episode identified by its
           unique Spotify ID.
@@ -2869,7 +2869,7 @@ categories:
           type: String
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200`\nOK and the response body contains an [episode object](https://developer.spotify.com/documentation/web-api/reference/object-model/#episode-object-full)\n\
+          \ is `200`\nOK and the response body contains an [episode object](https://developer.spotify.com/documentation/web-api/reference/#object-episodeobject)\n\
           in JSON format.  \n\nOn error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\n\
           and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
           \  \n\nIf an episode is unavailable in the given `market` the HTTP status\
@@ -2881,7 +2881,7 @@ categories:
       endpoint-get-multiple-episodes:
         id: endpoint-get-multiple-episodes
         name: Get Multiple Episodes
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-multiple-episodes
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-multiple-episodes
         description: Get Spotify catalog information for several episodes based on
           their Spotify IDs.
         httpMethod: GET
@@ -2914,7 +2914,7 @@ categories:
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200`\nOK and the response body contains an object whose key is `episodes`\
-          \ and whose\nvalue is an array of [episode objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#episode-object-full)\n\
+          \ and whose\nvalue is an array of [episode objects](https://developer.spotify.com/documentation/web-api/reference/#object-episodeobject)\n\
           in JSON format.\n\nObjects are returned in the order requested. If an object\
           \ is not found, a `null` value is returned in the appropriate position.\n\
           Duplicate `ids` in the query will result in duplicate objects in the response.\
@@ -2928,12 +2928,12 @@ categories:
   category-follow:
     id: category-follow
     name: Follow API
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-follow
+    link: https://developer.spotify.com/documentation/web-api/reference/#category-follow
     endpoints:
       endpoint-check-current-user-follows:
         id: endpoint-check-current-user-follows
         name: Get Following State for Artists/Users
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-check-current-user-follows
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-current-user-follows
         description: Check to see if the current user is following one or more artists
           or other Spotify users.
         httpMethod: GET
@@ -2971,7 +2971,7 @@ categories:
       endpoint-check-if-user-follows-playlist:
         id: endpoint-check-if-user-follows-playlist
         name: Check if Users Follow a Playlist
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-check-if-user-follows-playlist
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-if-user-follows-playlist
         description: Check to see if one or more Spotify users are following a specified
           playlist.
         httpMethod: GET
@@ -3009,7 +3009,7 @@ categories:
       endpoint-follow-artists-users:
         id: endpoint-follow-artists-users
         name: Follow Artists or Users
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-follow-artists-users
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-follow-artists-users
         description: Add the current user as a follower of one or more artists or
           other Spotify users.
         httpMethod: PUT
@@ -3061,7 +3061,7 @@ categories:
       endpoint-follow-playlist:
         id: endpoint-follow-playlist
         name: Follow a Playlist
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-follow-playlist
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-follow-playlist
         description: Add the current user as a follower of a playlist.
         httpMethod: PUT
         path: "/playlists/{playlist_id}/followers"
@@ -3105,7 +3105,7 @@ categories:
       endpoint-get-followed:
         id: endpoint-get-followed
         name: Get User's Followed Artists
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-followed
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-followed
         description: Get the current user's followed artists.
         httpMethod: GET
         path: /me/following
@@ -3134,8 +3134,8 @@ categories:
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK and the response body contains an `artists` object.\nThe `artists`\
-          \ object in turn contains a [cursor-based paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#cursor-based-paging-object)\
-          \ of [Artists](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full).\n\
+          \ object in turn contains a [cursor-based paging object](https://developer.spotify.com/documentation/web-api/reference/#object-cursorpagingobject)\
+          \ of [Artists](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject).\n\
           On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
         scopes:
@@ -3146,7 +3146,7 @@ categories:
       endpoint-unfollow-artists-users:
         id: endpoint-unfollow-artists-users
         name: Unfollow Artists or Users
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-unfollow-artists-users
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-unfollow-artists-users
         description: Remove the current user as a follower of one or more artists
           or other Spotify users.
         httpMethod: DELETE
@@ -3198,7 +3198,7 @@ categories:
       endpoint-unfollow-playlist:
         id: endpoint-unfollow-playlist
         name: Unfollow Playlist
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-unfollow-playlist
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-unfollow-playlist
         description: Remove the current user as a follower of a playlist.
         httpMethod: DELETE
         path: "/playlists/{playlist_id}/followers"
@@ -3237,12 +3237,12 @@ categories:
   category-library:
     id: category-library
     name: Library API
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-library
+    link: https://developer.spotify.com/documentation/web-api/reference/#category-library
     endpoints:
       endpoint-check-users-saved-albums:
         id: endpoint-check-users-saved-albums
         name: Check User's Saved Albums
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-check-users-saved-albums
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-albums
         description: Check if one or more albums is already saved in the current Spotify
           user's 'Your Music' library.
         httpMethod: GET
@@ -3275,7 +3275,7 @@ categories:
       endpoint-check-users-saved-shows:
         id: endpoint-check-users-saved-shows
         name: Check User's Saved Shows
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-check-users-saved-shows
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-shows
         description: Check if one or more shows is already saved in the current Spotify
           user's library.
         httpMethod: GET
@@ -3309,7 +3309,7 @@ categories:
       endpoint-check-users-saved-tracks:
         id: endpoint-check-users-saved-tracks
         name: Check User's Saved Tracks
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-check-users-saved-tracks
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-tracks
         description: Check if one or more tracks is already saved in the current Spotify
           user's 'Your Music' library.
         httpMethod: GET
@@ -3342,7 +3342,7 @@ categories:
       endpoint-get-users-saved-albums:
         id: endpoint-get-users-saved-albums
         name: Get User's Saved Albums
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-users-saved-albums
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-albums
         description: Get a list of the albums saved in the current Spotify user's
           'Your Music' library.
         httpMethod: GET
@@ -3376,8 +3376,8 @@ categories:
           type: String
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains an array of [saved album objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#saved-album-object)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+          \ is `200` OK and the response body contains an array of [saved album objects](https://developer.spotify.com/documentation/web-api/reference/#object-savedalbumobject)\
+          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
           \ in JSON format. Each album object is accompanied by a [timestamp](https://developer.spotify.com/documentation/web-api/#timestamps)\
           \ (`added_at`) to show when it was added. There is also an **etag** in the\
           \ header that can be used in future [conditional requests](https://developer.spotify.com/documentation/web-api/#conditional-requests).\n\
@@ -3391,7 +3391,7 @@ categories:
       endpoint-get-users-saved-shows:
         id: endpoint-get-users-saved-shows
         name: Get User's Saved Shows
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-users-saved-shows
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-shows
         description: Get a list of shows saved in the current Spotify user's library.
           Optional parameters can be used to limit the number of shows returned.
         httpMethod: GET
@@ -3419,8 +3419,8 @@ categories:
           type: Integer
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains an array of [saved show objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#saved-show-object)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+          \ is `200` OK and the response body contains an array of [saved show objects](https://developer.spotify.com/documentation/web-api/reference/#object-savedshowobject)\
+          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
           \ in JSON format.\nIf the current user has no shows saved, the response\
           \ will be an empty array. If a show is unavailable in the given `market`\
           \ it is filtered out. The `total` field in the paging object represents\
@@ -3436,7 +3436,7 @@ categories:
       endpoint-get-users-saved-tracks:
         id: endpoint-get-users-saved-tracks
         name: Get User's Saved Tracks
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-users-saved-tracks
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-tracks
         description: Get a list of the songs saved in the current Spotify user's 'Your
           Music' library.
         httpMethod: GET
@@ -3470,8 +3470,8 @@ categories:
           type: Integer
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains an array of [saved track objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#saved-track-object)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+          \ is `200` OK and the response body contains an array of [saved track objects](https://developer.spotify.com/documentation/web-api/reference/#object-savedtrackobject)\
+          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
         scopes:
@@ -3482,7 +3482,7 @@ categories:
       endpoint-remove-albums-user:
         id: endpoint-remove-albums-user
         name: Remove Albums for Current User
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-remove-albums-user
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-albums-user
         description: Remove one or more albums from the current user's 'Your Music'
           library.
         httpMethod: DELETE
@@ -3531,7 +3531,7 @@ categories:
       endpoint-remove-shows-user:
         id: endpoint-remove-shows-user
         name: Remove User's Saved Shows
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-remove-shows-user
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-shows-user
         description: Delete one or more shows from current Spotify user's library.
         httpMethod: DELETE
         path: /me/shows
@@ -3576,7 +3576,7 @@ categories:
       endpoint-remove-tracks-user:
         id: endpoint-remove-tracks-user
         name: Remove User's Saved Tracks
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-remove-tracks-user
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-tracks-user
         description: Remove one or more tracks from the current user's 'Your Music'
           library.
         httpMethod: DELETE
@@ -3625,7 +3625,7 @@ categories:
       endpoint-save-albums-user:
         id: endpoint-save-albums-user
         name: Save Albums for Current User
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-save-albums-user
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-albums-user
         description: Save one or more albums to the current user's 'Your Music' library.
         httpMethod: PUT
         path: /me/albums
@@ -3673,7 +3673,7 @@ categories:
       endpoint-save-shows-user:
         id: endpoint-save-shows-user
         name: Save Shows for Current User
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-save-shows-user
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-shows-user
         description: Save one or more shows to current Spotify user's library.
         httpMethod: PUT
         path: /me/shows
@@ -3707,7 +3707,7 @@ categories:
       endpoint-save-tracks-user:
         id: endpoint-save-tracks-user
         name: Save Tracks for User
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-save-tracks-user
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-tracks-user
         description: Save one or more tracks to the current user's 'Your Music' library.
         httpMethod: PUT
         path: /me/tracks
@@ -3755,12 +3755,12 @@ categories:
   category-personalization:
     id: category-personalization
     name: Personalization API
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-personalization
+    link: https://developer.spotify.com/documentation/web-api/reference/#category-personalization
     endpoints:
       endpoint-get-users-top-artists-and-tracks:
         id: endpoint-get-users-top-artists-and-tracks
         name: Get a User's Top Artists and Tracks
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-users-top-artists-and-tracks
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-top-artists-and-tracks
         description: Get the current user's top artists or tracks based on calculated
           affinity.
         httpMethod: GET
@@ -3801,9 +3801,9 @@ categories:
           type: Integer
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200 OK` and the response body contains a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object)\
-          \ of [Artists](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full)\
-          \ or [Tracks](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full).\
+          \ is `200 OK` and the response body contains a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject)\
+          \ of [Artists](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject)\
+          \ or [Tracks](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject).\
           \ On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
         scopes:
@@ -3814,12 +3814,12 @@ categories:
   category-player:
     id: category-player
     name: Player API
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-player
+    link: https://developer.spotify.com/documentation/web-api/reference/#category-player
     endpoints:
       endpoint-add-to-queue:
         id: endpoint-add-to-queue
         name: Add an item to queue
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-add-to-queue
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-to-queue
         description: Add an item to the end of the user's current playback queue.
         httpMethod: POST
         path: /me/player/queue
@@ -3848,7 +3848,7 @@ categories:
         responseDescription: "A completed request will return a `204 NO CONTENT` response\
           \ code, and then issue the command to the player. Due to the asynchronous\
           \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
           \ endpoint to check that your issued command was handled correctly by the\
           \ player.\n\nIf the device is not found, the request will return `404 NOT\
           \ FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -3861,7 +3861,7 @@ categories:
       endpoint-get-a-users-available-devices:
         id: endpoint-get-a-users-available-devices
         name: Get a User's Available Devices
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-a-users-available-devices
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-users-available-devices
         description: Get information about a user's available devices.
         httpMethod: GET
         path: /me/player/devices
@@ -3887,7 +3887,7 @@ categories:
       endpoint-get-information-about-the-users-current-playback:
         id: endpoint-get-information-about-the-users-current-playback
         name: Get Information About The User's Current Playback
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-information-about-the-users-current-playback
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback
         description: "Get information about the user's current playback state, including\
           \ track or episode, progress, and active device."
         httpMethod: GET
@@ -3934,7 +3934,7 @@ categories:
       endpoint-get-recently-played:
         id: endpoint-get-recently-played
         name: Get Current User's Recently Played Tracks
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-recently-played
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recently-played
         description: "Get tracks from the current user's recently played tracks.\n\
           *Note: Currently doesn't support podcast episodes.*"
         httpMethod: GET
@@ -3972,7 +3972,7 @@ categories:
           \ (wrapped in a [cursor-based paging object](#cursor-based-paging-object))\
           \ in JSON format. The play history items each contain the context the track\
           \ was played from (e.g. playlist, album), the date and time the track was\
-          \ played, and a [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-simplified).\
+          \ played, and a [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject).\
           \ On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
           \nIf private session is enabled the response will be a `204 NO CONTENT`\
@@ -3986,7 +3986,7 @@ categories:
       endpoint-get-the-users-currently-playing-track:
         id: endpoint-get-the-users-currently-playing-track
         name: Get the User's Currently Playing Track
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-the-users-currently-playing-track
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-the-users-currently-playing-track
         description: Get the object currently being played on the user's Spotify account.
         httpMethod: GET
         path: /me/player/currently-playing
@@ -4040,7 +4040,7 @@ categories:
       endpoint-pause-a-users-playback:
         id: endpoint-pause-a-users-playback
         name: Pause a User's Playback
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-pause-a-users-playback
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-pause-a-users-playback
         description: Pause playback on the user's account.
         httpMethod: PUT
         path: /me/player/pause
@@ -4062,7 +4062,7 @@ categories:
         responseDescription: "A completed request will return a `204 NO CONTENT` response\
           \ code, and then issue the command to the player. Due to the asynchronous\
           \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
           \ endpoint to check that your issued command was handled correctly by the\
           \ player.\n\nIf the device is not found, the request will return `404 NOT\
           \ FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -4074,7 +4074,7 @@ categories:
       endpoint-seek-to-position-in-currently-playing-track:
         id: endpoint-seek-to-position-in-currently-playing-track
         name: Seek To Position In Currently Playing Track
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-seek-to-position-in-currently-playing-track
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-seek-to-position-in-currently-playing-track
         description: Seeks to the given position in the user's currently playing track.
         httpMethod: PUT
         path: /me/player/seek
@@ -4104,7 +4104,7 @@ categories:
         responseDescription: "A completed request will return a `204 NO CONTENT` response\
           \ code, and then issue the command to the player. Due to the asynchronous\
           \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
           \ endpoint to check that your issued command was handled correctly by the\
           \ player.\n\nIf the device is not found, the request will return `404 NOT\
           \ FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -4117,7 +4117,7 @@ categories:
       endpoint-set-repeat-mode-on-users-playback:
         id: endpoint-set-repeat-mode-on-users-playback
         name: Set Repeat Mode On User’s Playback
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-set-repeat-mode-on-users-playback
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-set-repeat-mode-on-users-playback
         description: "Set the repeat mode for the user's playback. Options are repeat-track,\n\
           repeat-context, and off."
         httpMethod: PUT
@@ -4148,7 +4148,7 @@ categories:
         responseDescription: "A completed request will return a `204 NO CONTENT` response\
           \ code, and then issue the command to the player. Due to the asynchronous\
           \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
           \ endpoint to check that your issued command was handled correctly by the\
           \ player.\n\nIf the device is not found, the request will return `404 NOT\
           \ FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -4161,7 +4161,7 @@ categories:
       endpoint-set-volume-for-users-playback:
         id: endpoint-set-volume-for-users-playback
         name: Set Volume For User's Playback
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-set-volume-for-users-playback
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-set-volume-for-users-playback
         description: Set the volume for the user's current playback device.
         httpMethod: PUT
         path: /me/player/volume
@@ -4189,7 +4189,7 @@ categories:
         responseDescription: "A completed request will return a `204 NO CONTENT` response\
           \ code, and then issue the command to the player. Due to the asynchronous\
           \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
           \ endpoint to check that your issued command was handled correctly by the\
           \ player.\n\nIf the device is not found, the request will return `404 NOT\
           \ FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -4202,7 +4202,7 @@ categories:
       endpoint-skip-users-playback-to-next-track:
         id: endpoint-skip-users-playback-to-next-track
         name: Skip User’s Playback To Next Track
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-skip-users-playback-to-next-track
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-skip-users-playback-to-next-track
         description: Skips to next track in the user's queue.
         httpMethod: POST
         path: /me/player/next
@@ -4225,7 +4225,7 @@ categories:
         responseDescription: "A completed request will return a `204 NO CONTENT` response\
           \ code, and then issue the command to the player. Due to the asynchronous\
           \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
           \ endpoint to check that your issued command was handled correctly by the\
           \ player.\n\nIf the device is not found, the request will return `404 NOT\
           \ FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -4238,7 +4238,7 @@ categories:
       endpoint-skip-users-playback-to-previous-track:
         id: endpoint-skip-users-playback-to-previous-track
         name: Skip User’s Playback To Previous Track
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-skip-users-playback-to-previous-track
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-skip-users-playback-to-previous-track
         description: Skips to previous track in the user's queue.
         httpMethod: POST
         path: /me/player/previous
@@ -4261,7 +4261,7 @@ categories:
         responseDescription: "A completed request will return a `204 NO CONTENT` response\
           \ code, and then issue the command to the player. Due to the asynchronous\
           \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
           \ endpoint to check that your issued command was handled correctly by the\
           \ player.\n\nIf the device is not found, the request will return `404 NOT\
           \ FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -4274,7 +4274,7 @@ categories:
       endpoint-start-a-users-playback:
         id: endpoint-start-a-users-playback
         name: Start/Resume a User's Playback
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-start-a-users-playback
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-start-a-users-playback
         description: Start a new context or resume current playback on the user's
           active device.
         httpMethod: PUT
@@ -4329,7 +4329,7 @@ categories:
         responseDescription: "A completed request will return a `204 NO CONTENT` response\
           \ code, and then issue the command to the player. Due to the asynchronous\
           \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
           \ endpoint to check that your issued command was handled correctly by the\
           \ player.\n\nIf the device is not found, the request will return `404 NOT\
           \ FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -4342,7 +4342,7 @@ categories:
       endpoint-toggle-shuffle-for-users-playback:
         id: endpoint-toggle-shuffle-for-users-playback
         name: Toggle Shuffle For User’s Playback
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-toggle-shuffle-for-users-playback
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-toggle-shuffle-for-users-playback
         description: Toggle shuffle on or off for user's playback.
         httpMethod: PUT
         path: /me/player/shuffle
@@ -4371,7 +4371,7 @@ categories:
         responseDescription: "A completed request will return a `204 NO CONTENT` response\
           \ code, and then issue the command to the player. Due to the asynchronous\
           \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
           \ endpoint to check that your issued command was handled correctly by the\
           \ player.\n\nIf the device is not found, the request will return `404 NOT\
           \ FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -4384,7 +4384,7 @@ categories:
       endpoint-transfer-a-users-playback:
         id: endpoint-transfer-a-users-playback
         name: Transfer a User's Playback
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-transfer-a-users-playback
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-transfer-a-users-playback
         description: Transfer playback to a new device and determine if it should
           start playing.
         httpMethod: PUT
@@ -4416,7 +4416,7 @@ categories:
         responseDescription: "A completed request will return a `204 NO CONTENT` response\
           \ code, and then issue the command to the player. Due to the asynchronous\
           \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
           \ endpoint to check that your issued command was handled correctly by the\
           \ player.\n\nIf the device is not found, the request will return `404 NOT\
           \ FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -4429,12 +4429,12 @@ categories:
   category-playlists:
     id: category-playlists
     name: Playlists API
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-playlists
+    link: https://developer.spotify.com/documentation/web-api/reference/#category-playlists
     endpoints:
       endpoint-add-tracks-to-playlist:
         id: endpoint-add-tracks-to-playlist
         name: Add Items to a Playlist
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-add-tracks-to-playlist
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-tracks-to-playlist
         description: Add one or more items to a user's playlist.
         httpMethod: POST
         path: "/playlists/{playlist_id}/tracks"
@@ -4520,7 +4520,7 @@ categories:
       endpoint-change-playlist-details:
         id: endpoint-change-playlist-details
         name: Change a Playlist's Details
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-change-playlist-details
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-change-playlist-details
         description: "Change a playlist's name and public/private state. (The user\
           \ must, of\ncourse, own the playlist.)"
         httpMethod: PUT
@@ -4586,9 +4586,9 @@ categories:
       endpoint-create-playlist:
         id: endpoint-create-playlist
         name: Create a Playlist
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-create-playlist
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-create-playlist
         description: "Create a playlist for a Spotify user. (The playlist will be\
-          \ empty until\nyou [add tracks](https://developer.spotify.com/documentation/web-api/reference/playlists/add-tracks-to-playlist/).)"
+          \ empty until\nyou [add tracks](https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-tracks-to-playlist).)"
         httpMethod: POST
         path: "/users/{user_id}/playlists"
         parameters:
@@ -4642,7 +4642,7 @@ categories:
           type: String
           required: false
         responseDescription: "On success, the response body contains the created [playlist\
-          \ object](https://developer.spotify.com/documentation/web-api/reference/object-model/#playlist-object-full)\n\
+          \ object](https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject)\n\
           in JSON format and the HTTP status code in the response header is `200`\
           \ OK or\n`201` Created. There is also a `Location` response header giving\
           \ the Web API\nendpoint for the new playlist.\n\nOn error, the header status\
@@ -4661,7 +4661,7 @@ categories:
       endpoint-get-a-list-of-current-users-playlists:
         id: endpoint-get-a-list-of-current-users-playlists
         name: Get a List of Current User's Playlists
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-a-list-of-current-users-playlists
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-list-of-current-users-playlists
         description: |-
           Get a list of the playlists owned or followed by the current Spotify
           user.
@@ -4696,8 +4696,8 @@ categories:
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK and the response body contains an array of simplified [playlist\
-          \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#playlist-object-simplified)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+          \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject)\
+          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
           \ Please note that the access token has to be tied to a user."
@@ -4710,7 +4710,7 @@ categories:
       endpoint-get-list-users-playlists:
         id: endpoint-get-list-users-playlists
         name: Get a List of a User's Playlists
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-list-users-playlists
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-list-users-playlists
         description: Get a list of the playlists owned or followed by a Spotify user.
         httpMethod: GET
         path: "/users/{user_id}/playlists"
@@ -4748,8 +4748,8 @@ categories:
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK and the response body contains an array of simplified [playlist\
-          \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#playlist-object-simplified)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+          \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject)\
+          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
         scopes:
@@ -4761,7 +4761,7 @@ categories:
       endpoint-get-playlist:
         id: endpoint-get-playlist
         name: Get a Playlist
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-playlist
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-playlist
         description: Get a playlist owned by a Spotify user.
         httpMethod: GET
         path: "/playlists/{playlist_id}"
@@ -4816,7 +4816,7 @@ categories:
             \ the `type` field of each object."
           type: String
           required: false
-        responseDescription: "On success, the response body contains a [playlist object](https://developer.spotify.com/documentation/web-api/reference/object-model/#playlist-object-full)\
+        responseDescription: "On success, the response body contains a [playlist object](https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject)\
           \ in JSON format and the HTTP status code in the response header is `200`\
           \ OK. If an episode is unavailable in the given `market`, its information\
           \ will not be included in the response. On error, the header status code\
@@ -4831,7 +4831,7 @@ categories:
       endpoint-get-playlist-cover:
         id: endpoint-get-playlist-cover
         name: Get a Playlist Cover Image
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-playlist-cover
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-playlist-cover
         description: Get the current image associated with a specific playlist.
         httpMethod: GET
         path: "/playlists/{playlist_id}/images"
@@ -4853,7 +4853,7 @@ categories:
           type: String
           required: true
         responseDescription: "On success, the response body contains a list of [image\
-          \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#image-object)\
+          \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-imageobject)\
           \ in JSON format and the HTTP status code in the response header is `200`\
           \ OK  \nOn error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
@@ -4864,7 +4864,7 @@ categories:
       endpoint-get-playlists-tracks:
         id: endpoint-get-playlists-tracks
         name: Get a Playlist's Items
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-playlists-tracks
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-playlists-tracks
         description: Get full details of the items of a playlist owned by a Spotify
           user.
         httpMethod: GET
@@ -4933,9 +4933,9 @@ categories:
           type: String
           required: false
         responseDescription: "On success, the response body contains an array of [track\
-          \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-simplified)\
-          \ and [episode objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#episode-object-simplified)\
-          \ (depends on the `additional_types` parameter), wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object)\
+          \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject)\
+          \ and [episode objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject)\
+          \ (depends on the `additional_types` parameter), wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject)\
           \ in JSON format and the HTTP status code in the response header is `200`\
           \ OK. If an episode is unavailable in the given `market`, its information\
           \ will not be included in the response. On error, the header status code\
@@ -4950,7 +4950,7 @@ categories:
       endpoint-remove-tracks-playlist:
         id: endpoint-remove-tracks-playlist
         name: Remove Items from a Playlist
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-remove-tracks-playlist
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-tracks-playlist
         description: Remove one or more items from a user's playlist.
         httpMethod: DELETE
         path: "/playlists/{playlist_id}/tracks"
@@ -5016,7 +5016,7 @@ categories:
       endpoint-reorder-or-replace-playlists-tracks:
         id: endpoint-reorder-or-replace-playlists-tracks
         name: Reorder or Replace a Playlist's Items
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-reorder-or-replace-playlists-tracks
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks
         description: "Either reorder or replace items in a playlist depending on the\
           \ request's parameters.\nTo reorder items, include `range_start`, `insert_before`,\
           \ `range_length` and `snapshot_id` in the request's body.\nTo replace items,\
@@ -5116,7 +5116,7 @@ categories:
       endpoint-upload-custom-playlist-cover:
         id: endpoint-upload-custom-playlist-cover
         name: Upload a Custom Playlist Cover Image
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-upload-custom-playlist-cover
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-upload-custom-playlist-cover
         description: Replace the image used to represent a specific playlist.
         httpMethod: PUT
         path: "/playlists/{playlist_id}/images"
@@ -5164,12 +5164,12 @@ categories:
   category-search:
     id: category-search
     name: Search API
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-search
+    link: https://developer.spotify.com/documentation/web-api/reference/#category-search
     endpoints:
       endpoint-search:
         id: endpoint-search
         name: Search for an Item
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-search
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-search
         description: "Get Spotify Catalog information about albums, artists, playlists,\
           \ tracks, shows or episodes\nthat match a keyword string."
         httpMethod: GET
@@ -5237,12 +5237,12 @@ categories:
           required: false
         responseDescription: "**On success**:\n\n- In the response ***header*** the\
           \ HTTP status code is `200` OK.\n- For each type provided in the `type`\
-          \ parameter, the response ***body*** contains an array of [artist objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full)\
-          \ / [simplified album objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-object-simplified)\
-          \ / [track objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full)\
-          \ / [simplified show objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#show-object-simplified)\
-          \ / [simplified episode objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#episode-object-simplified)\
-          \ wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object)\
+          \ parameter, the response ***body*** contains an array of [artist objects](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject)\
+          \ / [simplified album objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject)\
+          \ / [track objects](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)\
+          \ / [simplified show objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedshowobject)\
+          \ / [simplified episode objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject)\
+          \ wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject)\
           \ in JSON.\n\n**On error**:\n\n- The ***header*** status code is an [error\
           \ code](https://developer.spotify.com/documentation/web-api/#response-status-codes).\n\
           - The response ***body*** contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
@@ -5295,12 +5295,12 @@ categories:
   category-shows:
     id: category-shows
     name: Shows API
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-shows
+    link: https://developer.spotify.com/documentation/web-api/reference/#category-shows
     endpoints:
       endpoint-get-a-show:
         id: endpoint-get-a-show
         name: Get a Show
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-a-show
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-show
         description: |-
           Get Spotify catalog information for a single show identified by its
           unique Spotify ID.
@@ -5333,7 +5333,7 @@ categories:
           type: String
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200`\nOK and the response body contains a [show object](https://developer.spotify.com/documentation/web-api/reference/object-model/#show-object-full)\n\
+          \ is `200`\nOK and the response body contains a [show object](https://developer.spotify.com/documentation/web-api/reference/#object-showobject)\n\
           in JSON format.  \n\nOn error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\n\
           and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
           \  \n\nIf a show is unavailable in the given `market` the HTTP status code\
@@ -5345,7 +5345,7 @@ categories:
       endpoint-get-a-shows-episodes:
         id: endpoint-get-a-shows-episodes
         name: Get a Show's Episodes
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-a-shows-episodes
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-shows-episodes
         description: Get Spotify catalog information about an show's episodes. Optional
           parameters can be used to limit the number of episodes returned.
         httpMethod: GET
@@ -5390,8 +5390,8 @@ categories:
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK and the response body contains an array of [simplified episode\
-          \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#episode-object-simplified)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+          \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject)\
+          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
           \ in JSON format.  \n\nOn error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#error-details).\
           \  \n\nIf a show is unavailable in the given `market` the HTTP status code\
@@ -5404,7 +5404,7 @@ categories:
       endpoint-get-multiple-shows:
         id: endpoint-get-multiple-shows
         name: Get Multiple Shows
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-multiple-shows
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-multiple-shows
         description: Get Spotify catalog information for several shows based on their
           Spotify IDs.
         httpMethod: GET
@@ -5437,7 +5437,7 @@ categories:
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200`\nOK and the response body contains an object whose key is `shows`\
-          \ and whose\nvalue is an array of [simple show object](https://developer.spotify.com/documentation/web-api/reference/object-model/#show-object-simplified)\n\
+          \ and whose\nvalue is an array of [simple show object](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedshowobject)\n\
           in JSON format.\n\nObjects are returned in the order requested. If an object\
           \ is not found, a `null` value is returned in the appropriate position.\
           \ If a show is unavailable in the given `market`, a `null` value is returned.\
@@ -5451,12 +5451,12 @@ categories:
   category-tracks:
     id: category-tracks
     name: Tracks API
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-tracks
+    link: https://developer.spotify.com/documentation/web-api/reference/#category-tracks
     endpoints:
       endpoint-get-audio-analysis:
         id: endpoint-get-audio-analysis
         name: Get Audio Analysis for a Track
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-audio-analysis
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-audio-analysis
         description: |-
           Get a detailed audio analysis for a single track identified by its unique
           Spotify ID.
@@ -5487,7 +5487,7 @@ categories:
       endpoint-get-audio-features:
         id: endpoint-get-audio-features
         name: Get Audio Features for a Track
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-audio-features
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-audio-features
         description: |-
           Get audio feature information for a single track identified by its unique
           Spotify ID.
@@ -5508,7 +5508,7 @@ categories:
           type: String
           required: true
         responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200 OK` and the response body contains an [audio features object](https://developer.spotify.com/documentation/web-api/reference/object-model/#audio-features-object)\
+          \ is `200 OK` and the response body contains an [audio features object](https://developer.spotify.com/documentation/web-api/reference/#object-audiofeaturesobject)\
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
         scopes: []
@@ -5518,7 +5518,7 @@ categories:
       endpoint-get-several-audio-features:
         id: endpoint-get-several-audio-features
         name: Get Audio Features for Several Tracks
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-several-audio-features
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-several-audio-features
         description: Get audio features for multiple tracks based on their Spotify
           IDs.
         httpMethod: GET
@@ -5552,7 +5552,7 @@ categories:
       endpoint-get-several-tracks:
         id: endpoint-get-several-tracks
         name: Get Several Tracks
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-several-tracks
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-several-tracks
         description: Get Spotify catalog information for multiple tracks based on
           their Spotify IDs.
         httpMethod: GET
@@ -5580,7 +5580,7 @@ categories:
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200`\nOK and the response body contains an object whose key is `tracks`\
-          \ and whose\nvalue is an array of [track objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full)\n\
+          \ and whose\nvalue is an array of [track objects](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)\n\
           in JSON format.\n\nObjects are returned in the order requested. If an object\
           \ is not found, a `null` value is returned in the appropriate position.\
           \ Duplicate `ids` in the query will result in duplicate objects in the response.\
@@ -5593,7 +5593,7 @@ categories:
       endpoint-get-track:
         id: endpoint-get-track
         name: Get a Track
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-track
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-track
         description: |-
           Get Spotify catalog information for a single track identified by its
           unique Spotify ID.
@@ -5621,7 +5621,7 @@ categories:
           type: String
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200`\nOK and the response body contains a [track object](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full)\n\
+          \ is `200`\nOK and the response body contains a [track object](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)\n\
           in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\n\
           and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
         scopes: []
@@ -5631,12 +5631,12 @@ categories:
   category-users-profile:
     id: category-users-profile
     name: Users Profile API
-    link: https://developer.spotify.com/documentation/web-api/reference-beta/#category-users-profile
+    link: https://developer.spotify.com/documentation/web-api/reference/#category-users-profile
     endpoints:
       endpoint-get-current-users-profile:
         id: endpoint-get-current-users-profile
         name: Get Current User's Profile
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-current-users-profile
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-current-users-profile
         description: |-
           Get detailed profile information about the current user (including the
           current user's username).
@@ -5654,7 +5654,7 @@ categories:
           type: String
           required: true
         responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains a [user object](https://developer.spotify.com/documentation/web-api/reference/object-model/#user-object-private)\
+          \ is `200` OK and the response body contains a [user object](https://developer.spotify.com/documentation/web-api/reference/#object-privateuserobject)\
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
           \ When requesting fields that you don't have the user's authorization to\
@@ -5672,7 +5672,7 @@ categories:
       endpoint-get-users-profile:
         id: endpoint-get-users-profile
         name: Get a User's Profile
-        link: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-users-profile
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-profile
         description: Get public profile information about a Spotify user.
         httpMethod: GET
         path: "/users/{user_id}"
@@ -5690,7 +5690,7 @@ categories:
           type: String
           required: true
         responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains a [user object](https://developer.spotify.com/documentation/web-api/reference/object-model/#user-object-public)\
+          \ is `200` OK and the response body contains a [user object](https://developer.spotify.com/documentation/web-api/reference/#object-publicuserobject)\
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
           \ If a user with that user_id doesn't exist, the status code is `404` NOT\
@@ -5719,31 +5719,31 @@ scopes:
       description: Write access to a user's private playlists.
       userDescription: Manage your private playlists.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/follow/follow-playlist/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-follow-playlist
         api: web-api
         endpoint: endpoint-follow-playlist
-      - url: https://developer.spotify.com/documentation/web-api/reference/follow/unfollow-playlist/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-unfollow-playlist
         api: web-api
         endpoint: endpoint-unfollow-playlist
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/add-tracks-to-playlist/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-tracks-to-playlist
         api: web-api
         endpoint: endpoint-add-tracks-to-playlist
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/change-playlist-details/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-change-playlist-details
         api: web-api
         endpoint: endpoint-change-playlist-details
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/create-playlist/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-create-playlist
         api: web-api
         endpoint: endpoint-create-playlist
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/remove-tracks-playlist/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-tracks-playlist
         api: web-api
         endpoint: endpoint-remove-tracks-playlist
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/reorder-playlists-tracks/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks
         api: web-api
         endpoint: endpoint-reorder-or-replace-playlists-tracks
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/replace-playlists-tracks/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks
         api: web-api
         endpoint: endpoint-reorder-or-replace-playlists-tracks
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/upload-custom-playlist-cover/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-upload-custom-playlist-cover
         api: web-api
         endpoint: endpoint-upload-custom-playlist-cover
     playlist-modify-public:
@@ -5752,31 +5752,31 @@ scopes:
       description: Write access to a user's public playlists.
       userDescription: Manage your public playlists.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/follow/follow-playlist/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-follow-playlist
         api: web-api
         endpoint: endpoint-follow-playlist
-      - url: https://developer.spotify.com/documentation/web-api/reference/follow/unfollow-playlist/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-unfollow-playlist
         api: web-api
         endpoint: endpoint-unfollow-playlist
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/add-tracks-to-playlist/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-tracks-to-playlist
         api: web-api
         endpoint: endpoint-add-tracks-to-playlist
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/change-playlist-details/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-change-playlist-details
         api: web-api
         endpoint: endpoint-change-playlist-details
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/create-playlist/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-create-playlist
         api: web-api
         endpoint: endpoint-create-playlist
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/remove-tracks-playlist/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-tracks-playlist
         api: web-api
         endpoint: endpoint-remove-tracks-playlist
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/reorder-playlists-tracks/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks
         api: web-api
         endpoint: endpoint-reorder-or-replace-playlists-tracks
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/replace-playlists-tracks/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks
         api: web-api
         endpoint: endpoint-reorder-or-replace-playlists-tracks
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/upload-custom-playlist-cover/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-upload-custom-playlist-cover
         api: web-api
         endpoint: endpoint-upload-custom-playlist-cover
     playlist-read-collaborative:
@@ -5785,10 +5785,10 @@ scopes:
       description: Include collaborative playlists when requesting a user's playlists.
       userDescription: Access your collaborative playlists.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-list-of-current-users-playlists
         api: web-api
         endpoint: endpoint-get-a-list-of-current-users-playlists
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/get-list-users-playlists/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-list-users-playlists
         api: web-api
         endpoint: endpoint-get-list-users-playlists
     playlist-read-private:
@@ -5797,13 +5797,13 @@ scopes:
       description: Read access to user's private playlists.
       userDescription: Access your private playlists.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/follow/check-user-following-playlist/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-if-user-follows-playlist
         api: web-api
         endpoint: endpoint-check-if-user-follows-playlist
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-list-of-current-users-playlists
         api: web-api
         endpoint: endpoint-get-a-list-of-current-users-playlists
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/get-list-users-playlists/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-list-users-playlists
         api: web-api
         endpoint: endpoint-get-list-users-playlists
     streaming:
@@ -5821,7 +5821,7 @@ scopes:
       description: Write access to user-provided images.
       userDescription: Upload images to Spotify on your behalf.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/playlists/upload-custom-playlist-cover/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-upload-custom-playlist-cover
         api: web-api
         endpoint: endpoint-upload-custom-playlist-cover
     user-follow-modify:
@@ -5831,10 +5831,10 @@ scopes:
         the user follows.
       userDescription: Manage who you are following.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/follow/follow-artists-users/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-follow-artists-users
         api: web-api
         endpoint: endpoint-follow-artists-users
-      - url: https://developer.spotify.com/documentation/web-api/reference/follow/unfollow-artists-users/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-unfollow-artists-users
         api: web-api
         endpoint: endpoint-unfollow-artists-users
     user-follow-read:
@@ -5844,10 +5844,10 @@ scopes:
         follows.
       userDescription: Access your followers and who you are following.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/follow/check-current-user-follows/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-current-user-follows
         api: web-api
         endpoint: endpoint-check-current-user-follows
-      - url: https://developer.spotify.com/documentation/web-api/reference/follow/get-followed/
+      - url: https://developer.spotify.com/documentation/web-api/#endpoint-get-followed
         api: web-api
         endpoint: endpoint-get-followed
     user-library-modify:
@@ -5856,16 +5856,16 @@ scopes:
       description: Write/delete access to a user's "Your Music" library.
       userDescription: Manage your saved content.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/library/remove-albums-user/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-albums-user
         api: web-api
         endpoint: endpoint-remove-albums-user
-      - url: https://developer.spotify.com/documentation/web-api/reference/library/remove-tracks-user/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-tracks-user
         api: web-api
         endpoint: endpoint-remove-tracks-user
-      - url: https://developer.spotify.com/documentation/web-api/reference/library/save-albums-user/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-albums-user
         api: web-api
         endpoint: endpoint-save-albums-user
-      - url: https://developer.spotify.com/documentation/web-api/reference/library/save-tracks-user/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-tracks-user
         api: web-api
         endpoint: endpoint-save-tracks-user
     user-library-read:
@@ -5874,16 +5874,16 @@ scopes:
       description: Read access to a user's "Your Music" library.
       userDescription: Access your saved content.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/library/check-users-saved-albums/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-albums
         api: web-api
         endpoint: endpoint-check-users-saved-albums
-      - url: https://developer.spotify.com/documentation/web-api/reference/library/check-users-saved-tracks/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-tracks
         api: web-api
         endpoint: endpoint-check-users-saved-tracks
-      - url: https://developer.spotify.com/documentation/web-api/reference/library/get-users-saved-albums/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-albums
         api: web-api
         endpoint: endpoint-get-users-saved-albums
-      - url: https://developer.spotify.com/documentation/web-api/reference/library/get-users-saved-tracks/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-tracks
         api: web-api
         endpoint: endpoint-get-users-saved-tracks
     user-modify-playback-state:
@@ -5893,34 +5893,34 @@ scopes:
       userDescription: Control playback on your Spotify clients and Spotify Connect
         devices.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/pause-a-users-playback/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-pause-a-users-playback
         api: web-api
         endpoint: endpoint-pause-a-users-playback
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/seek-to-position-in-currently-playing-track/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-seek-to-position-in-currently-playing-track
         api: web-api
         endpoint: endpoint-seek-to-position-in-currently-playing-track
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/set-repeat-mode-on-users-playback/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-set-repeat-mode-on-users-playback
         api: web-api
         endpoint: endpoint-set-repeat-mode-on-users-playback
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/set-volume-for-users-playback/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-set-volume-for-users-playback
         api: web-api
         endpoint: endpoint-set-volume-for-users-playback
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/skip-users-playback-to-next-track/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-skip-users-playback-to-next-track
         api: web-api
         endpoint: endpoint-skip-users-playback-to-next-track
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/skip-users-playback-to-previous-track/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-skip-users-playback-to-previous-track
         api: web-api
         endpoint: endpoint-skip-users-playback-to-previous-track
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/start-a-users-playback/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-start-a-users-playback
         api: web-api
         endpoint: endpoint-start-a-users-playback
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/toggle-shuffle-for-users-playback/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-toggle-shuffle-for-users-playback
         api: web-api
         endpoint: endpoint-toggle-shuffle-for-users-playback
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/transfer-a-users-playback/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-transfer-a-users-playback
         api: web-api
         endpoint: endpoint-transfer-a-users-playback
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/seek-to-position-in-currently-playing-track/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-seek-to-position-in-currently-playing-track
         api: web-api
         endpoint: endpoint-seek-to-position-in-currently-playing-track
     user-read-currently-playing:
@@ -5929,16 +5929,16 @@ scopes:
       description: Read access to a user’s currently playing content.
       userDescription: Read your currently playing content.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/get-the-users-currently-playing-track/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recently-played
         api: web-api
-        endpoint: endpoint-get-the-users-currently-playing-track
+        endpoint: endpoint-get-recently-played
     user-read-email:
       id: user-read-email
       link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-email
       description: Read access to user’s email address.
       userDescription: Get your real email address.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/users-profile/get-current-users-profile/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-current-users-profile
         api: web-api
         endpoint: endpoint-get-current-users-profile
     user-read-playback-position:
@@ -5947,19 +5947,19 @@ scopes:
       description: Read access to a user’s playback position in a content.
       userDescription: Read your position in content you have played.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/episodes/get-an-episode/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-episode
         api: web-api
         endpoint: endpoint-get-an-episode
-      - url: https://developer.spotify.com/documentation/web-api/reference/episodes/get-several-episodes/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-multiple-episodes
         api: web-api
         endpoint: endpoint-get-multiple-episodes
-      - url: https://developer.spotify.com/documentation/web-api/reference/shows/get-a-show/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-show
         api: web-api
         endpoint: endpoint-get-a-show
-      - url: https://developer.spotify.com/documentation/web-api/reference/shows/get-several-shows/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-multiple-shows
         api: web-api
         endpoint: endpoint-get-multiple-shows
-      - url: https://developer.spotify.com/documentation/web-api/reference/shows/get-shows-episodes/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-shows-episodes
         api: web-api
         endpoint: endpoint-get-a-shows-episodes
     user-read-playback-state:
@@ -5969,25 +5969,25 @@ scopes:
       userDescription: Read your currently playing content and Spotify Connect devices
         information.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/get-a-users-available-devices/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-users-available-devices
         api: web-api
         endpoint: endpoint-get-a-users-available-devices
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback
         api: web-api
         endpoint: endpoint-get-information-about-the-users-current-playback
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/get-the-users-currently-playing-track/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recently-played
         api: web-api
-        endpoint: endpoint-get-the-users-currently-playing-track
+        endpoint: endpoint-get-recently-played
     user-read-private:
       id: user-read-private
       link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-private
       description: Read access to user’s subscription details (type of user account).
       userDescription: Access your subscription details.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/search/search/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-search
         api: web-api
         endpoint: endpoint-search
-      - url: https://developer.spotify.com/documentation/web-api/reference/users-profile/get-current-users-profile/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-current-users-profile
         api: web-api
         endpoint: endpoint-get-current-users-profile
     user-read-recently-played:
@@ -5996,15 +5996,15 @@ scopes:
       description: Read access to a user’s recently played tracks.
       userDescription: Access your recently played items.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/player/get-recently-played/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-the-users-currently-playing-track
         api: web-api
-        endpoint: endpoint-get-recently-played
+        endpoint: endpoint-get-the-users-currently-playing-track
     user-top-read:
       id: user-top-read
       link: https://developer.spotify.com/documentation/general/guides/scopes/#user-top-read
       description: Read access to a user's top artists and tracks.
       userDescription: Read your top artists and content.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/personalization/get-users-top-artists-and-tracks/
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-top-artists-and-tracks
         api: web-api
         endpoint: endpoint-get-users-top-artists-and-tracks

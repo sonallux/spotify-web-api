@@ -3,7 +3,7 @@ package de.sonallux.spotify.api.models;
 import lombok.*;
 
 /**
- * <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#object-albumobject">AlbumObject</a>
+ * <a href="https://developer.spotify.com/documentation/web-api/reference/#object-albumobject">AlbumObject</a>
  */
 @Getter
 @Setter
@@ -70,7 +70,7 @@ public class Album {
      */
     private String release_date_precision;
     /**
-     * <p>Included in the response when a content restriction is applied. See <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#album-restriction-object">Restriction Object</a> for more details.</p>
+     * <p>Included in the response when a content restriction is applied. See <a href="https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject">Restriction Object</a> for more details.</p>
      */
     private AlbumRestriction restrictions;
     /**

@@ -11,7 +11,7 @@ import java.nio.file.Path;
 @Slf4j
 public class WebApiParser {
 
-    public final static String DEFAULT_WEB_API_DOCUMENTATION_URL = "https://developer.spotify.com/documentation/web-api/reference-beta";
+    public final static String DEFAULT_WEB_API_DOCUMENTATION_URL = "https://developer.spotify.com/documentation/web-api/reference";
     public static final String DEFAULT_WEB_API_ENDPOINT_URL = "https://api.spotify.com/v1";
 
     private final ApiObjectParser apiObjectParser;

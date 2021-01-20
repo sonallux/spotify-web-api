@@ -69,28 +69,19 @@ class ApiScopesParser {
         var absUrl = element.absUrl("href");
         var url = element.attributes().get("href");
         var urlSegments = url.split("/");
-        if (urlSegments.length == 6){
-            //Links to web-api have 6 segments(/documentation/web-api/reference/<category>/<endpoint>)
-            return new SpotifyScope.EndpointLink(absUrl, urlSegments[2], fixEndpoint(urlSegments[5]));
-        } else if (urlSegments.length == 3) {
-            //Links to other apis have 3 segments (/documentation/<api>)
-            return new SpotifyScope.EndpointLink(absUrl, urlSegments[2]);
-        } else {
+        if (urlSegments.length < 3) {
             throw new ApiParseException("Unknown link for scope: " + url);
         }
-    }
-
-    private String fixEndpoint(String endpoint) {
-        if ("get-shows-episodes".equals(endpoint)) {
-            return "endpoint-get-a-shows-episodes";
-        } else if ("check-user-following-playlist".equals(endpoint)) {
-            return "endpoint-check-if-user-follows-playlist";
-        } else if ("reorder-playlists-tracks".equals(endpoint)) {
-            return "endpoint-reorder-or-replace-playlists-tracks";
-        } else if ("replace-playlists-tracks".equals(endpoint)) {
-            return "endpoint-reorder-or-replace-playlists-tracks";
+        else if ("web-api".equals(urlSegments[2])){
+            //Links to web-api have following schema: `/documentation/web-api/reference/#<endpoint>`
+            var endpoint = urlSegments[urlSegments.length - 1].substring(1);
+            if (endpoint.length() == 0) {
+                throw new ApiParseException("Scope has unknown link to web-api: " + url);
+            }
+            return new SpotifyScope.EndpointLink(absUrl, urlSegments[2], endpoint);
         } else {
-            return "endpoint-" + endpoint.replace("several", "multiple");
+            //Links to other apis have following schema: `/documentation/<api>`
+            return new SpotifyScope.EndpointLink(absUrl, urlSegments[2]);
         }
     }
 

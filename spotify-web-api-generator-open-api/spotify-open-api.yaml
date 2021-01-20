@@ -4,7 +4,7 @@ info:
   version: 0.0.1
 externalDocs:
   description: Find more info on the official Spotify Web API Reference
-  url: https://developer.spotify.com/documentation/web-api/reference-beta
+  url: https://developer.spotify.com/documentation/web-api/reference
 servers:
 - url: https://api.spotify.com/v1
 tags:
@@ -12,67 +12,67 @@ tags:
   description: Albums API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-albums
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-albums
 - name: category-artists
   description: Artists API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-artists
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-artists
 - name: category-browse
   description: Browse API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-browse
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-browse
 - name: category-episodes
   description: Episodes API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-episodes
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-episodes
 - name: category-follow
   description: Follow API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-follow
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-follow
 - name: category-library
   description: Library API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-library
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-library
 - name: category-personalization
   description: Personalization API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-personalization
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-personalization
 - name: category-player
   description: Player API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-player
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-player
 - name: category-playlists
   description: Playlists API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-playlists
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-playlists
 - name: category-search
   description: Search API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-search
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-search
 - name: category-shows
   description: Shows API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-shows
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-shows
 - name: category-tracks
   description: Tracks API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-tracks
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-tracks
 - name: category-users-profile
   description: Users Profile API
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
-    url: https://developer.spotify.com/documentation/web-api/reference-beta/#category-users-profile
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-users-profile
 paths:
   /albums/{id}:
     get:
@@ -82,7 +82,7 @@ paths:
       description: Get Spotify catalog information for a single album.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-album
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-album
       operationId: endpoint-get-an-album
       parameters:
       - name: Authorization
@@ -127,7 +127,7 @@ paths:
         Optional parameters can be used to limit the number of tracks returned.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-albums-tracks
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-albums-tracks
       operationId: endpoint-get-an-albums-tracks
       parameters:
       - name: Authorization
@@ -210,7 +210,7 @@ paths:
                     format: int32
                 externalDocs:
                   description: Find more info on the official Spotify Web API Reference
-                  url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+                  url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
       - spotify_auth: []
   /albums:
@@ -222,7 +222,7 @@ paths:
         by their Spotify IDs.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-multiple-albums
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-multiple-albums
       operationId: endpoint-get-multiple-albums
       parameters:
       - name: Authorization
@@ -252,7 +252,7 @@ paths:
         "200":
           description: "On success, the HTTP status code in the response header is\
             \ `200` OK and the response body contains an object whose key is `\"albums\"\
-            ` and whose value is an array of [album objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-object-full)\
+            ` and whose value is an array of [album objects](https://developer.spotify.com/documentation/web-api/reference/#object-albumobject)\
             \ in JSON format.\n\nObjects are returned in the order requested. If an\
             \ object is not found, a `null` value is returned in the appropriate position.\
             \ Duplicate `ids` in the query will result in duplicate objects in the\
@@ -273,7 +273,7 @@ paths:
         by their unique Spotify ID.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-artist
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-artist
       operationId: endpoint-get-an-artist
       parameters:
       - name: Authorization
@@ -293,7 +293,7 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         "200":
           description: "On success, the HTTP status code in the response header is\
-            \ `200` OK and the response body contains an [artist object](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full)\
+            \ `200` OK and the response body contains an [artist object](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject)\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
           content:
@@ -310,7 +310,7 @@ paths:
       description: Get Spotify catalog information about an artist's albums.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-artists-albums
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-artists-albums
       operationId: endpoint-get-an-artists-albums
       parameters:
       - name: Authorization
@@ -368,8 +368,8 @@ paths:
         "200":
           description: "On success, the HTTP status code in the response header is\
             \ `200` OK and the response body contains an array of simplified [album\
-            \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-object-simplified)\
-            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+            \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject)\
+            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
           content:
@@ -408,7 +408,7 @@ paths:
                     format: int32
                 externalDocs:
                   description: Find more info on the official Spotify Web API Reference
-                  url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+                  url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
       - spotify_auth: []
   /artists/{id}/related-artists:
@@ -421,7 +421,7 @@ paths:
         \ history](http://news.spotify.com/se/2010/02/03/related-artists/)."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-artists-related-artists
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-artists-related-artists
       operationId: endpoint-get-an-artists-related-artists
       parameters:
       - name: Authorization
@@ -443,7 +443,7 @@ paths:
         "200":
           description: "On success, the HTTP status code in the response header is\
             \ `200` OK and the response body contains an object whose key is `\"artists\"\
-            ` and whose value is an array of up to 20 [artist objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full)\
+            ` and whose value is an array of up to 20 [artist objects](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject)\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
           content:
@@ -461,7 +461,7 @@ paths:
         country.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-artists-top-tracks
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-artists-top-tracks
       operationId: endpoint-get-an-artists-top-tracks
       parameters:
       - name: Authorization
@@ -490,7 +490,7 @@ paths:
         "200":
           description: "On success, the HTTP status code in the response header is\
             \ `200` OK and the response body contains an object whose key is `\"tracks\"\
-            ` and whose value is an array of up to 10 [track objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full)\
+            ` and whose value is an array of up to 10 [track objects](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
           content:
@@ -508,7 +508,7 @@ paths:
         Spotify IDs.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-multiple-artists
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-multiple-artists
       operationId: endpoint-get-multiple-artists
       parameters:
       - name: Authorization
@@ -530,7 +530,7 @@ paths:
         "200":
           description: "On success, the HTTP status code in the response header is\
             \ `200` OK and the response body contains an object whose key is `\"artists\"\
-            ` and whose value is an array of [artist objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full)\
+            ` and whose value is an array of [artist objects](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject)\
             \ in JSON format.\n\nObjects are returned in the order requested. If an\
             \ object is not found, a `null` value is returned in the appropriate position.\
             \ Duplicate `ids` in the query will result in duplicate objects in the\
@@ -550,7 +550,7 @@ paths:
       description: Get a list of Spotify playlists tagged with a particular category.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-a-categories-playlists
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-categories-playlists
       operationId: endpoint-get-a-categories-playlists
       parameters:
       - name: Authorization
@@ -596,8 +596,8 @@ paths:
         "200":
           description: "On success, the HTTP status code in the response header is\
             \ `200` OK and the response body contains an array of simplified [playlist\
-            \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#playlist-object-simplified)\
-            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+            \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject)\
+            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
             \nOnce you have retrieved the list, you can use [Get a Playlist](https://developer.spotify.com/web-api/get-playlist/)\
@@ -618,7 +618,7 @@ paths:
         \ the Spotify player's \"Browse\" tab)."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-a-category
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-category
       operationId: endpoint-get-a-category
       parameters:
       - name: Authorization
@@ -680,7 +680,7 @@ paths:
         \ example, the Spotify player's \"Browse\" tab)."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-categories
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-categories
       operationId: endpoint-get-categories
       parameters:
       - name: Authorization
@@ -736,7 +736,7 @@ paths:
           description: "On success, the HTTP status code in the response header is\
             \ `200` OK and the response body contains an object with a `categories`\
             \ field, with an array of [category objects](#categoryobject) (wrapped\
-            \ in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+            \ in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
             \nOnce you have retrieved the list, you can use [Get a Category](https://developer.spotify.com/web-api/get-category/)\
@@ -756,7 +756,7 @@ paths:
         \ on a Spotify player's 'Browse' tab)."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-featured-playlists
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-featured-playlists
       operationId: endpoint-get-featured-playlists
       parameters:
       - name: Authorization
@@ -825,8 +825,8 @@ paths:
           description: "On success, the HTTP status code in the response header is\
             \ `200` OK and the response body contains a `message` and a `playlists`\
             \ object. The `playlists` object contains an array of simplified [playlist\
-            \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#playlist-object-simplified)\
-            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+            \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject)\
+            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
             \nOnce you have retrieved the list of playlist objects, you can use [Get\
@@ -848,7 +848,7 @@ paths:
         \ example, on a Spotify player's \"Browse\" tab)."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-new-releases
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-new-releases
       operationId: endpoint-get-new-releases
       parameters:
       - name: Authorization
@@ -888,11 +888,11 @@ paths:
         "200":
           description: "On success, the HTTP status code in the response header is\
             \ `200` OK and the response body contains a `message` and an`albums` object.\
-            \ The `albums` object contains an array of simplified [album objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-object-simplified)\
-            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+            \ The `albums` object contains an array of simplified [album objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject)\
+            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
-            \nOnce you have retrieved the list, you can use [Get an Album's Tracks](https://developer.spotify.com/documentation/web-api/reference/albums/get-albums-tracks/)\
+            \nOnce you have retrieved the list, you can use [Get an Album's Tracks](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-albums-tracks)\
             \ to drill down further.\n\nThe results are returned in an order reflected\
             \ within the Spotify clients, and therefore may not be ordered by date."
           content:
@@ -907,10 +907,10 @@ paths:
       - category-browse
       summary: Get Recommendation Genres
       description: "Retrieve a list of available genres seed parameter values for\
-        \ [recommendations](https://developer.spotify.com/documentation/web-api/reference/browse/get-recommendations/)."
+        \ [recommendations](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recommendations)."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-recommendation-genres
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recommendation-genres
       operationId: endpoint-get-recommendation-genres
       parameters:
       - name: Authorization
@@ -943,7 +943,7 @@ paths:
         \ will be returned together with pool size details."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-recommendations
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recommendations
       operationId: endpoint-get-recommendations
       parameters:
       - name: Authorization
@@ -1435,7 +1435,7 @@ paths:
         unique Spotify ID.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-an-episode
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-episode
       operationId: endpoint-get-an-episode
       parameters:
       - name: Authorization
@@ -1471,7 +1471,7 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         "200":
           description: "On success, the HTTP status code in the response header is\
-            \ `200`\nOK and the response body contains an [episode object](https://developer.spotify.com/documentation/web-api/reference/object-model/#episode-object-full)\n\
+            \ `200`\nOK and the response body contains an [episode object](https://developer.spotify.com/documentation/web-api/reference/#object-episodeobject)\n\
             in JSON format.  \n\nOn error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\n\
             and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
             \  \n\nIf an episode is unavailable in the given `market` the HTTP status\
@@ -1491,7 +1491,7 @@ paths:
         Spotify IDs.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-multiple-episodes
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-multiple-episodes
       operationId: endpoint-get-multiple-episodes
       parameters:
       - name: Authorization
@@ -1528,7 +1528,7 @@ paths:
         "200":
           description: "On success, the HTTP status code in the response header is\
             \ `200`\nOK and the response body contains an object whose key is `episodes`\
-            \ and whose\nvalue is an array of [episode objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#episode-object-full)\n\
+            \ and whose\nvalue is an array of [episode objects](https://developer.spotify.com/documentation/web-api/reference/#object-episodeobject)\n\
             in JSON format.\n\nObjects are returned in the order requested. If an\
             \ object is not found, a `null` value is returned in the appropriate position.\n\
             Duplicate `ids` in the query will result in duplicate objects in the response.\
@@ -1550,7 +1550,7 @@ paths:
         or other Spotify users.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-check-current-user-follows
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-current-user-follows
       operationId: endpoint-check-current-user-follows
       parameters:
       - name: Authorization
@@ -1601,7 +1601,7 @@ paths:
         playlist.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-check-if-user-follows-playlist
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-if-user-follows-playlist
       operationId: endpoint-check-if-user-follows-playlist
       parameters:
       - name: Authorization
@@ -1652,7 +1652,7 @@ paths:
       description: Get the current user's followed artists.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-followed
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-followed
       operationId: endpoint-get-followed
       parameters:
       - name: Authorization
@@ -1688,8 +1688,8 @@ paths:
         "200":
           description: "On success, the HTTP status code in the response header is\
             \ `200` OK and the response body contains an `artists` object.\nThe `artists`\
-            \ object in turn contains a [cursor-based paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#cursor-based-paging-object)\
-            \ of [Artists](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full).\n\
+            \ object in turn contains a [cursor-based paging object](https://developer.spotify.com/documentation/web-api/reference/#object-cursorpagingobject)\
+            \ of [Artists](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject).\n\
             On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
           content:
@@ -1707,7 +1707,7 @@ paths:
         Spotify users.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-follow-artists-users
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-follow-artists-users
       operationId: endpoint-follow-artists-users
       parameters:
       - name: Authorization
@@ -1775,7 +1775,7 @@ paths:
         other Spotify users.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-unfollow-artists-users
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-unfollow-artists-users
       operationId: endpoint-unfollow-artists-users
       parameters:
       - name: Authorization
@@ -1841,7 +1841,7 @@ paths:
       description: Add the current user as a follower of a playlist.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-follow-playlist
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-follow-playlist
       operationId: endpoint-follow-playlist
       parameters:
       - name: Authorization
@@ -1897,7 +1897,7 @@ paths:
       description: Remove the current user as a follower of a playlist.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-unfollow-playlist
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-unfollow-playlist
       operationId: endpoint-unfollow-playlist
       parameters:
       - name: Authorization
@@ -1943,7 +1943,7 @@ paths:
         user's 'Your Music' library.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-check-users-saved-albums
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-albums
       operationId: endpoint-check-users-saved-albums
       parameters:
       - name: Authorization
@@ -1989,7 +1989,7 @@ paths:
         user's library.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-check-users-saved-shows
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-shows
       operationId: endpoint-check-users-saved-shows
       parameters:
       - name: Authorization
@@ -2035,7 +2035,7 @@ paths:
         user's 'Your Music' library.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-check-users-saved-tracks
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-tracks
       operationId: endpoint-check-users-saved-tracks
       parameters:
       - name: Authorization
@@ -2081,7 +2081,7 @@ paths:
         Music' library.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-users-saved-albums
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-albums
       operationId: endpoint-get-users-saved-albums
       parameters:
       - name: Authorization
@@ -2122,8 +2122,8 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         "200":
           description: "On success, the HTTP status code in the response header is\
-            \ `200` OK and the response body contains an array of [saved album objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#saved-album-object)\
-            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+            \ `200` OK and the response body contains an array of [saved album objects](https://developer.spotify.com/documentation/web-api/reference/#object-savedalbumobject)\
+            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
             \ in JSON format. Each album object is accompanied by a [timestamp](https://developer.spotify.com/documentation/web-api/#timestamps)\
             \ (`added_at`) to show when it was added. There is also an **etag** in\
             \ the header that can be used in future [conditional requests](https://developer.spotify.com/documentation/web-api/#conditional-requests).\n\
@@ -2165,7 +2165,7 @@ paths:
                     format: int32
                 externalDocs:
                   description: Find more info on the official Spotify Web API Reference
-                  url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+                  url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
       - spotify_auth:
         - user-library-read
@@ -2176,7 +2176,7 @@ paths:
       description: Save one or more albums to the current user's 'Your Music' library.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-save-albums-user
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-albums-user
       operationId: endpoint-save-albums-user
       parameters:
       - name: Authorization
@@ -2239,7 +2239,7 @@ paths:
         library.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-remove-albums-user
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-albums-user
       operationId: endpoint-remove-albums-user
       parameters:
       - name: Authorization
@@ -2303,7 +2303,7 @@ paths:
         Optional parameters can be used to limit the number of shows returned.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-users-saved-shows
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-shows
       operationId: endpoint-get-users-saved-shows
       parameters:
       - name: Authorization
@@ -2336,8 +2336,8 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         "200":
           description: "On success, the HTTP status code in the response header is\
-            \ `200` OK and the response body contains an array of [saved show objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#saved-show-object)\
-            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+            \ `200` OK and the response body contains an array of [saved show objects](https://developer.spotify.com/documentation/web-api/reference/#object-savedshowobject)\
+            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
             \ in JSON format.\nIf the current user has no shows saved, the response\
             \ will be an empty array. If a show is unavailable in the given `market`\
             \ it is filtered out. The `total` field in the paging object represents\
@@ -2381,7 +2381,7 @@ paths:
                     format: int32
                 externalDocs:
                   description: Find more info on the official Spotify Web API Reference
-                  url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+                  url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
       - spotify_auth:
         - user-library-read
@@ -2392,7 +2392,7 @@ paths:
       description: Save one or more shows to current Spotify user's library.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-save-shows-user
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-shows-user
       operationId: endpoint-save-shows-user
       parameters:
       - name: Authorization
@@ -2431,7 +2431,7 @@ paths:
       description: Delete one or more shows from current Spotify user's library.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-remove-shows-user
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-shows-user
       operationId: endpoint-remove-shows-user
       parameters:
       - name: Authorization
@@ -2484,7 +2484,7 @@ paths:
         Music' library.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-users-saved-tracks
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-tracks
       operationId: endpoint-get-users-saved-tracks
       parameters:
       - name: Authorization
@@ -2525,8 +2525,8 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         "200":
           description: "On success, the HTTP status code in the response header is\
-            \ `200` OK and the response body contains an array of [saved track objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#saved-track-object)\
-            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+            \ `200` OK and the response body contains an array of [saved track objects](https://developer.spotify.com/documentation/web-api/reference/#object-savedtrackobject)\
+            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
           content:
@@ -2565,7 +2565,7 @@ paths:
                     format: int32
                 externalDocs:
                   description: Find more info on the official Spotify Web API Reference
-                  url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+                  url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
       - spotify_auth:
         - user-library-read
@@ -2576,7 +2576,7 @@ paths:
       description: Save one or more tracks to the current user's 'Your Music' library.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-save-tracks-user
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-tracks-user
       operationId: endpoint-save-tracks-user
       parameters:
       - name: Authorization
@@ -2640,7 +2640,7 @@ paths:
         library.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-remove-tracks-user
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-tracks-user
       operationId: endpoint-remove-tracks-user
       parameters:
       - name: Authorization
@@ -2704,7 +2704,7 @@ paths:
         affinity.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-users-top-artists-and-tracks
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-top-artists-and-tracks
       operationId: endpoint-get-users-top-artists-and-tracks
       parameters:
       - name: Authorization
@@ -2753,9 +2753,9 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         "200":
           description: "On success, the HTTP status code in the response header is\
-            \ `200 OK` and the response body contains a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object)\
-            \ of [Artists](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full)\
-            \ or [Tracks](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full).\
+            \ `200 OK` and the response body contains a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject)\
+            \ of [Artists](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject)\
+            \ or [Tracks](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject).\
             \ On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
           content:
@@ -2796,7 +2796,7 @@ paths:
                     format: int32
                 externalDocs:
                   description: Find more info on the official Spotify Web API Reference
-                  url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+                  url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
       - spotify_auth:
         - user-top-read
@@ -2808,7 +2808,7 @@ paths:
       description: Add an item to the end of the user's current playback queue.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-add-to-queue
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-to-queue
       operationId: endpoint-add-to-queue
       parameters:
       - name: Authorization
@@ -2842,7 +2842,7 @@ paths:
           description: "A completed request will return a `204 NO CONTENT` response\
             \ code, and then issue the command to the player. Due to the asynchronous\
             \ nature of the issuance of the command, you should use the [Get Information\
-            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
             \ endpoint to check that your issued command was handled correctly by\
             \ the player.\n\nIf the device is not found, the request will return `404\
             \ NOT FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -2858,7 +2858,7 @@ paths:
       description: Get information about a user's available devices.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-a-users-available-devices
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-users-available-devices
       operationId: endpoint-get-a-users-available-devices
       parameters:
       - name: Authorization
@@ -2895,7 +2895,7 @@ paths:
         \ track or episode, progress, and active device."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-information-about-the-users-current-playback
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback
       operationId: endpoint-get-information-about-the-users-current-playback
       parameters:
       - name: Authorization
@@ -2958,7 +2958,7 @@ paths:
         playing.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-transfer-a-users-playback
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-transfer-a-users-playback
       operationId: endpoint-transfer-a-users-playback
       parameters:
       - name: Authorization
@@ -3000,7 +3000,7 @@ paths:
           description: "A completed request will return a `204 NO CONTENT` response\
             \ code, and then issue the command to the player. Due to the asynchronous\
             \ nature of the issuance of the command, you should use the [Get Information\
-            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
             \ endpoint to check that your issued command was handled correctly by\
             \ the player.\n\nIf the device is not found, the request will return `404\
             \ NOT FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -3017,7 +3017,7 @@ paths:
         \ Currently doesn't support podcast episodes.*"
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-recently-played
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recently-played
       operationId: endpoint-get-recently-played
       parameters:
       - name: Authorization
@@ -3063,7 +3063,7 @@ paths:
             \ (wrapped in a [cursor-based paging object](#cursor-based-paging-object))\
             \ in JSON format. The play history items each contain the context the\
             \ track was played from (e.g. playlist, album), the date and time the\
-            \ track was played, and a [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-simplified).\
+            \ track was played, and a [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject).\
             \ On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
             \nIf private session is enabled the response will be a `204 NO CONTENT`\
@@ -3098,14 +3098,14 @@ paths:
                     format: int32
                 externalDocs:
                   description: Find more info on the official Spotify Web API Reference
-                  url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-cursorpagingobject
+                  url: https://developer.spotify.com/documentation/web-api/reference/#object-cursorpagingobject
         "204":
           description: "On success, the HTTP status code in the response header is\
             \ `200` OK and the response body contains an array of [play history objects](#play-history-object)\
             \ (wrapped in a [cursor-based paging object](#cursor-based-paging-object))\
             \ in JSON format. The play history items each contain the context the\
             \ track was played from (e.g. playlist, album), the date and time the\
-            \ track was played, and a [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-simplified).\
+            \ track was played, and a [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject).\
             \ On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
             \nIf private session is enabled the response will be a `204 NO CONTENT`\
@@ -3120,7 +3120,7 @@ paths:
       description: Get the object currently being played on the user's Spotify account.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-the-users-currently-playing-track
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-the-users-currently-playing-track
       operationId: endpoint-get-the-users-currently-playing-track
       parameters:
       - name: Authorization
@@ -3195,7 +3195,7 @@ paths:
       description: Pause playback on the user's account.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-pause-a-users-playback
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-pause-a-users-playback
       operationId: endpoint-pause-a-users-playback
       parameters:
       - name: Authorization
@@ -3221,7 +3221,7 @@ paths:
           description: "A completed request will return a `204 NO CONTENT` response\
             \ code, and then issue the command to the player. Due to the asynchronous\
             \ nature of the issuance of the command, you should use the [Get Information\
-            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
             \ endpoint to check that your issued command was handled correctly by\
             \ the player.\n\nIf the device is not found, the request will return `404\
             \ NOT FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -3236,7 +3236,7 @@ paths:
       description: Seeks to the given position in the user's currently playing track.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-seek-to-position-in-currently-playing-track
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-seek-to-position-in-currently-playing-track
       operationId: endpoint-seek-to-position-in-currently-playing-track
       parameters:
       - name: Authorization
@@ -3272,7 +3272,7 @@ paths:
           description: "A completed request will return a `204 NO CONTENT` response\
             \ code, and then issue the command to the player. Due to the asynchronous\
             \ nature of the issuance of the command, you should use the [Get Information\
-            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
             \ endpoint to check that your issued command was handled correctly by\
             \ the player.\n\nIf the device is not found, the request will return `404\
             \ NOT FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -3289,7 +3289,7 @@ paths:
         repeat-context, and off."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-set-repeat-mode-on-users-playback
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-set-repeat-mode-on-users-playback
       operationId: endpoint-set-repeat-mode-on-users-playback
       parameters:
       - name: Authorization
@@ -3324,7 +3324,7 @@ paths:
           description: "A completed request will return a `204 NO CONTENT` response\
             \ code, and then issue the command to the player. Due to the asynchronous\
             \ nature of the issuance of the command, you should use the [Get Information\
-            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
             \ endpoint to check that your issued command was handled correctly by\
             \ the player.\n\nIf the device is not found, the request will return `404\
             \ NOT FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -3340,7 +3340,7 @@ paths:
       description: Set the volume for the user's current playback device.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-set-volume-for-users-playback
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-set-volume-for-users-playback
       operationId: endpoint-set-volume-for-users-playback
       parameters:
       - name: Authorization
@@ -3374,7 +3374,7 @@ paths:
           description: "A completed request will return a `204 NO CONTENT` response\
             \ code, and then issue the command to the player. Due to the asynchronous\
             \ nature of the issuance of the command, you should use the [Get Information\
-            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
             \ endpoint to check that your issued command was handled correctly by\
             \ the player.\n\nIf the device is not found, the request will return `404\
             \ NOT FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -3390,7 +3390,7 @@ paths:
       description: Skips to next track in the user's queue.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-skip-users-playback-to-next-track
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-skip-users-playback-to-next-track
       operationId: endpoint-skip-users-playback-to-next-track
       parameters:
       - name: Authorization
@@ -3417,7 +3417,7 @@ paths:
           description: "A completed request will return a `204 NO CONTENT` response\
             \ code, and then issue the command to the player. Due to the asynchronous\
             \ nature of the issuance of the command, you should use the [Get Information\
-            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
             \ endpoint to check that your issued command was handled correctly by\
             \ the player.\n\nIf the device is not found, the request will return `404\
             \ NOT FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -3433,7 +3433,7 @@ paths:
       description: Skips to previous track in the user's queue.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-skip-users-playback-to-previous-track
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-skip-users-playback-to-previous-track
       operationId: endpoint-skip-users-playback-to-previous-track
       parameters:
       - name: Authorization
@@ -3460,7 +3460,7 @@ paths:
           description: "A completed request will return a `204 NO CONTENT` response\
             \ code, and then issue the command to the player. Due to the asynchronous\
             \ nature of the issuance of the command, you should use the [Get Information\
-            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
             \ endpoint to check that your issued command was handled correctly by\
             \ the player.\n\nIf the device is not found, the request will return `404\
             \ NOT FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -3477,7 +3477,7 @@ paths:
         device.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-start-a-users-playback
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-start-a-users-playback
       operationId: endpoint-start-a-users-playback
       parameters:
       - name: Authorization
@@ -3539,7 +3539,7 @@ paths:
           description: "A completed request will return a `204 NO CONTENT` response\
             \ code, and then issue the command to the player. Due to the asynchronous\
             \ nature of the issuance of the command, you should use the [Get Information\
-            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
             \ endpoint to check that your issued command was handled correctly by\
             \ the player.\n\nIf the device is not found, the request will return `404\
             \ NOT FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -3555,7 +3555,7 @@ paths:
       description: Toggle shuffle on or off for user's playback.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-toggle-shuffle-for-users-playback
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-toggle-shuffle-for-users-playback
       operationId: endpoint-toggle-shuffle-for-users-playback
       parameters:
       - name: Authorization
@@ -3589,7 +3589,7 @@ paths:
           description: "A completed request will return a `204 NO CONTENT` response\
             \ code, and then issue the command to the player. Due to the asynchronous\
             \ nature of the issuance of the command, you should use the [Get Information\
-            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/player/get-information-about-the-users-current-playback)\
+            \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
             \ endpoint to check that your issued command was handled correctly by\
             \ the player.\n\nIf the device is not found, the request will return `404\
             \ NOT FOUND` response code.\n\nIf the user making the request is non-premium,\
@@ -3606,7 +3606,7 @@ paths:
         user.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-playlists-tracks
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-playlists-tracks
       operationId: endpoint-get-playlists-tracks
       parameters:
       - name: Authorization
@@ -3685,10 +3685,10 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         "200":
           description: "On success, the response body contains an array of [track\
-            \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-simplified)\
-            \ and [episode objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#episode-object-simplified)\
+            \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject)\
+            \ and [episode objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject)\
             \ (depends on the `additional_types` parameter), wrapped in a [paging\
-            \ object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object)\
+            \ object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject)\
             \ in JSON format and the HTTP status code in the response header is `200`\
             \ OK. If an episode is unavailable in the given `market`, its information\
             \ will not be included in the response. On error, the header status code\
@@ -3734,7 +3734,7 @@ paths:
                     format: int32
                 externalDocs:
                   description: Find more info on the official Spotify Web API Reference
-                  url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+                  url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
       - spotify_auth: []
     put:
@@ -3752,7 +3752,7 @@ paths:
         \ in a single request."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-reorder-or-replace-playlists-tracks
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks
       operationId: endpoint-reorder-or-replace-playlists-tracks
       parameters:
       - name: Authorization
@@ -3867,7 +3867,7 @@ paths:
       description: Add one or more items to a user's playlist.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-add-tracks-to-playlist
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-tracks-to-playlist
       operationId: endpoint-add-tracks-to-playlist
       parameters:
       - name: Authorization
@@ -3973,7 +3973,7 @@ paths:
       description: Remove one or more items from a user's playlist.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-remove-tracks-playlist
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-tracks-playlist
       operationId: endpoint-remove-tracks-playlist
       parameters:
       - name: Authorization
@@ -4053,7 +4053,7 @@ paths:
       description: Get a playlist owned by a Spotify user.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-playlist
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-playlist
       operationId: endpoint-get-playlist
       parameters:
       - name: Authorization
@@ -4114,7 +4114,7 @@ paths:
         default:
           $ref: '#/components/responses/ErrorResponse'
         "200":
-          description: "On success, the response body contains a [playlist object](https://developer.spotify.com/documentation/web-api/reference/object-model/#playlist-object-full)\
+          description: "On success, the response body contains a [playlist object](https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject)\
             \ in JSON format and the HTTP status code in the response header is `200`\
             \ OK. If an episode is unavailable in the given `market`, its information\
             \ will not be included in the response. On error, the header status code\
@@ -4136,7 +4136,7 @@ paths:
         \ of\ncourse, own the playlist.)"
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-change-playlist-details
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-change-playlist-details
       operationId: endpoint-change-playlist-details
       parameters:
       - name: Authorization
@@ -4209,7 +4209,7 @@ paths:
       description: Get a list of the playlists owned or followed by a Spotify user.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-list-users-playlists
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-list-users-playlists
       operationId: endpoint-get-list-users-playlists
       parameters:
       - name: Authorization
@@ -4255,8 +4255,8 @@ paths:
         "200":
           description: "On success, the HTTP status code in the response header is\
             \ `200` OK and the response body contains an array of simplified [playlist\
-            \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#playlist-object-simplified)\
-            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+            \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject)\
+            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
           content:
@@ -4295,7 +4295,7 @@ paths:
                     format: int32
                 externalDocs:
                   description: Find more info on the official Spotify Web API Reference
-                  url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+                  url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
       - spotify_auth:
         - playlist-read-private
@@ -4305,10 +4305,10 @@ paths:
       - category-playlists
       summary: Create a Playlist
       description: "Create a playlist for a Spotify user. (The playlist will be empty\
-        \ until\nyou [add tracks](https://developer.spotify.com/documentation/web-api/reference/playlists/add-tracks-to-playlist/).)"
+        \ until\nyou [add tracks](https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-tracks-to-playlist).)"
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-create-playlist
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-create-playlist
       operationId: endpoint-create-playlist
       parameters:
       - name: Authorization
@@ -4371,7 +4371,7 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         "200":
           description: "On success, the response body contains the created [playlist\
-            \ object](https://developer.spotify.com/documentation/web-api/reference/object-model/#playlist-object-full)\n\
+            \ object](https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject)\n\
             in JSON format and the HTTP status code in the response header is `200`\
             \ OK or\n`201` Created. There is also a `Location` response header giving\
             \ the Web API\nendpoint for the new playlist.\n\nOn error, the header\
@@ -4385,7 +4385,7 @@ paths:
                 $ref: '#/components/schemas/PlaylistObject'
         "201":
           description: "On success, the response body contains the created [playlist\
-            \ object](https://developer.spotify.com/documentation/web-api/reference/object-model/#playlist-object-full)\n\
+            \ object](https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject)\n\
             in JSON format and the HTTP status code in the response header is `200`\
             \ OK or\n`201` Created. There is also a `Location` response header giving\
             \ the Web API\nendpoint for the new playlist.\n\nOn error, the header\
@@ -4411,7 +4411,7 @@ paths:
         user.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-a-list-of-current-users-playlists
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-list-of-current-users-playlists
       operationId: endpoint-get-a-list-of-current-users-playlists
       parameters:
       - name: Authorization
@@ -4451,8 +4451,8 @@ paths:
         "200":
           description: "On success, the HTTP status code in the response header is\
             \ `200` OK and the response body contains an array of simplified [playlist\
-            \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#playlist-object-simplified)\
-            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+            \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject)\
+            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
             \ Please note that the access token has to be tied to a user."
@@ -4492,7 +4492,7 @@ paths:
                     format: int32
                 externalDocs:
                   description: Find more info on the official Spotify Web API Reference
-                  url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+                  url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
       - spotify_auth:
         - playlist-read-private
@@ -4505,7 +4505,7 @@ paths:
       description: Get the current image associated with a specific playlist.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-playlist-cover
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-playlist-cover
       operationId: endpoint-get-playlist-cover
       parameters:
       - name: Authorization
@@ -4530,7 +4530,7 @@ paths:
         default:
           $ref: '#/components/responses/ErrorResponse'
         "200":
-          description: "On success, the response body contains a list of [image objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#image-object)\
+          description: "On success, the response body contains a list of [image objects](https://developer.spotify.com/documentation/web-api/reference/#object-imageobject)\
             \ in JSON format and the HTTP status code in the response header is `200`\
             \ OK  \nOn error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
@@ -4549,7 +4549,7 @@ paths:
       description: Replace the image used to represent a specific playlist.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-upload-custom-playlist-cover
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-upload-custom-playlist-cover
       operationId: endpoint-upload-custom-playlist-cover
       parameters:
       - name: Authorization
@@ -4600,7 +4600,7 @@ paths:
         \ tracks, shows or episodes\nthat match a keyword string."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-search
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-search
       operationId: endpoint-search
       parameters:
       - name: Authorization
@@ -4677,12 +4677,12 @@ paths:
         "200":
           description: "**On success**:\n\n- In the response ***header*** the HTTP\
             \ status code is `200` OK.\n- For each type provided in the `type` parameter,\
-            \ the response ***body*** contains an array of [artist objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full)\
-            \ / [simplified album objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-object-simplified)\
-            \ / [track objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full)\
-            \ / [simplified show objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#show-object-simplified)\
-            \ / [simplified episode objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#episode-object-simplified)\
-            \ wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object)\
+            \ the response ***body*** contains an array of [artist objects](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject)\
+            \ / [simplified album objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject)\
+            \ / [track objects](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)\
+            \ / [simplified show objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedshowobject)\
+            \ / [simplified episode objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject)\
+            \ wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject)\
             \ in JSON.\n\n**On error**:\n\n- The ***header*** status code is an [error\
             \ code](https://developer.spotify.com/documentation/web-api/#response-status-codes).\n\
             - The response ***body*** contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
@@ -4702,7 +4702,7 @@ paths:
         unique Spotify ID.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-a-show
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-show
       operationId: endpoint-get-a-show
       parameters:
       - name: Authorization
@@ -4738,7 +4738,7 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         "200":
           description: "On success, the HTTP status code in the response header is\
-            \ `200`\nOK and the response body contains a [show object](https://developer.spotify.com/documentation/web-api/reference/object-model/#show-object-full)\n\
+            \ `200`\nOK and the response body contains a [show object](https://developer.spotify.com/documentation/web-api/reference/#object-showobject)\n\
             in JSON format.  \n\nOn error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\n\
             and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
             \  \n\nIf a show is unavailable in the given `market` the HTTP status\
@@ -4758,7 +4758,7 @@ paths:
         parameters can be used to limit the number of episodes returned.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-a-shows-episodes
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-shows-episodes
       operationId: endpoint-get-a-shows-episodes
       parameters:
       - name: Authorization
@@ -4811,8 +4811,8 @@ paths:
         "200":
           description: "On success, the HTTP status code in the response header is\
             \ `200` OK and the response body contains an array of [simplified episode\
-            \ objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#episode-object-simplified)\
-            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/object-model/#paging-object))\
+            \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject)\
+            \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
             \ in JSON format.  \n\nOn error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#error-details).\
             \  \n\nIf a show is unavailable in the given `market` the HTTP status\
@@ -4854,7 +4854,7 @@ paths:
                     format: int32
                 externalDocs:
                   description: Find more info on the official Spotify Web API Reference
-                  url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+                  url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
       - spotify_auth: []
   /shows:
@@ -4866,7 +4866,7 @@ paths:
         Spotify IDs.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-multiple-shows
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-multiple-shows
       operationId: endpoint-get-multiple-shows
       parameters:
       - name: Authorization
@@ -4903,7 +4903,7 @@ paths:
         "200":
           description: "On success, the HTTP status code in the response header is\
             \ `200`\nOK and the response body contains an object whose key is `shows`\
-            \ and whose\nvalue is an array of [simple show object](https://developer.spotify.com/documentation/web-api/reference/object-model/#show-object-simplified)\n\
+            \ and whose\nvalue is an array of [simple show object](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedshowobject)\n\
             in JSON format.\n\nObjects are returned in the order requested. If an\
             \ object is not found, a `null` value is returned in the appropriate position.\
             \ If a show is unavailable in the given `market`, a `null` value is returned.\
@@ -4926,7 +4926,7 @@ paths:
         Spotify ID.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-audio-analysis
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-audio-analysis
       operationId: endpoint-get-audio-analysis
       parameters:
       - name: Authorization
@@ -4968,7 +4968,7 @@ paths:
         Spotify ID.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-audio-features
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-audio-features
       operationId: endpoint-get-audio-features
       parameters:
       - name: Authorization
@@ -4991,7 +4991,7 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         "200":
           description: "On success, the HTTP status code in the response header is\
-            \ `200 OK` and the response body contains an [audio features object](https://developer.spotify.com/documentation/web-api/reference/object-model/#audio-features-object)\
+            \ `200 OK` and the response body contains an [audio features object](https://developer.spotify.com/documentation/web-api/reference/#object-audiofeaturesobject)\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
           content:
@@ -5008,7 +5008,7 @@ paths:
       description: Get audio features for multiple tracks based on their Spotify IDs.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-several-audio-features
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-several-audio-features
       operationId: endpoint-get-several-audio-features
       parameters:
       - name: Authorization
@@ -5053,7 +5053,7 @@ paths:
         Spotify IDs.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-several-tracks
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-several-tracks
       operationId: endpoint-get-several-tracks
       parameters:
       - name: Authorization
@@ -5085,7 +5085,7 @@ paths:
         "200":
           description: "On success, the HTTP status code in the response header is\
             \ `200`\nOK and the response body contains an object whose key is `tracks`\
-            \ and whose\nvalue is an array of [track objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full)\n\
+            \ and whose\nvalue is an array of [track objects](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)\n\
             in JSON format.\n\nObjects are returned in the order requested. If an\
             \ object is not found, a `null` value is returned in the appropriate position.\
             \ Duplicate `ids` in the query will result in duplicate objects in the\
@@ -5107,7 +5107,7 @@ paths:
         unique Spotify ID.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-track
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-track
       operationId: endpoint-get-track
       parameters:
       - name: Authorization
@@ -5138,7 +5138,7 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         "200":
           description: "On success, the HTTP status code in the response header is\
-            \ `200`\nOK and the response body contains a [track object](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full)\n\
+            \ `200`\nOK and the response body contains a [track object](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)\n\
             in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\n\
             and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
           content:
@@ -5157,7 +5157,7 @@ paths:
         current user's username).
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-current-users-profile
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-current-users-profile
       operationId: endpoint-get-current-users-profile
       parameters:
       - name: Authorization
@@ -5176,7 +5176,7 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         "200":
           description: "On success, the HTTP status code in the response header is\
-            \ `200` OK and the response body contains a [user object](https://developer.spotify.com/documentation/web-api/reference/object-model/#user-object-private)\
+            \ `200` OK and the response body contains a [user object](https://developer.spotify.com/documentation/web-api/reference/#object-privateuserobject)\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
             \ When requesting fields that you don't have the user's authorization\
@@ -5201,7 +5201,7 @@ paths:
       description: Get public profile information about a Spotify user.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-users-profile
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-profile
       operationId: endpoint-get-users-profile
       parameters:
       - name: Authorization
@@ -5223,7 +5223,7 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         "200":
           description: "On success, the HTTP status code in the response header is\
-            \ `200` OK and the response body contains a [user object](https://developer.spotify.com/documentation/web-api/reference/object-model/#user-object-public)\
+            \ `200` OK and the response body contains a [user object](https://developer.spotify.com/documentation/web-api/reference/#object-publicuserobject)\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
             \ If a user with that user_id doesn't exist, the status code is `404`\
@@ -5343,7 +5343,7 @@ components:
           description: The tracks of the album.
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
-            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+            url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
         type:
           type: string
           description: "The object type: \"album\""
@@ -5352,7 +5352,7 @@ components:
           description: The Spotify URI for the album.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-albumobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-albumobject
     AlbumRestrictionObject:
       type: object
       properties:
@@ -5367,7 +5367,7 @@ components:
             \ your application safely handles unknown values."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-albumrestrictionobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject
     AlbumsObject:
       type: object
       properties:
@@ -5421,7 +5421,7 @@ components:
             \ for the artist."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-artistobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-artistobject
     ArtistsObject:
       type: object
       properties:
@@ -5582,7 +5582,7 @@ components:
             \ negative (e.g. sad, depressed, angry)."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-audiofeaturesobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-audiofeaturesobject
     CategoriesObject:
       type: object
       properties:
@@ -5621,7 +5621,7 @@ components:
           description: ""
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
-            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+            url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
     CategoryObject:
       type: object
       properties:
@@ -5643,7 +5643,7 @@ components:
           description: The name of the category.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-categoryobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-categoryobject
     ContextObject:
       type: object
       properties:
@@ -5663,7 +5663,7 @@ components:
             \ for the context."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-contextobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-contextobject
     CopyrightObject:
       type: object
       properties:
@@ -5676,7 +5676,7 @@ components:
             \ recording (performance) copyright."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-copyrightobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-copyrightobject
     CurrentlyPlayingContextObject:
       type: object
       properties:
@@ -5715,7 +5715,7 @@ components:
           format: int32
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-currentlyplayingcontextobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-currentlyplayingcontextobject
     CurrentlyPlayingObject:
       type: object
       properties:
@@ -5744,7 +5744,7 @@ components:
           format: int32
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-currentlyplayingobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-currentlyplayingobject
     CursorObject:
       type: object
       properties:
@@ -5753,7 +5753,7 @@ components:
           description: The cursor to use as key to find the next page of items.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-cursorobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-cursorobject
     CursorPagingObject:
       type: object
       properties:
@@ -5782,7 +5782,7 @@ components:
           format: int32
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-cursorpagingobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-cursorpagingobject
     DeviceObject:
       type: object
       properties:
@@ -5812,7 +5812,7 @@ components:
           format: int32
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-deviceobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-deviceobject
     DevicesObject:
       type: object
       properties:
@@ -5823,7 +5823,7 @@ components:
             $ref: '#/components/schemas/DeviceObject'
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-devicesobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-devicesobject
     DisallowsObject:
       type: object
       properties:
@@ -5859,7 +5859,7 @@ components:
           description: Transfering playback between devices. Optional field.
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-disallowsobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-disallowsobject
     EpisodeObject:
       type: object
       properties:
@@ -5937,7 +5937,7 @@ components:
             \ for the episode."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-episodeobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-episodeobject
     EpisodesObject:
       type: object
       properties:
@@ -5960,7 +5960,7 @@ components:
           format: int32
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-errorobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-errorobject
     ErrorResponseObject:
       type: object
       properties:
@@ -5979,7 +5979,7 @@ components:
             \ locked and can't be changed by the user."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-explicitcontentsettingsobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-explicitcontentsettingsobject
     ExternalIdObject:
       type: object
       properties:
@@ -5994,7 +5994,7 @@ components:
           description: "[Universal Product Code](http://en.wikipedia.org/wiki/Universal_Product_Code)"
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-externalidobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-externalidobject
     ExternalUrlObject:
       type: object
       properties:
@@ -6004,7 +6004,7 @@ components:
             \ for the object."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-externalurlobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-externalurlobject
     FeaturedPlaylistObject:
       type: object
       properties:
@@ -6046,7 +6046,7 @@ components:
           description: ""
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
-            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+            url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
     FollowersObject:
       type: object
       properties:
@@ -6061,7 +6061,7 @@ components:
           format: int32
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-followersobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-followersobject
     FollowingArtistsObject:
       type: object
       properties:
@@ -6094,7 +6094,7 @@ components:
           description: ""
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
-            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-cursorpagingobject
+            url: https://developer.spotify.com/documentation/web-api/reference/#object-cursorpagingobject
     GenreSeedsObject:
       type: object
       properties:
@@ -6119,7 +6119,7 @@ components:
           format: int32
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-imageobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-imageobject
     LinkedTrackObject:
       type: object
       properties:
@@ -6142,7 +6142,7 @@ components:
             \ for the track."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-linkedtrackobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-linkedtrackobject
     NewReleasesObject:
       type: object
       properties:
@@ -6181,7 +6181,7 @@ components:
           description: ""
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
-            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+            url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
     PagingObject:
       type: object
       properties:
@@ -6216,7 +6216,7 @@ components:
           format: int32
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
     PlayHistoryObject:
       type: object
       properties:
@@ -6230,7 +6230,7 @@ components:
           $ref: '#/components/schemas/SimplifiedTrackObject'
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-playhistoryobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-playhistoryobject
     PlayerErrorObject:
       type: object
       properties:
@@ -6267,7 +6267,7 @@ components:
           format: int32
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-playererrorobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-playererrorobject
     PlaylistObject:
       type: object
       properties:
@@ -6350,7 +6350,7 @@ components:
             \ object may be `null`. This can happen if a track is no longer available."
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
-            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+            url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
         type:
           type: string
           description: "The object type: \"playlist\""
@@ -6360,7 +6360,7 @@ components:
             \ for the playlist."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-playlistobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject
     PlaylistPagingObject:
       type: object
       properties:
@@ -6399,7 +6399,7 @@ components:
           description: ""
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
-            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+            url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
     PlaylistTrackObject:
       type: object
       properties:
@@ -6421,7 +6421,7 @@ components:
           - $ref: '#/components/schemas/EpisodeObject'
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-playlisttrackobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-playlisttrackobject
     PlaylistTracksRefObject:
       type: object
       properties:
@@ -6435,7 +6435,7 @@ components:
           format: int32
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-playlisttracksrefobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-playlisttracksrefobject
     PrivateUserObject:
       type: object
       properties:
@@ -6490,7 +6490,7 @@ components:
             \ for the user."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-privateuserobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-privateuserobject
     PublicUserObject:
       type: object
       properties:
@@ -6522,7 +6522,7 @@ components:
             \ for this user."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-publicuserobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-publicuserobject
     RecommendationSeedObject:
       type: object
       properties:
@@ -6539,8 +6539,8 @@ components:
         href:
           type: string
           description: "A link to the full track or artist data for this seed. For\
-            \ tracks this will be a link to a [Track Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full).\
-            \ For artists a link to [an Artist Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full).\
+            \ tracks this will be a link to a [Track Object](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject).\
+            \ For artists a link to [an Artist Object](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject).\
             \ For genre seeds, this value will be `null`."
         id:
           type: string
@@ -6557,24 +6557,24 @@ components:
             \ `genre`."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-recommendationseedobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-recommendationseedobject
     RecommendationsObject:
       type: object
       properties:
         seeds:
           type: array
-          description: "An array of [recommendation seed objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#recommendations-seed-object)."
+          description: "An array of [recommendation seed objects](https://developer.spotify.com/documentation/web-api/reference/#object-recommendationseedobject)."
           items:
             $ref: '#/components/schemas/RecommendationSeedObject'
         tracks:
           type: array
-          description: "An array of [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-simplified)\
+          description: "An array of [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject)\
             \ ordered according to the parameters supplied."
           items:
             $ref: '#/components/schemas/SimplifiedTrackObject'
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-recommendationsobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-recommendationsobject
     ResumePointObject:
       type: object
       properties:
@@ -6587,7 +6587,7 @@ components:
           format: int32
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-resumepointobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-resumepointobject
     SavedAlbumObject:
       type: object
       properties:
@@ -6603,7 +6603,7 @@ components:
           $ref: '#/components/schemas/AlbumObject'
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-savedalbumobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-savedalbumobject
     SavedShowObject:
       type: object
       properties:
@@ -6619,7 +6619,7 @@ components:
           $ref: '#/components/schemas/SimplifiedShowObject'
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-savedshowobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-savedshowobject
     SavedTrackObject:
       type: object
       properties:
@@ -6635,7 +6635,7 @@ components:
           $ref: '#/components/schemas/TrackObject'
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-savedtrackobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-savedtrackobject
     SearchResponseObject:
       type: object
       properties:
@@ -6674,7 +6674,7 @@ components:
           description: ""
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
-            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+            url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
         artist:
           type: object
           properties:
@@ -6710,7 +6710,7 @@ components:
           description: ""
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
-            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+            url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
         episode:
           type: object
           properties:
@@ -6746,7 +6746,7 @@ components:
           description: ""
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
-            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+            url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
         playlist:
           type: object
           properties:
@@ -6782,7 +6782,7 @@ components:
           description: ""
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
-            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+            url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
         show:
           type: object
           properties:
@@ -6818,7 +6818,7 @@ components:
           description: ""
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
-            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+            url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
         track:
           type: object
           properties:
@@ -6854,7 +6854,7 @@ components:
           description: ""
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
-            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+            url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
     SectionObject:
       type: object
       properties:
@@ -6994,7 +6994,7 @@ components:
           description: A list of the show's episodes.
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
-            url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+            url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
         explicit:
           type: boolean
           description: Whether or not the show has explicit content (true = yes it
@@ -7042,7 +7042,7 @@ components:
             \ for the show."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-showobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-showobject
     ShowsObject:
       type: object
       properties:
@@ -7116,7 +7116,7 @@ components:
             \ for the album."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedalbumobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject
     SimplifiedArtistObject:
       type: object
       properties:
@@ -7142,7 +7142,7 @@ components:
             \ for the artist."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedartistobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedartistobject
     SimplifiedEpisodeObject:
       type: object
       properties:
@@ -7218,7 +7218,7 @@ components:
             \ for the episode."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedepisodeobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject
     SimplifiedPlaylistObject:
       type: object
       properties:
@@ -7274,7 +7274,7 @@ components:
             \ for the playlist."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedplaylistobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject
     SimplifiedShowObject:
       type: object
       properties:
@@ -7340,7 +7340,7 @@ components:
             \ for the show."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedshowobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedshowobject
     SimplifiedTrackObject:
       type: object
       properties:
@@ -7412,7 +7412,7 @@ components:
             \ for the track."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedtrackobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject
     SnapshotIdObject:
       type: object
       properties:
@@ -7526,7 +7526,7 @@ components:
             \ for the track."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-trackobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-trackobject
     TrackRestrictionObject:
       type: object
       properties:
@@ -7541,7 +7541,7 @@ components:
             \ your application safely handles unknown values."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-trackrestrictionobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-trackrestrictionobject
     TracksObject:
       type: object
       properties:
@@ -7649,7 +7649,7 @@ components:
             \ negative (e.g. sad, depressed, angry)."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference-beta/#object-tuneabletrackobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-tuneabletrackobject
   responses:
     ErrorResponse:
       description: Unexpected error
