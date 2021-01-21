@@ -1,5 +1,5 @@
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-albumobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-albumobject
  */
 export interface Album {
     /**
@@ -63,7 +63,7 @@ export interface Album {
      */
     release_date_precision: string;
     /**
-     * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-restriction-object) for more details.
+     * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject) for more details.
      */
     restrictions: AlbumRestriction;
     /**
@@ -81,7 +81,7 @@ export interface Album {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-albumrestrictionobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject
  */
 export interface AlbumRestriction {
     /**
@@ -100,7 +100,7 @@ export interface Albums {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-artistobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-artistobject
  */
 export interface Artist {
     /**
@@ -180,7 +180,7 @@ export interface AudioFeaturesArray {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-audiofeaturesobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-audiofeaturesobject
  */
 export interface AudioFeatures {
     /**
@@ -262,7 +262,7 @@ export interface Categories {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-categoryobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-categoryobject
  */
 export interface Category {
     /**
@@ -284,7 +284,7 @@ export interface Category {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-contextobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-contextobject
  */
 export interface Context {
     /**
@@ -306,7 +306,7 @@ export interface Context {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-copyrightobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-copyrightobject
  */
 export interface Copyright {
     /**
@@ -320,7 +320,7 @@ export interface Copyright {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-currentlyplayingcontextobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-currentlyplayingcontextobject
  */
 export interface CurrentlyPlayingContext {
     /**
@@ -366,7 +366,7 @@ export interface CurrentlyPlayingContext {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-currentlyplayingobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-currentlyplayingobject
  */
 export interface CurrentlyPlaying {
     /**
@@ -396,7 +396,7 @@ export interface CurrentlyPlaying {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-cursorobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-cursorobject
  */
 export interface Cursor {
     /**
@@ -406,7 +406,7 @@ export interface Cursor {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-cursorpagingobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-cursorpagingobject
  */
 export interface CursorPaging<T> {
     /**
@@ -436,7 +436,7 @@ export interface CursorPaging<T> {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-deviceobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-deviceobject
  */
 export interface Device {
     /**
@@ -470,7 +470,7 @@ export interface Device {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-devicesobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-devicesobject
  */
 export interface Devices {
     /**
@@ -480,7 +480,7 @@ export interface Devices {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-disallowsobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-disallowsobject
  */
 export interface Disallows {
     /**
@@ -526,7 +526,7 @@ export interface Disallows {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-episodeobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-episodeobject
  */
 export interface Episode {
     /**
@@ -612,7 +612,7 @@ export interface Episodes {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-errorobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-errorobject
  */
 export interface Error {
     /**
@@ -630,7 +630,7 @@ export interface ErrorResponse {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-explicitcontentsettingsobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-explicitcontentsettingsobject
  */
 export interface ExplicitContentSettings {
     /**
@@ -644,7 +644,7 @@ export interface ExplicitContentSettings {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-externalidobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-externalidobject
  */
 export interface ExternalId {
     /**
@@ -662,7 +662,7 @@ export interface ExternalId {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-externalurlobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-externalurlobject
  */
 export interface ExternalUrl {
     /**
@@ -677,7 +677,7 @@ export interface FeaturedPlaylist {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-followersobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-followersobject
  */
 export interface Followers {
     /**
@@ -699,7 +699,7 @@ export interface GenreSeeds {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-imageobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-imageobject
  */
 export interface Image {
     /**
@@ -717,7 +717,7 @@ export interface Image {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-linkedtrackobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-linkedtrackobject
  */
 export interface LinkedTrack {
     /**
@@ -747,7 +747,7 @@ export interface NewReleases {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-pagingobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
  */
 export interface Paging<T> {
     /**
@@ -781,7 +781,7 @@ export interface Paging<T> {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-playhistoryobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-playhistoryobject
  */
 export interface PlayHistory {
     /**
@@ -799,7 +799,7 @@ export interface PlayHistory {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-playererrorobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-playererrorobject
  */
 export interface PlayerError {
     /**
@@ -834,7 +834,7 @@ export interface PlayerError {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-playlistobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject
  */
 export interface Playlist {
     /**
@@ -900,7 +900,7 @@ export interface PlaylistPaging {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-playlisttrackobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-playlisttrackobject
  */
 export interface PlaylistTrack {
     /**
@@ -922,7 +922,7 @@ export interface PlaylistTrack {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-playlisttracksrefobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-playlisttracksrefobject
  */
 export interface PlaylistTracksRef {
     /**
@@ -936,7 +936,7 @@ export interface PlaylistTracksRef {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-privateuserobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-privateuserobject
  */
 export interface PrivateUser {
     /**
@@ -990,7 +990,7 @@ export interface PrivateUser {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-publicuserobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-publicuserobject
  */
 export interface PublicUser {
     /**
@@ -1028,7 +1028,7 @@ export interface PublicUser {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-recommendationseedobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-recommendationseedobject
  */
 export interface RecommendationSeed {
     /**
@@ -1040,7 +1040,7 @@ export interface RecommendationSeed {
      */
     afterRelinkingSize: number;
     /**
-     * A link to the full track or artist data for this seed. For tracks this will be a link to a [Track Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full). For artists a link to [an Artist Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full). For genre seeds, this value will be `null`.
+     * A link to the full track or artist data for this seed. For tracks this will be a link to a [Track Object](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject). For artists a link to [an Artist Object](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject). For genre seeds, this value will be `null`.
      */
     href: string;
     /**
@@ -1058,21 +1058,21 @@ export interface RecommendationSeed {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-recommendationsobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-recommendationsobject
  */
 export interface Recommendations {
     /**
-     * An array of [recommendation seed objects](https://developer.spotify.com/documentation/web-api/reference/object-model/#recommendations-seed-object).
+     * An array of [recommendation seed objects](https://developer.spotify.com/documentation/web-api/reference/#object-recommendationseedobject).
      */
     seeds: RecommendationSeed[];
     /**
-     * An array of [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-simplified) ordered according to the parameters supplied.
+     * An array of [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject) ordered according to the parameters supplied.
      */
     tracks: SimplifiedTrack[];
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-resumepointobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-resumepointobject
  */
 export interface ResumePoint {
     /**
@@ -1086,7 +1086,7 @@ export interface ResumePoint {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-savedalbumobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-savedalbumobject
  */
 export interface SavedAlbum {
     /**
@@ -1100,7 +1100,7 @@ export interface SavedAlbum {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-savedshowobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-savedshowobject
  */
 export interface SavedShow {
     /**
@@ -1114,7 +1114,7 @@ export interface SavedShow {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-savedtrackobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-savedtrackobject
  */
 export interface SavedTrack {
     /**
@@ -1185,7 +1185,7 @@ export interface Segment {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-showobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-showobject
  */
 export interface Show {
     /**
@@ -1259,7 +1259,7 @@ export interface Shows {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedalbumobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject
  */
 export interface SimplifiedAlbum {
     /**
@@ -1307,7 +1307,7 @@ export interface SimplifiedAlbum {
      */
     release_date_precision: string;
     /**
-     * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#album-restriction-object) for more details.
+     * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject) for more details.
      */
     restrictions: AlbumRestriction;
     /**
@@ -1321,7 +1321,7 @@ export interface SimplifiedAlbum {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedartistobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedartistobject
  */
 export interface SimplifiedArtist {
     /**
@@ -1351,7 +1351,7 @@ export interface SimplifiedArtist {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedepisodeobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject
  */
 export interface SimplifiedEpisode {
     /**
@@ -1429,7 +1429,7 @@ export interface SimplifiedEpisode {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedplaylistobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject
  */
 export interface SimplifiedPlaylist {
     /**
@@ -1487,7 +1487,7 @@ export interface SimplifiedPlaylist {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedshowobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedshowobject
  */
 export interface SimplifiedShow {
     /**
@@ -1553,7 +1553,7 @@ export interface SimplifiedShow {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedtrackobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject
  */
 export interface SimplifiedTrack {
     /**
@@ -1609,7 +1609,7 @@ export interface SimplifiedTrack {
      */
     preview_url: string;
     /**
-     * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-restriction-object) for more details.
+     * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-trackrestrictionobject) for more details.
      */
     restrictions: TrackRestriction;
     /**
@@ -1652,7 +1652,7 @@ export interface TimeInterval {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-trackobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-trackobject
  */
 export interface Track {
     /**
@@ -1722,7 +1722,7 @@ export interface Track {
      */
     preview_url: string;
     /**
-     * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/object-model/#track-restriction-object) for more details.
+     * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-trackrestrictionobject) for more details.
      */
     restrictions: TrackRestriction;
     /**
@@ -1740,7 +1740,7 @@ export interface Track {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-trackrestrictionobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-trackrestrictionobject
  */
 export interface TrackRestriction {
     /**
@@ -1759,7 +1759,7 @@ export interface Tracks {
 }
 
 /**
- * https://developer.spotify.com/documentation/web-api/reference-beta/#object-tuneabletrackobject
+ * https://developer.spotify.com/documentation/web-api/reference/#object-tuneabletrackobject
  */
 export interface TuneableTrack {
     /**

@@ -25,7 +25,7 @@ category-library:
     - type: Void
       status: 201
   endpoint-get-users-saved-tracks:
-    md5Hash: e64a53f08f32ed668ca23e271d146a56
+    md5Hash: 62c99262ee48a4893fdffee11da59e20
     responseTypes:
     - type: "PagingObject[SavedTrackObject]"
       status: 200
@@ -35,12 +35,12 @@ category-library:
     - type: "Array[Boolean]"
       status: 200
   endpoint-get-users-saved-albums:
-    md5Hash: 1e7bab3c29156b5f8df02546cd0e5eaa
+    md5Hash: f355dc2ec5cd2fca3a60ba8cc6c3f1f5
     responseTypes:
     - type: "PagingObject[SavedAlbumObject]"
       status: 200
   endpoint-get-users-saved-shows:
-    md5Hash: 6e14165c40877b8bebb48796163a4b85
+    md5Hash: e238e92b631bc0cc4fe0d3a8b61ebf89
     responseTypes:
     - type: "PagingObject[SavedShowObject]"
       status: 200
@@ -61,17 +61,17 @@ category-library:
       status: 200
 category-shows:
   endpoint-get-multiple-shows:
-    md5Hash: cb991328dc5dfbd914222be8b0602f84
+    md5Hash: 9988445bc2996fe169117564f41685f6
     responseTypes:
     - type: ShowsObject
       status: 200
   endpoint-get-a-show:
-    md5Hash: 4a39ef03df7c9b44c8868e75d1d85839
+    md5Hash: ec15fa68b9dc4a265840f27677a28ec
     responseTypes:
     - type: ShowObject
       status: 200
   endpoint-get-a-shows-episodes:
-    md5Hash: 5eec0dfe6d1344b2d42a607b8c3bd801
+    md5Hash: 7130991ee82d0e8cc258d90ff2f7e5fd
     responseTypes:
     - type: "PagingObject[SimplifiedEpisodeObject]"
       status: 200
@@ -82,32 +82,32 @@ category-playlists:
     - type: Void
       status: 202
   endpoint-get-list-users-playlists:
-    md5Hash: 885543234ee65e71a055004985226e31
+    md5Hash: 15afade23f0d1b19e700add9f943e756
     responseTypes:
     - type: "PagingObject[SimplifiedPlaylistObject]"
       status: 200
   endpoint-get-playlists-tracks:
-    md5Hash: c25ed389da1d6686d4815ee9c7b0f1c9
+    md5Hash: db04ba4d354fe4782224eb8e6698d3f1
     responseTypes:
     - type: "PagingObject[TrackObject | EpisodeObject]"
       status: 200
   endpoint-get-a-list-of-current-users-playlists:
-    md5Hash: 91e9e56ba1d7a93adead79d0a4c6ab5a
+    md5Hash: 742dc419925d1597390d953fb8882473
     responseTypes:
     - type: "PagingObject[SimplifiedPlaylistObject]"
       status: 200
   endpoint-get-playlist:
-    md5Hash: 6dfa0268c187da06dfa084f891671f23
+    md5Hash: e20bdf2cdc62f6b7cf451fed5c4a9f75
     responseTypes:
     - type: PlaylistObject
       status: 200
   endpoint-get-playlist-cover:
-    md5Hash: aeb164f8814c9d56feda887bedf6f5ef
+    md5Hash: 53c032fa92bf0e0d8a778dfd117bc54f
     responseTypes:
     - type: "Array[ImageObject]"
       status: 200
   endpoint-create-playlist:
-    md5Hash: ef6fe52af201a2edd322635feda5dae9
+    md5Hash: 5683d5514b89a7a4285e56d26e042d7d
     responseTypes:
     - type: PlaylistObject
       status: 200
@@ -137,7 +137,7 @@ category-playlists:
       status: 201
 category-albums:
   endpoint-get-multiple-albums:
-    md5Hash: 1760bef589c8db82f16268c3df45c1d1
+    md5Hash: 583456eb72f27aea76e6f991771fa7eb
     responseTypes:
     - type: AlbumsObject
       status: 200
@@ -153,7 +153,7 @@ category-albums:
       status: 200
 category-tracks:
   endpoint-get-audio-features:
-    md5Hash: d563e6527aa08da48d8ff131dfa3967e
+    md5Hash: 9df64740b3dfa026c4527a268a2d6883
     responseTypes:
     - type: AudioFeaturesObject
       status: 200
@@ -163,7 +163,7 @@ category-tracks:
     - type: AudioAnalysisObject
       status: 200
   endpoint-get-track:
-    md5Hash: f2f048d3e38a276dc0d81e6079a8526b
+    md5Hash: 1db2f66811ba2a7bb3dd22842ca402e3
     responseTypes:
     - type: TrackObject
       status: 200
@@ -173,13 +173,13 @@ category-tracks:
     - type: AudioFeaturesArrayObject
       status: 200
   endpoint-get-several-tracks:
-    md5Hash: 865e4c78f1baa8a146584a32c3251ff1
+    md5Hash: 8b7b8d7f0ad895eff027a63ce6427c6a
     responseTypes:
     - type: TracksObject
       status: 200
 category-player:
   endpoint-add-to-queue:
-    md5Hash: 7df7ad6d4469cc372a2cf0714a77d4ca
+    md5Hash: 9200b720443592c03be179cb6372019f
     responseTypes:
     - type: Void
       status: 204
@@ -191,22 +191,22 @@ category-player:
     - type: Void
       status: 204
   endpoint-set-volume-for-users-playback:
-    md5Hash: 7df7ad6d4469cc372a2cf0714a77d4ca
+    md5Hash: 9200b720443592c03be179cb6372019f
     responseTypes:
     - type: Void
       status: 204
   endpoint-skip-users-playback-to-next-track:
-    md5Hash: 7df7ad6d4469cc372a2cf0714a77d4ca
+    md5Hash: 9200b720443592c03be179cb6372019f
     responseTypes:
     - type: Void
       status: 204
   endpoint-transfer-a-users-playback:
-    md5Hash: 7df7ad6d4469cc372a2cf0714a77d4ca
+    md5Hash: 9200b720443592c03be179cb6372019f
     responseTypes:
     - type: Void
       status: 204
   endpoint-toggle-shuffle-for-users-playback:
-    md5Hash: 7df7ad6d4469cc372a2cf0714a77d4ca
+    md5Hash: 9200b720443592c03be179cb6372019f
     responseTypes:
     - type: Void
       status: 204
@@ -218,32 +218,32 @@ category-player:
     - type: Void
       status: 204
   endpoint-seek-to-position-in-currently-playing-track:
-    md5Hash: 7df7ad6d4469cc372a2cf0714a77d4ca
+    md5Hash: 9200b720443592c03be179cb6372019f
     responseTypes:
     - type: Void
       status: 204
   endpoint-skip-users-playback-to-previous-track:
-    md5Hash: 7df7ad6d4469cc372a2cf0714a77d4ca
+    md5Hash: 9200b720443592c03be179cb6372019f
     responseTypes:
     - type: Void
       status: 204
   endpoint-pause-a-users-playback:
-    md5Hash: 7df7ad6d4469cc372a2cf0714a77d4ca
+    md5Hash: 9200b720443592c03be179cb6372019f
     responseTypes:
     - type: Void
       status: 204
   endpoint-set-repeat-mode-on-users-playback:
-    md5Hash: 7df7ad6d4469cc372a2cf0714a77d4ca
+    md5Hash: 9200b720443592c03be179cb6372019f
     responseTypes:
     - type: Void
       status: 204
   endpoint-start-a-users-playback:
-    md5Hash: 7df7ad6d4469cc372a2cf0714a77d4ca
+    md5Hash: 9200b720443592c03be179cb6372019f
     responseTypes:
     - type: Void
       status: 204
   endpoint-get-recently-played:
-    md5Hash: 322f3a143abca73ebd6fbd30375574a2
+    md5Hash: c4364a99b88c4d8349c3adb5cd99648e
     responseTypes:
     - type: "CursorPagingObject[PlayHistoryObject]"
       status: 200
@@ -256,12 +256,12 @@ category-player:
       status: 200
 category-browse:
   endpoint-get-categories:
-    md5Hash: ee5442e610a1ef0c90a64482afaa451c
+    md5Hash: c5947b32beacb62aa912b9f21d920a1b
     responseTypes:
     - type: CategoriesObject
       status: 200
   endpoint-get-featured-playlists:
-    md5Hash: 4c0fff8c28e24fbd4149a891581c97af
+    md5Hash: 7d89c4112ac1c199de93f6ce3a047c25
     responseTypes:
     - type: FeaturedPlaylistObject
       status: 200
@@ -271,12 +271,12 @@ category-browse:
     - type: CategoryObject
       status: 200
   endpoint-get-new-releases:
-    md5Hash: 6c47bdca6626c8998639bdd7c92e466d
+    md5Hash: ac0b9008e8a5a8ff40b3ba856d8e49c3
     responseTypes:
     - type: NewReleasesObject
       status: 200
   endpoint-get-a-categories-playlists:
-    md5Hash: ddb7818a625dcce72d45d3f865c05f15
+    md5Hash: 49c361fa139a2ceae77bb8c59742872
     responseTypes:
     - type: PlaylistPagingObject
       status: 200
@@ -297,7 +297,7 @@ category-follow:
     - type: "Array[Boolean]"
       status: 200
   endpoint-get-followed:
-    md5Hash: f5b6878000b9c7e55f442b1c784df7c6
+    md5Hash: 7f453cc7239000a33f7a18a04d6c761d
     responseTypes:
     - type: FollowingArtistsObject
       status: 200
@@ -328,61 +328,61 @@ category-follow:
       status: 200
 category-artists:
   endpoint-get-an-artists-top-tracks:
-    md5Hash: fd97c4a41af1f9c364c27ef5fca15750
+    md5Hash: a14d5f163dbeef154bdecf6df2907d5b
     responseTypes:
     - type: TracksObject
       status: 200
   endpoint-get-an-artists-related-artists:
-    md5Hash: af58e97d2ac67b99bba31cdd893cab0e
+    md5Hash: 11ef1a62ba08cc517966bfd2e10331c2
     responseTypes:
     - type: ArtistsObject
       status: 200
   endpoint-get-multiple-artists:
-    md5Hash: 9c1d9850114fc0cf6a8d13e0351b2002
+    md5Hash: df903fd0f290fc61a7e6931d11e089ca
     responseTypes:
     - type: ArtistsObject
       status: 200
   endpoint-get-an-artists-albums:
-    md5Hash: 3ad869d93f539a15293c6a2462664a21
+    md5Hash: a0ed2715b8239c92763628a541e4c74c
     responseTypes:
     - type: "PagingObject[SimplifiedAlbumObject]"
       status: 200
   endpoint-get-an-artist:
-    md5Hash: a7505c109ad3ddf38ef8cf5b894d4148
+    md5Hash: 319cf2f6896462e2c3edf3c7d173267e
     responseTypes:
     - type: ArtistObject
       status: 200
 category-search:
   endpoint-search:
-    md5Hash: ab2411a02d8a36e1fa9759573247dc91
+    md5Hash: bc040a5377482497838b01a210d4aba5
     responseTypes:
     - type: SearchResponseObject
       status: 200
 category-episodes:
   endpoint-get-multiple-episodes:
-    md5Hash: c1d3d31b469a06ab412ce057cff343f1
+    md5Hash: b1c4ba2283831e8b2e2a33a265def8e
     responseTypes:
     - type: EpisodesObject
       status: 200
   endpoint-get-an-episode:
-    md5Hash: 973e5a4b8028717baaf1d73d191cad5c
+    md5Hash: 1adb7acd5bc8358218f6ef1b8c47ba66
     responseTypes:
     - type: EpisodeObject
       status: 200
 category-personalization:
   endpoint-get-users-top-artists-and-tracks:
-    md5Hash: af120b782ebd11e2473602a3c7ab574c
+    md5Hash: 83072fa55df8da183fad0385a10ef0c9
     responseTypes:
     - type: "PagingObject[ArtistObject | TrackObject]"
       status: 200
 category-users-profile:
   endpoint-get-users-profile:
-    md5Hash: ec313203765c50e54e1406a21ece6341
+    md5Hash: e03bb6ec18c53ed1fcebf5616f6656ff
     responseTypes:
     - type: PublicUserObject
       status: 200
   endpoint-get-current-users-profile:
-    md5Hash: 22829dbd86988f1ccfb807c17cf6c35d
+    md5Hash: 7a5b9c3300e1c01e74fabfd5a4d5fece
     responseTypes:
     - type: PrivateUserObject
       status: 200

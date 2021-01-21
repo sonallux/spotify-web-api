@@ -3,7 +3,7 @@ package de.sonallux.spotify.api.models;
 import lombok.*;
 
 /**
- * <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#object-recommendationseedobject">RecommendationSeedObject</a>
+ * <a href="https://developer.spotify.com/documentation/web-api/reference/#object-recommendationseedobject">RecommendationSeedObject</a>
  */
 @Getter
 @Setter
@@ -18,7 +18,7 @@ public class RecommendationSeed {
      */
     private Integer afterRelinkingSize;
     /**
-     * <p>A link to the full track or artist data for this seed. For tracks this will be a link to a <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#track-object-full">Track Object</a>. For artists a link to <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#artist-object-full">an Artist Object</a>. For genre seeds, this value will be <code>null</code>.</p>
+     * <p>A link to the full track or artist data for this seed. For tracks this will be a link to a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-trackobject">Track Object</a>. For artists a link to <a href="https://developer.spotify.com/documentation/web-api/reference/#object-artistobject">an Artist Object</a>. For genre seeds, this value will be <code>null</code>.</p>
      */
     private String href;
     /**

@@ -3,7 +3,7 @@ package de.sonallux.spotify.api.models;
 import lombok.*;
 
 /**
- * <a href="https://developer.spotify.com/documentation/web-api/reference-beta/#object-simplifiedtrackobject">SimplifiedTrackObject</a>
+ * <a href="https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject">SimplifiedTrackObject</a>
  */
 @Getter
 @Setter
@@ -62,7 +62,7 @@ public class SimplifiedTrack {
      */
     private String preview_url;
     /**
-     * <p>Included in the response when a content restriction is applied. See <a href="https://developer.spotify.com/documentation/web-api/reference/object-model/#track-restriction-object">Restriction Object</a> for more details.</p>
+     * <p>Included in the response when a content restriction is applied. See <a href="https://developer.spotify.com/documentation/web-api/reference/#object-trackrestrictionobject">Restriction Object</a> for more details.</p>
      */
     private TrackRestriction restrictions;
     /**
