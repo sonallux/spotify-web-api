@@ -8,15 +8,15 @@ import de.sonallux.spotify.generator.java.util.JavaUtils;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-class SpotifyApiTemplate extends AbstractTemplate<SpotifyApiDocumentation> {
+class SpotifyWebApiTemplate extends AbstractTemplate<SpotifyApiDocumentation> {
     @Override
     String templateName() {
-        return "SpotifyApi";
+        return "SpotifyWebApi";
     }
 
     @Override
     String getFileName(SpotifyApiDocumentation apiDocu) {
-        return "SpotifyApi.java";
+        return "SpotifyWebApi.java";
     }
 
     @Override

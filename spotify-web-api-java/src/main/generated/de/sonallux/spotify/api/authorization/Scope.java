@@ -1,4 +1,4 @@
-package de.sonallux.spotify.api.authentication;
+package de.sonallux.spotify.api.authorization;
 
 /**
  * <a href="https://developer.spotify.com/documentation/general/guides/scopes">Authorization Scopes</a>

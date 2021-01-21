@@ -1,0 +1,52 @@
+package {{package}};
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import {{basePackage}}.apis.*;
+import lombok.Getter;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.converter.jackson.JacksonConverterFactory;
+
+@Getter
+public class SpotifyWebApi extends BaseSpotifyApi  {
+    public static final String SPOTIFY_WEB_API_ENDPOINT = "{{endpointUrl}}";
+
+{{#apis}}
+    private final {{className}} {{fieldName}};
+{{/apis}}
+
+    SpotifyWebApi(Retrofit retrofit) {
+        super(retrofit);
+{{#apis}}
+        this.{{fieldName}} = retrofit.create({{className}}.class);
+{{/apis}}
+    }
+
+    SpotifyWebApi(OkHttpClient okHttpClient, HttpUrl baseUrl) {
+        this(createDefaultRetrofit(okHttpClient, baseUrl));
+    }
+
+    SpotifyWebApi(HttpUrl baseUrl) {
+        this(new OkHttpClient(), baseUrl);
+    }
+
+    public SpotifyWebApi(OkHttpClient okHttpClient) {
+        this(okHttpClient, HttpUrl.get(SPOTIFY_WEB_API_ENDPOINT));
+    }
+
+    public SpotifyWebApi() {
+        this(new OkHttpClient());
+    }
+
+    private static Retrofit createDefaultRetrofit(OkHttpClient okHttpClient, HttpUrl baseUrl) {
+        ObjectMapper mapper = new ObjectMapper()
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        return new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .client(okHttpClient)
+                .addConverterFactory(JacksonConverterFactory.create(mapper))
+                .build();
+    }
+}

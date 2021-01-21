@@ -43,7 +43,7 @@ public class JavaGenerator {
             apiTemplate.generate(category, outputFolder, javaPackage);
         }
 
-        new SpotifyApiTemplate()
+        new SpotifyWebApiTemplate()
                 .loadTemplate(this.templateCompiler)
                 .generate(apiDocumentation, outputFolder, javaPackage);
 

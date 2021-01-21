@@ -4,59 +4,65 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SpotifyUriTest
-{
+class SpotifyUriTest {
     @Test
-    void testParseArtist() throws SpotifyUriException
-    {
+    void testArtist() throws SpotifyUriException {
         SpotifyUri spotifyUri = SpotifyUri.parseUri("spotify:artist:3t5xRXzsuZmMDkQzgOX35S");
         assertTrue(spotifyUri.isArtist());
         assertEquals("3t5xRXzsuZmMDkQzgOX35S", spotifyUri.getArtistId());
-        assertEquals("04gDigrS5kc9YWfZHwBETP", SpotifyUri.parseUri("spotify:artist:04gDigrS5kc9YWfZHwBETP").getArtistId());
+        assertEquals("spotify:artist:3t5xRXzsuZmMDkQzgOX35S", spotifyUri.toSpotifyUri());
     }
 
     @Test
-    void testParseAlbum() throws SpotifyUriException
-    {
+    void testAlbum() throws SpotifyUriException {
         SpotifyUri spotifyUri = SpotifyUri.parseUri("spotify:album:6PbItq7wFLcz5pNlvbGH8D");
         assertTrue(spotifyUri.isAlbum());
         assertEquals("6PbItq7wFLcz5pNlvbGH8D", spotifyUri.getAlbumId());
-        assertEquals("3S48AGKXMdtFcJPwvtTVmI", SpotifyUri.parseUri("spotify:album:3S48AGKXMdtFcJPwvtTVmI").getAlbumId());
+        assertEquals("spotify:album:6PbItq7wFLcz5pNlvbGH8D", spotifyUri.toSpotifyUri());
     }
 
     @Test
-    void testParseTrack() throws SpotifyUriException
-    {
-        SpotifyUri spotifyUri = SpotifyUri.parseUri("spotify:track:30t2cItUPY7CvZOup7zptn");
-        assertTrue(spotifyUri.isTrack());
-        assertEquals("30t2cItUPY7CvZOup7zptn", spotifyUri.getTrackId());
-        assertEquals("3v2ReIt6xudmz4CYX4OvrY", SpotifyUri.parseUri("spotify:track:3v2ReIt6xudmz4CYX4OvrY").getTrackId());
+    void testEpisode() throws SpotifyUriException {
+        SpotifyUri spotifyUri = SpotifyUri.parseUri("spotify:episode:6PbItq7wFLcz5pNlvbGH8D");
+        assertTrue(spotifyUri.isEpisode());
+        assertEquals("6PbItq7wFLcz5pNlvbGH8D", spotifyUri.getEpisodeId());
+        assertEquals("spotify:episode:6PbItq7wFLcz5pNlvbGH8D", spotifyUri.toSpotifyUri());
     }
 
     @Test
-    void testParseUser() throws SpotifyUriException
-    {
-        SpotifyUri spotifyUri = SpotifyUri.parseUri("spotify:user:foo123");
-        assertTrue(spotifyUri.isUser());
-        assertEquals("foo123", spotifyUri.getUserId());
-        assertEquals("foo-bar", SpotifyUri.parseUri("spotify:user:foo-bar").getUserId());
-    }
-
-    @Test
-    void testParsePlaylist() throws SpotifyUriException
-    {
+    void testPlaylist() throws SpotifyUriException {
         SpotifyUri spotifyUri = SpotifyUri.parseUri("spotify:playlist:37i9dQZF1DX4npDJDFDYLg");
         assertTrue(spotifyUri.isPlaylist());
         assertEquals("37i9dQZF1DX4npDJDFDYLg", spotifyUri.getPlaylistId());
-
-        spotifyUri = SpotifyUri.parseUri("spotify:playlist:a7i1dQZF1DX6npDJDFDYLg");
-        assertTrue(spotifyUri.isPlaylist());
-        assertEquals("a7i1dQZF1DX6npDJDFDYLg", spotifyUri.getPlaylistId());
+        assertEquals("spotify:playlist:37i9dQZF1DX4npDJDFDYLg", spotifyUri.toSpotifyUri());
     }
 
     @Test
-    void testParsePlaylistOldFormat()
-    {
+    void testShow() throws SpotifyUriException {
+        SpotifyUri spotifyUri = SpotifyUri.parseUri("spotify:show:30t2cItUPY7CvZOup7zptn");
+        assertTrue(spotifyUri.isShow());
+        assertEquals("30t2cItUPY7CvZOup7zptn", spotifyUri.getShowId());
+        assertEquals("spotify:show:30t2cItUPY7CvZOup7zptn", spotifyUri.toSpotifyUri());
+    }
+
+    @Test
+    void testTrack() throws SpotifyUriException {
+        SpotifyUri spotifyUri = SpotifyUri.parseUri("spotify:track:30t2cItUPY7CvZOup7zptn");
+        assertTrue(spotifyUri.isTrack());
+        assertEquals("30t2cItUPY7CvZOup7zptn", spotifyUri.getTrackId());
+        assertEquals("spotify:track:30t2cItUPY7CvZOup7zptn", spotifyUri.toSpotifyUri());
+    }
+
+    @Test
+    void testUser() throws SpotifyUriException {
+        SpotifyUri spotifyUri = SpotifyUri.parseUri("spotify:user:foo123");
+        assertTrue(spotifyUri.isUser());
+        assertEquals("foo123", spotifyUri.getUserId());
+        assertEquals("spotify:user:foo123", spotifyUri.toSpotifyUri());
+    }
+
+    @Test
+    void testParsePlaylistOldFormat() {
         assertThrows(SpotifyUriException.class,
                 () -> SpotifyUri.parseUri("spotify:user:spotify:playlist:37i9dQZF1DX4npDJDFDYLg"));
     }
