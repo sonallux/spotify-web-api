@@ -1,7 +1,8 @@
-package de.sonallux.spotify.api.authorization.flows;
+package de.sonallux.spotify.api.authorization.authorization_code;
 
 import de.sonallux.spotify.api.authorization.AuthTokens;
 import de.sonallux.spotify.api.authorization.Scope;
+import de.sonallux.spotify.api.authorization.SpotifyAuthorizationException;
 import de.sonallux.spotify.api.authorization.TokenStore;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -62,11 +63,10 @@ class AuthorizationCodeFlowTest {
     }
 
     @Test
-    void onAuthorizationResponseWithSuccessfulTokenRequestTest() throws InterruptedException {
+    void exchangeAuthorizationCodeWithSuccessfulTokenRequestTest() throws Exception {
         webServer.enqueue(mockResponseAuthTokens);
 
-        var url = "https://example.com/callback?code=NApCCgBkWtQ&state=example-state-123";
-        assertTrue(authCodeFlow.onAuthorizationResponse(url));
+        authCodeFlow.exchangeAuthorizationCode(AuthorizationResponse.success("NApCCgBkWtQ"));
 
         assertEquals(webServer.getRequestCount(), 1);
         assertAuthTokensRequest(webServer.takeRequest(), "grant_type=authorization_code&code=NApCCgBkWtQ&redirect_uri=http%3A%2F%2Fexample.com%2Fcallback");
@@ -75,11 +75,11 @@ class AuthorizationCodeFlowTest {
     }
 
     @Test
-    void onAuthorizationResponseWithFailingTokenRequestTest() throws InterruptedException {
+    void exchangeAuthorizationCodeWithFailingTokenRequestTest() throws InterruptedException {
         webServer.enqueue(mockResponseBadRequestAuthTokens);
 
-        var url = "https://example.com/callback?code=NApCCgBkWtQ&state=example-state-123";
-        assertFalse(authCodeFlow.onAuthorizationResponse(url));
+        assertThrows(SpotifyAuthorizationException.class, () ->
+            authCodeFlow.exchangeAuthorizationCode(AuthorizationResponse.success("NApCCgBkWtQ")));
 
         assertEquals(webServer.getRequestCount(), 1);
         assertAuthTokensRequest(webServer.takeRequest(), "grant_type=authorization_code&code=NApCCgBkWtQ&redirect_uri=http%3A%2F%2Fexample.com%2Fcallback");
@@ -88,13 +88,9 @@ class AuthorizationCodeFlowTest {
     }
 
     @Test
-    void onAuthorizationResponseFailureTest() {
-        var invalidUrl = "invalid-url";
-        assertFalse(authCodeFlow.onAuthorizationResponse(invalidUrl));
-        assertEquals(webServer.getRequestCount(), 0);
-
-        var url = "https://example.com/callback?error=access_denied&state=example-state-123";
-        assertFalse(authCodeFlow.onAuthorizationResponse(url));
+    void exchangeAuthorizationCodeFailureTest() {
+        assertThrows(SpotifyAuthorizationException.class, () ->
+            authCodeFlow.exchangeAuthorizationCode(AuthorizationResponse.error("access_denied")));
         assertEquals(webServer.getRequestCount(), 0);
     }
 

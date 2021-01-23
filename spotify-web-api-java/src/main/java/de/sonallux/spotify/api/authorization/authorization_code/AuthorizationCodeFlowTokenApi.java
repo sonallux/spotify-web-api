@@ -1,4 +1,4 @@
-package de.sonallux.spotify.api.authorization.flows;
+package de.sonallux.spotify.api.authorization.authorization_code;
 
 import de.sonallux.spotify.api.authorization.AuthTokens;
 import okhttp3.HttpUrl;
@@ -8,8 +8,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
-//TODO: make package private
-public interface AuthorizationCodeFlowTokenApi {
+interface AuthorizationCodeFlowTokenApi {
     HttpUrl BASE_URL = HttpUrl.get("https://accounts.spotify.com");
 
     @POST("api/token")

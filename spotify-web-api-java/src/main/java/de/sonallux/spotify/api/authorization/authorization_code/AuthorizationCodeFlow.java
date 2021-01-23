@@ -1,4 +1,4 @@
-package de.sonallux.spotify.api.authorization.flows;
+package de.sonallux.spotify.api.authorization.authorization_code;
 
 import de.sonallux.spotify.api.BaseSpotifyApi;
 import de.sonallux.spotify.api.SpotifyApiException;
@@ -49,23 +49,14 @@ public class AuthorizationCodeFlow implements ApiAuthorizationProvider {
         return new AuthorizationUriBuilder(clientId, redirectUri);
     }
 
-    public boolean onAuthorizationResponse(String url) {
-        var httpUrl = HttpUrl.parse(url);
-        if (httpUrl == null) {
-            return false;
+    public void exchangeAuthorizationCode(AuthorizationResponse authResponse) throws SpotifyAuthorizationException{
+        if (!authResponse.isSuccess()) {
+            throw new SpotifyAuthorizationException("Authorization failed: " + authResponse.getState());
         }
-
-        var error = httpUrl.queryParameter("error");
-        if (error != null) {
-            //TODO: somehow return content of error to caller
-            return false;
-        }
-        var state = httpUrl.queryParameter("state"); //TODO: State should be verified. Maybe check how spring-security is doing that
-        var code = httpUrl.queryParameter("code");
 
         var tokensCall = tokenApi
-            .getTokensFromAuthorizationCode(createTokensCallAuthHeader(), "authorization_code", code, redirectUri);
-        return executeAuthTokensCall(tokensCall);
+            .getTokensFromAuthorizationCode(createTokensCallAuthHeader(), "authorization_code", authResponse.getCode(), redirectUri);
+        executeAuthTokensCall(tokensCall);
     }
 
     @Override
@@ -87,7 +78,13 @@ public class AuthorizationCodeFlow implements ApiAuthorizationProvider {
 
         var tokensCall = tokenApi
             .getTokensFromRefreshToken(createTokensCallAuthHeader(), "refresh_token", tokens.getRefreshToken());
-        return executeAuthTokensCall(tokensCall);
+        try {
+            executeAuthTokensCall(tokensCall);
+            return true;
+        }
+        catch (SpotifyAuthorizationException ignore) {
+            return false;
+        }
     }
 
     private String createTokensCallAuthHeader() {
@@ -96,15 +93,13 @@ public class AuthorizationCodeFlow implements ApiAuthorizationProvider {
         return "Basic " + base64ClientInfo;
     }
 
-    private boolean executeAuthTokensCall(Call<AuthTokens> authTokensCall) {
+    private void executeAuthTokensCall(Call<AuthTokens> authTokensCall) throws SpotifyAuthorizationException {
         try {
             AuthTokens authTokens = baseSpotifyApi.callApiAndReturnBody(authTokensCall);
             tokenStore.storeTokens(authTokens);
-            return true;
         }
         catch (SpotifyApiException e) {
-            //TODO: propagate error to caller
-            return false;
+            throw new SpotifyAuthorizationException("Failed to get auth tokens", e);
         }
     }
 
