@@ -1,10 +1,11 @@
 package de.sonallux.spotify.api.authorization.authorization_code;
 
+import de.sonallux.spotify.api.authorization.AuthorizationUrlBuilder;
+import de.sonallux.spotify.api.authorization.AuthorizationRedirectResponse;
 import de.sonallux.spotify.api.authorization.SpotifyAuthorizationException;
 import de.sonallux.spotify.api.authorization.TokenStore;
+import de.sonallux.spotify.api.util.TextUtil;
 import okhttp3.HttpUrl;
-import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class AuthorizationCodePKCEFlow extends AbstractAuthorizationCodeFlow {
 
@@ -20,31 +21,24 @@ public class AuthorizationCodePKCEFlow extends AbstractAuthorizationCodeFlow {
         super(clientId, redirectUri);
     }
 
-    private static Retrofit createRetrofit(HttpUrl tokenApiBaseUrl) {
-        return new Retrofit.Builder()
-            .baseUrl(tokenApiBaseUrl)
-            .addConverterFactory(JacksonConverterFactory.create())
-            .build();
+    public AuthorizationUrlBuilder createAuthorizationUrl(String codeChallenge) {
+        return new AuthorizationCodePKCEUrlBuilder(clientId, redirectUri, codeChallenge);
     }
 
-    public AuthorizationCodeUriBuilder createAuthorizationUri(String codeChallenge) {
-        return new AuthorizationCodePKCEUriBuilder(clientId, redirectUri, codeChallenge);
-    }
-
-    public void exchangeAuthorizationCode(AuthorizationResponse authResponse, String codeVerifier) throws SpotifyAuthorizationException{
+    public void exchangeAuthorizationCode(AuthorizationRedirectResponse<String> authResponse, String codeVerifier) throws SpotifyAuthorizationException{
         if (!authResponse.isSuccess()) {
             throw new SpotifyAuthorizationException("Authorization failed: " + authResponse.getState());
         }
 
         var tokensCall = tokenApi
-            .getTokensFromAuthorizationCodePKCE(clientId, "authorization_code", authResponse.getCode(), redirectUri, codeVerifier);
+            .getTokensFromAuthorizationCodePKCE(clientId, "authorization_code", authResponse.getBody(), redirectUri, codeVerifier);
         executeAuthTokensCall(tokensCall);
     }
 
     @Override
     public boolean refreshAccessToken() {
         var tokens = tokenStore.loadTokens();
-        if (tokens == null || tokens.getRefreshToken() == null) {
+        if (tokens == null || !TextUtil.hasText(tokens.getRefreshToken())) {
             return false;
         }
 

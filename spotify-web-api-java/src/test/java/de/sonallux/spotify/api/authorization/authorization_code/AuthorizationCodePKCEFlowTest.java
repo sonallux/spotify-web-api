@@ -1,9 +1,6 @@
 package de.sonallux.spotify.api.authorization.authorization_code;
 
-import de.sonallux.spotify.api.authorization.AuthTokens;
-import de.sonallux.spotify.api.authorization.Scope;
-import de.sonallux.spotify.api.authorization.SpotifyAuthorizationException;
-import de.sonallux.spotify.api.authorization.TokenStore;
+import de.sonallux.spotify.api.authorization.*;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -45,46 +42,46 @@ class AuthorizationCodePKCEFlowTest {
     @Test
     void createAuthorizationUriTest() {
         var codeChallenge = "code42challenge";
-        var url = authCodePKCEFlow.createAuthorizationUri(codeChallenge).build();
-        assertEquals(url.toString(), "https://accounts.spotify.com/authorize?" +
+        var url = authCodePKCEFlow.createAuthorizationUrl(codeChallenge).build();
+        assertEquals("https://accounts.spotify.com/authorize?" +
             "client_id=1a2b3c4d5e6f7&" +
             "response_type=code&" +
             "redirect_uri=http%3A%2F%2Fexample.com%2Fcallback&" +
             "code_challenge_method=S256&" +
-            "code_challenge=code42challenge");
+            "code_challenge=code42challenge", url.toString());
 
-        var urlWithStateAndScope = authCodePKCEFlow.createAuthorizationUri(codeChallenge)
+        var urlWithStateAndScope = authCodePKCEFlow.createAuthorizationUrl(codeChallenge)
             .state("34fFs29kd10")
             .scopes(Scope.USER_LIBRARY_READ, Scope.USER_LIBRARY_MODIFY)
             .build();
-        assertEquals(urlWithStateAndScope.toString(), "https://accounts.spotify.com/authorize?" +
+        assertEquals("https://accounts.spotify.com/authorize?" +
             "client_id=1a2b3c4d5e6f7&" +
             "response_type=code&" +
             "redirect_uri=http%3A%2F%2Fexample.com%2Fcallback&" +
             "code_challenge_method=S256&" +
             "code_challenge=code42challenge&" +
             "state=34fFs29kd10&" +
-            "scope=user-library-read%20user-library-modify");
+            "scope=user-library-read%20user-library-modify", urlWithStateAndScope.toString());
 
-        var urlWithDialog = authCodePKCEFlow.createAuthorizationUri(codeChallenge)
+        var urlWithDialog = authCodePKCEFlow.createAuthorizationUrl(codeChallenge)
             .showDialog(true)
             .build();
-        assertEquals(urlWithDialog.toString(), "https://accounts.spotify.com/authorize?" +
+        assertEquals("https://accounts.spotify.com/authorize?" +
             "client_id=1a2b3c4d5e6f7&" +
             "response_type=code&" +
             "redirect_uri=http%3A%2F%2Fexample.com%2Fcallback&" +
             "code_challenge_method=S256&" +
             "code_challenge=code42challenge&" +
-            "show_dialog=true");
+            "show_dialog=true", urlWithDialog.toString());
     }
 
     @Test
     void exchangeAuthorizationCodeWithSuccessfulTokenRequestTest() throws Exception {
         webServer.enqueue(mockResponseAuthTokens);
 
-        authCodePKCEFlow.exchangeAuthorizationCode(AuthorizationResponse.success("NApCCgBkWtQ"), "code42verifier");
+        authCodePKCEFlow.exchangeAuthorizationCode(AuthorizationRedirectResponse.success("NApCCgBkWtQ"), "code42verifier");
 
-        assertEquals(webServer.getRequestCount(), 1);
+        assertEquals(1, webServer.getRequestCount());
         assertAuthTokensRequest(webServer.takeRequest(),
             "client_id=1a2b3c4d5e6f7&" +
                 "grant_type=authorization_code&" +
@@ -100,9 +97,9 @@ class AuthorizationCodePKCEFlowTest {
         webServer.enqueue(mockResponseBadRequestAuthTokens);
 
         assertThrows(SpotifyAuthorizationException.class, () ->
-            authCodePKCEFlow.exchangeAuthorizationCode(AuthorizationResponse.success("NApCCgBkWtQ"), "code42verifier"));
+            authCodePKCEFlow.exchangeAuthorizationCode(AuthorizationRedirectResponse.success("NApCCgBkWtQ"), "code42verifier"));
 
-        assertEquals(webServer.getRequestCount(), 1);
+        assertEquals(1, webServer.getRequestCount());
         assertAuthTokensRequest(webServer.takeRequest(),
             "client_id=1a2b3c4d5e6f7&" +
                 "grant_type=authorization_code&" +
@@ -116,8 +113,8 @@ class AuthorizationCodePKCEFlowTest {
     @Test
     void exchangeAuthorizationCodeFailureTest() {
         assertThrows(SpotifyAuthorizationException.class, () ->
-            authCodePKCEFlow.exchangeAuthorizationCode(AuthorizationResponse.error("access_denied"), "code42verifier"));
-        assertEquals(webServer.getRequestCount(), 0);
+            authCodePKCEFlow.exchangeAuthorizationCode(AuthorizationRedirectResponse.error("access_denied"), "code42verifier"));
+        assertEquals(0, webServer.getRequestCount());
     }
 
     @Test
@@ -125,7 +122,7 @@ class AuthorizationCodePKCEFlowTest {
         when(tokenStore.loadTokens())
             .thenReturn(AuthTokens.builder().tokenType("Bearer").accessToken("PgA6ZceIixL8bU").build());
 
-        assertEquals(authCodePKCEFlow.getAuthorizationHeaderValue(), "Bearer PgA6ZceIixL8bU");
+        assertEquals("Bearer PgA6ZceIixL8bU", authCodePKCEFlow.getAuthorizationHeaderValue());
     }
 
     @Test
@@ -145,7 +142,7 @@ class AuthorizationCodePKCEFlowTest {
         webServer.enqueue(mockResponseAuthTokens);
 
         assertTrue(authCodePKCEFlow.refreshAccessToken());
-        assertEquals(webServer.getRequestCount(), 1);
+        assertEquals(1, webServer.getRequestCount());
         assertAuthTokensRequest(webServer.takeRequest(),
             "client_id=1a2b3c4d5e6f7&" +
                 "grant_type=refresh_token&" +
@@ -161,7 +158,7 @@ class AuthorizationCodePKCEFlowTest {
         webServer.enqueue(mockResponseBadRequestAuthTokens);
 
         assertFalse(authCodePKCEFlow.refreshAccessToken());
-        assertEquals(webServer.getRequestCount(), 1);
+        assertEquals(1, webServer.getRequestCount());
         assertAuthTokensRequest(webServer.takeRequest(),
             "client_id=1a2b3c4d5e6f7&" +
                 "grant_type=refresh_token&" +
@@ -173,26 +170,26 @@ class AuthorizationCodePKCEFlowTest {
     void refreshAccessTokenWithoutTokenTest() {
         when(tokenStore.loadTokens()).thenReturn(null);
         assertFalse(authCodePKCEFlow.refreshAccessToken());
-        assertEquals(webServer.getRequestCount(), 0);
+        assertEquals(0, webServer.getRequestCount());
 
         when(tokenStore.loadTokens()).thenReturn(new AuthTokens());
         assertFalse(authCodePKCEFlow.refreshAccessToken());
-        assertEquals(webServer.getRequestCount(), 0);
+        assertEquals(0, webServer.getRequestCount());
     }
 
     private void assertAuthTokensRequest(RecordedRequest request, String body) {
-        assertEquals(request.getMethod(), "POST");
-        assertEquals(request.getPath(), "/api/token");
-        assertEquals(request.getHeader("Content-Type"), "application/x-www-form-urlencoded");
-        assertEquals(request.getBody().readUtf8(), body);
+        assertEquals("POST", request.getMethod());
+        assertEquals("/api/token", request.getPath());
+        assertEquals("application/x-www-form-urlencoded", request.getHeader("Content-Type"));
+        assertEquals(body, request.getBody().readUtf8());
     }
 
     private void assertStoreAuthTokensFromResponse() {
         verify(tokenStore, times(1)).storeTokens(argThat(authTokens -> {
-            assertEquals(authTokens.getAccessToken(), "NgA6ZcYIixn8bU");
-            assertEquals(authTokens.getTokenType(), "Bearer");
-            assertEquals(authTokens.getScope(), "user-read-private user-read-email");
-            assertEquals(authTokens.getExpiresIn(), 3600);
+            assertEquals("NgA6ZcYIixn8bU", authTokens.getAccessToken());
+            assertEquals("Bearer", authTokens.getTokenType());
+            assertEquals("user-read-private user-read-email", authTokens.getScope());
+            assertEquals(3600, authTokens.getExpiresIn());
             assertNull(authTokens.getRefreshToken());
             return true;
         }));

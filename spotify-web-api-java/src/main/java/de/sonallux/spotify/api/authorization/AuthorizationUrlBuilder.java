@@ -1,29 +1,28 @@
-package de.sonallux.spotify.api.authorization.authorization_code;
+package de.sonallux.spotify.api.authorization;
 
-import de.sonallux.spotify.api.authorization.Scope;
 import okhttp3.HttpUrl;
 
 import java.util.Arrays;
 
-public class AuthorizationCodeUriBuilder {
-    final HttpUrl.Builder builder;
+public class AuthorizationUrlBuilder {
+    protected final HttpUrl.Builder builder;
 
-    AuthorizationCodeUriBuilder(String clientId, String redirectUri) {
+    public AuthorizationUrlBuilder(String clientId, String redirectUri, String responseType) {
         builder = new HttpUrl.Builder()
             .scheme("https")
             .host("accounts.spotify.com")
             .addPathSegment("authorize")
             .addQueryParameter("client_id", clientId)
-            .addQueryParameter("response_type", "code")
+            .addQueryParameter("response_type", responseType)
             .addQueryParameter("redirect_uri", redirectUri);
     }
 
-    public AuthorizationCodeUriBuilder state(String state) {
+    public AuthorizationUrlBuilder state(String state) {
         builder.addQueryParameter("state", state);
         return this;
     }
 
-    public AuthorizationCodeUriBuilder scopes(Scope... scopes) {
+    public AuthorizationUrlBuilder scopes(Scope... scopes) {
         if (scopes.length == 0) {
             return this;
         }
@@ -36,7 +35,7 @@ public class AuthorizationCodeUriBuilder {
         return this;
     }
 
-    public AuthorizationCodeUriBuilder showDialog(boolean showDialog) {
+    public AuthorizationUrlBuilder showDialog(boolean showDialog) {
         builder.addQueryParameter("show_dialog", String.valueOf(showDialog));
         return this;
     }

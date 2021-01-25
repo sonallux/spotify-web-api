@@ -1,5 +1,6 @@
 package de.sonallux.spotify.api.authorization;
 
+import de.sonallux.spotify.api.util.TextUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ public class SimpleApiAuthorizationProvider implements ApiAuthorizationProvider 
 
     @Override
     public String getAuthorizationHeaderValue() {
-        if (accessToken == null) {
+        if (!TextUtil.hasText(accessToken)) {
             return null;
         }
         return TOKEN_TYPE + " " + accessToken;

@@ -3,6 +3,7 @@ package de.sonallux.spotify.api.authorization.authorization_code;
 import de.sonallux.spotify.api.BaseSpotifyApi;
 import de.sonallux.spotify.api.SpotifyApiException;
 import de.sonallux.spotify.api.authorization.*;
+import de.sonallux.spotify.api.util.TextUtil;
 import okhttp3.HttpUrl;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -43,11 +44,21 @@ abstract class AbstractAuthorizationCodeFlow implements ApiAuthorizationProvider
     @Override
     public String getAuthorizationHeaderValue() {
         var tokens = tokenStore.loadTokens();
-        if (tokens == null || tokens.getAccessToken() == null || tokens.getTokenType() == null) {
+        if (tokens == null || !TextUtil.hasText(tokens.getAccessToken()) || !TextUtil.hasText(tokens.getTokenType())) {
             return null;
         }
 
         return tokens.getTokenType() + " " + tokens.getAccessToken();
+    }
+
+    public AuthorizationRedirectResponse<String> parseAuthorizationRedirectResponse(String url) {
+        return AuthorizationRedirectResponse.parse(url, httpUrl -> {
+            var code = httpUrl.queryParameter("code");
+            if (TextUtil.hasText(code)) {
+                return code;
+            }
+            return null;
+        });
     }
 
     void executeAuthTokensCall(Call<AuthTokens> authTokensCall) throws SpotifyAuthorizationException {

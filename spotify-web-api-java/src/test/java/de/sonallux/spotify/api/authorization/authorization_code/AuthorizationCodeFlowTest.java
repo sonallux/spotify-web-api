@@ -1,9 +1,6 @@
 package de.sonallux.spotify.api.authorization.authorization_code;
 
-import de.sonallux.spotify.api.authorization.AuthTokens;
-import de.sonallux.spotify.api.authorization.Scope;
-import de.sonallux.spotify.api.authorization.SpotifyAuthorizationException;
-import de.sonallux.spotify.api.authorization.TokenStore;
+import de.sonallux.spotify.api.authorization.*;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -44,40 +41,62 @@ class AuthorizationCodeFlowTest {
 
     @Test
     void createAuthorizationUriTest() {
-        var url = authCodeFlow.createAuthorizationUri().build();
-        assertEquals(url.toString(), "https://accounts.spotify.com/authorize?" +
+        var url = authCodeFlow.createAuthorizationUrl().build();
+        assertEquals("https://accounts.spotify.com/authorize?" +
             "client_id=1a2b3c4d5e6f7&" +
             "response_type=code&" +
-            "redirect_uri=http%3A%2F%2Fexample.com%2Fcallback");
+            "redirect_uri=http%3A%2F%2Fexample.com%2Fcallback", url.toString());
 
-        var urlWithStateAndScope = authCodeFlow.createAuthorizationUri()
+        var urlWithStateAndScope = authCodeFlow.createAuthorizationUrl()
             .state("34fFs29kd10")
             .scopes(Scope.USER_LIBRARY_READ, Scope.USER_LIBRARY_MODIFY)
             .build();
-        assertEquals(urlWithStateAndScope.toString(), "https://accounts.spotify.com/authorize?" +
+        assertEquals("https://accounts.spotify.com/authorize?" +
             "client_id=1a2b3c4d5e6f7&" +
             "response_type=code&" +
             "redirect_uri=http%3A%2F%2Fexample.com%2Fcallback&" +
             "state=34fFs29kd10&" +
-            "scope=user-library-read%20user-library-modify");
+            "scope=user-library-read%20user-library-modify", urlWithStateAndScope.toString());
 
-        var urlWithDialog = authCodeFlow.createAuthorizationUri()
+        var urlWithDialog = authCodeFlow.createAuthorizationUrl()
             .showDialog(true)
             .build();
-        assertEquals(urlWithDialog.toString(), "https://accounts.spotify.com/authorize?" +
+        assertEquals("https://accounts.spotify.com/authorize?" +
             "client_id=1a2b3c4d5e6f7&" +
             "response_type=code&" +
             "redirect_uri=http%3A%2F%2Fexample.com%2Fcallback&" +
-            "show_dialog=true");
+            "show_dialog=true", urlWithDialog.toString());
+    }
+
+    @Test
+    void parseAuthorizationRedirectResponseSuccessTest() {
+        var url = "https://example.com/callback?code=NApCCgBkWtQ&state=abc123";
+
+        var response = authCodeFlow.parseAuthorizationRedirectResponse(url);
+        assertTrue(response.isSuccess());
+        assertEquals("NApCCgBkWtQ", response.getBody());
+        assertEquals("abc123", response.getState());
+        assertNull(response.getError());
+    }
+
+    @Test
+    void parseAuthorizationRedirectResponseFailureTest() {
+        var url = "https://example.com/callback?error=access_denied&state=abc123";
+
+        var response = authCodeFlow.parseAuthorizationRedirectResponse(url);
+        assertFalse(response.isSuccess());
+        assertEquals("access_denied", response.getError());
+        assertEquals("abc123", response.getState());
+        assertNull(response.getBody());
     }
 
     @Test
     void exchangeAuthorizationCodeWithSuccessfulTokenRequestTest() throws Exception {
         webServer.enqueue(mockResponseAuthTokens);
 
-        authCodeFlow.exchangeAuthorizationCode(AuthorizationResponse.success("NApCCgBkWtQ"));
+        authCodeFlow.exchangeAuthorizationCode(AuthorizationRedirectResponse.success("NApCCgBkWtQ"));
 
-        assertEquals(webServer.getRequestCount(), 1);
+        assertEquals(1, webServer.getRequestCount());
         assertAuthTokensRequest(webServer.takeRequest(),
             "grant_type=authorization_code&" +
                 "code=NApCCgBkWtQ&" +
@@ -91,9 +110,9 @@ class AuthorizationCodeFlowTest {
         webServer.enqueue(mockResponseBadRequestAuthTokens);
 
         assertThrows(SpotifyAuthorizationException.class, () ->
-            authCodeFlow.exchangeAuthorizationCode(AuthorizationResponse.success("NApCCgBkWtQ")));
+            authCodeFlow.exchangeAuthorizationCode(AuthorizationRedirectResponse.success("NApCCgBkWtQ")));
 
-        assertEquals(webServer.getRequestCount(), 1);
+        assertEquals(1, webServer.getRequestCount());
         assertAuthTokensRequest(webServer.takeRequest(),
             "grant_type=authorization_code&" +
                 "code=NApCCgBkWtQ&" +
@@ -105,8 +124,8 @@ class AuthorizationCodeFlowTest {
     @Test
     void exchangeAuthorizationCodeFailureTest() {
         assertThrows(SpotifyAuthorizationException.class, () ->
-            authCodeFlow.exchangeAuthorizationCode(AuthorizationResponse.error("access_denied")));
-        assertEquals(webServer.getRequestCount(), 0);
+            authCodeFlow.exchangeAuthorizationCode(AuthorizationRedirectResponse.error("access_denied")));
+        assertEquals(0, webServer.getRequestCount());
     }
 
     @Test
@@ -114,7 +133,7 @@ class AuthorizationCodeFlowTest {
         when(tokenStore.loadTokens())
             .thenReturn(AuthTokens.builder().tokenType("Bearer").accessToken("PgA6ZceIixL8bU").build());
 
-        assertEquals(authCodeFlow.getAuthorizationHeaderValue(), "Bearer PgA6ZceIixL8bU");
+        assertEquals("Bearer PgA6ZceIixL8bU", authCodeFlow.getAuthorizationHeaderValue());
     }
 
     @Test
@@ -134,7 +153,7 @@ class AuthorizationCodeFlowTest {
         webServer.enqueue(mockResponseAuthTokens);
 
         assertTrue(authCodeFlow.refreshAccessToken());
-        assertEquals(webServer.getRequestCount(), 1);
+        assertEquals(1, webServer.getRequestCount());
         assertAuthTokensRequest(webServer.takeRequest(), "grant_type=refresh_token&refresh_token=RgA6ZcjIi6L8bq");
         assertStoreAuthTokensFromResponse();
     }
@@ -147,7 +166,7 @@ class AuthorizationCodeFlowTest {
         webServer.enqueue(mockResponseBadRequestAuthTokens);
 
         assertFalse(authCodeFlow.refreshAccessToken());
-        assertEquals(webServer.getRequestCount(), 1);
+        assertEquals(1, webServer.getRequestCount());
         assertAuthTokensRequest(webServer.takeRequest(), "grant_type=refresh_token&refresh_token=RgA6ZcjIi6L8bq");
         verify(tokenStore, times(0)).storeTokens(any());
     }
@@ -156,27 +175,27 @@ class AuthorizationCodeFlowTest {
     void refreshAccessTokenWithoutTokenTest() {
         when(tokenStore.loadTokens()).thenReturn(null);
         assertFalse(authCodeFlow.refreshAccessToken());
-        assertEquals(webServer.getRequestCount(), 0);
+        assertEquals(0, webServer.getRequestCount());
 
         when(tokenStore.loadTokens()).thenReturn(new AuthTokens());
         assertFalse(authCodeFlow.refreshAccessToken());
-        assertEquals(webServer.getRequestCount(), 0);
+        assertEquals(0, webServer.getRequestCount());
     }
 
     private void assertAuthTokensRequest(RecordedRequest request, String requestBody) {
-        assertEquals(request.getMethod(), "POST");
-        assertEquals(request.getPath(), "/api/token");
-        assertEquals(request.getHeader("Authorization"), "Basic MWEyYjNjNGQ1ZTZmNzpiYXI0NTY=");
-        assertEquals(request.getHeader("Content-Type"), "application/x-www-form-urlencoded");
-        assertEquals(request.getBody().readUtf8(), requestBody);
+        assertEquals("POST", request.getMethod());
+        assertEquals("/api/token", request.getPath());
+        assertEquals("Basic MWEyYjNjNGQ1ZTZmNzpiYXI0NTY=", request.getHeader("Authorization"));
+        assertEquals("application/x-www-form-urlencoded", request.getHeader("Content-Type"));
+        assertEquals(requestBody, request.getBody().readUtf8());
     }
 
     private void assertStoreAuthTokensFromResponse() {
         verify(tokenStore, times(1)).storeTokens(argThat(authTokens -> {
-            assertEquals(authTokens.getAccessToken(), "NgA6ZcYIixn8bU");
-            assertEquals(authTokens.getTokenType(), "Bearer");
-            assertEquals(authTokens.getScope(), "user-read-private user-read-email");
-            assertEquals(authTokens.getExpiresIn(), 3600);
+            assertEquals("NgA6ZcYIixn8bU", authTokens.getAccessToken());
+            assertEquals("Bearer", authTokens.getTokenType());
+            assertEquals("user-read-private user-read-email", authTokens.getScope());
+            assertEquals(3600, authTokens.getExpiresIn());
             assertNull(authTokens.getRefreshToken());
             return true;
         }));

@@ -1,7 +1,10 @@
 package de.sonallux.spotify.api.authorization.authorization_code;
 
+import de.sonallux.spotify.api.authorization.AuthorizationUrlBuilder;
+import de.sonallux.spotify.api.authorization.AuthorizationRedirectResponse;
 import de.sonallux.spotify.api.authorization.SpotifyAuthorizationException;
 import de.sonallux.spotify.api.authorization.TokenStore;
+import de.sonallux.spotify.api.util.TextUtil;
 import okhttp3.HttpUrl;
 
 import java.util.Base64;
@@ -24,24 +27,24 @@ public class AuthorizationCodeFlow extends AbstractAuthorizationCodeFlow {
         this.clientSecret = clientSecret;
     }
 
-    public AuthorizationCodeUriBuilder createAuthorizationUri() {
-        return new AuthorizationCodeUriBuilder(clientId, redirectUri);
+    public AuthorizationUrlBuilder createAuthorizationUrl() {
+        return new AuthorizationUrlBuilder(clientId, redirectUri, "code");
     }
 
-    public void exchangeAuthorizationCode(AuthorizationResponse authResponse) throws SpotifyAuthorizationException{
+    public void exchangeAuthorizationCode(AuthorizationRedirectResponse<String> authResponse) throws SpotifyAuthorizationException{
         if (!authResponse.isSuccess()) {
             throw new SpotifyAuthorizationException("Authorization failed: " + authResponse.getState());
         }
 
         var tokensCall = tokenApi
-            .getTokensFromAuthorizationCode(createTokensCallAuthHeader(), "authorization_code", authResponse.getCode(), redirectUri);
+            .getTokensFromAuthorizationCode(createTokensCallAuthHeader(), "authorization_code", authResponse.getBody(), redirectUri);
         executeAuthTokensCall(tokensCall);
     }
 
     @Override
     public boolean refreshAccessToken() {
         var tokens = tokenStore.loadTokens();
-        if (tokens == null || tokens.getRefreshToken() == null) {
+        if (tokens == null || !TextUtil.hasText(tokens.getRefreshToken())) {
             return false;
         }
 

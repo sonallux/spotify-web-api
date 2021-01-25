@@ -1,6 +1,7 @@
 package de.sonallux.spotify.api;
 
 import de.sonallux.spotify.api.authorization.ApiAuthorizationProvider;
+import de.sonallux.spotify.api.util.TextUtil;
 import lombok.AllArgsConstructor;
 import okhttp3.*;
 import retrofit2.Call;
@@ -53,7 +54,7 @@ public class SpotifyApi extends SpotifyWebApi {
         public Response intercept(Chain chain) throws IOException {
             var request = chain.request();
             var authorizationHeaderValue = authProvider.getAuthorizationHeaderValue();
-            if (authorizationHeaderValue != null) {
+            if (TextUtil.hasText(authorizationHeaderValue)) {
                 request = request.newBuilder()
                     .addHeader("Authorization", authorizationHeaderValue)
                     .build();
