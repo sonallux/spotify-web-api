@@ -4,16 +4,14 @@ import de.sonallux.spotify.api.authorization.*;
 import de.sonallux.spotify.api.util.TextUtil;
 import okhttp3.HttpUrl;
 
-public class ImplicitGrantFlow implements ApiAuthorizationProvider {
+public class ImplicitGrantFlow extends TokenStoreApiAuthorizationProvider {
     private final String clientId;
     private final String redirectUri;
 
-    private final TokenStore tokenStore;
-
     ImplicitGrantFlow(String clientId, String redirectUri, TokenStore tokenStore) {
+        super(tokenStore);
         this.clientId = clientId;
         this.redirectUri = redirectUri;
-        this.tokenStore = tokenStore;
     }
 
     public ImplicitGrantFlow(String clientId, String redirectUri) {
@@ -55,20 +53,5 @@ public class ImplicitGrantFlow implements ApiAuthorizationProvider {
             .expiresIn(body.getExpiresIn())
             .build();
         tokenStore.storeTokens(authTokens);
-    }
-
-    @Override
-    public String getAuthorizationHeaderValue() {
-        var tokens = tokenStore.loadTokens();
-        if (tokens == null || !TextUtil.hasText(tokens.getAccessToken()) || !TextUtil.hasText(tokens.getTokenType())) {
-            return null;
-        }
-
-        return tokens.getTokenType() + " " + tokens.getAccessToken();
-    }
-
-    @Override
-    public boolean refreshAccessToken() {
-        return false;
     }
 }

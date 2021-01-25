@@ -118,23 +118,6 @@ class AuthorizationCodePKCEFlowTest {
     }
 
     @Test
-    void getAuthorizationHeaderValueSuccessTest() {
-        when(tokenStore.loadTokens())
-            .thenReturn(AuthTokens.builder().tokenType("Bearer").accessToken("PgA6ZceIixL8bU").build());
-
-        assertEquals("Bearer PgA6ZceIixL8bU", authCodePKCEFlow.getAuthorizationHeaderValue());
-    }
-
-    @Test
-    void getAuthorizationHeaderValueFailureTest() {
-        when(tokenStore.loadTokens()).thenReturn(null);
-        assertNull(authCodePKCEFlow.getAuthorizationHeaderValue());
-
-        when(tokenStore.loadTokens()).thenReturn(new AuthTokens());
-        assertNull(authCodePKCEFlow.getAuthorizationHeaderValue());
-    }
-
-    @Test
     void refreshAccessTokenWithSuccessfulRequestTest() throws InterruptedException {
         when(tokenStore.loadTokens())
             .thenReturn(AuthTokens.builder().refreshToken("RgA6ZcjIi6L8bq").build());

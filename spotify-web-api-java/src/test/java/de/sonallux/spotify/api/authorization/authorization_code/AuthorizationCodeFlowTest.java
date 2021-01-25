@@ -129,23 +129,6 @@ class AuthorizationCodeFlowTest {
     }
 
     @Test
-    void getAuthorizationHeaderValueSuccessTest() {
-        when(tokenStore.loadTokens())
-            .thenReturn(AuthTokens.builder().tokenType("Bearer").accessToken("PgA6ZceIixL8bU").build());
-
-        assertEquals("Bearer PgA6ZceIixL8bU", authCodeFlow.getAuthorizationHeaderValue());
-    }
-
-    @Test
-    void getAuthorizationHeaderValueFailureTest() {
-        when(tokenStore.loadTokens()).thenReturn(null);
-        assertNull(authCodeFlow.getAuthorizationHeaderValue());
-
-        when(tokenStore.loadTokens()).thenReturn(new AuthTokens());
-        assertNull(authCodeFlow.getAuthorizationHeaderValue());
-    }
-
-    @Test
     void refreshAccessTokenWithSuccessfulRequestTest() throws InterruptedException {
         when(tokenStore.loadTokens())
             .thenReturn(AuthTokens.builder().refreshToken("RgA6ZcjIi6L8bq").build());

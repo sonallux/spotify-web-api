@@ -9,18 +9,17 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
-abstract class AbstractAuthorizationCodeFlow implements ApiAuthorizationProvider {
+abstract class AbstractAuthorizationCodeFlow extends TokenStoreApiAuthorizationProvider {
     final String clientId;
     final String redirectUri;
 
     final BaseSpotifyApi baseSpotifyApi;
-    final TokenStore tokenStore;
     final AuthorizationCodeTokenApi tokenApi;
 
     AbstractAuthorizationCodeFlow(String clientId, String redirectUri, TokenStore tokenStore, HttpUrl tokenApiBaseUrl) {
+        super(tokenStore);
         this.clientId = clientId;
         this.redirectUri = redirectUri;
-        this.tokenStore = tokenStore;
         var retrofit = createRetrofit(tokenApiBaseUrl);
         this.baseSpotifyApi = new BaseSpotifyApi(retrofit);
         this.tokenApi = retrofit.create(AuthorizationCodeTokenApi.class);
@@ -41,16 +40,6 @@ abstract class AbstractAuthorizationCodeFlow implements ApiAuthorizationProvider
             .build();
     }
 
-    @Override
-    public String getAuthorizationHeaderValue() {
-        var tokens = tokenStore.loadTokens();
-        if (tokens == null || !TextUtil.hasText(tokens.getAccessToken()) || !TextUtil.hasText(tokens.getTokenType())) {
-            return null;
-        }
-
-        return tokens.getTokenType() + " " + tokens.getAccessToken();
-    }
-
     public AuthorizationRedirectResponse<String> parseAuthorizationRedirectResponse(String url) {
         return AuthorizationRedirectResponse.parse(url, httpUrl -> {
             var code = httpUrl.queryParameter("code");
@@ -63,7 +52,7 @@ abstract class AbstractAuthorizationCodeFlow implements ApiAuthorizationProvider
 
     void executeAuthTokensCall(Call<AuthTokens> authTokensCall) throws SpotifyAuthorizationException {
         try {
-            AuthTokens authTokens = baseSpotifyApi.callApiAndReturnBody(authTokensCall);
+            var authTokens = baseSpotifyApi.callApiAndReturnBody(authTokensCall);
             tokenStore.storeTokens(authTokens);
         }
         catch (SpotifyApiException e) {

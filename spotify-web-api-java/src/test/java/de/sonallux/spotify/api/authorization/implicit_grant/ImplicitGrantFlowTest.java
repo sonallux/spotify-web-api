@@ -1,6 +1,5 @@
 package de.sonallux.spotify.api.authorization.implicit_grant;
 
-import de.sonallux.spotify.api.authorization.AuthTokens;
 import de.sonallux.spotify.api.authorization.AuthorizationRedirectResponse;
 import de.sonallux.spotify.api.authorization.Scope;
 import de.sonallux.spotify.api.authorization.TokenStore;
@@ -100,22 +99,5 @@ class ImplicitGrantFlowTest {
         implicitGrantFlow.useResponse(AuthorizationRedirectResponse.error("access_denied"));
 
         verify(tokenStore, times(0)).storeTokens(any());
-    }
-
-    @Test
-    void getAuthorizationHeaderValueSuccessTest() {
-        when(tokenStore.loadTokens())
-            .thenReturn(AuthTokens.builder().tokenType("Bearer").accessToken("PgA6ZceIixL8bU").build());
-
-        assertEquals("Bearer PgA6ZceIixL8bU", implicitGrantFlow.getAuthorizationHeaderValue());
-    }
-
-    @Test
-    void getAuthorizationHeaderValueFailureTest() {
-        when(tokenStore.loadTokens()).thenReturn(null);
-        assertNull(implicitGrantFlow.getAuthorizationHeaderValue());
-
-        when(tokenStore.loadTokens()).thenReturn(new AuthTokens());
-        assertNull(implicitGrantFlow.getAuthorizationHeaderValue());
     }
 }
