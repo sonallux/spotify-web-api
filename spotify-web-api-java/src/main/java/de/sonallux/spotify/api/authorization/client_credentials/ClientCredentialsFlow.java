@@ -28,8 +28,8 @@ public class ClientCredentialsFlow extends TokenStoreApiAuthorizationProvider {
         this.tokenApi = retrofit.create(AuthorizationTokenApi.class);
     }
 
-    public ClientCredentialsFlow(String clientId, String redirectUri) {
-        this(clientId, redirectUri, new InMemoryTokenStore(), AuthorizationTokenApi.BASE_URL);
+    public ClientCredentialsFlow(String clientId, String clientSecret) {
+        this(clientId, clientSecret, new InMemoryTokenStore(), AuthorizationTokenApi.BASE_URL);
     }
 
     private static Retrofit createRetrofit(HttpUrl tokenApiBaseUrl) {
