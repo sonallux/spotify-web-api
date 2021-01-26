@@ -7,6 +7,11 @@ import de.sonallux.spotify.api.authorization.TokenStore;
 import de.sonallux.spotify.api.util.TextUtil;
 import okhttp3.HttpUrl;
 
+/**
+ * Implements the
+ * <a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/#authorization-code-flow-with-proof-key-for-code-exchange-pkce">
+ * Authorization Code Flow with Proof Key for Code Exchange (PKCE)</a>
+ */
 public class AuthorizationCodePKCEFlow extends AbstractAuthorizationCodeFlow {
 
     AuthorizationCodePKCEFlow(String clientId, String redirectUri, TokenStore tokenStore, HttpUrl tokenApiBaseUrl) {

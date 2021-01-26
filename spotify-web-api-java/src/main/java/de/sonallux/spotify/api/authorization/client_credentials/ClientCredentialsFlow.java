@@ -12,6 +12,11 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.util.Base64;
 
+/**
+ * Implements the
+ * <a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/#client-credentials-flow">
+ * Client Credentials Flow</a>
+ */
 public class ClientCredentialsFlow extends TokenStoreApiAuthorizationProvider {
     private final String clientId;
     private final String clientSecret;

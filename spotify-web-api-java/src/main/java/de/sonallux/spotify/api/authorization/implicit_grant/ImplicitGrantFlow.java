@@ -4,6 +4,11 @@ import de.sonallux.spotify.api.authorization.*;
 import de.sonallux.spotify.api.util.TextUtil;
 import okhttp3.HttpUrl;
 
+/**
+ * Implements the
+ * <a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow">
+ * Implicit Grant Flow</a>
+ */
 public class ImplicitGrantFlow extends TokenStoreApiAuthorizationProvider {
     private final String clientId;
     private final String redirectUri;

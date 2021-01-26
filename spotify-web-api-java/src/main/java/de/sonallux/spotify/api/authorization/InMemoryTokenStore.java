@@ -3,6 +3,9 @@ package de.sonallux.spotify.api.authorization;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+/**
+ * A simple {@link TokenStore} that stores the auth tokens in memory
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 public class InMemoryTokenStore implements TokenStore {
