@@ -1,164 +1,132 @@
 package de.sonallux.spotify.api.util;
 
-public class SpotifyUri
-{
-    private String artistsId;
-    private String albumId;
-    private String trackId;
-    private String playlistId;
-    private String userId;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-    public boolean isArtist()
-    {
-        return artistsId != null;
+@Getter
+@AllArgsConstructor
+public class SpotifyUri {
+    private final Type type;
+    private final String id;
+
+    public boolean isArtist() {
+        return type == Type.ARTIST;
     }
 
-    public String getArtistId() throws SpotifyUriException
-    {
-        if (artistsId != null)
-        {
-            return artistsId;
+    public String getArtistId() throws SpotifyUriException {
+        if (isArtist()) {
+            return id;
         }
         throw new SpotifyUriException("SpotifyUri does not contain an artist id");
     }
 
-    public boolean isAlbum()
-    {
-        return albumId != null;
+    public boolean isAlbum() {
+        return type == Type.ALBUM;
     }
 
-    public String getAlbumId() throws SpotifyUriException
-    {
-        if (albumId != null)
-        {
-            return albumId;
+    public String getAlbumId() throws SpotifyUriException {
+        if (isAlbum()) {
+            return id;
         }
         throw new SpotifyUriException("SpotifyUri does not contain an album id");
     }
 
-    public boolean isTrack()
-    {
-        return trackId != null;
+    public boolean isEpisode() {
+        return type == Type.EPISODE;
     }
 
-    public String getTrackId() throws SpotifyUriException
-    {
-        if (trackId != null)
-        {
-            return trackId;
+    public String getEpisodeId() throws SpotifyUriException {
+        if (isEpisode()) {
+            return id;
         }
-        throw new SpotifyUriException("SpotifyUri does not contain a track id");
+        throw new SpotifyUriException("SpotifyUri does not contain an episode id");
     }
 
-    public boolean isPlaylist()
-    {
-        return playlistId != null;
+    public boolean isPlaylist() {
+        return type == Type.PLAYLIST;
     }
 
-    public String getPlaylistId() throws SpotifyUriException
-    {
-        if (playlistId != null)
-        {
-            return playlistId;
+    public String getPlaylistId() throws SpotifyUriException {
+        if (isPlaylist()) {
+            return id;
         }
         throw new SpotifyUriException("SpotifyUri does not contain a playlist id");
     }
 
-    public boolean isUser()
-    {
-        return userId != null;
+    public boolean isShow() {
+        return type == Type.SHOW;
     }
 
-    public String getUserId() throws SpotifyUriException
-    {
-        if (userId != null)
-        {
-            return userId;
+    public String getShowId() throws SpotifyUriException {
+        if (isShow()) {
+            return id;
+        }
+        throw new SpotifyUriException("SpotifyUri does not contain a show id");
+    }
+
+    public boolean isTrack() {
+        return type == Type.TRACK;
+    }
+
+    public String getTrackId() throws SpotifyUriException {
+        if (isTrack()) {
+            return id;
+        }
+        throw new SpotifyUriException("SpotifyUri does not contain a track id");
+    }
+
+    public boolean isUser() {
+        return type == Type.USER;
+    }
+
+    public String getUserId() throws SpotifyUriException {
+        if (isUser()) {
+            return id;
         }
         throw new SpotifyUriException("SpotifyUri does not contain a user id");
     }
 
-    public String toSpotifyUri() throws SpotifyUriException
-    {
-        if (artistsId != null)
-        {
-            return "spotify:artist:" + artistsId;
-        }
-        else if (albumId != null)
-        {
-            return "spotify:album:" + albumId;
-        }
-        else if (trackId != null)
-        {
-            return "spotify:track:" + trackId;
-        }
-        else if (playlistId != null)
-        {
-            return "spotify:playlist:" + playlistId;
-        }
-        else if (userId != null)
-        {
-            return "spotify:user:" + userId;
-        }
-        throw new SpotifyUriException("Failed to generate spotify uri");
+    public String toSpotifyUri() {
+        return "spotify:" + type.name().toLowerCase() + ":" + id;
     }
 
     @Override
-    public String toString()
-    {
-        try
-        {
-            return toSpotifyUri();
-        }
-        catch (SpotifyUriException e)
-        {
-            return super.toString();
-        }
+    public String toString() {
+        return toSpotifyUri();
     }
 
-    public static SpotifyUri parseUri(String string) throws SpotifyUriException
-    {
-        if (string == null || string.length() == 0)
-        {
+    public static SpotifyUri parseUri(String string) throws SpotifyUriException {
+        if (string == null || string.length() == 0) {
             throw new SpotifyUriException("Can not parse empty spotifyUri");
         }
 
         String[] parts = string.split(":");
-        if (parts.length != 3)
-        {
+        if (parts.length != 3) {
             throw new SpotifyUriException("SpotifyUri has wrong format: " + string);
         }
-        if (!"spotify".equals(parts[0]))
-        {
+        if (!"spotify".equals(parts[0])) {
             throw new SpotifyUriException("SpotifyUri must start with 'spotify'");
         }
-        SpotifyUri spotifyUri = new SpotifyUri();
-        if ("artist".equals(parts[1]))
-        {
-            spotifyUri.artistsId = parts[2];
+        try {
+            var type = Type.get(parts[1]);
+            return new SpotifyUri(type, parts[2]);
+        } catch (IllegalArgumentException e) {
+            throw new SpotifyUriException("Spotify URI has unknown type: " + parts[1]);
         }
-        else if ("album".equals(parts[1]))
-        {
-            spotifyUri.albumId = parts[2];
-        }
-        else if ("track".equals(parts[1]))
-        {
-            spotifyUri.trackId = parts[2];
-        }
-        else if ("user".equals(parts[1]))
-        {
-            spotifyUri.userId = parts[2];
+    }
 
-        }
-        else if ("playlist".equals(parts[1]))
-        {
-            spotifyUri.playlistId = parts[2];
-        }
-        else
-        {
-            throw new SpotifyUriException("Unknown field: " + parts[1]);
-        }
+    @Getter
+    public enum Type {
+        ARTIST,
+        ALBUM,
+        EPISODE,
+        PLAYLIST,
+        SHOW,
+        TRACK,
+        USER;
 
-        return spotifyUri;
+        public static Type get(String name) {
+            return Type.valueOf(name.toUpperCase());
+        }
     }
 }

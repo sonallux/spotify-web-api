@@ -1,64 +1,23 @@
-package {{package}};
+package de.sonallux.spotify.api;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import {{basePackage}}.apis.*;
-import {{basePackage}}.models.Error;
-import {{basePackage}}.models.ErrorResponse;
+import de.sonallux.spotify.api.models.Error;
+import de.sonallux.spotify.api.models.ErrorResponse;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 
-@Getter
-public class SpotifyApi {
-    public static final String SPOTIFY_WEB_API_ENDPOINT = "{{endpointUrl}}";
+@AllArgsConstructor
+public class BaseSpotifyApi {
 
+    @Getter(AccessLevel.PROTECTED)
     private final Retrofit retrofit;
-
-{{#apis}}
-    private final {{className}} {{fieldName}};
-{{/apis}}
-
-    public SpotifyApi(Retrofit retrofit) {
-        this.retrofit = retrofit;
-{{#apis}}
-        this.{{fieldName}} = retrofit.create({{className}}.class);
-{{/apis}}
-    }
-
-    public SpotifyApi(OkHttpClient okHttpClient) {
-        this(createDefaultRetrofit(okHttpClient, HttpUrl.get(SPOTIFY_WEB_API_ENDPOINT)));
-    }
-
-    public SpotifyApi(OkHttpClient okHttpClient, HttpUrl baseUrl) {
-        this(createDefaultRetrofit(okHttpClient, baseUrl));
-    }
-
-    public SpotifyApi(HttpUrl baseUrl) {
-        this(new OkHttpClient(), baseUrl);
-    }
-
-    public SpotifyApi() {
-        this(new OkHttpClient());
-    }
-
-    private static Retrofit createDefaultRetrofit(OkHttpClient okHttpClient, HttpUrl baseUrl) {
-        ObjectMapper mapper = new ObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        return new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .client(okHttpClient)
-                .addConverterFactory(JacksonConverterFactory.create(mapper))
-                .build();
-    }
 
     public <T> T callApiAndReturnBody(Call<T> call) throws SpotifyApiException {
         return getBody(callApi(call));

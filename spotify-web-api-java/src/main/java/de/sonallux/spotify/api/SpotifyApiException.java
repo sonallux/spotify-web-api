@@ -13,6 +13,10 @@ public class SpotifyApiException extends IOException {
         this.error = error;
     }
 
+    public SpotifyApiException(String message) {
+        super(message);
+    }
+
     public SpotifyApiException(String message, Throwable cause) {
         super(message, cause);
     }
