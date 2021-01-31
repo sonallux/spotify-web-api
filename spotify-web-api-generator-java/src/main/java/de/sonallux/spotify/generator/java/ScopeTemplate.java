@@ -21,7 +21,7 @@ public class ScopeTemplate extends AbstractTemplate<SpotifyScopes> {
 
     @Override
     JavaPackage getJavaPackage(SpotifyScopes spotifyScopes, JavaPackage basePackage) {
-        return basePackage.child("authentication");
+        return basePackage.child("authorization");
     }
 
     @Override
