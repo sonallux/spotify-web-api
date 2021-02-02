@@ -41,6 +41,7 @@ jobs:
           branch: 'automated-api-documentation-update'
           delete-branch: true
           base: master
+          author: 'sonallux <13821543+sonallux@users.noreply.github.com>'
           title: 'Update web API documentation'
           body: 'Automated Spotify web API documentation update from
             [actions run](https://github.com/sonallux/spotify-web-api/actions/runs/${{ github.run_id }})'
