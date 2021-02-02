@@ -5258,25 +5258,22 @@ categories:
           \ of the playlist's name or description. Only popular public playlists are\
           \ returned.\n\n**Operator**: The operator NOT can be used to exclude results.\n\
           \nFor example: `q=roadhouse%20NOT%20blues` returns items that match \"roadhouse\"\
-          \ but excludes those that also contain the keyword \"blues\".\n\nSimilarly,\
-          \ the OR operator can be used to broaden the search: `q=roadhouse%20OR%20blues`\
-          \ returns all the results that include either of the terms. Only one OR\
-          \ operator can be used in a query.\n\n*Note*: Operators must be specified\
-          \ in uppercase. Otherwise, they are handled as normal keywords to be matched.\n\
-          \n**Field filters** : By default, results are returned when a match is found\
-          \ in *any* field of the target object type. Searches can be made more specific\
-          \ by specifying an `album`, `artist` or `track` field filter.\n\nFor example:\
-          \ The query `q=album:gold%20artist:abba&type=album` returns only albums\
-          \ with the text \"gold\" in the album name and the text \"abba\" in the\
-          \ artist name.\n\nTo limit the results to a particular `year`, use the field\
-          \ filter year with album, artist, and track searches.\n\nFor example: `q=bob%20year:2014`\n\
-          \nOr with a date range. For example: `q=bob%20year:1980-2020`\n\nTo retrieve\
-          \ only albums released in the last two weeks, use the field filter tag:new\
-          \ in album searches.\n\nTo retrieve only albums with the lowest 10% popularity,\
-          \ use the field filter tag:hipster in album searches.\n*Note*: This field\
-          \ filter only works with album searches.\n\nDepending on object types being\
-          \ searched for, other field filters, include genre (applicable to tracks\
-          \ and artists), `upc`, and `isrc`.\nFor example: `q=lil%20genre:%22southern%20hip%20hop%22&type=artist`.\n\
+          \ but excludes those that also contain the keyword \"blues\".\n\n*Note*:\
+          \ The operator must be specified in uppercase. Otherwise, they are handled\
+          \ as normal keywords to be matched.\n\n**Field filters** : By default, results\
+          \ are returned when a match is found in *any* field of the target object\
+          \ type. Searches can be made more specific by specifying an `album`, `artist`\
+          \ or `track` field filter.\n\nFor example: The query `q=album:gold%20artist:abba&type=album`\
+          \ returns only albums with the text \"gold\" in the album name and the text\
+          \ \"abba\" in the artist name.\n\nTo limit the results to a particular `year`,\
+          \ use the field filter year with album, artist, and track searches.\n\n\
+          For example: `q=bob%20year:2014`\n\nOr with a date range. For example: `q=bob%20year:1980-2020`\n\
+          \nTo retrieve only albums released in the last two weeks, use the field\
+          \ filter tag:new in album searches.\n\nTo retrieve only albums with the\
+          \ lowest 10% popularity, use the field filter tag:hipster in album searches.\n\
+          *Note*: This field filter only works with album searches.\n\nDepending on\
+          \ object types being searched for, other field filters, include genre (applicable\
+          \ to tracks and artists), `upc`, and `isrc`.\nFor example: `q=lil%20genre:%22southern%20hip%20hop%22&type=artist`.\n\
           Use double quotation marks around the genre keyword string if it contains\
           \ spaces.\n\n**Notes**\n\n- Currently, you cannot fetch sorted results.\n\
           - You cannot search for playlists that contain a certain track.\n- You can\
