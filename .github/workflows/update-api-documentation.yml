@@ -35,7 +35,7 @@ jobs:
         run: ./mvnw -B verify
       - name: Create Pull Request
         id: cpr
-        uses: peter-evans/create-pull-request@v3.4.0
+        uses: peter-evans/create-pull-request@v3
         with:
           commit-message: 'Update web API documentation'
           branch: 'automated-api-documentation-update'
@@ -45,4 +45,4 @@ jobs:
           body: 'Automated Spotify web API documentation update from
             [actions run](https://github.com/sonallux/spotify-web-api/actions/runs/${{ github.run_id }})'
       - name: Check outputs
-        run: echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+        run: 'echo "Pull Request ${{ steps.cpr.outputs.pull-request-operation }}: ${{ steps.cpr.outputs.pull-request-url }}"'
