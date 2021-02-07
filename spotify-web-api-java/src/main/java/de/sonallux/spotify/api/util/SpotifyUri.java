@@ -100,7 +100,7 @@ public class SpotifyUri {
             throw new SpotifyUriException("Can not parse empty spotifyUri");
         }
 
-        String[] parts = string.split(":");
+        var parts = string.split(":");
         if (parts.length != 3) {
             throw new SpotifyUriException("SpotifyUri has wrong format: " + string);
         }

@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class SpotifyObject {
+public class SpotifyWebApiObject {
     @NonNull
     @ToString.Include
     @EqualsAndHashCode.Include
@@ -20,23 +20,23 @@ public class SpotifyObject {
     private String link;
     private List<Property> properties;
 
-    public SpotifyObject(String name, String id, String link) {
+    public SpotifyWebApiObject(String name, String id, String link) {
         this(name, id, link, new ArrayList<>());
     }
 
-    public SpotifyObject(String name) {
+    public SpotifyWebApiObject(String name) {
         this(name, null, null, new ArrayList<>());
     }
 
-    public SpotifyObject(String name, String link) {
+    public SpotifyWebApiObject(String name, String link) {
         this(name, null, link, new ArrayList<>());
     }
 
-    public SpotifyObject(String name, List<Property> properties) {
+    public SpotifyWebApiObject(String name, List<Property> properties) {
         this(name, null, null, properties);
     }
 
-    public SpotifyObject addProperty(Property property) {
+    public SpotifyWebApiObject addProperty(Property property) {
         properties.add(property);
         return this;
     }

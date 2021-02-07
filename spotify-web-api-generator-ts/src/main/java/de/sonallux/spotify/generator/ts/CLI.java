@@ -1,12 +1,11 @@
 package de.sonallux.spotify.generator.ts;
 
-import de.sonallux.spotify.core.Yaml;
-import de.sonallux.spotify.core.model.SpotifyApiDocumentation;
+import de.sonallux.spotify.core.SpotifyWebApiUtils;
+import de.sonallux.spotify.core.model.SpotifyWebApi;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class CLI implements Runnable {
@@ -22,26 +21,24 @@ public class CLI implements Runnable {
 
     @Override
     public void run() {
-        SpotifyApiDocumentation apiDocumentation = readApiDocumentation();
+        var spotifyWebApi = readSpotifyWebApi();
 
         try {
-            var tsGenerator = new TSGenerator();
-            tsGenerator.generate(apiDocumentation, outputFile);
+            new TSGenerator().generate(spotifyWebApi, outputFile);
         } catch (IOException e) {
             System.err.println("Failed to write generated files: " + e.getMessage());
             System.exit(1);
         }
     }
 
-    private SpotifyApiDocumentation readApiDocumentation() {
-        SpotifyApiDocumentation apiDocumentation = null;
-        try (var inputStream = Files.newInputStream(apiDocumentationFile)) {
-            apiDocumentation = Yaml.create().readValue(inputStream, SpotifyApiDocumentation.class);
+    private SpotifyWebApi readSpotifyWebApi() {
+        try {
+            return SpotifyWebApiUtils.load(apiDocumentationFile);
         } catch (IOException e) {
             System.err.println("Failed to read web API documentation file: " + e.getMessage());
             System.exit(1);
+            return null;
         }
-        return apiDocumentation;
     }
 
     public static void main(String[] args) {

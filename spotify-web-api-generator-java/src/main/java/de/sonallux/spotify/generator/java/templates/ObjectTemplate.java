@@ -1,7 +1,7 @@
-package de.sonallux.spotify.generator.java;
+package de.sonallux.spotify.generator.java.templates;
 
 import com.google.common.base.Strings;
-import de.sonallux.spotify.core.model.SpotifyObject;
+import de.sonallux.spotify.core.model.SpotifyWebApiObject;
 import de.sonallux.spotify.generator.java.util.JavaPackage;
 import de.sonallux.spotify.generator.java.util.JavaUtils;
 import de.sonallux.spotify.generator.java.util.Markdown2Html;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-class ObjectTemplate extends AbstractTemplate<SpotifyObject> {
+public class ObjectTemplate extends AbstractTemplate<SpotifyWebApiObject> {
 
     @Override
     public String templateName() {
@@ -19,17 +19,17 @@ class ObjectTemplate extends AbstractTemplate<SpotifyObject> {
     }
 
     @Override
-    JavaPackage getJavaPackage(SpotifyObject object, JavaPackage basePackage) {
+    JavaPackage getJavaPackage(SpotifyWebApiObject object, JavaPackage basePackage) {
         return basePackage.child("models");
     }
 
     @Override
-    public String getFileName(SpotifyObject object) {
+    public String getFileName(SpotifyWebApiObject object) {
         return JavaUtils.getFileName(getClassName(object));
     }
 
     @Override
-    public Map<String, Object> buildContext(SpotifyObject object, Map<String, Object> context) {
+    public Map<String, Object> buildContext(SpotifyWebApiObject object, Map<String, Object> context) {
         context.put("name", object.getName());
         context.put("className", getClassName(object));
         context.put("properties", object.getProperties().stream().map(this::buildPropertyContext).collect(Collectors.toList()));
@@ -47,11 +47,11 @@ class ObjectTemplate extends AbstractTemplate<SpotifyObject> {
         return context;
     }
 
-    private String getClassName(SpotifyObject object) {
+    private String getClassName(SpotifyWebApiObject object) {
         return JavaUtils.getObjectClassName(object.getName());
     }
 
-    private Map<String, Object> buildPropertyContext(SpotifyObject.Property property) {
+    private Map<String, Object> buildPropertyContext(SpotifyWebApiObject.Property property) {
         var context = new HashMap<String, Object>();
         if (JavaUtils.RESERVED_WORDS.contains(property.getName())) {
             context.put("jsonName", property.getName());

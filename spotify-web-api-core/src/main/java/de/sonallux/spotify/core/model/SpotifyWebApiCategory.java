@@ -14,22 +14,22 @@ import java.util.SortedMap;
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class SpotifyApiCategory {
+public class SpotifyWebApiCategory {
     @NonNull
     @ToString.Include
     @EqualsAndHashCode.Include
     private String id;
     private String name;
     private String link;
-    private SortedMap<String, SpotifyApiEndpoint> endpoints;
+    private SortedMap<String, SpotifyWebApiEndpoint> endpoints;
 
     @JsonIgnore
-    public List<SpotifyApiEndpoint> getEndpointList() {
+    public List<SpotifyWebApiEndpoint> getEndpointList() {
         return new ArrayList<>(endpoints.values());
     }
 
     @JsonIgnore
-    public Optional<SpotifyApiEndpoint> getEndpoint(String id) {
+    public Optional<SpotifyWebApiEndpoint> getEndpoint(String id) {
         return Optional.ofNullable(endpoints.get(id));
     }
 }

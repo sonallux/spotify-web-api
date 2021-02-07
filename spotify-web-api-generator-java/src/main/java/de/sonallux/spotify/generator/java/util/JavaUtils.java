@@ -1,8 +1,8 @@
 package de.sonallux.spotify.generator.java.util;
 
 import de.sonallux.spotify.core.SpotifyWebApiUtils;
-import de.sonallux.spotify.core.model.SpotifyApiCategory;
-import de.sonallux.spotify.core.model.SpotifyApiEndpoint;
+import de.sonallux.spotify.core.model.SpotifyWebApiCategory;
+import de.sonallux.spotify.core.model.SpotifyWebApiEndpoint;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +35,7 @@ public class JavaUtils {
         return fieldName;
     }
 
-    public static String shrinkEndpointId(SpotifyApiEndpoint endpoint) {
+    public static String shrinkEndpointId(SpotifyWebApiEndpoint endpoint) {
         return endpoint.getId()
                 .replace("endpoint-", "")
                 .replace("-the-", "-")
@@ -65,7 +65,7 @@ public class JavaUtils {
         }
     }
 
-    public static String getClassName(SpotifyApiCategory category) {
+    public static String getClassName(SpotifyWebApiCategory category) {
         return category.getName().replace(" ", "").replace("API", "Api");
     }
 }

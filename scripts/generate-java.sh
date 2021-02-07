@@ -3,7 +3,7 @@
 # This script runs the spotify-web-api-generator-java to generate the java wrapper.
 # This script must be run from the root directory.
 
-API_DOCUMENTATION_FILE=./spotify-web-api-parser/api-documentation.yaml
+API_DOCUMENTATION_FILE=./spotify-web-api-core/src/main/resources/spotify-web-api.yml
 OUTPUT_FOLDER=./spotify-web-api-java/src/main/generated/
 JAVA_PACKAGE_NAME="de.sonallux.spotify.api"
 

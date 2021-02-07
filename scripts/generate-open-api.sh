@@ -3,8 +3,8 @@
 # This script runs the spotify-web-api-generator-open-api to generate the open-api specification.
 # This script must be run from the root directory.
 
-API_DOCUMENTATION_FILE=./spotify-web-api-parser/api-documentation.yaml
-OUTPUT_FOLDER=./spotify-web-api-generator-open-api/spotify-open-api.yaml
+API_DOCUMENTATION_FILE=./spotify-web-api-core/src/main/resources/spotify-web-api.yml
+OUTPUT_FOLDER=./spotify-web-api-generator-open-api/spotify-open-api-spec.yml
 
 # Find a '*.cli-jar'
 cliJarFile=$(find ./spotify-web-api-generator-open-api/target -maxdepth 1 -type f -name "*-cli.jar" -print -quit)

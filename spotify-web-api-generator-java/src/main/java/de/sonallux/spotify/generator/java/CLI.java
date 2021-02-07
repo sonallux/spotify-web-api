@@ -1,8 +1,8 @@
 package de.sonallux.spotify.generator.java;
 
+import de.sonallux.spotify.core.SpotifyWebApiUtils;
+import de.sonallux.spotify.core.model.SpotifyWebApi;
 import de.sonallux.spotify.generator.java.util.JavaPackage;
-import de.sonallux.spotify.core.Yaml;
-import de.sonallux.spotify.core.model.SpotifyApiDocumentation;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 
@@ -32,7 +32,7 @@ public class CLI implements Runnable {
 
     @Override
     public void run() {
-        SpotifyApiDocumentation apiDocumentation = readApiDocumentation();
+        var apiDocumentation = readSpotifyWebApi();
 
         try {
             if (hasFiles(outputFolder)) {
@@ -45,8 +45,7 @@ public class CLI implements Runnable {
 
             var javaPackage = JavaPackage.fromPackage(packageName);
 
-            var javaGenerator = new JavaGenerator();
-            javaGenerator.generate(apiDocumentation, outputFolder, javaPackage);
+            new JavaGenerator().generate(apiDocumentation, outputFolder, javaPackage);
         } catch (IOException e) {
             System.err.println("Failed to write generated files: " + e.getMessage());
             System.exit(1);
@@ -68,15 +67,14 @@ public class CLI implements Runnable {
         }
     }
 
-    private SpotifyApiDocumentation readApiDocumentation() {
-        SpotifyApiDocumentation apiDocumentation = null;
-        try (var inputStream = Files.newInputStream(apiDocumentationFile)) {
-            apiDocumentation = Yaml.create().readValue(inputStream, SpotifyApiDocumentation.class);
+    private SpotifyWebApi readSpotifyWebApi() {
+        try {
+            return SpotifyWebApiUtils.load(apiDocumentationFile);
         } catch (IOException e) {
             System.err.println("Failed to read web API documentation file: " + e.getMessage());
             System.exit(1);
+            return null;
         }
-        return apiDocumentation;
     }
 
     public static void main(String[] args) {

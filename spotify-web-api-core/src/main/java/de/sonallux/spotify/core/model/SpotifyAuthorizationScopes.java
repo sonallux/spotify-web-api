@@ -15,7 +15,7 @@ import java.util.SortedMap;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SpotifyScopes {
+public class SpotifyAuthorizationScopes {
     private String url;
     private SortedMap<String, SpotifyScope> scopes;
 

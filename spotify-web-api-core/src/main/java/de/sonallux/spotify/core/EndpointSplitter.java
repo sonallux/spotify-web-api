@@ -1,7 +1,7 @@
 package de.sonallux.spotify.core;
 
-import de.sonallux.spotify.core.model.SpotifyApiDocumentation;
-import de.sonallux.spotify.core.model.SpotifyApiEndpoint;
+import de.sonallux.spotify.core.model.SpotifyWebApi;
+import de.sonallux.spotify.core.model.SpotifyWebApiEndpoint;
 import de.sonallux.spotify.core.model.SpotifyScope;
 
 import java.util.ArrayList;
@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 
 public class EndpointSplitter {
 
-    public static void splitEndpoints(SpotifyApiDocumentation apiDocumentation) throws IllegalArgumentException {
+    public static void splitEndpoints(SpotifyWebApi apiDocumentation) throws IllegalArgumentException {
         splitUsersTopArtistsAndTracksEndpoint(apiDocumentation);
         splitReorderOrReplacePlaylistsTracksEndpoint(apiDocumentation);
     }
 
-    public static void splitUsersTopArtistsAndTracksEndpoint(SpotifyApiDocumentation apiDocumentation) throws IllegalArgumentException {
+    public static void splitUsersTopArtistsAndTracksEndpoint(SpotifyWebApi apiDocumentation) throws IllegalArgumentException {
         var category = apiDocumentation.getCategory("category-personalization")
                 .orElseThrow(() -> new IllegalArgumentException("Can not find category-personalization"));
 
@@ -38,7 +38,7 @@ public class EndpointSplitter {
                 " On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)" +
                 " and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).";
 
-        var topArtists = new SpotifyApiEndpoint(
+        var topArtists = new SpotifyWebApiEndpoint(
                 "endpoint-get-users-top-artists",
                 "Get a User's Top Artists",
                 topArtistsAndTracks.getLink(),
@@ -49,9 +49,9 @@ public class EndpointSplitter {
                 responseDescriptionArtists,
                 topArtistsAndTracks.getScopes(),
                 topArtistsAndTracks.getNotes(),
-                List.of(new SpotifyApiEndpoint.ResponseType("PagingObject[ArtistObject]", 200, null))
+                List.of(new SpotifyWebApiEndpoint.ResponseType("PagingObject[ArtistObject]", 200, null))
         );
-        var topTracks = new SpotifyApiEndpoint(
+        var topTracks = new SpotifyWebApiEndpoint(
                 "endpoint-get-users-top-tracks",
                 "Get a User's Top Tracks",
                 topArtistsAndTracks.getLink(),
@@ -62,7 +62,7 @@ public class EndpointSplitter {
                 responseDescriptionTracks,
                 topArtistsAndTracks.getScopes(),
                 topArtistsAndTracks.getNotes(),
-                List.of(new SpotifyApiEndpoint.ResponseType("PagingObject[TrackObject]", 200, null))
+                List.of(new SpotifyWebApiEndpoint.ResponseType("PagingObject[TrackObject]", 200, null))
         );
 
         category.getEndpoints().remove(topArtistsAndTracks.getId());
@@ -79,7 +79,7 @@ public class EndpointSplitter {
                 });
     }
 
-    public static void splitReorderOrReplacePlaylistsTracksEndpoint(SpotifyApiDocumentation apiDocumentation) {
+    public static void splitReorderOrReplacePlaylistsTracksEndpoint(SpotifyWebApi apiDocumentation) {
         var category = apiDocumentation.getCategory("category-playlists")
                 .orElseThrow(() -> new IllegalArgumentException("Can not find category-playlists"));
 
@@ -102,7 +102,7 @@ public class EndpointSplitter {
                 " and the existing playlist is unmodified. Trying to set an item when you" +
                 " do not have the user's authorization returns error `403` Forbidden.";
 
-        var reorderEndpoint = new SpotifyApiEndpoint(
+        var reorderEndpoint = new SpotifyWebApiEndpoint(
                 "endpoint-reorder-playlists-tracks",
                 "Reorder items in a playlist",
                 endpoint.getLink(),
@@ -113,10 +113,10 @@ public class EndpointSplitter {
                 reorderResponseDescription + "\n\n" + errorResponseDescription,
                 endpoint.getScopes(),
                 endpoint.getNotes(),
-                List.of(new SpotifyApiEndpoint.ResponseType("SnapshotIdObject", 200, null))
+                List.of(new SpotifyWebApiEndpoint.ResponseType("SnapshotIdObject", 200, null))
         );
 
-        var replaceEndpoint = new SpotifyApiEndpoint(
+        var replaceEndpoint = new SpotifyWebApiEndpoint(
                 "endpoint-replace-playlists-tracks",
                 "Replace items in a playlist",
                 endpoint.getLink(),
@@ -127,7 +127,7 @@ public class EndpointSplitter {
                 replaceResponseDescription + "\n\n" + errorResponseDescription,
                 endpoint.getScopes(),
                 endpoint.getNotes(),
-                List.of(new SpotifyApiEndpoint.ResponseType("Void", 201, null))
+                List.of(new SpotifyWebApiEndpoint.ResponseType("Void", 201, null))
         );
 
         category.getEndpoints().remove(endpoint.getId());

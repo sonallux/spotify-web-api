@@ -1,7 +1,8 @@
-package de.sonallux.spotify.generator.java;
+package de.sonallux.spotify.generator.java.templates;
 
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
+import de.sonallux.spotify.generator.java.JavaDocLambda;
 import de.sonallux.spotify.generator.java.util.JavaPackage;
 import lombok.Getter;
 
@@ -13,18 +14,18 @@ import java.util.Map;
 
 import static java.nio.file.StandardOpenOption.*;
 
-abstract class AbstractTemplate<T> {
+public abstract class AbstractTemplate<T> {
 
     private Template template;
     @Getter
     private JavaPackage basePackage;
 
-    AbstractTemplate<T> loadTemplate(Mustache.Compiler compiler) {
+    public AbstractTemplate<T> loadTemplate(Mustache.Compiler compiler) {
         this.template = compiler.loadTemplate(templateName());
         return this;
     }
 
-    void generate(T t, Path outputFolder, JavaPackage basePackage) throws IOException {
+    public void generate(T t, Path outputFolder, JavaPackage basePackage) throws IOException {
         this.basePackage = basePackage;
         var javaPackage = getJavaPackage(t, basePackage);
         var fullPath = outputFolder.resolve(javaPackage.getPath());

@@ -30,7 +30,7 @@ public class SpotifyApi extends SpotifyWebApi {
     @Override
     public <T> retrofit2.Response<T> callApi(Call<T> call) throws SpotifyApiException {
         try {
-            retrofit2.Response<T> response = call.execute();
+            var response = call.execute();
             if (response.isSuccessful()) {
                 return response;
             }

@@ -1,31 +1,31 @@
-package de.sonallux.spotify.generator.java;
+package de.sonallux.spotify.generator.java.templates;
 
 import com.google.common.base.CaseFormat;
-import de.sonallux.spotify.core.model.SpotifyScopes;
+import de.sonallux.spotify.core.model.SpotifyAuthorizationScopes;
 import de.sonallux.spotify.generator.java.util.JavaPackage;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ScopeTemplate extends AbstractTemplate<SpotifyScopes> {
+public class ScopeTemplate extends AbstractTemplate<SpotifyAuthorizationScopes> {
     @Override
     String templateName() {
         return "Scope";
     }
 
     @Override
-    String getFileName(SpotifyScopes spotifyScopes) {
+    String getFileName(SpotifyAuthorizationScopes spotifyScopes) {
         return "Scope.java";
     }
 
     @Override
-    JavaPackage getJavaPackage(SpotifyScopes spotifyScopes, JavaPackage basePackage) {
+    JavaPackage getJavaPackage(SpotifyAuthorizationScopes spotifyScopes, JavaPackage basePackage) {
         return basePackage.child("authorization");
     }
 
     @Override
-    Map<String, Object> buildContext(SpotifyScopes spotifyScopes, Map<String, Object> context) {
+    Map<String, Object> buildContext(SpotifyAuthorizationScopes spotifyScopes, Map<String, Object> context) {
         context.put("url", spotifyScopes.getUrl());
         var scopes = spotifyScopes.getScopeList().stream()
                 .map(scope -> new HashMap<>(Map.of(

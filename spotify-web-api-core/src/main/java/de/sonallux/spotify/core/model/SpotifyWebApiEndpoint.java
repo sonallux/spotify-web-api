@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class SpotifyApiEndpoint {
+public class SpotifyWebApiEndpoint {
     @NonNull
     @ToString.Include
     @EqualsAndHashCode.Include
@@ -27,7 +27,7 @@ public class SpotifyApiEndpoint {
     private String notes;
     private List<ResponseType> responseTypes;
 
-    public SpotifyApiEndpoint(@NonNull String id, String name, String link, String description, String httpMethod, String path, List<Parameter> parameters, String responseDescription, List<String> scopes, String notes) {
+    public SpotifyWebApiEndpoint(@NonNull String id, String name, String link, String description, String httpMethod, String path, List<Parameter> parameters, String responseDescription, List<String> scopes, String notes) {
         this(id, name, link, description, httpMethod, path, parameters, responseDescription, scopes, notes, new ArrayList<>());
     }
 

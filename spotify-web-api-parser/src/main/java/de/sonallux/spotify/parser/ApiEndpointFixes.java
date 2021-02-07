@@ -1,17 +1,17 @@
 package de.sonallux.spotify.parser;
 
-import de.sonallux.spotify.core.model.SpotifyApiCategory;
+import de.sonallux.spotify.core.model.SpotifyWebApiCategory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.SortedMap;
 
-import static de.sonallux.spotify.core.model.SpotifyApiEndpoint.ParameterLocation.PATH;
+import static de.sonallux.spotify.core.model.SpotifyWebApiEndpoint.ParameterLocation.PATH;
 
 @Slf4j
 class ApiEndpointFixes {
 
-    static void fixApiEndpoints(SortedMap<String, SpotifyApiCategory> categories) {
+    static void fixApiEndpoints(SortedMap<String, SpotifyWebApiCategory> categories) {
         fixChangePlaylistsDetails(categories);
         fixGetInfoAboutUsersCurrentPlayback(categories);
         fixStartAUsersPlayback(categories);
@@ -19,7 +19,7 @@ class ApiEndpointFixes {
         fixCheckUsersSavedShowsScope(categories);
     }
 
-    private static void fixChangePlaylistsDetails(SortedMap<String, SpotifyApiCategory> categories) {
+    private static void fixChangePlaylistsDetails(SortedMap<String, SpotifyWebApiCategory> categories) {
         var paramPath = categories.get("category-playlists")
                 .getEndpoint("endpoint-change-playlist-details")
                 .flatMap(e -> e.getParameters().stream()
@@ -33,7 +33,7 @@ class ApiEndpointFixes {
         }
     }
 
-    private static void fixGetInfoAboutUsersCurrentPlayback(SortedMap<String, SpotifyApiCategory> categories) {
+    private static void fixGetInfoAboutUsersCurrentPlayback(SortedMap<String, SpotifyWebApiCategory> categories) {
         var endpoint = categories.get("category-player")
                 .getEndpoints().get("endpoint-get-information-about-the-users-current-playback");
         if (endpoint == null) {
@@ -47,7 +47,7 @@ class ApiEndpointFixes {
         }
     }
 
-    private static void fixStartAUsersPlayback(SortedMap<String, SpotifyApiCategory> categories) {
+    private static void fixStartAUsersPlayback(SortedMap<String, SpotifyWebApiCategory> categories) {
         var endpoint = categories.get("category-player")
                 .getEndpoints().get("endpoint-start-a-users-playback");
         if (endpoint == null) {
@@ -94,7 +94,7 @@ class ApiEndpointFixes {
         }
     }
 
-    private static void fixGetUsersSavedShowsScope(SortedMap<String, SpotifyApiCategory> categories) {
+    private static void fixGetUsersSavedShowsScope(SortedMap<String, SpotifyWebApiCategory> categories) {
         var endpoint = categories.get("category-library")
                 .getEndpoints().get("endpoint-get-users-saved-shows");
         if (!endpoint.getScopes().contains("user-libary-read")) {
@@ -104,7 +104,7 @@ class ApiEndpointFixes {
         }
     }
 
-    private static void fixCheckUsersSavedShowsScope(SortedMap<String, SpotifyApiCategory> categories) {
+    private static void fixCheckUsersSavedShowsScope(SortedMap<String, SpotifyWebApiCategory> categories) {
         var endpoint = categories.get("category-library")
                 .getEndpoints().get("endpoint-check-users-saved-shows");
         if (!endpoint.getScopes().contains("user-libary-read")) {

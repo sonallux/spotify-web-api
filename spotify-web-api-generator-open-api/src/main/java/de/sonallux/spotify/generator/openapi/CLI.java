@@ -1,9 +1,10 @@
 package de.sonallux.spotify.generator.openapi;
 
 import com.fasterxml.jackson.databind.ObjectWriter;
+import de.sonallux.spotify.core.SpotifyWebApiUtils;
 import de.sonallux.spotify.generator.openapi.validation.OpenApiValidator;
 import de.sonallux.spotify.core.Yaml;
-import de.sonallux.spotify.core.model.SpotifyApiDocumentation;
+import de.sonallux.spotify.core.model.SpotifyWebApi;
 import io.swagger.v3.oas.models.OpenAPI;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
@@ -32,10 +33,9 @@ public class CLI implements Runnable {
 
     @Override
     public void run() {
-        var apiDocumentation = readApiDocumentation();
+        var spotifyWebApi = readSpotifyWebApi();
 
-        var openApiGenerator = new OpenApiGenerator();
-        var openAPI = openApiGenerator.generate(apiDocumentation);
+        var openAPI = new OpenApiGenerator().generate(spotifyWebApi);
 
         if (shouldValidate) {
             validate(openAPI);
@@ -74,15 +74,14 @@ public class CLI implements Runnable {
         }
     }
 
-    private SpotifyApiDocumentation readApiDocumentation() {
-        SpotifyApiDocumentation apiDocumentation = null;
-        try (var inputStream = Files.newInputStream(apiDocumentationFile)) {
-            apiDocumentation = Yaml.create().readValue(inputStream, SpotifyApiDocumentation.class);
+    private SpotifyWebApi readSpotifyWebApi() {
+        try {
+            return SpotifyWebApiUtils.load(apiDocumentationFile);
         } catch (IOException e) {
             System.err.println("Failed to read web API documentation file: " + e.getMessage());
             System.exit(1);
+            return null;
         }
-        return apiDocumentation;
     }
 
     public static void main(String[] args) {

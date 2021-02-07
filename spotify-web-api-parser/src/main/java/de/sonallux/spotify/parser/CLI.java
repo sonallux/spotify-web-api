@@ -1,7 +1,7 @@
 package de.sonallux.spotify.parser;
 
 import de.sonallux.spotify.core.Yaml;
-import de.sonallux.spotify.core.model.SpotifyApiDocumentation;
+import de.sonallux.spotify.core.model.SpotifyWebApi;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 
@@ -25,7 +25,7 @@ public class CLI implements Runnable {
 
     @Override
     public void run() {
-        SpotifyApiDocumentation apiDocumentation = null;
+        SpotifyWebApi apiDocumentation = null;
         try {
             var webApiParser = new WebApiParser(isInteractive);
             apiDocumentation = webApiParser.parse(responseTypesFile);

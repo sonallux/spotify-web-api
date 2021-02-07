@@ -23,9 +23,9 @@ jobs:
           restore-keys: ${{ runner.os }}-maven-
       - name: Build
         run: ./mvnw -B package
-      # Do not run the parser, so we do not get failures because of breaking updates of the Spotify Web Api reference
+      # Do not run the parser, so we do not get failures because of breaking updates of the Spotify Web API reference
       #- name: Parse web API
-      #  run: ./scripts/update-api-documentation.sh
+      #  run: ./scripts/parse-web-api.sh
       - name: Generate Java
         run: ./scripts/generate-java.sh
       - name: Generate Open API

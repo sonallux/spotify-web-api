@@ -61,7 +61,7 @@ public class SpotifyWebApi extends BaseSpotifyApi  {
     }
 
     private static Retrofit createDefaultRetrofit(OkHttpClient okHttpClient, HttpUrl baseUrl) {
-        ObjectMapper mapper = new ObjectMapper()
+        var mapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)

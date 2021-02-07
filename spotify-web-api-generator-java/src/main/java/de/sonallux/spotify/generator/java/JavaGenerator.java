@@ -2,7 +2,11 @@ package de.sonallux.spotify.generator.java;
 
 import com.samskivert.mustache.Mustache;
 import de.sonallux.spotify.core.EndpointSplitter;
-import de.sonallux.spotify.core.model.SpotifyApiDocumentation;
+import de.sonallux.spotify.core.model.SpotifyWebApi;
+import de.sonallux.spotify.generator.java.templates.CategoryTemplate;
+import de.sonallux.spotify.generator.java.templates.ObjectTemplate;
+import de.sonallux.spotify.generator.java.templates.ScopeTemplate;
+import de.sonallux.spotify.generator.java.templates.SpotifyWebApiTemplate;
 import de.sonallux.spotify.generator.java.util.JavaPackage;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +25,7 @@ public class JavaGenerator {
                 .escapeHTML(false);
     }
 
-    public void generate(SpotifyApiDocumentation apiDocumentation, Path outputFolder, JavaPackage javaPackage) throws IOException, GeneratorException {
+    public void generate(SpotifyWebApi apiDocumentation, Path outputFolder, JavaPackage javaPackage) throws IOException, GeneratorException {
         var objectTemplate = new ObjectTemplate().loadTemplate(this.templateCompiler);
         var apiTemplate = new CategoryTemplate().loadTemplate(this.templateCompiler);
 

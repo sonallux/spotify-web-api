@@ -1,8 +1,8 @@
 package de.sonallux.spotify.parser;
 
-import de.sonallux.spotify.core.model.SpotifyApiCategory;
+import de.sonallux.spotify.core.model.SpotifyWebApiCategory;
 import de.sonallux.spotify.core.model.SpotifyScope;
-import de.sonallux.spotify.core.model.SpotifyScopes;
+import de.sonallux.spotify.core.model.SpotifyAuthorizationScopes;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,17 +19,17 @@ class ApiScopesParser {
 
     private String scopesUrl;
 
-    SpotifyScopes parseScopes() throws IOException, ApiParseException {
+    SpotifyAuthorizationScopes parseScopes() throws IOException, ApiParseException {
         return parseScopes(DEFAULT_SCOPES_URL);
     }
 
-    SpotifyScopes parseScopes(String scopesUrl) throws IOException, ApiParseException {
+    SpotifyAuthorizationScopes parseScopes(String scopesUrl) throws IOException, ApiParseException {
         this.scopesUrl = scopesUrl;
         var document = Jsoup.connect(scopesUrl).get();
         return parseScopes(document);
     }
 
-    private SpotifyScopes parseScopes(Document document) throws ApiParseException {
+    private SpotifyAuthorizationScopes parseScopes(Document document) throws ApiParseException {
         var scopes = new TreeMap<String, SpotifyScope>();
 
         var content = document.body().selectFirst("div.post-content").children();
@@ -41,7 +41,7 @@ class ApiScopesParser {
             }
             scopes.put(scope.getId(), scope);
         }
-        return new SpotifyScopes(scopesUrl, scopes);
+        return new SpotifyAuthorizationScopes(scopesUrl, scopes);
     }
 
     private SpotifyScope parseScope(Element scopeElement) throws ApiParseException {
@@ -85,7 +85,7 @@ class ApiScopesParser {
         }
     }
 
-    void validateScopes(SpotifyScopes scopes, SortedMap<String, SpotifyApiCategory> categories) throws ApiParseException {
+    void validateScopes(SpotifyAuthorizationScopes scopes, SortedMap<String, SpotifyWebApiCategory> categories) throws ApiParseException {
         var error = new StringBuilder();
 
         //Validate if endpoints referenced by scopes are present

@@ -3,8 +3,8 @@ package de.sonallux.spotify.parser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.sonallux.spotify.core.Yaml;
-import de.sonallux.spotify.core.model.SpotifyApiCategory;
-import de.sonallux.spotify.core.model.SpotifyApiEndpoint;
+import de.sonallux.spotify.core.model.SpotifyWebApiCategory;
+import de.sonallux.spotify.core.model.SpotifyWebApiEndpoint;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,7 +45,7 @@ public class ResponseTypeMapper {
         }
     }
 
-    public void update(List<SpotifyApiCategory> categories) {
+    public void update(List<SpotifyWebApiCategory> categories) {
         var scanner = new Scanner(System.in);
         for (var category : categories) {
             for (var endpoint : category.getEndpointList()) {
@@ -79,7 +79,7 @@ public class ResponseTypeMapper {
                         }
                         System.out.print("Response status (default: 200): ");
                         int newStatus = readInt(scanner, 200);
-                        endpointResponse.getResponseTypes().add(new SpotifyApiEndpoint.ResponseType(newType, newStatus, null));
+                        endpointResponse.getResponseTypes().add(new SpotifyWebApiEndpoint.ResponseType(newType, newStatus, null));
                     }
                     i++;
                 } while (true);
@@ -123,7 +123,7 @@ public class ResponseTypeMapper {
         }
     }
 
-    private String calculateMD5Hash(SpotifyApiEndpoint endpoint) {
+    private String calculateMD5Hash(SpotifyWebApiEndpoint endpoint) {
         md5Digest.reset();
         md5Digest.update(endpoint.getResponseDescription().getBytes(StandardCharsets.UTF_8));
         var bytes = md5Digest.digest();
@@ -137,6 +137,6 @@ public class ResponseTypeMapper {
     @NoArgsConstructor
     public static class EndpointResponse {
         private String md5Hash;
-        private List<SpotifyApiEndpoint.ResponseType> responseTypes = new ArrayList<>();
+        private List<SpotifyWebApiEndpoint.ResponseType> responseTypes = new ArrayList<>();
     }
 }

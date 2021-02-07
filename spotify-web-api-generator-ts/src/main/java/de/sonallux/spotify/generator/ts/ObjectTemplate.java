@@ -3,7 +3,7 @@ package de.sonallux.spotify.generator.ts;
 import com.google.common.base.Strings;
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
-import de.sonallux.spotify.core.model.SpotifyObject;
+import de.sonallux.spotify.core.model.SpotifyWebApiObject;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,21 +24,21 @@ public class ObjectTemplate {
         return this;
     }
 
-    void generate(Collection<SpotifyObject> spotifyObjects, Path outputFile) throws IOException {
+    void generate(Collection<SpotifyWebApiObject> spotifyWebApiObjects, Path outputFile) throws IOException {
         try (var writer = Files.newBufferedWriter(outputFile, CREATE, TRUNCATE_EXISTING, WRITE)) {
-            template.execute(generateContext(spotifyObjects), writer);
+            template.execute(generateContext(spotifyWebApiObjects), writer);
         }
     }
 
-    private Map<String, Object> generateContext(Collection<SpotifyObject> spotifyObjects) {
+    private Map<String, Object> generateContext(Collection<SpotifyWebApiObject> spotifyWebApiObjects) {
         return Map.of(
                 "tsDoc", new TSDocLambda(),
-                "objects", spotifyObjects.stream()
+                "objects", spotifyWebApiObjects.stream()
                     .map(this::generateObjectContext)
                     .collect(Collectors.toList()));
     }
 
-    private Map<String, Object> generateObjectContext(SpotifyObject object) {
+    private Map<String, Object> generateObjectContext(SpotifyWebApiObject object) {
         var context = new HashMap<String, Object>();
         context.put("name", TSUtils.getObjectClassName(object.getName()));
         context.put("properties", object.getProperties().stream().map(this::generatePropertyContext).collect(Collectors.toList()));
@@ -56,7 +56,7 @@ public class ObjectTemplate {
         return context;
     }
 
-    private Map<String, Object> generatePropertyContext(SpotifyObject.Property property) {
+    private Map<String, Object> generatePropertyContext(SpotifyWebApiObject.Property property) {
         var context = new HashMap<String, Object>();
         context.put("fieldName", property.getName());
         context.put("type", TSUtils.mapToTsType(property.getType()));

@@ -1,6 +1,6 @@
 package de.sonallux.spotify.api.util;
 
-public class TextUtil {
+public final class TextUtil {
     private TextUtil() {}
 
     public static boolean hasText(String str) {

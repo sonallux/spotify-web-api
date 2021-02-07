@@ -1,8 +1,9 @@
-package de.sonallux.spotify.generator.java;
+package de.sonallux.spotify.generator.java.templates;
 
 import com.google.common.base.CaseFormat;
-import de.sonallux.spotify.core.model.SpotifyApiCategory;
-import de.sonallux.spotify.core.model.SpotifyApiEndpoint;
+import de.sonallux.spotify.core.model.SpotifyWebApiCategory;
+import de.sonallux.spotify.core.model.SpotifyWebApiEndpoint;
+import de.sonallux.spotify.generator.java.EndpointRequestBodyHelper;
 import de.sonallux.spotify.generator.java.util.JavaPackage;
 import de.sonallux.spotify.generator.java.util.JavaUtils;
 import de.sonallux.spotify.generator.java.util.Markdown2Html;
@@ -15,9 +16,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static de.sonallux.spotify.core.model.SpotifyApiEndpoint.ParameterLocation.*;
+import static de.sonallux.spotify.core.model.SpotifyWebApiEndpoint.ParameterLocation.*;
 
-class CategoryTemplate extends AbstractTemplate<SpotifyApiCategory> {
+public class CategoryTemplate extends AbstractTemplate<SpotifyWebApiCategory> {
 
     @Override
     String templateName() {
@@ -25,17 +26,17 @@ class CategoryTemplate extends AbstractTemplate<SpotifyApiCategory> {
     }
 
     @Override
-    JavaPackage getJavaPackage(SpotifyApiCategory category, JavaPackage basePackage) {
+    JavaPackage getJavaPackage(SpotifyWebApiCategory category, JavaPackage basePackage) {
         return basePackage.child("apis");
     }
 
     @Override
-    String getFileName(SpotifyApiCategory category) {
+    String getFileName(SpotifyWebApiCategory category) {
         return JavaUtils.getFileName(JavaUtils.getClassName(category));
     }
 
     @Override
-    Map<String, Object> buildContext(SpotifyApiCategory category, Map<String, Object> context) {
+    Map<String, Object> buildContext(SpotifyWebApiCategory category, Map<String, Object> context) {
         context.put("modelsPackage", getBasePackage().child("models").getName());
         context.put("name", category.getName());
         context.put("className", JavaUtils.getClassName(category));
@@ -44,7 +45,7 @@ class CategoryTemplate extends AbstractTemplate<SpotifyApiCategory> {
         return context;
     }
 
-    private List<Map<String, Object>> buildEndpointContext(SpotifyApiEndpoint endpoint) {
+    private List<Map<String, Object>> buildEndpointContext(SpotifyWebApiEndpoint endpoint) {
         var baseContext = new HashMap<String, Object>();
         var methodName = CaseFormat.LOWER_HYPHEN.to(CaseFormat.LOWER_CAMEL, JavaUtils.shrinkEndpointId(endpoint));
         baseContext.put("methodName", methodName);
@@ -73,7 +74,7 @@ class CategoryTemplate extends AbstractTemplate<SpotifyApiCategory> {
         return contexts;
     }
 
-    private List<List<Argument>> getArguments(SpotifyApiEndpoint endpoint) {
+    private List<List<Argument>> getArguments(SpotifyWebApiEndpoint endpoint) {
         fixDuplicateEndpointParameters(endpoint);
 
         List<Argument> requiredArgs = new ArrayList<>();
@@ -124,14 +125,14 @@ class CategoryTemplate extends AbstractTemplate<SpotifyApiCategory> {
         return args;
     }
 
-    private String getResponseType(SpotifyApiEndpoint endpoint) {
+    private String getResponseType(SpotifyWebApiEndpoint endpoint) {
         if (endpoint.getResponseTypes().size() == 1
                 || 1 == endpoint.getResponseTypes().stream()
-                .map(SpotifyApiEndpoint.ResponseType::getType).distinct().count()) {
+                .map(SpotifyWebApiEndpoint.ResponseType::getType).distinct().count()) {
             return JavaUtils.mapToJavaType(endpoint.getResponseTypes().get(0).getType());
         }
         var nonVoidResponseTypes = endpoint.getResponseTypes().stream()
-                .map(SpotifyApiEndpoint.ResponseType::getType).filter(t -> !"Void".equals(t)).distinct().collect(Collectors.toList());
+                .map(SpotifyWebApiEndpoint.ResponseType::getType).filter(t -> !"Void".equals(t)).distinct().collect(Collectors.toList());
         if (nonVoidResponseTypes.size() == 1) {
             return JavaUtils.mapToJavaType(endpoint.getResponseTypes().get(0).getType());
         }
@@ -145,7 +146,7 @@ class CategoryTemplate extends AbstractTemplate<SpotifyApiCategory> {
      * the option to pass the data via query argument and makes the body parameter mandatory.
      * @param endpoint the spotify api endpoint to fix
      */
-    private void fixDuplicateEndpointParameters(SpotifyApiEndpoint endpoint) {
+    private void fixDuplicateEndpointParameters(SpotifyWebApiEndpoint endpoint) {
         String paramName;
         switch (endpoint.getId()) {
             case "endpoint-remove-albums-user":

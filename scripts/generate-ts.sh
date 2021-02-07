@@ -3,7 +3,7 @@
 # This script runs the spotify-web-api-generator-ts to generate the TypeScript model definitions.
 # This script must be run from the root directory.
 
-API_DOCUMENTATION_FILE=./spotify-web-api-parser/api-documentation.yaml
+API_DOCUMENTATION_FILE=./spotify-web-api-core/src/main/resources/spotify-web-api.yml
 OUTPUT_FILE=./spotify-web-api-generator-ts/models.d.ts
 
 # Find a '*.cli-jar'

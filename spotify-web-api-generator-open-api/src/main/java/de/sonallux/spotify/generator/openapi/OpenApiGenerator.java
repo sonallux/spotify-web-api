@@ -18,7 +18,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.stream.Collectors;
 
-import static de.sonallux.spotify.core.model.SpotifyApiEndpoint.ParameterLocation.BODY;
+import static de.sonallux.spotify.core.model.SpotifyWebApiEndpoint.ParameterLocation.BODY;
 
 @Slf4j
 public class OpenApiGenerator {
@@ -35,7 +35,7 @@ public class OpenApiGenerator {
         this.cloneHelper = new CloneHelper();
     }
 
-    public OpenAPI generate(SpotifyApiDocumentation apiDocumentation) {
+    public OpenAPI generate(SpotifyWebApi apiDocumentation) {
         this.openAPI = new OpenAPI();
         this.openAPI
                 .externalDocs(new ExternalDocumentation()
@@ -58,7 +58,7 @@ public class OpenApiGenerator {
         return openAPI;
     }
 
-    private SecurityScheme getSpotifySecurityScheme(SpotifyScopes scopes) {
+    private SecurityScheme getSpotifySecurityScheme(SpotifyAuthorizationScopes scopes) {
         var openApiScopes = new Scopes();
         openApiScopes.putAll(scopes.getScopeList().stream().collect(Collectors
                 .toMap(SpotifyScope::getId, SpotifyScope::getDescription)));
@@ -73,7 +73,7 @@ public class OpenApiGenerator {
         ;
     }
 
-    private Paths generatePaths(Collection<SpotifyApiCategory> categories) {
+    private Paths generatePaths(Collection<SpotifyWebApiCategory> categories) {
         var paths = new Paths();
         for (var category : categories) {
             for (var endpoint : category.getEndpointList()) {
@@ -101,7 +101,7 @@ public class OpenApiGenerator {
         return paths;
     }
 
-    private Operation generateOperation(SpotifyApiEndpoint endpoint) {
+    private Operation generateOperation(SpotifyWebApiEndpoint endpoint) {
         var parameters = endpoint.getParameters().stream()
                 .map(this::generateParameter)
                 .filter(Objects::nonNull)
@@ -133,7 +133,7 @@ public class OpenApiGenerator {
         ;
     }
 
-    private ApiResponse getApiResponse(SpotifyApiEndpoint.ResponseType responseType) {
+    private ApiResponse getApiResponse(SpotifyWebApiEndpoint.ResponseType responseType) {
         var response = new ApiResponse().description(responseType.getDescription());
         if ("Void".equals(responseType.getType())) {
             return response;
@@ -146,7 +146,7 @@ public class OpenApiGenerator {
         return response.content(new Content().addMediaType(MEDIA_TYPE_JSON, new MediaType().schema(responseSchema)));
     }
 
-    private io.swagger.v3.oas.models.parameters.Parameter generateParameter(SpotifyApiEndpoint.Parameter param) {
+    private io.swagger.v3.oas.models.parameters.Parameter generateParameter(SpotifyWebApiEndpoint.Parameter param) {
         var parameter = new io.swagger.v3.oas.models.parameters.Parameter()
                 .name(param.getName())
                 .description(param.getDescription())
@@ -173,7 +173,7 @@ public class OpenApiGenerator {
         return parameter;
     }
 
-    public RequestBody generateRequestBody(SpotifyApiEndpoint endpoint) {
+    public RequestBody generateRequestBody(SpotifyWebApiEndpoint endpoint) {
         var bodyParams = endpoint.getParameters().stream()
                 .filter(p -> p.getLocation() == BODY)
                 .collect(Collectors.toList());
@@ -210,7 +210,7 @@ public class OpenApiGenerator {
                                 .schema(new Schema().$ref("#/components/schemas/ErrorResponseObject"))));
     }
 
-    public List<Tag> generateTags(Collection<SpotifyApiCategory> categories) {
+    public List<Tag> generateTags(Collection<SpotifyWebApiCategory> categories) {
         return categories.stream()
                 .map(c -> new Tag()
                         .name(c.getId())
@@ -226,11 +226,11 @@ public class OpenApiGenerator {
                 .description("Find more info on the official Spotify Web API Reference");
     }
 
-    private Map<String, Schema> generateSchemaObjects(Collection<SpotifyObject> objects) {
+    private Map<String, Schema> generateSchemaObjects(Collection<SpotifyWebApiObject> objects) {
         var schemas = new LinkedHashMap<String, Schema>();
 
-        SpotifyObject pagingObject = null;
-        SpotifyObject cursorPagingObject = null;
+        SpotifyWebApiObject pagingObject = null;
+        SpotifyWebApiObject cursorPagingObject = null;
 
         //First pass just adds empty objects, so we can add references
         for (var object : objects) {
@@ -261,7 +261,7 @@ public class OpenApiGenerator {
         return schemas;
     }
 
-    private Map<String, Schema> generateObjectProperties(SpotifyObject object, Map<String, Schema> customSchemas) {
+    private Map<String, Schema> generateObjectProperties(SpotifyWebApiObject object, Map<String, Schema> customSchemas) {
         var properties = new LinkedHashMap<String, Schema>();
         for (var prop : object.getProperties()) {
             var schema = getSchema(prop.getType(), customSchemas);

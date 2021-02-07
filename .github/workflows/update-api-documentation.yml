@@ -24,7 +24,7 @@ jobs:
       - name: Build tools
         run: ./mvnw -B package
       - name: Parse web API
-        run: ./scripts/update-api-documentation.sh
+        run: ./scripts/parse-web-api.sh
       - name: Generate Java
         run: ./scripts/generate-java.sh
       - name: Generate Open API

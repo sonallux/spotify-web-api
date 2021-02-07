@@ -1,7 +1,7 @@
 package de.sonallux.spotify.parser;
 
-import de.sonallux.spotify.core.model.SpotifyApiCategory;
-import de.sonallux.spotify.core.model.SpotifyApiEndpoint;
+import de.sonallux.spotify.core.model.SpotifyWebApiCategory;
+import de.sonallux.spotify.core.model.SpotifyWebApiEndpoint;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Element;
@@ -16,7 +16,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
-import static de.sonallux.spotify.core.model.SpotifyApiEndpoint.ParameterLocation.*;
+import static de.sonallux.spotify.core.model.SpotifyWebApiEndpoint.ParameterLocation.*;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -28,7 +28,7 @@ class ApiEndpointParser {
     private String endpointUrl;
     private ResponseTypeMapper responseTypeMapper;
 
-    SortedMap<String, SpotifyApiCategory> parseSpotifyApiCategories(List<Elements> sections, String documentationUrl, String endpointUrl, Path responseTypesFile) throws ApiParseException {
+    SortedMap<String, SpotifyWebApiCategory> parseSpotifyApiCategories(List<Elements> sections, String documentationUrl, String endpointUrl, Path responseTypesFile) throws ApiParseException {
         this.documentationUrl = documentationUrl;
         this.endpointUrl = endpointUrl;
         try {
@@ -37,7 +37,7 @@ class ApiEndpointParser {
             throw new ApiParseException("Failed to initialize response type mapper", e);
         }
 
-        var categories = new TreeMap<String, SpotifyApiCategory>();
+        var categories = new TreeMap<String, SpotifyWebApiCategory>();
         //The First section is the Reference Index and the last the Objects Index
         for (var element : sections.subList(1, sections.size() - 1)) {
             var category = parseSpotifyApiCategory(element);
@@ -55,7 +55,7 @@ class ApiEndpointParser {
         return categories;
     }
 
-    private void addResponseTypes(SortedMap<String, SpotifyApiCategory> categories) {
+    private void addResponseTypes(SortedMap<String, SpotifyWebApiCategory> categories) {
         try {
             if (isInteractive) {
                 responseTypeMapper.update(new ArrayList<>(categories.values()));
@@ -78,13 +78,13 @@ class ApiEndpointParser {
         }
     }
 
-    private SpotifyApiCategory parseSpotifyApiCategory(Elements elements) throws ApiParseException {
+    private SpotifyWebApiCategory parseSpotifyApiCategory(Elements elements) throws ApiParseException {
         var header = elements.first();
         var id = header.attributes().get("id");
         var link = documentationUrl + "/#" + id;
         var name = header.text();
 
-        var endpoints = new TreeMap<String, SpotifyApiEndpoint>();
+        var endpoints = new TreeMap<String, SpotifyWebApiEndpoint>();
         for (var element : ParseUtils.splitAt(elements, "h2")) {
             var endpoint = parseSpotifyApiEndpoint(element);
             if (endpoints.containsKey(endpoint.getId())) {
@@ -93,10 +93,10 @@ class ApiEndpointParser {
                 endpoints.put(endpoint.getId(), endpoint);
             }
         }
-        return new SpotifyApiCategory(id, name, link, endpoints);
+        return new SpotifyWebApiCategory(id, name, link, endpoints);
     }
 
-    private SpotifyApiEndpoint parseSpotifyApiEndpoint(Elements elements) throws ApiParseException {
+    private SpotifyWebApiEndpoint parseSpotifyApiEndpoint(Elements elements) throws ApiParseException {
         var header = elements.first();
         var id = header.attributes().get("id");
         var link = documentationUrl + "/#" + id;
@@ -125,7 +125,7 @@ class ApiEndpointParser {
         }
 
         String responseDescription = null;
-        List<SpotifyApiEndpoint.Parameter> parameters = null;
+        List<SpotifyWebApiEndpoint.Parameter> parameters = null;
         String notes = null;
 
         var h5Sections = ParseUtils.splitAt(elements, "h5");
@@ -154,11 +154,11 @@ class ApiEndpointParser {
 
         var scopes = extractScopes(id, parameters);
 
-        return new SpotifyApiEndpoint(id, name, link, description, httpMethod, path, parameters, responseDescription, scopes, notes);
+        return new SpotifyWebApiEndpoint(id, name, link, description, httpMethod, path, parameters, responseDescription, scopes, notes);
     }
 
-    private List<SpotifyApiEndpoint.Parameter> parseRequestParameters(Elements elements) {
-        var parameters = new ArrayList<SpotifyApiEndpoint.Parameter>();
+    private List<SpotifyWebApiEndpoint.Parameter> parseRequestParameters(Elements elements) {
+        var parameters = new ArrayList<SpotifyWebApiEndpoint.Parameter>();
         for (var table : elements.select("table")) {
             var locationString = table.selectFirst("thead > tr > th").text();
             var location = parse(locationString);
@@ -174,13 +174,13 @@ class ApiEndpointParser {
                 var type = entry.child(1).text();
                 var requiredText = entry.child(2).text();
 
-                parameters.add(new SpotifyApiEndpoint.Parameter(location, name, description, type, "required".equalsIgnoreCase(requiredText)));
+                parameters.add(new SpotifyWebApiEndpoint.Parameter(location, name, description, type, "required".equalsIgnoreCase(requiredText)));
             }
         }
         return parameters;
     }
 
-    private SpotifyApiEndpoint.ParameterLocation parse(String text) {
+    private SpotifyWebApiEndpoint.ParameterLocation parse(String text) {
         switch (text) {
             case "Header":
                 return HEADER;
@@ -207,7 +207,7 @@ class ApiEndpointParser {
         return Html2Markdown.convert(elements);
     }
 
-    private List<String> extractScopes(String id, List<SpotifyApiEndpoint.Parameter> parameters) {
+    private List<String> extractScopes(String id, List<SpotifyWebApiEndpoint.Parameter> parameters) {
         var authHeader = parameters.stream().filter(p -> "Authorization".equals(p.getName())).findFirst();
         if (authHeader.isEmpty()) {
             log.warn("Endpoint {} has no Authorization header", id);

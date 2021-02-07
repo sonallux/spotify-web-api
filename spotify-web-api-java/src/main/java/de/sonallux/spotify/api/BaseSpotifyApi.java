@@ -46,7 +46,7 @@ public class BaseSpotifyApi {
         }
         try {
             Converter<ResponseBody, ErrorResponse> converter = retrofit.responseBodyConverter(ErrorResponse.class, new Annotation[0]);
-            ErrorResponse errorResponse = converter.convert(response.errorBody());
+            var errorResponse = converter.convert(response.errorBody());
             if (errorResponse != null) {
                 return errorResponse.getError();
             }
@@ -56,7 +56,7 @@ public class BaseSpotifyApi {
     }
 
     public Error getErrorDetailsFromResponse(retrofit2.Response<?> response) {
-        Error error = new Error();
+        var error = new Error();
         error.setStatus(response.code());
         error.setMessage(response.message());
         return error;

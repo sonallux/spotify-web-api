@@ -56,8 +56,8 @@ public class ClientCredentialsFlow extends TokenStoreApiAuthorizationProvider {
     }
 
     private String createTokensCallAuthHeader() {
-        String clientInfo = clientId + ":" + clientSecret;
-        String base64ClientInfo = Base64.getEncoder().encodeToString(clientInfo.getBytes());
+        var clientInfo = clientId + ":" + clientSecret;
+        var base64ClientInfo = Base64.getEncoder().encodeToString(clientInfo.getBytes());
         return "Basic " + base64ClientInfo;
     }
 }

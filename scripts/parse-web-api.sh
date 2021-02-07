@@ -3,8 +3,8 @@
 # This script runs the spotify-web-api-parser to update the api documentation file.
 # This script must be run from the root directory.
 
-OUTPUT_FILE=./spotify-web-api-parser/api-documentation.yaml
-RESPONSE_TYPES_FILE=./spotify-web-api-parser/response-types.yaml
+OUTPUT_FILE=./spotify-web-api-core/src/main/resources/spotify-web-api.yml
+RESPONSE_TYPES_FILE=./spotify-web-api-parser/response-types.yml
 
 # Find a '*.cli-jar'
 cliJarFile=$(find ./spotify-web-api-parser/target -maxdepth 1 -type f -name "*-cli.jar" -print -quit)
