@@ -164,5 +164,8 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>cli</id>
+        </profile>
     </profiles>
 </project>

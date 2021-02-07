@@ -22,7 +22,7 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
       - name: Build tools
-        run: ./mvnw -B package
+        run: ./mvnw -B package -Pcli
       - name: Parse web API
         run: ./scripts/parse-web-api.sh
       - name: Generate Java
@@ -32,7 +32,7 @@ jobs:
       - name: Generate TypeScript
         run: ./scripts/generate-ts.sh
       - name: Test
-        run: ./mvnw -B verify
+        run: ./mvnw -B clean verify
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
