@@ -4656,7 +4656,7 @@ paths:
       - name: offset
         in: query
         description: "The index of the first result to return.   \nDefault: 0 (the\
-          \ first result).   \nMaximum offset (including limit): 2,000.   \nUse with\
+          \ first result).   \nMaximum offset (including limit): 1,000.   \nUse with\
           \ limit to get the next page of search results."
         required: false
         schema:
