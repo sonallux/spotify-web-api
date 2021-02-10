@@ -8,7 +8,7 @@ This library will be available on [Maven Central]() in the future:
 ### With maven
 ```xml
 <dependency>
-  <groupId>de.sonallux</groupId>
+  <groupId>de.sonallux.spotify</groupId>
   <artifactId>spotify-web-api-java</artifactId>
   <version>2.0.0</version>
 </dependency>
@@ -16,7 +16,7 @@ This library will be available on [Maven Central]() in the future:
 
 ### With gradle
 ```groovy
-compile 'de.sonallux:spotify-web-api-java:2.0.0'
+compile 'de.sonallux.spotify:spotify-web-api-java:2.0.0'
 ```
 
 ## General usage
