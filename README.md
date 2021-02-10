@@ -27,3 +27,9 @@ Unfortunately Spotify does not provide any version information with their web AP
 
 ## Disclaimer
 Because the wrappers are only based on the Spotify web API reference, there might be difference to the actual behaviour of the actual Spotify Web API endpoints. Also, neither do I have any connections to Spotify nor am I an employee at Spotify.
+
+## How to release a new version
+1. Update the version number with `./mvnw versions:set -DnewVersion="<version>" -DgenerateBackupPoms=false`
+2. Commit and push changes to GitHub
+3. Wait till CI is green
+4. Tag and push the commit created in step 1. A GitHub actions workflow will automatically deploy the artifacts to Maven Central.
