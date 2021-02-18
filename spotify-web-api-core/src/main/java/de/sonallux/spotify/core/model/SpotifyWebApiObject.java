@@ -54,14 +54,9 @@ public class SpotifyWebApiObject {
         private String name;
         private String type;
         private String description;
-        private Boolean nonNull;
 
         public Property(String name, String type) {
-            this(name, type, "", null);
-        }
-
-        public Property(String name, String type, String description) {
-            this(name, type, description, null);
+            this(name, type, "");
         }
     }
 }

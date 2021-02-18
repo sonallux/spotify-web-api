@@ -62,9 +62,6 @@ public class ObjectTemplate extends AbstractTemplate<SpotifyWebApiObject> {
 
         context.put("description", Markdown2Html.convertToSingleLine(property.getDescription()));
         context.put("type", JavaUtils.mapToJavaType(property.getType()));
-        if (property.getNonNull() != null && property.getNonNull()) {
-            context.put("nonNull", true);
-        }
 
         return context;
     }

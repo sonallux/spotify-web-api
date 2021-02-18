@@ -1,0 +1,28 @@
+package {{package}};
+
+import lombok.*;
+
+{{#javaDoc}}
+    Request body for endpoint {{#endpointLink}}<a href="{{endpointLink}}">{{endpointName}}</a>{{/endpointLink}}{{^endpointLink}}{{endpointName}}{{/endpointLink}}
+{{/javaDoc}}
+@Getter
+@Setter
+{{#hasNonRequiredProperty}}
+@RequiredArgsConstructor
+{{/hasNonRequiredProperty}}
+@AllArgsConstructor
+public class {{className}} {
+{{#properties}}
+    {{#javaDoc}}
+        {{description}}
+    {{/javaDoc}}
+    {{#required}}
+    @NonNull
+    {{/required}}
+    {{#jsonName}}
+    @com.fasterxml.jackson.annotation.JsonProperty("{{jsonName}}")
+    @lombok.experimental.Accessors(prefix = "_")
+    {{/jsonName}}
+    private{{#required}} final{{/required}} {{type}} {{fieldName}};
+{{/properties}}
+}

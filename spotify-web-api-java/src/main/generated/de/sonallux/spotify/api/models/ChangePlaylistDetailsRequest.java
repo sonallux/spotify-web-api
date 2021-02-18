@@ -2,9 +2,13 @@ package de.sonallux.spotify.api.models;
 
 import lombok.*;
 
+/**
+ * Request body for endpoint <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-change-playlist-details">Change a Playlist's Details</a>
+ */
 @Getter
 @Setter
-@NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class ChangePlaylistDetailsRequest {
     /**
      * <p>The new name for the playlist, for example <code>&quot;My New Playlist Title&quot;</code></p>

@@ -75,7 +75,7 @@ public class CategoryTemplate extends AbstractTemplate<SpotifyWebApiCategory> {
     }
 
     private List<List<Argument>> getArguments(SpotifyWebApiEndpoint endpoint) {
-        fixDuplicateEndpointParameters(endpoint);
+        EndpointRequestBodyHelper.fixDuplicateEndpointParameters(endpoint);
 
         List<Argument> requiredArgs = new ArrayList<>();
         endpoint.getParameters().stream()
@@ -137,39 +137,6 @@ public class CategoryTemplate extends AbstractTemplate<SpotifyWebApiCategory> {
             return JavaUtils.mapToJavaType(endpoint.getResponseTypes().get(0).getType());
         }
         return "";
-    }
-
-    /**
-     * Fixes duplicated endpoint parameters.
-     * Some endpoints allow to pass data either via query argument or via body. As the url has a length limit,
-     * passing to much data in the query string might result in an error response. Therefore this method removes
-     * the option to pass the data via query argument and makes the body parameter mandatory.
-     * @param endpoint the spotify api endpoint to fix
-     */
-    private void fixDuplicateEndpointParameters(SpotifyWebApiEndpoint endpoint) {
-        String paramName;
-        switch (endpoint.getId()) {
-            case "endpoint-remove-albums-user":
-            case "endpoint-save-albums-user":
-            case "endpoint-follow-artists-users":
-            case "endpoint-unfollow-artists-users":
-                paramName = "ids";
-                break;
-            case "endpoint-replace-playlists-tracks":
-            case  "endpoint-add-tracks-to-playlist":
-                paramName = "uris";
-                break;
-            default:
-                return;
-        }
-        endpoint.getParameters().removeIf(p -> p.getLocation() == QUERY && paramName.equals(p.getName()));
-        for (var param : endpoint.getParameters()) {
-            if (param.getLocation() == BODY && paramName.equals(param.getName())) {
-                param.setRequired(true);
-            } else if (param.getLocation() == HEADER && "Content-Type".equals(param.getName())) {
-                param.setRequired(true);
-            }
-        }
     }
 
     @Getter

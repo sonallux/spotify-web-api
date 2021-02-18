@@ -2,9 +2,13 @@ package de.sonallux.spotify.api.models;
 
 import lombok.*;
 
+/**
+ * Request body for endpoint <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-start-a-users-playback">Start/Resume a User's Playback</a>
+ */
 @Getter
 @Setter
-@NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class StartUsersPlaybackRequest {
     /**
      * <p>Spotify URI of the context to play. Valid contexts are albums, artists, playlists. Example: {&quot;context_uri&quot;: &quot;spotify:album:1Je1IMUlBXcx1Fz0WE7oPT&quot;}</p>

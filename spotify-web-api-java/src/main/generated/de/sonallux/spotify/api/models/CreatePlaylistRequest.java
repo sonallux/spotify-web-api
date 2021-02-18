@@ -2,15 +2,19 @@ package de.sonallux.spotify.api.models;
 
 import lombok.*;
 
+/**
+ * Request body for endpoint <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-create-playlist">Create a Playlist</a>
+ */
 @Getter
 @Setter
-@NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class CreatePlaylistRequest {
     /**
      * <p>The name for the new playlist, for example <code>&quot;Your Coolest Playlist&quot;</code> . This name does not need to be unique; a user may have several playlists with the same name.</p>
      */
     @NonNull
-    private String name;
+    private final String name;
     /**
      * <p>Defaults to <code>true</code> . If <code>true</code> the playlist will be public, if <code>false</code> it will be private. To be able to create private playlists, the user must have granted the <code>playlist-modify-private</code> <a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes">scope</a></p>
      */
