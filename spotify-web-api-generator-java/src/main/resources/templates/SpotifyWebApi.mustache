@@ -11,29 +11,29 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 @Getter
 public class SpotifyWebApi extends BaseSpotifyApi  {
-    public static final String SPOTIFY_WEB_API_ENDPOINT = "{{endpointUrl}}";
+    public static final HttpUrl SPOTIFY_WEB_API_ENDPOINT = HttpUrl.get("{{endpointUrl}}");
 
 {{#apis}}
     private final {{className}} {{fieldName}};
 {{/apis}}
 
-    SpotifyWebApi(Retrofit retrofit) {
+    public SpotifyWebApi(Retrofit retrofit) {
         super(retrofit);
 {{#apis}}
         this.{{fieldName}} = retrofit.create({{className}}.class);
 {{/apis}}
     }
 
-    SpotifyWebApi(OkHttpClient okHttpClient, HttpUrl baseUrl) {
+    public SpotifyWebApi(OkHttpClient okHttpClient, HttpUrl baseUrl) {
         this(createDefaultRetrofit(okHttpClient, baseUrl));
     }
 
-    SpotifyWebApi(HttpUrl baseUrl) {
+    public SpotifyWebApi(HttpUrl baseUrl) {
         this(new OkHttpClient(), baseUrl);
     }
 
     public SpotifyWebApi(OkHttpClient okHttpClient) {
-        this(okHttpClient, HttpUrl.get(SPOTIFY_WEB_API_ENDPOINT));
+        this(okHttpClient, SPOTIFY_WEB_API_ENDPOINT);
     }
 
     public SpotifyWebApi() {
