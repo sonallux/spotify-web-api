@@ -2,17 +2,21 @@ package {{package}};
 
 import lombok.*;
 
-{{#javaDoc}}
-    {{#documentationLink}}<a href="{{documentationLink}}">{{name}}</a>{{/documentationLink}}
-{{/javaDoc}}
+{{#documentationLink}}
+/**
+ * <a href="{{documentationLink}}">{{name}}</a>
+ */
+{{/documentationLink}}
 @Getter
 @Setter
 @NoArgsConstructor
 public class {{className}}{{#superClass}} extends {{superClass}}{{/superClass}} {
 {{#properties}}
-    {{#javaDoc}}
-        {{description}}
-    {{/javaDoc}}
+    {{#description}}
+    /**
+     * {{description}}
+     */
+    {{/description}}
     {{#nonNull}}
     @NonNull
     {{/nonNull}}

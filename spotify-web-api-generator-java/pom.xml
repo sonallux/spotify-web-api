@@ -20,7 +20,7 @@
     <url>https://github.com/sonallux/spotify-web-api</url>
 
     <properties>
-        <jmustache.version>1.15</jmustache.version>
+        <mustache.java.version>0.9.7</mustache.java.version>
     </properties>
 
     <dependencies>
@@ -30,9 +30,9 @@
             <version>2.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.samskivert</groupId>
-            <artifactId>jmustache</artifactId>
-            <version>${jmustache.version}</version>
+            <groupId>com.github.spullara.mustache.java</groupId>
+            <artifactId>compiler</artifactId>
+            <version>${mustache.java.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

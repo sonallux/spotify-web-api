@@ -2,9 +2,9 @@ package {{package}};
 
 import lombok.*;
 
-{{#javaDoc}}
-    Request body for endpoint {{#endpointLink}}<a href="{{endpointLink}}">{{endpointName}}</a>{{/endpointLink}}{{^endpointLink}}{{endpointName}}{{/endpointLink}}
-{{/javaDoc}}
+/**
+ * Request body for endpoint {{#endpointLink}}<a href="{{endpointLink}}">{{endpointName}}</a>{{/endpointLink}}{{^endpointLink}}{{endpointName}}{{/endpointLink}}
+ */
 @Getter
 @Setter
 {{#hasNonRequiredProperty}}
@@ -13,9 +13,11 @@ import lombok.*;
 @AllArgsConstructor
 public class {{className}} {
 {{#properties}}
-    {{#javaDoc}}
-        {{description}}
-    {{/javaDoc}}
+    {{#description}}
+    /**
+     * {{description}}
+     */
+    {{/description}}
     {{#required}}
     @NonNull
     {{/required}}

@@ -1,14 +1,14 @@
 package {{package}};
 
-{{#javaDoc}}
-    <a href="{{url}}">Authorization Scopes</a>
-{{/javaDoc}}
+/**
+ * <a href="{{url}}">Authorization Scopes</a>
+ */
 public enum Scope {
 {{#scopes}}
-    {{#javaDoc}}
-        {{description}}
-        @see <a href="{{link}}">{{name}}</a>
-    {{/javaDoc}}
+    /**
+     * {{description}}
+     * @see <a href="{{link}}">{{name}}</a>
+     */
     {{enumName}}("{{name}}"){{#last}};{{/last}}{{^last}},{{/last}}
 {{/scopes}}
 
