@@ -85,11 +85,11 @@ export interface Album {
  */
 export interface AlbumRestriction {
     /**
-     * The reason for the restriction. Supported values:  
+     * The reason for the restriction. Supported values:
      * 
-     * - `market` - The content item is not available in the given market.  
-     * - `product` - The content item is not available for the user's subscription type.  
-     * - `explicit` - The content item is explicit and the user's account is set to not play explicit content.  
+     * - `market` - The content item is not available in the given market.
+     * - `product` - The content item is not available for the user's subscription type.
+     * - `explicit` - The content item is explicit and the user's account is set to not play explicit content.
      * Additional reasons may be added in the future. **Note**: If you use this field, make sure that your application safely handles unknown values.
      */
     reason: string;
@@ -1712,8 +1712,8 @@ export interface Track {
      */
     name: string;
     /**
-     * The popularity of the track. The value will be between 0 and 100, with 100 being the most popular.  
-     * The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are.  
+     * The popularity of the track. The value will be between 0 and 100, with 100 being the most popular.
+     * The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are.
      * Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. Note that the popularity value may lag actual popularity by a few days: the value is not updated in real time.
      */
     popularity: number;
@@ -1744,11 +1744,11 @@ export interface Track {
  */
 export interface TrackRestriction {
     /**
-     * The reason for the restriction. Supported values:  
+     * The reason for the restriction. Supported values:
      * 
-     * - `market` - The content item is not available in the given market.  
-     * - `product` - The content item is not available for the user's subscription type.  
-     * - `explicit` - The content item is explicit and the user's account is set to not play explicit content.  
+     * - `market` - The content item is not available in the given market.
+     * - `product` - The content item is not available for the user's subscription type.
+     * - `explicit` - The content item is explicit and the user's account is set to not play explicit content.
      * Additional reasons may be added in the future. **Note**: If you use this field, make sure that your application safely handles unknown values.
      */
     reason: string;

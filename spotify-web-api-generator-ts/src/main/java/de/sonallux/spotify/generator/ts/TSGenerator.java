@@ -1,26 +1,17 @@
 package de.sonallux.spotify.generator.ts;
 
-import com.samskivert.mustache.Mustache;
+import com.github.mustachejava.MustacheFactory;
 import de.sonallux.spotify.core.model.SpotifyWebApi;
 import de.sonallux.spotify.core.model.SpotifyWebApiObject;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.nio.file.Path;
 
 public class TSGenerator {
-    private final Mustache.Compiler templateCompiler;
+    private final MustacheFactory mustacheFactory;
 
     public TSGenerator() {
-        this.templateCompiler = Mustache.compiler()
-                .withLoader(this::loadTemplate)
-                .escapeHTML(false);
-    }
-
-    private Reader loadTemplate(String name) {
-        var fileName = String.format("/templates/%s.mustache", name);
-        return new InputStreamReader(TSGenerator.class.getResourceAsStream(fileName));
+        this.mustacheFactory = new NoEscapingMustacheFactory();
     }
 
     public void generate(SpotifyWebApi apiDocumentation, Path outputFile) throws IOException {
@@ -29,7 +20,7 @@ public class TSGenerator {
         //         .collect(Collectors.toList());
         // mainSpotifyObjects.forEach(System.out::println);
 
-        var objectTemplate = new ObjectTemplate().loadTemplate(templateCompiler);
+        var objectTemplate = new ObjectTemplate().loadTemplate(mustacheFactory);
         objectTemplate.generate(apiDocumentation.getObjectList(), outputFile);
     }
 
