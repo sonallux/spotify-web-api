@@ -16,7 +16,8 @@ public interface LibraryApi {
      * <code>user-library-read</code>
      *
      * @param ids <p>A comma-separated list of the <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a> for the albums. Maximum: 50 IDs.</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains a JSON array of <code>true</code> or <code>false</code> values, in the same order in which the <code>ids</code> were specified. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains a JSON array of <code>true</code> or <code>false</code> values, in the same order in which the <code>ids</code> were specified.
+     *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-albums">Check User's Saved Albums</a>
      */
     @GET("/me/albums/contains")
@@ -42,7 +43,8 @@ public interface LibraryApi {
      * <code>user-library-read</code>
      *
      * @param ids <p>A comma-separated list of the <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a> for the tracks. Maximum: 50 IDs.</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains a JSON array of <code>true</code> or <code>false</code> values, in the same order in which the <code>ids</code> were specified. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains a JSON array of <code>true</code> or <code>false</code> values, in the same order in which the <code>ids</code> were specified.
+     *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-tracks">Check User's Saved Tracks</a>
      */
     @GET("/me/tracks/contains")
@@ -54,7 +56,8 @@ public interface LibraryApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-library-read</code>
      *
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an array of <a href="https://developer.spotify.com/documentation/web-api/reference/#object-savedalbumobject">saved album objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. Each album object is accompanied by a <a href="https://developer.spotify.com/documentation/web-api/#timestamps">timestamp</a> (<code>added_at</code>) to show when it was added. There is also an <strong>etag</strong> in the header that can be used in future <a href="https://developer.spotify.com/documentation/web-api/#conditional-requests">conditional requests</a>.</p> <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an array of <a href="https://developer.spotify.com/documentation/web-api/reference/#object-savedalbumobject">saved album objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. Each album object is accompanied by a <a href="https://developer.spotify.com/documentation/web-api/#timestamps">timestamp</a> (<code>added_at</code>) to show when it was added. There is also an <strong>etag</strong> in the header that can be used in future <a href="https://developer.spotify.com/documentation/web-api/#conditional-requests">conditional requests</a>.</p>
+     *         <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-albums">Get User's Saved Albums</a>
      */
     @GET("/me/albums")
@@ -67,7 +70,8 @@ public interface LibraryApi {
      * <code>user-library-read</code>
      *
      * @param queryParameters <p>A map of optional query parameters</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an array of <a href="https://developer.spotify.com/documentation/web-api/reference/#object-savedalbumobject">saved album objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. Each album object is accompanied by a <a href="https://developer.spotify.com/documentation/web-api/#timestamps">timestamp</a> (<code>added_at</code>) to show when it was added. There is also an <strong>etag</strong> in the header that can be used in future <a href="https://developer.spotify.com/documentation/web-api/#conditional-requests">conditional requests</a>.</p> <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an array of <a href="https://developer.spotify.com/documentation/web-api/reference/#object-savedalbumobject">saved album objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. Each album object is accompanied by a <a href="https://developer.spotify.com/documentation/web-api/#timestamps">timestamp</a> (<code>added_at</code>) to show when it was added. There is also an <strong>etag</strong> in the header that can be used in future <a href="https://developer.spotify.com/documentation/web-api/#conditional-requests">conditional requests</a>.</p>
+     *         <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-albums">Get User's Saved Albums</a>
      */
     @GET("/me/albums")
@@ -79,7 +83,9 @@ public interface LibraryApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-library-read</code>
      *
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an array of <a href="https://developer.spotify.com/documentation/web-api/reference/#object-savedshowobject">saved show objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. If the current user has no shows saved, the response will be an empty array. If a show is unavailable in the given <code>market</code> it is filtered out. The <code>total</code> field in the paging object represents the number of all items, filtered or not, and thus might be larger than the actual total number of observable items. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#error-details">error object</a>.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an array of <a href="https://developer.spotify.com/documentation/web-api/reference/#object-savedshowobject">saved show objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format.
+     *         If the current user has no shows saved, the response will be an empty array. If a show is unavailable in the given <code>market</code> it is filtered out. The <code>total</code> field in the paging object represents the number of all items, filtered or not, and thus might be larger than the actual total number of observable items.
+     *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#error-details">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-shows">Get User's Saved Shows</a>
      */
     @GET("/me/shows")
@@ -92,7 +98,9 @@ public interface LibraryApi {
      * <code>user-library-read</code>
      *
      * @param queryParameters <p>A map of optional query parameters</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an array of <a href="https://developer.spotify.com/documentation/web-api/reference/#object-savedshowobject">saved show objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. If the current user has no shows saved, the response will be an empty array. If a show is unavailable in the given <code>market</code> it is filtered out. The <code>total</code> field in the paging object represents the number of all items, filtered or not, and thus might be larger than the actual total number of observable items. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#error-details">error object</a>.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an array of <a href="https://developer.spotify.com/documentation/web-api/reference/#object-savedshowobject">saved show objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format.
+     *         If the current user has no shows saved, the response will be an empty array. If a show is unavailable in the given <code>market</code> it is filtered out. The <code>total</code> field in the paging object represents the number of all items, filtered or not, and thus might be larger than the actual total number of observable items.
+     *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#error-details">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-shows">Get User's Saved Shows</a>
      */
     @GET("/me/shows")
@@ -143,7 +151,8 @@ public interface LibraryApi {
      * <code>user-library-modify</code>
      *
      * @param ids <p>A comma-separated list of Spotify IDs for the shows to be deleted from the user's library.</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#error-details">error object</a>. A <code>403 Forbidden</code> while trying to add a show when you do not have the user's authorisation.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK.
+     *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#error-details">error object</a>. A <code>403 Forbidden</code> while trying to add a show when you do not have the user's authorisation.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-shows-user">Remove User's Saved Shows</a>
      */
     @DELETE("/me/shows")
@@ -156,8 +165,9 @@ public interface LibraryApi {
      * <code>user-library-modify</code>
      *
      * @param ids <p>A comma-separated list of Spotify IDs for the shows to be deleted from the user's library.</p>
-     * @param market <p>An <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2 country code</a>. If a country code is specified, only shows that are available in that market will be removed.<br> If a valid user access token is specified in the request header, the country associated with the user account will take priority over this parameter.<br> <em>Note: If neither market or user country are provided, the content is considered unavailable for the client.</em><br> Users can view the country that is associated with their account in the <a href="https://www.spotify.com/se/account/overview/">account settings</a>.</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#error-details">error object</a>. A <code>403 Forbidden</code> while trying to add a show when you do not have the user's authorisation.</p>
+     * @param market <p>An <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2 country code</a>. If a country code is specified, only shows that are available in that market will be removed.<br>If a valid user access token is specified in the request header, the country associated with the user account will take priority over this parameter.<br><em>Note: If neither market or user country are provided, the content is considered unavailable for the client.</em><br>Users can view the country that is associated with their account in the <a href="https://www.spotify.com/se/account/overview/">account settings</a>.</p>
+     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK.
+     *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#error-details">error object</a>. A <code>403 Forbidden</code> while trying to add a show when you do not have the user's authorisation.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-shows-user">Remove User's Saved Shows</a>
      */
     @DELETE("/me/shows")

@@ -51,9 +51,12 @@ public class CategoryTemplate extends AbstractTemplate<SpotifyWebApiCategory> {
         baseContext.put("methodName", methodName);
         baseContext.put("name", endpoint.getName());
         baseContext.put("description", Markdown2Html.convertToSingleLine(endpoint.getDescription()));
-        baseContext.put("responseDescription", Markdown2Html.convertToSingleLine(endpoint.getResponseDescription()));
+        var responseDescriptionLines = Markdown2Html.convertToLines(endpoint.getResponseDescription());
+        baseContext.put("responseDescriptionFirstLine", responseDescriptionLines.get(0));
+        baseContext.put("responseDescriptionOthers", responseDescriptionLines.subList(1, responseDescriptionLines.size()));
         if (endpoint.getNotes() != null) {
-            baseContext.put("notes", Markdown2Html.convertToSingleLine(endpoint.getNotes()));
+            baseContext.put("hasNotes", true);
+            baseContext.put("notes", Markdown2Html.convertToLines(endpoint.getNotes()));
         }
         if (endpoint.getScopes().size() > 0) {
             baseContext.put("scopes", String.join(", ", endpoint.getScopes()));

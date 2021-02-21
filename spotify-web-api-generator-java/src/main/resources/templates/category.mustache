@@ -18,15 +18,20 @@ public interface {{className}} {
      * <code>{{scopes}}</code>
     {{/scopes}}
      *
-    {{#notes}}
+    {{#hasNotes}}
      * <h3>Notes</h3>
-     * {{notes}}
-     *
+    {{#notes}}
+     * {{.}}
     {{/notes}}
+     *
+    {{/hasNotes}}
     {{#javaDocParams}}
      * {{.}}
     {{/javaDocParams}}
-     * @return {{responseDescription}}
+     * @return {{responseDescriptionFirstLine}}
+    {{#responseDescriptionOthers}}
+     *         {{.}}
+    {{/responseDescriptionOthers}}
      * @see <a href="{{documentationLink}}">{{name}}</a>
      */
     @{{httpMethod}}("{{path}}")

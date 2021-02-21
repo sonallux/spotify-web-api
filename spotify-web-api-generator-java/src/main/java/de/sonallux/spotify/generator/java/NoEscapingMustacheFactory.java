@@ -6,7 +6,7 @@ import com.github.mustachejava.MustacheException;
 import java.io.IOException;
 import java.io.Writer;
 
-public class NoEscapingMustacheFactory extends DefaultMustacheFactory {
+class NoEscapingMustacheFactory extends DefaultMustacheFactory {
     @Override
     public void encode(String value, Writer writer) {
         try {

@@ -12,11 +12,13 @@ import lombok.*;
 @NoArgsConstructor
 public class {{className}}{{#superClass}} extends {{superClass}}{{/superClass}} {
 {{#properties}}
-    {{#description}}
+    {{#hasDescription}}
     /**
-     * {{description}}
-     */
+    {{#description}}
+     * {{.}}
     {{/description}}
+     */
+    {{/hasDescription}}
     {{#nonNull}}
     @NonNull
     {{/nonNull}}
