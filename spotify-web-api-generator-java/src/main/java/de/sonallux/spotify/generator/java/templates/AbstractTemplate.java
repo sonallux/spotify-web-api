@@ -1,8 +1,7 @@
 package de.sonallux.spotify.generator.java.templates;
 
-import com.samskivert.mustache.Mustache;
-import com.samskivert.mustache.Template;
-import de.sonallux.spotify.generator.java.JavaDocLambda;
+import com.github.mustachejava.Mustache;
+import com.github.mustachejava.MustacheFactory;
 import de.sonallux.spotify.generator.java.util.JavaPackage;
 import lombok.Getter;
 
@@ -16,12 +15,13 @@ import static java.nio.file.StandardOpenOption.*;
 
 public abstract class AbstractTemplate<T> {
 
-    private Template template;
+    private Mustache mustacheTemplate;
     @Getter
     private JavaPackage basePackage;
 
-    public AbstractTemplate<T> loadTemplate(Mustache.Compiler compiler) {
-        this.template = compiler.loadTemplate(templateName());
+    public AbstractTemplate<T> loadTemplate(MustacheFactory mustacheFactory) {
+        var fileName = String.format("templates/%s.mustache", templateName());
+        this.mustacheTemplate = mustacheFactory.compile(fileName);
         return this;
     }
 
@@ -35,8 +35,7 @@ public abstract class AbstractTemplate<T> {
             var context = new HashMap<String, Object>();
             context.put("package", javaPackage.getName());
             context.put("basePackage", basePackage.getName());
-            context.put("javaDoc", new JavaDocLambda());
-            template.execute(buildContext(t, context), writer);
+            mustacheTemplate.execute(writer, buildContext(t, context));
         }
     }
 

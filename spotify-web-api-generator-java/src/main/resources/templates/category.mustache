@@ -4,31 +4,36 @@ import {{modelsPackage}}.*;
 import retrofit2.Call;
 import retrofit2.http.*;
 
-{{#javaDoc}}
-    <a href="{{documentationLink}}">{{name}}</a>
-{{/javaDoc}}
+/**
+ * <a href="{{documentationLink}}">{{name}}</a>
+ */
 public interface {{className}} {
 {{#endpoints}}
 
-    {{#javaDoc}}
-        <h3>{{name}}</h3>
-        {{description}}
-        {{#scopes}}
-        <h3>Required OAuth scopes</h3>
-        <code>{{scopes}}</code>
-        {{/scopes}}
-
-        {{#notes}}
-        <h3>Notes</h3>
-        {{notes}}
-
-        {{/notes}}
-        {{#javaDocParams}}
-        {{.}}
-        {{/javaDocParams}}
-        @return {{responseDescription}}
-        @see <a href="{{documentationLink}}">{{name}}</a>
-    {{/javaDoc}}
+    /**
+     * <h3>{{name}}</h3>
+     * {{description}}
+    {{#scopes}}
+     * <h3>Required OAuth scopes</h3>
+     * <code>{{scopes}}</code>
+    {{/scopes}}
+     *
+    {{#hasNotes}}
+     * <h3>Notes</h3>
+    {{#notes}}
+     * {{.}}
+    {{/notes}}
+     *
+    {{/hasNotes}}
+    {{#javaDocParams}}
+     * {{.}}
+    {{/javaDocParams}}
+     * @return {{responseDescriptionFirstLine}}
+    {{#responseDescriptionOthers}}
+     *         {{.}}
+    {{/responseDescriptionOthers}}
+     * @see <a href="{{documentationLink}}">{{name}}</a>
+     */
     @{{httpMethod}}("{{path}}")
     Call<{{responseType}}> {{methodName}}({{arguments}});
 {{/endpoints}}

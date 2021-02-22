@@ -11,7 +11,8 @@ import lombok.*;
 @AllArgsConstructor
 public class AddTracksToPlaylistRequest {
     /**
-     * <p>A JSON array of the <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URIs</a> to add. For example: <code>{&quot;uris&quot;: [&quot;spotify:track:4iV5W9uYEdYUVa79Axb7Rh&quot;,&quot;spotify:track:1301WleyT98MSxVHPZCA6M&quot;, &quot;spotify:episode:512ojhOuo1ktJprKbVcKyQ&quot;]}</code><br> A maximum of 100 items can be added in one request. <em>Note: if the <code>uris</code> parameter is present in the query string, any URIs listed here in the body will be ignored.</em></p>
+     * <p>A JSON array of the <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URIs</a> to add. For example: <code>{&quot;uris&quot;: [&quot;spotify:track:4iV5W9uYEdYUVa79Axb7Rh&quot;,&quot;spotify:track:1301WleyT98MSxVHPZCA6M&quot;, &quot;spotify:episode:512ojhOuo1ktJprKbVcKyQ&quot;]}</code><br>
+     * A maximum of 100 items can be added in one request. <em>Note: if the <code>uris</code> parameter is present in the query string, any URIs listed here in the body will be ignored.</em></p>
      */
     @NonNull
     private final java.util.List<String> uris;

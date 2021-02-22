@@ -60,7 +60,11 @@ public class ObjectTemplate extends AbstractTemplate<SpotifyWebApiObject> {
             context.put("fieldName", property.getName());
         }
 
-        context.put("description", Markdown2Html.convertToSingleLine(property.getDescription()));
+        var description = property.getDescription();
+        if (description != null && !description.isBlank()) {
+            context.put("hasDescription", true);
+            context.put("description", Markdown2Html.convertToLines(description));
+        }
         context.put("type", JavaUtils.mapToJavaType(property.getType()));
 
         return context;

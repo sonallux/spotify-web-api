@@ -1,38 +1,34 @@
 package de.sonallux.spotify.generator.ts;
 
+import com.github.mustachejava.Mustache;
+import com.github.mustachejava.MustacheFactory;
 import com.google.common.base.Strings;
-import com.samskivert.mustache.Mustache;
-import com.samskivert.mustache.Template;
 import de.sonallux.spotify.core.model.SpotifyWebApiObject;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.nio.file.StandardOpenOption.*;
 
 public class ObjectTemplate {
-    private Template template;
+    private Mustache mustacheTemplate;
 
-    ObjectTemplate loadTemplate(Mustache.Compiler compiler) {
-        this.template = compiler.loadTemplate("object");
+    ObjectTemplate loadTemplate(MustacheFactory mustacheFactory) {
+        this.mustacheTemplate = mustacheFactory.compile("templates/object.mustache");
         return this;
     }
 
     void generate(Collection<SpotifyWebApiObject> spotifyWebApiObjects, Path outputFile) throws IOException {
         try (var writer = Files.newBufferedWriter(outputFile, CREATE, TRUNCATE_EXISTING, WRITE)) {
-            template.execute(generateContext(spotifyWebApiObjects), writer);
+            mustacheTemplate.execute(writer, generateContext(spotifyWebApiObjects));
         }
     }
 
     private Map<String, Object> generateContext(Collection<SpotifyWebApiObject> spotifyWebApiObjects) {
         return Map.of(
-                "tsDoc", new TSDocLambda(),
                 "objects", spotifyWebApiObjects.stream()
                     .map(this::generateObjectContext)
                     .collect(Collectors.toList()));
@@ -60,7 +56,11 @@ public class ObjectTemplate {
         var context = new HashMap<String, Object>();
         context.put("fieldName", property.getName());
         context.put("type", TSUtils.mapToTsType(property.getType()));
-        context.put("description", property.getDescription());
+        var description = property.getDescription();
+        if (description != null && description.length() > 0) {
+            context.put("hasDescription", true);
+            context.put("description", Arrays.stream(description.split("\n")).map(String::trim).collect(Collectors.toList()));
+        }
         return context;
     }
 

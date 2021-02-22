@@ -1,12 +1,18 @@
 {{#objects}}
-{{#tsDoc}}
-    {{#documentationLink}}{{documentationLink}}{{/documentationLink}}
-{{/tsDoc}}
+{{#documentationLink}}
+/**
+ * {{documentationLink}}
+ */
+{{/documentationLink}}
 export interface {{name}}{{#parentType}} extends {{parentType}}{{/parentType}} {
 {{#properties}}
-    {{#tsDoc}}
-        {{description}}
-    {{/tsDoc}}
+    {{#hasDescription}}
+    /**
+    {{#description}}
+     * {{.}}
+    {{/description}}
+     */
+    {{/hasDescription}}
     {{fieldName}}: {{type}};
 {{/properties}}
 }

@@ -15,8 +15,8 @@ public class Markdown2HtmlTest {
                 new String[]{"`playlist_id`", "<p><code>playlist_id</code></p>"},
                 new String[]{"This is `playlist_id`, `uri`", "<p>This is <code>playlist_id</code>, <code>uri</code></p>"},
                 new String[]{"**Bold** is bolder", "<p><strong>Bold</strong> is bolder</p>"},
-                new String[]{"- foo\n- bar", "<ul> <li>foo</li> <li>bar</li> </ul>"},
-                new String[]{"Foo\n\nTest", "<p>Foo</p> <p>Test</p>"}
+                new String[]{"- foo\n- bar", "<ul><li>foo</li><li>bar</li></ul>"},
+                new String[]{"Foo\n\nTest", "<p>Foo</p><p>Test</p>"}
         );
     }
 
@@ -30,7 +30,7 @@ public class Markdown2HtmlTest {
     @Test
     void testSingleLine() {
         var markdown = "Search [query](#writing-a-query---guidelines) keywords and optional field filters and operators.   \nFor example:   \n`q=roadhouse%20blues`.";
-        var expectedHtml = "<p>Search <a href=\"#writing-a-query---guidelines\">query</a> keywords and optional field filters and operators.<br> For example:<br> <code>q=roadhouse%20blues</code>.</p>";
+        var expectedHtml = "<p>Search <a href=\"#writing-a-query---guidelines\">query</a> keywords and optional field filters and operators.<br>For example:<br><code>q=roadhouse%20blues</code>.</p>";
         var actualHtml = Markdown2Html.convertToSingleLine(markdown);
         Assertions.assertEquals(expectedHtml, actualHtml);
     }
