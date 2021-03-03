@@ -17,17 +17,17 @@ public class Device {
      * <p>If this device is the currently active device.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("is_active")
-    private Boolean isActive;
+    private boolean isActive;
     /**
      * <p>If this device is currently in a private session.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("is_private_session")
-    private Boolean isPrivateSession;
+    private boolean isPrivateSession;
     /**
      * <p>Whether controlling this device is restricted. At present if this is &quot;true&quot; then no Web API commands will be accepted by this device.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("is_restricted")
-    private Boolean isRestricted;
+    private boolean isRestricted;
     /**
      * <p>The name of the device.</p>
      */
@@ -40,5 +40,5 @@ public class Device {
      * <p>The current volume in percent. This may be null.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("volume_percent")
-    private Integer volumePercent;
+    private int volumePercent;
 }

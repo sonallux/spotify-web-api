@@ -12,7 +12,7 @@ public class Image {
     /**
      * <p>The image height in pixels. If unknown: <code>null</code> or not returned.</p>
      */
-    private Integer height;
+    private int height;
     /**
      * <p>The source URL of the image.</p>
      */
@@ -20,5 +20,5 @@ public class Image {
     /**
      * <p>The image width in pixels. If unknown: <code>null</code> or not returned.</p>
      */
-    private Integer width;
+    private int width;
 }

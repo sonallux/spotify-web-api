@@ -26,16 +26,16 @@ public class Track {
      * <p>The disc number (usually <code>1</code> unless the album consists of more than one disc).</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("disc_number")
-    private Integer discNumber;
+    private int discNumber;
     /**
      * <p>The track length in milliseconds.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("duration_ms")
-    private Integer durationMs;
+    private int durationMs;
     /**
      * <p>Whether or not the track has explicit lyrics ( <code>true</code> = yes it does; <code>false</code> = no it does not OR unknown).</p>
      */
-    private Boolean explicit;
+    private boolean explicit;
     /**
      * <p>Known external IDs for the track.</p>
      */
@@ -58,12 +58,12 @@ public class Track {
      * <p>Whether or not the track is from a local file.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("is_local")
-    private Boolean isLocal;
+    private boolean isLocal;
     /**
      * <p>Part of the response when <a href="https://developer.spotify.com/documentation/general/guides/track-relinking-guide/">Track Relinking</a> is applied. If <code>true</code> , the track is playable in the given market. Otherwise <code>false</code>.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("is_playable")
-    private Boolean isPlayable;
+    private boolean isPlayable;
     /**
      * <p>Part of the response when <a href="https://developer.spotify.com/documentation/general/guides/track-relinking-guide/">Track Relinking</a> is applied, and the requested track has been replaced with different track. The track in the <code>linked_from</code> object contains information about the originally requested track.</p>
      */
@@ -78,7 +78,7 @@ public class Track {
      * The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are.<br>
      * Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. Note that the popularity value may lag actual popularity by a few days: the value is not updated in real time.</p>
      */
-    private Integer popularity;
+    private int popularity;
     /**
      * <p>A link to a 30 second preview (MP3 format) of the track. Can be <code>null</code></p>
      */
@@ -92,7 +92,7 @@ public class Track {
      * <p>The number of the track. If an album has several discs, the track number is the number on the specified disc.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("track_number")
-    private Integer trackNumber;
+    private int trackNumber;
     /**
      * <p>The object type: &quot;track&quot;.</p>
      */

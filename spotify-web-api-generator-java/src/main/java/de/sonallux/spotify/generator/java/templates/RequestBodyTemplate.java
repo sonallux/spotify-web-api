@@ -61,7 +61,7 @@ public class RequestBodyTemplate extends AbstractTemplate<EndpointRequestBodyObj
             context.put("hasDescription", true);
             context.put("description", Markdown2Html.convertToLines(description));
         }
-        context.put("type", JavaUtils.mapToJavaType(property.getType()));
+        context.put("type", JavaUtils.mapToPrimitiveJavaType(property.getType()));
         context.put("required", property.isRequired());
 
         return context;

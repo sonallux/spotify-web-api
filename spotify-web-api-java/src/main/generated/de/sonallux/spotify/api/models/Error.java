@@ -16,5 +16,5 @@ public class Error {
     /**
      * <p>The HTTP status code (also returned in the response header; see <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">Response Status Codes</a> for more information).</p>
      */
-    private Integer status;
+    private int status;
 }

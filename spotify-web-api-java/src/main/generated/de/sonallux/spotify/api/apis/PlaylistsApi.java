@@ -36,7 +36,7 @@ public interface PlaylistsApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-tracks-to-playlist">Add Items to a Playlist</a>
      */
     @POST("/playlists/{playlist_id}/tracks")
-    Call<SnapshotId> addTracksToPlaylist(@Path("playlist_id") String playlistId, @Body AddTracksToPlaylistRequest requestBody, @Query("position") Integer position);
+    Call<SnapshotId> addTracksToPlaylist(@Path("playlist_id") String playlistId, @Body AddTracksToPlaylistRequest requestBody, @Query("position") int position);
 
     /**
      * <h3>Change a Playlist's Details</h3>

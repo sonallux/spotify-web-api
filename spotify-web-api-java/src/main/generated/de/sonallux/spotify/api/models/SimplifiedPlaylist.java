@@ -12,7 +12,7 @@ public class SimplifiedPlaylist {
     /**
      * <p><code>true</code> if the owner allows other users to modify the playlist.</p>
      */
-    private Boolean collaborative;
+    private boolean collaborative;
     /**
      * <p>The playlist description. <em>Only returned for modified, verified playlists, otherwise</em> <code>null</code>.</p>
      */
@@ -47,7 +47,7 @@ public class SimplifiedPlaylist {
      */
     @com.fasterxml.jackson.annotation.JsonProperty("public")
     @lombok.experimental.Accessors(prefix = "_")
-    private Boolean _public;
+    private boolean _public;
     /**
      * <p>The version identifier for the current playlist. Can be supplied in other requests to target a specific playlist version</p>
      */

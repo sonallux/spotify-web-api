@@ -23,7 +23,7 @@ public class PlaylistTrack {
      * <p>Whether this track or episode is a <a href="https://developer.spotify.com/web-api/local-files-spotify-playlists/">local file</a> or not.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("is_local")
-    private Boolean isLocal;
+    private boolean isLocal;
     /**
      * <p>Information about the track or episode.</p>
      */

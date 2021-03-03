@@ -64,7 +64,7 @@ public class Album {
     /**
      * <p>The popularity of the album. The value will be between 0 and 100, with 100 being the most popular. The popularity is calculated from the popularity of the album's individual tracks.</p>
      */
-    private Integer popularity;
+    private int popularity;
     /**
      * <p>The date the album was first released, for example &quot;1981-12-15&quot;. Depending on the precision, it might be shown as &quot;1981&quot; or &quot;1981-12&quot;.</p>
      */

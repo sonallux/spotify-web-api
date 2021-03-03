@@ -174,7 +174,7 @@ public interface PlayerApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-seek-to-position-in-currently-playing-track">Seek To Position In Currently Playing Track</a>
      */
     @PUT("/me/player/seek")
-    Call<Void> seekToPositionInCurrentlyPlayingTrack(@Query("position_ms") Integer positionMs);
+    Call<Void> seekToPositionInCurrentlyPlayingTrack(@Query("position_ms") int positionMs);
 
     /**
      * <h3>Seek To Position In Currently Playing Track</h3>
@@ -190,7 +190,7 @@ public interface PlayerApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-seek-to-position-in-currently-playing-track">Seek To Position In Currently Playing Track</a>
      */
     @PUT("/me/player/seek")
-    Call<Void> seekToPositionInCurrentlyPlayingTrack(@Query("position_ms") Integer positionMs, @Query("device_id") String deviceId);
+    Call<Void> seekToPositionInCurrentlyPlayingTrack(@Query("position_ms") int positionMs, @Query("device_id") String deviceId);
 
     /**
      * <h3>Set Repeat Mode On User’s Playback</h3>
@@ -236,7 +236,7 @@ public interface PlayerApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-set-volume-for-users-playback">Set Volume For User's Playback</a>
      */
     @PUT("/me/player/volume")
-    Call<Void> setVolumeForUsersPlayback(@Query("volume_percent") Integer volumePercent);
+    Call<Void> setVolumeForUsersPlayback(@Query("volume_percent") int volumePercent);
 
     /**
      * <h3>Set Volume For User's Playback</h3>
@@ -252,7 +252,7 @@ public interface PlayerApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-set-volume-for-users-playback">Set Volume For User's Playback</a>
      */
     @PUT("/me/player/volume")
-    Call<Void> setVolumeForUsersPlayback(@Query("volume_percent") Integer volumePercent, @Query("device_id") String deviceId);
+    Call<Void> setVolumeForUsersPlayback(@Query("volume_percent") int volumePercent, @Query("device_id") String deviceId);
 
     /**
      * <h3>Skip User’s Playback To Next Track</h3>
@@ -385,7 +385,7 @@ public interface PlayerApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-toggle-shuffle-for-users-playback">Toggle Shuffle For User’s Playback</a>
      */
     @PUT("/me/player/shuffle")
-    Call<Void> toggleShuffleForUsersPlayback(@Query("state") Boolean state);
+    Call<Void> toggleShuffleForUsersPlayback(@Query("state") boolean state);
 
     /**
      * <h3>Toggle Shuffle For User’s Playback</h3>
@@ -401,7 +401,7 @@ public interface PlayerApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-toggle-shuffle-for-users-playback">Toggle Shuffle For User’s Playback</a>
      */
     @PUT("/me/player/shuffle")
-    Call<Void> toggleShuffleForUsersPlayback(@Query("state") Boolean state, @Query("device_id") String deviceId);
+    Call<Void> toggleShuffleForUsersPlayback(@Query("state") boolean state, @Query("device_id") String deviceId);
 
     /**
      * <h3>Transfer a User's Playback</h3>

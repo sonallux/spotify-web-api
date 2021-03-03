@@ -16,5 +16,5 @@ public class PlaylistTracksRef {
     /**
      * <p>Number of tracks in the playlist.</p>
      */
-    private Integer total;
+    private int total;
 }

@@ -29,7 +29,7 @@ public class Show {
     /**
      * <p>Whether or not the show has explicit content (true = yes it does; false = no it does not OR unknown).</p>
      */
-    private Boolean explicit;
+    private boolean explicit;
     /**
      * <p>External URLs for this show.</p>
      */
@@ -51,7 +51,7 @@ public class Show {
      * <p>True if all of the show's episodes are hosted outside of Spotify's CDN. This field might be <code>null</code> in some cases.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("is_externally_hosted")
-    private Boolean isExternallyHosted;
+    private boolean isExternallyHosted;
     /**
      * <p>A list of the languages used in the show, identified by their <a href="https://en.wikipedia.org/wiki/ISO_639">ISO 639</a> code.</p>
      */

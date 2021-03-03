@@ -22,7 +22,7 @@ public class CurrentlyPlaying {
      * <p>If something is currently playing, return <code>true</code>.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("is_playing")
-    private Boolean isPlaying;
+    private boolean isPlaying;
     /**
      * <p>The currently playing track or episode. Can be <code>null</code>.</p>
      */
@@ -31,9 +31,9 @@ public class CurrentlyPlaying {
      * <p>Progress into the currently playing track or episode. Can be <code>null</code>.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("progress_ms")
-    private Integer progressMs;
+    private int progressMs;
     /**
      * <p>Unix Millisecond Timestamp when data was fetched</p>
      */
-    private Integer timestamp;
+    private int timestamp;
 }

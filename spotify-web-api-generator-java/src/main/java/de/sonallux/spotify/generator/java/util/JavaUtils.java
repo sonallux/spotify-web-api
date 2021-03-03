@@ -71,6 +71,20 @@ public class JavaUtils {
         }
     }
 
+    public static String mapToPrimitiveJavaType(String type) {
+        if ("String".equals(type)) {
+            return "String";
+        } else if ("Boolean".equals(type)) {
+            return "boolean";
+        } else if ("Integer".equals(type)) {
+            return "int";
+        } else if ("Float".equals(type)) {
+            return "float";
+        } else {
+            return mapToJavaType(type);
+        }
+    }
+
     public static String getClassName(SpotifyWebApiCategory category) {
         return category.getName().replace(" ", "").replace("API", "Api");
     }

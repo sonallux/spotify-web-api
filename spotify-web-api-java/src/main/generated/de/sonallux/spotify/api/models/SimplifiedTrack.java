@@ -22,16 +22,16 @@ public class SimplifiedTrack {
      * <p>The disc number (usually <code>1</code> unless the album consists of more than one disc).</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("disc_number")
-    private Integer discNumber;
+    private int discNumber;
     /**
      * <p>The track length in milliseconds.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("duration_ms")
-    private Integer durationMs;
+    private int durationMs;
     /**
      * <p>Whether or not the track has explicit lyrics ( <code>true</code> = yes it does; <code>false</code> = no it does not OR unknown).</p>
      */
-    private Boolean explicit;
+    private boolean explicit;
     /**
      * <p>External URLs for this track.</p>
      */
@@ -49,12 +49,12 @@ public class SimplifiedTrack {
      * <p>Whether or not the track is from a local file.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("is_local")
-    private Boolean isLocal;
+    private boolean isLocal;
     /**
      * <p>Part of the response when <a href="https://developer.spotify.com/documentation/general/guides/track-relinking-guide/">Track Relinking</a> is applied. If <code>true</code> , the track is playable in the given market. Otherwise <code>false</code>.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("is_playable")
-    private Boolean isPlayable;
+    private boolean isPlayable;
     /**
      * <p>Part of the response when <a href="https://developer.spotify.com/documentation/general/guides/track-relinking-guide/">Track Relinking</a> is applied and is only part of the response if the track linking, in fact, exists. The requested track has been replaced with a different track. The track in the <code>linked_from</code> object contains information about the originally requested track.</p>
      */
@@ -77,7 +77,7 @@ public class SimplifiedTrack {
      * <p>The number of the track. If an album has several discs, the track number is the number on the specified disc.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("track_number")
-    private Integer trackNumber;
+    private int trackNumber;
     /**
      * <p>The object type: &quot;track&quot;.</p>
      */

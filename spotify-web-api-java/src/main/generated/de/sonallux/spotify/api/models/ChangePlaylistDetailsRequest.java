@@ -19,11 +19,11 @@ public class ChangePlaylistDetailsRequest {
      */
     @com.fasterxml.jackson.annotation.JsonProperty("public")
     @lombok.experimental.Accessors(prefix = "_")
-    private Boolean _public;
+    private boolean _public;
     /**
      * <p>If <code>true</code> , the playlist will become collaborative and other users will be able to modify the playlist in their Spotify client. <em>Note: You can only set <code>collaborative</code> to <code>true</code> on non-public playlists.</em></p>
      */
-    private Boolean collaborative;
+    private boolean collaborative;
     /**
      * <p>Value for playlist description as displayed in Spotify Clients and in the Web API.</p>
      */

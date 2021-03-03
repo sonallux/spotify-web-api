@@ -83,12 +83,12 @@ public class CategoryTemplate extends AbstractTemplate<SpotifyWebApiCategory> {
         List<Argument> requiredArgs = new ArrayList<>();
         endpoint.getParameters().stream()
                 .filter(p -> p.getLocation() == PATH)
-                .map(p -> new Argument("@Path(\"" + p.getName() + "\")", JavaUtils.mapToJavaType(p.getType()), p.getName(), p.getDescription()))
+                .map(p -> new Argument("@Path(\"" + p.getName() + "\")", JavaUtils.mapToPrimitiveJavaType(p.getType()), p.getName(), p.getDescription()))
                 .forEach(requiredArgs::add);
 
         endpoint.getParameters().stream()
                 .filter(p -> p.getLocation() == QUERY && p.isRequired())
-                .map(p -> new Argument("@Query(\"" + p.getName() + "\")", JavaUtils.mapToJavaType(p.getType()), p.getName(), p.getDescription()))
+                .map(p -> new Argument("@Query(\"" + p.getName() + "\")", JavaUtils.mapToPrimitiveJavaType(p.getType()), p.getName(), p.getDescription()))
                 .forEach(requiredArgs::add);
 
         boolean requestBodyArgAdded = false;
@@ -105,7 +105,7 @@ public class CategoryTemplate extends AbstractTemplate<SpotifyWebApiCategory> {
         if (optionalQueryArgs.size() == 1) {
             var p = optionalQueryArgs.get(0);
             requiredArgs.add(new Argument(
-                    "@Query(\"" + p.getName() + "\")", JavaUtils.mapToJavaType(p.getType()), p.getName(), p.getDescription()));
+                    "@Query(\"" + p.getName() + "\")", JavaUtils.mapToPrimitiveJavaType(p.getType()), p.getName(), p.getDescription()));
             args.add(requiredArgs);
         } else if (optionalQueryArgs.size() > 1) {
             requiredArgs.add(new Argument(
@@ -132,12 +132,12 @@ public class CategoryTemplate extends AbstractTemplate<SpotifyWebApiCategory> {
         if (endpoint.getResponseTypes().size() == 1
                 || 1 == endpoint.getResponseTypes().stream()
                 .map(SpotifyWebApiEndpoint.ResponseType::getType).distinct().count()) {
-            return JavaUtils.mapToJavaType(endpoint.getResponseTypes().get(0).getType());
+            return JavaUtils.mapToPrimitiveJavaType(endpoint.getResponseTypes().get(0).getType());
         }
         var nonVoidResponseTypes = endpoint.getResponseTypes().stream()
                 .map(SpotifyWebApiEndpoint.ResponseType::getType).filter(t -> !"Void".equals(t)).distinct().collect(Collectors.toList());
         if (nonVoidResponseTypes.size() == 1) {
-            return JavaUtils.mapToJavaType(endpoint.getResponseTypes().get(0).getType());
+            return JavaUtils.mapToPrimitiveJavaType(endpoint.getResponseTypes().get(0).getType());
         }
         return "";
     }

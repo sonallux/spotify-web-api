@@ -22,11 +22,11 @@ public class SimplifiedEpisode {
      * <p>The episode length in milliseconds.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("duration_ms")
-    private Integer durationMs;
+    private int durationMs;
     /**
      * <p>Whether or not the episode has explicit content (true = yes it does; false = no it does not OR unknown).</p>
      */
-    private Boolean explicit;
+    private boolean explicit;
     /**
      * <p>External URLs for this episode.</p>
      */
@@ -48,12 +48,12 @@ public class SimplifiedEpisode {
      * <p>True if the episode is hosted outside of Spotify's CDN.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("is_externally_hosted")
-    private Boolean isExternallyHosted;
+    private boolean isExternallyHosted;
     /**
      * <p>True if the episode is playable in the given market. Otherwise false.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("is_playable")
-    private Boolean isPlayable;
+    private boolean isPlayable;
     /**
      * <p><strong>Note: This field is deprecated and might be removed in the future. Please use the <code>languages</code> field instead.</strong> The language used in the episode, identified by a <a href="https://en.wikipedia.org/wiki/ISO_639">ISO 639</a> code.</p>
      */
