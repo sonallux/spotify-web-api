@@ -20,7 +20,8 @@ public class Playlist {
     /**
      * <p>Known external URLs for this playlist.</p>
      */
-    private ExternalUrl external_urls;
+    @com.fasterxml.jackson.annotation.JsonProperty("external_urls")
+    private ExternalUrl externalUrls;
     /**
      * <p>Information about the followers of the playlist.</p>
      */
@@ -54,7 +55,8 @@ public class Playlist {
     /**
      * <p>The version identifier for the current playlist. Can be supplied in other requests to target a specific playlist version</p>
      */
-    private String snapshot_id;
+    @com.fasterxml.jackson.annotation.JsonProperty("snapshot_id")
+    private String snapshotId;
     /**
      * <p>Information about the tracks of the playlist. Note, a track object may be <code>null</code>. This can happen if a track is no longer available.</p>
      */

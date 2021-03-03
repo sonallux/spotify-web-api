@@ -20,7 +20,8 @@ public class SimplifiedPlaylist {
     /**
      * <p>Known external URLs for this playlist.</p>
      */
-    private ExternalUrl external_urls;
+    @com.fasterxml.jackson.annotation.JsonProperty("external_urls")
+    private ExternalUrl externalUrls;
     /**
      * <p>A link to the Web API endpoint providing full details of the playlist.</p>
      */
@@ -50,7 +51,8 @@ public class SimplifiedPlaylist {
     /**
      * <p>The version identifier for the current playlist. Can be supplied in other requests to target a specific playlist version</p>
      */
-    private String snapshot_id;
+    @com.fasterxml.jackson.annotation.JsonProperty("snapshot_id")
+    private String snapshotId;
     /**
      * <p>A collection containing a link ( <code>href</code> ) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the <code>total</code> number of tracks in the playlist. Note, a track object may be <code>null</code>. This can happen if a track is no longer available.</p>
      */

@@ -12,7 +12,8 @@ public class Disallows {
     /**
      * <p>Interrupting playback. Optional field.</p>
      */
-    private Boolean interrupting_playback;
+    @com.fasterxml.jackson.annotation.JsonProperty("interrupting_playback")
+    private Boolean interruptingPlayback;
     /**
      * <p>Pausing. Optional field.</p>
      */
@@ -28,25 +29,31 @@ public class Disallows {
     /**
      * <p>Skipping to the next context. Optional field.</p>
      */
-    private Boolean skipping_next;
+    @com.fasterxml.jackson.annotation.JsonProperty("skipping_next")
+    private Boolean skippingNext;
     /**
      * <p>Skipping to the previous context. Optional field.</p>
      */
-    private Boolean skipping_prev;
+    @com.fasterxml.jackson.annotation.JsonProperty("skipping_prev")
+    private Boolean skippingPrev;
     /**
      * <p>Toggling repeat context flag. Optional field.</p>
      */
-    private Boolean toggling_repeat_context;
+    @com.fasterxml.jackson.annotation.JsonProperty("toggling_repeat_context")
+    private Boolean togglingRepeatContext;
     /**
      * <p>Toggling repeat track flag. Optional field.</p>
      */
-    private Boolean toggling_repeat_track;
+    @com.fasterxml.jackson.annotation.JsonProperty("toggling_repeat_track")
+    private Boolean togglingRepeatTrack;
     /**
      * <p>Toggling shuffle flag. Optional field.</p>
      */
-    private Boolean toggling_shuffle;
+    @com.fasterxml.jackson.annotation.JsonProperty("toggling_shuffle")
+    private Boolean togglingShuffle;
     /**
      * <p>Transfering playback between devices. Optional field.</p>
      */
-    private Boolean transferring_playback;
+    @com.fasterxml.jackson.annotation.JsonProperty("transferring_playback")
+    private Boolean transferringPlayback;
 }

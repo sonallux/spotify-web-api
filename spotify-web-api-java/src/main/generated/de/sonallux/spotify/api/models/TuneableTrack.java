@@ -20,7 +20,8 @@ public class TuneableTrack {
     /**
      * <p>The duration of the track in milliseconds.</p>
      */
-    private Integer duration_ms;
+    @com.fasterxml.jackson.annotation.JsonProperty("duration_ms")
+    private Integer durationMs;
     /**
      * <p>Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.</p>
      */
@@ -60,7 +61,8 @@ public class TuneableTrack {
     /**
      * <p>An estimated overall time signature of a track. The time signature (meter) is a notational convention to specify how many beats are in each bar (or measure).</p>
      */
-    private Integer time_signature;
+    @com.fasterxml.jackson.annotation.JsonProperty("time_signature")
+    private Integer timeSignature;
     /**
      * <p>A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).</p>
      */

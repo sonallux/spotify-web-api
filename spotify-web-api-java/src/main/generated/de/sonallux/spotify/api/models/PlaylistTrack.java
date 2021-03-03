@@ -12,15 +12,18 @@ public class PlaylistTrack {
     /**
      * <p>The date and time the track or episode was added. <em>Note that some very old playlists may return <code>null</code> in this field.</em></p>
      */
-    private java.time.LocalDateTime added_at;
+    @com.fasterxml.jackson.annotation.JsonProperty("added_at")
+    private java.time.LocalDateTime addedAt;
     /**
      * <p>The Spotify user who added the track or episode. <em>Note that some very old playlists may return <code>null</code> in this field.</em></p>
      */
-    private PublicUser added_by;
+    @com.fasterxml.jackson.annotation.JsonProperty("added_by")
+    private PublicUser addedBy;
     /**
      * <p>Whether this track or episode is a <a href="https://developer.spotify.com/web-api/local-files-spotify-playlists/">local file</a> or not.</p>
      */
-    private Boolean is_local;
+    @com.fasterxml.jackson.annotation.JsonProperty("is_local")
+    private Boolean isLocal;
     /**
      * <p>Information about the track or episode.</p>
      */
