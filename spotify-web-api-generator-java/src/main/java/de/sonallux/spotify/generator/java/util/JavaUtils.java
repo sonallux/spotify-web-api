@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 
+import static com.google.common.base.CaseFormat.LOWER_CAMEL;
+import static com.google.common.base.CaseFormat.LOWER_UNDERSCORE;
+
 public class JavaUtils {
     public static final List<String> RESERVED_WORDS = Arrays.asList(
             "abstract", "assert", "boolean", "break", "byte",
@@ -31,6 +34,9 @@ public class JavaUtils {
     public static String escapeFieldName(String fieldName) {
         if (RESERVED_WORDS.contains(fieldName)) {
             return "_" + fieldName;
+        }
+        if (fieldName.contains("_")) {
+            return LOWER_UNDERSCORE.converterTo(LOWER_CAMEL).convert(fieldName);
         }
         return fieldName;
     }

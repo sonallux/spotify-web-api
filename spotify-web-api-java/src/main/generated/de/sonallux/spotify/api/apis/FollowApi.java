@@ -30,14 +30,14 @@ public interface FollowApi {
      * <h3>Required OAuth scopes</h3>
      * <code>playlist-read-private</code>
      *
-     * @param playlist_id <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> of the playlist.</p>
+     * @param playlistId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> of the playlist.</p>
      * @param ids <p>A comma-separated list of <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify User IDs</a> ; the ids of the users that you want to check to see if they follow the playlist. Maximum: 5 ids.</p>
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains a JSON array of <code>true</code> or <code>false</code> values, in the same order in which the <code>ids</code> were specified.
      *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-if-user-follows-playlist">Check if Users Follow a Playlist</a>
      */
     @GET("/playlists/{playlist_id}/followers/contains")
-    Call<java.util.List<Boolean>> checkIfUserFollowsPlaylist(@Path("playlist_id") String playlist_id, @Query("ids") String ids);
+    Call<java.util.List<Boolean>> checkIfUserFollowsPlaylist(@Path("playlist_id") String playlistId, @Query("ids") String ids);
 
     /**
      * <h3>Follow Artists or Users</h3>
@@ -60,13 +60,13 @@ public interface FollowApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-follow-modify</code>
      *
-     * @param playlist_id <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> of the playlist. Any playlist can be followed, regardless of its <a href="https://developer.spotify.com/documentation/general/guides/working-with-playlists/#public-private-and-collaborative-status">public/private status</a>, as long as you know its playlist ID.</p>
+     * @param playlistId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> of the playlist. Any playlist can be followed, regardless of its <a href="https://developer.spotify.com/documentation/general/guides/working-with-playlists/#public-private-and-collaborative-status">public/private status</a>, as long as you know its playlist ID.</p>
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body is empty.
      *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-follow-playlist">Follow a Playlist</a>
      */
     @PUT("/playlists/{playlist_id}/followers")
-    Call<Void> followPlaylist(@Path("playlist_id") String playlist_id);
+    Call<Void> followPlaylist(@Path("playlist_id") String playlistId);
 
     /**
      * <h3>Follow a Playlist</h3>
@@ -74,14 +74,14 @@ public interface FollowApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-follow-modify</code>
      *
-     * @param playlist_id <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> of the playlist. Any playlist can be followed, regardless of its <a href="https://developer.spotify.com/documentation/general/guides/working-with-playlists/#public-private-and-collaborative-status">public/private status</a>, as long as you know its playlist ID.</p>
+     * @param playlistId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> of the playlist. Any playlist can be followed, regardless of its <a href="https://developer.spotify.com/documentation/general/guides/working-with-playlists/#public-private-and-collaborative-status">public/private status</a>, as long as you know its playlist ID.</p>
      * @param requestBody <p>The request body</p>
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body is empty.
      *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-follow-playlist">Follow a Playlist</a>
      */
     @PUT("/playlists/{playlist_id}/followers")
-    Call<Void> followPlaylist(@Path("playlist_id") String playlist_id, @Body FollowPlaylistRequest requestBody);
+    Call<Void> followPlaylist(@Path("playlist_id") String playlistId, @Body FollowPlaylistRequest requestBody);
 
     /**
      * <h3>Get User's Followed Artists</h3>
@@ -135,11 +135,11 @@ public interface FollowApi {
      * <h3>Required OAuth scopes</h3>
      * <code>playlist-modify-public, playlist-modify-private</code>
      *
-     * @param playlist_id <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> of the playlist that is to be no longer followed.</p>
+     * @param playlistId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> of the playlist that is to be no longer followed.</p>
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body is empty.
      *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-unfollow-playlist">Unfollow Playlist</a>
      */
     @DELETE("/playlists/{playlist_id}/followers")
-    Call<Void> unfollowPlaylist(@Path("playlist_id") String playlist_id);
+    Call<Void> unfollowPlaylist(@Path("playlist_id") String playlistId);
 }
