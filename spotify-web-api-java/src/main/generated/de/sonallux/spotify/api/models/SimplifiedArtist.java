@@ -12,7 +12,8 @@ public class SimplifiedArtist {
     /**
      * <p>Known external URLs for this artist.</p>
      */
-    private ExternalUrl external_urls;
+    @com.fasterxml.jackson.annotation.JsonProperty("external_urls")
+    private ExternalUrl externalUrls;
     /**
      * <p>A link to the Web API endpoint providing full details of the artist.</p>
      */

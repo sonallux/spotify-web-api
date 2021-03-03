@@ -11,6 +11,8 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.google.common.base.CaseFormat.LOWER_CAMEL;
+import static com.google.common.base.CaseFormat.LOWER_UNDERSCORE;
 import static java.nio.file.StandardOpenOption.*;
 
 public class ObjectTemplate {
@@ -54,7 +56,8 @@ public class ObjectTemplate {
 
     private Map<String, Object> generatePropertyContext(SpotifyWebApiObject.Property property) {
         var context = new HashMap<String, Object>();
-        context.put("fieldName", property.getName());
+        // Convert spotify property name in lower camel case format
+        context.put("fieldName", LOWER_UNDERSCORE.converterTo(LOWER_CAMEL).convert(property.getName()));
         context.put("type", TSUtils.mapToTsType(property.getType()));
         var description = property.getDescription();
         if (description != null && description.length() > 0) {

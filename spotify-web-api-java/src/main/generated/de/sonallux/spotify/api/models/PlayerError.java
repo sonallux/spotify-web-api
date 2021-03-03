@@ -39,5 +39,5 @@ public class PlayerError {
     /**
      * <p>The HTTP status code. Either <code>404 NOT FOUND</code> or <code>403 FORBIDDEN</code>. Also returned in the response header.</p>
      */
-    private Integer status;
+    private int status;
 }

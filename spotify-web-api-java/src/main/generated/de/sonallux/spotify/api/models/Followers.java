@@ -16,5 +16,5 @@ public class Followers {
     /**
      * <p>The total number of followers.</p>
      */
-    private Integer total;
+    private int total;
 }

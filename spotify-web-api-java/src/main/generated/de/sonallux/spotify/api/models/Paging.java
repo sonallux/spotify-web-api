@@ -20,7 +20,7 @@ public class Paging<T> {
     /**
      * <p>The maximum number of items in the response (as set in the query or by default).</p>
      */
-    private Integer limit;
+    private int limit;
     /**
      * <p>URL to the next page of items. ( <code>null</code> if none)</p>
      */
@@ -28,7 +28,7 @@ public class Paging<T> {
     /**
      * <p>The offset of the items returned (as set in the query or by default)</p>
      */
-    private Integer offset;
+    private int offset;
     /**
      * <p>URL to the previous page of items. ( <code>null</code> if none)</p>
      */
@@ -36,5 +36,5 @@ public class Paging<T> {
     /**
      * <p>The total number of items available to return.</p>
      */
-    private Integer total;
+    private int total;
 }

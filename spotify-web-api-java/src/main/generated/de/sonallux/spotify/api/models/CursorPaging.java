@@ -24,7 +24,7 @@ public class CursorPaging<T> {
     /**
      * <p>The maximum number of items in the response (as set in the query or by default).</p>
      */
-    private Integer limit;
+    private int limit;
     /**
      * <p>URL to the next page of items. ( <code>null</code> if none)</p>
      */
@@ -32,5 +32,5 @@ public class CursorPaging<T> {
     /**
      * <p>The total number of items available to return.</p>
      */
-    private Integer total;
+    private int total;
 }

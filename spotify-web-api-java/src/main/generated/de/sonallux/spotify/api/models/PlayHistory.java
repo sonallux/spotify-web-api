@@ -16,7 +16,8 @@ public class PlayHistory {
     /**
      * <p>The date and time the track was played.</p>
      */
-    private java.time.LocalDateTime played_at;
+    @com.fasterxml.jackson.annotation.JsonProperty("played_at")
+    private java.time.LocalDateTime playedAt;
     /**
      * <p>The track the user listened to.</p>
      */

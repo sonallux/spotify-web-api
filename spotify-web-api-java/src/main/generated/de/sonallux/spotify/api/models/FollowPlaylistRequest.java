@@ -15,5 +15,5 @@ public class FollowPlaylistRequest {
      */
     @com.fasterxml.jackson.annotation.JsonProperty("public")
     @lombok.experimental.Accessors(prefix = "_")
-    private Boolean _public;
+    private boolean _public;
 }

@@ -12,41 +12,48 @@ public class Disallows {
     /**
      * <p>Interrupting playback. Optional field.</p>
      */
-    private Boolean interrupting_playback;
+    @com.fasterxml.jackson.annotation.JsonProperty("interrupting_playback")
+    private boolean interruptingPlayback;
     /**
      * <p>Pausing. Optional field.</p>
      */
-    private Boolean pausing;
+    private boolean pausing;
     /**
      * <p>Resuming. Optional field.</p>
      */
-    private Boolean resuming;
+    private boolean resuming;
     /**
      * <p>Seeking playback location. Optional field.</p>
      */
-    private Boolean seeking;
+    private boolean seeking;
     /**
      * <p>Skipping to the next context. Optional field.</p>
      */
-    private Boolean skipping_next;
+    @com.fasterxml.jackson.annotation.JsonProperty("skipping_next")
+    private boolean skippingNext;
     /**
      * <p>Skipping to the previous context. Optional field.</p>
      */
-    private Boolean skipping_prev;
+    @com.fasterxml.jackson.annotation.JsonProperty("skipping_prev")
+    private boolean skippingPrev;
     /**
      * <p>Toggling repeat context flag. Optional field.</p>
      */
-    private Boolean toggling_repeat_context;
+    @com.fasterxml.jackson.annotation.JsonProperty("toggling_repeat_context")
+    private boolean togglingRepeatContext;
     /**
      * <p>Toggling repeat track flag. Optional field.</p>
      */
-    private Boolean toggling_repeat_track;
+    @com.fasterxml.jackson.annotation.JsonProperty("toggling_repeat_track")
+    private boolean togglingRepeatTrack;
     /**
      * <p>Toggling shuffle flag. Optional field.</p>
      */
-    private Boolean toggling_shuffle;
+    @com.fasterxml.jackson.annotation.JsonProperty("toggling_shuffle")
+    private boolean togglingShuffle;
     /**
      * <p>Transfering playback between devices. Optional field.</p>
      */
-    private Boolean transferring_playback;
+    @com.fasterxml.jackson.annotation.JsonProperty("transferring_playback")
+    private boolean transferringPlayback;
 }

@@ -25,5 +25,5 @@ public class StartUsersPlaybackRequest {
     /**
      * <p>Indicates from what position to start playback. Must be a positive number. Passing in a position that is greater than the length of the track will cause the player to start playing the next song.</p>
      */
-    private Integer position_ms;
+    private int position_ms;
 }

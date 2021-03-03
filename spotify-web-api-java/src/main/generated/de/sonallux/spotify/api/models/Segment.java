@@ -9,13 +9,17 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class Segment {
-    private Float confidence;
-    private Float duration;
-    private Float loudness_end;
-    private Float loudness_max;
-    private Float loudness_max_time;
-    private Float loudness_start;
+    private float confidence;
+    private float duration;
+    @com.fasterxml.jackson.annotation.JsonProperty("loudness_end")
+    private float loudnessEnd;
+    @com.fasterxml.jackson.annotation.JsonProperty("loudness_max")
+    private float loudnessMax;
+    @com.fasterxml.jackson.annotation.JsonProperty("loudness_max_time")
+    private float loudnessMaxTime;
+    @com.fasterxml.jackson.annotation.JsonProperty("loudness_start")
+    private float loudnessStart;
     private java.util.List<Float> pitches;
-    private Float start;
+    private float start;
     private java.util.List<Float> timbre;
 }

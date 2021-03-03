@@ -5,7 +5,7 @@ export interface Album {
     /**
      * The type of the album: `album`, `single`, or `compilation`.
      */
-    album_type: string;
+    albumType: string;
     /**
      * The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
      */
@@ -13,7 +13,7 @@ export interface Album {
     /**
      * The markets in which the album is available: [ISO 3166-1 alpha-2 country codes](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Note that an album is considered available in a market when at least 1 of its tracks is available in that market.
      */
-    available_markets: string[];
+    availableMarkets: string[];
     /**
      * The copyright statements of the album.
      */
@@ -21,11 +21,11 @@ export interface Album {
     /**
      * Known external IDs for the album.
      */
-    external_ids: ExternalId;
+    externalIds: ExternalId;
     /**
      * Known external URLs for this album.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * A list of the genres used to classify the album. For example: "Prog Rock" , "Post-Grunge". (If not yet classified, the array is empty.)
      */
@@ -57,11 +57,11 @@ export interface Album {
     /**
      * The date the album was first released, for example "1981-12-15". Depending on the precision, it might be shown as "1981" or "1981-12".
      */
-    release_date: string;
+    releaseDate: string;
     /**
      * The precision with which release_date value is known: "year" , "month" , or "day".
      */
-    release_date_precision: string;
+    releaseDatePrecision: string;
     /**
      * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject) for more details.
      */
@@ -106,7 +106,7 @@ export interface Artist {
     /**
      * Known external URLs for this artist.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * Information about the followers of the artist.
      */
@@ -176,7 +176,7 @@ export interface AudioAnalysis {
 }
 
 export interface AudioFeaturesArray {
-    audio_features: AudioFeatures[];
+    audioFeatures: AudioFeatures[];
 }
 
 /**
@@ -190,7 +190,7 @@ export interface AudioFeatures {
     /**
      * An HTTP URL to access the full audio analysis of this track. An access token is required to access this data.
      */
-    analysis_url: string;
+    analysisUrl: string;
     /**
      * Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.
      */
@@ -198,7 +198,7 @@ export interface AudioFeatures {
     /**
      * The duration of the track in milliseconds.
      */
-    duration_ms: number;
+    durationMs: number;
     /**
      * Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.
      */
@@ -238,11 +238,11 @@ export interface AudioFeatures {
     /**
      * An estimated overall time signature of a track. The time signature (meter) is a notational convention to specify how many beats are in each bar (or measure).
      */
-    time_signature: number;
+    timeSignature: number;
     /**
      * A link to the Web API endpoint providing full details of the track.
      */
-    track_href: string;
+    trackHref: string;
     /**
      * The object type: "audio_features"
      */
@@ -290,7 +290,7 @@ export interface Context {
     /**
      * External URLs for this context.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * A link to the Web API endpoint providing full details of the track.
      */
@@ -334,7 +334,7 @@ export interface CurrentlyPlayingContext {
     /**
      * The object type of the currently playing item. Can be one of `track`, `episode`, `ad` or `unknown`.
      */
-    currently_playing_type: string;
+    currentlyPlayingType: string;
     /**
      * The device that is currently active.
      */
@@ -342,7 +342,7 @@ export interface CurrentlyPlayingContext {
     /**
      * If something is currently playing, return `true`.
      */
-    is_playing: boolean;
+    isPlaying: boolean;
     /**
      * The currently playing track or episode. Can be `null`.
      */
@@ -350,15 +350,15 @@ export interface CurrentlyPlayingContext {
     /**
      * Progress into the currently playing track or episode. Can be `null`.
      */
-    progress_ms: number;
+    progressMs: number;
     /**
      * off, track, context
      */
-    repeat_state: string;
+    repeatState: string;
     /**
      * If shuffle is on or off.
      */
-    shuffle_state: string;
+    shuffleState: string;
     /**
      * Unix Millisecond Timestamp when data was fetched.
      */
@@ -376,11 +376,11 @@ export interface CurrentlyPlaying {
     /**
      * The object type of the currently playing item. Can be one of `track`, `episode`, `ad` or `unknown`.
      */
-    currently_playing_type: string;
+    currentlyPlayingType: string;
     /**
      * If something is currently playing, return `true`.
      */
-    is_playing: boolean;
+    isPlaying: boolean;
     /**
      * The currently playing track or episode. Can be `null`.
      */
@@ -388,7 +388,7 @@ export interface CurrentlyPlaying {
     /**
      * Progress into the currently playing track or episode. Can be `null`.
      */
-    progress_ms: number;
+    progressMs: number;
     /**
      * Unix Millisecond Timestamp when data was fetched
      */
@@ -446,15 +446,15 @@ export interface Device {
     /**
      * If this device is the currently active device.
      */
-    is_active: boolean;
+    isActive: boolean;
     /**
      * If this device is currently in a private session.
      */
-    is_private_session: boolean;
+    isPrivateSession: boolean;
     /**
      * Whether controlling this device is restricted. At present if this is "true" then no Web API commands will be accepted by this device.
      */
-    is_restricted: boolean;
+    isRestricted: boolean;
     /**
      * The name of the device.
      */
@@ -466,7 +466,7 @@ export interface Device {
     /**
      * The current volume in percent. This may be null.
      */
-    volume_percent: number;
+    volumePercent: number;
 }
 
 /**
@@ -486,7 +486,7 @@ export interface Disallows {
     /**
      * Interrupting playback. Optional field.
      */
-    interrupting_playback: boolean;
+    interruptingPlayback: boolean;
     /**
      * Pausing. Optional field.
      */
@@ -502,27 +502,27 @@ export interface Disallows {
     /**
      * Skipping to the next context. Optional field.
      */
-    skipping_next: boolean;
+    skippingNext: boolean;
     /**
      * Skipping to the previous context. Optional field.
      */
-    skipping_prev: boolean;
+    skippingPrev: boolean;
     /**
      * Toggling repeat context flag. Optional field.
      */
-    toggling_repeat_context: boolean;
+    togglingRepeatContext: boolean;
     /**
      * Toggling repeat track flag. Optional field.
      */
-    toggling_repeat_track: boolean;
+    togglingRepeatTrack: boolean;
     /**
      * Toggling shuffle flag. Optional field.
      */
-    toggling_shuffle: boolean;
+    togglingShuffle: boolean;
     /**
      * Transfering playback between devices. Optional field.
      */
-    transferring_playback: boolean;
+    transferringPlayback: boolean;
 }
 
 /**
@@ -532,7 +532,7 @@ export interface Episode {
     /**
      * A URL to a 30 second preview (MP3 format) of the episode. `null` if not available.
      */
-    audio_preview_url: string;
+    audioPreviewUrl: string;
     /**
      * A description of the episode.
      */
@@ -540,7 +540,7 @@ export interface Episode {
     /**
      * The episode length in milliseconds.
      */
-    duration_ms: number;
+    durationMs: number;
     /**
      * Whether or not the episode has explicit content (true = yes it does; false = no it does not OR unknown).
      */
@@ -548,7 +548,7 @@ export interface Episode {
     /**
      * External URLs for this episode.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * A link to the Web API endpoint providing full details of the episode.
      */
@@ -564,11 +564,11 @@ export interface Episode {
     /**
      * True if the episode is hosted outside of Spotify's CDN.
      */
-    is_externally_hosted: boolean;
+    isExternallyHosted: boolean;
     /**
      * True if the episode is playable in the given market. Otherwise false.
      */
-    is_playable: boolean;
+    isPlayable: boolean;
     /**
      * **Note: This field is deprecated and might be removed in the future. Please use the `languages` field instead.** The language used in the episode, identified by a [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code.
      */
@@ -584,15 +584,15 @@ export interface Episode {
     /**
      * The date the episode was first released, for example `"1981-12-15"`. Depending on the precision, it might be shown as `"1981"` or `"1981-12"`.
      */
-    release_date: string;
+    releaseDate: string;
     /**
      * The precision with which `release_date` value is known: `"year"`, `"month"`, or `"day"`.
      */
-    release_date_precision: string;
+    releaseDatePrecision: string;
     /**
      * The user's most recent position in the episode. Set if the supplied access token is a user token and has the scope `user-read-playback-position`.
      */
-    resume_point: ResumePoint;
+    resumePoint: ResumePoint;
     /**
      * The show on which the episode belongs.
      */
@@ -636,11 +636,11 @@ export interface ExplicitContentSettings {
     /**
      * When `true`, indicates that explicit content should not be played.
      */
-    filter_enabled: boolean;
+    filterEnabled: boolean;
     /**
      * When `true`, indicates that the explicit content setting is locked and can't be changed by the user.
      */
-    filter_locked: boolean;
+    filterLocked: boolean;
 }
 
 /**
@@ -723,7 +723,7 @@ export interface LinkedTrack {
     /**
      * Known external URLs for this track.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * A link to the Web API endpoint providing full details of the track.
      */
@@ -791,7 +791,7 @@ export interface PlayHistory {
     /**
      * The date and time the track was played.
      */
-    played_at: string;
+    playedAt: string;
     /**
      * The track the user listened to.
      */
@@ -848,7 +848,7 @@ export interface Playlist {
     /**
      * Known external URLs for this playlist.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * Information about the followers of the playlist.
      */
@@ -880,7 +880,7 @@ export interface Playlist {
     /**
      * The version identifier for the current playlist. Can be supplied in other requests to target a specific playlist version
      */
-    snapshot_id: string;
+    snapshotId: string;
     /**
      * Information about the tracks of the playlist. Note, a track object may be `null`. This can happen if a track is no longer available.
      */
@@ -906,15 +906,15 @@ export interface PlaylistTrack {
     /**
      * The date and time the track or episode was added. *Note that some very old playlists may return `null` in this field.*
      */
-    added_at: string;
+    addedAt: string;
     /**
      * The Spotify user who added the track or episode. *Note that some very old playlists may return `null` in this field.*
      */
-    added_by: PublicUser;
+    addedBy: PublicUser;
     /**
      * Whether this track or episode is a [local file](https://developer.spotify.com/web-api/local-files-spotify-playlists/) or not.
      */
-    is_local: boolean;
+    isLocal: boolean;
     /**
      * Information about the track or episode.
      */
@@ -946,7 +946,7 @@ export interface PrivateUser {
     /**
      * The name displayed on the user's profile. `null` if not available.
      */
-    display_name: string;
+    displayName: string;
     /**
      * The user's email address, as entered by the user when creating their account. ***Important!** This email address is unverified; there is no proof that it actually belongs to the user.* *This field is only available when the current user has granted access to the [user-read-email](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes) scope.*
      */
@@ -954,11 +954,11 @@ export interface PrivateUser {
     /**
      * The user's explicit content settings. *This field is only available when the current user has granted access to the [user-read-private](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes) scope.*
      */
-    explicit_content: ExplicitContentSettings;
+    explicitContent: ExplicitContentSettings;
     /**
      * Known external URLs for this user.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * Information about the followers of the user.
      */
@@ -996,11 +996,11 @@ export interface PublicUser {
     /**
      * The name displayed on the user's profile. `null` if not available.
      */
-    display_name: string;
+    displayName: string;
     /**
      * Known public external URLs for this user.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * Information about the followers of this user.
      */
@@ -1034,11 +1034,11 @@ export interface RecommendationSeed {
     /**
      * The number of tracks available after min_\* and max_\* filters have been applied.
      */
-    afterFilteringSize: number;
+    afterfilteringsize: number;
     /**
      * The number of tracks available after relinking for regional availability.
      */
-    afterRelinkingSize: number;
+    afterrelinkingsize: number;
     /**
      * A link to the full track or artist data for this seed. For tracks this will be a link to a [Track Object](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject). For artists a link to [an Artist Object](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject). For genre seeds, this value will be `null`.
      */
@@ -1050,7 +1050,7 @@ export interface RecommendationSeed {
     /**
      * The number of recommended tracks available for this seed.
      */
-    initialPoolSize: number;
+    initialpoolsize: number;
     /**
      * The entity type of this seed. One of `artist`, `track` or `genre`.
      */
@@ -1078,11 +1078,11 @@ export interface ResumePoint {
     /**
      * Whether or not the episode has been fully played by the user.
      */
-    fully_played: boolean;
+    fullyPlayed: boolean;
     /**
      * The user's most recent position in the episode in milliseconds.
      */
-    resume_position_ms: number;
+    resumePositionMs: number;
 }
 
 /**
@@ -1092,7 +1092,7 @@ export interface SavedAlbum {
     /**
      * The date and time the album was saved Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ. If the time is imprecise (for example, the date/time of an album release), an additional field indicates the precision; see for example, release_date in an album object.
      */
-    added_at: string;
+    addedAt: string;
     /**
      * Information about the album.
      */
@@ -1106,7 +1106,7 @@ export interface SavedShow {
     /**
      * The date and time the show was saved. Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ. If the time is imprecise (for example, the date/time of an album release), an additional field indicates the precision; see for example, release_date in an album object.
      */
-    added_at: string;
+    addedAt: string;
     /**
      * Information about the show.
      */
@@ -1120,7 +1120,7 @@ export interface SavedTrack {
     /**
      * The date and time the track was saved. Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ. If the time is imprecise (for example, the date/time of an album release), an additional field indicates the precision; see for example, release_date in an album object.
      */
-    added_at: string;
+    addedAt: string;
     /**
      * Information about the track.
      */
@@ -1149,13 +1149,13 @@ export interface Section {
      */
     duration: number;
     key: number;
-    key_confidence: number;
+    keyConfidence: number;
     /**
      * The overall loudness of the section in decibels (dB). Loudness values are useful for comparing relative loudness of sections within tracks.
      */
     loudness: number;
     mode: number;
-    mode_confidence: number;
+    modeConfidence: number;
     /**
      * The starting point (in seconds) of the section.
      */
@@ -1164,9 +1164,9 @@ export interface Section {
      * The overall estimated tempo of the section in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.
      */
     tempo: number;
-    tempo_confidence: number;
-    time_signature: number;
-    time_signature_confidence: number;
+    tempoConfidence: number;
+    timeSignature: number;
+    timeSignatureConfidence: number;
 }
 
 /**
@@ -1175,10 +1175,10 @@ export interface Section {
 export interface Segment {
     confidence: number;
     duration: number;
-    loudness_end: number;
-    loudness_max: number;
-    loudness_max_time: number;
-    loudness_start: number;
+    loudnessEnd: number;
+    loudnessMax: number;
+    loudnessMaxTime: number;
+    loudnessStart: number;
     pitches: number[];
     start: number;
     timbre: number[];
@@ -1191,7 +1191,7 @@ export interface Show {
     /**
      * A list of the countries in which the show can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.
      */
-    available_markets: string[];
+    availableMarkets: string[];
     /**
      * The copyright statements of the show.
      */
@@ -1211,7 +1211,7 @@ export interface Show {
     /**
      * External URLs for this show.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * A link to the Web API endpoint providing full details of the show.
      */
@@ -1227,7 +1227,7 @@ export interface Show {
     /**
      * True if all of the show's episodes are hosted outside of Spotify's CDN. This field might be `null` in some cases.
      */
-    is_externally_hosted: boolean;
+    isExternallyHosted: boolean;
     /**
      * A list of the languages used in the show, identified by their [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code.
      */
@@ -1235,7 +1235,7 @@ export interface Show {
     /**
      * The media type of the show.
      */
-    media_type: string;
+    mediaType: string;
     /**
      * The name of the episode.
      */
@@ -1265,11 +1265,11 @@ export interface SimplifiedAlbum {
     /**
      * The field is present when getting an artist's albums. Possible values are "album", "single", "compilation", "appears_on". Compare to album_type this field represents relationship between the artist and the album.
      */
-    album_group: string;
+    albumGroup: string;
     /**
      * The type of the album: one of "album", "single", or "compilation".
      */
-    album_type: string;
+    albumType: string;
     /**
      * The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
      */
@@ -1277,11 +1277,11 @@ export interface SimplifiedAlbum {
     /**
      * The markets in which the album is available: [ISO 3166-1 alpha-2 country codes](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Note that an album is considered available in a market when at least 1 of its tracks is available in that market.
      */
-    available_markets: string[];
+    availableMarkets: string[];
     /**
      * Known external URLs for this album.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * A link to the Web API endpoint providing full details of the album.
      */
@@ -1301,11 +1301,11 @@ export interface SimplifiedAlbum {
     /**
      * The date the album was first released, for example `1981`. Depending on the precision, it might be shown as `1981-12` or `1981-12-15`.
      */
-    release_date: string;
+    releaseDate: string;
     /**
      * The precision with which `release_date` value is known: `year` , `month` , or `day`.
      */
-    release_date_precision: string;
+    releaseDatePrecision: string;
     /**
      * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject) for more details.
      */
@@ -1327,7 +1327,7 @@ export interface SimplifiedArtist {
     /**
      * Known external URLs for this artist.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * A link to the Web API endpoint providing full details of the artist.
      */
@@ -1357,7 +1357,7 @@ export interface SimplifiedEpisode {
     /**
      * A URL to a 30 second preview (MP3 format) of the episode. `null` if not available.
      */
-    audio_preview_url: string;
+    audioPreviewUrl: string;
     /**
      * A description of the episode.
      */
@@ -1365,7 +1365,7 @@ export interface SimplifiedEpisode {
     /**
      * The episode length in milliseconds.
      */
-    duration_ms: number;
+    durationMs: number;
     /**
      * Whether or not the episode has explicit content (true = yes it does; false = no it does not OR unknown).
      */
@@ -1373,7 +1373,7 @@ export interface SimplifiedEpisode {
     /**
      * External URLs for this episode.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * A link to the Web API endpoint providing full details of the episode.
      */
@@ -1389,11 +1389,11 @@ export interface SimplifiedEpisode {
     /**
      * True if the episode is hosted outside of Spotify's CDN.
      */
-    is_externally_hosted: boolean;
+    isExternallyHosted: boolean;
     /**
      * True if the episode is playable in the given market. Otherwise false.
      */
-    is_playable: boolean;
+    isPlayable: boolean;
     /**
      * **Note: This field is deprecated and might be removed in the future. Please use the `languages` field instead.** The language used in the episode, identified by a [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code.
      */
@@ -1409,15 +1409,15 @@ export interface SimplifiedEpisode {
     /**
      * The date the episode was first released, for example `"1981-12-15"`. Depending on the precision, it might be shown as `"1981"` or `"1981-12"`.
      */
-    release_date: string;
+    releaseDate: string;
     /**
      * The precision with which `release_date` value is known: `"year"`, `"month"`, or `"day"`.
      */
-    release_date_precision: string;
+    releaseDatePrecision: string;
     /**
      * The user's most recent position in the episode. Set if the supplied access token is a user token and has the scope 'user-read-playback-position'.
      */
-    resume_point: ResumePoint;
+    resumePoint: ResumePoint;
     /**
      * The object type: "episode".
      */
@@ -1443,7 +1443,7 @@ export interface SimplifiedPlaylist {
     /**
      * Known external URLs for this playlist.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * A link to the Web API endpoint providing full details of the playlist.
      */
@@ -1471,7 +1471,7 @@ export interface SimplifiedPlaylist {
     /**
      * The version identifier for the current playlist. Can be supplied in other requests to target a specific playlist version
      */
-    snapshot_id: string;
+    snapshotId: string;
     /**
      * A collection containing a link ( `href` ) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the `total` number of tracks in the playlist. Note, a track object may be `null`. This can happen if a track is no longer available.
      */
@@ -1493,7 +1493,7 @@ export interface SimplifiedShow {
     /**
      * A list of the countries in which the show can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.
      */
-    available_markets: string[];
+    availableMarkets: string[];
     /**
      * The copyright statements of the show.
      */
@@ -1509,7 +1509,7 @@ export interface SimplifiedShow {
     /**
      * External URLs for this show.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * A link to the Web API endpoint providing full details of the show.
      */
@@ -1525,7 +1525,7 @@ export interface SimplifiedShow {
     /**
      * True if all of the show's episodes are hosted outside of Spotify's CDN. This field might be `null` in some cases.
      */
-    is_externally_hosted: boolean;
+    isExternallyHosted: boolean;
     /**
      * A list of the languages used in the show, identified by their [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code.
      */
@@ -1533,7 +1533,7 @@ export interface SimplifiedShow {
     /**
      * The media type of the show.
      */
-    media_type: string;
+    mediaType: string;
     /**
      * The name of the episode.
      */
@@ -1563,15 +1563,15 @@ export interface SimplifiedTrack {
     /**
      * A list of the countries in which the track can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.
      */
-    available_markets: string[];
+    availableMarkets: string[];
     /**
      * The disc number (usually `1` unless the album consists of more than one disc).
      */
-    disc_number: number;
+    discNumber: number;
     /**
      * The track length in milliseconds.
      */
-    duration_ms: number;
+    durationMs: number;
     /**
      * Whether or not the track has explicit lyrics ( `true` = yes it does; `false` = no it does not OR unknown).
      */
@@ -1579,7 +1579,7 @@ export interface SimplifiedTrack {
     /**
      * External URLs for this track.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * A link to the Web API endpoint providing full details of the track.
      */
@@ -1591,15 +1591,15 @@ export interface SimplifiedTrack {
     /**
      * Whether or not the track is from a local file.
      */
-    is_local: boolean;
+    isLocal: boolean;
     /**
      * Part of the response when [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/) is applied. If `true` , the track is playable in the given market. Otherwise `false`.
      */
-    is_playable: boolean;
+    isPlayable: boolean;
     /**
      * Part of the response when [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/) is applied and is only part of the response if the track linking, in fact, exists. The requested track has been replaced with a different track. The track in the `linked_from` object contains information about the originally requested track.
      */
-    linked_from: LinkedTrack;
+    linkedFrom: LinkedTrack;
     /**
      * The name of the track.
      */
@@ -1607,7 +1607,7 @@ export interface SimplifiedTrack {
     /**
      * A URL to a 30 second preview (MP3 format) of the track.
      */
-    preview_url: string;
+    previewUrl: string;
     /**
      * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-trackrestrictionobject) for more details.
      */
@@ -1615,7 +1615,7 @@ export interface SimplifiedTrack {
     /**
      * The number of the track. If an album has several discs, the track number is the number on the specified disc.
      */
-    track_number: number;
+    trackNumber: number;
     /**
      * The object type: "track".
      */
@@ -1630,7 +1630,7 @@ export interface SnapshotId {
     /**
      * The snapshot_id can be used to identify your playlist version in future requests.
      */
-    snapshot_id: string;
+    snapshotId: string;
 }
 
 /**
@@ -1666,15 +1666,15 @@ export interface Track {
     /**
      * A list of the countries in which the track can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.
      */
-    available_markets: string[];
+    availableMarkets: string[];
     /**
      * The disc number (usually `1` unless the album consists of more than one disc).
      */
-    disc_number: number;
+    discNumber: number;
     /**
      * The track length in milliseconds.
      */
-    duration_ms: number;
+    durationMs: number;
     /**
      * Whether or not the track has explicit lyrics ( `true` = yes it does; `false` = no it does not OR unknown).
      */
@@ -1682,11 +1682,11 @@ export interface Track {
     /**
      * Known external IDs for the track.
      */
-    external_ids: ExternalId;
+    externalIds: ExternalId;
     /**
      * Known external URLs for this track.
      */
-    external_urls: ExternalUrl;
+    externalUrls: ExternalUrl;
     /**
      * A link to the Web API endpoint providing full details of the track.
      */
@@ -1698,15 +1698,15 @@ export interface Track {
     /**
      * Whether or not the track is from a local file.
      */
-    is_local: boolean;
+    isLocal: boolean;
     /**
      * Part of the response when [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/) is applied. If `true` , the track is playable in the given market. Otherwise `false`.
      */
-    is_playable: boolean;
+    isPlayable: boolean;
     /**
      * Part of the response when [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/) is applied, and the requested track has been replaced with different track. The track in the `linked_from` object contains information about the originally requested track.
      */
-    linked_from: LinkedTrack;
+    linkedFrom: LinkedTrack;
     /**
      * The name of the track.
      */
@@ -1720,7 +1720,7 @@ export interface Track {
     /**
      * A link to a 30 second preview (MP3 format) of the track. Can be `null`
      */
-    preview_url: string;
+    previewUrl: string;
     /**
      * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-trackrestrictionobject) for more details.
      */
@@ -1728,7 +1728,7 @@ export interface Track {
     /**
      * The number of the track. If an album has several discs, the track number is the number on the specified disc.
      */
-    track_number: number;
+    trackNumber: number;
     /**
      * The object type: "track".
      */
@@ -1773,7 +1773,7 @@ export interface TuneableTrack {
     /**
      * The duration of the track in milliseconds.
      */
-    duration_ms: number;
+    durationMs: number;
     /**
      * Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.
      */
@@ -1813,7 +1813,7 @@ export interface TuneableTrack {
     /**
      * An estimated overall time signature of a track. The time signature (meter) is a notational convention to specify how many beats are in each bar (or measure).
      */
-    time_signature: number;
+    timeSignature: number;
     /**
      * A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).
      */

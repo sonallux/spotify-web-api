@@ -20,11 +20,11 @@ public class CreatePlaylistRequest {
      */
     @com.fasterxml.jackson.annotation.JsonProperty("public")
     @lombok.experimental.Accessors(prefix = "_")
-    private Boolean _public;
+    private boolean _public;
     /**
      * <p>Defaults to <code>false</code> . If <code>true</code> the playlist will be collaborative. Note that to create a collaborative playlist you must also set <code>public</code> to <code>false</code> . To create collaborative playlists you must have granted <code>playlist-modify-private</code> and <code>playlist-modify-public</code> <a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes">scopes</a> .</p>
      */
-    private Boolean collaborative;
+    private boolean collaborative;
     /**
      * <p>value for playlist description as displayed in Spotify Clients and in the Web API.</p>
      */

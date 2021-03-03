@@ -1,5 +1,6 @@
 package de.sonallux.spotify.generator.java.templates;
 
+import com.google.common.base.CaseFormat;
 import com.google.common.base.Strings;
 import de.sonallux.spotify.core.model.SpotifyWebApiObject;
 import de.sonallux.spotify.generator.java.util.JavaPackage;
@@ -10,6 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static com.google.common.base.CaseFormat.LOWER_CAMEL;
+import static com.google.common.base.CaseFormat.LOWER_UNDERSCORE;
 
 public class ObjectTemplate extends AbstractTemplate<SpotifyWebApiObject> {
 
@@ -53,11 +57,18 @@ public class ObjectTemplate extends AbstractTemplate<SpotifyWebApiObject> {
 
     private Map<String, Object> buildPropertyContext(SpotifyWebApiObject.Property property) {
         var context = new HashMap<String, Object>();
-        if (JavaUtils.RESERVED_WORDS.contains(property.getName())) {
-            context.put("jsonName", property.getName());
-            context.put("fieldName", "_" + property.getName());
+        var propertyName = property.getName();
+        if (JavaUtils.RESERVED_WORDS.contains(propertyName)) {
+            context.put("isReservedKeywordProperty", true);
+            context.put("jsonName", propertyName);
+            context.put("fieldName", "_" + propertyName);
+        } else if (propertyName.contains("_")) {
+            // spotify property names are in lower underscore case (e.g album_type)
+            // but java convention is lower camel case for fields, therefore transform
+            context.put("jsonName", propertyName);
+            context.put("fieldName", LOWER_UNDERSCORE.converterTo(LOWER_CAMEL).convert(propertyName));
         } else {
-            context.put("fieldName", property.getName());
+            context.put("fieldName", propertyName);
         }
 
         var description = property.getDescription();
@@ -65,7 +76,7 @@ public class ObjectTemplate extends AbstractTemplate<SpotifyWebApiObject> {
             context.put("hasDescription", true);
             context.put("description", Markdown2Html.convertToLines(description));
         }
-        context.put("type", JavaUtils.mapToJavaType(property.getType()));
+        context.put("type", JavaUtils.mapToPrimitiveJavaType(property.getType()));
 
         return context;
     }

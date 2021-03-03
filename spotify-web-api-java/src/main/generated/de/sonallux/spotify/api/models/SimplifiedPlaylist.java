@@ -12,7 +12,7 @@ public class SimplifiedPlaylist {
     /**
      * <p><code>true</code> if the owner allows other users to modify the playlist.</p>
      */
-    private Boolean collaborative;
+    private boolean collaborative;
     /**
      * <p>The playlist description. <em>Only returned for modified, verified playlists, otherwise</em> <code>null</code>.</p>
      */
@@ -20,7 +20,8 @@ public class SimplifiedPlaylist {
     /**
      * <p>Known external URLs for this playlist.</p>
      */
-    private ExternalUrl external_urls;
+    @com.fasterxml.jackson.annotation.JsonProperty("external_urls")
+    private ExternalUrl externalUrls;
     /**
      * <p>A link to the Web API endpoint providing full details of the playlist.</p>
      */
@@ -46,11 +47,12 @@ public class SimplifiedPlaylist {
      */
     @com.fasterxml.jackson.annotation.JsonProperty("public")
     @lombok.experimental.Accessors(prefix = "_")
-    private Boolean _public;
+    private boolean _public;
     /**
      * <p>The version identifier for the current playlist. Can be supplied in other requests to target a specific playlist version</p>
      */
-    private String snapshot_id;
+    @com.fasterxml.jackson.annotation.JsonProperty("snapshot_id")
+    private String snapshotId;
     /**
      * <p>A collection containing a link ( <code>href</code> ) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the <code>total</code> number of tracks in the playlist. Note, a track object may be <code>null</code>. This can happen if a track is no longer available.</p>
      */

@@ -12,9 +12,11 @@ public class ResumePoint {
     /**
      * <p>Whether or not the episode has been fully played by the user.</p>
      */
-    private Boolean fully_played;
+    @com.fasterxml.jackson.annotation.JsonProperty("fully_played")
+    private boolean fullyPlayed;
     /**
      * <p>The user's most recent position in the episode in milliseconds.</p>
      */
-    private Integer resume_position_ms;
+    @com.fasterxml.jackson.annotation.JsonProperty("resume_position_ms")
+    private int resumePositionMs;
 }

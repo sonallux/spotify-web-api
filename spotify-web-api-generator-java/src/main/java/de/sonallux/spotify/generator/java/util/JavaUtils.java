@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 
+import static com.google.common.base.CaseFormat.LOWER_CAMEL;
+import static com.google.common.base.CaseFormat.LOWER_UNDERSCORE;
+
 public class JavaUtils {
     public static final List<String> RESERVED_WORDS = Arrays.asList(
             "abstract", "assert", "boolean", "break", "byte",
@@ -31,6 +34,9 @@ public class JavaUtils {
     public static String escapeFieldName(String fieldName) {
         if (RESERVED_WORDS.contains(fieldName)) {
             return "_" + fieldName;
+        }
+        if (fieldName.contains("_")) {
+            return LOWER_UNDERSCORE.converterTo(LOWER_CAMEL).convert(fieldName);
         }
         return fieldName;
     }
@@ -62,6 +68,20 @@ public class JavaUtils {
             return "java.util.Map<String, Object>";
         } else {
             return getObjectClassName(type);
+        }
+    }
+
+    public static String mapToPrimitiveJavaType(String type) {
+        if ("String".equals(type)) {
+            return "String";
+        } else if ("Boolean".equals(type)) {
+            return "boolean";
+        } else if ("Integer".equals(type)) {
+            return "int";
+        } else if ("Float".equals(type)) {
+            return "float";
+        } else {
+            return mapToJavaType(type);
         }
     }
 

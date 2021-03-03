@@ -16,11 +16,13 @@ public class CurrentlyPlaying {
     /**
      * <p>The object type of the currently playing item. Can be one of <code>track</code>, <code>episode</code>, <code>ad</code> or <code>unknown</code>.</p>
      */
-    private String currently_playing_type;
+    @com.fasterxml.jackson.annotation.JsonProperty("currently_playing_type")
+    private String currentlyPlayingType;
     /**
      * <p>If something is currently playing, return <code>true</code>.</p>
      */
-    private Boolean is_playing;
+    @com.fasterxml.jackson.annotation.JsonProperty("is_playing")
+    private boolean isPlaying;
     /**
      * <p>The currently playing track or episode. Can be <code>null</code>.</p>
      */
@@ -28,9 +30,10 @@ public class CurrentlyPlaying {
     /**
      * <p>Progress into the currently playing track or episode. Can be <code>null</code>.</p>
      */
-    private Integer progress_ms;
+    @com.fasterxml.jackson.annotation.JsonProperty("progress_ms")
+    private int progressMs;
     /**
      * <p>Unix Millisecond Timestamp when data was fetched</p>
      */
-    private Integer timestamp;
+    private int timestamp;
 }
