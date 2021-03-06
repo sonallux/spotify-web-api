@@ -12,13 +12,13 @@ public class TimeInterval {
     /**
      * <p>The confidence, from 0.0 to 1.0, of the reliability of the interval.</p>
      */
-    private float confidence;
+    public float confidence;
     /**
      * <p>The duration (in seconds) of the time interval.</p>
      */
-    private float duration;
+    public float duration;
     /**
      * <p>The starting point (in seconds) of the time interval.</p>
      */
-    private float start;
+    public float start;
 }

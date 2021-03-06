@@ -12,9 +12,9 @@ public class Followers {
     /**
      * <p>A link to the Web API endpoint providing full details of the followers; <code>null</code> if not available. Please note that this will always be set to null, as the Web API does not support it at the moment.</p>
      */
-    private String href;
+    public String href;
     /**
      * <p>The total number of followers.</p>
      */
-    private int total;
+    public int total;
 }

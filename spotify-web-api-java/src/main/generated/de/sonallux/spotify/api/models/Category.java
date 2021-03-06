@@ -12,17 +12,17 @@ public class Category {
     /**
      * <p>A link to the Web API endpoint returning full details of the category.</p>
      */
-    private String href;
+    public String href;
     /**
      * <p>The category icon, in various sizes.</p>
      */
-    private java.util.List<Image> icons;
+    public java.util.List<Image> icons;
     /**
      * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify category ID</a> of the category.</p>
      */
-    private String id;
+    public String id;
     /**
      * <p>The name of the category.</p>
      */
-    private String name;
+    public String name;
 }

@@ -6,5 +6,5 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class Tracks {
-    private java.util.List<Track> tracks;
+    public java.util.List<Track> tracks;
 }

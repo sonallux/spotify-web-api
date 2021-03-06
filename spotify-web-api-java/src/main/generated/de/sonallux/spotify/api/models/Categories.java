@@ -6,5 +6,5 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class Categories {
-    private Paging<Category> categories;
+    public Paging<Category> categories;
 }

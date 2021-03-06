@@ -12,5 +12,5 @@ public class Cursor {
     /**
      * <p>The cursor to use as key to find the next page of items.</p>
      */
-    private String after;
+    public String after;
 }

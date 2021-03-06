@@ -12,5 +12,5 @@ public class Devices {
     /**
      * <p>A list of 0..n Device objects</p>
      */
-    private java.util.List<Device> devices;
+    public java.util.List<Device> devices;
 }

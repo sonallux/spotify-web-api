@@ -6,5 +6,5 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class GenreSeeds {
-    private java.util.List<String> genres;
+    public java.util.List<String> genres;
 }

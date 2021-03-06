@@ -12,13 +12,13 @@ public class ExternalId {
     /**
      * <p><a href="http://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29">International Article Number</a></p>
      */
-    private String ean;
+    public String ean;
     /**
      * <p><a href="http://en.wikipedia.org/wiki/International_Standard_Recording_Code">International Standard Recording Code</a></p>
      */
-    private String isrc;
+    public String isrc;
     /**
      * <p><a href="http://en.wikipedia.org/wiki/Universal_Product_Code">Universal Product Code</a></p>
      */
-    private String upc;
+    public String upc;
 }

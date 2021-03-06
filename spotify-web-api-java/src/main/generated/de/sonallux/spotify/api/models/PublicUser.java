@@ -13,34 +13,34 @@ public class PublicUser {
      * <p>The name displayed on the user's profile. <code>null</code> if not available.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("display_name")
-    private String displayName;
+    public String displayName;
     /**
      * <p>Known public external URLs for this user.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("external_urls")
-    private ExternalUrl externalUrls;
+    public ExternalUrl externalUrls;
     /**
      * <p>Information about the followers of this user.</p>
      */
-    private Followers followers;
+    public Followers followers;
     /**
      * <p>A link to the Web API endpoint for this user.</p>
      */
-    private String href;
+    public String href;
     /**
      * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify user ID</a> for this user.</p>
      */
-    private String id;
+    public String id;
     /**
      * <p>The user's profile image.</p>
      */
-    private java.util.List<Image> images;
+    public java.util.List<Image> images;
     /**
      * <p>The object type: &quot;user&quot;</p>
      */
-    private String type;
+    public String type;
     /**
      * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for this user.</p>
      */
-    private String uri;
+    public String uri;
 }

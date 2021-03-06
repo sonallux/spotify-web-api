@@ -18,5 +18,5 @@ public class AlbumRestriction {
      * Additional reasons may be added in the future. <strong>Note</strong>: If you use this field, make sure that your application safely handles unknown values.</li>
      * </ul>
      */
-    private String reason;
+    public String reason;
 }

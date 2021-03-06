@@ -13,21 +13,21 @@ public class LinkedTrack {
      * <p>Known external URLs for this track.</p>
      */
     @com.fasterxml.jackson.annotation.JsonProperty("external_urls")
-    private ExternalUrl externalUrls;
+    public ExternalUrl externalUrls;
     /**
      * <p>A link to the Web API endpoint providing full details of the track.</p>
      */
-    private String href;
+    public String href;
     /**
      * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the track.</p>
      */
-    private String id;
+    public String id;
     /**
      * <p>The object type: &quot;track&quot;.</p>
      */
-    private String type;
+    public String type;
     /**
      * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the track.</p>
      */
-    private String uri;
+    public String uri;
 }

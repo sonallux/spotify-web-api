@@ -6,5 +6,5 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class Albums {
-    private java.util.List<Album> albums;
+    public java.util.List<Album> albums;
 }

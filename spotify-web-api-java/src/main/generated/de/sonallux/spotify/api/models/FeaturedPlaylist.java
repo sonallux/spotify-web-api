@@ -6,6 +6,6 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class FeaturedPlaylist {
-    private String message;
-    private Paging<SimplifiedPlaylist> playlists;
+    public String message;
+    public Paging<SimplifiedPlaylist> playlists;
 }

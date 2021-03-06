@@ -12,7 +12,7 @@ public class PlayerError {
     /**
      * <p>A short description of the cause of the error.</p>
      */
-    private String message;
+    public String message;
     /**
      * <ul>
      * <li><code>NO_PREV_TRACK</code> - The command requires a previous track, but there is none in the context.</li>
@@ -35,9 +35,9 @@ public class PlayerError {
      * <li><code>UNKNOWN</code> - Certain actions are restricted because of unknown reasons.</li>
      * </ul>
      */
-    private String reason;
+    public String reason;
     /**
      * <p>The HTTP status code. Either <code>404 NOT FOUND</code> or <code>403 FORBIDDEN</code>. Also returned in the response header.</p>
      */
-    private int status;
+    public int status;
 }

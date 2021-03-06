@@ -6,5 +6,5 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class NewReleases {
-    private Paging<SimplifiedAlbum> albums;
+    public Paging<SimplifiedAlbum> albums;
 }

@@ -28,6 +28,6 @@ public class {{className}}{{#superClass}} extends {{superClass}}{{/superClass}} 
     {{#isReservedKeywordProperty}}
     @lombok.experimental.Accessors(prefix = "_")
     {{/isReservedKeywordProperty}}
-    private {{type}} {{fieldName}};
+    public {{type}} {{fieldName}};
 {{/properties}}
 }

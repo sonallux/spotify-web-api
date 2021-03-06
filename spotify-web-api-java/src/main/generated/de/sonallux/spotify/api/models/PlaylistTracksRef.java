@@ -12,9 +12,9 @@ public class PlaylistTracksRef {
     /**
      * <p>A link to the Web API endpoint where full details of the playlist's tracks can be retrieved.</p>
      */
-    private String href;
+    public String href;
     /**
      * <p>Number of tracks in the playlist.</p>
      */
-    private int total;
+    public int total;
 }

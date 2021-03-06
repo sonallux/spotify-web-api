@@ -6,5 +6,5 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class Shows {
-    private java.util.List<SimplifiedShow> shows;
+    public java.util.List<SimplifiedShow> shows;
 }

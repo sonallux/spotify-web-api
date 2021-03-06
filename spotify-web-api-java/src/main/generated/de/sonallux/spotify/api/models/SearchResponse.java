@@ -6,10 +6,10 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class SearchResponse {
-    private Paging<SimplifiedAlbum> album;
-    private Paging<Artist> artist;
-    private Paging<SimplifiedEpisode> episode;
-    private Paging<SimplifiedPlaylist> playlist;
-    private Paging<SimplifiedShow> show;
-    private Paging<Track> track;
+    public Paging<SimplifiedAlbum> album;
+    public Paging<Artist> artist;
+    public Paging<SimplifiedEpisode> episode;
+    public Paging<SimplifiedPlaylist> playlist;
+    public Paging<SimplifiedShow> show;
+    public Paging<Track> track;
 }

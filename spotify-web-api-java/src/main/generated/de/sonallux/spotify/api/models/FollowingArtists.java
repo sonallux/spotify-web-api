@@ -6,5 +6,5 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class FollowingArtists {
-    private CursorPaging<Artist> artists;
+    public CursorPaging<Artist> artists;
 }

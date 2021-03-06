@@ -12,9 +12,9 @@ public class Copyright {
     /**
      * <p>The copyright text for this content.</p>
      */
-    private String text;
+    public String text;
     /**
      * <p>The type of copyright: <code>C</code> = the copyright, <code>P</code> = the sound recording (performance) copyright.</p>
      */
-    private String type;
+    public String type;
 }

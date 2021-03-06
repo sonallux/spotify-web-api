@@ -12,13 +12,13 @@ public class Image {
     /**
      * <p>The image height in pixels. If unknown: <code>null</code> or not returned.</p>
      */
-    private int height;
+    public int height;
     /**
      * <p>The source URL of the image.</p>
      */
-    private String url;
+    public String url;
     /**
      * <p>The image width in pixels. If unknown: <code>null</code> or not returned.</p>
      */
-    private int width;
+    public int width;
 }

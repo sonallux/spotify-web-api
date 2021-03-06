@@ -6,5 +6,5 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class Episodes {
-    private java.util.List<Episode> episodes;
+    public java.util.List<Episode> episodes;
 }
