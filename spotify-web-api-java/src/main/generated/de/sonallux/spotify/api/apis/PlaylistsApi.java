@@ -227,7 +227,7 @@ public interface PlaylistsApi {
      *         Other client errors returning <code>400</code> Bad Request include specifying invalid positions.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-tracks-playlist">Remove Items from a Playlist</a>
      */
-    @DELETE("/playlists/{playlist_id}/tracks")
+    @HTTP(method = "DELETE", hasBody = true, path = "/playlists/{playlist_id}/tracks")
     Call<SnapshotId> removeTracksPlaylist(@Path("playlist_id") String playlistId, @Body RemoveTracksPlaylistRequest requestBody);
 
     /**

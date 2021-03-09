@@ -186,7 +186,7 @@ public interface LibraryApi {
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> Success. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to remove an album when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-albums-user">Remove Albums for Current User</a>
      */
-    @DELETE("/me/albums")
+    @HTTP(method = "DELETE", hasBody = true, path = "/me/albums")
     Call<Void> removeAlbumsUser(@Body RemoveAlbumsUserRequest requestBody);
 
     /**
@@ -213,7 +213,7 @@ public interface LibraryApi {
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> Success. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to remove an episode when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-episodes-user">Remove User's Saved Episodes</a>
      */
-    @DELETE("/me/episodes")
+    @HTTP(method = "DELETE", hasBody = true, path = "/me/episodes")
     Call<Void> removeEpisodesUser(@Query("ids") String ids, @Body RemoveEpisodesUserRequest requestBody);
 
     /**
@@ -269,7 +269,7 @@ public interface LibraryApi {
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> Success. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to remove an album when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-tracks-user">Remove User's Saved Tracks</a>
      */
-    @DELETE("/me/tracks")
+    @HTTP(method = "DELETE", hasBody = true, path = "/me/tracks")
     Call<Void> removeTracksUser(@Query("ids") String ids, @Body RemoveTracksUserRequest requestBody);
 
     /**

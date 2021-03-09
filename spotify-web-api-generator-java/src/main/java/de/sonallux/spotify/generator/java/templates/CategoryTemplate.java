@@ -72,6 +72,11 @@ public class CategoryTemplate extends AbstractTemplate<SpotifyWebApiCategory> {
             var context = new HashMap<>(baseContext);
             context.put("arguments", args.stream().map(Argument::asMethodArgument).collect(Collectors.joining(", ")));
             context.put("javaDocParams", args.stream().map(Argument::asJavaDoc).collect(Collectors.toList()));
+            if (endpoint.getHttpMethod().equals("DELETE") && args.stream().anyMatch(a -> a.getAnnotation().startsWith("@Body"))) {
+                // Officially DELETE does not allow a request body, but Spotify uses it.
+                // This adjusts the http method annotation, so retrofit does not throw an error.
+                context.put("deleteWithBody", true);
+            }
             contexts.add(context);
         }
         return contexts;

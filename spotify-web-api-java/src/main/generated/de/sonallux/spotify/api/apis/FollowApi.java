@@ -126,7 +126,7 @@ public interface FollowApi {
      *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-unfollow-artists-users">Unfollow Artists or Users</a>
      */
-    @DELETE("/me/following")
+    @HTTP(method = "DELETE", hasBody = true, path = "/me/following")
     Call<Void> unfollowArtistsUsers(@Query("type") String type, @Body UnfollowArtistsUsersRequest requestBody);
 
     /**

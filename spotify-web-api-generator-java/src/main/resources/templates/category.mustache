@@ -34,7 +34,12 @@ public interface {{className}} {
     {{/responseDescriptionOthers}}
      * @see <a href="{{documentationLink}}">{{name}}</a>
      */
+    {{#deleteWithBody}}
+    @HTTP(method = "DELETE", hasBody = true, path = "{{path}}")
+    {{/deleteWithBody}}
+    {{^deleteWithBody}}
     @{{httpMethod}}("{{path}}")
+    {{/deleteWithBody}}
     Call<{{responseType}}> {{methodName}}({{arguments}});
 {{/endpoints}}
 }
