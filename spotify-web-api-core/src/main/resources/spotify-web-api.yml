@@ -1030,6 +1030,19 @@ objects:
     - name: album
       type: AlbumObject
       description: Information about the album.
+  SavedEpisodeObject:
+    name: SavedEpisodeObject
+    id: object-savedepisodeobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-savedepisodeobject
+    properties:
+    - name: added_at
+      type: Timestamp
+      description: "The date and time the episode was saved. Timestamps are returned\
+        \ in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset:\
+        \ YYYY-MM-DDTHH:MM:SSZ."
+    - name: episode
+      type: EpisodeObject
+      description: Information about the episode.
   SavedShowObject:
     name: SavedShowObject
     id: object-savedshowobject
@@ -3272,6 +3285,41 @@ categories:
         responseTypes:
         - type: "Array[Boolean]"
           status: 200
+      endpoint-check-users-saved-episodes:
+        id: endpoint-check-users-saved-episodes
+        name: Check User's Saved Episodes
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-episodes
+        description: "Check if one or more episodes is already saved in the current\
+          \ Spotify user's 'Your Episodes' library.  \n\nThis API endpoint is in **beta**\
+          \ and could change without warning. Please share any feedback that you have,\
+          \ or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).."
+        httpMethod: GET
+        path: /me/episodes/contains
+        parameters:
+        - location: HEADER
+          name: Authorization
+          description: "A valid access token from the Spotify Accounts service: see\
+            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
+            \ for details. The `user-library-read` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
+            \ must have been authorized by the user."
+          type: String
+          required: true
+        - location: QUERY
+          name: ids
+          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
+            \ for the episodes. Maximum: 50 IDs."
+          type: String
+          required: true
+        responseDescription: "On success, the HTTP status code in the response header\
+          \ is `200` OK and the response body contains a JSON array of `true` or `false`\
+          \ values, in the same order in which the `ids` were specified.\nOn error,\
+          \ the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
+          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        scopes:
+        - user-library-read
+        responseTypes:
+        - type: "Array[Boolean]"
+          status: 200
       endpoint-check-users-saved-shows:
         id: endpoint-check-users-saved-shows
         name: Check User's Saved Shows
@@ -3387,6 +3435,63 @@ categories:
         - user-library-read
         responseTypes:
         - type: "PagingObject[SavedAlbumObject]"
+          status: 200
+      endpoint-get-users-saved-episodes:
+        id: endpoint-get-users-saved-episodes
+        name: Get User's Saved Episodes
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-episodes
+        description: "Get a list of the episodes saved in the current Spotify user's\
+          \ library.  \n\nThis API endpoint is in **beta** and could change without\
+          \ warning. Please share any feedback that you have, or issues that you discover,\
+          \ in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer)."
+        httpMethod: GET
+        path: /me/episodes
+        parameters:
+        - location: HEADER
+          name: Authorization
+          description: "A valid access token from the Spotify Accounts service: see\
+            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
+            \ for details. The `user-library-read` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
+            \ must have been authorized by the user."
+          type: String
+          required: true
+        - location: QUERY
+          name: market
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n*Note: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
+          type: String
+          required: false
+        - location: QUERY
+          name: limit
+          description: "The maximum number of objects to return. Default: 20. Minimum:\
+            \ 1. Maximum: 50."
+          type: Integer
+          required: false
+        - location: QUERY
+          name: offset
+          description: "The index of the first object to return. Default: 0 (i.e.,\
+            \ the first object). Use with `limit` to get the next set of objects."
+          type: Integer
+          required: false
+        responseDescription: "- On success, the HTTP status code in the response header\
+          \ is `200` OK and the response body contains an array of [saved episode\
+          \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-savedepisodeobject)\
+          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
+          \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
+          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
+          - Trying to get more than 2000 episodes for a user will return results for\
+          \ 2000 episodes. Only the 2000 returned episodes are sorted. This limitation\
+          \ will be removed in the near future."
+        scopes:
+        - user-library-read
+        responseTypes:
+        - type: "PagingObject[SavedEpisodeObject]"
           status: 200
       endpoint-get-users-saved-shows:
         id: endpoint-get-users-saved-shows
@@ -3522,6 +3627,55 @@ categories:
           \ is `200` Success. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
           \ Trying to remove an album when you do not have the user's authorization\
+          \ returns error `403` Forbidden."
+        scopes:
+        - user-library-modify
+        responseTypes:
+        - type: Void
+          status: 200
+      endpoint-remove-episodes-user:
+        id: endpoint-remove-episodes-user
+        name: Remove User's Saved Episodes
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-episodes-user
+        description: "Remove one or more episodes from the current user's library.\
+          \  \n\nThis API endpoint is in **beta** and could change without warning.\
+          \ Please share any feedback that you have, or issues that you discover,\
+          \ in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer)."
+        httpMethod: DELETE
+        path: /me/episodes
+        parameters:
+        - location: HEADER
+          name: Authorization
+          description: "A valid access token from the Spotify Accounts service: see\
+            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
+            \ for details.  \nModification of the current user's collection requires\
+            \ authorization of the `user-library-modify` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
+          type: String
+          required: true
+        - location: HEADER
+          name: Content-Type
+          description: "*Required if the IDs are passed in the request body, otherwise\
+            \ ignored.* The content type of the request body: `application/json`"
+          type: String
+          required: false
+        - location: QUERY
+          name: ids
+          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+            \ Maximum: 50 IDs."
+          type: String
+          required: true
+        - location: BODY
+          name: ids
+          description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+            \   \nA maximum of 50 items can be specified in one request. *Note: if\
+            \ the `ids` parameter is present in the query string, any IDs listed here\
+            \ in the body will be ignored.*"
+          type: "Array[String]"
+          required: false
+        responseDescription: "On success, the HTTP status code in the response header\
+          \ is `200` Success. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
+          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
+          \ Trying to remove an episode when you do not have the user's authorization\
           \ returns error `403` Forbidden."
         scopes:
         - user-library-modify
@@ -3670,6 +3824,55 @@ categories:
         responseTypes:
         - type: Void
           status: 201
+      endpoint-save-episodes-user:
+        id: endpoint-save-episodes-user
+        name: Save Episodes for User
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-episodes-user
+        description: "Save one or more episodes to the current user's library.  \n\
+          \nThis API endpoint is in **beta** and could change without warning. Please\
+          \ share any feedback that you have, or issues that you discover, in our\
+          \ [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer)."
+        httpMethod: PUT
+        path: /me/episodes
+        parameters:
+        - location: HEADER
+          name: Authorization
+          description: "A valid access token from the Spotify Accounts service: see\
+            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
+            \ for details.  \nModification of the current user's \"Your Music\" collection\
+            \ requires authorization of the `user-library-modify` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
+          type: String
+          required: true
+        - location: HEADER
+          name: Content-Type
+          description: "*Required if the IDs are passed in the request body, otherwise\
+            \ ignored.* The content type of the request body: `application/json`"
+          type: String
+          required: false
+        - location: QUERY
+          name: ids
+          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+            \ Maximum: 50 IDs."
+          type: String
+          required: true
+        - location: BODY
+          name: ids
+          description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+            \   \nA maximum of 50 items can be specified in one request. *Note: if\
+            \ the `ids` parameter is present in the query string, any IDs listed here\
+            \ in the body will be ignored.*"
+          type: "Array[String]"
+          required: false
+        responseDescription: "On success, the HTTP status code in the response header\
+          \ is `200` OK. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
+          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
+          \ Trying to add an episode when you do not have the user's authorization,\
+          \ returns error `403` Forbidden."
+        scopes:
+        - user-library-modify
+        responseTypes:
+        - type: Void
+          status: 200
       endpoint-save-shows-user:
         id: endpoint-save-shows-user
         name: Save Shows for Current User
@@ -5859,16 +6062,22 @@ scopes:
       - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-tracks-user
         api: web-api
         endpoint: endpoint-remove-tracks-user
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-episodes-user
+        api: web-api
+        endpoint: endpoint-remove-episodes-user
       - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-albums-user
         api: web-api
         endpoint: endpoint-save-albums-user
       - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-tracks-user
         api: web-api
         endpoint: endpoint-save-tracks-user
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-episodes-user
+        api: web-api
+        endpoint: endpoint-save-episodes-user
     user-library-read:
       id: user-library-read
       link: https://developer.spotify.com/documentation/general/guides/scopes/#user-library-read
-      description: Read access to a user's "Your Music" library.
+      description: Read access to a user's library.
       userDescription: Access your saved content.
       endpoints:
       - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-albums
@@ -5883,6 +6092,12 @@ scopes:
       - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-tracks
         api: web-api
         endpoint: endpoint-get-users-saved-tracks
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-episodes
+        api: web-api
+        endpoint: endpoint-check-users-saved-episodes
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-episodes
+        api: web-api
+        endpoint: endpoint-get-users-saved-episodes
     user-modify-playback-state:
       id: user-modify-playback-state
       link: https://developer.spotify.com/documentation/general/guides/scopes/#user-modify-playback-state

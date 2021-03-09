@@ -1100,6 +1100,20 @@ export interface SavedAlbum {
 }
 
 /**
+ * https://developer.spotify.com/documentation/web-api/reference/#object-savedepisodeobject
+ */
+export interface SavedEpisode {
+    /**
+     * The date and time the episode was saved. Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ.
+     */
+    addedAt: string;
+    /**
+     * Information about the episode.
+     */
+    episode: Episode;
+}
+
+/**
  * https://developer.spotify.com/documentation/web-api/reference/#object-savedshowobject
  */
 export interface SavedShow {

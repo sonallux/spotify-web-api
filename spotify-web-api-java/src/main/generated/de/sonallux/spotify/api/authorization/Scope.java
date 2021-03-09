@@ -55,7 +55,7 @@ public enum Scope {
      */
     USER_LIBRARY_MODIFY("user-library-modify"),
     /**
-     * Read access to a user's "Your Music" library.
+     * Read access to a user's library.
      * @see <a href="https://developer.spotify.com/documentation/general/guides/scopes/#user-library-read">user-library-read</a>
      */
     USER_LIBRARY_READ("user-library-read"),

@@ -59,6 +59,26 @@ category-library:
     responseTypes:
     - type: Void
       status: 200
+  endpoint-check-users-saved-episodes:
+    md5Hash: 93d4b126594a3ca83eff75896c8efbe
+    responseTypes:
+    - type: "Array[Boolean]"
+      status: 200
+  endpoint-get-users-saved-episodes:
+    md5Hash: 8c34757f341b78f13871c0642765aa84
+    responseTypes:
+    - type: "PagingObject[SavedEpisodeObject]"
+      status: 200
+  endpoint-remove-episodes-user:
+    md5Hash: 964807a218adf664e89380ea6c4e7a1f
+    responseTypes:
+    - type: Void
+      status: 200
+  endpoint-save-episodes-user:
+    md5Hash: e94878537b00c8417316fdb93220ef67
+    responseTypes:
+    - type: Void
+      status: 200
 category-shows:
   endpoint-get-multiple-shows:
     md5Hash: 9988445bc2996fe169117564f41685f6
