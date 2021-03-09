@@ -16,7 +16,6 @@ public class PrivateUser {
     /**
      * <p>The name displayed on the user's profile. <code>null</code> if not available.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("display_name")
     public String displayName;
     /**
      * <p>The user's email address, as entered by the user when creating their account. <em><strong>Important!</strong> This email address is unverified; there is no proof that it actually belongs to the user.</em> <em>This field is only available when the current user has granted access to the <a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes">user-read-email</a> scope.</em></p>
@@ -25,12 +24,10 @@ public class PrivateUser {
     /**
      * <p>The user's explicit content settings. <em>This field is only available when the current user has granted access to the <a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes">user-read-private</a> scope.</em></p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("explicit_content")
     public ExplicitContentSettings explicitContent;
     /**
      * <p>Known external URLs for this user.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("external_urls")
     public ExternalUrl externalUrls;
     /**
      * <p>Information about the followers of the user.</p>

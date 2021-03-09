@@ -2,12 +2,14 @@ package de.sonallux.spotify.api;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import de.sonallux.spotify.api.apis.*;
+import de.sonallux.spotify.api.util.JacksonConverterFactory;
 import lombok.Getter;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
 
 @Getter
 public class SpotifyWebApi extends BaseSpotifyApi  {
@@ -64,11 +66,13 @@ public class SpotifyWebApi extends BaseSpotifyApi  {
 
     private static Retrofit createDefaultRetrofit(OkHttpClient okHttpClient, HttpUrl baseUrl) {
         var mapper = new ObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
+                .registerModule(new JavaTimeModule());
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(okHttpClient)
-                .addConverterFactory(JacksonConverterFactory.create(mapper))
+                .addConverterFactory(new JacksonConverterFactory(mapper))
                 .build();
     }
 }

@@ -12,12 +12,10 @@ public class PublicUser {
     /**
      * <p>The name displayed on the user's profile. <code>null</code> if not available.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("display_name")
     public String displayName;
     /**
      * <p>Known public external URLs for this user.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("external_urls")
     public ExternalUrl externalUrls;
     /**
      * <p>Information about the followers of this user.</p>

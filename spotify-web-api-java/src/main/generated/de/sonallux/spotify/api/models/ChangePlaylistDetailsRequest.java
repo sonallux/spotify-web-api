@@ -17,7 +17,6 @@ public class ChangePlaylistDetailsRequest {
     /**
      * <p>If <code>true</code> the playlist will be public, if <code>false</code> it will be private.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("public")
     @lombok.experimental.Accessors(prefix = "_")
     private boolean _public;
     /**

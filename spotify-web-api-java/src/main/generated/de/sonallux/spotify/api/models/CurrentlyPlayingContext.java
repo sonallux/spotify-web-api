@@ -20,7 +20,6 @@ public class CurrentlyPlayingContext {
     /**
      * <p>The object type of the currently playing item. Can be one of <code>track</code>, <code>episode</code>, <code>ad</code> or <code>unknown</code>.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("currently_playing_type")
     public String currentlyPlayingType;
     /**
      * <p>The device that is currently active.</p>
@@ -29,7 +28,6 @@ public class CurrentlyPlayingContext {
     /**
      * <p>If something is currently playing, return <code>true</code>.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_playing")
     public boolean isPlaying;
     /**
      * <p>The currently playing track or episode. Can be <code>null</code>.</p>
@@ -38,17 +36,14 @@ public class CurrentlyPlayingContext {
     /**
      * <p>Progress into the currently playing track or episode. Can be <code>null</code>.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("progress_ms")
     public int progressMs;
     /**
      * <p>off, track, context</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("repeat_state")
     public String repeatState;
     /**
      * <p>If shuffle is on or off.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("shuffle_state")
     public String shuffleState;
     /**
      * <p>Unix Millisecond Timestamp when data was fetched.</p>

@@ -44,6 +44,7 @@ class SpotifyApiTest {
         var artist = api.callApiAndReturnBody(api.getArtistsApi().getArtist("foo"));
         assertNotNull(artist);
         assertEquals("0OdUWJ0sBjDrqHygGUXeCF", artist.getId());
+        assertEquals("https://open.spotify.com/artist/0OdUWJ0sBjDrqHygGUXeCF", artist.getExternalUrls().getSpotify());
 
         assertEquals(webServer.getRequestCount(), 1);
         var request = webServer.takeRequest();
@@ -59,6 +60,7 @@ class SpotifyApiTest {
         var artist = api.callApiAndReturnBody(api.getArtistsApi().getArtist("foo"));
         assertNotNull(artist);
         assertEquals("0OdUWJ0sBjDrqHygGUXeCF", artist.getId());
+        assertEquals("https://open.spotify.com/artist/0OdUWJ0sBjDrqHygGUXeCF", artist.getExternalUrls().getSpotify());
 
         assertEquals(webServer.getRequestCount(), 1);
         var request = webServer.takeRequest();

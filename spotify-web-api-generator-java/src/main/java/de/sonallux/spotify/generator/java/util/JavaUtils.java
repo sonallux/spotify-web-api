@@ -52,7 +52,7 @@ public class JavaUtils {
     public static String mapToJavaType(String type) {
         Matcher matcher;
         if ("Timestamp".equals(type)) {
-            return "java.time.LocalDateTime";
+            return "java.time.Instant";
         } else if ("Object".equals(type)) {
             return "java.util.Map<String, Object>";
         } else if ("Void".equals(type)) {

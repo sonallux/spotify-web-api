@@ -18,5 +18,5 @@ public class RemoveTracksPlaylistRequest {
     /**
      * <p>The playlist's snapshot ID against which you want to make the changes. The API will validate that the specified items exist and in the specified positions and make the changes, even if more recent changes have been made to the playlist.</p>
      */
-    private String snapshot_id;
+    private String snapshotId;
 }

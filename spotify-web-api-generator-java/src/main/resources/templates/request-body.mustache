@@ -23,10 +23,9 @@ public class {{className}} {
     {{#required}}
     @NonNull
     {{/required}}
-    {{#jsonName}}
-    @com.fasterxml.jackson.annotation.JsonProperty("{{jsonName}}")
+    {{#isReservedKeywordProperty}}
     @lombok.experimental.Accessors(prefix = "_")
-    {{/jsonName}}
+    {{/isReservedKeywordProperty}}
     private{{#required}} final{{/required}} {{type}} {{fieldName}};
 {{/properties}}
 }

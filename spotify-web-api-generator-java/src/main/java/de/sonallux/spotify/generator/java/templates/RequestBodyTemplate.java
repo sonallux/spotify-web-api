@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static com.google.common.base.CaseFormat.LOWER_CAMEL;
+import static com.google.common.base.CaseFormat.LOWER_UNDERSCORE;
+
 public class RequestBodyTemplate extends AbstractTemplate<EndpointRequestBodyObject> {
     @Override
     String templateName() {
@@ -49,11 +52,12 @@ public class RequestBodyTemplate extends AbstractTemplate<EndpointRequestBodyObj
 
     private Map<String, Object> buildPropertyContext(Property property) {
         var context = new HashMap<String, Object>();
-        if (JavaUtils.RESERVED_WORDS.contains(property.getName())) {
-            context.put("jsonName", property.getName());
-            context.put("fieldName", "_" + property.getName());
+        var propertyName = property.getName();
+        if (JavaUtils.RESERVED_WORDS.contains(propertyName)) {
+            context.put("isReservedKeywordProperty", true);
+            context.put("fieldName", "_" + propertyName);
         } else {
-            context.put("fieldName", property.getName());
+            context.put("fieldName", LOWER_UNDERSCORE.converterTo(LOWER_CAMEL).convert(propertyName));
         }
 
         var description = property.getDescription();

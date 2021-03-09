@@ -12,11 +12,11 @@ public class RecommendationSeed {
     /**
      * <p>The number of tracks available after min_* and max_* filters have been applied.</p>
      */
-    public int afterFilteringSize;
+    public int afterfilteringsize;
     /**
      * <p>The number of tracks available after relinking for regional availability.</p>
      */
-    public int afterRelinkingSize;
+    public int afterrelinkingsize;
     /**
      * <p>A link to the full track or artist data for this seed. For tracks this will be a link to a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-trackobject">Track Object</a>. For artists a link to <a href="https://developer.spotify.com/documentation/web-api/reference/#object-artistobject">an Artist Object</a>. For genre seeds, this value will be <code>null</code>.</p>
      */
@@ -28,7 +28,7 @@ public class RecommendationSeed {
     /**
      * <p>The number of recommended tracks available for this seed.</p>
      */
-    public int initialPoolSize;
+    public int initialpoolsize;
     /**
      * <p>The entity type of this seed. One of <code>artist</code>, <code>track</code> or <code>genre</code>.</p>
      */

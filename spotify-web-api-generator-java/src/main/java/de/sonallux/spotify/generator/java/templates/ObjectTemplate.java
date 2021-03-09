@@ -60,15 +60,13 @@ public class ObjectTemplate extends AbstractTemplate<SpotifyWebApiObject> {
         var propertyName = property.getName();
         if (JavaUtils.RESERVED_WORDS.contains(propertyName)) {
             context.put("isReservedKeywordProperty", true);
-            context.put("jsonName", propertyName);
             context.put("fieldName", "_" + propertyName);
-        } else if (propertyName.contains("_")) {
+        } else {
             // spotify property names are in lower underscore case (e.g album_type)
             // but java convention is lower camel case for fields, therefore transform
-            context.put("jsonName", propertyName);
+            // JsonProperty annotation is not needed, because the object mapper is configured
+            // with the correct property naming strategy
             context.put("fieldName", LOWER_UNDERSCORE.converterTo(LOWER_CAMEL).convert(propertyName));
-        } else {
-            context.put("fieldName", propertyName);
         }
 
         var description = property.getDescription();
