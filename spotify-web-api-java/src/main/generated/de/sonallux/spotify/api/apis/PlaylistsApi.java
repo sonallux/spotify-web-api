@@ -182,7 +182,7 @@ public interface PlaylistsApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-playlists-tracks">Get a Playlist's Items</a>
      */
     @GET("/playlists/{playlist_id}/tracks")
-    Call<Paging<java.util.Map<String, Object>>> getPlaylistsTracks(@Path("playlist_id") String playlistId, @Query("market") String market);
+    Call<Paging<PlaylistTrack>> getPlaylistsTracks(@Path("playlist_id") String playlistId, @Query("market") String market);
 
     /**
      * <h3>Get a Playlist's Items</h3>
@@ -195,7 +195,7 @@ public interface PlaylistsApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-playlists-tracks">Get a Playlist's Items</a>
      */
     @GET("/playlists/{playlist_id}/tracks")
-    Call<Paging<java.util.Map<String, Object>>> getPlaylistsTracks(@Path("playlist_id") String playlistId, @Query("market") String market, @QueryMap java.util.Map<String, Object> queryParameters);
+    Call<Paging<PlaylistTrack>> getPlaylistsTracks(@Path("playlist_id") String playlistId, @Query("market") String market, @QueryMap java.util.Map<String, Object> queryParameters);
 
     /**
      * <h3>Remove Items from a Playlist</h3>

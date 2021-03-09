@@ -3988,9 +3988,7 @@ paths:
                     type: array
                     description: The requested data.
                     items:
-                      oneOf:
-                      - $ref: '#/components/schemas/TrackObject'
-                      - $ref: '#/components/schemas/EpisodeObject'
+                      $ref: '#/components/schemas/PlaylistTrackObject'
                   limit:
                     type: integer
                     description: The maximum number of items in the response (as set

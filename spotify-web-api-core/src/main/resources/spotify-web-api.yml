@@ -5148,7 +5148,7 @@ categories:
           \ access returns error `403` Forbidden."
         scopes: []
         responseTypes:
-        - type: "PagingObject[TrackObject | EpisodeObject]"
+        - type: "PagingObject[PlaylistTrackObject]"
           status: 200
       endpoint-remove-tracks-playlist:
         id: endpoint-remove-tracks-playlist

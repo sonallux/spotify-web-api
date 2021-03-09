@@ -109,7 +109,7 @@ category-playlists:
   endpoint-get-playlists-tracks:
     md5Hash: db04ba4d354fe4782224eb8e6698d3f1
     responseTypes:
-    - type: "PagingObject[TrackObject | EpisodeObject]"
+    - type: "PagingObject[PlaylistTrackObject]"
       status: 200
   endpoint-get-a-list-of-current-users-playlists:
     md5Hash: 742dc419925d1597390d953fb8882473
