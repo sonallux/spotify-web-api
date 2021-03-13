@@ -38,6 +38,11 @@ tags:
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
     url: https://developer.spotify.com/documentation/web-api/reference/#category-library
+- name: category-markets
+  description: Markets API
+  externalDocs:
+    description: Find more info on the official Spotify Web API Reference
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-markets
 - name: category-personalization
   description: Personalization API
   externalDocs:
@@ -2974,6 +2979,28 @@ paths:
       security:
       - spotify_auth:
         - user-library-modify
+  /markets:
+    get:
+      tags:
+      - category-markets
+      summary: Get Available Markets
+      description: Get the list of markets where Spotify is available.
+      externalDocs:
+        description: Find more info on the official Spotify Web API Reference
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-available-markets
+      operationId: endpoint-get-available-markets
+      parameters:
+      - name: Authorization
+        in: header
+        description: A valid user access token or your client credentials.
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - spotify_auth: []
   /me/top/{type}:
     get:
       tags:

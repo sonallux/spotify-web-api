@@ -3955,6 +3955,32 @@ categories:
         responseTypes:
         - type: Void
           status: 200
+  category-markets:
+    id: category-markets
+    name: Markets API
+    link: https://developer.spotify.com/documentation/web-api/reference/#category-markets
+    endpoints:
+      endpoint-get-available-markets:
+        id: endpoint-get-available-markets
+        name: Get Available Markets
+        link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-available-markets
+        description: Get the list of markets where Spotify is available.
+        httpMethod: GET
+        path: /markets
+        parameters:
+        - location: HEADER
+          name: Authorization
+          description: A valid user access token or your client credentials.
+          type: String
+          required: true
+        responseDescription: "On success, the HTTP status code in the response header\
+          \ is 200 OK and the response body contains a list of the countries in which\
+          \ Spotify is available, identified by their [ISO 3166-1 alpha-2 country\
+          \ code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) with additional\
+          \ country codes for special territories. On error, the header status code\
+          \ is an error code and the response body contains an error object."
+        scopes: []
+        responseTypes: []
   category-personalization:
     id: category-personalization
     name: Personalization API
