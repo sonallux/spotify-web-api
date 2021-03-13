@@ -697,6 +697,12 @@ objects:
       type: String
       description: "The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
         \ for the track."
+  MarketsObject:
+    name: MarketsObject
+    properties:
+    - name: markets
+      type: "Array[String]"
+      description: ""
   NewReleasesObject:
     name: NewReleasesObject
     properties:
@@ -3980,7 +3986,9 @@ categories:
           \ country codes for special territories. On error, the header status code\
           \ is an error code and the response body contains an error object."
         scopes: []
-        responseTypes: []
+        responseTypes:
+        - type: MarketsObject
+          status: 200
   category-personalization:
     id: category-personalization
     name: Personalization API

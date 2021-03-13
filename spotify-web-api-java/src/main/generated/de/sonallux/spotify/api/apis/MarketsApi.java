@@ -17,5 +17,5 @@ public interface MarketsApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-available-markets">Get Available Markets</a>
      */
     @GET("/markets")
-    Call<> getAvailableMarkets();
+    Call<Markets> getAvailableMarkets();
 }

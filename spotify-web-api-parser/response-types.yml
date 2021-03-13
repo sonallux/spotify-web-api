@@ -406,3 +406,9 @@ category-users-profile:
     responseTypes:
     - type: PrivateUserObject
       status: 200
+category-markets:
+  endpoint-get-available-markets:
+    md5Hash: c5e5e0e2bf2c88ed458bfdb60264bb3d
+    responseTypes:
+    - type: MarketsObject
+      status: 200

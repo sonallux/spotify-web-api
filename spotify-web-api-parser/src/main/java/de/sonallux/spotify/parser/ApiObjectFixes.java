@@ -145,6 +145,10 @@ class ApiObjectFixes {
         objects.add(new SpotifyWebApiObject("GenreSeedsObject")
             .addProperty(new SpotifyWebApiObject.Property("genres", "Array[String]")));
 
+        //MarketsObject
+        objects.add(new SpotifyWebApiObject("MarketsObject")
+            .addProperty(new SpotifyWebApiObject.Property("markets", "Array[String]")));
+
         //NewReleasesObject
         objects.add(new SpotifyWebApiObject("NewReleasesObject")
             //.addProperty(new SpotifyWebApiObject.Property("message", "String"))//Note: property is specified, but it is not returned
