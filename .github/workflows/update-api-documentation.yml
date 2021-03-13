@@ -31,12 +31,14 @@ jobs:
         run: ./scripts/generate-open-api.sh
       - name: Generate TypeScript
         run: ./scripts/generate-ts.sh
-      - name: Test
-        run: ./mvnw -B clean verify
+      # No need to run the tests here, they also run in the created PR
+      # - name: Test
+      #   run: ./mvnw -B clean verify
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
+          token: ${{ secrets.GH_REPO_TOKEN }}
           commit-message: 'Update web API documentation'
           branch: 'automated-api-documentation-update'
           delete-branch: true
