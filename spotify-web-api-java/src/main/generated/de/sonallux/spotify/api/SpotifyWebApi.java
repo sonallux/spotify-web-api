@@ -19,6 +19,7 @@ public class SpotifyWebApi extends BaseSpotifyApi  {
     private final EpisodesApi episodesApi;
     private final FollowApi followApi;
     private final LibraryApi libraryApi;
+    private final MarketsApi marketsApi;
     private final PersonalizationApi personalizationApi;
     private final PlayerApi playerApi;
     private final PlaylistsApi playlistsApi;
@@ -35,6 +36,7 @@ public class SpotifyWebApi extends BaseSpotifyApi  {
         this.episodesApi = retrofit.create(EpisodesApi.class);
         this.followApi = retrofit.create(FollowApi.class);
         this.libraryApi = retrofit.create(LibraryApi.class);
+        this.marketsApi = retrofit.create(MarketsApi.class);
         this.personalizationApi = retrofit.create(PersonalizationApi.class);
         this.playerApi = retrofit.create(PlayerApi.class);
         this.playlistsApi = retrofit.create(PlaylistsApi.class);

@@ -742,6 +742,10 @@ export interface LinkedTrack {
     uri: string;
 }
 
+export interface Markets {
+    markets: string[];
+}
+
 export interface NewReleases {
     albums: Paging<SimplifiedAlbum>;
 }

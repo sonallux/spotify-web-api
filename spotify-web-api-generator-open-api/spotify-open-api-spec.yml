@@ -38,6 +38,11 @@ tags:
   externalDocs:
     description: Find more info on the official Spotify Web API Reference
     url: https://developer.spotify.com/documentation/web-api/reference/#category-library
+- name: category-markets
+  description: Markets API
+  externalDocs:
+    description: Find more info on the official Spotify Web API Reference
+    url: https://developer.spotify.com/documentation/web-api/reference/#category-markets
 - name: category-personalization
   description: Personalization API
   externalDocs:
@@ -2974,6 +2979,39 @@ paths:
       security:
       - spotify_auth:
         - user-library-modify
+  /markets:
+    get:
+      tags:
+      - category-markets
+      summary: Get Available Markets
+      description: Get the list of markets where Spotify is available.
+      externalDocs:
+        description: Find more info on the official Spotify Web API Reference
+        url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-available-markets
+      operationId: endpoint-get-available-markets
+      parameters:
+      - name: Authorization
+        in: header
+        description: A valid user access token or your client credentials.
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+        "200":
+          description: "On success, the HTTP status code in the response header is\
+            \ 200 OK and the response body contains a list of the countries in which\
+            \ Spotify is available, identified by their [ISO 3166-1 alpha-2 country\
+            \ code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) with additional\
+            \ country codes for special territories. On error, the header status code\
+            \ is an error code and the response body contains an error object."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketsObject'
+      security:
+      - spotify_auth: []
   /me/top/{type}:
     get:
       tags:
@@ -6420,6 +6458,14 @@ components:
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
         url: https://developer.spotify.com/documentation/web-api/reference/#object-linkedtrackobject
+    MarketsObject:
+      type: object
+      properties:
+        markets:
+          type: array
+          description: ""
+          items:
+            type: string
     NewReleasesObject:
       type: object
       properties:
