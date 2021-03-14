@@ -20,7 +20,6 @@ public class Playlist {
     /**
      * <p>Known external URLs for this playlist.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("external_urls")
     public ExternalUrl externalUrls;
     /**
      * <p>Information about the followers of the playlist.</p>
@@ -49,13 +48,11 @@ public class Playlist {
     /**
      * <p>The playlist's public/private status: <code>true</code> the playlist is public, <code>false</code> the playlist is private, <code>null</code> the playlist status is not relevant. For more about public/private status, see <a href="https://developer.spotify.com/documentation/general/guides/working-with-playlists/">Working with Playlists</a></p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("public")
     @lombok.experimental.Accessors(prefix = "_")
     public boolean _public;
     /**
      * <p>The version identifier for the current playlist. Can be supplied in other requests to target a specific playlist version</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("snapshot_id")
     public String snapshotId;
     /**
      * <p>Information about the tracks of the playlist. Note, a track object may be <code>null</code>. This can happen if a track is no longer available.</p>

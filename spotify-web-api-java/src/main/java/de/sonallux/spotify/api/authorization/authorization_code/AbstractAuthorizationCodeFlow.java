@@ -3,11 +3,11 @@ package de.sonallux.spotify.api.authorization.authorization_code;
 import de.sonallux.spotify.api.BaseSpotifyApi;
 import de.sonallux.spotify.api.SpotifyApiException;
 import de.sonallux.spotify.api.authorization.*;
+import de.sonallux.spotify.api.util.JacksonConverterFactory;
 import de.sonallux.spotify.api.util.TextUtil;
 import okhttp3.HttpUrl;
 import retrofit2.Call;
 import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
 
 abstract class AbstractAuthorizationCodeFlow extends TokenStoreApiAuthorizationProvider {
     final String clientId;
@@ -36,7 +36,7 @@ abstract class AbstractAuthorizationCodeFlow extends TokenStoreApiAuthorizationP
     private static Retrofit createRetrofit(HttpUrl tokenApiBaseUrl) {
         return new Retrofit.Builder()
             .baseUrl(tokenApiBaseUrl)
-            .addConverterFactory(JacksonConverterFactory.create())
+            .addConverterFactory(new JacksonConverterFactory())
             .build();
     }
 

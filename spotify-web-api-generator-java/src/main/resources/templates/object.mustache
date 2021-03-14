@@ -22,9 +22,6 @@ public class {{className}}{{#superClass}} extends {{superClass}}{{/superClass}} 
     {{#nonNull}}
     @NonNull
     {{/nonNull}}
-    {{#jsonName}}
-    @com.fasterxml.jackson.annotation.JsonProperty("{{jsonName}}")
-    {{/jsonName}}
     {{#isReservedKeywordProperty}}
     @lombok.experimental.Accessors(prefix = "_")
     {{/isReservedKeywordProperty}}

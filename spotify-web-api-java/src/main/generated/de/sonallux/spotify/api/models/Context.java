@@ -12,7 +12,6 @@ public class Context {
     /**
      * <p>External URLs for this context.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("external_urls")
     public ExternalUrl externalUrls;
     /**
      * <p>A link to the Web API endpoint providing full details of the track.</p>

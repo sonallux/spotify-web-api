@@ -12,7 +12,6 @@ public class Album {
     /**
      * <p>The type of the album: <code>album</code>, <code>single</code>, or <code>compilation</code>.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("album_type")
     public String albumType;
     /**
      * <p>The artists of the album. Each artist object includes a link in <code>href</code> to more detailed information about the artist.</p>
@@ -21,7 +20,6 @@ public class Album {
     /**
      * <p>The markets in which the album is available: <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2 country codes</a>. Note that an album is considered available in a market when at least 1 of its tracks is available in that market.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("available_markets")
     public java.util.List<String> availableMarkets;
     /**
      * <p>The copyright statements of the album.</p>
@@ -30,12 +28,10 @@ public class Album {
     /**
      * <p>Known external IDs for the album.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("external_ids")
     public ExternalId externalIds;
     /**
      * <p>Known external URLs for this album.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("external_urls")
     public ExternalUrl externalUrls;
     /**
      * <p>A list of the genres used to classify the album. For example: &quot;Prog Rock&quot; , &quot;Post-Grunge&quot;. (If not yet classified, the array is empty.)</p>
@@ -68,12 +64,10 @@ public class Album {
     /**
      * <p>The date the album was first released, for example &quot;1981-12-15&quot;. Depending on the precision, it might be shown as &quot;1981&quot; or &quot;1981-12&quot;.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("release_date")
     public String releaseDate;
     /**
      * <p>The precision with which release_date value is known: &quot;year&quot; , &quot;month&quot; , or &quot;day&quot;.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("release_date_precision")
     public String releaseDatePrecision;
     /**
      * <p>Included in the response when a content restriction is applied. See <a href="https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject">Restriction Object</a> for more details.</p>

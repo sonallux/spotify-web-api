@@ -12,7 +12,6 @@ public class LinkedTrack {
     /**
      * <p>Known external URLs for this track.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("external_urls")
     public ExternalUrl externalUrls;
     /**
      * <p>A link to the Web API endpoint providing full details of the track.</p>

@@ -13,7 +13,7 @@ public class StartUsersPlaybackRequest {
     /**
      * <p>Spotify URI of the context to play. Valid contexts are albums, artists, playlists. Example: {&quot;context_uri&quot;: &quot;spotify:album:1Je1IMUlBXcx1Fz0WE7oPT&quot;}</p>
      */
-    private String context_uri;
+    private String contextUri;
     /**
      * <p>A JSON array of the Spotify track URIs to play. For example: {&quot;uris&quot;: [&quot;spotify:track:4iV5W9uYEdYUVa79Axb7Rh&quot;, &quot;spotify:track:1301WleyT98MSxVHPZCA6M&quot;]}</p>
      */
@@ -25,5 +25,5 @@ public class StartUsersPlaybackRequest {
     /**
      * <p>Indicates from what position to start playback. Must be a positive number. Passing in a position that is greater than the length of the track will cause the player to start playing the next song.</p>
      */
-    private int position_ms;
+    private int positionMs;
 }

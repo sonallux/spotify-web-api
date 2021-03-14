@@ -6,9 +6,9 @@ import de.sonallux.spotify.api.authorization.InMemoryTokenStore;
 import de.sonallux.spotify.api.authorization.SpotifyAuthorizationException;
 import de.sonallux.spotify.api.authorization.TokenStore;
 import de.sonallux.spotify.api.authorization.TokenStoreApiAuthorizationProvider;
+import de.sonallux.spotify.api.util.JacksonConverterFactory;
 import okhttp3.HttpUrl;
 import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.util.Base64;
 
@@ -40,7 +40,7 @@ public class ClientCredentialsFlow extends TokenStoreApiAuthorizationProvider {
     private static Retrofit createRetrofit(HttpUrl tokenApiBaseUrl) {
         return new Retrofit.Builder()
             .baseUrl(tokenApiBaseUrl)
-            .addConverterFactory(JacksonConverterFactory.create())
+            .addConverterFactory(new JacksonConverterFactory())
             .build();
     }
 

@@ -1,0 +1,206 @@
+{
+    "href" : "https://api.spotify.com/v1/playlists/6nUIz6KtfTYhF0HfVzoysA/tracks?offset=0&limit=100",
+    "items" : [ {
+        "added_at" : "2020-12-14T07:42:27Z",
+        "added_by" : {
+            "external_urls" : {
+                "spotify" : "https://open.spotify.com/user/js-234"
+            },
+            "href" : "https://api.spotify.com/v1/users/js-234",
+            "id" : "js-234",
+            "type" : "user",
+            "uri" : "spotify:user:js-234"
+        },
+        "is_local" : false,
+        "primary_color" : null,
+        "track" : {
+            "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                    "external_urls" : {
+                        "spotify" : "https://open.spotify.com/artist/5Rl15oVamLq7FbSb0NNBNy"
+                    },
+                    "href" : "https://api.spotify.com/v1/artists/5Rl15oVamLq7FbSb0NNBNy",
+                    "id" : "5Rl15oVamLq7FbSb0NNBNy",
+                    "name" : "5 Seconds of Summer",
+                    "type" : "artist",
+                    "uri" : "spotify:artist:5Rl15oVamLq7FbSb0NNBNy"
+                }, {
+                    "external_urls" : {
+                        "spotify" : "https://open.spotify.com/artist/6Ad91Jof8Niiw0lGLLi3NW"
+                    },
+                    "href" : "https://api.spotify.com/v1/artists/6Ad91Jof8Niiw0lGLLi3NW",
+                    "id" : "6Ad91Jof8Niiw0lGLLi3NW",
+                    "name" : "YUNGBLUD",
+                    "type" : "artist",
+                    "uri" : "spotify:artist:6Ad91Jof8Niiw0lGLLi3NW"
+                }, {
+                    "external_urls" : {
+                        "spotify" : "https://open.spotify.com/artist/6sFHvCyqklnJpXC9Nh1aag"
+                    },
+                    "href" : "https://api.spotify.com/v1/artists/6sFHvCyqklnJpXC9Nh1aag",
+                    "id" : "6sFHvCyqklnJpXC9Nh1aag",
+                    "name" : "Alexander 23",
+                    "type" : "artist",
+                    "uri" : "spotify:artist:6sFHvCyqklnJpXC9Nh1aag"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AR", "AT", "AU", "BA", "BB", "BE", "BG", "BH", "BO", "BR", "BS", "BY", "BZ", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GD", "GR", "GT", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KN", "KW", "KZ", "LB", "LC", "LI", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MK", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PS", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VC", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                    "spotify" : "https://open.spotify.com/album/1zbH0DnpYxaoqTojXNLQb6"
+                },
+                "href" : "https://api.spotify.com/v1/albums/1zbH0DnpYxaoqTojXNLQb6",
+                "id" : "1zbH0DnpYxaoqTojXNLQb6",
+                "images" : [ {
+                    "height" : 640,
+                    "url" : "https://i.scdn.co/image/ab67616d0000b27369097de66c421c70ca086d42",
+                    "width" : 640
+                }, {
+                    "height" : 300,
+                    "url" : "https://i.scdn.co/image/ab67616d00001e0269097de66c421c70ca086d42",
+                    "width" : 300
+                }, {
+                    "height" : 64,
+                    "url" : "https://i.scdn.co/image/ab67616d0000485169097de66c421c70ca086d42",
+                    "width" : 64
+                } ],
+                "name" : "13 Reasons Why (Season 3)",
+                "release_date" : "2019-08-23",
+                "release_date_precision" : "day",
+                "total_tracks" : 18,
+                "type" : "album",
+                "uri" : "spotify:album:1zbH0DnpYxaoqTojXNLQb6"
+            },
+            "artists" : [ {
+                "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/5Rl15oVamLq7FbSb0NNBNy"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5Rl15oVamLq7FbSb0NNBNy",
+                "id" : "5Rl15oVamLq7FbSb0NNBNy",
+                "name" : "5 Seconds of Summer",
+                "type" : "artist",
+                "uri" : "spotify:artist:5Rl15oVamLq7FbSb0NNBNy"
+            } ],
+            "available_markets" : [ "AD", "AE", "AG", "AL", "AR", "AT", "AU", "BA", "BB", "BE", "BG", "BH", "BO", "BR", "BS", "BY", "BZ", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GD", "GR", "GT", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KN", "KW", "KZ", "LB", "LC", "LI", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MK", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PS", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VC", "VN", "XK", "ZA" ],
+            "disc_number" : 1,
+            "duration_ms" : 204887,
+            "episode" : false,
+            "explicit" : false,
+            "external_ids" : {
+                "isrc" : "USUG11902528"
+            },
+            "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/26wLOs3ZuHJa2Ihhx6QIE6"
+            },
+            "href" : "https://api.spotify.com/v1/tracks/26wLOs3ZuHJa2Ihhx6QIE6",
+            "id" : "26wLOs3ZuHJa2Ihhx6QIE6",
+            "is_local" : false,
+            "name" : "Teeth",
+            "popularity" : 78,
+            "preview_url" : "https://p.scdn.co/mp3-preview/6a447204bb7c43f656c29552bfff9596eab37a02?cid=774b29d4f13844c495f206cafdad9c86",
+            "track" : true,
+            "track_number" : 1,
+            "type" : "track",
+            "uri" : "spotify:track:26wLOs3ZuHJa2Ihhx6QIE6"
+        },
+        "video_thumbnail" : {
+            "url" : null
+        }
+    }, {
+        "added_at" : "2020-12-14T07:52:24Z",
+        "added_by" : {
+            "external_urls" : {
+                "spotify" : "https://open.spotify.com/user/js-234"
+            },
+            "href" : "https://api.spotify.com/v1/users/js-234",
+            "id" : "js-234",
+            "type" : "user",
+            "uri" : "spotify:user:js-234"
+        },
+        "is_local" : false,
+        "primary_color" : null,
+        "track" : {
+            "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                    "external_urls" : {
+                        "spotify" : "https://open.spotify.com/show/2Uc7vL8U6kUZYSCOvDIJ67"
+                    },
+                    "href" : "https://api.spotify.com/v1/shows/2Uc7vL8U6kUZYSCOvDIJ67",
+                    "id" : "2Uc7vL8U6kUZYSCOvDIJ67",
+                    "name" : "heise Developer: SoftwareArchitekTOUR-Podcast",
+                    "type" : "show",
+                    "uri" : "spotify:show:2Uc7vL8U6kUZYSCOvDIJ67"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AR", "AT", "AU", "BA", "BB", "BE", "BF", "BG", "BH", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CH", "CL", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DK", "DM", "DO", "DZ", "EC", "EE", "ES", "FI", "FJ", "FM", "FR", "GB", "GD", "GE", "GH", "GM", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KE", "KI", "KN", "KW", "LB", "LC", "LI", "LR", "LS", "LT", "LU", "LV", "MA", "MC", "ME", "MH", "MK", "ML", "MT", "MV", "MW", "MX", "MY", "NA", "NE", "NG", "NI", "NL", "NO", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "TH", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "US", "UY", "VC", "VN", "VU", "WS", "XK", "ZA" ],
+                "external_urls" : {
+                    "spotify" : "https://open.spotify.com/show/2Uc7vL8U6kUZYSCOvDIJ67"
+                },
+                "href" : "https://api.spotify.com/v1/shows/2Uc7vL8U6kUZYSCOvDIJ67",
+                "id" : "2Uc7vL8U6kUZYSCOvDIJ67",
+                "images" : [ {
+                    "height" : 640,
+                    "url" : "https://i.scdn.co/image/9b54b297ddefe7cd1dfee50cd4cb9dae836bb590",
+                    "width" : 640
+                }, {
+                    "height" : 300,
+                    "url" : "https://i.scdn.co/image/8df8cf941d0516adcfd70c99de63109128a36727",
+                    "width" : 300
+                }, {
+                    "height" : 64,
+                    "url" : "https://i.scdn.co/image/9ea559df2f05e7e0a30dd8d10fb8de6d8eabb6f4",
+                    "width" : 64
+                } ],
+                "is_playable" : false,
+                "name" : "heise Developer: SoftwareArchitekTOUR-Podcast",
+                "release_date" : null,
+                "release_date_precision" : null,
+                "restrictions" : {
+                    "reason" : "product"
+                },
+                "total_tracks" : 1,
+                "type" : "show",
+                "uri" : "spotify:show:2Uc7vL8U6kUZYSCOvDIJ67"
+            },
+            "artists" : [ {
+                "external_urls" : {
+                    "spotify" : "https://open.spotify.com/show/2Uc7vL8U6kUZYSCOvDIJ67"
+                },
+                "href" : "https://api.spotify.com/v1/shows/2Uc7vL8U6kUZYSCOvDIJ67",
+                "id" : "2Uc7vL8U6kUZYSCOvDIJ67",
+                "name" : "heise Developer: SoftwareArchitekTOUR-Podcast",
+                "type" : "show",
+                "uri" : "spotify:show:2Uc7vL8U6kUZYSCOvDIJ67"
+            } ],
+            "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AR", "AT", "AU", "BA", "BB", "BE", "BF", "BG", "BH", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CH", "CL", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DK", "DM", "DO", "DZ", "EC", "EE", "ES", "FI", "FJ", "FM", "FR", "GB", "GD", "GE", "GH", "GM", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KE", "KI", "KN", "KW", "LB", "LC", "LI", "LR", "LS", "LT", "LU", "LV", "MA", "MC", "ME", "MH", "MK", "ML", "MT", "MV", "MW", "MX", "MY", "NA", "NE", "NG", "NI", "NL", "NO", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "TH", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "US", "UY", "VC", "VN", "VU", "WS", "XK", "ZA" ],
+            "disc_number" : 0,
+            "duration_ms" : 3788277,
+            "episode" : false,
+            "explicit" : false,
+            "external_ids" : {
+                "spotify" : "https://open.spotify.com/episode/4ULmed87GDr8SB9o0azims"
+            },
+            "external_urls" : {
+                "spotify" : "https://open.spotify.com/episode/4ULmed87GDr8SB9o0azims"
+            },
+            "href" : "https://api.spotify.com/v1/episodes/4ULmed87GDr8SB9o0azims",
+            "id" : "4ULmed87GDr8SB9o0azims",
+            "is_local" : false,
+            "is_playable" : false,
+            "name" : "Episode 79: Nichtfunktionale Anforderungen und Qualität",
+            "popularity" : 0,
+            "preview_url" : "https://p.scdn.co/mp3-preview/8151581d168b1292aed2eddd389b764c94987310",
+            "track" : true,
+            "track_number" : 0,
+            "type" : "episode",
+            "uri" : "spotify:episode:4ULmed87GDr8SB9o0azims"
+        },
+        "video_thumbnail" : {
+            "url" : null
+        }
+    } ],
+    "limit" : 100,
+    "next" : null,
+    "offset" : 0,
+    "previous" : null,
+    "total" : 2
+}

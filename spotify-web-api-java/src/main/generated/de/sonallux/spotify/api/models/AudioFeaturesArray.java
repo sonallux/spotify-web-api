@@ -6,6 +6,5 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class AudioFeaturesArray {
-    @com.fasterxml.jackson.annotation.JsonProperty("audio_features")
     public java.util.List<AudioFeatures> audioFeatures;
 }

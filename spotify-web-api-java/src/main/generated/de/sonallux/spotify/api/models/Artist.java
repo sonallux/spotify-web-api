@@ -12,7 +12,6 @@ public class Artist {
     /**
      * <p>Known external URLs for this artist.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("external_urls")
     public ExternalUrl externalUrls;
     /**
      * <p>Information about the followers of the artist.</p>

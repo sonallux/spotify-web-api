@@ -16,7 +16,6 @@ public class AudioFeatures {
     /**
      * <p>An HTTP URL to access the full audio analysis of this track. An access token is required to access this data.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("analysis_url")
     public String analysisUrl;
     /**
      * <p>Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.</p>
@@ -25,7 +24,6 @@ public class AudioFeatures {
     /**
      * <p>The duration of the track in milliseconds.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("duration_ms")
     public int durationMs;
     /**
      * <p>Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.</p>
@@ -66,12 +64,10 @@ public class AudioFeatures {
     /**
      * <p>An estimated overall time signature of a track. The time signature (meter) is a notational convention to specify how many beats are in each bar (or measure).</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("time_signature")
     public int timeSignature;
     /**
      * <p>A link to the Web API endpoint providing full details of the track.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("track_href")
     public String trackHref;
     /**
      * <p>The object type: &quot;audio_features&quot;</p>
