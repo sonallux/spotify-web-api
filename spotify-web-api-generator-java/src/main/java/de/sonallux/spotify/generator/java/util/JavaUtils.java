@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 
 import static com.google.common.base.CaseFormat.LOWER_CAMEL;
 import static com.google.common.base.CaseFormat.LOWER_UNDERSCORE;
+import static de.sonallux.spotify.core.SpotifyWebApiObjectUtils.BASE_OBJECT_NAMES;
 
 public class JavaUtils {
     public static final List<String> RESERVED_WORDS = Arrays.asList(
@@ -64,6 +65,10 @@ public class JavaUtils {
         } else if ((matcher = SpotifyWebApiUtils.CURSOR_PAGING_OBJECT_TYPE_PATTERN.matcher(type)).matches()) {
             return "CursorPaging<" + mapToJavaType(matcher.group(1)) + ">";
         } else if (type.contains(" | ")) {
+            if (Arrays.stream(type.split(" \\| "))
+                .allMatch(BASE_OBJECT_NAMES::contains)) {
+                return "BaseObject";
+            }
             //Can not be mapped easily, so just use Map
             return "java.util.Map<String, Object>";
         } else {

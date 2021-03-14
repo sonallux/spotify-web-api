@@ -1,5 +1,6 @@
 package de.sonallux.spotify.api.models;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 
 /**
@@ -8,7 +9,8 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Artist {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NONE) // Disable deserialization based on @JsonTypeInfo
+public class Artist extends BaseObject {
     /**
      * <p>Known external URLs for this artist.</p>
      */
@@ -22,14 +24,6 @@ public class Artist {
      */
     public java.util.List<String> genres;
     /**
-     * <p>A link to the Web API endpoint providing full details of the artist.</p>
-     */
-    public String href;
-    /**
-     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the artist.</p>
-     */
-    public String id;
-    /**
      * <p>Images of the artist in various sizes, widest first.</p>
      */
     public java.util.List<Image> images;
@@ -41,12 +35,4 @@ public class Artist {
      * <p>The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist's popularity is calculated from the popularity of all the artist's tracks.</p>
      */
     public int popularity;
-    /**
-     * <p>The object type: <code>&quot;artist&quot;</code></p>
-     */
-    public String type;
-    /**
-     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the artist.</p>
-     */
-    public String uri;
 }

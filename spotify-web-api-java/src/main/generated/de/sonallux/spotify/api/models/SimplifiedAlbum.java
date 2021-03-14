@@ -1,5 +1,6 @@
 package de.sonallux.spotify.api.models;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 
 /**
@@ -8,7 +9,8 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class SimplifiedAlbum {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NONE) // Disable deserialization based on @JsonTypeInfo
+public class SimplifiedAlbum extends BaseObject {
     /**
      * <p>The field is present when getting an artist's albums. Possible values are &quot;album&quot;, &quot;single&quot;, &quot;compilation&quot;, &quot;appears_on&quot;. Compare to album_type this field represents relationship between the artist and the album.</p>
      */
@@ -30,14 +32,6 @@ public class SimplifiedAlbum {
      */
     public ExternalUrl externalUrls;
     /**
-     * <p>A link to the Web API endpoint providing full details of the album.</p>
-     */
-    public String href;
-    /**
-     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the album.</p>
-     */
-    public String id;
-    /**
      * <p>The cover art for the album in various sizes, widest first.</p>
      */
     public java.util.List<Image> images;
@@ -57,12 +51,4 @@ public class SimplifiedAlbum {
      * <p>Included in the response when a content restriction is applied. See <a href="https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject">Restriction Object</a> for more details.</p>
      */
     public AlbumRestriction restrictions;
-    /**
-     * <p>The object type: &quot;album&quot;</p>
-     */
-    public String type;
-    /**
-     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the album.</p>
-     */
-    public String uri;
 }

@@ -24,5 +24,5 @@ public class PlaylistTrack {
     /**
      * <p>Information about the track or episode.</p>
      */
-    public java.util.Map<String, Object> track;
+    public BaseObject track;
 }

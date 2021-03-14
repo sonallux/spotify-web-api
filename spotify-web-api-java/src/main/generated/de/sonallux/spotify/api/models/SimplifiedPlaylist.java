@@ -1,5 +1,6 @@
 package de.sonallux.spotify.api.models;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 
 /**
@@ -8,7 +9,8 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class SimplifiedPlaylist {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NONE) // Disable deserialization based on @JsonTypeInfo
+public class SimplifiedPlaylist extends BaseObject {
     /**
      * <p><code>true</code> if the owner allows other users to modify the playlist.</p>
      */
@@ -21,14 +23,6 @@ public class SimplifiedPlaylist {
      * <p>Known external URLs for this playlist.</p>
      */
     public ExternalUrl externalUrls;
-    /**
-     * <p>A link to the Web API endpoint providing full details of the playlist.</p>
-     */
-    public String href;
-    /**
-     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the playlist.</p>
-     */
-    public String id;
     /**
      * <p>Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See <a href="https://developer.spotify.com/documentation/general/guides/working-with-playlists/">Working with Playlists</a>. <em>Note: If returned, the source URL for the image (<code>url</code>) is temporary and will expire in less than a day.</em></p>
      */
@@ -54,12 +48,4 @@ public class SimplifiedPlaylist {
      * <p>A collection containing a link ( <code>href</code> ) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the <code>total</code> number of tracks in the playlist. Note, a track object may be <code>null</code>. This can happen if a track is no longer available.</p>
      */
     public PlaylistTracksRef tracks;
-    /**
-     * <p>The object type: &quot;playlist&quot;</p>
-     */
-    public String type;
-    /**
-     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the playlist.</p>
-     */
-    public String uri;
 }

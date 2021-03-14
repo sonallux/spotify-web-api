@@ -1,7 +1,9 @@
 package de.sonallux.spotify.api;
 
 import de.sonallux.spotify.api.models.ChangePlaylistDetailsRequest;
+import de.sonallux.spotify.api.models.Episode;
 import de.sonallux.spotify.api.models.RemoveTracksPlaylistRequest;
+import de.sonallux.spotify.api.models.Track;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okio.Buffer;
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,8 +47,8 @@ class ConversionTest {
         var firstTrack = playlist.getTracks().getItems().get(0);
         assertNotNull(firstTrack);
         assertEquals(Instant.parse("2021-03-07T23:01:00Z"), firstTrack.getAddedAt());
-        //TODO: adjust when https://github.com/sonallux/spotify-web-api/issues/37 is fixed
-        assertEquals(6, firstTrack.getTrack().get("track_number"));
+        assertTrue(firstTrack.getTrack() instanceof Track);
+        assertEquals(6, ((Track) firstTrack.getTrack()).getTrackNumber());
     }
 
     @Test
@@ -90,19 +93,42 @@ class ConversionTest {
     }
 
     @Test
-    void testUnionTypeHandling() throws Exception {
-        webServer.enqueue(loadMockResponse("get-playlists-tracks.json"));
+    void testUnionTypeHandlingWithAdditionalTypesParameter() throws Exception {
+        webServer.enqueue(loadMockResponse("get-playlists-tracks-union.json"));
 
         var response = api.callApiAndReturnBody(api.getPlaylistsApi().getPlaylistsTracks("foo", "DE"));
         var track = response.getItems().get(0).getTrack();
         assertNotNull(track);
-        assertEquals("track", track.get("type"));
-        //assertTrue(track instanceof Track);//TODO: enable when https://github.com/sonallux/spotify-web-api/issues/37 is fixed
+        assertEquals("track", track.getType());
+        assertTrue(track instanceof Track);
 
         var episode = response.getItems().get(1).getTrack();
         assertNotNull(episode);
-        assertEquals("episode", episode.get("type"));
-        //assertTrue(track instanceof Episode);//TODO: enable when https://github.com/sonallux/spotify-web-api/issues/37 is fixed
+        assertEquals("episode", episode.getType());
+        assertTrue(episode instanceof Episode);
+
+        var request = webServer.takeRequest();
+        // TODO: adjust when additional_types is set by default
+        assertEquals("/playlists/foo/tracks?market=DE", request.getPath());
+    }
+
+    @Test
+    void testUnionTypeHandlingWithoutAdditionalTypesParameter() throws Exception {
+        webServer.enqueue(loadMockResponse("get-playlists-tracks.json"));
+
+        var response = api.callApiAndReturnBody(api.getPlaylistsApi().getPlaylistsTracks("foo", "DE", Map.of("additional_types", "track")));
+        var track = response.getItems().get(0).getTrack();
+        assertNotNull(track);
+        assertEquals("track", track.getType());
+        assertTrue(track instanceof Track);
+
+        var episode = response.getItems().get(1).getTrack();
+        assertNotNull(episode);
+        assertEquals("episode", episode.getType());
+        assertTrue(episode instanceof Episode);
+
+        var request = webServer.takeRequest();
+        assertEquals("/playlists/foo/tracks?market=DE&additional_types=track", request.getPath());
     }
 
     private MockResponse loadMockResponse(String fileName) throws Exception {

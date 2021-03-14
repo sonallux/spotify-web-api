@@ -1,5 +1,6 @@
 package de.sonallux.spotify.api.models;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 
 /**
@@ -8,7 +9,8 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Episode {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NONE) // Disable deserialization based on @JsonTypeInfo
+public class Episode extends BaseObject {
     /**
      * <p>A URL to a 30 second preview (MP3 format) of the episode. <code>null</code> if not available.</p>
      */
@@ -29,14 +31,6 @@ public class Episode {
      * <p>External URLs for this episode.</p>
      */
     public ExternalUrl externalUrls;
-    /**
-     * <p>A link to the Web API endpoint providing full details of the episode.</p>
-     */
-    public String href;
-    /**
-     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the episode.</p>
-     */
-    public String id;
     /**
      * <p>The cover art for the episode in various sizes, widest first.</p>
      */
@@ -77,12 +71,4 @@ public class Episode {
      * <p>The show on which the episode belongs.</p>
      */
     public SimplifiedShow show;
-    /**
-     * <p>The object type: &quot;episode&quot;.</p>
-     */
-    public String type;
-    /**
-     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the episode.</p>
-     */
-    public String uri;
 }
