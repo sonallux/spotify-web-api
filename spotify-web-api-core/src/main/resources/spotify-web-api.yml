@@ -6,7 +6,7 @@ objects:
     id: object-albumobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-albumobject
     properties:
-    - name: album_type
+    - name: album_typ
       type: String
       description: "The type of the album: `album`, `single`, or `compilation`."
     - name: artists

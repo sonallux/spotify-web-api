@@ -12,8 +12,8 @@ public class Album {
     /**
      * <p>The type of the album: <code>album</code>, <code>single</code>, or <code>compilation</code>.</p>
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("album_type")
-    public String albumType;
+    @com.fasterxml.jackson.annotation.JsonProperty("album_typ")
+    public String albumTyp;
     /**
      * <p>The artists of the album. Each artist object includes a link in <code>href</code> to more detailed information about the artist.</p>
      */

@@ -38,14 +38,27 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
+          # Use a PAT so GitHub actions are triggered on the PR
           token: ${{ secrets.GH_REPO_TOKEN }}
-          commit-message: 'Update web API documentation'
+          commit-message: 'Automated Spotify Web API update'
           branch: 'automated-api-documentation-update'
           delete-branch: true
           base: master
           author: 'sonallux <13821543+sonallux@users.noreply.github.com>'
-          title: 'Update web API documentation'
-          body: 'Automated Spotify web API documentation update from
+          title: 'Update Spotify Web API'
+          body: 'Automated Spotify Web API update from
             [actions run](https://github.com/sonallux/spotify-web-api/actions/runs/${{ github.run_id }})'
       - name: Check outputs
         run: 'echo "Pull Request ${{ steps.cpr.outputs.pull-request-operation }}: ${{ steps.cpr.outputs.pull-request-url }}"'
+      - name: Comment on PR
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: ${{ steps.cpr.outputs.pull-request-number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '@sonallux the Spotify Web API has been updated!'
+            })

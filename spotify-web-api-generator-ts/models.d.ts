@@ -5,7 +5,7 @@ export interface Album {
     /**
      * The type of the album: `album`, `single`, or `compilation`.
      */
-    albumType: string;
+    albumTyp: string;
     /**
      * The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
      */
