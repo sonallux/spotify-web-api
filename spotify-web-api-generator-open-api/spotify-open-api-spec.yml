@@ -5554,7 +5554,7 @@ components:
     AlbumObject:
       type: object
       properties:
-        album_type:
+        album_typ:
           type: string
           description: "The type of the album: `album`, `single`, or `compilation`."
         artists:
