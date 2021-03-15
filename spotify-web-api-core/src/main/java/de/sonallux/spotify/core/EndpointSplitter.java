@@ -116,6 +116,9 @@ public class EndpointSplitter {
                 List.of(new SpotifyWebApiEndpoint.ResponseType("SnapshotIdObject", 200, null))
         );
 
+        reorderEndpoint.getParameters().stream().filter(p -> "range_start".equals(p.getName())).findFirst().get().setRequired(true);
+        reorderEndpoint.getParameters().stream().filter(p -> "insert_before".equals(p.getName())).findFirst().get().setRequired(true);
+
         var replaceEndpoint = new SpotifyWebApiEndpoint(
                 "endpoint-replace-playlists-tracks",
                 "Replace items in a playlist",

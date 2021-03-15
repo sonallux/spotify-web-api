@@ -237,21 +237,7 @@ public interface PlaylistsApi {
      * <code>playlist-modify-public, playlist-modify-private</code>
      *
      * @param playlistId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the playlist.</p>
-     * @return <p>On a successful <strong>reorder</strong> operation, the response body contains a <code>snapshot_id</code> in JSON format and the HTTP status code in the response header is <code>200</code> OK. The <code>snapshot_id</code> can be used to identify your playlist version in future requests.</p>
-     *         <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a>, the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>, and the existing playlist is unmodified. Trying to set an item when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks">Reorder items in a playlist</a>
-     */
-    @PUT("/playlists/{playlist_id}/tracks")
-    Call<SnapshotId> reorderPlaylistsTracks(@Path("playlist_id") String playlistId);
-
-    /**
-     * <h3>Reorder items in a playlist</h3>
-     * <p>Reorder an item or a group of items in a playlist.</p>
-     * <h3>Required OAuth scopes</h3>
-     * <code>playlist-modify-public, playlist-modify-private</code>
-     *
-     * @param playlistId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the playlist.</p>
-     * @param requestBody <p>The request body</p>
+     * @param requestBody <p>the request body</p>
      * @return <p>On a successful <strong>reorder</strong> operation, the response body contains a <code>snapshot_id</code> in JSON format and the HTTP status code in the response header is <code>200</code> OK. The <code>snapshot_id</code> can be used to identify your playlist version in future requests.</p>
      *         <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a>, the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>, and the existing playlist is unmodified. Trying to set an item when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks">Reorder items in a playlist</a>
