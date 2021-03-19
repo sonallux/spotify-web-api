@@ -57,8 +57,9 @@ public interface TracksApi {
      *         <p>Objects are returned in the order requested. If an object is not found, a <code>null</code> value is returned in the appropriate position. Duplicate <code>ids</code> in the query will result in duplicate objects in the response. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-several-tracks">Get Several Tracks</a>
      */
-    @GET("/tracks")
-    Call<Tracks> getSeveralTracks(@Query("ids") String ids);
+    default Call<Tracks> getSeveralTracks(String ids) {
+        return getSeveralTracks(ids, null);
+    }
 
     /**
      * <h3>Get Several Tracks</h3>
@@ -87,8 +88,9 @@ public interface TracksApi {
      *         and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-track">Get a Track</a>
      */
-    @GET("/tracks/{id}")
-    Call<Track> getTrack(@Path("id") String id);
+    default Call<Track> getTrack(String id) {
+        return getTrack(id, null);
+    }
 
     /**
      * <h3>Get a Track</h3>

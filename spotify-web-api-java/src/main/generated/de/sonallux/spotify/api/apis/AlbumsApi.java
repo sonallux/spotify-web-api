@@ -17,8 +17,9 @@ public interface AlbumsApi {
      * @return <p>On success, the HTTP status code in the response header is 200 OK and the response body contains an album object in JSON format. On error, the header status code is an error code and the response body contains an error object.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-album">Get an Album</a>
      */
-    @GET("/albums/{id}")
-    Call<Album> getAlbum(@Path("id") String id);
+    default Call<Album> getAlbum(String id) {
+        return getAlbum(id, null);
+    }
 
     /**
      * <h3>Get an Album</h3>
@@ -40,8 +41,9 @@ public interface AlbumsApi {
      * @return <p>On success, the HTTP status code in the response header is 200 OK and the response body contains an album object in JSON format. On error, the header status code is an error code and the response body contains an error object.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-albums-tracks">Get an Album's Tracks</a>
      */
-    @GET("/albums/{id}/tracks")
-    Call<Paging<SimplifiedTrack>> getAlbumsTracks(@Path("id") String id);
+    default Call<Paging<SimplifiedTrack>> getAlbumsTracks(String id) {
+        return getAlbumsTracks(id, java.util.Map.of());
+    }
 
     /**
      * <h3>Get an Album's Tracks</h3>
@@ -64,8 +66,9 @@ public interface AlbumsApi {
      *         <p>Objects are returned in the order requested. If an object is not found, a <code>null</code> value is returned in the appropriate position. Duplicate <code>ids</code> in the query will result in duplicate objects in the response. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-multiple-albums">Get Multiple Albums</a>
      */
-    @GET("/albums")
-    Call<Albums> getMultipleAlbums(@Query("ids") String ids);
+    default Call<Albums> getMultipleAlbums(String ids) {
+        return getMultipleAlbums(ids, null);
+    }
 
     /**
      * <h3>Get Multiple Albums</h3>

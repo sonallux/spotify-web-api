@@ -22,8 +22,9 @@ public interface ShowsApi {
      *         <p>If a show is unavailable in the given <code>market</code> the HTTP status code in the response header is <code>404</code> NOT FOUND.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-show">Get a Show</a>
      */
-    @GET("/shows/{id}")
-    Call<Show> getShow(@Path("id") String id);
+    default Call<Show> getShow(String id) {
+        return getShow(id, null);
+    }
 
     /**
      * <h3>Get a Show</h3>
@@ -52,8 +53,9 @@ public interface ShowsApi {
      *         <p>If a show is unavailable in the given <code>market</code> the HTTP status code in the response header is <code>404</code> NOT FOUND. Unavailable episodes are filtered out.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-shows-episodes">Get a Show's Episodes</a>
      */
-    @GET("/shows/{id}/episodes")
-    Call<Paging<SimplifiedEpisode>> getShowsEpisodes(@Path("id") String id);
+    default Call<Paging<SimplifiedEpisode>> getShowsEpisodes(String id) {
+        return getShowsEpisodes(id, java.util.Map.of());
+    }
 
     /**
      * <h3>Get a Show's Episodes</h3>
@@ -81,8 +83,9 @@ public interface ShowsApi {
      *         <p>Objects are returned in the order requested. If an object is not found, a <code>null</code> value is returned in the appropriate position. If a show is unavailable in the given <code>market</code>, a <code>null</code> value is returned. Duplicate <code>ids</code> in the query will result in duplicate objects in the response. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-multiple-shows">Get Multiple Shows</a>
      */
-    @GET("/shows")
-    Call<Shows> getMultipleShows(@Query("ids") String ids);
+    default Call<Shows> getMultipleShows(String ids) {
+        return getMultipleShows(ids, null);
+    }
 
     /**
      * <h3>Get Multiple Shows</h3>

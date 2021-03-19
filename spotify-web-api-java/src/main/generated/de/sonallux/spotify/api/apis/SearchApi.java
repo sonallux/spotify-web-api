@@ -74,8 +74,9 @@ public interface SearchApi {
      *         </ul>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-search">Search for an Item</a>
      */
-    @GET("/search")
-    Call<SearchResponse> search(@Query("q") String q, @Query("type") String type);
+    default Call<SearchResponse> search(String q, String type) {
+        return search(q, type, java.util.Map.of());
+    }
 
     /**
      * <h3>Search for an Item</h3>

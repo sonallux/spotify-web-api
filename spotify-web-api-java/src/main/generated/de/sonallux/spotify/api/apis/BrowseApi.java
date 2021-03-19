@@ -18,8 +18,9 @@ public interface BrowseApi {
      *         <p>Once you have retrieved the list, you can use <a href="https://developer.spotify.com/web-api/get-playlist/">Get a Playlist</a> and <a href="https://developer.spotify.com/web-api/get-playlists-tracks/">Get a Playlist's Tracks</a> to drill down further.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-categories-playlists">Get a Category's Playlists</a>
      */
-    @GET("/browse/categories/{category_id}/playlists")
-    Call<PlaylistPaging> getCategoriesPlaylists(@Path("category_id") String categoryId);
+    default Call<PlaylistPaging> getCategoriesPlaylists(String categoryId) {
+        return getCategoriesPlaylists(categoryId, java.util.Map.of());
+    }
 
     /**
      * <h3>Get a Category's Playlists</h3>
@@ -43,8 +44,9 @@ public interface BrowseApi {
      *         <p>Once you have retrieved the category, you can use <a href="https://developer.spotify.com/web-api/get-categorys-playlists/">Get a Category's Playlists</a> to drill down further.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-category">Get a Category</a>
      */
-    @GET("/browse/categories/{category_id}")
-    Call<Category> getCategory(@Path("category_id") String categoryId);
+    default Call<Category> getCategory(String categoryId) {
+        return getCategory(categoryId, java.util.Map.of());
+    }
 
     /**
      * <h3>Get a Category</h3>
@@ -67,8 +69,9 @@ public interface BrowseApi {
      *         <p>Once you have retrieved the list, you can use <a href="https://developer.spotify.com/web-api/get-category/">Get a Category</a> to drill down further.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-categories">Get All Categories</a>
      */
-    @GET("/browse/categories")
-    Call<Categories> getCategories();
+    default Call<Categories> getCategories() {
+        return getCategories(java.util.Map.of());
+    }
 
     /**
      * <h3>Get All Categories</h3>
@@ -90,8 +93,9 @@ public interface BrowseApi {
      *         <p>Once you have retrieved the list of playlist objects, you can use <a href="https://developer.spotify.com/web-api/get-playlist/">Get a Playlist</a> and <a href="https://developer.spotify.com/web-api/get-playlists-tracks/">Get a Playlist's Tracks</a> to drill down further.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-featured-playlists">Get All Featured Playlists</a>
      */
-    @GET("/browse/featured-playlists")
-    Call<FeaturedPlaylist> getFeaturedPlaylists();
+    default Call<FeaturedPlaylist> getFeaturedPlaylists() {
+        return getFeaturedPlaylists(java.util.Map.of());
+    }
 
     /**
      * <h3>Get All Featured Playlists</h3>
@@ -114,8 +118,9 @@ public interface BrowseApi {
      *         <p>The results are returned in an order reflected within the Spotify clients, and therefore may not be ordered by date.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-new-releases">Get All New Releases</a>
      */
-    @GET("/browse/new-releases")
-    Call<NewReleases> getNewReleases();
+    default Call<NewReleases> getNewReleases() {
+        return getNewReleases(java.util.Map.of());
+    }
 
     /**
      * <h3>Get All New Releases</h3>
@@ -150,8 +155,9 @@ public interface BrowseApi {
      * @return <p>On success, the HTTP status code in the response header is <code>200 OK</code> and the response body contains a recommendations response object in JSON format.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recommendations">Get Recommendations</a>
      */
-    @GET("/recommendations")
-    Call<Recommendations> getRecommendations(@Query("seed_artists") String seedArtists, @Query("seed_genres") String seedGenres, @Query("seed_tracks") String seedTracks);
+    default Call<Recommendations> getRecommendations(String seedArtists, String seedGenres, String seedTracks) {
+        return getRecommendations(seedArtists, seedGenres, seedTracks, java.util.Map.of());
+    }
 
     /**
      * <h3>Get Recommendations</h3>

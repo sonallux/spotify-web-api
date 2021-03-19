@@ -3,7 +3,6 @@ package de.sonallux.spotify.generator.java;
 import com.google.common.base.CaseFormat;
 import de.sonallux.spotify.core.model.SpotifyWebApi;
 import de.sonallux.spotify.core.model.SpotifyWebApiEndpoint;
-import de.sonallux.spotify.core.model.SpotifyWebApiObject;
 import de.sonallux.spotify.generator.java.util.JavaUtils;
 
 import java.util.List;
@@ -43,19 +42,12 @@ public class EndpointRequestBodyHelper {
      */
     public static void fixDuplicateEndpointParameters(SpotifyWebApiEndpoint endpoint) {
         String paramName;
-        switch (endpoint.getId()) {
-            case "endpoint-remove-albums-user":
-            case "endpoint-save-albums-user":
-            case "endpoint-follow-artists-users":
-            case "endpoint-unfollow-artists-users":
-                paramName = "ids";
-                break;
-            case "endpoint-replace-playlists-tracks":
-            case "endpoint-add-tracks-to-playlist":
-                paramName = "uris";
-                break;
-            default:
-                return;
+        if (endpoint.getParameters().stream().filter(p -> "ids".equals(p.getName())).count() == 2) {
+            paramName = "ids";
+        } else if (endpoint.getParameters().stream().filter(p -> "uris".equals(p.getName())).count() == 2) {
+            paramName = "uris";
+        } else {
+            return;
         }
         endpoint.getParameters().removeIf(p -> p.getLocation() == QUERY && paramName.equals(p.getName()));
         for (var param : endpoint.getParameters()) {

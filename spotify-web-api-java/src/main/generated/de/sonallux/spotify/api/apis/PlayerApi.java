@@ -21,8 +21,9 @@ public interface PlayerApi {
      *         <p>If the user making the request is non-premium, a <code>403 FORBIDDEN</code> response code will be returned.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-to-queue">Add an item to queue</a>
      */
-    @POST("/me/player/queue")
-    Call<Void> addToQueue(@Query("uri") String uri);
+    default Call<Void> addToQueue(String uri) {
+        return addToQueue(uri, null);
+    }
 
     /**
      * <h3>Add an item to queue</h3>
@@ -63,8 +64,9 @@ public interface PlayerApi {
      *         When no available devices are found, the request will return a <code>200 OK</code> response but with no data populated.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback">Get Information About The User's Current Playback</a>
      */
-    @GET("/me/player")
-    Call<CurrentlyPlayingContext> getInformationAboutUsersCurrentPlayback();
+    default Call<CurrentlyPlayingContext> getInformationAboutUsersCurrentPlayback() {
+        return getInformationAboutUsersCurrentPlayback(java.util.Map.of());
+    }
 
     /**
      * <h3>Get Information About The User's Current Playback</h3>
@@ -88,8 +90,9 @@ public interface PlayerApi {
      *         <p>If private session is enabled the response will be a <code>204 NO CONTENT</code> with an empty payload.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recently-played">Get Current User's Recently Played Tracks</a>
      */
-    @GET("/me/player/recently-played")
-    Call<CursorPaging<PlayHistory>> getRecentlyPlayed();
+    default Call<CursorPaging<PlayHistory>> getRecentlyPlayed() {
+        return getRecentlyPlayed(java.util.Map.of());
+    }
 
     /**
      * <h3>Get Current User's Recently Played Tracks</h3>
@@ -116,8 +119,9 @@ public interface PlayerApi {
      *         <p>If private session is enabled the response will be a <code>204 NO CONTENT</code> with an empty payload.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-the-users-currently-playing-track">Get the User's Currently Playing Track</a>
      */
-    @GET("/me/player/currently-playing")
-    Call<CurrentlyPlaying> getUsersCurrentlyPlayingTrack(@Query("market") String market);
+    default Call<CurrentlyPlaying> getUsersCurrentlyPlayingTrack(String market) {
+        return getUsersCurrentlyPlayingTrack(market, null);
+    }
 
     /**
      * <h3>Get the User's Currently Playing Track</h3>
@@ -145,8 +149,9 @@ public interface PlayerApi {
      *         <p>If the user making the request is non-premium, a <code>403 FORBIDDEN</code> response code will be returned.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-pause-a-users-playback">Pause a User's Playback</a>
      */
-    @PUT("/me/player/pause")
-    Call<Void> pauseUsersPlayback();
+    default Call<Void> pauseUsersPlayback() {
+        return pauseUsersPlayback(null);
+    }
 
     /**
      * <h3>Pause a User's Playback</h3>
@@ -173,8 +178,9 @@ public interface PlayerApi {
      *         <p>If the user making the request is non-premium, a <code>403 FORBIDDEN</code> response code will be returned.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-seek-to-position-in-currently-playing-track">Seek To Position In Currently Playing Track</a>
      */
-    @PUT("/me/player/seek")
-    Call<Void> seekToPositionInCurrentlyPlayingTrack(@Query("position_ms") int positionMs);
+    default Call<Void> seekToPositionInCurrentlyPlayingTrack(Integer positionMs) {
+        return seekToPositionInCurrentlyPlayingTrack(positionMs, null);
+    }
 
     /**
      * <h3>Seek To Position In Currently Playing Track</h3>
@@ -190,7 +196,7 @@ public interface PlayerApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-seek-to-position-in-currently-playing-track">Seek To Position In Currently Playing Track</a>
      */
     @PUT("/me/player/seek")
-    Call<Void> seekToPositionInCurrentlyPlayingTrack(@Query("position_ms") int positionMs, @Query("device_id") String deviceId);
+    Call<Void> seekToPositionInCurrentlyPlayingTrack(@Query("position_ms") Integer positionMs, @Query("device_id") String deviceId);
 
     /**
      * <h3>Set Repeat Mode On User’s Playback</h3>
@@ -204,8 +210,9 @@ public interface PlayerApi {
      *         <p>If the user making the request is non-premium, a <code>403 FORBIDDEN</code> response code will be returned.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-set-repeat-mode-on-users-playback">Set Repeat Mode On User’s Playback</a>
      */
-    @PUT("/me/player/repeat")
-    Call<Void> setRepeatModeOnUsersPlayback(@Query("state") String state);
+    default Call<Void> setRepeatModeOnUsersPlayback(String state) {
+        return setRepeatModeOnUsersPlayback(state, null);
+    }
 
     /**
      * <h3>Set Repeat Mode On User’s Playback</h3>
@@ -235,8 +242,9 @@ public interface PlayerApi {
      *         <p>If the user making the request is non-premium, a <code>403 FORBIDDEN</code> response code will be returned.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-set-volume-for-users-playback">Set Volume For User's Playback</a>
      */
-    @PUT("/me/player/volume")
-    Call<Void> setVolumeForUsersPlayback(@Query("volume_percent") int volumePercent);
+    default Call<Void> setVolumeForUsersPlayback(Integer volumePercent) {
+        return setVolumeForUsersPlayback(volumePercent, null);
+    }
 
     /**
      * <h3>Set Volume For User's Playback</h3>
@@ -252,7 +260,7 @@ public interface PlayerApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-set-volume-for-users-playback">Set Volume For User's Playback</a>
      */
     @PUT("/me/player/volume")
-    Call<Void> setVolumeForUsersPlayback(@Query("volume_percent") int volumePercent, @Query("device_id") String deviceId);
+    Call<Void> setVolumeForUsersPlayback(@Query("volume_percent") Integer volumePercent, @Query("device_id") String deviceId);
 
     /**
      * <h3>Skip User’s Playback To Next Track</h3>
@@ -265,8 +273,9 @@ public interface PlayerApi {
      *         <p>If the user making the request is non-premium, a <code>403 FORBIDDEN</code> response code will be returned.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-skip-users-playback-to-next-track">Skip User’s Playback To Next Track</a>
      */
-    @POST("/me/player/next")
-    Call<Void> skipUsersPlaybackToNextTrack();
+    default Call<Void> skipUsersPlaybackToNextTrack() {
+        return skipUsersPlaybackToNextTrack(null);
+    }
 
     /**
      * <h3>Skip User’s Playback To Next Track</h3>
@@ -294,8 +303,9 @@ public interface PlayerApi {
      *         <p>If the user making the request is non-premium, a <code>403 FORBIDDEN</code> response code will be returned.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-skip-users-playback-to-previous-track">Skip User’s Playback To Previous Track</a>
      */
-    @POST("/me/player/previous")
-    Call<Void> skipUsersPlaybackToPreviousTrack();
+    default Call<Void> skipUsersPlaybackToPreviousTrack() {
+        return skipUsersPlaybackToPreviousTrack(null);
+    }
 
     /**
      * <h3>Skip User’s Playback To Previous Track</h3>
@@ -323,38 +333,9 @@ public interface PlayerApi {
      *         <p>If the user making the request is non-premium, a <code>403 FORBIDDEN</code> response code will be returned.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-start-a-users-playback">Start/Resume a User's Playback</a>
      */
-    @PUT("/me/player/play")
-    Call<Void> startUsersPlayback();
-
-    /**
-     * <h3>Start/Resume a User's Playback</h3>
-     * <p>Start a new context or resume current playback on the user's active device.</p>
-     * <h3>Required OAuth scopes</h3>
-     * <code>user-modify-playback-state</code>
-     *
-     * @param requestBody <p>The request body</p>
-     * @return <p>A completed request will return a <code>204 NO CONTENT</code> response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback">Get Information About The User's Current Playback</a> endpoint to check that your issued command was handled correctly by the player.</p>
-     *         <p>If the device is not found, the request will return <code>404 NOT FOUND</code> response code.</p>
-     *         <p>If the user making the request is non-premium, a <code>403 FORBIDDEN</code> response code will be returned.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-start-a-users-playback">Start/Resume a User's Playback</a>
-     */
-    @PUT("/me/player/play")
-    Call<Void> startUsersPlayback(@Body StartUsersPlaybackRequest requestBody);
-
-    /**
-     * <h3>Start/Resume a User's Playback</h3>
-     * <p>Start a new context or resume current playback on the user's active device.</p>
-     * <h3>Required OAuth scopes</h3>
-     * <code>user-modify-playback-state</code>
-     *
-     * @param deviceId <p>The id of the device this command is targeting. If not supplied, the user's currently active device is the target.</p>
-     * @return <p>A completed request will return a <code>204 NO CONTENT</code> response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback">Get Information About The User's Current Playback</a> endpoint to check that your issued command was handled correctly by the player.</p>
-     *         <p>If the device is not found, the request will return <code>404 NOT FOUND</code> response code.</p>
-     *         <p>If the user making the request is non-premium, a <code>403 FORBIDDEN</code> response code will be returned.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-start-a-users-playback">Start/Resume a User's Playback</a>
-     */
-    @PUT("/me/player/play")
-    Call<Void> startUsersPlayback(@Query("device_id") String deviceId);
+    default Call<Void> startUsersPlayback() {
+        return startUsersPlayback(null, new StartUsersPlaybackRequest());
+    }
 
     /**
      * <h3>Start/Resume a User's Playback</h3>
@@ -384,8 +365,9 @@ public interface PlayerApi {
      *         <p>If the user making the request is non-premium, a <code>403 FORBIDDEN</code> response code will be returned.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-toggle-shuffle-for-users-playback">Toggle Shuffle For User’s Playback</a>
      */
-    @PUT("/me/player/shuffle")
-    Call<Void> toggleShuffleForUsersPlayback(@Query("state") boolean state);
+    default Call<Void> toggleShuffleForUsersPlayback(Boolean state) {
+        return toggleShuffleForUsersPlayback(state, null);
+    }
 
     /**
      * <h3>Toggle Shuffle For User’s Playback</h3>
@@ -401,7 +383,7 @@ public interface PlayerApi {
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-toggle-shuffle-for-users-playback">Toggle Shuffle For User’s Playback</a>
      */
     @PUT("/me/player/shuffle")
-    Call<Void> toggleShuffleForUsersPlayback(@Query("state") boolean state, @Query("device_id") String deviceId);
+    Call<Void> toggleShuffleForUsersPlayback(@Query("state") Boolean state, @Query("device_id") String deviceId);
 
     /**
      * <h3>Transfer a User's Playback</h3>
@@ -409,7 +391,7 @@ public interface PlayerApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-modify-playback-state</code>
      *
-     * @param requestBody <p>the request body</p>
+     * @param requestBody <p>The request body</p>
      * @return <p>A completed request will return a <code>204 NO CONTENT</code> response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback">Get Information About The User's Current Playback</a> endpoint to check that your issued command was handled correctly by the player.</p>
      *         <p>If the device is not found, the request will return <code>404 NOT FOUND</code> response code.</p>
      *         <p>If the user making the request is non-premium, a <code>403 FORBIDDEN</code> response code will be returned.</p>

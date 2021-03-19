@@ -74,8 +74,9 @@ public interface LibraryApi {
      *         <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-albums">Get User's Saved Albums</a>
      */
-    @GET("/me/albums")
-    Call<Paging<SavedAlbum>> getUsersSavedAlbums();
+    default Call<Paging<SavedAlbum>> getUsersSavedAlbums() {
+        return getUsersSavedAlbums(java.util.Map.of());
+    }
 
     /**
      * <h3>Get User's Saved Albums</h3>
@@ -103,8 +104,9 @@ public interface LibraryApi {
      *         </ul>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-episodes">Get User's Saved Episodes</a>
      */
-    @GET("/me/episodes")
-    Call<Paging<SavedEpisode>> getUsersSavedEpisodes();
+    default Call<Paging<SavedEpisode>> getUsersSavedEpisodes() {
+        return getUsersSavedEpisodes(java.util.Map.of());
+    }
 
     /**
      * <h3>Get User's Saved Episodes</h3>
@@ -133,8 +135,9 @@ public interface LibraryApi {
      *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#error-details">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-shows">Get User's Saved Shows</a>
      */
-    @GET("/me/shows")
-    Call<Paging<SavedShow>> getUsersSavedShows();
+    default Call<Paging<SavedShow>> getUsersSavedShows() {
+        return getUsersSavedShows(java.util.Map.of());
+    }
 
     /**
      * <h3>Get User's Saved Shows</h3>
@@ -160,8 +163,9 @@ public interface LibraryApi {
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an array of <a href="https://developer.spotify.com/documentation/web-api/reference/#object-savedtrackobject">saved track objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-tracks">Get User's Saved Tracks</a>
      */
-    @GET("/me/tracks")
-    Call<Paging<SavedTrack>> getUsersSavedTracks();
+    default Call<Paging<SavedTrack>> getUsersSavedTracks() {
+        return getUsersSavedTracks(java.util.Map.of());
+    }
 
     /**
      * <h3>Get User's Saved Tracks</h3>
@@ -182,7 +186,7 @@ public interface LibraryApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-library-modify</code>
      *
-     * @param requestBody <p>the request body</p>
+     * @param requestBody <p>The request body</p>
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> Success. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to remove an album when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-albums-user">Remove Albums for Current User</a>
      */
@@ -195,26 +199,12 @@ public interface LibraryApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-library-modify</code>
      *
-     * @param ids <p>A comma-separated list of the <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a>. Maximum: 50 IDs.</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> Success. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to remove an episode when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-episodes-user">Remove User's Saved Episodes</a>
-     */
-    @DELETE("/me/episodes")
-    Call<Void> removeEpisodesUser(@Query("ids") String ids);
-
-    /**
-     * <h3>Remove User's Saved Episodes</h3>
-     * <p>Remove one or more episodes from the current user's library.</p><p>This API endpoint is in <strong>beta</strong> and could change without warning. Please share any feedback that you have, or issues that you discover, in our <a href="https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer">developer community forum</a>.</p>
-     * <h3>Required OAuth scopes</h3>
-     * <code>user-library-modify</code>
-     *
-     * @param ids <p>A comma-separated list of the <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a>. Maximum: 50 IDs.</p>
      * @param requestBody <p>The request body</p>
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> Success. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to remove an episode when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-episodes-user">Remove User's Saved Episodes</a>
      */
     @HTTP(method = "DELETE", hasBody = true, path = "/me/episodes")
-    Call<Void> removeEpisodesUser(@Query("ids") String ids, @Body RemoveEpisodesUserRequest requestBody);
+    Call<Void> removeEpisodesUser(@Body RemoveEpisodesUserRequest requestBody);
 
     /**
      * <h3>Remove User's Saved Shows</h3>
@@ -227,8 +217,9 @@ public interface LibraryApi {
      *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#error-details">error object</a>. A <code>403 Forbidden</code> while trying to add a show when you do not have the user's authorisation.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-shows-user">Remove User's Saved Shows</a>
      */
-    @DELETE("/me/shows")
-    Call<Void> removeShowsUser(@Query("ids") String ids);
+    default Call<Void> removeShowsUser(String ids) {
+        return removeShowsUser(ids, null);
+    }
 
     /**
      * <h3>Remove User's Saved Shows</h3>
@@ -251,26 +242,12 @@ public interface LibraryApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-library-modify</code>
      *
-     * @param ids <p>A comma-separated list of the <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a>. For example: <code>ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M</code>. Maximum: 50 IDs.</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> Success. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to remove an album when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-tracks-user">Remove User's Saved Tracks</a>
-     */
-    @DELETE("/me/tracks")
-    Call<Void> removeTracksUser(@Query("ids") String ids);
-
-    /**
-     * <h3>Remove User's Saved Tracks</h3>
-     * <p>Remove one or more tracks from the current user's 'Your Music' library.</p>
-     * <h3>Required OAuth scopes</h3>
-     * <code>user-library-modify</code>
-     *
-     * @param ids <p>A comma-separated list of the <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a>. For example: <code>ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M</code>. Maximum: 50 IDs.</p>
      * @param requestBody <p>The request body</p>
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> Success. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to remove an album when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-tracks-user">Remove User's Saved Tracks</a>
      */
     @HTTP(method = "DELETE", hasBody = true, path = "/me/tracks")
-    Call<Void> removeTracksUser(@Query("ids") String ids, @Body RemoveTracksUserRequest requestBody);
+    Call<Void> removeTracksUser(@Body RemoveTracksUserRequest requestBody);
 
     /**
      * <h3>Save Albums for Current User</h3>
@@ -278,7 +255,7 @@ public interface LibraryApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-library-modify</code>
      *
-     * @param requestBody <p>the request body</p>
+     * @param requestBody <p>The request body</p>
      * @return <p>On success, the HTTP status code in the response header is <code>201</code> Created. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to add an album when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-albums-user">Save Albums for Current User</a>
      */
@@ -291,26 +268,12 @@ public interface LibraryApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-library-modify</code>
      *
-     * @param ids <p>A comma-separated list of the <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a>. Maximum: 50 IDs.</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to add an episode when you do not have the user's authorization, returns error <code>403</code> Forbidden.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-episodes-user">Save Episodes for User</a>
-     */
-    @PUT("/me/episodes")
-    Call<Void> saveEpisodesUser(@Query("ids") String ids);
-
-    /**
-     * <h3>Save Episodes for User</h3>
-     * <p>Save one or more episodes to the current user's library.</p><p>This API endpoint is in <strong>beta</strong> and could change without warning. Please share any feedback that you have, or issues that you discover, in our <a href="https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer">developer community forum</a>.</p>
-     * <h3>Required OAuth scopes</h3>
-     * <code>user-library-modify</code>
-     *
-     * @param ids <p>A comma-separated list of the <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a>. Maximum: 50 IDs.</p>
      * @param requestBody <p>The request body</p>
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to add an episode when you do not have the user's authorization, returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-episodes-user">Save Episodes for User</a>
      */
     @PUT("/me/episodes")
-    Call<Void> saveEpisodesUser(@Query("ids") String ids, @Body SaveEpisodesUserRequest requestBody);
+    Call<Void> saveEpisodesUser(@Body SaveEpisodesUserRequest requestBody);
 
     /**
      * <h3>Save Shows for Current User</h3>
@@ -331,24 +294,10 @@ public interface LibraryApi {
      * <h3>Required OAuth scopes</h3>
      * <code>user-library-modify</code>
      *
-     * @param ids <p>A comma-separated list of the <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a>. For example: <code>ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M</code>. Maximum: 50 IDs.</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to add a track when you do not have the user's authorization, or when you have over 10.000 tracks in Your Music, returns error <code>403</code> Forbidden.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-tracks-user">Save Tracks for User</a>
-     */
-    @PUT("/me/tracks")
-    Call<Void> saveTracksUser(@Query("ids") String ids);
-
-    /**
-     * <h3>Save Tracks for User</h3>
-     * <p>Save one or more tracks to the current user's 'Your Music' library.</p>
-     * <h3>Required OAuth scopes</h3>
-     * <code>user-library-modify</code>
-     *
-     * @param ids <p>A comma-separated list of the <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a>. For example: <code>ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M</code>. Maximum: 50 IDs.</p>
      * @param requestBody <p>The request body</p>
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to add a track when you do not have the user's authorization, or when you have over 10.000 tracks in Your Music, returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-tracks-user">Save Tracks for User</a>
      */
     @PUT("/me/tracks")
-    Call<Void> saveTracksUser(@Query("ids") String ids, @Body SaveTracksUserRequest requestBody);
+    Call<Void> saveTracksUser(@Body SaveTracksUserRequest requestBody);
 }

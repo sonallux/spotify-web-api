@@ -28,8 +28,9 @@ public interface ArtistsApi {
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an array of simplified <a href="https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject">album objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-artists-albums">Get an Artist's Albums</a>
      */
-    @GET("/artists/{id}/albums")
-    Call<Paging<SimplifiedAlbum>> getArtistsAlbums(@Path("id") String id);
+    default Call<Paging<SimplifiedAlbum>> getArtistsAlbums(String id) {
+        return getArtistsAlbums(id, java.util.Map.of());
+    }
 
     /**
      * <h3>Get an Artist's Albums</h3>

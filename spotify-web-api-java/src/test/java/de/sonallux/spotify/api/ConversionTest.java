@@ -63,6 +63,19 @@ class ConversionTest {
     }
 
     @Test
+    void testRequestWithEmptyBodyObject() throws Exception {
+        webServer.enqueue(new MockResponse().setStatus("HTTP/1.1 200 OK"));
+
+        var response = api.callApi(api.getPlaylistsApi().changePlaylistDetails("foo"));
+        assertTrue(response.isSuccessful());
+
+        var request = webServer.takeRequest();
+        assertEquals("application/json; charset=UTF-8", request.getHeader("Content-Type"));
+        var actualBody = request.getBody().readUtf8();
+        assertEquals("{}", actualBody);
+    }
+
+    @Test
     void testRequestWithSnakeCaseToCamelCase() throws Exception {
         webServer.enqueue(new MockResponse().setStatus("HTTP/1.1 200 OK").setBody("{\"snapshot_id\":\"12ab34cd\"}"));
 

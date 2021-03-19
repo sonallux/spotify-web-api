@@ -21,5 +21,5 @@ public class TransferUsersPlaybackRequest {
      * <p><strong>true</strong> : ensure playback happens on new device.<br>
      * <strong>false</strong> or not provided: keep the current playback state.</p>
      */
-    private boolean play;
+    private Boolean play;
 }

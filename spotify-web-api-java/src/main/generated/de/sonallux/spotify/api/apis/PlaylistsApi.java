@@ -16,12 +16,13 @@ public interface PlaylistsApi {
      * <code>playlist-modify-public, playlist-modify-private</code>
      *
      * @param playlistId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the playlist.</p>
-     * @param requestBody <p>the request body</p>
+     * @param requestBody <p>The request body</p>
      * @return <p>On success, the HTTP status code in the response header is <code>201</code> Created. The response body contains a <code>snapshot_id</code> in JSON format. The <code>snapshot_id</code> can be used to identify your playlist version in future requests. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to add an item when you do not have the user's authorization, or when there are more than 10.000 items in the playlist, returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-tracks-to-playlist">Add Items to a Playlist</a>
      */
-    @POST("/playlists/{playlist_id}/tracks")
-    Call<SnapshotId> addTracksToPlaylist(@Path("playlist_id") String playlistId, @Body AddTracksToPlaylistRequest requestBody);
+    default Call<SnapshotId> addTracksToPlaylist(String playlistId, AddTracksToPlaylistRequest requestBody) {
+        return addTracksToPlaylist(playlistId, requestBody, null);
+    }
 
     /**
      * <h3>Add Items to a Playlist</h3>
@@ -30,13 +31,13 @@ public interface PlaylistsApi {
      * <code>playlist-modify-public, playlist-modify-private</code>
      *
      * @param playlistId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the playlist.</p>
-     * @param requestBody <p>the request body</p>
+     * @param requestBody <p>The request body</p>
      * @param position <p>The position to insert the items, a zero-based index. For example, to insert the items in the first position: <code>position=0</code>; to insert the items in the third position: <code>position=2</code> . If omitted, the items will be appended to the playlist. Items are added in the order they are listed in the query string or request body.</p>
      * @return <p>On success, the HTTP status code in the response header is <code>201</code> Created. The response body contains a <code>snapshot_id</code> in JSON format. The <code>snapshot_id</code> can be used to identify your playlist version in future requests. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to add an item when you do not have the user's authorization, or when there are more than 10.000 items in the playlist, returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-tracks-to-playlist">Add Items to a Playlist</a>
      */
     @POST("/playlists/{playlist_id}/tracks")
-    Call<SnapshotId> addTracksToPlaylist(@Path("playlist_id") String playlistId, @Body AddTracksToPlaylistRequest requestBody, @Query("position") int position);
+    Call<SnapshotId> addTracksToPlaylist(@Path("playlist_id") String playlistId, @Body AddTracksToPlaylistRequest requestBody, @Query("position") Integer position);
 
     /**
      * <h3>Change a Playlist's Details</h3>
@@ -49,8 +50,9 @@ public interface PlaylistsApi {
      *         <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Trying to change a playlist when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-change-playlist-details">Change a Playlist's Details</a>
      */
-    @PUT("/playlists/{playlist_id}")
-    Call<Void> changePlaylistDetails(@Path("playlist_id") String playlistId);
+    default Call<Void> changePlaylistDetails(String playlistId) {
+        return changePlaylistDetails(playlistId, new ChangePlaylistDetailsRequest());
+    }
 
     /**
      * <h3>Change a Playlist's Details</h3>
@@ -74,7 +76,7 @@ public interface PlaylistsApi {
      * <code>playlist-modify-public, playlist-modify-private</code>
      *
      * @param userId <p>The user's <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify user ID</a>.</p>
-     * @param requestBody <p>the request body</p>
+     * @param requestBody <p>The request body</p>
      * @return <p>On success, the response body contains the created <a href="https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject">playlist object</a>
      *         in JSON format and the HTTP status code in the response header is <code>200</code> OK or
      *         <code>201</code> Created. There is also a <code>Location</code> response header giving the Web API
@@ -94,8 +96,9 @@ public interface PlaylistsApi {
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an array of simplified <a href="https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject">playlist objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Please note that the access token has to be tied to a user.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-list-of-current-users-playlists">Get a List of Current User's Playlists</a>
      */
-    @GET("/me/playlists")
-    Call<Paging<SimplifiedPlaylist>> getListOfCurrentUsersPlaylists();
+    default Call<Paging<SimplifiedPlaylist>> getListOfCurrentUsersPlaylists() {
+        return getListOfCurrentUsersPlaylists(java.util.Map.of());
+    }
 
     /**
      * <h3>Get a List of Current User's Playlists</h3>
@@ -120,8 +123,9 @@ public interface PlaylistsApi {
      * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an array of simplified <a href="https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject">playlist objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-list-users-playlists">Get a List of a User's Playlists</a>
      */
-    @GET("/users/{user_id}/playlists")
-    Call<Paging<SimplifiedPlaylist>> getListUsersPlaylists(@Path("user_id") String userId);
+    default Call<Paging<SimplifiedPlaylist>> getListUsersPlaylists(String userId) {
+        return getListUsersPlaylists(userId, java.util.Map.of());
+    }
 
     /**
      * <h3>Get a List of a User's Playlists</h3>
@@ -145,8 +149,9 @@ public interface PlaylistsApi {
      * @return <p>On success, the response body contains a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject">playlist object</a> in JSON format and the HTTP status code in the response header is <code>200</code> OK. If an episode is unavailable in the given <code>market</code>, its information will not be included in the response. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Requesting playlists that you do not have the user's authorization to access returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-playlist">Get a Playlist</a>
      */
-    @GET("/playlists/{playlist_id}")
-    Call<Playlist> getPlaylist(@Path("playlist_id") String playlistId);
+    default Call<Playlist> getPlaylist(String playlistId) {
+        return getPlaylist(playlistId, java.util.Map.of());
+    }
 
     /**
      * <h3>Get a Playlist</h3>
@@ -181,8 +186,9 @@ public interface PlaylistsApi {
      * @return <p>On success, the response body contains an array of <a href="https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject">track objects</a> and <a href="https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject">episode objects</a> (depends on the <code>additional_types</code> parameter), wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a> in JSON format and the HTTP status code in the response header is <code>200</code> OK. If an episode is unavailable in the given <code>market</code>, its information will not be included in the response. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>. Requesting playlists that you do not have the user's authorization to access returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-playlists-tracks">Get a Playlist's Items</a>
      */
-    @GET("/playlists/{playlist_id}/tracks")
-    Call<Paging<PlaylistTrack>> getPlaylistsTracks(@Path("playlist_id") String playlistId, @Query("market") String market);
+    default Call<Paging<PlaylistTrack>> getPlaylistsTracks(String playlistId, String market) {
+        return getPlaylistsTracks(playlistId, market, java.util.Map.of());
+    }
 
     /**
      * <h3>Get a Playlist's Items</h3>
@@ -217,7 +223,7 @@ public interface PlaylistsApi {
      * </ul>
      *
      * @param playlistId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a></p>
-     * @param requestBody <p>the request body</p>
+     * @param requestBody <p>The request body</p>
      * @return <p>On success, the response body contains a <code>snapshot_id</code> in JSON format
      *         and the HTTP status code in the response header is <code>200</code> OK. The <code>snapshot_id</code>
      *         can be used to identify your playlist version in future requests.</p>
@@ -237,7 +243,7 @@ public interface PlaylistsApi {
      * <code>playlist-modify-public, playlist-modify-private</code>
      *
      * @param playlistId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the playlist.</p>
-     * @param requestBody <p>the request body</p>
+     * @param requestBody <p>The request body</p>
      * @return <p>On a successful <strong>reorder</strong> operation, the response body contains a <code>snapshot_id</code> in JSON format and the HTTP status code in the response header is <code>200</code> OK. The <code>snapshot_id</code> can be used to identify your playlist version in future requests.</p>
      *         <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a>, the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>, and the existing playlist is unmodified. Trying to set an item when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks">Reorder items in a playlist</a>
@@ -252,7 +258,7 @@ public interface PlaylistsApi {
      * <code>playlist-modify-public, playlist-modify-private</code>
      *
      * @param playlistId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the playlist.</p>
-     * @param requestBody <p>the request body</p>
+     * @param requestBody <p>The request body</p>
      * @return <p>On a successful <strong>replace</strong> operation, the HTTP status code in the response header is <code>201</code> Created.</p>
      *         <p>On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a>, the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>, and the existing playlist is unmodified. Trying to set an item when you do not have the user's authorization returns error <code>403</code> Forbidden.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks">Replace items in a playlist</a>

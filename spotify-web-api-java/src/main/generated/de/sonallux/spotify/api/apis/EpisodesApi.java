@@ -22,8 +22,9 @@ public interface EpisodesApi {
      *         <p>If an episode is unavailable in the given <code>market</code> the HTTP status code in the response header is <code>404</code> NOT FOUND.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-episode">Get an Episode</a>
      */
-    @GET("/episodes/{id}")
-    Call<Episode> getEpisode(@Path("id") String id);
+    default Call<Episode> getEpisode(String id) {
+        return getEpisode(id, null);
+    }
 
     /**
      * <h3>Get an Episode</h3>
@@ -56,8 +57,9 @@ public interface EpisodesApi {
      *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-multiple-episodes">Get Multiple Episodes</a>
      */
-    @GET("/episodes")
-    Call<Episodes> getMultipleEpisodes(@Query("ids") String ids);
+    default Call<Episodes> getMultipleEpisodes(String ids) {
+        return getMultipleEpisodes(ids, null);
+    }
 
     /**
      * <h3>Get Multiple Episodes</h3>

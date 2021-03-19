@@ -9,6 +9,7 @@ import retrofit2.http.*;
  */
 public interface {{className}} {
 {{#endpoints}}
+{{#requiredParametersMethod}}
 
     /**
      * <h3>{{name}}</h3>
@@ -25,9 +26,38 @@ public interface {{className}} {
     {{/notes}}
      *
     {{/hasNotes}}
-    {{#javaDocParams}}
+    {{#requiredJavaDocParameters}}
      * {{.}}
-    {{/javaDocParams}}
+    {{/requiredJavaDocParameters}}
+     * @return {{responseDescriptionFirstLine}}
+    {{#responseDescriptionOthers}}
+     *         {{.}}
+    {{/responseDescriptionOthers}}
+     * @see <a href="{{documentationLink}}">{{name}}</a>
+     */
+    default Call<{{responseType}}> {{methodName}}({{requiredParameters}}) {
+        return {{methodName}}({{arguments}});
+    }
+{{/requiredParametersMethod}}
+
+    /**
+     * <h3>{{name}}</h3>
+     * {{description}}
+    {{#scopes}}
+     * <h3>Required OAuth scopes</h3>
+     * <code>{{scopes}}</code>
+    {{/scopes}}
+     *
+    {{#hasNotes}}
+     * <h3>Notes</h3>
+    {{#notes}}
+     * {{.}}
+    {{/notes}}
+     *
+    {{/hasNotes}}
+    {{#javaDocParameters}}
+     * {{.}}
+    {{/javaDocParameters}}
      * @return {{responseDescriptionFirstLine}}
     {{#responseDescriptionOthers}}
      *         {{.}}
@@ -40,6 +70,6 @@ public interface {{className}} {
     {{^deleteWithBody}}
     @{{httpMethod}}("{{path}}")
     {{/deleteWithBody}}
-    Call<{{responseType}}> {{methodName}}({{arguments}});
+    Call<{{responseType}}> {{methodName}}({{parameters}});
 {{/endpoints}}
 }

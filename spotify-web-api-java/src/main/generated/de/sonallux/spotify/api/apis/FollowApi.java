@@ -46,7 +46,7 @@ public interface FollowApi {
      * <code>user-follow-modify</code>
      *
      * @param type <p>The ID type: either <code>artist</code> or <code>user</code>.</p>
-     * @param requestBody <p>the request body</p>
+     * @param requestBody <p>The request body</p>
      * @return <p>On success, the HTTP status code in the response header is <code>204</code> No Content and the response body is empty.
      *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-follow-artists-users">Follow Artists or Users</a>
@@ -65,8 +65,9 @@ public interface FollowApi {
      *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-follow-playlist">Follow a Playlist</a>
      */
-    @PUT("/playlists/{playlist_id}/followers")
-    Call<Void> followPlaylist(@Path("playlist_id") String playlistId);
+    default Call<Void> followPlaylist(String playlistId) {
+        return followPlaylist(playlistId, new FollowPlaylistRequest());
+    }
 
     /**
      * <h3>Follow a Playlist</h3>
@@ -95,8 +96,9 @@ public interface FollowApi {
      *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-followed">Get User's Followed Artists</a>
      */
-    @GET("/me/following")
-    Call<FollowingArtists> getFollowed(@Query("type") String type);
+    default Call<FollowingArtists> getFollowed(String type) {
+        return getFollowed(type, java.util.Map.of());
+    }
 
     /**
      * <h3>Get User's Followed Artists</h3>
@@ -121,7 +123,7 @@ public interface FollowApi {
      * <code>user-follow-modify</code>
      *
      * @param type <p>The ID type: either <code>artist</code> or <code>user</code>.</p>
-     * @param requestBody <p>the request body</p>
+     * @param requestBody <p>The request body</p>
      * @return <p>On success, the HTTP status code in the response header is <code>204</code> No Content and the response body is empty.
      *         On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
      * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-unfollow-artists-users">Unfollow Artists or Users</a>

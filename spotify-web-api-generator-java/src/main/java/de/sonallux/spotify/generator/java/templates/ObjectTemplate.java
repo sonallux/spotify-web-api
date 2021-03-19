@@ -1,6 +1,5 @@
 package de.sonallux.spotify.generator.java.templates;
 
-import com.google.common.base.CaseFormat;
 import com.google.common.base.Strings;
 import de.sonallux.spotify.core.model.SpotifyWebApiObject;
 import de.sonallux.spotify.generator.java.util.JavaPackage;
