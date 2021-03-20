@@ -24,7 +24,7 @@ public class CurrentlyPlaying {
     /**
      * <p>The currently playing track or episode. Can be <code>null</code>.</p>
      */
-    public java.util.Map<String, Object> item;
+    public BaseObject item;
     /**
      * <p>Progress into the currently playing track or episode. Can be <code>null</code>.</p>
      */

@@ -1,5 +1,6 @@
 package de.sonallux.spotify.api.models;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 
 /**
@@ -8,7 +9,8 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Track {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NONE) // Disable deserialization based on @JsonTypeInfo
+public class Track extends BaseObject {
     /**
      * <p>The album on which the track appears. The album object includes a link in <code>href</code> to full information about the album.</p>
      */
@@ -41,14 +43,6 @@ public class Track {
      * <p>Known external URLs for this track.</p>
      */
     public ExternalUrl externalUrls;
-    /**
-     * <p>A link to the Web API endpoint providing full details of the track.</p>
-     */
-    public String href;
-    /**
-     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the track.</p>
-     */
-    public String id;
     /**
      * <p>Whether or not the track is from a local file.</p>
      */
@@ -83,12 +77,4 @@ public class Track {
      * <p>The number of the track. If an album has several discs, the track number is the number on the specified disc.</p>
      */
     public int trackNumber;
-    /**
-     * <p>The object type: &quot;track&quot;.</p>
-     */
-    public String type;
-    /**
-     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the track.</p>
-     */
-    public String uri;
 }

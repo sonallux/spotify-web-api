@@ -1,5 +1,8 @@
 package {{package}};
 
+{{#extendsBaseObject}}
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+{{/extendsBaseObject}}
 import lombok.*;
 
 {{#documentationLink}}
@@ -10,6 +13,9 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
+{{#extendsBaseObject}}
+@JsonTypeInfo(use = JsonTypeInfo.Id.NONE) // Disable deserialization based on @JsonTypeInfo
+{{/extendsBaseObject}}
 public class {{className}}{{#superClass}} extends {{superClass}}{{/superClass}} {
 {{#properties}}
     {{#hasDescription}}

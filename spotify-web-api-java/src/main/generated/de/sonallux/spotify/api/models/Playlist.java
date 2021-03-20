@@ -1,5 +1,6 @@
 package de.sonallux.spotify.api.models;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 
 /**
@@ -8,7 +9,8 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Playlist {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NONE) // Disable deserialization based on @JsonTypeInfo
+public class Playlist extends BaseObject {
     /**
      * <p><code>true</code> if the owner allows other users to modify the playlist.</p>
      */
@@ -25,14 +27,6 @@ public class Playlist {
      * <p>Information about the followers of the playlist.</p>
      */
     public Followers followers;
-    /**
-     * <p>A link to the Web API endpoint providing full details of the playlist.</p>
-     */
-    public String href;
-    /**
-     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the playlist.</p>
-     */
-    public String id;
     /**
      * <p>Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See <a href="https://developer.spotify.com/documentation/general/guides/working-with-playlists/">Working with Playlists</a>. <em>Note: If returned, the source URL for the image (<code>url</code>) is temporary and will expire in less than a day.</em></p>
      */
@@ -58,12 +52,4 @@ public class Playlist {
      * <p>Information about the tracks of the playlist. Note, a track object may be <code>null</code>. This can happen if a track is no longer available.</p>
      */
     public Paging<PlaylistTrack> tracks;
-    /**
-     * <p>The object type: &quot;playlist&quot;</p>
-     */
-    public String type;
-    /**
-     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the playlist.</p>
-     */
-    public String uri;
 }

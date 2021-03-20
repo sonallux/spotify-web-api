@@ -1,5 +1,6 @@
 package de.sonallux.spotify.api.models;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 
 /**
@@ -8,7 +9,8 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Album {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NONE) // Disable deserialization based on @JsonTypeInfo
+public class Album extends BaseObject {
     /**
      * <p>The type of the album: <code>album</code>, <code>single</code>, or <code>compilation</code>.</p>
      */
@@ -37,14 +39,6 @@ public class Album {
      * <p>A list of the genres used to classify the album. For example: &quot;Prog Rock&quot; , &quot;Post-Grunge&quot;. (If not yet classified, the array is empty.)</p>
      */
     public java.util.List<String> genres;
-    /**
-     * <p>A link to the Web API endpoint providing full details of the album.</p>
-     */
-    public String href;
-    /**
-     * <p>The Spotify ID for the album.</p>
-     */
-    public String id;
     /**
      * <p>The cover art for the album in various sizes, widest first.</p>
      */
@@ -77,12 +71,4 @@ public class Album {
      * <p>The tracks of the album.</p>
      */
     public Paging<SimplifiedTrack> tracks;
-    /**
-     * <p>The object type: &quot;album&quot;</p>
-     */
-    public String type;
-    /**
-     * <p>The Spotify URI for the album.</p>
-     */
-    public String uri;
 }

@@ -1,5 +1,6 @@
 package de.sonallux.spotify.api.models;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 
 /**
@@ -8,7 +9,8 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Show {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NONE) // Disable deserialization based on @JsonTypeInfo
+public class Show extends BaseObject {
     /**
      * <p>A list of the countries in which the show can be played, identified by their <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a> code.</p>
      */
@@ -34,14 +36,6 @@ public class Show {
      */
     public ExternalUrl externalUrls;
     /**
-     * <p>A link to the Web API endpoint providing full details of the show.</p>
-     */
-    public String href;
-    /**
-     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the show.</p>
-     */
-    public String id;
-    /**
      * <p>The cover art for the show in various sizes, widest first.</p>
      */
     public java.util.List<Image> images;
@@ -65,12 +59,4 @@ public class Show {
      * <p>The publisher of the show.</p>
      */
     public String publisher;
-    /**
-     * <p>The object type: &quot;show&quot;.</p>
-     */
-    public String type;
-    /**
-     * <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</a> for the show.</p>
-     */
-    public String uri;
 }

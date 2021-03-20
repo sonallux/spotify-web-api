@@ -1,6 +1,7 @@
 package de.sonallux.spotify.generator.java.templates;
 
 import com.google.common.base.Strings;
+import de.sonallux.spotify.core.SpotifyWebApiObjectUtils;
 import de.sonallux.spotify.core.model.SpotifyWebApiObject;
 import de.sonallux.spotify.generator.java.util.JavaPackage;
 import de.sonallux.spotify.generator.java.util.JavaUtils;
@@ -33,6 +34,11 @@ public class ObjectTemplate extends AbstractTemplate<SpotifyWebApiObject> {
 
     @Override
     public Map<String, Object> buildContext(SpotifyWebApiObject object, Map<String, Object> context) {
+        if (SpotifyWebApiObjectUtils.removeBaseProperties(object)) {
+            context.put("extendsBaseObject", true);
+            context.put("superClass", SpotifyWebApiObjectUtils.BASE_OBJECT_NAME);
+        }
+
         context.put("name", object.getName());
         context.put("className", getClassName(object));
         context.put("properties", object.getProperties().stream().map(this::buildPropertyContext).collect(Collectors.toList()));
