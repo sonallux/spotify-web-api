@@ -1,19 +1,12 @@
 package de.sonallux.spotify.api;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import de.sonallux.spotify.api.apis.*;
-import de.sonallux.spotify.api.util.JacksonConverterFactory;
+import de.sonallux.spotify.api.http.ApiClient;
 import lombok.Getter;
 import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
 
 @Getter
-public class SpotifyWebApi extends BaseSpotifyApi  {
+public class SpotifyWebApi  {
     public static final HttpUrl SPOTIFY_WEB_API_ENDPOINT = HttpUrl.get("https://api.spotify.com/v1");
 
     private final AlbumsApi albumsApi;
@@ -31,50 +24,24 @@ public class SpotifyWebApi extends BaseSpotifyApi  {
     private final TracksApi tracksApi;
     private final UsersProfileApi usersProfileApi;
 
-    public SpotifyWebApi(Retrofit retrofit) {
-        super(retrofit);
-        this.albumsApi = retrofit.create(AlbumsApi.class);
-        this.artistsApi = retrofit.create(ArtistsApi.class);
-        this.browseApi = retrofit.create(BrowseApi.class);
-        this.episodesApi = retrofit.create(EpisodesApi.class);
-        this.followApi = retrofit.create(FollowApi.class);
-        this.libraryApi = retrofit.create(LibraryApi.class);
-        this.marketsApi = retrofit.create(MarketsApi.class);
-        this.personalizationApi = retrofit.create(PersonalizationApi.class);
-        this.playerApi = retrofit.create(PlayerApi.class);
-        this.playlistsApi = retrofit.create(PlaylistsApi.class);
-        this.searchApi = retrofit.create(SearchApi.class);
-        this.showsApi = retrofit.create(ShowsApi.class);
-        this.tracksApi = retrofit.create(TracksApi.class);
-        this.usersProfileApi = retrofit.create(UsersProfileApi.class);
+    SpotifyWebApi(ApiClient apiClient) {
+        this.albumsApi = new AlbumsApi(apiClient);
+        this.artistsApi = new ArtistsApi(apiClient);
+        this.browseApi = new BrowseApi(apiClient);
+        this.episodesApi = new EpisodesApi(apiClient);
+        this.followApi = new FollowApi(apiClient);
+        this.libraryApi = new LibraryApi(apiClient);
+        this.marketsApi = new MarketsApi(apiClient);
+        this.personalizationApi = new PersonalizationApi(apiClient);
+        this.playerApi = new PlayerApi(apiClient);
+        this.playlistsApi = new PlaylistsApi(apiClient);
+        this.searchApi = new SearchApi(apiClient);
+        this.showsApi = new ShowsApi(apiClient);
+        this.tracksApi = new TracksApi(apiClient);
+        this.usersProfileApi = new UsersProfileApi(apiClient);
     }
 
-    public SpotifyWebApi(OkHttpClient okHttpClient, HttpUrl baseUrl) {
-        this(createDefaultRetrofit(okHttpClient, baseUrl));
-    }
-
-    public SpotifyWebApi(HttpUrl baseUrl) {
-        this(new OkHttpClient(), baseUrl);
-    }
-
-    public SpotifyWebApi(OkHttpClient okHttpClient) {
-        this(okHttpClient, SPOTIFY_WEB_API_ENDPOINT);
-    }
-
-    public SpotifyWebApi() {
-        this(new OkHttpClient());
-    }
-
-    private static Retrofit createDefaultRetrofit(OkHttpClient okHttpClient, HttpUrl baseUrl) {
-        var mapper = new ObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-                .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
-                .registerModule(new JavaTimeModule());
-        return new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .client(okHttpClient)
-                .addConverterFactory(new JacksonConverterFactory(mapper))
-                .build();
+    public static SpotifyWebApiBuilder builder() {
+        return new SpotifyWebApiBuilder();
     }
 }

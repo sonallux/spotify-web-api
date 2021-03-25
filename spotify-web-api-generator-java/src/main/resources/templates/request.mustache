@@ -1,0 +1,91 @@
+package {{package}};
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import de.sonallux.spotify.api.http.ApiCall;
+import de.sonallux.spotify.api.http.ApiClient;
+import de.sonallux.spotify.api.http.Request;
+import de.sonallux.spotify.api.models.*;
+
+/**
+ * <a href="{{documentationLink}}">{{name}}</a>
+{{#scopes}}
+ *
+ * <h3>Required OAuth scopes</h3>
+ * <code>{{scopes}}</code>
+{{/scopes}}
+ *
+{{#hasNotes}}
+ * <h3>Notes</h3>
+{{#notes}}
+ * {{.}}
+{{/notes}}
+ *
+{{/hasNotes}}
+ * <h3>Response</h3>
+{{#responseDescription}}
+ * {{.}}
+{{/responseDescription}}
+ */
+public class {{className}} {
+    private static final TypeReference<{{responseType}}> RESPONSE_TYPE = new TypeReference<>() {};
+    private final ApiClient apiClient;
+    private final Request request;
+
+    /**
+     * <h3>{{name}}</h3>
+    {{#requiredJavaDocParameters}}
+     * {{.}}
+    {{/requiredJavaDocParameters}}
+     */
+    public {{className}}({{requiredParameters}}) {
+        this.apiClient = apiClient;
+        this.request = new Request("{{httpMethod}}", "{{path}}")
+{{#requiredPathParameters}}
+            .addPathParameter("{{jsonName}}", String.valueOf({{javaName}}))
+{{/requiredPathParameters}}
+{{#requiredQueryParameters}}
+            .addQueryParameter("{{jsonName}}", String.valueOf({{javaName}}))
+{{/requiredQueryParameters}}
+{{#requiredBodyParameters}}
+            .addBodyParameter("{{jsonName}}", {{javaName}})
+{{/requiredBodyParameters}}
+        ;
+    }
+
+{{#optionalPathParameters}}
+    /**
+     * {{description}}
+     */
+    public {{className}} {{javaName}}({{type}} {{javaName}}) {
+        this.request.addPathParameter("{{jsonName}}", String.valueOf({{javaName}}));
+        return this;
+    }
+
+{{/optionalPathParameters}}
+{{#optionalQueryParameters}}
+    /**
+     * {{description}}
+     */
+    public {{className}} {{javaName}}({{type}} {{javaName}}) {
+        this.request.addQueryParameter("{{jsonName}}", String.valueOf({{javaName}}));
+        return this;
+    }
+
+{{/optionalQueryParameters}}
+{{#optionalBodyParameters}}
+    /**
+     * {{description}}
+     */
+    public {{className}} {{javaName}}({{type}} {{javaName}}) {
+        this.request.addBodyParameter("{{jsonName}}", {{javaName}});
+        return this;
+    }
+
+{{/optionalBodyParameters}}
+    /**
+     * Build the request into an executable call
+     */
+    public ApiCall<{{responseType}}> build() {
+        return apiClient.createApiCall(request, RESPONSE_TYPE);
+    }
+}

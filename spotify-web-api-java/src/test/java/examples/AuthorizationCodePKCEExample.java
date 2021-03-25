@@ -1,20 +1,20 @@
 package examples;
 
-import de.sonallux.spotify.api.SpotifyApi;
 import de.sonallux.spotify.api.SpotifyApiException;
+import de.sonallux.spotify.api.SpotifyWebApi;
 import de.sonallux.spotify.api.authorization.InMemoryTokenStore;
 import de.sonallux.spotify.api.authorization.Scope;
 import de.sonallux.spotify.api.authorization.SpotifyAuthorizationException;
 import de.sonallux.spotify.api.authorization.authorization_code.AuthorizationCodePKCEFlow;
 
 public class AuthorizationCodePKCEExample {
-    private final SpotifyApi spotifyApi;
+    private final SpotifyWebApi spotifyApi;
     private final AuthorizationCodePKCEFlow authCodePKCEFlow;
 
     public AuthorizationCodePKCEExample() {
         var tokenStore = new InMemoryTokenStore();
         this.authCodePKCEFlow = new AuthorizationCodePKCEFlow("<client id>", "<redirect uri>", tokenStore);
-        this.spotifyApi = new SpotifyApi(authCodePKCEFlow);
+        this.spotifyApi = SpotifyWebApi.builder().authorization(authCodePKCEFlow).build();
     }
 
     public static void main(String[] args) {
@@ -55,9 +55,8 @@ public class AuthorizationCodePKCEExample {
     }
 
     private void useTheSpotifyWebApi() {
-        var usersSavedTracksCall = spotifyApi.getLibraryApi().getUsersSavedTracks();
         try {
-            var usersSavedTracks = spotifyApi.callApiAndReturnBody(usersSavedTracksCall);
+            var usersSavedTracks = spotifyApi.getLibraryApi().getUsersSavedTracks().build().execute();
             usersSavedTracks.getItems().forEach(System.out::println);
         } catch (SpotifyApiException e) {
             e.printStackTrace();

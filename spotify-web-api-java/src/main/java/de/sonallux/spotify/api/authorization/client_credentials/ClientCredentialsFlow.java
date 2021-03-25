@@ -1,14 +1,12 @@
 package de.sonallux.spotify.api.authorization.client_credentials;
 
-import de.sonallux.spotify.api.BaseSpotifyApi;
 import de.sonallux.spotify.api.SpotifyApiException;
 import de.sonallux.spotify.api.authorization.InMemoryTokenStore;
 import de.sonallux.spotify.api.authorization.SpotifyAuthorizationException;
 import de.sonallux.spotify.api.authorization.TokenStore;
 import de.sonallux.spotify.api.authorization.TokenStoreApiAuthorizationProvider;
-import de.sonallux.spotify.api.util.JacksonConverterFactory;
+import de.sonallux.spotify.api.http.ApiClient;
 import okhttp3.HttpUrl;
-import retrofit2.Retrofit;
 
 import java.util.Base64;
 
@@ -20,34 +18,30 @@ import java.util.Base64;
 public class ClientCredentialsFlow extends TokenStoreApiAuthorizationProvider {
     private final String clientId;
     private final String clientSecret;
-
-    private final BaseSpotifyApi baseSpotifyApi;
     private final AuthorizationTokenApi tokenApi;
 
     ClientCredentialsFlow(String clientId, String clientSecret, TokenStore tokenStore, HttpUrl tokenApiBaseUrl) {
         super(tokenStore);
         this.clientId = clientId;
         this.clientSecret = clientSecret;
-        var retrofit = createRetrofit(tokenApiBaseUrl);
-        this.baseSpotifyApi = new BaseSpotifyApi(retrofit);
-        this.tokenApi = retrofit.create(AuthorizationTokenApi.class);
+        var apiClient = createApiClient(tokenApiBaseUrl);
+        this.tokenApi = new AuthorizationTokenApi(apiClient);
     }
 
     public ClientCredentialsFlow(String clientId, String clientSecret) {
         this(clientId, clientSecret, new InMemoryTokenStore(), AuthorizationTokenApi.BASE_URL);
     }
 
-    private static Retrofit createRetrofit(HttpUrl tokenApiBaseUrl) {
-        return new Retrofit.Builder()
+    private static ApiClient createApiClient(HttpUrl tokenApiBaseUrl) {
+        return ApiClient.builder()
             .baseUrl(tokenApiBaseUrl)
-            .addConverterFactory(new JacksonConverterFactory())
             .build();
     }
 
     public void authorize() throws SpotifyAuthorizationException {
         var authTokensCall = tokenApi.getAuthTokens(createTokensCallAuthHeader(), "client_credentials");
         try {
-            var authTokens = baseSpotifyApi.callApiAndReturnBody(authTokensCall);
+            var authTokens = authTokensCall.execute();
             tokenStore.storeTokens(authTokens);
         }
         catch (SpotifyApiException e) {

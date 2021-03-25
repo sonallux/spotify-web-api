@@ -34,14 +34,9 @@ public class JavaGenerator {
             objectTemplate.generate(object, outputFolder, javaPackage);
         }
 
-        var apiTemplate = new CategoryTemplate().loadTemplate(this.mustacheFactory);
+        var apiTemplate = new ApiTemplate().loadTemplate(this.mustacheFactory);
         for (var category : spotifyWebApi.getCategoryList()) {
             apiTemplate.generate(category, outputFolder, javaPackage);
-        }
-
-        var requestBodyTemplate = new RequestBodyTemplate().loadTemplate(this.mustacheFactory);
-        for (var object : EndpointRequestBodyHelper.getEndpointRequestBodies(spotifyWebApi)) {
-            requestBodyTemplate.generate(object, outputFolder, javaPackage);
         }
 
         new SpotifyWebApiTemplate()

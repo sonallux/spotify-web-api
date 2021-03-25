@@ -1,17 +1,17 @@
 package examples;
 
-import de.sonallux.spotify.api.SpotifyApi;
 import de.sonallux.spotify.api.SpotifyApiException;
+import de.sonallux.spotify.api.SpotifyWebApi;
 import de.sonallux.spotify.api.authorization.Scope;
 import de.sonallux.spotify.api.authorization.implicit_grant.ImplicitGrantFlow;
 
 public class ImplicitGrantExample {
-    private final SpotifyApi spotifyApi;
+    private final SpotifyWebApi spotifyApi;
     private final ImplicitGrantFlow implicitGrantFlow;
 
     public ImplicitGrantExample() {
         this.implicitGrantFlow = new ImplicitGrantFlow("<client id>", "<redirect uri>");
-        this.spotifyApi = new SpotifyApi(implicitGrantFlow);
+        this.spotifyApi = SpotifyWebApi.builder().authorization(implicitGrantFlow).build();
     }
 
     public static void main(String[] args) {
@@ -47,9 +47,8 @@ public class ImplicitGrantExample {
     }
 
     private void useTheSpotifyWebApi() {
-        var usersSavedTracksCall = spotifyApi.getLibraryApi().getUsersSavedTracks();
         try {
-            var usersSavedTracks = spotifyApi.callApiAndReturnBody(usersSavedTracksCall);
+            var usersSavedTracks = spotifyApi.getLibraryApi().getUsersSavedTracks().build().execute();
             usersSavedTracks.getItems().forEach(System.out::println);
         } catch (SpotifyApiException e) {
             e.printStackTrace();

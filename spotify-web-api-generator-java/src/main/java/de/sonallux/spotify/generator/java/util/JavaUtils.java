@@ -1,5 +1,6 @@
 package de.sonallux.spotify.generator.java.util;
 
+import com.google.common.base.CaseFormat;
 import de.sonallux.spotify.core.SpotifyWebApiUtils;
 import de.sonallux.spotify.core.model.SpotifyWebApiCategory;
 import de.sonallux.spotify.core.model.SpotifyWebApiEndpoint;
@@ -92,5 +93,9 @@ public class JavaUtils {
 
     public static String getClassName(SpotifyWebApiCategory category) {
         return category.getName().replace(" ", "").replace("API", "Api");
+    }
+
+    public static String getEndpointRequestBuilderName(SpotifyWebApiEndpoint endpoint) {
+        return CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_CAMEL, JavaUtils.shrinkEndpointId(endpoint)) + "Request";
     }
 }

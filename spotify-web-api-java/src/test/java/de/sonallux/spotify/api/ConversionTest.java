@@ -1,8 +1,6 @@
 package de.sonallux.spotify.api;
 
-import de.sonallux.spotify.api.models.ChangePlaylistDetailsRequest;
 import de.sonallux.spotify.api.models.Episode;
-import de.sonallux.spotify.api.models.RemoveTracksPlaylistRequest;
 import de.sonallux.spotify.api.models.Track;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -14,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,7 +24,7 @@ class ConversionTest {
         webServer = new MockWebServer();
         webServer.start();
         var baseUrl = webServer.url("/");
-        api = new SpotifyWebApi(baseUrl);
+        api = SpotifyWebApi.builder().baseUrl(baseUrl).build();
     }
 
     @AfterEach
@@ -39,7 +36,7 @@ class ConversionTest {
     void testResponseSnakeCaseToCamelCase() throws Exception {
         webServer.enqueue(loadMockResponse("get-playlist.json"));
 
-        var playlist = api.callApiAndReturnBody(api.getPlaylistsApi().getPlaylist("foo"));
+        var playlist = api.getPlaylistsApi().getPlaylist("foo").build().execute();
         assertEquals("37i9dQZF1DX4TiN7pMwV0Z", playlist.getId());
         assertEquals("MTYxNTI3MzcxMSwwMDAwMDAwMDcxOTM3NDM1NDIxMmIzODI4NGQzMDI0OGRiZGQ4M2Q4", playlist.getSnapshotId());
         assertFalse(playlist.isPublic());
@@ -55,8 +52,12 @@ class ConversionTest {
     void testRequestWithReservedKeyWord() throws Exception {
         webServer.enqueue(new MockResponse().setStatus("HTTP/1.1 200 OK"));
 
-        var changePlaylistDetailsRequest = new ChangePlaylistDetailsRequest("Test", true, false, "Test description");
-        var response = api.callApi(api.getPlaylistsApi().changePlaylistDetails("foo", changePlaylistDetailsRequest));
+        var response = api.getPlaylistsApi().changePlaylistDetails("foo")
+            .name("Test")
+            .collaborative(false)
+            .description("Test description")
+            ._public(true)
+            .build().executeCall();
         assertTrue(response.isSuccessful());
 
         var request = webServer.takeRequest();
@@ -69,21 +70,21 @@ class ConversionTest {
     void testRequestWithEmptyBodyObject() throws Exception {
         webServer.enqueue(new MockResponse().setStatus("HTTP/1.1 200 OK"));
 
-        var response = api.callApi(api.getPlaylistsApi().changePlaylistDetails("foo"));
+        var response = api.getPlaylistsApi().changePlaylistDetails("foo").build().executeCall();
         assertTrue(response.isSuccessful());
 
         var request = webServer.takeRequest();
-        assertEquals("application/json; charset=UTF-8", request.getHeader("Content-Type"));
         var actualBody = request.getBody().readUtf8();
-        assertEquals("{}", actualBody);
+        assertEquals("", actualBody);
     }
 
     @Test
     void testRequestWithSnakeCaseToCamelCase() throws Exception {
         webServer.enqueue(new MockResponse().setStatus("HTTP/1.1 200 OK").setBody("{\"snapshot_id\":\"12ab34cd\"}"));
 
-        var removeTracksRequest = new RemoveTracksPlaylistRequest(List.of(), "ab12cd34");
-        var newSnapshotId = api.callApiAndReturnBody(api.getPlaylistsApi().removeTracksPlaylist("foo", removeTracksRequest));
+        var newSnapshotId = api.getPlaylistsApi().removeTracksPlaylist("foo", List.of())
+            .snapshotId("ab12cd34")
+            .build().execute();
         assertEquals("12ab34cd", newSnapshotId.getSnapshotId());
 
         var request = webServer.takeRequest();
@@ -96,7 +97,7 @@ class ConversionTest {
     void testUnionTypeHandlingWithAdditionalTypesParameter() throws Exception {
         webServer.enqueue(loadMockResponse("get-playlists-tracks-union.json"));
 
-        var response = api.callApiAndReturnBody(api.getPlaylistsApi().getPlaylistsTracks("foo", "DE"));
+        var response = api.getPlaylistsApi().getPlaylistsTracks("foo", "DE").build().execute();
         var track = response.getItems().get(0).getTrack();
         assertNotNull(track);
         assertEquals("track", track.getType());
@@ -116,7 +117,9 @@ class ConversionTest {
     void testUnionTypeHandlingWithoutAdditionalTypesParameter() throws Exception {
         webServer.enqueue(loadMockResponse("get-playlists-tracks.json"));
 
-        var response = api.callApiAndReturnBody(api.getPlaylistsApi().getPlaylistsTracks("foo", "DE", Map.of("additional_types", "track")));
+        var response = api.getPlaylistsApi().getPlaylistsTracks("foo", "DE")
+            .additionalTypes("track")
+            .build().execute();
         var track = response.getItems().get(0).getTrack();
         assertNotNull(track);
         assertEquals("track", track.getType());
@@ -129,6 +132,15 @@ class ConversionTest {
 
         var request = webServer.takeRequest();
         assertEquals("/playlists/foo/tracks?market=DE&additional_types=track", request.getPath());
+    }
+
+    @Test
+    void testEmptyResponseBodyWithNonVoidType() throws Exception {
+        webServer.enqueue(new MockResponse().setStatus("HTTP/1.1 204 NO CONTENT"));
+
+        var response = api.getPlayerApi().getRecentlyPlayed().build().executeCall();
+        assertTrue(response.isSuccessful());
+        assertNull(response.body());
     }
 
     private MockResponse loadMockResponse(String fileName) throws Exception {

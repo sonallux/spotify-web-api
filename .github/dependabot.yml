@@ -8,6 +8,3 @@ updates:
     open-pull-requests-limit: 10
     reviewers:
       - sonallux
-    ignore:
-      - dependency-name: 'com.squareup.okhttp3:mockwebserver'
-        versions: ['[4.0,)']

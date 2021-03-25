@@ -21,14 +21,14 @@ class SpotifyApiTest {
     ApiAuthorizationProvider apiAuthorizationProvider;
 
     private MockWebServer webServer;
-    private SpotifyApi api;
+    private SpotifyWebApi api;
 
     @BeforeEach
     void setup() throws IOException {
         webServer = new MockWebServer();
         webServer.start();
         var baseUrl = webServer.url("/");
-        api = new SpotifyApi(apiAuthorizationProvider, baseUrl);
+        api = SpotifyWebApi.builder().baseUrl(baseUrl).authorization(apiAuthorizationProvider).build();
     }
 
     @AfterEach
@@ -41,7 +41,7 @@ class SpotifyApiTest {
         when(apiAuthorizationProvider.getAuthorizationHeaderValue()).thenReturn(null);
         webServer.enqueue(mockResponseArtist);
 
-        var artist = api.callApiAndReturnBody(api.getArtistsApi().getArtist("foo"));
+        var artist = api.getArtistsApi().getArtist("foo").build().execute();
         assertNotNull(artist);
         assertEquals("0OdUWJ0sBjDrqHygGUXeCF", artist.getId());
         assertEquals("https://open.spotify.com/artist/0OdUWJ0sBjDrqHygGUXeCF", artist.getExternalUrls().getSpotify());
@@ -57,7 +57,7 @@ class SpotifyApiTest {
         when(apiAuthorizationProvider.getAuthorizationHeaderValue()).thenReturn("Bearer some-access-token");
         webServer.enqueue(mockResponseArtist);
 
-        var artist = api.callApiAndReturnBody(api.getArtistsApi().getArtist("foo"));
+        var artist = api.getArtistsApi().getArtist("foo").build().execute();
         assertNotNull(artist);
         assertEquals("0OdUWJ0sBjDrqHygGUXeCF", artist.getId());
         assertEquals("https://open.spotify.com/artist/0OdUWJ0sBjDrqHygGUXeCF", artist.getExternalUrls().getSpotify());
@@ -75,7 +75,7 @@ class SpotifyApiTest {
         webServer.enqueue(mockResponseUnauthorizedInvalidToken);
         webServer.enqueue(mockResponseArtist);
 
-        var artist = api.callApiAndReturnBody(api.getArtistsApi().getArtist("foo"));
+        var artist = api.getArtistsApi().getArtist("foo").build().execute();
         assertNotNull(artist);
         assertEquals("0OdUWJ0sBjDrqHygGUXeCF", artist.getId());
 
@@ -94,7 +94,7 @@ class SpotifyApiTest {
         when(apiAuthorizationProvider.refreshAccessToken()).thenReturn(false);
         webServer.enqueue(mockResponseUnauthorizedInvalidToken);
 
-        assertThrows(SpotifyApiException.class, () -> api.callApiAndReturnBody(api.getArtistsApi().getArtist("foo")));
+        assertThrows(SpotifyApiException.class, () -> api.getArtistsApi().getArtist("foo").build().execute());
 
         verify(apiAuthorizationProvider, times(1)).refreshAccessToken();
 

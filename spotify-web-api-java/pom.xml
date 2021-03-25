@@ -16,21 +16,18 @@
     <packaging>jar</packaging>
 
     <name>spotify-web-api-java</name>
-    <description>A Java wrapper for Spotify's Web API using Retrofit</description>
+    <description>A Java wrapper for Spotify's Web API</description>
     <url>https://github.com/sonallux/spotify-web-api</url>
 
     <properties>
-        <retrofit.version>2.9.0</retrofit.version>
-
-        <!-- This version should match the OkHttp version Retrofit is using -->
-        <mockwebserver.version>3.14.9</mockwebserver.version>
+        <okhttp.version>4.9.1</okhttp.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.squareup.retrofit2</groupId>
-            <artifactId>retrofit</artifactId>
-            <version>${retrofit.version}</version>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -63,7 +60,7 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>mockwebserver</artifactId>
-            <version>${mockwebserver.version}</version>
+            <version>${okhttp.version}</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>

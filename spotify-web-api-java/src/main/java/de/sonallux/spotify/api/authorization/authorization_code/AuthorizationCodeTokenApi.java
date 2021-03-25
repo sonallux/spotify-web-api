@@ -1,44 +1,52 @@
 package de.sonallux.spotify.api.authorization.authorization_code;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import de.sonallux.spotify.api.authorization.AuthTokens;
+import de.sonallux.spotify.api.http.ApiCall;
+import de.sonallux.spotify.api.http.ApiClient;
+import de.sonallux.spotify.api.http.Request;
+import lombok.RequiredArgsConstructor;
 import okhttp3.HttpUrl;
-import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.Header;
-import retrofit2.http.POST;
 
-interface AuthorizationCodeTokenApi {
-    HttpUrl BASE_URL = HttpUrl.get("https://accounts.spotify.com");
+@RequiredArgsConstructor
+class AuthorizationCodeTokenApi {
+    static final HttpUrl BASE_URL = HttpUrl.get("https://accounts.spotify.com");
+    private static final TypeReference<AuthTokens> AUTH_TOKENS_TYPE = new TypeReference<>() {};
 
-    @POST("api/token")
-    @FormUrlEncoded
-    Call<AuthTokens> getTokensFromAuthorizationCode(
-        @Header("Authorization") String authHeaderValue,
-        @Field("grant_type") String grantType,
-        @Field("code") String code,
-        @Field("redirect_uri") String redirectUri);
+    private final ApiClient apiClient;
 
-    @POST("api/token")
-    @FormUrlEncoded
-    Call<AuthTokens> getTokensFromRefreshToken(
-        @Header("Authorization") String authHeaderValue,
-        @Field("grant_type") String grantType,
-        @Field("refresh_token") String refreshToken);
+    ApiCall<AuthTokens> getTokensFromAuthorizationCode(String authHeaderValue, String grantType, String code, String redirectUri) {
+        var request = new Request("POST", "/api/token")
+            .addHeaderParameter("Authorization", authHeaderValue)
+            .addFormUrlEncodedField("grant_type", grantType)
+            .addFormUrlEncodedField("code", code)
+            .addFormUrlEncodedField("redirect_uri", redirectUri);
+        return apiClient.createApiCall(request, AUTH_TOKENS_TYPE);
+    }
 
-    @POST("api/token")
-    @FormUrlEncoded
-    Call<AuthTokens> getTokensFromAuthorizationCodePKCE(
-        @Field("client_id") String clientId,
-        @Field("grant_type") String grantType,
-        @Field("code") String code,
-        @Field("redirect_uri") String redirectUri,
-        @Field("code_verifier") String codeVerifier);
+    ApiCall<AuthTokens> getTokensFromRefreshToken(String authHeaderValue, String grantType, String refreshToken) {
+        var request = new Request("POST", "/api/token")
+            .addHeaderParameter("Authorization", authHeaderValue)
+            .addFormUrlEncodedField("grant_type", grantType)
+            .addFormUrlEncodedField("refresh_token", refreshToken);
+        return apiClient.createApiCall(request, AUTH_TOKENS_TYPE);
+    }
 
-    @POST("api/token")
-    @FormUrlEncoded
-    Call<AuthTokens> getTokensFromRefreshTokenPKCE(
-        @Field("client_id") String clientId,
-        @Field("grant_type") String grantType,
-        @Field("refresh_token") String refreshToken);
+    ApiCall<AuthTokens> getTokensFromAuthorizationCodePKCE(String clientId, String grantType, String code, String redirectUri, String codeVerifier) {
+        var request = new Request("POST", "/api/token")
+            .addFormUrlEncodedField("client_id", clientId)
+            .addFormUrlEncodedField("grant_type", grantType)
+            .addFormUrlEncodedField("code", code)
+            .addFormUrlEncodedField("redirect_uri", redirectUri)
+            .addFormUrlEncodedField("code_verifier", codeVerifier);
+        return apiClient.createApiCall(request, AUTH_TOKENS_TYPE);
+    }
+
+    ApiCall<AuthTokens> getTokensFromRefreshTokenPKCE(String clientId, String grantType, String refreshToken) {
+        var request = new Request("POST", "/api/token")
+            .addFormUrlEncodedField("client_id", clientId)
+            .addFormUrlEncodedField("grant_type", grantType)
+            .addFormUrlEncodedField("refresh_token", refreshToken);
+        return apiClient.createApiCall(request, AUTH_TOKENS_TYPE);
+    }
 }

@@ -1,58 +1,25 @@
 package {{package}};
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import {{basePackage}}.apis.*;
-import de.sonallux.spotify.api.util.JacksonConverterFactory;
+import de.sonallux.spotify.api.apis.*;
+import de.sonallux.spotify.api.http.ApiClient;
 import lombok.Getter;
 import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
 
 @Getter
-public class SpotifyWebApi extends BaseSpotifyApi  {
+public class SpotifyWebApi  {
     public static final HttpUrl SPOTIFY_WEB_API_ENDPOINT = HttpUrl.get("{{endpointUrl}}");
 
 {{#apis}}
     private final {{className}} {{fieldName}};
 {{/apis}}
 
-    public SpotifyWebApi(Retrofit retrofit) {
-        super(retrofit);
+    SpotifyWebApi(ApiClient apiClient) {
 {{#apis}}
-        this.{{fieldName}} = retrofit.create({{className}}.class);
+        this.{{fieldName}} = new {{className}}(apiClient);
 {{/apis}}
     }
 
-    public SpotifyWebApi(OkHttpClient okHttpClient, HttpUrl baseUrl) {
-        this(createDefaultRetrofit(okHttpClient, baseUrl));
-    }
-
-    public SpotifyWebApi(HttpUrl baseUrl) {
-        this(new OkHttpClient(), baseUrl);
-    }
-
-    public SpotifyWebApi(OkHttpClient okHttpClient) {
-        this(okHttpClient, SPOTIFY_WEB_API_ENDPOINT);
-    }
-
-    public SpotifyWebApi() {
-        this(new OkHttpClient());
-    }
-
-    private static Retrofit createDefaultRetrofit(OkHttpClient okHttpClient, HttpUrl baseUrl) {
-        var mapper = new ObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-                .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
-                .registerModule(new JavaTimeModule());
-        return new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .client(okHttpClient)
-                .addConverterFactory(new JacksonConverterFactory(mapper))
-                .build();
+    public static SpotifyWebApiBuilder builder() {
+        return new SpotifyWebApiBuilder();
     }
 }

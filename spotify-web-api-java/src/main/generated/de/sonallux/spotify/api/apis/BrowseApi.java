@@ -1,175 +1,81 @@
 package de.sonallux.spotify.api.apis;
 
-import de.sonallux.spotify.api.models.*;
-import retrofit2.Call;
-import retrofit2.http.*;
+import de.sonallux.spotify.api.http.ApiClient;
+import de.sonallux.spotify.api.apis.browse.*;
+import lombok.RequiredArgsConstructor;
 
 /**
  * <a href="https://developer.spotify.com/documentation/web-api/reference/#category-browse">Browse API</a>
  */
-public interface BrowseApi {
+@RequiredArgsConstructor
+public class BrowseApi {
+    private final ApiClient apiClient;
 
     /**
      * <h3>Get a Category's Playlists</h3>
      * <p>Get a list of Spotify playlists tagged with a particular category.</p>
-     *
      * @param categoryId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify category ID</a> for the category.</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an array of simplified <a href="https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject">playlist objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
-     *         <p>Once you have retrieved the list, you can use <a href="https://developer.spotify.com/web-api/get-playlist/">Get a Playlist</a> and <a href="https://developer.spotify.com/web-api/get-playlists-tracks/">Get a Playlist's Tracks</a> to drill down further.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-categories-playlists">Get a Category's Playlists</a>
+     * @return a {@link GetCategoriesPlaylistsRequest} object to build and execute the request
      */
-    default Call<PlaylistPaging> getCategoriesPlaylists(String categoryId) {
-        return getCategoriesPlaylists(categoryId, java.util.Map.of());
-    }
-
-    /**
-     * <h3>Get a Category's Playlists</h3>
-     * <p>Get a list of Spotify playlists tagged with a particular category.</p>
-     *
-     * @param categoryId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify category ID</a> for the category.</p>
-     * @param queryParameters <p>A map of optional query parameters</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an array of simplified <a href="https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject">playlist objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
-     *         <p>Once you have retrieved the list, you can use <a href="https://developer.spotify.com/web-api/get-playlist/">Get a Playlist</a> and <a href="https://developer.spotify.com/web-api/get-playlists-tracks/">Get a Playlist's Tracks</a> to drill down further.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-categories-playlists">Get a Category's Playlists</a>
-     */
-    @GET("/browse/categories/{category_id}/playlists")
-    Call<PlaylistPaging> getCategoriesPlaylists(@Path("category_id") String categoryId, @QueryMap java.util.Map<String, Object> queryParameters);
-
-    /**
-     * <h3>Get a Category</h3>
-     * <p>Get a single category used to tag items in Spotify (on, for example, the Spotify player's &quot;Browse&quot; tab).</p>
-     *
-     * @param categoryId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify category ID</a> for the category.</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains a <a href="#categoryobject">category object</a> in JSON format. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
-     *         <p>Once you have retrieved the category, you can use <a href="https://developer.spotify.com/web-api/get-categorys-playlists/">Get a Category's Playlists</a> to drill down further.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-category">Get a Category</a>
-     */
-    default Call<Category> getCategory(String categoryId) {
-        return getCategory(categoryId, java.util.Map.of());
+    public GetCategoriesPlaylistsRequest getCategoriesPlaylists(String categoryId) {
+        return new GetCategoriesPlaylistsRequest(apiClient, categoryId);
     }
 
     /**
      * <h3>Get a Category</h3>
      * <p>Get a single category used to tag items in Spotify (on, for example, the Spotify player's &quot;Browse&quot; tab).</p>
-     *
      * @param categoryId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify category ID</a> for the category.</p>
-     * @param queryParameters <p>A map of optional query parameters</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains a <a href="#categoryobject">category object</a> in JSON format. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
-     *         <p>Once you have retrieved the category, you can use <a href="https://developer.spotify.com/web-api/get-categorys-playlists/">Get a Category's Playlists</a> to drill down further.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-category">Get a Category</a>
+     * @return a {@link GetCategoryRequest} object to build and execute the request
      */
-    @GET("/browse/categories/{category_id}")
-    Call<Category> getCategory(@Path("category_id") String categoryId, @QueryMap java.util.Map<String, Object> queryParameters);
-
-    /**
-     * <h3>Get All Categories</h3>
-     * <p>Get a list of categories used to tag items in Spotify (on, for example, the Spotify player's &quot;Browse&quot; tab).</p>
-     *
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an object with a <code>categories</code> field, with an array of <a href="#categoryobject">category objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
-     *         <p>Once you have retrieved the list, you can use <a href="https://developer.spotify.com/web-api/get-category/">Get a Category</a> to drill down further.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-categories">Get All Categories</a>
-     */
-    default Call<Categories> getCategories() {
-        return getCategories(java.util.Map.of());
+    public GetCategoryRequest getCategory(String categoryId) {
+        return new GetCategoryRequest(apiClient, categoryId);
     }
 
     /**
      * <h3>Get All Categories</h3>
      * <p>Get a list of categories used to tag items in Spotify (on, for example, the Spotify player's &quot;Browse&quot; tab).</p>
-     *
-     * @param queryParameters <p>A map of optional query parameters</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains an object with a <code>categories</code> field, with an array of <a href="#categoryobject">category objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
-     *         <p>Once you have retrieved the list, you can use <a href="https://developer.spotify.com/web-api/get-category/">Get a Category</a> to drill down further.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-categories">Get All Categories</a>
+     * @return a {@link GetCategoriesRequest} object to build and execute the request
      */
-    @GET("/browse/categories")
-    Call<Categories> getCategories(@QueryMap java.util.Map<String, Object> queryParameters);
-
-    /**
-     * <h3>Get All Featured Playlists</h3>
-     * <p>Get a list of Spotify featured playlists (shown, for example, on a Spotify player's 'Browse' tab).</p>
-     *
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains a <code>message</code> and a <code>playlists</code> object. The <code>playlists</code> object contains an array of simplified <a href="https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject">playlist objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
-     *         <p>Once you have retrieved the list of playlist objects, you can use <a href="https://developer.spotify.com/web-api/get-playlist/">Get a Playlist</a> and <a href="https://developer.spotify.com/web-api/get-playlists-tracks/">Get a Playlist's Tracks</a> to drill down further.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-featured-playlists">Get All Featured Playlists</a>
-     */
-    default Call<FeaturedPlaylist> getFeaturedPlaylists() {
-        return getFeaturedPlaylists(java.util.Map.of());
+    public GetCategoriesRequest getCategories() {
+        return new GetCategoriesRequest(apiClient);
     }
 
     /**
      * <h3>Get All Featured Playlists</h3>
      * <p>Get a list of Spotify featured playlists (shown, for example, on a Spotify player's 'Browse' tab).</p>
-     *
-     * @param queryParameters <p>A map of optional query parameters</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains a <code>message</code> and a <code>playlists</code> object. The <code>playlists</code> object contains an array of simplified <a href="https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject">playlist objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
-     *         <p>Once you have retrieved the list of playlist objects, you can use <a href="https://developer.spotify.com/web-api/get-playlist/">Get a Playlist</a> and <a href="https://developer.spotify.com/web-api/get-playlists-tracks/">Get a Playlist's Tracks</a> to drill down further.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-featured-playlists">Get All Featured Playlists</a>
+     * @return a {@link GetFeaturedPlaylistsRequest} object to build and execute the request
      */
-    @GET("/browse/featured-playlists")
-    Call<FeaturedPlaylist> getFeaturedPlaylists(@QueryMap java.util.Map<String, Object> queryParameters);
-
-    /**
-     * <h3>Get All New Releases</h3>
-     * <p>Get a list of new album releases featured in Spotify (shown, for example, on a Spotify player's &quot;Browse&quot; tab).</p>
-     *
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains a <code>message</code> and an<code>albums</code> object. The <code>albums</code> object contains an array of simplified <a href="https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject">album objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
-     *         <p>Once you have retrieved the list, you can use <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-albums-tracks">Get an Album's Tracks</a> to drill down further.</p>
-     *         <p>The results are returned in an order reflected within the Spotify clients, and therefore may not be ordered by date.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-new-releases">Get All New Releases</a>
-     */
-    default Call<NewReleases> getNewReleases() {
-        return getNewReleases(java.util.Map.of());
+    public GetFeaturedPlaylistsRequest getFeaturedPlaylists() {
+        return new GetFeaturedPlaylistsRequest(apiClient);
     }
 
     /**
      * <h3>Get All New Releases</h3>
      * <p>Get a list of new album releases featured in Spotify (shown, for example, on a Spotify player's &quot;Browse&quot; tab).</p>
-     *
-     * @param queryParameters <p>A map of optional query parameters</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200</code> OK and the response body contains a <code>message</code> and an<code>albums</code> object. The <code>albums</code> object contains an array of simplified <a href="https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject">album objects</a> (wrapped in a <a href="https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject">paging object</a>) in JSON format. On error, the header status code is an <a href="https://developer.spotify.com/documentation/web-api/#response-status-codes">error code</a> and the response body contains an <a href="https://developer.spotify.com/documentation/web-api/#response-schema">error object</a>.</p>
-     *         <p>Once you have retrieved the list, you can use <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-albums-tracks">Get an Album's Tracks</a> to drill down further.</p>
-     *         <p>The results are returned in an order reflected within the Spotify clients, and therefore may not be ordered by date.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-new-releases">Get All New Releases</a>
+     * @return a {@link GetNewReleasesRequest} object to build and execute the request
      */
-    @GET("/browse/new-releases")
-    Call<NewReleases> getNewReleases(@QueryMap java.util.Map<String, Object> queryParameters);
+    public GetNewReleasesRequest getNewReleases() {
+        return new GetNewReleasesRequest(apiClient);
+    }
 
     /**
      * <h3>Get Recommendation Genres</h3>
      * <p>Retrieve a list of available genres seed parameter values for <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recommendations">recommendations</a>.</p>
-     *
-     * @return <p>On success, the HTTP status code in the response header is <code>200 OK</code> and the response body contains a recommendations response object in JSON format.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recommendation-genres">Get Recommendation Genres</a>
+     * @return a {@link GetRecommendationGenresRequest} object to build and execute the request
      */
-    @GET("/recommendations/available-genre-seeds")
-    Call<GenreSeeds> getRecommendationGenres();
-
-    /**
-     * <h3>Get Recommendations</h3>
-     * <p>Recommendations are generated based on the available information for a given seed entity and matched against similar artists and tracks. If there is sufficient information about the provided seeds, a list of tracks will be returned together with pool size details.</p>
-     *
-     * @param seedArtists <p>A comma separated list of <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a> for seed artists. Up to 5 seed values may be provided in any combination of <code>seed_artists</code>, <code>seed_tracks</code> and <code>seed_genres</code>.</p>
-     * @param seedGenres <p>A comma separated list of any genres in the set of <a href="#available-genre-seeds">available genre seeds</a>. Up to 5 seed values may be provided in any combination of <code>seed_artists</code>, <code>seed_tracks</code> and <code>seed_genres</code>.</p>
-     * @param seedTracks <p>A comma separated list of <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a> for a seed track. Up to 5 seed values may be provided in any combination of <code>seed_artists</code>, <code>seed_tracks</code> and <code>seed_genres</code>.</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200 OK</code> and the response body contains a recommendations response object in JSON format.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recommendations">Get Recommendations</a>
-     */
-    default Call<Recommendations> getRecommendations(String seedArtists, String seedGenres, String seedTracks) {
-        return getRecommendations(seedArtists, seedGenres, seedTracks, java.util.Map.of());
+    public GetRecommendationGenresRequest getRecommendationGenres() {
+        return new GetRecommendationGenresRequest(apiClient);
     }
 
     /**
      * <h3>Get Recommendations</h3>
      * <p>Recommendations are generated based on the available information for a given seed entity and matched against similar artists and tracks. If there is sufficient information about the provided seeds, a list of tracks will be returned together with pool size details.</p>
-     *
      * @param seedArtists <p>A comma separated list of <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a> for seed artists. Up to 5 seed values may be provided in any combination of <code>seed_artists</code>, <code>seed_tracks</code> and <code>seed_genres</code>.</p>
      * @param seedGenres <p>A comma separated list of any genres in the set of <a href="#available-genre-seeds">available genre seeds</a>. Up to 5 seed values may be provided in any combination of <code>seed_artists</code>, <code>seed_tracks</code> and <code>seed_genres</code>.</p>
      * @param seedTracks <p>A comma separated list of <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify IDs</a> for a seed track. Up to 5 seed values may be provided in any combination of <code>seed_artists</code>, <code>seed_tracks</code> and <code>seed_genres</code>.</p>
-     * @param queryParameters <p>A map of optional query parameters</p>
-     * @return <p>On success, the HTTP status code in the response header is <code>200 OK</code> and the response body contains a recommendations response object in JSON format.</p>
-     * @see <a href="https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recommendations">Get Recommendations</a>
+     * @return a {@link GetRecommendationsRequest} object to build and execute the request
      */
-    @GET("/recommendations")
-    Call<Recommendations> getRecommendations(@Query("seed_artists") String seedArtists, @Query("seed_genres") String seedGenres, @Query("seed_tracks") String seedTracks, @QueryMap java.util.Map<String, Object> queryParameters);
+    public GetRecommendationsRequest getRecommendations(String seedArtists, String seedGenres, String seedTracks) {
+        return new GetRecommendationsRequest(apiClient, seedArtists, seedGenres, seedTracks);
+    }
 }
