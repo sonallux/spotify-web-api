@@ -121,7 +121,7 @@ public class PlaylistsApi {
      * <h3>Replace items in a playlist</h3>
      * <p>Replace all the items in a playlist, overwriting its existing items. This powerful request can be useful for replacing items, re-ordering existing items, or clearing the playlist.</p>
      * @param playlistId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the playlist.</p>
-     * @param uris 
+     * @param uris <p>A comma-separated list of <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URIs</a> to set, can be track or episode URIs. For example: <code>uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQ</code><br>A maximum of 100 items can be set in one request.</p>
      * @return a {@link ReplacePlaylistsTracksRequest} object to build and execute the request
      */
     public ReplacePlaylistsTracksRequest replacePlaylistsTracks(String playlistId, java.util.List<String> uris) {

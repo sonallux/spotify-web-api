@@ -25,7 +25,7 @@ public class ReplacePlaylistsTracksRequest {
      * <h3>Replace items in a playlist request</h3>
      * @param apiClient <p>The API client</p>
      * @param playlistId <p>The <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</a> for the playlist.</p>
-     * @param uris 
+     * @param uris <p>A comma-separated list of <a href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URIs</a> to set, can be track or episode URIs. For example: <code>uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQ</code><br>A maximum of 100 items can be set in one request.</p>
      */
     public ReplacePlaylistsTracksRequest(ApiClient apiClient, String playlistId, java.util.List<String> uris) {
         this.apiClient = apiClient;

@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 import java.util.SortedMap;
 
-import static de.sonallux.spotify.core.model.SpotifyWebApiEndpoint.ParameterLocation.PATH;
+import static de.sonallux.spotify.core.model.SpotifyWebApiEndpoint.ParameterLocation.*;
 
 @Slf4j
 class ApiEndpointFixes {
@@ -17,6 +17,7 @@ class ApiEndpointFixes {
         fixStartAUsersPlayback(categories);
         fixGetUsersSavedShowsScope(categories);
         fixCheckUsersSavedShowsScope(categories);
+        fixReplaceAndReorderPlaylistTrackUrisParameter(categories);
     }
 
     private static void fixChangePlaylistsDetails(SortedMap<String, SpotifyWebApiCategory> categories) {
@@ -112,5 +113,30 @@ class ApiEndpointFixes {
         } else {
             endpoint.setScopes(List.of("user-library-read"));
         }
+    }
+
+    private static void fixReplaceAndReorderPlaylistTrackUrisParameter(SortedMap<String, SpotifyWebApiCategory> categories) {
+        var endpoint = categories.get("category-playlists")
+            .getEndpoints().get("endpoint-reorder-or-replace-playlists-tracks");
+
+        var urisBodyParameter = endpoint.getParameters().stream()
+            .filter(p -> p.getLocation() == BODY && "uris".equals(p.getName()))
+            .findFirst().orElse(null);
+        if (urisBodyParameter == null) {
+            log.warn("Can not find uris body parameter in endpoint-reorder-or-replace-playlists-tracks");
+            return;
+        } else if (!urisBodyParameter.getDescription().isBlank()) {
+            log.warn("Missing description on uris body parameter in endpoint-reorder-or-replace-playlists-tracks has been fixed");
+        }
+
+        var urisQueryParameter = endpoint.getParameters().stream()
+            .filter(p -> p.getLocation() == QUERY && "uris".equals(p.getName()))
+            .findFirst().orElse(null);
+        if (urisQueryParameter == null) {
+            log.warn("Can not find uris query parameter in endpoint-reorder-or-replace-playlists-tracks");
+            return;
+        }
+
+        urisBodyParameter.setDescription(urisQueryParameter.getDescription());
     }
 }
