@@ -23,7 +23,7 @@ This monorepo contains tools for parsing the [Spotify Web API Reference](https:/
 
 
 ## Versioning
-Unfortunately Spotify does not provide any version information with their web API reference documentation. Therefore, I try to follow [semantic versioning](https://semver.org) when releasing new versions. But keep in mind that Spotify can update their Web API endpoints at any time, so it is best to always use the latest major version of these libraries. Only updating to a newer patch or minor release even if there is a new major release might be less work for you, but it also imposes to risk of running into issues because Spotify has made a breaking change to their Web API.
+Unfortunately Spotify does not provide any version information with their web API reference documentation. Therefore, I try to follow [semantic versioning](https://semver.org) when releasing new versions. But keep in mind that Spotify can update their Web API endpoints at any time so that your code can potentially break. Therefore, it is best to always use the very latest version of these libraries. Not updating does always impose the risk of running into issues because Spotify has made a breaking change to their Web API.
 
 ## Disclaimer
 Because the wrappers are only based on the Spotify web API reference, there might be difference to the actual behaviour of the actual Spotify Web API endpoints. Also, neither do I have any connections to Spotify nor am I an employee at Spotify.

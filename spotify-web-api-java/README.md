@@ -21,11 +21,10 @@ compile 'de.sonallux.spotify:spotify-web-api-java:2.0.0'
 
 ## General usage
 ```java
-ApiAuthorizationProvider authProvider = new SimpleApiAuthorizationProvider("<your access token>");
-SpotifyApi spotifyApi = new SpotifyApi(authProvider);
+var authProvider = new SimpleApiAuthorizationProvider("<your access token>");
+var spotifyApi = SpotifyWebApi.builder().authorization(authProvider).build();
 
-Call<Artist> getArtistCall = spotifyApi.getArtistsApi().getArtist("<artist id>");
-Artist artist = spotifyApi.callApiAndReturnBody(getArtistCall);
+var artist = spotifyApi.getArtistsApi().getArtist("<artist id>").build().execute();
 System.out.println(artist.getName());
 ```
 
