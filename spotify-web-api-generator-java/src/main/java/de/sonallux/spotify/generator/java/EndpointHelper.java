@@ -31,7 +31,9 @@ public class EndpointHelper {
             endpoint.getParameters().removeIf(p -> p.getLocation() == QUERY && paramName.equals(p.getName()));
             for (var param : endpoint.getParameters()) {
                 if (param.getLocation() == BODY && paramName.equals(param.getName())) {
-                    param.setRequired(true);
+                    if (!("endpoint-add-tracks-to-playlist".equals(endpoint.getId()) && "position".equals(param.getName()))) {
+                        param.setRequired(true);
+                    }
                 } else if (param.getLocation() == HEADER && "Content-Type".equals(param.getName())) {
                     param.setRequired(true);
                 }
