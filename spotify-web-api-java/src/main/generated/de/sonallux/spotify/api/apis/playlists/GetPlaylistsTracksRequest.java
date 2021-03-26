@@ -29,6 +29,7 @@ public class GetPlaylistsTracksRequest {
             .addPathParameter("playlist_id", String.valueOf(playlistId))
             .addQueryParameter("market", String.valueOf(market))
         ;
+        this.additionalTypes("track,episode");
     }
 
     /**

@@ -41,15 +41,18 @@ public class {{className}} {
         this.apiClient = apiClient;
         this.request = new Request("{{httpMethod}}", "{{path}}")
 {{#requiredPathParameters}}
-            .addPathParameter("{{jsonName}}", String.valueOf({{javaName}}))
+            .addPathParameter("{{name}}", String.valueOf({{javaName}}))
 {{/requiredPathParameters}}
 {{#requiredQueryParameters}}
-            .addQueryParameter("{{jsonName}}", String.valueOf({{javaName}}))
+            .addQueryParameter("{{name}}", String.valueOf({{javaName}}))
 {{/requiredQueryParameters}}
 {{#requiredBodyParameters}}
-            .addBodyParameter("{{jsonName}}", {{javaName}})
+            .addBodyParameter("{{name}}", {{javaName}})
 {{/requiredBodyParameters}}
         ;
+{{#parametersWithDefaultValue}}
+        this.{{javaName}}({{defaultValue}});
+{{/parametersWithDefaultValue}}
     }
 
 {{#optionalPathParameters}}
@@ -57,7 +60,7 @@ public class {{className}} {
      * {{description}}
      */
     public {{className}} {{javaName}}({{type}} {{javaName}}) {
-        this.request.addPathParameter("{{jsonName}}", String.valueOf({{javaName}}));
+        this.request.addPathParameter("{{name}}", String.valueOf({{javaName}}));
         return this;
     }
 
@@ -67,7 +70,7 @@ public class {{className}} {
      * {{description}}
      */
     public {{className}} {{javaName}}({{type}} {{javaName}}) {
-        this.request.addQueryParameter("{{jsonName}}", String.valueOf({{javaName}}));
+        this.request.addQueryParameter("{{name}}", String.valueOf({{javaName}}));
         return this;
     }
 
@@ -77,7 +80,7 @@ public class {{className}} {
      * {{description}}
      */
     public {{className}} {{javaName}}({{type}} {{javaName}}) {
-        this.request.addBodyParameter("{{jsonName}}", {{javaName}});
+        this.request.addBodyParameter("{{name}}", {{javaName}});
         return this;
     }
 

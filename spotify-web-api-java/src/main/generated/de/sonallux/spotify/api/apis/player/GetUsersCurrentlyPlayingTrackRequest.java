@@ -33,6 +33,7 @@ public class GetUsersCurrentlyPlayingTrackRequest {
         this.request = new Request("GET", "/me/player/currently-playing")
             .addQueryParameter("market", String.valueOf(market))
         ;
+        this.additionalTypes("track,episode");
     }
 
     /**

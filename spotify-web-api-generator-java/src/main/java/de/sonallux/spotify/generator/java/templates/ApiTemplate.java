@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.nio.file.StandardOpenOption.*;
@@ -160,6 +159,13 @@ public class ApiTemplate {
 
         context.put("requiredJavaDocParameters", requiredParameterList.stream().map(Parameter::asJavaDoc).collect(toList()));
 
+        optionalQueryParameters.stream()
+            .filter(p -> "additional_types".equals(p.getName()))
+            .findFirst().ifPresent(additionalTypesParameter -> {
+                additionalTypesParameter.setDefaultValue("\"track,episode\"");
+                context.put("parametersWithDefaultValue", List.of(additionalTypesParameter));
+        });
+
         var packageFolder = getPackageFolder(outputFolder, javaPackage);
         var outputFile = packageFolder.resolve(JavaUtils.getFileName(JavaUtils.getEndpointRequestBuilderName(endpoint)));
         generateFile(outputFile, requestTemplate, context);
@@ -193,16 +199,18 @@ public class ApiTemplate {
     @Getter
     @Setter
     private static class Parameter {
+        private String name;
         private String javaName;
-        private String jsonName;
         private String type;
         private String description;
+        private String defaultValue;
 
-        public Parameter(String jsonName, String type, String description) {
-            this.javaName = JavaUtils.escapeFieldName(jsonName);
-            this.jsonName = jsonName;
+        public Parameter(String name, String type, String description) {
+            this.name = name;
+            this.javaName = JavaUtils.escapeFieldName(name);
             this.type = JavaUtils.mapToPrimitiveJavaType(type);
             this.description = Markdown2Html.convertToSingleLine(description);
+            this.defaultValue = null;
         }
 
         public String asMethodParameter() {

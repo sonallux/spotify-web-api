@@ -29,6 +29,7 @@ public class GetInformationAboutUsersCurrentPlaybackRequest {
         this.apiClient = apiClient;
         this.request = new Request("GET", "/me/player")
         ;
+        this.additionalTypes("track,episode");
     }
 
     /**

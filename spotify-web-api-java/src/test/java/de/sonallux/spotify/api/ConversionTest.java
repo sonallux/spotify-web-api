@@ -107,10 +107,10 @@ class ConversionTest {
         assertNotNull(episode);
         assertEquals("episode", episode.getType());
         assertTrue(episode instanceof Episode);
+        assertNotNull(((Episode) episode).getShow());
 
         var request = webServer.takeRequest();
-        // TODO: adjust when additional_types is set by default
-        assertEquals("/playlists/foo/tracks?market=DE", request.getPath());
+        assertEquals("/playlists/foo/tracks?market=DE&additional_types=track%2Cepisode", request.getPath());
     }
 
     @Test
@@ -129,6 +129,7 @@ class ConversionTest {
         assertNotNull(episode);
         assertEquals("episode", episode.getType());
         assertTrue(episode instanceof Episode);
+        assertNull(((Episode) episode).getShow());//show is not set, because episode is returned with track format
 
         var request = webServer.takeRequest();
         assertEquals("/playlists/foo/tracks?market=DE&additional_types=track", request.getPath());

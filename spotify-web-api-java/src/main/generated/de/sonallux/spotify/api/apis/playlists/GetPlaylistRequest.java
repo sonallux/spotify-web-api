@@ -27,6 +27,7 @@ public class GetPlaylistRequest {
         this.request = new Request("GET", "/playlists/{playlist_id}")
             .addPathParameter("playlist_id", String.valueOf(playlistId))
         ;
+        this.additionalTypes("track,episode");
     }
 
     /**
