@@ -3,6 +3,7 @@ package de.sonallux.spotify.generator.ts;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import com.google.common.base.Strings;
+import de.sonallux.spotify.core.SpotifyWebApiObjectUtils;
 import de.sonallux.spotify.core.model.SpotifyWebApiObject;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.google.common.base.CaseFormat.LOWER_CAMEL;
 import static com.google.common.base.CaseFormat.LOWER_UNDERSCORE;
@@ -30,15 +32,26 @@ public class ObjectTemplate {
     }
 
     private Map<String, Object> generateContext(Collection<SpotifyWebApiObject> spotifyWebApiObjects) {
-        return Map.of(
-                "objects", spotifyWebApiObjects.stream()
-                    .map(this::generateObjectContext)
-                    .collect(Collectors.toList()));
+        var objectContexts = Stream
+            .concat(Stream.of(SpotifyWebApiObjectUtils.SPOTIFY_BASE_OBJECT), spotifyWebApiObjects.stream())
+            .map(this::generateObjectContext)
+            .collect(Collectors.toList());
+
+        return Map.of("objects", objectContexts);
     }
 
     private Map<String, Object> generateObjectContext(SpotifyWebApiObject object) {
         var context = new HashMap<String, Object>();
-        context.put("name", TSUtils.getObjectClassName(object.getName()));
+
+        if (SpotifyWebApiObjectUtils.removeBaseProperties(object)) {
+            context.put("parentType", SpotifyWebApiObjectUtils.BASE_OBJECT_NAME);
+        }
+
+        if (SpotifyWebApiObjectUtils.BASE_OBJECT_NAME.equals(object.getName())) {
+            context.put("name", object.getName());
+        } else {
+            context.put("name", TSUtils.getObjectClassName(object.getName()));
+        }
         context.put("properties", object.getProperties().stream().map(this::generatePropertyContext).collect(Collectors.toList()));
         if (!Strings.isNullOrEmpty(object.getLink())) {
             context.put("documentationLink", object.getLink());

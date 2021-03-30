@@ -1,7 +1,26 @@
+export interface BaseObject {
+    /**
+     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the object.
+     */
+    id: string;
+    /**
+     * The object type.
+     */
+    type: string;
+    /**
+     * A link to the Web API endpoint providing full details of the object.
+     */
+    href: string;
+    /**
+     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the object.
+     */
+    uri: string;
+}
+
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-albumobject
  */
-export interface Album {
+export interface Album extends BaseObject {
     /**
      * The type of the album: `album`, `single`, or `compilation`.
      */
@@ -30,14 +49,6 @@ export interface Album {
      * A list of the genres used to classify the album. For example: "Prog Rock" , "Post-Grunge". (If not yet classified, the array is empty.)
      */
     genres: string[];
-    /**
-     * A link to the Web API endpoint providing full details of the album.
-     */
-    href: string;
-    /**
-     * The Spotify ID for the album.
-     */
-    id: string;
     /**
      * The cover art for the album in various sizes, widest first.
      */
@@ -70,14 +81,6 @@ export interface Album {
      * The tracks of the album.
      */
     tracks: Paging<SimplifiedTrack>;
-    /**
-     * The object type: "album"
-     */
-    type: string;
-    /**
-     * The Spotify URI for the album.
-     */
-    uri: string;
 }
 
 /**
@@ -102,7 +105,7 @@ export interface Albums {
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-artistobject
  */
-export interface Artist {
+export interface Artist extends BaseObject {
     /**
      * Known external URLs for this artist.
      */
@@ -116,14 +119,6 @@ export interface Artist {
      */
     genres: string[];
     /**
-     * A link to the Web API endpoint providing full details of the artist.
-     */
-    href: string;
-    /**
-     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the artist.
-     */
-    id: string;
-    /**
      * Images of the artist in various sizes, widest first.
      */
     images: Image[];
@@ -135,14 +130,6 @@ export interface Artist {
      * The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist's popularity is calculated from the popularity of all the artist's tracks.
      */
     popularity: number;
-    /**
-     * The object type: `"artist"`
-     */
-    type: string;
-    /**
-     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the artist.
-     */
-    uri: string;
 }
 
 export interface Artists {
@@ -528,7 +515,7 @@ export interface Disallows {
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-episodeobject
  */
-export interface Episode {
+export interface Episode extends BaseObject {
     /**
      * A URL to a 30 second preview (MP3 format) of the episode. `null` if not available.
      */
@@ -549,14 +536,6 @@ export interface Episode {
      * External URLs for this episode.
      */
     externalUrls: ExternalUrl;
-    /**
-     * A link to the Web API endpoint providing full details of the episode.
-     */
-    href: string;
-    /**
-     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the episode.
-     */
-    id: string;
     /**
      * The cover art for the episode in various sizes, widest first.
      */
@@ -597,14 +576,6 @@ export interface Episode {
      * The show on which the episode belongs.
      */
     show: SimplifiedShow;
-    /**
-     * The object type: "episode".
-     */
-    type: string;
-    /**
-     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the episode.
-     */
-    uri: string;
 }
 
 export interface Episodes {
@@ -719,27 +690,11 @@ export interface Image {
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-linkedtrackobject
  */
-export interface LinkedTrack {
+export interface LinkedTrack extends BaseObject {
     /**
      * Known external URLs for this track.
      */
     externalUrls: ExternalUrl;
-    /**
-     * A link to the Web API endpoint providing full details of the track.
-     */
-    href: string;
-    /**
-     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the track.
-     */
-    id: string;
-    /**
-     * The object type: "track".
-     */
-    type: string;
-    /**
-     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the track.
-     */
-    uri: string;
 }
 
 export interface Markets {
@@ -840,7 +795,7 @@ export interface PlayerError {
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject
  */
-export interface Playlist {
+export interface Playlist extends BaseObject {
     /**
      * `true` if the owner allows other users to modify the playlist.
      */
@@ -857,14 +812,6 @@ export interface Playlist {
      * Information about the followers of the playlist.
      */
     followers: Followers;
-    /**
-     * A link to the Web API endpoint providing full details of the playlist.
-     */
-    href: string;
-    /**
-     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the playlist.
-     */
-    id: string;
     /**
      * Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](https://developer.spotify.com/documentation/general/guides/working-with-playlists/). *Note: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day.*
      */
@@ -889,14 +836,6 @@ export interface Playlist {
      * Information about the tracks of the playlist. Note, a track object may be `null`. This can happen if a track is no longer available.
      */
     tracks: Paging<PlaylistTrack>;
-    /**
-     * The object type: "playlist"
-     */
-    type: string;
-    /**
-     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the playlist.
-     */
-    uri: string;
 }
 
 export interface PlaylistPaging {
@@ -942,7 +881,7 @@ export interface PlaylistTracksRef {
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-privateuserobject
  */
-export interface PrivateUser {
+export interface PrivateUser extends BaseObject {
     /**
      * The country of the user, as set in the user's account profile. An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). *This field is only available when the current user has granted access to the [user-read-private](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes) scope.*
      */
@@ -968,14 +907,6 @@ export interface PrivateUser {
      */
     followers: Followers;
     /**
-     * A link to the Web API endpoint for this user.
-     */
-    href: string;
-    /**
-     * The [Spotify user ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the user.
-     */
-    id: string;
-    /**
      * The user's profile image.
      */
     images: Image[];
@@ -983,20 +914,12 @@ export interface PrivateUser {
      * The user's Spotify subscription level: "premium", "free", etc. (The subscription level "open" can be considered the same as "free".) *This field is only available when the current user has granted access to the [user-read-private](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes) scope.*
      */
     product: string;
-    /**
-     * The object type: "user"
-     */
-    type: string;
-    /**
-     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the user.
-     */
-    uri: string;
 }
 
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-publicuserobject
  */
-export interface PublicUser {
+export interface PublicUser extends BaseObject {
     /**
      * The name displayed on the user's profile. `null` if not available.
      */
@@ -1010,25 +933,9 @@ export interface PublicUser {
      */
     followers: Followers;
     /**
-     * A link to the Web API endpoint for this user.
-     */
-    href: string;
-    /**
-     * The [Spotify user ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for this user.
-     */
-    id: string;
-    /**
      * The user's profile image.
      */
     images: Image[];
-    /**
-     * The object type: "user"
-     */
-    type: string;
-    /**
-     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for this user.
-     */
-    uri: string;
 }
 
 /**
@@ -1205,7 +1112,7 @@ export interface Segment {
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-showobject
  */
-export interface Show {
+export interface Show extends BaseObject {
     /**
      * A list of the countries in which the show can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.
      */
@@ -1231,14 +1138,6 @@ export interface Show {
      */
     externalUrls: ExternalUrl;
     /**
-     * A link to the Web API endpoint providing full details of the show.
-     */
-    href: string;
-    /**
-     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the show.
-     */
-    id: string;
-    /**
      * The cover art for the show in various sizes, widest first.
      */
     images: Image[];
@@ -1262,14 +1161,6 @@ export interface Show {
      * The publisher of the show.
      */
     publisher: string;
-    /**
-     * The object type: "show".
-     */
-    type: string;
-    /**
-     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the show.
-     */
-    uri: string;
 }
 
 export interface Shows {
@@ -1279,7 +1170,7 @@ export interface Shows {
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject
  */
-export interface SimplifiedAlbum {
+export interface SimplifiedAlbum extends BaseObject {
     /**
      * The field is present when getting an artist's albums. Possible values are "album", "single", "compilation", "appears_on". Compare to album_type this field represents relationship between the artist and the album.
      */
@@ -1301,14 +1192,6 @@ export interface SimplifiedAlbum {
      */
     externalUrls: ExternalUrl;
     /**
-     * A link to the Web API endpoint providing full details of the album.
-     */
-    href: string;
-    /**
-     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the album.
-     */
-    id: string;
-    /**
      * The cover art for the album in various sizes, widest first.
      */
     images: Image[];
@@ -1328,50 +1211,26 @@ export interface SimplifiedAlbum {
      * Included in the response when a content restriction is applied. See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject) for more details.
      */
     restrictions: AlbumRestriction;
-    /**
-     * The object type: "album"
-     */
-    type: string;
-    /**
-     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the album.
-     */
-    uri: string;
 }
 
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedartistobject
  */
-export interface SimplifiedArtist {
+export interface SimplifiedArtist extends BaseObject {
     /**
      * Known external URLs for this artist.
      */
     externalUrls: ExternalUrl;
     /**
-     * A link to the Web API endpoint providing full details of the artist.
-     */
-    href: string;
-    /**
-     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the artist.
-     */
-    id: string;
-    /**
      * The name of the artist.
      */
     name: string;
-    /**
-     * The object type: `"artist"`
-     */
-    type: string;
-    /**
-     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the artist.
-     */
-    uri: string;
 }
 
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject
  */
-export interface SimplifiedEpisode {
+export interface SimplifiedEpisode extends BaseObject {
     /**
      * A URL to a 30 second preview (MP3 format) of the episode. `null` if not available.
      */
@@ -1392,14 +1251,6 @@ export interface SimplifiedEpisode {
      * External URLs for this episode.
      */
     externalUrls: ExternalUrl;
-    /**
-     * A link to the Web API endpoint providing full details of the episode.
-     */
-    href: string;
-    /**
-     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the episode.
-     */
-    id: string;
     /**
      * The cover art for the episode in various sizes, widest first.
      */
@@ -1436,20 +1287,12 @@ export interface SimplifiedEpisode {
      * The user's most recent position in the episode. Set if the supplied access token is a user token and has the scope 'user-read-playback-position'.
      */
     resumePoint: ResumePoint;
-    /**
-     * The object type: "episode".
-     */
-    type: string;
-    /**
-     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the episode.
-     */
-    uri: string;
 }
 
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject
  */
-export interface SimplifiedPlaylist {
+export interface SimplifiedPlaylist extends BaseObject {
     /**
      * `true` if the owner allows other users to modify the playlist.
      */
@@ -1462,14 +1305,6 @@ export interface SimplifiedPlaylist {
      * Known external URLs for this playlist.
      */
     externalUrls: ExternalUrl;
-    /**
-     * A link to the Web API endpoint providing full details of the playlist.
-     */
-    href: string;
-    /**
-     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the playlist.
-     */
-    id: string;
     /**
      * Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](https://developer.spotify.com/documentation/general/guides/working-with-playlists/). *Note: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day.*
      */
@@ -1494,20 +1329,12 @@ export interface SimplifiedPlaylist {
      * A collection containing a link ( `href` ) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the `total` number of tracks in the playlist. Note, a track object may be `null`. This can happen if a track is no longer available.
      */
     tracks: PlaylistTracksRef;
-    /**
-     * The object type: "playlist"
-     */
-    type: string;
-    /**
-     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the playlist.
-     */
-    uri: string;
 }
 
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedshowobject
  */
-export interface SimplifiedShow {
+export interface SimplifiedShow extends BaseObject {
     /**
      * A list of the countries in which the show can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.
      */
@@ -1528,14 +1355,6 @@ export interface SimplifiedShow {
      * External URLs for this show.
      */
     externalUrls: ExternalUrl;
-    /**
-     * A link to the Web API endpoint providing full details of the show.
-     */
-    href: string;
-    /**
-     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the show.
-     */
-    id: string;
     /**
      * The cover art for the show in various sizes, widest first.
      */
@@ -1560,20 +1379,12 @@ export interface SimplifiedShow {
      * The publisher of the show.
      */
     publisher: string;
-    /**
-     * The object type: "show".
-     */
-    type: string;
-    /**
-     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the show.
-     */
-    uri: string;
 }
 
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject
  */
-export interface SimplifiedTrack {
+export interface SimplifiedTrack extends BaseObject {
     /**
      * The artists who performed the track. Each artist object includes a link in `href` to more detailed information about the artist.
      */
@@ -1598,14 +1409,6 @@ export interface SimplifiedTrack {
      * External URLs for this track.
      */
     externalUrls: ExternalUrl;
-    /**
-     * A link to the Web API endpoint providing full details of the track.
-     */
-    href: string;
-    /**
-     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the track.
-     */
-    id: string;
     /**
      * Whether or not the track is from a local file.
      */
@@ -1634,14 +1437,6 @@ export interface SimplifiedTrack {
      * The number of the track. If an album has several discs, the track number is the number on the specified disc.
      */
     trackNumber: number;
-    /**
-     * The object type: "track".
-     */
-    type: string;
-    /**
-     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the track.
-     */
-    uri: string;
 }
 
 export interface SnapshotId {
@@ -1672,7 +1467,7 @@ export interface TimeInterval {
 /**
  * https://developer.spotify.com/documentation/web-api/reference/#object-trackobject
  */
-export interface Track {
+export interface Track extends BaseObject {
     /**
      * The album on which the track appears. The album object includes a link in `href` to full information about the album.
      */
@@ -1705,14 +1500,6 @@ export interface Track {
      * Known external URLs for this track.
      */
     externalUrls: ExternalUrl;
-    /**
-     * A link to the Web API endpoint providing full details of the track.
-     */
-    href: string;
-    /**
-     * The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the track.
-     */
-    id: string;
     /**
      * Whether or not the track is from a local file.
      */
@@ -1747,14 +1534,6 @@ export interface Track {
      * The number of the track. If an album has several discs, the track number is the number on the specified disc.
      */
     trackNumber: number;
-    /**
-     * The object type: "track".
-     */
-    type: string;
-    /**
-     * The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids) for the track.
-     */
-    uri: string;
 }
 
 /**
