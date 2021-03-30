@@ -15,10 +15,8 @@
 
     <modules>
         <module>spotify-web-api-core</module>
-        <module>spotify-web-api-generator-java</module>
         <module>spotify-web-api-generator-open-api</module>
         <module>spotify-web-api-generator-ts</module>
-        <module>spotify-web-api-java</module>
         <module>spotify-web-api-parser</module>
     </modules>
 

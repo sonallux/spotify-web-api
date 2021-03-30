@@ -25,8 +25,6 @@ jobs:
         run: ./mvnw -B package -Pcli
       - name: Parse web API
         run: ./scripts/parse-web-api.sh
-      - name: Generate Java
-        run: ./scripts/generate-java.sh
       - name: Generate Open API
         run: ./scripts/generate-open-api.sh
       - name: Generate TypeScript
