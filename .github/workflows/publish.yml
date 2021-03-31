@@ -33,3 +33,14 @@ jobs:
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           OSSRH_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
         run: mvn -B deploy -Pdeploy
+      - name: Create release on GitHub
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          draft: true
+          files: |
+            spotify-web-api-core/src/main/resources/spotify-web-api.yml
+            spotify-web-api-generator-open-api/spotify-open-api-spec.yml
