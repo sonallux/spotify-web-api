@@ -40,7 +40,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          draft: true
           files: |
             spotify-web-api-core/src/main/resources/spotify-web-api.yml
             spotify-web-api-generator-open-api/spotify-open-api-spec.yml
