@@ -27,11 +27,6 @@ jobs:
         run: ./scripts/parse-web-api.sh
       - name: Generate Open API
         run: ./scripts/generate-open-api.sh
-      - name: Generate TypeScript
-        run: ./scripts/generate-ts.sh
-      # No need to run the tests here, they also run in the created PR
-      # - name: Test
-      #   run: ./mvnw -B clean verify
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
