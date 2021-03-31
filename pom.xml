@@ -10,13 +10,12 @@
     <packaging>pom</packaging>
 
     <name>spotify-web-api-parent</name>
-    <description>Collection of tools for the Spotify Web API</description>
+    <description>Collection of tools for parsing the Spotify Web API</description>
     <url>https://github.com/sonallux/spotify-web-api</url>
 
     <modules>
         <module>spotify-web-api-core</module>
         <module>spotify-web-api-generator-open-api</module>
-        <module>spotify-web-api-generator-ts</module>
         <module>spotify-web-api-parser</module>
     </modules>
 
