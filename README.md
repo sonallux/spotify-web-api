@@ -29,6 +29,7 @@ Because the wrappers are only based on the Spotify web API reference, there migh
 
 ## How to release a new version
 1. Update the version number with `./mvnw versions:set -DnewVersion="<version>" -DgenerateBackupPoms=false`
-2. Commit and push changes to GitHub
-3. Wait till CI is green
-4. Tag and push the commit created in step 1. A GitHub actions workflow will automatically deploy the artifacts to Maven Central.
+2. Run OpenApiGenerator to update the openapi definition with new version
+3. Commit and push changes to GitHub
+4. Wait till CI is green
+5. Tag and push the commit created in step 1. A GitHub actions workflow will automatically deploy the artifacts to Maven Central.
