@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Spotify Web API
-  version: 0.0.1
+  version: 2021.3.31
 externalDocs:
   description: Find more info on the official Spotify Web API Reference
   url: https://developer.spotify.com/documentation/web-api/reference

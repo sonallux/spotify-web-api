@@ -110,13 +110,13 @@ public class CLI implements Runnable {
                     var title = get(attributes, "Implementation-Title");
                     if (IMPLEMENTATION_TITLE.equals(title)) {
                         var version = get(attributes, "Implementation-Version");
-                        return new String[] { title + " version \"" + version + "\"" };
+                        return new String[] { IMPLEMENTATION_TITLE, version.toString() };
                     }
                 } catch (IOException e) {
                     return new String[] { "Unable to read manifest from " + url + ": " + e };
                 }
             }
-            return new String[] { IMPLEMENTATION_TITLE + " version \"unknown\"" };
+            return new String[] { IMPLEMENTATION_TITLE, "unknown" };
         }
 
         private static Object get(Attributes attributes, String key) {

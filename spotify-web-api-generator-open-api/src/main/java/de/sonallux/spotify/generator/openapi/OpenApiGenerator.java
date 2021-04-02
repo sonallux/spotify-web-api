@@ -44,7 +44,7 @@ public class OpenApiGenerator {
                 )
                 .info(new Info()
                         .title("Spotify Web API")
-                        .version("0.0.1")
+                        .version(VersionProvider.getVersion())
                 )
                 .servers(List.of(new Server().url(apiDocumentation.getEndpointUrl())))
                 .components(new Components()
