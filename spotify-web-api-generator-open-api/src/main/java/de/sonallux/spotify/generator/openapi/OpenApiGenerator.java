@@ -4,6 +4,7 @@ import com.google.common.base.Strings;
 import de.sonallux.spotify.core.SpotifyWebApiUtils;
 import de.sonallux.spotify.core.model.*;
 import io.swagger.v3.oas.models.*;
+import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.media.*;
 import io.swagger.v3.oas.models.parameters.RequestBody;
@@ -38,13 +39,13 @@ public class OpenApiGenerator {
     public OpenAPI generate(SpotifyWebApi apiDocumentation) {
         this.openAPI = new OpenAPI();
         this.openAPI
-                .externalDocs(new ExternalDocumentation()
-                        .url(apiDocumentation.getApiDocumentationUrl())
-                        .description("Find more info on the official Spotify Web API Reference")
-                )
+                .externalDocs(generateExternalDocumentation(apiDocumentation.getApiDocumentationUrl()))
                 .info(new Info()
                         .title("Spotify Web API")
                         .version(VersionProvider.getVersion())
+                        .contact(new Contact()
+                            .url("https://github.com/sonallux/spotify-web-api")
+                        )
                 )
                 .servers(List.of(new Server().url(apiDocumentation.getEndpointUrl())))
                 .components(new Components()
