@@ -44,6 +44,7 @@ public class OpenApiGenerator {
                         .title("Spotify Web API")
                         .version(VersionProvider.getVersion())
                         .contact(new Contact()
+                            .name("sonallux")
                             .url("https://github.com/sonallux/spotify-web-api")
                         )
                 )

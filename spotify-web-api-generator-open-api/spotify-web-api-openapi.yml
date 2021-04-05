@@ -2,6 +2,7 @@ openapi: 3.0.1
 info:
   title: Spotify Web API
   contact:
+    name: sonallux
     url: https://github.com/sonallux/spotify-web-api
   version: 2021.4.2
 externalDocs:
