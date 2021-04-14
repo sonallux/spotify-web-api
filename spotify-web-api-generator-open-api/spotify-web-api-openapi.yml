@@ -2411,10 +2411,7 @@ paths:
             \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-savedepisodeobject)\
             \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
             \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-            \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
-            - Trying to get more than 2000 episodes for a user will return results\
-            \ for 2000 episodes. Only the 2000 returned episodes are sorted. This\
-            \ limitation will be removed in the near future."
+            \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
           content:
             application/json:
               schema:
