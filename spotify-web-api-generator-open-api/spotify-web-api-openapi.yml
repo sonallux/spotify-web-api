@@ -6186,7 +6186,9 @@ components:
             if not available.
         description:
           type: string
-          description: A description of the episode.
+          description: "A description of the episode. HTML tags are stripped away\
+            \ from this field, use `html_description` field in case HTML tags are\
+            \ needed."
         duration_ms:
           type: integer
           description: The episode length in milliseconds.
@@ -6201,6 +6203,9 @@ components:
           type: string
           description: A link to the Web API endpoint providing full details of the
             episode.
+        html_description:
+          type: string
+          description: A description of the episode. This field may contain HTML tags.
         id:
           type: string
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -6241,6 +6246,8 @@ components:
           type: string
           description: "The precision with which `release_date` value is known: `\"\
             year\"`, `\"month\"`, or `\"day\"`."
+        restrictions:
+          $ref: '#/components/schemas/EpisodeRestrictionObject'
         resume_point:
           $ref: '#/components/schemas/ResumePointObject'
         show:
@@ -6255,6 +6262,21 @@ components:
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
         url: https://developer.spotify.com/documentation/web-api/reference/#object-episodeobject
+    EpisodeRestrictionObject:
+      type: object
+      properties:
+        reason:
+          type: string
+          description: "The reason for the restriction. Supported values:  \n\n- `market`\
+            \ - The content item is not available in the given market.  \n- `product`\
+            \ - The content item is not available for the user's subscription type.\
+            \  \n- `explicit` - The content item is explicit and the user's account\
+            \ is set to not play explicit content.  \n  Additional reasons may be\
+            \ added in the future. **Note**: If you use this field, make sure that\
+            \ your application safely handles unknown values."
+      externalDocs:
+        description: Find more info on the official Spotify Web API Reference
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-episoderestrictionobject
     EpisodesObject:
       type: object
       properties:
@@ -7491,7 +7513,9 @@ components:
             if not available.
         description:
           type: string
-          description: A description of the episode.
+          description: "A description of the episode. HTML tags are stripped away\
+            \ from this field, use `html_description` field in case HTML tags are\
+            \ needed."
         duration_ms:
           type: integer
           description: The episode length in milliseconds.
@@ -7506,6 +7530,9 @@ components:
           type: string
           description: A link to the Web API endpoint providing full details of the
             episode.
+        html_description:
+          type: string
+          description: A description of the episode. This field may contain HTML tags.
         id:
           type: string
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -7546,6 +7573,8 @@ components:
           type: string
           description: "The precision with which `release_date` value is known: `\"\
             year\"`, `\"month\"`, or `\"day\"`."
+        restrictions:
+          $ref: '#/components/schemas/EpisodeRestrictionObject'
         resume_point:
           $ref: '#/components/schemas/ResumePointObject'
         type:
