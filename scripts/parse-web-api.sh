@@ -23,4 +23,10 @@ then
   exit $generationExitCode
 fi
 
+git diff --exit-code
+if [ "$?" != "0" ]
+then
+  ./mvnw versions:set -DnewVersion="$(date +"%Y.%-m.%-d")" -DgenerateBackupPoms=false
+fi
+
 exit 0
