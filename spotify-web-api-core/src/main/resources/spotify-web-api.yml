@@ -504,7 +504,8 @@ objects:
         if not available.
     - name: description
       type: String
-      description: A description of the episode.
+      description: "A description of the episode. HTML tags are stripped away from\
+        \ this field, use `html_description` field in case HTML tags are needed."
     - name: duration_ms
       type: Integer
       description: The episode length in milliseconds.
@@ -518,6 +519,9 @@ objects:
     - name: href
       type: String
       description: A link to the Web API endpoint providing full details of the episode.
+    - name: html_description
+      type: String
+      description: A description of the episode. This field may contain HTML tags.
     - name: id
       type: String
       description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -553,6 +557,11 @@ objects:
       type: String
       description: "The precision with which `release_date` value is known: `\"year\"\
         `, `\"month\"`, or `\"day\"`."
+    - name: restrictions
+      type: EpisodeRestrictionObject
+      description: "Included in the response when a content restriction is applied.\
+        \ See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-episoderestrictionobject)\
+        \ for more details."
     - name: resume_point
       type: ResumePointObject
       description: The user's most recent position in the episode. Set if the supplied
@@ -567,6 +576,20 @@ objects:
       type: String
       description: "The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
         \ for the episode."
+  EpisodeRestrictionObject:
+    name: EpisodeRestrictionObject
+    id: object-episoderestrictionobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-episoderestrictionobject
+    properties:
+    - name: reason
+      type: String
+      description: "The reason for the restriction. Supported values:  \n\n- `market`\
+        \ - The content item is not available in the given market.  \n- `product`\
+        \ - The content item is not available for the user's subscription type.  \n\
+        - `explicit` - The content item is explicit and the user's account is set\
+        \ to not play explicit content.  \n  Additional reasons may be added in the\
+        \ future. **Note**: If you use this field, make sure that your application\
+        \ safely handles unknown values."
   EpisodesObject:
     name: EpisodesObject
     properties:
@@ -1339,7 +1362,8 @@ objects:
         if not available.
     - name: description
       type: String
-      description: A description of the episode.
+      description: "A description of the episode. HTML tags are stripped away from\
+        \ this field, use `html_description` field in case HTML tags are needed."
     - name: duration_ms
       type: Integer
       description: The episode length in milliseconds.
@@ -1353,6 +1377,9 @@ objects:
     - name: href
       type: String
       description: A link to the Web API endpoint providing full details of the episode.
+    - name: html_description
+      type: String
+      description: A description of the episode. This field may contain HTML tags.
     - name: id
       type: String
       description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -1388,6 +1415,11 @@ objects:
       type: String
       description: "The precision with which `release_date` value is known: `\"year\"\
         `, `\"month\"`, or `\"day\"`."
+    - name: restrictions
+      type: EpisodeRestrictionObject
+      description: "Included in the response when a content restriction is applied.\
+        \ See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-episoderestrictionobject)\
+        \ for more details."
     - name: resume_point
       type: ResumePointObject
       description: The user's most recent position in the episode. Set if the supplied
