@@ -21,14 +21,14 @@ import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 @Slf4j
-public class ResponseTypeMapper {
+class ResponseTypeMapper {
 
     private final Path responseTypesFile;
     private final Map<String, Map<String, EndpointResponse>> responseTypes;
     private final MessageDigest md5Digest;
     private final ObjectMapper objectMapper;
 
-    public ResponseTypeMapper(Path responseTypesFile) throws IOException, NoSuchAlgorithmException {
+    ResponseTypeMapper(Path responseTypesFile) throws IOException, NoSuchAlgorithmException {
         this.responseTypesFile = responseTypesFile;
         this.objectMapper = Yaml.create();
         this.md5Digest = MessageDigest.getInstance("MD5");
@@ -41,7 +41,7 @@ public class ResponseTypeMapper {
         }
     }
 
-    public List<SpotifyWebApiEndpoint.ResponseType> getEndpointResponseTypes(String categoryId, SpotifyWebApiEndpoint endpoint) {
+    List<SpotifyWebApiEndpoint.ResponseType> getEndpointResponseTypes(String categoryId, SpotifyWebApiEndpoint endpoint) {
         var endpointResponse = getEndpointResponse(categoryId, endpoint.getId());
         if (endpointResponse == null) {
             return null;
@@ -54,13 +54,13 @@ public class ResponseTypeMapper {
         return endpointResponse.getResponseTypes();
     }
 
-    public void save() throws IOException {
+    void save() throws IOException {
         try (var outputStream = Files.newOutputStream(this.responseTypesFile)) {
             objectMapper.writeValue(outputStream, responseTypes);
         }
     }
 
-    public void update(List<SpotifyWebApiCategory> categories) {
+    void update(List<SpotifyWebApiCategory> categories) {
         var scanner = new Scanner(System.in);
         for (var category : categories) {
             for (var endpoint : category.getEndpointList()) {
@@ -150,7 +150,7 @@ public class ResponseTypeMapper {
     @Setter
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class EndpointResponse {
+    static class EndpointResponse {
         private String md5Hash;
         private List<SpotifyWebApiEndpoint.ResponseType> responseTypes = new ArrayList<>();
     }
