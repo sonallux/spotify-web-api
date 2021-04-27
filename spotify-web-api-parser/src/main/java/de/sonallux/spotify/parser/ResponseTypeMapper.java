@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -19,6 +20,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
+@Slf4j
 public class ResponseTypeMapper {
 
     private final Path responseTypesFile;
@@ -37,6 +39,19 @@ public class ResponseTypeMapper {
         try (var inputStream = Files.newInputStream(this.responseTypesFile)) {
             return objectMapper.readValue(inputStream, new TypeReference<>() {});
         }
+    }
+
+    public List<SpotifyWebApiEndpoint.ResponseType> getEndpointResponseTypes(String categoryId, SpotifyWebApiEndpoint endpoint) {
+        var endpointResponse = getEndpointResponse(categoryId, endpoint.getId());
+        if (endpointResponse == null) {
+            return null;
+        }
+        var currentHash = calculateMD5Hash(endpoint);
+        if (!currentHash.equals(endpointResponse.getMd5Hash())) {
+            log.warn("Response description for endpoint {} has changed", endpoint.getId());
+            endpointResponse.setMd5Hash(currentHash);
+        }
+        return endpointResponse.getResponseTypes();
     }
 
     public void save() throws IOException {
@@ -104,7 +119,7 @@ public class ResponseTypeMapper {
         }
     }
 
-    public EndpointResponse getEndpointResponse(String categoryId, String endpointId) {
+    private EndpointResponse getEndpointResponse(String categoryId, String endpointId) {
         var endpointTypes = responseTypes.get(categoryId);
         if (endpointTypes == null) {
             return null;
