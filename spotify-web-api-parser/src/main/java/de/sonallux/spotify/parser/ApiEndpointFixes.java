@@ -1,6 +1,7 @@
 package de.sonallux.spotify.parser;
 
 import de.sonallux.spotify.core.model.SpotifyWebApiCategory;
+import de.sonallux.spotify.core.model.SpotifyWebApiEndpoint;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -18,6 +19,8 @@ class ApiEndpointFixes {
         fixGetUsersSavedShowsScope(categories);
         fixCheckUsersSavedShowsScope(categories);
         fixReplaceAndReorderPlaylistTrackUrisParameter(categories);
+        fixSaveShowsForCurrentUserBodyParameter(categories);
+        fixRemoveUsersSavedShowsBodyParameter(categories);
     }
 
     private static void fixChangePlaylistsDetails(SortedMap<String, SpotifyWebApiCategory> categories) {
@@ -29,9 +32,9 @@ class ApiEndpointFixes {
                 .orElse(null);
         if (paramPath == null) {
             log.warn("change-playlist-details wrong playlist_id parameter type has been fixed");
-        } else {
-            paramPath.setType("String");
+            return;
         }
+        paramPath.setType("String");
     }
 
     private static void fixGetInfoAboutUsersCurrentPlayback(SortedMap<String, SpotifyWebApiCategory> categories) {
@@ -43,9 +46,9 @@ class ApiEndpointFixes {
         }
         if (endpoint.getScopes().size() != 0) {
             log.warn("endpoint-get-information-about-the-users-current-playback missing scope has been fixed");
-        } else {
-            endpoint.getScopes().add("user-read-playback-state");
+            return;
         }
+        endpoint.getScopes().add("user-read-playback-state");
     }
 
     private static void fixStartAUsersPlayback(SortedMap<String, SpotifyWebApiCategory> categories) {
@@ -100,9 +103,9 @@ class ApiEndpointFixes {
                 .getEndpoints().get("endpoint-get-users-saved-shows");
         if (!endpoint.getScopes().contains("user-libary-read")) {
             log.warn("endpoint-get-users-saved-shows scope user-libary-read has been fixed");
-        } else {
-            endpoint.setScopes(List.of("user-library-read"));
+            return;
         }
+        endpoint.setScopes(List.of("user-library-read"));
     }
 
     private static void fixCheckUsersSavedShowsScope(SortedMap<String, SpotifyWebApiCategory> categories) {
@@ -110,9 +113,9 @@ class ApiEndpointFixes {
                 .getEndpoints().get("endpoint-check-users-saved-shows");
         if (!endpoint.getScopes().contains("user-libary-read")) {
             log.warn("endpoint-check-users-saved-shows scope user-libary-read has been fixed");
-        } else {
-            endpoint.setScopes(List.of("user-library-read"));
+            return;
         }
+        endpoint.setScopes(List.of("user-library-read"));
     }
 
     private static void fixReplaceAndReorderPlaylistTrackUrisParameter(SortedMap<String, SpotifyWebApiCategory> categories) {
@@ -125,8 +128,10 @@ class ApiEndpointFixes {
         if (urisBodyParameter == null) {
             log.warn("Can not find uris body parameter in endpoint-reorder-or-replace-playlists-tracks");
             return;
-        } else if (!urisBodyParameter.getDescription().isBlank()) {
+        }
+        if (!urisBodyParameter.getDescription().isBlank()) {
             log.warn("Missing description on uris body parameter in endpoint-reorder-or-replace-playlists-tracks has been fixed");
+            return;
         }
 
         var urisQueryParameter = endpoint.getParameters().stream()
@@ -138,5 +143,43 @@ class ApiEndpointFixes {
         }
 
         urisBodyParameter.setDescription(urisQueryParameter.getDescription());
+    }
+
+    private static void fixSaveShowsForCurrentUserBodyParameter(SortedMap<String, SpotifyWebApiCategory> categories) {
+        var endpoint = categories.get("category-library")
+            .getEndpoints().get("endpoint-save-shows-user");
+
+        if (endpoint.getParameters().stream().anyMatch(parameter -> parameter.getLocation() == BODY && "ids".equals(parameter.getName()))) {
+            log.warn("Missing body parameter for endpoint-save-shows-user has been fixed");
+            return;
+        }
+
+        endpoint.getParameters().add(new SpotifyWebApiEndpoint.Parameter(
+            BODY,
+            "ids",
+            "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).  \n" +
+                "A maximum of 50 items can be specified in one request. *Note: if the `ids` parameter is present in the query string, " +
+                "any IDs listed here in the body will be ignored.*",
+            "Array[String]",
+            false));
+    }
+
+    private static void fixRemoveUsersSavedShowsBodyParameter(SortedMap<String, SpotifyWebApiCategory> categories) {
+        var endpoint = categories.get("category-library")
+            .getEndpoints().get("endpoint-remove-shows-user");
+
+        if (endpoint.getParameters().stream().anyMatch(parameter -> parameter.getLocation() == BODY && "ids".equals(parameter.getName()))) {
+            log.warn("Missing body parameter for endpoint-remove-shows-user has been fixed");
+            return;
+        }
+
+        endpoint.getParameters().add(new SpotifyWebApiEndpoint.Parameter(
+            BODY,
+            "ids",
+            "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).  \n" +
+                "A maximum of 50 items can be specified in one request. *Note: if the `ids` parameter is present in the query string, " +
+                "any IDs listed here in the body will be ignored.*",
+            "Array[String]",
+            false));
     }
 }

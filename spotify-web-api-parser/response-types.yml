@@ -65,7 +65,7 @@ category-library:
     - type: "Array[Boolean]"
       status: 200
   endpoint-get-users-saved-episodes:
-    md5Hash: 8c34757f341b78f13871c0642765aa84
+    md5Hash: 80f3e189edc6742d8348ebee029f2a6d
     responseTypes:
     - type: "PagingObject[SavedEpisodeObject]"
       status: 200

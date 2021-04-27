@@ -3752,6 +3752,14 @@ categories:
             \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
+        - location: BODY
+          name: ids
+          description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+            \  \nA maximum of 50 items can be specified in one request. *Note: if\
+            \ the `ids` parameter is present in the query string, any IDs listed here\
+            \ in the body will be ignored.*"
+          type: "Array[String]"
+          required: false
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK.\nOn error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#error-details).\
@@ -3931,6 +3939,14 @@ categories:
             \ Maximum: 50 IDs."
           type: String
           required: true
+        - location: BODY
+          name: ids
+          description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+            \  \nA maximum of 50 items can be specified in one request. *Note: if\
+            \ the `ids` parameter is present in the query string, any IDs listed here\
+            \ in the body will be ignored.*"
+          type: "Array[String]"
+          required: false
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#error-details).\

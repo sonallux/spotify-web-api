@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Html2Markdown {
+class Html2Markdown {
 
     private static final FlexmarkHtmlConverter CONVERTER;
 
@@ -27,11 +27,11 @@ public class Html2Markdown {
                 .build();
     }
 
-    public static String convert(Node node) {
+    static String convert(Node node) {
         return CONVERTER.convert(node).trim();
     }
 
-    public static String convert(List<? extends Node> nodes) {
+    static String convert(List<? extends Node> nodes) {
         return nodes.stream()
                 .map(CONVERTER::convert)
                 .collect(Collectors.joining("\n"))

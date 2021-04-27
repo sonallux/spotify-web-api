@@ -59,20 +59,21 @@ class ApiEndpointParser {
         try {
             if (isInteractive) {
                 responseTypeMapper.update(new ArrayList<>(categories.values()));
-                responseTypeMapper.save();
             }
 
             for (var category : categories.values()) {
                 for (var endpoint : category.getEndpointList()) {
-                    var endpointResponse = responseTypeMapper.getEndpointResponse(category.getId(), endpoint.getId());
-                    if (endpointResponse == null || endpointResponse.getResponseTypes().isEmpty()) {
+                    var responseTypes = responseTypeMapper.getEndpointResponseTypes(category.getId(), endpoint);
+                    if (responseTypes == null || responseTypes.isEmpty()) {
                         log.warn("Missing response type in {} for {} {} with response: \n{}\n", category.getId(),
                                 endpoint.getHttpMethod(), endpoint.getId(), endpoint.getResponseDescription());
                         continue;
                     }
-                    endpoint.setResponseTypes(endpointResponse.getResponseTypes());
+                    endpoint.setResponseTypes(responseTypes);
                 }
             }
+
+            responseTypeMapper.save();
         } catch (IOException e) {
             log.error("Failed to load missing response types", e);
         }
