@@ -25,7 +25,7 @@ This monorepo contains tools for parsing the [Spotify Web API Reference](https:/
 Unfortunately Spotify does not provide any version information with their Web API reference documentation. Therefore, I do **not** follow [semantic versioning](https://semver.org) when releasing new versions. Version do follow a schema based on the release date: `<year>.<month>.<day>` (e.g. a version released on 30th March 2021 will get the version number `2021.3.30`).
 
 ## Disclaimer
-Because the wrappers are only based on the Spotify web API reference, there might be difference to the actual behaviour of the actual Spotify Web API endpoints. Also, neither do I have any connections to Spotify nor am I an employee at Spotify.
+Because the documentation are only based on the Spotify Web API Reference, there might be difference to the actual behaviour of the Spotify Web API. Also, neither do I have any connections to Spotify nor am I an employee at Spotify.
 
 ## How to release a new version
 1. Update the version number with `./mvnw versions:set -DnewVersion="<version>" -DgenerateBackupPoms=false`
