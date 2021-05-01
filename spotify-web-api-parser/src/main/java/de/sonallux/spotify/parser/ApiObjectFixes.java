@@ -161,12 +161,12 @@ class ApiObjectFixes {
 
         //SearchResponseObject
         objects.add(new SpotifyWebApiObject("SearchResponseObject")
-            .addProperty(new SpotifyWebApiObject.Property("album", "PagingObject[SimplifiedAlbumObject]"))
-            .addProperty(new SpotifyWebApiObject.Property("artist", "PagingObject[ArtistObject]"))
-            .addProperty(new SpotifyWebApiObject.Property("playlist", "PagingObject[SimplifiedPlaylistObject]"))
-            .addProperty(new SpotifyWebApiObject.Property("track", "PagingObject[TrackObject]"))
-            .addProperty(new SpotifyWebApiObject.Property("show", "PagingObject[SimplifiedShowObject]"))
-            .addProperty(new SpotifyWebApiObject.Property("episode", "PagingObject[SimplifiedEpisodeObject]"))
+            .addProperty(new SpotifyWebApiObject.Property("albums", "PagingObject[SimplifiedAlbumObject]"))
+            .addProperty(new SpotifyWebApiObject.Property("artists", "PagingObject[ArtistObject]"))
+            .addProperty(new SpotifyWebApiObject.Property("playlists", "PagingObject[SimplifiedPlaylistObject]"))
+            .addProperty(new SpotifyWebApiObject.Property("tracks", "PagingObject[TrackObject]"))
+            .addProperty(new SpotifyWebApiObject.Property("shows", "PagingObject[SimplifiedShowObject]"))
+            .addProperty(new SpotifyWebApiObject.Property("episodes", "PagingObject[SimplifiedEpisodeObject]"))
         );
 
         //ShowsObject

@@ -1105,22 +1105,22 @@ objects:
   SearchResponseObject:
     name: SearchResponseObject
     properties:
-    - name: album
+    - name: albums
       type: "PagingObject[SimplifiedAlbumObject]"
       description: ""
-    - name: artist
+    - name: artists
       type: "PagingObject[ArtistObject]"
       description: ""
-    - name: episode
+    - name: episodes
       type: "PagingObject[SimplifiedEpisodeObject]"
       description: ""
-    - name: playlist
+    - name: playlists
       type: "PagingObject[SimplifiedPlaylistObject]"
       description: ""
-    - name: show
+    - name: shows
       type: "PagingObject[SimplifiedShowObject]"
       description: ""
-    - name: track
+    - name: tracks
       type: "PagingObject[TrackObject]"
       description: ""
   SectionObject:

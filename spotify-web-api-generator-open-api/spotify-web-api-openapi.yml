@@ -4,7 +4,7 @@ info:
   contact:
     name: sonallux
     url: https://github.com/sonallux/spotify-web-api
-  version: 2021.4.28
+  version: 2021.5.1
 externalDocs:
   description: Find more info on the official Spotify Web API Reference
   url: https://developer.spotify.com/documentation/web-api/reference
@@ -7030,7 +7030,7 @@ components:
     SearchResponseObject:
       type: object
       properties:
-        album:
+        albums:
           type: object
           properties:
             href:
@@ -7066,7 +7066,7 @@ components:
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
             url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
-        artist:
+        artists:
           type: object
           properties:
             href:
@@ -7102,7 +7102,7 @@ components:
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
             url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
-        episode:
+        episodes:
           type: object
           properties:
             href:
@@ -7138,7 +7138,7 @@ components:
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
             url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
-        playlist:
+        playlists:
           type: object
           properties:
             href:
@@ -7174,7 +7174,7 @@ components:
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
             url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
-        show:
+        shows:
           type: object
           properties:
             href:
@@ -7210,7 +7210,7 @@ components:
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
             url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
-        track:
+        tracks:
           type: object
           properties:
             href:
