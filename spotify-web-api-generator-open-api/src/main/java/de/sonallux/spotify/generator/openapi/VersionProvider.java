@@ -10,14 +10,6 @@ public class VersionProvider {
 
     public static String getVersion() {
         try {
-            var versions = new CLI.ManifestVersionProvider().getVersion();
-            if (!"unknown".equals(versions[1])) {
-                return versions[1];
-            }
-        } catch (Exception ignore) {
-        }
-
-        try {
             var lines = Files.readAllLines(Path.of("./pom.xml"));
             var versionLine = -1;
             for (int i = 0; i < lines.size(); i++) {
@@ -37,6 +29,16 @@ public class VersionProvider {
         catch (IOException e) {
             e.printStackTrace();
         }
+
+        try {
+            var versions = new CLI.ManifestVersionProvider().getVersion();
+            if (!"unknown".equals(versions[1])) {
+                return versions[1];
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return "unknown";
     }
 }
