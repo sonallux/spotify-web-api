@@ -67,6 +67,9 @@ objects:
       description: "Included in the response when a content restriction is applied.\
         \ See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject)\
         \ for more details."
+    - name: total_tracks
+      type: Integer
+      description: The total number of tracks in the album.
     - name: tracks
       type: "PagingObject[SimplifiedTrackObject]"
       description: The tracks of the album.
@@ -1319,6 +1322,9 @@ objects:
       description: "Included in the response when a content restriction is applied.\
         \ See [Restriction Object](https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject)\
         \ for more details."
+    - name: total_tracks
+      type: Integer
+      description: The total number of tracks in the album.
     - name: type
       type: String
       description: "The object type: \"album\""
