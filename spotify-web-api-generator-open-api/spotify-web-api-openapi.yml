@@ -4,7 +4,7 @@ info:
   contact:
     name: sonallux
     url: https://github.com/sonallux/spotify-web-api
-  version: 2021.5.20
+  version: 2021.6.4
 externalDocs:
   description: Find more info on the official Spotify Web API Reference
   url: https://developer.spotify.com/documentation/web-api/reference
@@ -1854,8 +1854,16 @@ paths:
       parameters:
       - name: Authorization
         in: header
-        description: A valid user access token or your client credentials. Requires
-          the `user-follow-modify` scope.
+        description: "A valid access token from the Spotify Accounts service: see\
+          \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
+          \ for details. The access token must have been issued on behalf of the user.\
+          \  \nFollowing a playlist publicly requires authorization of the `playlist-modify-public`\
+          \ scope; following a playlist privately requires the `playlist-modify-private`\
+          \ scope. See [Using Scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes).\
+          \  \n*Note that the scopes you provide relate only to whether the current\
+          \ user is following the playlist publicly or privately (i.e. showing others\
+          \ what they are following), not whether the playlist itself is public or\
+          \ private.*"
         required: true
         schema:
           type: string
@@ -1884,8 +1892,7 @@ paths:
                   type: boolean
                   description: "Defaults to `true`. If `true` the playlist will be\
                     \ included in user's public playlists, if `false` it will remain\
-                    \ private. To be able to follow playlists privately, the user\
-                    \ must have granted the `playlist-modify-private` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
+                    \ private."
         required: false
       responses:
         default:
@@ -1897,7 +1904,8 @@ paths:
             \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
       security:
       - spotify_auth:
-        - user-follow-modify
+        - playlist-modify-public
+        - playlist-modify-private
     delete:
       tags:
       - category-follow
@@ -7353,7 +7361,8 @@ components:
             $ref: '#/components/schemas/CopyrightObject'
         description:
           type: string
-          description: A description of the show.
+          description: "A description of the show. HTML tags are stripped away from\
+            \ this field, use `html_description` field in case HTML tags are needed."
         episodes:
           type: object
           properties:
@@ -7400,6 +7409,9 @@ components:
           type: string
           description: A link to the Web API endpoint providing full details of the
             show.
+        html_description:
+          type: string
+          description: A description of the show. This field may contain HTML tags.
         id:
           type: string
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -7698,7 +7710,8 @@ components:
             $ref: '#/components/schemas/CopyrightObject'
         description:
           type: string
-          description: A description of the show.
+          description: "A description of the show. HTML tags are stripped away from\
+            \ this field, use `html_description` field in case HTML tags are needed."
         explicit:
           type: boolean
           description: Whether or not the show has explicit content (true = yes it
@@ -7709,6 +7722,9 @@ components:
           type: string
           description: A link to the Web API endpoint providing full details of the
             show.
+        html_description:
+          type: string
+          description: A description of the show. This field may contain HTML tags.
         id:
           type: string
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\

@@ -1216,7 +1216,8 @@ objects:
       description: The copyright statements of the show.
     - name: description
       type: String
-      description: A description of the show.
+      description: "A description of the show. HTML tags are stripped away from this\
+        \ field, use `html_description` field in case HTML tags are needed."
     - name: episodes
       type: "PagingObject[SimplifiedEpisodeObject]"
       description: A list of the show's episodes.
@@ -1230,6 +1231,9 @@ objects:
     - name: href
       type: String
       description: A link to the Web API endpoint providing full details of the show.
+    - name: html_description
+      type: String
+      description: A description of the show. This field may contain HTML tags.
     - name: id
       type: String
       description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -1509,7 +1513,8 @@ objects:
       description: The copyright statements of the show.
     - name: description
       type: String
-      description: A description of the show.
+      description: "A description of the show. HTML tags are stripped away from this\
+        \ field, use `html_description` field in case HTML tags are needed."
     - name: explicit
       type: Boolean
       description: Whether or not the show has explicit content (true = yes it does;
@@ -1520,6 +1525,9 @@ objects:
     - name: href
       type: String
       description: A link to the Web API endpoint providing full details of the show.
+    - name: html_description
+      type: String
+      description: A description of the show. This field may contain HTML tags.
     - name: id
       type: String
       description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -3125,8 +3133,16 @@ categories:
         parameters:
         - location: HEADER
           name: Authorization
-          description: A valid user access token or your client credentials. Requires
-            the `user-follow-modify` scope.
+          description: "A valid access token from the Spotify Accounts service: see\
+            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
+            \ for details. The access token must have been issued on behalf of the\
+            \ user.  \nFollowing a playlist publicly requires authorization of the\
+            \ `playlist-modify-public` scope; following a playlist privately requires\
+            \ the `playlist-modify-private` scope. See [Using Scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes).\
+            \  \n*Note that the scopes you provide relate only to whether the current\
+            \ user is following the playlist publicly or privately (i.e. showing others\
+            \ what they are following), not whether the playlist itself is public\
+            \ or private.*"
           type: String
           required: true
         - location: HEADER
@@ -3145,9 +3161,7 @@ categories:
         - location: BODY
           name: public
           description: "Defaults to `true`. If `true` the playlist will be included\
-            \ in user's public playlists, if `false` it will remain private. To be\
-            \ able to follow playlists privately, the user must have granted the `playlist-modify-private`\
-            \ [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
+            \ in user's public playlists, if `false` it will remain private."
           type: Boolean
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
@@ -3155,7 +3169,8 @@ categories:
           \ code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
         scopes:
-        - user-follow-modify
+        - playlist-modify-public
+        - playlist-modify-private
         responseTypes:
         - type: Void
           status: 200
