@@ -787,27 +787,25 @@ objects:
       description: A short description of the cause of the error.
     - name: reason
       type: String
-      description: "- `NO_PREV_TRACK` - The command requires a previous track, but\
-        \ there is none in the context.\n- `NO_NEXT_TRACK` - The command requires\
-        \ a next track, but there is none in the context.\n- `NO_SPECIFIC_TRACK` -\
-        \ The requested track does not exist.\n- `ALREADY_PAUSED` - The command requires\
-        \ playback to not be paused.\n- `NOT_PAUSED` - The command requires playback\
-        \ to be paused.\n- `NOT_PLAYING_LOCALLY` - The command requires playback on\
-        \ the local device.\n- `NOT_PLAYING_TRACK` - The command requires that a track\
-        \ is currently playing.\n- `NOT_PLAYING_CONTEXT` - The command requires that\
-        \ a context is currently playing.\n- `ENDLESS_CONTEXT` - The shuffle command\
-        \ cannot be applied on an endless context.\n- `CONTEXT_DISALLOW` - The command\
-        \ could not be performed on the context.\n- `ALREADY_PLAYING` - The track\
-        \ should not be restarted if the same track and context is already playing,\
-        \ and there is a resume point.\n- `RATE_LIMITED` - The user is rate limited\
-        \ due to too frequent track play, also known as cat-on-the-keyboard spamming.\n\
-        - `REMOTE_CONTROL_DISALLOW` - The context cannot be remote-controlled.\n-\
-        \ `DEVICE_NOT_CONTROLLABLE` - Not possible to remote control the device.\n\
-        - `VOLUME_CONTROL_DISALLOW` - Not possible to remote control the device's\
-        \ volume.\n- `NO_ACTIVE_DEVICE` - Requires an active device and the user has\
-        \ none.\n- `PREMIUM_REQUIRED` - The request is prohibited for non-premium\
-        \ users.\n- `UNKNOWN` - Certain actions are restricted because of unknown\
-        \ reasons."
+      description: |-
+        - `NO_PREV_TRACK` - The command requires a previous track, but there is none in the context.
+        - `NO_NEXT_TRACK` - The command requires a next track, but there is none in the context.
+        - `NO_SPECIFIC_TRACK` - The requested track does not exist.
+        - `ALREADY_PAUSED` - The command requires playback to not be paused.
+        - `NOT_PAUSED` - The command requires playback to be paused.
+        - `NOT_PLAYING_LOCALLY` - The command requires playback on the local device.
+        - `NOT_PLAYING_TRACK` - The command requires that a track is currently playing.
+        - `NOT_PLAYING_CONTEXT` - The command requires that a context is currently playing.
+        - `ENDLESS_CONTEXT` - The shuffle command cannot be applied on an endless context.
+        - `CONTEXT_DISALLOW` - The command could not be performed on the context.
+        - `ALREADY_PLAYING` - The track should not be restarted if the same track and context is already playing, and there is a resume point.
+        - `RATE_LIMITED` - The user is rate limited due to too frequent track play, also known as cat-on-the-keyboard spamming.
+        - `REMOTE_CONTROL_DISALLOW` - The context cannot be remote-controlled.
+        - `DEVICE_NOT_CONTROLLABLE` - Not possible to remote control the device.
+        - `VOLUME_CONTROL_DISALLOW` - Not possible to remote control the device's volume.
+        - `NO_ACTIVE_DEVICE` - Requires an active device and the user has none.
+        - `PREMIUM_REQUIRED` - The request is prohibited for non-premium users.
+        - `UNKNOWN` - Certain actions are restricted because of unknown reasons.
     - name: status
       type: Integer
       description: The HTTP status code. Either `404 NOT FOUND` or `403 FORBIDDEN`.
@@ -1966,14 +1964,10 @@ categories:
             \ [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/)."
           type: String
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains an object whose key is `\"\
-          albums\"` and whose value is an array of [album objects](https://developer.spotify.com/documentation/web-api/reference/#object-albumobject)\
-          \ in JSON format.\n\nObjects are returned in the order requested. If an\
-          \ object is not found, a `null` value is returned in the appropriate position.\
-          \ Duplicate `ids` in the query will result in duplicate objects in the response.\
-          \ On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains an object whose key is `"albums"` and whose value is an array of [album objects](https://developer.spotify.com/documentation/web-api/reference/#object-albumobject) in JSON format.
+
+          Objects are returned in the order requested. If an object is not found, a `null` value is returned in the appropriate position. Duplicate `ids` in the query will result in duplicate objects in the response. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes: []
         responseTypes:
         - type: AlbumsObject
@@ -2154,14 +2148,10 @@ categories:
             \ for the artists. Maximum: 50 IDs."
           type: String
           required: true
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains an object whose key is `\"\
-          artists\"` and whose value is an array of [artist objects](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject)\
-          \ in JSON format.\n\nObjects are returned in the order requested. If an\
-          \ object is not found, a `null` value is returned in the appropriate position.\
-          \ Duplicate `ids` in the query will result in duplicate objects in the response.\
-          \ On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains an object whose key is `"artists"` and whose value is an array of [artist objects](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject) in JSON format.
+
+          Objects are returned in the order requested. If an object is not found, a `null` value is returned in the appropriate position. Duplicate `ids` in the query will result in duplicate objects in the response. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes: []
         responseTypes:
         - type: ArtistsObject
@@ -2209,15 +2199,10 @@ categories:
             \ object). Use with `limit` to get the next set of items."
           type: Integer
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains an array of simplified [playlist\
-          \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
-          \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
-          \nOnce you have retrieved the list, you can use [Get a Playlist](https://developer.spotify.com/web-api/get-playlist/)\
-          \ and [Get a Playlist's Tracks](https://developer.spotify.com/web-api/get-playlists-tracks/)\
-          \ to drill down further."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains an array of simplified [playlist objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject) (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject)) in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
+
+          Once you have retrieved the list, you can use [Get a Playlist](https://developer.spotify.com/web-api/get-playlist/) and [Get a Playlist's Tracks](https://developer.spotify.com/web-api/get-playlists-tracks/) to drill down further.
         scopes: []
         responseTypes:
         - type: PlaylistPagingObject
@@ -2260,12 +2245,10 @@ categories:
             \ will be in the Spotify default language (American English)."
           type: String
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains a [category object](#categoryobject)\
-          \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
-          \nOnce you have retrieved the category, you can use [Get a Category's Playlists](https://developer.spotify.com/web-api/get-categorys-playlists/)\
-          \ to drill down further."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains a [category object](#categoryobject) in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
+
+          Once you have retrieved the category, you can use [Get a Category's Playlists](https://developer.spotify.com/web-api/get-categorys-playlists/) to drill down further.
         scopes: []
         responseTypes:
         - type: CategoryObject
@@ -2318,14 +2301,10 @@ categories:
             \ object). Use with `limit` to get the next set of categories."
           type: Integer
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains an object with a `categories`\
-          \ field, with an array of [category objects](#categoryobject) (wrapped in\
-          \ a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
-          \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
-          \nOnce you have retrieved the list, you can use [Get a Category](https://developer.spotify.com/web-api/get-category/)\
-          \ to drill down further."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains an object with a `categories` field, with an array of [category objects](#categoryobject) (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject)) in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
+
+          Once you have retrieved the list, you can use [Get a Category](https://developer.spotify.com/web-api/get-category/) to drill down further.
         scopes: []
         responseTypes:
         - type: CategoriesObject
@@ -2390,17 +2369,10 @@ categories:
             \ object). Use with `limit` to get the next set of items."
           type: Integer
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains a `message` and a `playlists`\
-          \ object. The `playlists` object contains an array of simplified [playlist\
-          \ objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
-          \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
-          \nOnce you have retrieved the list of playlist objects, you can use [Get\
-          \ a Playlist](https://developer.spotify.com/web-api/get-playlist/) and [Get\
-          \ a Playlist's Tracks](https://developer.spotify.com/web-api/get-playlists-tracks/)\
-          \ to drill down further."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains a `message` and a `playlists` object. The `playlists` object contains an array of simplified [playlist objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject) (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject)) in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
+
+          Once you have retrieved the list of playlist objects, you can use [Get a Playlist](https://developer.spotify.com/web-api/get-playlist/) and [Get a Playlist's Tracks](https://developer.spotify.com/web-api/get-playlists-tracks/) to drill down further.
         scopes: []
         responseTypes:
         - type: FeaturedPlaylistObject
@@ -2439,15 +2411,12 @@ categories:
             \ object). Use with `limit` to get the next set of items."
           type: Integer
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains a `message` and an`albums`\
-          \ object. The `albums` object contains an array of simplified [album objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
-          \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
-          \nOnce you have retrieved the list, you can use [Get an Album's Tracks](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-albums-tracks)\
-          \ to drill down further.\n\nThe results are returned in an order reflected\
-          \ within the Spotify clients, and therefore may not be ordered by date."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains a `message` and an`albums` object. The `albums` object contains an array of simplified [album objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject) (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject)) in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
+
+          Once you have retrieved the list, you can use [Get an Album's Tracks](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-albums-tracks) to drill down further.
+
+          The results are returned in an order reflected within the Spotify clients, and therefore may not be ordered by date.
         scopes: []
         responseTypes:
         - type: NewReleasesObject
@@ -2977,15 +2946,15 @@ categories:
             \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200`\nOK and the response body contains an object whose key is `episodes`\
-          \ and whose\nvalue is an array of [episode objects](https://developer.spotify.com/documentation/web-api/reference/#object-episodeobject)\n\
-          in JSON format.\n\nObjects are returned in the order requested. If an object\
-          \ is not found, a `null` value is returned in the appropriate position.\n\
-          Duplicate `ids` in the query will result in duplicate objects in the response.\
-          \ If an episode is unavailable in the given `market`, a `null` value is\
-          \ returned.\nOn error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200`
+          OK and the response body contains an object whose key is `episodes` and whose
+          value is an array of [episode objects](https://developer.spotify.com/documentation/web-api/reference/#object-episodeobject)
+          in JSON format.
+
+          Objects are returned in the order requested. If an object is not found, a `null` value is returned in the appropriate position.
+          Duplicate `ids` in the query will result in duplicate objects in the response. If an episode is unavailable in the given `market`, a `null` value is returned.
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes: []
         responseTypes:
         - type: EpisodesObject
@@ -3023,11 +2992,9 @@ categories:
             \ A maximum of 50 IDs can be sent in one request."
           type: String
           required: true
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains a JSON array of `true` or `false`\
-          \ values, in the same order in which the `ids` were specified.\nOn error,\
-          \ the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains a JSON array of `true` or `false` values, in the same order in which the `ids` were specified.
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes:
         - user-follow-read
         responseTypes:
@@ -3061,11 +3028,9 @@ categories:
             \ the playlist. Maximum: 5 ids."
           type: String
           required: true
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains a JSON array of `true` or `false`\
-          \ values, in the same order in which the `ids` were specified.\nOn error,\
-          \ the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains a JSON array of `true` or `false` values, in the same order in which the `ids` were specified.
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes:
         - playlist-read-private
         responseTypes:
@@ -3114,10 +3079,9 @@ categories:
             \ body will be ignored.*"
           type: "Array[String]"
           required: true
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `204` No Content and the response body is empty.\nOn error, the header\
-          \ status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `204` No Content and the response body is empty.
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes:
         - user-follow-modify
         responseTypes:
@@ -3164,10 +3128,9 @@ categories:
             \ in user's public playlists, if `false` it will remain private."
           type: Boolean
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body is empty.\nOn error, the header status\
-          \ code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body is empty.
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes:
         - playlist-modify-public
         - playlist-modify-private
@@ -3204,12 +3167,10 @@ categories:
             \ 1. Maximum: 50."
           type: Integer
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains an `artists` object.\nThe `artists`\
-          \ object in turn contains a [cursor-based paging object](https://developer.spotify.com/documentation/web-api/reference/#object-cursorpagingobject)\
-          \ of [Artists](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject).\n\
-          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains an `artists` object.
+          The `artists` object in turn contains a [cursor-based paging object](https://developer.spotify.com/documentation/web-api/reference/#object-cursorpagingobject) of [Artists](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject).
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes:
         - user-follow-modify
         responseTypes:
@@ -3258,10 +3219,9 @@ categories:
             \ body will be ignored.*"
           type: "Array[String]"
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `204` No Content and the response body is empty.\nOn error, the header\
-          \ status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `204` No Content and the response body is empty.
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes:
         - user-follow-modify
         responseTypes:
@@ -3296,10 +3256,9 @@ categories:
             \ of the playlist that is to be no longer followed."
           type: String
           required: true
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body is empty.\nOn error, the header status\
-          \ code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body is empty.
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes:
         - playlist-modify-public
         - playlist-modify-private
@@ -3334,11 +3293,9 @@ categories:
             \ for the albums. Maximum: 50 IDs."
           type: String
           required: true
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains a JSON array of `true` or `false`\
-          \ values, in the same order in which the `ids` were specified.\nOn error,\
-          \ the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains a JSON array of `true` or `false` values, in the same order in which the `ids` were specified.
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes:
         - user-library-read
         responseTypes:
@@ -3369,11 +3326,9 @@ categories:
             \ for the episodes. Maximum: 50 IDs."
           type: String
           required: true
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains a JSON array of `true` or `false`\
-          \ values, in the same order in which the `ids` were specified.\nOn error,\
-          \ the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains a JSON array of `true` or `false` values, in the same order in which the `ids` were specified.
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes:
         - user-library-read
         responseTypes:
@@ -3436,11 +3391,9 @@ categories:
             \ for the tracks. Maximum: 50 IDs."
           type: String
           required: true
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains a JSON array of `true` or `false`\
-          \ values, in the same order in which the `ids` were specified.\nOn error,\
-          \ the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains a JSON array of `true` or `false` values, in the same order in which the `ids` were specified.
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes:
         - user-library-read
         responseTypes:
@@ -3482,14 +3435,10 @@ categories:
             \ [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/)."
           type: String
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains an array of [saved album objects](https://developer.spotify.com/documentation/web-api/reference/#object-savedalbumobject)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
-          \ in JSON format. Each album object is accompanied by a [timestamp](https://developer.spotify.com/documentation/web-api/#timestamps)\
-          \ (`added_at`) to show when it was added. There is also an **etag** in the\
-          \ header that can be used in future [conditional requests](https://developer.spotify.com/documentation/web-api/#conditional-requests).\n\
-          \nOn error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains an array of [saved album objects](https://developer.spotify.com/documentation/web-api/reference/#object-savedalbumobject) (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject)) in JSON format. Each album object is accompanied by a [timestamp](https://developer.spotify.com/documentation/web-api/#timestamps) (`added_at`) to show when it was added. There is also an **etag** in the header that can be used in future [conditional requests](https://developer.spotify.com/documentation/web-api/#conditional-requests).
+
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes:
         - user-library-read
         responseTypes:
@@ -3579,16 +3528,10 @@ categories:
             \ object). Use with limit to get the next set of shows."
           type: Integer
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains an array of [saved show objects](https://developer.spotify.com/documentation/web-api/reference/#object-savedshowobject)\
-          \ (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject))\
-          \ in JSON format.\nIf the current user has no shows saved, the response\
-          \ will be an empty array. If a show is unavailable in the given `market`\
-          \ it is filtered out. The `total` field in the paging object represents\
-          \ the number of all items, filtered or not, and thus might be larger than\
-          \ the actual total number of observable items.\nOn error, the header status\
-          \ code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#error-details)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains an array of [saved show objects](https://developer.spotify.com/documentation/web-api/reference/#object-savedshowobject) (wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject)) in JSON format.
+          If the current user has no shows saved, the response will be an empty array. If a show is unavailable in the given `market` it is filtered out. The `total` field in the paging object represents the number of all items, filtered or not, and thus might be larger than the actual total number of observable items.
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#error-details).
         scopes:
         - user-library-read
         responseTypes:
@@ -3781,11 +3724,9 @@ categories:
             \ in the body will be ignored.*"
           type: "Array[String]"
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK.\nOn error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#error-details).\
-          \ A `403 Forbidden` while trying to add a show when you do not have the\
-          \ user's authorisation."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK.
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#error-details). A `403 Forbidden` while trying to add a show when you do not have the user's authorisation.
         scopes:
         - user-library-modify
         responseTypes:
@@ -4148,14 +4089,12 @@ categories:
             \ the user's currently active device is the target."
           type: String
           required: false
-        responseDescription: "A completed request will return a `204 NO CONTENT` response\
-          \ code, and then issue the command to the player. Due to the asynchronous\
-          \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
-          \ endpoint to check that your issued command was handled correctly by the\
-          \ player.\n\nIf the device is not found, the request will return `404 NOT\
-          \ FOUND` response code.\n\nIf the user making the request is non-premium,\
-          \ a `403 FORBIDDEN` response code will be returned."
+        responseDescription: |-
+          A completed request will return a `204 NO CONTENT` response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the [Get Information About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback) endpoint to check that your issued command was handled correctly by the player.
+
+          If the device is not found, the request will return `404 NOT FOUND` response code.
+
+          If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
         scopes:
         - user-modify-playback-state
         responseTypes:
@@ -4178,10 +4117,9 @@ categories:
             \ in order to read information."
           type: String
           required: true
-        responseDescription: "A successful request will return a `200 OK` response\
-          \ code with a json payload that contains the device objects (see below).\n\
-          When no available devices are found, the request will return a 200 OK response\
-          \ with an empty devices list."
+        responseDescription: |-
+          A successful request will return a `200 OK` response code with a json payload that contains the device objects (see below).
+          When no available devices are found, the request will return a 200 OK response with an empty devices list.
         scopes:
         - user-read-playback-state
         responseTypes:
@@ -4205,9 +4143,9 @@ categories:
           required: true
         - location: QUERY
           name: market
-          description: "An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ or the string `from_token`. Provide this parameter if you want to apply\
-            \ [Track\nRelinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/)."
+          description: |-
+            An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or the string `from_token`. Provide this parameter if you want to apply [Track
+            Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/).
           type: String
           required: false
         - location: QUERY
@@ -4221,12 +4159,9 @@ categories:
             \ make sure that your client properly handles cases of new"
           type: String
           required: false
-        responseDescription: "A successful request will return a `200 OK` response\
-          \ code with a json payload that contains information about the current playback.\
-          \ The information returned is for the last known state, which means an inactive\
-          \ device could be returned if it was the last one to execute playback.\n\
-          When no available devices are found, the request will return a `200 OK`\
-          \ response but with no data populated."
+        responseDescription: |-
+          A successful request will return a `200 OK` response code with a json payload that contains information about the current playback. The information returned is for the last known state, which means an inactive device could be returned if it was the last one to execute playback.
+          When no available devices are found, the request will return a `200 OK` response but with no data populated.
         scopes:
         - user-read-playback-state
         responseTypes:
@@ -4238,8 +4173,9 @@ categories:
         id: endpoint-get-recently-played
         name: Get Current User's Recently Played Tracks
         link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recently-played
-        description: "Get tracks from the current user's recently played tracks.\n\
-          *Note: Currently doesn't support podcast episodes.*"
+        description: |-
+          Get tracks from the current user's recently played tracks.
+          *Note: Currently doesn't support podcast episodes.*
         httpMethod: GET
         path: /me/player/recently-played
         parameters:
@@ -4270,16 +4206,10 @@ categories:
             \ `after` must not be specified."
           type: Integer
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains an array of [play history objects](#play-history-object)\
-          \ (wrapped in a [cursor-based paging object](#cursor-based-paging-object))\
-          \ in JSON format. The play history items each contain the context the track\
-          \ was played from (e.g. playlist, album), the date and time the track was\
-          \ played, and a [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject).\
-          \ On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\n\
-          \nIf private session is enabled the response will be a `204 NO CONTENT`\
-          \ with an empty payload."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains an array of [play history objects](#play-history-object) (wrapped in a [cursor-based paging object](#cursor-based-paging-object)) in JSON format. The play history items each contain the context the track was played from (e.g. playlist, album), the date and time the track was played, and a [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject). On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
+
+          If private session is enabled the response will be a `204 NO CONTENT` with an empty payload.
         scopes: []
         responseTypes:
         - type: "CursorPagingObject[PlayHistoryObject]"
@@ -4305,9 +4235,9 @@ categories:
           required: true
         - location: QUERY
           name: market
-          description: "An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ or the string `from_token`. Provide this parameter if you want to apply\
-            \ [Track\nRelinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/)."
+          description: |-
+            An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or the string `from_token`. Provide this parameter if you want to apply [Track
+            Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/).
           type: String
           required: true
         - location: QUERY
@@ -4322,16 +4252,14 @@ categories:
             \ future by checking against the `currently_playing_type` field."
           type: String
           required: false
-        responseDescription: "A successful request will return a `200 OK` response\
-          \ code with a json payload that contains information about the currently\
-          \ playing track or episode and its context (see below). The information\
-          \ returned is for the last known state, which means an inactive device could\
-          \ be returned if it was the last one to execute playback.\n\nWhen no available\
-          \ devices are found, the request will return a `200 OK` response but with\
-          \ no data populated.\n\nWhen no track is currently playing, the request\
-          \ will return a `204 NO CONTENT` response with no payload.\n\nIf private\
-          \ session is enabled the response will be a `204 NO CONTENT` with an empty\
-          \ payload."
+        responseDescription: |-
+          A successful request will return a `200 OK` response code with a json payload that contains information about the currently playing track or episode and its context (see below). The information returned is for the last known state, which means an inactive device could be returned if it was the last one to execute playback.
+
+          When no available devices are found, the request will return a `200 OK` response but with no data populated.
+
+          When no track is currently playing, the request will return a `204 NO CONTENT` response with no payload.
+
+          If private session is enabled the response will be a `204 NO CONTENT` with an empty payload.
         scopes:
         - user-read-currently-playing
         - user-read-playback-state
@@ -4362,14 +4290,12 @@ categories:
             \ the user's currently active device is the target."
           type: String
           required: false
-        responseDescription: "A completed request will return a `204 NO CONTENT` response\
-          \ code, and then issue the command to the player. Due to the asynchronous\
-          \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
-          \ endpoint to check that your issued command was handled correctly by the\
-          \ player.\n\nIf the device is not found, the request will return `404 NOT\
-          \ FOUND` response code.\n\nIf the user making the request is non-premium,\
-          \ a `403 FORBIDDEN` response code will be returned."
+        responseDescription: |-
+          A completed request will return a `204 NO CONTENT` response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the [Get Information About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback) endpoint to check that your issued command was handled correctly by the player.
+
+          If the device is not found, the request will return `404 NOT FOUND` response code.
+
+          If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
         scopes: []
         responseTypes:
         - type: Void
@@ -4404,14 +4330,12 @@ categories:
             \ the user's currently active device is the target."
           type: String
           required: false
-        responseDescription: "A completed request will return a `204 NO CONTENT` response\
-          \ code, and then issue the command to the player. Due to the asynchronous\
-          \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
-          \ endpoint to check that your issued command was handled correctly by the\
-          \ player.\n\nIf the device is not found, the request will return `404 NOT\
-          \ FOUND` response code.\n\nIf the user making the request is non-premium,\
-          \ a `403 FORBIDDEN` response code will be returned."
+        responseDescription: |-
+          A completed request will return a `204 NO CONTENT` response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the [Get Information About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback) endpoint to check that your issued command was handled correctly by the player.
+
+          If the device is not found, the request will return `404 NOT FOUND` response code.
+
+          If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
         scopes:
         - user-modify-playback-state
         responseTypes:
@@ -4421,8 +4345,9 @@ categories:
         id: endpoint-set-repeat-mode-on-users-playback
         name: Set Repeat Mode On User’s Playback
         link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-set-repeat-mode-on-users-playback
-        description: "Set the repeat mode for the user's playback. Options are repeat-track,\n\
-          repeat-context, and off."
+        description: |-
+          Set the repeat mode for the user's playback. Options are repeat-track,
+          repeat-context, and off.
         httpMethod: PUT
         path: /me/player/repeat
         parameters:
@@ -4448,14 +4373,12 @@ categories:
             \ the user's currently active device is the target."
           type: String
           required: false
-        responseDescription: "A completed request will return a `204 NO CONTENT` response\
-          \ code, and then issue the command to the player. Due to the asynchronous\
-          \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
-          \ endpoint to check that your issued command was handled correctly by the\
-          \ player.\n\nIf the device is not found, the request will return `404 NOT\
-          \ FOUND` response code.\n\nIf the user making the request is non-premium,\
-          \ a `403 FORBIDDEN` response code will be returned."
+        responseDescription: |-
+          A completed request will return a `204 NO CONTENT` response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the [Get Information About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback) endpoint to check that your issued command was handled correctly by the player.
+
+          If the device is not found, the request will return `404 NOT FOUND` response code.
+
+          If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
         scopes:
         - user-modify-playback-state
         responseTypes:
@@ -4489,14 +4412,12 @@ categories:
             \ the user's currently active device is the target."
           type: String
           required: false
-        responseDescription: "A completed request will return a `204 NO CONTENT` response\
-          \ code, and then issue the command to the player. Due to the asynchronous\
-          \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
-          \ endpoint to check that your issued command was handled correctly by the\
-          \ player.\n\nIf the device is not found, the request will return `404 NOT\
-          \ FOUND` response code.\n\nIf the user making the request is non-premium,\
-          \ a `403 FORBIDDEN` response code will be returned."
+        responseDescription: |-
+          A completed request will return a `204 NO CONTENT` response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the [Get Information About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback) endpoint to check that your issued command was handled correctly by the player.
+
+          If the device is not found, the request will return `404 NOT FOUND` response code.
+
+          If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
         scopes:
         - user-modify-playback-state
         responseTypes:
@@ -4525,14 +4446,12 @@ categories:
             \ the user's currently active device is the target."
           type: String
           required: false
-        responseDescription: "A completed request will return a `204 NO CONTENT` response\
-          \ code, and then issue the command to the player. Due to the asynchronous\
-          \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
-          \ endpoint to check that your issued command was handled correctly by the\
-          \ player.\n\nIf the device is not found, the request will return `404 NOT\
-          \ FOUND` response code.\n\nIf the user making the request is non-premium,\
-          \ a `403 FORBIDDEN` response code will be returned."
+        responseDescription: |-
+          A completed request will return a `204 NO CONTENT` response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the [Get Information About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback) endpoint to check that your issued command was handled correctly by the player.
+
+          If the device is not found, the request will return `404 NOT FOUND` response code.
+
+          If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
         scopes:
         - user-modify-playback-state
         responseTypes:
@@ -4561,14 +4480,12 @@ categories:
             \ the user's currently active device is the target."
           type: String
           required: false
-        responseDescription: "A completed request will return a `204 NO CONTENT` response\
-          \ code, and then issue the command to the player. Due to the asynchronous\
-          \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
-          \ endpoint to check that your issued command was handled correctly by the\
-          \ player.\n\nIf the device is not found, the request will return `404 NOT\
-          \ FOUND` response code.\n\nIf the user making the request is non-premium,\
-          \ a `403 FORBIDDEN` response code will be returned."
+        responseDescription: |-
+          A completed request will return a `204 NO CONTENT` response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the [Get Information About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback) endpoint to check that your issued command was handled correctly by the player.
+
+          If the device is not found, the request will return `404 NOT FOUND` response code.
+
+          If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
         scopes:
         - user-modify-playback-state
         responseTypes:
@@ -4629,14 +4546,12 @@ categories:
             will cause the player to start playing the next song.
           type: Integer
           required: false
-        responseDescription: "A completed request will return a `204 NO CONTENT` response\
-          \ code, and then issue the command to the player. Due to the asynchronous\
-          \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
-          \ endpoint to check that your issued command was handled correctly by the\
-          \ player.\n\nIf the device is not found, the request will return `404 NOT\
-          \ FOUND` response code.\n\nIf the user making the request is non-premium,\
-          \ a `403 FORBIDDEN` response code will be returned."
+        responseDescription: |-
+          A completed request will return a `204 NO CONTENT` response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the [Get Information About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback) endpoint to check that your issued command was handled correctly by the player.
+
+          If the device is not found, the request will return `404 NOT FOUND` response code.
+
+          If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
         scopes:
         - user-modify-playback-state
         responseTypes:
@@ -4671,14 +4586,12 @@ categories:
             \ the user's currently active device is the target."
           type: String
           required: false
-        responseDescription: "A completed request will return a `204 NO CONTENT` response\
-          \ code, and then issue the command to the player. Due to the asynchronous\
-          \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
-          \ endpoint to check that your issued command was handled correctly by the\
-          \ player.\n\nIf the device is not found, the request will return `404 NOT\
-          \ FOUND` response code.\n\nIf the user making the request is non-premium,\
-          \ a `403 FORBIDDEN` response code will be returned."
+        responseDescription: |-
+          A completed request will return a `204 NO CONTENT` response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the [Get Information About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback) endpoint to check that your issued command was handled correctly by the player.
+
+          If the device is not found, the request will return `404 NOT FOUND` response code.
+
+          If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
         scopes:
         - user-modify-playback-state
         responseTypes:
@@ -4716,14 +4629,12 @@ categories:
             \ or not provided: keep the current playback state."
           type: Boolean
           required: false
-        responseDescription: "A completed request will return a `204 NO CONTENT` response\
-          \ code, and then issue the command to the player. Due to the asynchronous\
-          \ nature of the issuance of the command, you should use the [Get Information\
-          \ About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback)\
-          \ endpoint to check that your issued command was handled correctly by the\
-          \ player.\n\nIf the device is not found, the request will return `404 NOT\
-          \ FOUND` response code.\n\nIf the user making the request is non-premium,\
-          \ a `403 FORBIDDEN` response code will be returned."
+        responseDescription: |-
+          A completed request will return a `204 NO CONTENT` response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the [Get Information About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback) endpoint to check that your issued command was handled correctly by the player.
+
+          If the device is not found, the request will return `404 NOT FOUND` response code.
+
+          If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
         scopes:
         - user-modify-playback-state
         responseTypes:
@@ -4824,8 +4735,9 @@ categories:
         id: endpoint-change-playlist-details
         name: Change a Playlist's Details
         link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-change-playlist-details
-        description: "Change a playlist's name and public/private state. (The user\
-          \ must, of\ncourse, own the playlist.)"
+        description: |-
+          Change a playlist's name and public/private state. (The user must, of
+          course, own the playlist.)
         httpMethod: PUT
         path: "/playlists/{playlist_id}"
         parameters:
@@ -4875,11 +4787,10 @@ categories:
             and in the Web API.
           type: String
           required: false
-        responseDescription: "On success the HTTP status code in the response header\
-          \ is `200` OK.\n\nOn error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
-          \ Trying to change a playlist when you do not have the user's authorization\
-          \ returns error `403` Forbidden."
+        responseDescription: |-
+          On success the HTTP status code in the response header is `200` OK.
+
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema). Trying to change a playlist when you do not have the user's authorization returns error `403` Forbidden.
         scopes:
         - playlist-modify-public
         - playlist-modify-private
@@ -4890,8 +4801,9 @@ categories:
         id: endpoint-create-playlist
         name: Create a Playlist
         link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-create-playlist
-        description: "Create a playlist for a Spotify user. (The playlist will be\
-          \ empty until\nyou [add tracks](https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-tracks-to-playlist).)"
+        description: |-
+          Create a playlist for a Spotify user. (The playlist will be empty until
+          you [add tracks](https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-tracks-to-playlist).)
         httpMethod: POST
         path: "/users/{user_id}/playlists"
         parameters:
@@ -4944,15 +4856,13 @@ categories:
             and in the Web API.
           type: String
           required: false
-        responseDescription: "On success, the response body contains the created [playlist\
-          \ object](https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject)\n\
-          in JSON format and the HTTP status code in the response header is `200`\
-          \ OK or\n`201` Created. There is also a `Location` response header giving\
-          \ the Web API\nendpoint for the new playlist.\n\nOn error, the header status\
-          \ code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
-          \ Trying to create a playlist when you do not have the user's authorization\
-          \ returns error `403` Forbidden."
+        responseDescription: |-
+          On success, the response body contains the created [playlist object](https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject)
+          in JSON format and the HTTP status code in the response header is `200` OK or
+          `201` Created. There is also a `Location` response header giving the Web API
+          endpoint for the new playlist.
+
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema). Trying to create a playlist when you do not have the user's authorization returns error `403` Forbidden.
         scopes:
         - playlist-modify-public
         - playlist-modify-private
@@ -5294,25 +5204,26 @@ categories:
             \ changes have been made to the playlist."
           type: String
           required: false
-        responseDescription: "On success, the response body contains a `snapshot_id`\
-          \ in JSON format\nand the HTTP status code in the response header is `200`\
-          \ OK. The `snapshot_id`\ncan be used to identify your playlist version in\
-          \ future requests.\n\nOn error, the header status code is an [error code](https://developer.spotify.com/spotify-documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/spotify-documentation/web-api/#response-schema).\n\
-          Trying to remove an item when you do not have the user's authorization returns\
-          \ error `403` Forbidden.\nAttempting to use several different ways to remove\
-          \ items returns `400` Bad Request.\nOther client errors returning `400`\
-          \ Bad Request include specifying invalid positions."
+        responseDescription: |-
+          On success, the response body contains a `snapshot_id` in JSON format
+          and the HTTP status code in the response header is `200` OK. The `snapshot_id`
+          can be used to identify your playlist version in future requests.
+
+          On error, the header status code is an [error code](https://developer.spotify.com/spotify-documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/spotify-documentation/web-api/#response-schema).
+          Trying to remove an item when you do not have the user's authorization returns error `403` Forbidden.
+          Attempting to use several different ways to remove items returns `400` Bad Request.
+          Other client errors returning `400` Bad Request include specifying invalid positions.
         scopes:
         - playlist-modify-public
         - playlist-modify-private
-        notes: "### Frequently Asked Questions:\n\n- **Is it possible to delete a\
-          \ playlist?**\n  No, it isn't. The reason there is no endpoint for this\
-          \ is explained in our Working With Playlists Guide in the section [Following\
-          \ and Unfollowing a Playlist](https://developer.spotify.com/documentation/general/guides/working-with-playlists/#following-and-unfollowing-a-playlist).\n\
-          \n- **Can I use `X-HTTP-Method-Override` or similar to send a DELETE request\
-          \ overriding the HTTP verb?**\n  Not at the moment, the delete operation\
-          \ needs to be specified through a DELETE request."
+        notes: |-
+          ### Frequently Asked Questions:
+
+          - **Is it possible to delete a playlist?**
+            No, it isn't. The reason there is no endpoint for this is explained in our Working With Playlists Guide in the section [Following and Unfollowing a Playlist](https://developer.spotify.com/documentation/general/guides/working-with-playlists/#following-and-unfollowing-a-playlist).
+
+          - **Can I use `X-HTTP-Method-Override` or similar to send a DELETE request overriding the HTTP verb?**
+            Not at the moment, the delete operation needs to be specified through a DELETE request.
         responseTypes:
         - type: SnapshotIdObject
           status: 200
@@ -5320,15 +5231,15 @@ categories:
         id: endpoint-reorder-or-replace-playlists-tracks
         name: Reorder or Replace a Playlist's Items
         link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks
-        description: "Either reorder or replace items in a playlist depending on the\
-          \ request's parameters.\nTo reorder items, include `range_start`, `insert_before`,\
-          \ `range_length` and `snapshot_id` in the request's body.\nTo replace items,\
-          \ include `uris` as either a query parameter or in the request's body.\n\
-          Replacing items in a playlist will overwrite its existing items. This operation\
-          \ can be used for replacing or clearing items in a playlist.\n\n\n**Note**:\
-          \ Replace and reorder are mutually exclusive operations which share the\
-          \ same endpoint, but have different parameters.\nThese operations can't\
-          \ be applied together in a single request."
+        description: |-
+          Either reorder or replace items in a playlist depending on the request's parameters.
+          To reorder items, include `range_start`, `insert_before`, `range_length` and `snapshot_id` in the request's body.
+          To replace items, include `uris` as either a query parameter or in the request's body.
+          Replacing items in a playlist will overwrite its existing items. This operation can be used for replacing or clearing items in a playlist.
+
+
+          **Note**: Replace and reorder are mutually exclusive operations which share the same endpoint, but have different parameters.
+          These operations can't be applied together in a single request.
         httpMethod: PUT
         path: "/playlists/{playlist_id}/tracks"
         parameters:
@@ -5401,15 +5312,18 @@ categories:
             changes.
           type: String
           required: false
-        responseDescription: "On a successful **reorder** operation, the response\
-          \ body contains a `snapshot_id` in JSON format\nand the HTTP status code\
-          \ in the response header is `200` OK. The `snapshot_id`\ncan be used to\
-          \ identify your playlist version in future requests.\n\nOn a successful\
-          \ **replace** operation, the HTTP status code in the response header is\
-          \ `201`\nCreated.\n\nOn error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes),\n\
-          the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema),\n\
-          and the existing playlist is unmodified.\nTrying to set an item when you\
-          \ do not have the user's authorization returns error `403` Forbidden."
+        responseDescription: |-
+          On a successful **reorder** operation, the response body contains a `snapshot_id` in JSON format
+          and the HTTP status code in the response header is `200` OK. The `snapshot_id`
+          can be used to identify your playlist version in future requests.
+
+          On a successful **replace** operation, the HTTP status code in the response header is `201`
+          Created.
+
+          On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes),
+          the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema),
+          and the existing playlist is unmodified.
+          Trying to set an item when you do not have the user's authorization returns error `403` Forbidden.
         scopes:
         - playlist-modify-public
         - playlist-modify-private
@@ -5449,20 +5363,19 @@ categories:
             \ for the playlist."
           type: String
           required: true
-        responseDescription: "If you get status code `429`, it means that you have\
-          \ sent too many requests.\nIf this happens, have a look in the `Retry-After`\
-          \ header, where you will see a number displayed.\nThis is the amount of\
-          \ seconds that you need to wait, before you can retry sending your requests."
+        responseDescription: |-
+          If you get status code `429`, it means that you have sent too many requests.
+          If this happens, have a look in the `Retry-After` header, where you will see a number displayed.
+          This is the amount of seconds that you need to wait, before you can retry sending your requests.
         scopes:
         - ugc-image-upload
         - playlist-modify-public
         - playlist-modify-private
-        notes: "The request should contain a Base64 encoded JPEG image data, maximum\
-          \ payload size is 256 KB.\n\n**Rate Limiting:** If you get status code `429`,\
-          \ it means that you have sent too many requests.\nIf this happens, have\
-          \ a look in the `Retry-After` header, where you will see a number displayed.\
-          \ This is the amount of seconds that you need to wait, before you can retry\
-          \ sending your requests."
+        notes: |-
+          The request should contain a Base64 encoded JPEG image data, maximum payload size is 256 KB.
+
+          **Rate Limiting:** If you get status code `429`, it means that you have sent too many requests.
+          If this happens, have a look in the `Retry-After` header, where you will see a number displayed. This is the amount of seconds that you need to wait, before you can retry sending your requests.
         responseTypes:
         - type: Void
           status: 202
@@ -5475,8 +5388,9 @@ categories:
         id: endpoint-search
         name: Search for an Item
         link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-search
-        description: "Get Spotify Catalog information about albums, artists, playlists,\
-          \ tracks, shows or episodes\nthat match a keyword string."
+        description: |-
+          Get Spotify Catalog information about albums, artists, playlists, tracks, shows or episodes
+          that match a keyword string.
         httpMethod: GET
         path: /search
         parameters:
@@ -5540,57 +5454,68 @@ categories:
             \ from responses."
           type: String
           required: false
-        responseDescription: "**On success**:\n\n- In the response ***header*** the\
-          \ HTTP status code is `200` OK.\n- For each type provided in the `type`\
-          \ parameter, the response ***body*** contains an array of [artist objects](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject)\
-          \ / [simplified album objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject)\
-          \ / [track objects](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)\
-          \ / [simplified show objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedshowobject)\
-          \ / [simplified episode objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject)\
-          \ wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject)\
-          \ in JSON.\n\n**On error**:\n\n- The ***header*** status code is an [error\
-          \ code](https://developer.spotify.com/documentation/web-api/#response-status-codes).\n\
-          - The response ***body*** contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          **On success**:
+
+          - In the response ***header*** the HTTP status code is `200` OK.
+          - For each type provided in the `type` parameter, the response ***body*** contains an array of [artist objects](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject) / [simplified album objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject) / [track objects](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject) / [simplified show objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedshowobject) / [simplified episode objects](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject) wrapped in a [paging object](https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject) in JSON.
+
+          **On error**:
+
+          - The ***header*** status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes).
+          - The response ***body*** contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes: []
-        notes: "**Writing a Query - Guidelines**\n\n**Encode spaces** with the hex\
-          \ code `%20` or `+`.\n\n**Keyword matching** : Matching of search keywords\
-          \ is *not* case-sensitive. Operators, however, should be specified in uppercase.\n\
-          Unless surrounded by double quotation marks, keywords are matched in any\
-          \ order. For example:\n`q=roadhouse&20blues` matches both \"Blues Roadhouse\"\
-          \ and \"Roadhouse of the Blues\".\n`q=\"roadhouse&20blues\"` matches \"\
-          My Roadhouse Blues\" but not \"Roadhouse of the Blues\".\n\nSearching for\
-          \ **playlists** returns results where the query keyword(s) match any part\
-          \ of the playlist's name or description. Only popular public playlists are\
-          \ returned.\n\n**Operator**: The operator NOT can be used to exclude results.\n\
-          \nFor example: `q=roadhouse%20NOT%20blues` returns items that match \"roadhouse\"\
-          \ but excludes those that also contain the keyword \"blues\".\n\n*Note*:\
-          \ The operator must be specified in uppercase. Otherwise, they are handled\
-          \ as normal keywords to be matched.\n\n**Field filters** : By default, results\
-          \ are returned when a match is found in *any* field of the target object\
-          \ type. Searches can be made more specific by specifying an `album`, `artist`\
-          \ or `track` field filter.\n\nFor example: The query `q=album:gold%20artist:abba&type=album`\
-          \ returns only albums with the text \"gold\" in the album name and the text\
-          \ \"abba\" in the artist name.\n\nTo limit the results to a particular `year`,\
-          \ use the field filter year with album, artist, and track searches.\n\n\
-          For example: `q=bob%20year:2014`\n\nOr with a date range. For example: `q=bob%20year:1980-2020`\n\
-          \nTo retrieve only albums released in the last two weeks, use the field\
-          \ filter tag:new in album searches.\n\nTo retrieve only albums with the\
-          \ lowest 10% popularity, use the field filter tag:hipster in album searches.\n\
-          *Note*: This field filter only works with album searches.\n\nDepending on\
-          \ object types being searched for, other field filters, include genre (applicable\
-          \ to tracks and artists), `upc`, and `isrc`.\nFor example: `q=lil%20genre:%22southern%20hip%20hop%22&type=artist`.\n\
-          Use double quotation marks around the genre keyword string if it contains\
-          \ spaces.\n\n**Notes**\n\n- Currently, you cannot fetch sorted results.\n\
-          - You cannot search for playlists that contain a certain track.\n- You can\
-          \ search only one genre at a time.\n- You cannot search for playlists within\
-          \ a user's library.\n- In an effort to keep the response small, but include\
-          \ as much information as possible, Spotify has expanded the response and\
-          \ intends to continue and improve the Search endpoint.\n- To query based\
-          \ on a release date query at a year level using the year scope. For example:\n\
-          \n  The query\n\n  `https://api.spotify.com/v1/search?q=bob%20year:2014&type=album`\n\
-          \n  Returns albums released in 2014 with their names or artist names containing\
-          \ \"bob\". You can also use the tag:new field filter to get just these albums,\
-          \ as well as compilations and singles, released in the last 2 weeks."
+        notes: |-
+          **Writing a Query - Guidelines**
+
+          **Encode spaces** with the hex code `%20` or `+`.
+
+          **Keyword matching** : Matching of search keywords is *not* case-sensitive. Operators, however, should be specified in uppercase.
+          Unless surrounded by double quotation marks, keywords are matched in any order. For example:
+          `q=roadhouse&20blues` matches both "Blues Roadhouse" and "Roadhouse of the Blues".
+          `q="roadhouse&20blues"` matches "My Roadhouse Blues" but not "Roadhouse of the Blues".
+
+          Searching for **playlists** returns results where the query keyword(s) match any part of the playlist's name or description. Only popular public playlists are returned.
+
+          **Operator**: The operator NOT can be used to exclude results.
+
+          For example: `q=roadhouse%20NOT%20blues` returns items that match "roadhouse" but excludes those that also contain the keyword "blues".
+
+          *Note*: The operator must be specified in uppercase. Otherwise, they are handled as normal keywords to be matched.
+
+          **Field filters** : By default, results are returned when a match is found in *any* field of the target object type. Searches can be made more specific by specifying an `album`, `artist` or `track` field filter.
+
+          For example: The query `q=album:gold%20artist:abba&type=album` returns only albums with the text "gold" in the album name and the text "abba" in the artist name.
+
+          To limit the results to a particular `year`, use the field filter year with album, artist, and track searches.
+
+          For example: `q=bob%20year:2014`
+
+          Or with a date range. For example: `q=bob%20year:1980-2020`
+
+          To retrieve only albums released in the last two weeks, use the field filter tag:new in album searches.
+
+          To retrieve only albums with the lowest 10% popularity, use the field filter tag:hipster in album searches.
+          *Note*: This field filter only works with album searches.
+
+          Depending on object types being searched for, other field filters, include genre (applicable to tracks and artists), `upc`, and `isrc`.
+          For example: `q=lil%20genre:%22southern%20hip%20hop%22&type=artist`.
+          Use double quotation marks around the genre keyword string if it contains spaces.
+
+          **Notes**
+
+          - Currently, you cannot fetch sorted results.
+          - You cannot search for playlists that contain a certain track.
+          - You can search only one genre at a time.
+          - You cannot search for playlists within a user's library.
+          - In an effort to keep the response small, but include as much information as possible, Spotify has expanded the response and intends to continue and improve the Search endpoint.
+          - To query based on a release date query at a year level using the year scope. For example:
+
+            The query
+
+            `https://api.spotify.com/v1/search?q=bob%20year:2014&type=album`
+
+            Returns albums released in 2014 with their names or artist names containing "bob". You can also use the tag:new field filter to get just these albums, as well as compilations and singles, released in the last 2 weeks.
         responseTypes:
         - type: SearchResponseObject
           status: 200
@@ -5737,15 +5662,13 @@ categories:
             \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200`\nOK and the response body contains an object whose key is `shows`\
-          \ and whose\nvalue is an array of [simple show object](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedshowobject)\n\
-          in JSON format.\n\nObjects are returned in the order requested. If an object\
-          \ is not found, a `null` value is returned in the appropriate position.\
-          \ If a show is unavailable in the given `market`, a `null` value is returned.\
-          \ Duplicate `ids` in the query will result in duplicate objects in the response.\
-          \ On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200`
+          OK and the response body contains an object whose key is `shows` and whose
+          value is an array of [simple show object](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedshowobject)
+          in JSON format.
+
+          Objects are returned in the order requested. If an object is not found, a `null` value is returned in the appropriate position. If a show is unavailable in the given `market`, a `null` value is returned. Duplicate `ids` in the query will result in duplicate objects in the response. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes: []
         responseTypes:
         - type: ShowsObject
@@ -5839,14 +5762,12 @@ categories:
             \ for the tracks. Maximum: 100 IDs."
           type: String
           required: true
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200 OK`\nand the response body contains an object whose key is `\"\
-          audio_features\"` and\nwhose value is an array of audio features objects\
-          \ in JSON format.\n\nObjects are returned in the order requested. If an\
-          \ object is not found, a `null` value is returned in the appropriate position.\
-          \ Duplicate `ids` in the query will result in duplicate objects in the response.\
-          \ On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200 OK`
+          and the response body contains an object whose key is `"audio_features"` and
+          whose value is an array of audio features objects in JSON format.
+
+          Objects are returned in the order requested. If an object is not found, a `null` value is returned in the appropriate position. Duplicate `ids` in the query will result in duplicate objects in the response. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes: []
         responseTypes:
         - type: AudioFeaturesArrayObject
@@ -5880,14 +5801,13 @@ categories:
             \ [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/)."
           type: String
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200`\nOK and the response body contains an object whose key is `tracks`\
-          \ and whose\nvalue is an array of [track objects](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)\n\
-          in JSON format.\n\nObjects are returned in the order requested. If an object\
-          \ is not found, a `null` value is returned in the appropriate position.\
-          \ Duplicate `ids` in the query will result in duplicate objects in the response.\
-          \ On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200`
+          OK and the response body contains an object whose key is `tracks` and whose
+          value is an array of [track objects](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)
+          in JSON format.
+
+          Objects are returned in the order requested. If an object is not found, a `null` value is returned in the appropriate position. Duplicate `ids` in the query will result in duplicate objects in the response. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes: []
         responseTypes:
         - type: TracksObject
@@ -5917,15 +5837,16 @@ categories:
           required: true
         - location: QUERY
           name: market
-          description: "An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ or the string `from_token`. Provide this parameter if you want to apply\
-            \ [Track\nRelinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/)."
+          description: |-
+            An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or the string `from_token`. Provide this parameter if you want to apply [Track
+            Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/).
           type: String
           required: false
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200`\nOK and the response body contains a [track object](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)\n\
-          in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\n\
-          and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200`
+          OK and the response body contains a [track object](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)
+          in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)
+          and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes: []
         responseTypes:
         - type: TrackObject
@@ -5955,16 +5876,10 @@ categories:
             \ settings requires the `user-read-private` scope. See [Using Scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
           type: String
           required: true
-        responseDescription: "On success, the HTTP status code in the response header\
-          \ is `200` OK and the response body contains a [user object](https://developer.spotify.com/documentation/web-api/reference/#object-privateuserobject)\
-          \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
-          \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
-          \ When requesting fields that you don't have the user's authorization to\
-          \ access, it will return error `403` Forbidden.\n\n**Important!** If the\
-          \ `user-read-email` scope is authorized, the returned JSON will include\
-          \ the email address that was entered when the user created their Spotify\
-          \ account. **This email address is unverified**; do not assume that the\
-          \ email address belongs to the user."
+        responseDescription: |-
+          On success, the HTTP status code in the response header is `200` OK and the response body contains a [user object](https://developer.spotify.com/documentation/web-api/reference/#object-privateuserobject) in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema). When requesting fields that you don't have the user's authorization to access, it will return error `403` Forbidden.
+
+          **Important!** If the `user-read-email` scope is authorized, the returned JSON will include the email address that was entered when the user created their Spotify account. **This email address is unverified**; do not assume that the email address belongs to the user.
         scopes:
         - user-read-email
         - user-read-private
