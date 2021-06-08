@@ -35,8 +35,11 @@ jobs:
         run: ./mvnw -B deploy -Pdeploy
       - name: Create release notes
         run: |
+          previousTag=$(git describe --tags --abbrev=0 $(git rev-list --tags --skip=1 --max-count=1))
+          currentTag=$(git describe --tags --abbrev=0)
+          echo "Creating release notes for $previousTag...$currentTag"
           echo "# What's Changed" > release-notes.md
-          git log "$(git describe --tags --abbrev=0)..HEAD" --format="- %s ([%h](https://github.com/sonallux/spotify-web-api/commit/%H))" >> release-notes.md
+          git log "$previousTag...$currentTag" --format="- %s ([%h](https://github.com/sonallux/spotify-web-api/commit/%H))" >> release-notes.md
           cat release-notes.md
       - name: Create release on GitHub
         uses: softprops/action-gh-release@v1
