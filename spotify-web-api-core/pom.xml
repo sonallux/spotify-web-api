@@ -19,6 +19,10 @@
     <description>The core models for the Spotify's Web API Reference</description>
     <url>https://github.com/sonallux/spotify-web-api</url>
 
+    <properties>
+        <moditect.module.name>de.sonallux.spotify.core</moditect.module.name>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

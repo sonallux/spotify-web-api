@@ -23,6 +23,8 @@
         <swagger-core.version>2.1.9</swagger-core.version>
         <swagger-parser.version>2.0.26</swagger-parser.version>
         <json-schema-validator.version>2.2.14</json-schema-validator.version>
+
+        <moditect.module.name>de.sonallux.spotify.generator.openapi</moditect.module.name>
     </properties>
 
     <dependencies>
