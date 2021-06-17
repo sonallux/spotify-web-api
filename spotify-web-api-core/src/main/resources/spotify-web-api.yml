@@ -5330,7 +5330,7 @@ categories:
         responseTypes:
         - type: SnapshotIdObject
           status: 200
-        - type: Void
+        - type: SnapshotIdObject
           status: 201
       endpoint-upload-custom-playlist-cover:
         id: endpoint-upload-custom-playlist-cover

@@ -153,7 +153,7 @@ category-playlists:
     responseTypes:
     - type: SnapshotIdObject
       status: 200
-    - type: Void
+    - type: SnapshotIdObject
       status: 201
 category-albums:
   endpoint-get-multiple-albums:

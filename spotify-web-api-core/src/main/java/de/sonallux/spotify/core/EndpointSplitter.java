@@ -130,7 +130,7 @@ public class EndpointSplitter {
                 replaceResponseDescription + "\n\n" + errorResponseDescription,
                 endpoint.getScopes(),
                 endpoint.getNotes(),
-                List.of(new SpotifyWebApiEndpoint.ResponseType("Void", 201, null))
+                List.of(new SpotifyWebApiEndpoint.ResponseType("SnapshotIdObject", 201, null))
         );
 
         category.getEndpoints().remove(endpoint.getId());

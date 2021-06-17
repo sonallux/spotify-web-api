@@ -4,7 +4,7 @@ info:
   contact:
     name: sonallux
     url: https://github.com/sonallux/spotify-web-api
-  version: 2021.6.4
+  version: 2021.6.17
 externalDocs:
   description: Find more info on the official Spotify Web API Reference
   url: https://developer.spotify.com/documentation/web-api/reference
@@ -4118,6 +4118,10 @@ paths:
             the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema),
             and the existing playlist is unmodified.
             Trying to set an item when you do not have the user's authorization returns error `403` Forbidden.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotIdObject'
       security:
       - spotify_auth:
         - playlist-modify-public
