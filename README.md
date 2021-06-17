@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/sonallux/spotify-web-api/workflows/Build/badge.svg)](https://github.com/sonallux/spotify-web-api/actions?query=workflow%3ABuild)
 [![Update API documentation](https://github.com/sonallux/spotify-web-api/workflows/Update%20API%20documentation/badge.svg)](https://github.com/sonallux/spotify-web-api/actions?query=workflow%3A%22Update+API+documentation%22)
-[![Maven Central](https://img.shields.io/maven-central/v/de.sonallux.spotify/spotify-web-api-core.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22de.sonallux.spotify%22%20AND%20a:%22spotify-web-api-core%22)
+[![Maven Central](https://img.shields.io/maven-central/v/de.sonallux.spotify/spotify-web-api-core.svg?label=Maven%20Central)](https://search.maven.org/artifact/de.sonallux.spotify/spotify-web-api-core)
 [![GitHub](https://img.shields.io/github/license/sonallux/spotify-web-api)](https://github.com/sonallux/spotify-web-api/blob/master/LICENSE)
 
 This monorepo contains tools for parsing the [Spotify Web API Reference](https://developer.spotify.com/documentation/web-api/reference-beta) into a machine-readable format and generating an [Open API Specification](https://github.com/OAI/OpenAPI-Specification) from it.
