@@ -94,7 +94,7 @@ class ResponseTypeMapper {
                         }
                         System.out.print("Response status (default: 200): ");
                         int newStatus = readInt(scanner, 200);
-                        endpointResponse.getResponseTypes().add(new SpotifyWebApiEndpoint.ResponseType(newType, newStatus, null));
+                        endpointResponse.getResponseTypes().add(new SpotifyWebApiEndpoint.ResponseType(newType, newStatus));
                     }
                     i++;
                 } while (true);

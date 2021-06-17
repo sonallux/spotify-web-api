@@ -49,7 +49,7 @@ public class EndpointSplitter {
                 responseDescriptionArtists,
                 topArtistsAndTracks.getScopes(),
                 topArtistsAndTracks.getNotes(),
-                List.of(new SpotifyWebApiEndpoint.ResponseType("PagingObject[ArtistObject]", 200, null))
+                List.of(new SpotifyWebApiEndpoint.ResponseType("PagingObject[ArtistObject]", 200))
         );
         var topTracks = new SpotifyWebApiEndpoint(
                 "endpoint-get-users-top-tracks",
@@ -62,7 +62,7 @@ public class EndpointSplitter {
                 responseDescriptionTracks,
                 topArtistsAndTracks.getScopes(),
                 topArtistsAndTracks.getNotes(),
-                List.of(new SpotifyWebApiEndpoint.ResponseType("PagingObject[TrackObject]", 200, null))
+                List.of(new SpotifyWebApiEndpoint.ResponseType("PagingObject[TrackObject]", 200))
         );
 
         category.getEndpoints().remove(topArtistsAndTracks.getId());
@@ -113,7 +113,7 @@ public class EndpointSplitter {
                 reorderResponseDescription + "\n\n" + errorResponseDescription,
                 endpoint.getScopes(),
                 endpoint.getNotes(),
-                List.of(new SpotifyWebApiEndpoint.ResponseType("SnapshotIdObject", 200, null))
+                List.of(new SpotifyWebApiEndpoint.ResponseType("SnapshotIdObject", 200))
         );
 
         reorderEndpoint.getParameters().stream().filter(p -> "range_start".equals(p.getName())).findFirst().get().setRequired(true);
@@ -130,7 +130,7 @@ public class EndpointSplitter {
                 replaceResponseDescription + "\n\n" + errorResponseDescription,
                 endpoint.getScopes(),
                 endpoint.getNotes(),
-                List.of(new SpotifyWebApiEndpoint.ResponseType("SnapshotIdObject", 201, null))
+                List.of(new SpotifyWebApiEndpoint.ResponseType("SnapshotIdObject", 201))
         );
 
         category.getEndpoints().remove(endpoint.getId());

@@ -116,9 +116,7 @@ public class OpenApiGenerator {
         for (var responseType : endpoint.getResponseTypes()) {
             var response = getApiResponse(responseType);
             if (response != null) {
-                if (response.getDescription() == null || response.getDescription().isEmpty()) {
-                    response.description(endpoint.getResponseDescription());
-                }
+                response.description(endpoint.getResponseDescription());
                 apiResponses.put(String.valueOf(responseType.getStatus()), response);
             }
         }
@@ -136,16 +134,16 @@ public class OpenApiGenerator {
     }
 
     private ApiResponse getApiResponse(SpotifyWebApiEndpoint.ResponseType responseType) {
-        var response = new ApiResponse().description(responseType.getDescription());
         if ("Void".equals(responseType.getType())) {
-            return response;
+            return new ApiResponse();
         }
 
         var responseSchema = getSchema(responseType.getType(), openAPI.getComponents().getSchemas());
         if (responseSchema == null) {
             return null;
         }
-        return response.content(new Content().addMediaType(MEDIA_TYPE_JSON, new MediaType().schema(responseSchema)));
+        var content = new Content().addMediaType(MEDIA_TYPE_JSON, new MediaType().schema(responseSchema));
+        return new ApiResponse().content(content);
     }
 
     private io.swagger.v3.oas.models.parameters.Parameter generateParameter(SpotifyWebApiEndpoint.Parameter param) {

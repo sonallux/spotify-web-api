@@ -66,6 +66,5 @@ public class SpotifyWebApiEndpoint {
         @NonNull
         private String type;
         private int status;
-        private String description;
     }
 }
