@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # We want all history so we can get all commits since previous git tag
       - name: Setup java
         uses: actions/setup-java@v1
         with:
