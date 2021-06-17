@@ -89,18 +89,13 @@ public class EndpointSplitter {
         var reorderParameterNames = List.of("Authorization", "Content-Type", "playlist_id", "range_start", "insert_before", "range_length", "snapshot_id");
         var replaceParameterNames = List.of("Authorization", "Content-Type", "playlist_id", "uris");
 
-        var reorderResponseDescription = "On a successful **reorder** operation, the response" +
-                " body contains a `snapshot_id` in JSON format and the HTTP status code" +
-                " in the response header is `200` OK. The `snapshot_id` can be used to" +
-                " identify your playlist version in future requests.";
-
-        var replaceResponseDescription = "On a successful **replace** operation, the HTTP status" +
-                " code in the response header is `201` Created.";
-
-        var errorResponseDescription = "On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)," +
-                " the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)," +
-                " and the existing playlist is unmodified. Trying to set an item when you" +
-                " do not have the user's authorization returns error `403` Forbidden.";
+        var responseDescriptionParts = endpoint.getResponseDescription().split("\n\n");
+        if (responseDescriptionParts.length != 3
+            || !responseDescriptionParts[0].contains("reorder")
+            || !responseDescriptionParts[1].contains("replace")
+            || !responseDescriptionParts[2].contains("error")) {
+            throw new IllegalArgumentException("Response description has changed, can not split endpoint-reorder-or-replace-playlists-tracks");
+        }
 
         var reorderEndpoint = new SpotifyWebApiEndpoint(
                 "endpoint-reorder-playlists-tracks",
@@ -110,7 +105,7 @@ public class EndpointSplitter {
                 endpoint.getHttpMethod(),
                 endpoint.getPath(),
                 endpoint.getParameters().stream().filter(p -> reorderParameterNames.contains(p.getName())).collect(Collectors.toList()),
-                reorderResponseDescription + "\n\n" + errorResponseDescription,
+                responseDescriptionParts[0] + "\n\n" + responseDescriptionParts[2],
                 endpoint.getScopes(),
                 endpoint.getNotes(),
                 List.of(new SpotifyWebApiEndpoint.ResponseType("SnapshotIdObject", 200))
@@ -127,7 +122,7 @@ public class EndpointSplitter {
                 endpoint.getHttpMethod(),
                 endpoint.getPath(),
                 endpoint.getParameters().stream().filter(p -> replaceParameterNames.contains(p.getName())).collect(Collectors.toList()),
-                replaceResponseDescription + "\n\n" + errorResponseDescription,
+            responseDescriptionParts[1] + "\n\n" + responseDescriptionParts[2],
                 endpoint.getScopes(),
                 endpoint.getNotes(),
                 List.of(new SpotifyWebApiEndpoint.ResponseType("SnapshotIdObject", 201))
