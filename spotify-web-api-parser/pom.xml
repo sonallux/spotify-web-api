@@ -21,6 +21,8 @@
 
     <properties>
         <jsoup.version>1.13.1</jsoup.version>
+
+        <moditect.module.name>de.sonallux.spotify.parser</moditect.module.name>
     </properties>
 
     <dependencies>
