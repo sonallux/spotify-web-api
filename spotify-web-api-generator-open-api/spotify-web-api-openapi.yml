@@ -4,7 +4,7 @@ info:
   contact:
     name: sonallux
     url: https://github.com/sonallux/spotify-web-api
-  version: 2021.6.18
+  version: 2021.6.30
 externalDocs:
   description: Find more info on the official Spotify Web API Reference
   url: https://developer.spotify.com/documentation/web-api/reference
@@ -6852,10 +6852,10 @@ components:
             $ref: '#/components/schemas/RecommendationSeedObject'
         tracks:
           type: array
-          description: "An array of [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject)\
+          description: "An array of [track object](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)\
             \ ordered according to the parameters supplied."
           items:
-            $ref: '#/components/schemas/SimplifiedTrackObject'
+            $ref: '#/components/schemas/TrackObject'
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
         url: https://developer.spotify.com/documentation/web-api/reference/#object-recommendationsobject
