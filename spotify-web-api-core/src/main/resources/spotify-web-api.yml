@@ -1031,8 +1031,8 @@ objects:
       type: "Array[RecommendationSeedObject]"
       description: "An array of [recommendation seed objects](https://developer.spotify.com/documentation/web-api/reference/#object-recommendationseedobject)."
     - name: tracks
-      type: "Array[SimplifiedTrackObject]"
-      description: "An array of [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject)\
+      type: "Array[TrackObject]"
+      description: "An array of [track object](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)\
         \ ordered according to the parameters supplied."
   ResumePointObject:
     name: ResumePointObject

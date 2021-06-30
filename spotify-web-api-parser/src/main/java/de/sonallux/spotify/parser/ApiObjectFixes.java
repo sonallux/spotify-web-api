@@ -15,6 +15,7 @@ class ApiObjectFixes {
         fixTracksTypeInPlaylistObject(objects);
         fixTracksTypeInAlbumObject(objects);
         fixEpisodesTypeInShowObject(objects);
+        fixTracksPropertyInRecommendationsObject(objects);
     }
 
     private static void fixLinkedTrackObjectReferenceInTrackObject(SortedMap<String, SpotifyWebApiObject> objects) {
@@ -62,6 +63,22 @@ class ApiObjectFixes {
             log.warn("ShowObject: wrong type of property episodes has been fixed");
         } else {
             tracksProperty.setType("PagingObject[SimplifiedEpisodeObject]");
+        }
+    }
+
+    private static void fixTracksPropertyInRecommendationsObject(SortedMap<String, SpotifyWebApiObject> objects) {
+        var tracksProperty = objects.get("RecommendationsObject")
+            .getProperties().stream()
+            .filter(p -> "tracks".equals(p.getName()) && "Array[SimplifiedTrackObject]".equals(p.getType()))
+            .findFirst().orElse(null);
+        if (tracksProperty == null){
+            log.warn("RecommendationsObject: wrong type of tracks property has been fixed");
+        } else {
+            tracksProperty.setType("Array[TrackObject]");
+            var newDescription = tracksProperty.getDescription()
+                .replace(" (simplified)", "")
+                .replace("object-simplifiedtrackobject", "object-trackobject");
+            tracksProperty.setDescription(newDescription);
         }
     }
 
