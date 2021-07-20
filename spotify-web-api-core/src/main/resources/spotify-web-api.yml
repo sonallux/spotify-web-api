@@ -5107,7 +5107,7 @@ categories:
             \ over this parameter.  \n*Note: If neither market or user country are\
             \ provided, the episode is considered unavailable for the client.*"
           type: String
-          required: true
+          required: false
         - location: QUERY
           name: fields
           description: "Filters for the query: a comma-separated list of the fields\

@@ -4,7 +4,7 @@ info:
   contact:
     name: sonallux
     url: https://github.com/sonallux/spotify-web-api
-  version: 2021.6.30
+  version: 2021.7.20
 externalDocs:
   description: Find more info on the official Spotify Web API Reference
   url: https://developer.spotify.com/documentation/web-api/reference
@@ -3890,7 +3890,7 @@ paths:
           \ header, the country associated with the user account will take priority\
           \ over this parameter.  \n*Note: If neither market or user country are provided,\
           \ the episode is considered unavailable for the client.*"
-        required: true
+        required: false
         schema:
           type: string
       - name: fields
