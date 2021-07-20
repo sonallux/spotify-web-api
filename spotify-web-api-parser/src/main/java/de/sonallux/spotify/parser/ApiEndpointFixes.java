@@ -21,6 +21,7 @@ class ApiEndpointFixes {
         fixReplaceAndReorderPlaylistTrackUrisParameter(categories);
         fixSaveShowsForCurrentUserBodyParameter(categories);
         fixRemoveUsersSavedShowsBodyParameter(categories);
+        fixPlaylistsItemsRequireParameter(categories);
     }
 
     private static void fixChangePlaylistsDetails(SortedMap<String, SpotifyWebApiCategory> categories) {
@@ -181,5 +182,19 @@ class ApiEndpointFixes {
                 "any IDs listed here in the body will be ignored.*",
             "Array[String]",
             false));
+    }
+
+    private static void fixPlaylistsItemsRequireParameter(SortedMap<String, SpotifyWebApiCategory> categories) {
+        var endpoint = categories.get("category-playlists")
+            .getEndpoints().get("endpoint-get-playlists-tracks");
+
+        var marketParameter = endpoint.getParameters().stream()
+            .filter(param -> "market".equals(param.getName()) && param.isRequired())
+            .findFirst().orElse(null);
+        if (marketParameter == null) {
+            log.warn("Market parameter for endpoint-get-playlists-tracks has been fixed");
+            return;
+        }
+        marketParameter.setRequired(false);
     }
 }
