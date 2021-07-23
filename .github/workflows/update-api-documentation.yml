@@ -36,7 +36,7 @@ jobs:
           commit-message: 'Automated update from Spotify Web API reference'
           branch: 'automated-api-documentation-update'
           delete-branch: true
-          base: master
+          base: main
           author: 'sonallux <13821543+sonallux@users.noreply.github.com>'
           title: 'Spotify Web API reference update'
           body: |
