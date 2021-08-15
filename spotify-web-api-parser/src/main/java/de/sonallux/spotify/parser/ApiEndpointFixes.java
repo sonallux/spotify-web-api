@@ -20,6 +20,7 @@ class ApiEndpointFixes {
         fixSaveShowsForCurrentUserBodyParameter(categories);
         fixRemoveUsersSavedShowsBodyParameter(categories);
         fixPlaylistsItemsRequireParameter(categories);
+        fixMarketsApiAuthorizationHeader(categories);
     }
 
     private static void fixChangePlaylistsDetails(SortedMap<String, SpotifyWebApiCategory> categories) {
@@ -194,5 +195,20 @@ class ApiEndpointFixes {
             return;
         }
         marketParameter.setRequired(false);
+    }
+
+    private static void fixMarketsApiAuthorizationHeader(SortedMap<String, SpotifyWebApiCategory> categories) {
+        var endpoint = categories.get("category-markets")
+            .getEndpoints().get("endpoint-get-available-markets");
+
+        var authorizationHeader = endpoint.getParameters().stream()
+            .filter(param -> "Authorization".equals(param.getName()) && !param.isRequired())
+            .findFirst().orElse(null);
+
+        if (authorizationHeader == null) {
+            log.warn("Authorization header for endpoint-get-available-markets has been fixed");
+            return;
+        }
+        authorizationHeader.setRequired(true);
     }
 }

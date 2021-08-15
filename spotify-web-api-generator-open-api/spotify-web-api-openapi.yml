@@ -2972,7 +2972,7 @@ paths:
       - name: Authorization
         in: header
         description: A valid user access token or your client credentials.
-        required: false
+        required: true
         schema:
           type: string
       responses:
