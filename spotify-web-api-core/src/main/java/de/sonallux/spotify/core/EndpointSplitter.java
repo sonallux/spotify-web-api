@@ -129,7 +129,7 @@ public class EndpointSplitter {
                 endpoint.getHttpMethod(),
                 endpoint.getPath(),
                 endpoint.getParameters().stream().filter(p -> replaceParameterNames.contains(p.getName())).collect(Collectors.toList()),
-                new SpotifyWebApiEndpoint.JsonRequestBody("", requestBody.getParameters().stream().filter(p -> reorderParameterNames.contains(p.getName())).collect(Collectors.toList())),
+                new SpotifyWebApiEndpoint.JsonRequestBody("", requestBody.getParameters().stream().filter(p -> replaceParameterNames.contains(p.getName())).collect(Collectors.toList())),
                 responseDescriptionParts[1] + "\n\n" + responseDescriptionParts[2],
                 endpoint.getScopes(),
                 endpoint.getNotes(),
