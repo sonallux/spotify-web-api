@@ -3054,15 +3054,19 @@ categories:
             \ A maximum of 50 IDs can be sent in one request."
           type: String
           required: true
-        - location: BODY
-          name: ids
-          description: "A JSON array of the artist or user [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-            \ For example: `{ids:[\"74ASZWbe4lXaubB36ztrGX\", \"08td7MxkoHQkXnWAYD8d6Q\"\
-            ]}`. A maximum of 50 IDs can be sent in one request. *Note: if the `ids`\
-            \ parameter is present in the query string, any IDs listed here in the\
-            \ body will be ignored.*"
-          type: "Array[String]"
-          required: true
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: ids
+            description: "A JSON array of the artist or user [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+              \ For example: `{ids:[\"74ASZWbe4lXaubB36ztrGX\", \"08td7MxkoHQkXnWAYD8d6Q\"\
+              ]}`. A maximum of 50 IDs can be sent in one request. *Note: if the `ids`\
+              \ parameter is present in the query string, any IDs listed here in the\
+              \ body will be ignored.*"
+            type: "Array[String]"
+            required: true
+          contentType: application/json
         responseDescription: |-
           On success, the HTTP status code in the response header is `204` No Content and the response body is empty.
           On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
@@ -3106,12 +3110,16 @@ categories:
             \ as long as you know its playlist ID."
           type: String
           required: true
-        - location: BODY
-          name: public
-          description: "Defaults to `true`. If `true` the playlist will be included\
-            \ in user's public playlists, if `false` it will remain private."
-          type: Boolean
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: public
+            description: "Defaults to `true`. If `true` the playlist will be included\
+              \ in user's public playlists, if `false` it will remain private."
+            type: Boolean
+            required: false
+          contentType: application/json
         responseDescription: |-
           On success, the HTTP status code in the response header is `200` OK and the response body is empty.
           On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
@@ -3194,15 +3202,19 @@ categories:
             \ maximum of 50 IDs can be sent in one request."
           type: String
           required: true
-        - location: BODY
-          name: ids
-          description: "A JSON array of the artist or user [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-            \ For example: `{ids:[\"74ASZWbe4lXaubB36ztrGX\", \"08td7MxkoHQkXnWAYD8d6Q\"\
-            ]}`. A maximum of 50 IDs can be sent in one request. *Note: if the `ids`\
-            \ parameter is present in the query string, any IDs listed here in the\
-            \ body will be ignored.*"
-          type: "Array[String]"
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: ids
+            description: "A JSON array of the artist or user [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+              \ For example: `{ids:[\"74ASZWbe4lXaubB36ztrGX\", \"08td7MxkoHQkXnWAYD8d6Q\"\
+              ]}`. A maximum of 50 IDs can be sent in one request. *Note: if the `ids`\
+              \ parameter is present in the query string, any IDs listed here in the\
+              \ body will be ignored.*"
+            type: "Array[String]"
+            required: false
+          contentType: application/json
         responseDescription: |-
           On success, the HTTP status code in the response header is `204` No Content and the response body is empty.
           On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
@@ -3597,15 +3609,19 @@ categories:
             \ 50 IDs."
           type: String
           required: true
-        - location: BODY
-          name: ids
-          description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-            \ For example: `[\"4iV5W9uYEdYUVa79Axb7Rh\", \"1301WleyT98MSxVHPZCA6M\"\
-            ]`  \nA maximum of 50 items can be specified in one request. *Note: if\
-            \ the `ids` parameter is present in the query string, any IDs listed here\
-            \ in the body will be ignored.*"
-          type: "Array[String]"
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: ids
+            description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+              \ For example: `[\"4iV5W9uYEdYUVa79Axb7Rh\", \"1301WleyT98MSxVHPZCA6M\"\
+              ]`  \nA maximum of 50 items can be specified in one request. *Note:\
+              \ if the `ids` parameter is present in the query string, any IDs listed\
+              \ here in the body will be ignored.*"
+            type: "Array[String]"
+            required: false
+          contentType: application/json
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` Success. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
@@ -3647,14 +3663,18 @@ categories:
             \ Maximum: 50 IDs."
           type: String
           required: true
-        - location: BODY
-          name: ids
-          description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-            \   \nA maximum of 50 items can be specified in one request. *Note: if\
-            \ the `ids` parameter is present in the query string, any IDs listed here\
-            \ in the body will be ignored.*"
-          type: "Array[String]"
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: ids
+            description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+              \   \nA maximum of 50 items can be specified in one request. *Note:\
+              \ if the `ids` parameter is present in the query string, any IDs listed\
+              \ here in the body will be ignored.*"
+            type: "Array[String]"
+            required: false
+          contentType: application/json
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` Success. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
@@ -3700,14 +3720,18 @@ categories:
             \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
-        - location: BODY
-          name: ids
-          description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-            \  \nA maximum of 50 items can be specified in one request. *Note: if\
-            \ the `ids` parameter is present in the query string, any IDs listed here\
-            \ in the body will be ignored.*"
-          type: "Array[String]"
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: ids
+            description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+              \  \nA maximum of 50 items can be specified in one request. *Note: if\
+              \ the `ids` parameter is present in the query string, any IDs listed\
+              \ here in the body will be ignored.*"
+            type: "Array[String]"
+            required: false
+          contentType: application/json
         responseDescription: |-
           On success, the HTTP status code in the response header is `200` OK.
           On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#error-details). A `403 Forbidden` while trying to add a show when you do not have the user's authorisation.
@@ -3746,15 +3770,19 @@ categories:
             \ 50 IDs."
           type: String
           required: true
-        - location: BODY
-          name: ids
-          description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-            \ For example: `[\"4iV5W9uYEdYUVa79Axb7Rh\", \"1301WleyT98MSxVHPZCA6M\"\
-            ]`  \nA maximum of 50 items can be specified in one request. *Note: if\
-            \ the `ids` parameter is present in the query string, any IDs listed here\
-            \ in the body will be ignored.*"
-          type: "Array[String]"
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: ids
+            description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+              \ For example: `[\"4iV5W9uYEdYUVa79Axb7Rh\", \"1301WleyT98MSxVHPZCA6M\"\
+              ]`  \nA maximum of 50 items can be specified in one request. *Note:\
+              \ if the `ids` parameter is present in the query string, any IDs listed\
+              \ here in the body will be ignored.*"
+            type: "Array[String]"
+            required: false
+          contentType: application/json
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` Success. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
@@ -3794,15 +3822,19 @@ categories:
             \ 50 IDs."
           type: String
           required: true
-        - location: BODY
-          name: ids
-          description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-            \ For example: `[\"4iV5W9uYEdYUVa79Axb7Rh\", \"1301WleyT98MSxVHPZCA6M\"\
-            ]`  \nA maximum of 50 items can be specified in one request. *Note: if\
-            \ the `ids` parameter is present in the query string, any IDs listed here\
-            \ in the body will be ignored.*"
-          type: "Array[String]"
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: ids
+            description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+              \ For example: `[\"4iV5W9uYEdYUVa79Axb7Rh\", \"1301WleyT98MSxVHPZCA6M\"\
+              ]`  \nA maximum of 50 items can be specified in one request. *Note:\
+              \ if the `ids` parameter is present in the query string, any IDs listed\
+              \ here in the body will be ignored.*"
+            type: "Array[String]"
+            required: false
+          contentType: application/json
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `201` Created. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
@@ -3844,14 +3876,18 @@ categories:
             \ Maximum: 50 IDs."
           type: String
           required: true
-        - location: BODY
-          name: ids
-          description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-            \   \nA maximum of 50 items can be specified in one request. *Note: if\
-            \ the `ids` parameter is present in the query string, any IDs listed here\
-            \ in the body will be ignored.*"
-          type: "Array[String]"
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: ids
+            description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+              \   \nA maximum of 50 items can be specified in one request. *Note:\
+              \ if the `ids` parameter is present in the query string, any IDs listed\
+              \ here in the body will be ignored.*"
+            type: "Array[String]"
+            required: false
+          contentType: application/json
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
@@ -3885,14 +3921,18 @@ categories:
             \ Maximum: 50 IDs."
           type: String
           required: true
-        - location: BODY
-          name: ids
-          description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-            \  \nA maximum of 50 items can be specified in one request. *Note: if\
-            \ the `ids` parameter is present in the query string, any IDs listed here\
-            \ in the body will be ignored.*"
-          type: "Array[String]"
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: ids
+            description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+              \  \nA maximum of 50 items can be specified in one request. *Note: if\
+              \ the `ids` parameter is present in the query string, any IDs listed\
+              \ here in the body will be ignored.*"
+            type: "Array[String]"
+            required: false
+          contentType: application/json
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#error-details).\
@@ -3933,15 +3973,19 @@ categories:
             \ 50 IDs."
           type: String
           required: true
-        - location: BODY
-          name: ids
-          description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-            \ For example: `[\"4iV5W9uYEdYUVa79Axb7Rh\", \"1301WleyT98MSxVHPZCA6M\"\
-            ]`  \nA maximum of 50 items can be specified in one request. *Note: if\
-            \ the `ids` parameter is present in the query string, any IDs listed here\
-            \ in the body will be ignored.*"
-          type: "Array[String]"
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: ids
+            description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+              \ For example: `[\"4iV5W9uYEdYUVa79Axb7Rh\", \"1301WleyT98MSxVHPZCA6M\"\
+              ]`  \nA maximum of 50 items can be specified in one request. *Note:\
+              \ if the `ids` parameter is present in the query string, any IDs listed\
+              \ here in the body will be ignored.*"
+            type: "Array[String]"
+            required: false
+          contentType: application/json
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
@@ -4499,37 +4543,41 @@ categories:
             \ the user's currently active device is the target."
           type: String
           required: false
-        - location: BODY
-          name: context_uri
-          description: "Spotify URI of the context to play. Valid contexts are albums,\
-            \ artists, playlists. Example: {\"context_uri\": \"spotify:album:1Je1IMUlBXcx1Fz0WE7oPT\"\
-            }"
-          type: String
-          required: false
-        - location: BODY
-          name: uris
-          description: "A JSON array of the Spotify track URIs to play. For example:\
-            \ {\"uris\": [\"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\", \"spotify:track:1301WleyT98MSxVHPZCA6M\"\
-            ]}"
-          type: "Array[String]"
-          required: false
-        - location: BODY
-          name: offset
-          description: "Indicates from where in the context playback should start.\
-            \ Only available when context_uri corresponds to an album or playlist\
-            \ object, or when the uris parameter is used. “position” is zero based\
-            \ and can’t be negative. Example: \"offset\": {\"position\": 5} “uri”\
-            \ is a string representing the uri of the item to start at. Example: \"\
-            offset\": {\"uri\": \"spotify:track:1301WleyT98MSxVHPZCA6M\"}"
-          type: Object
-          required: false
-        - location: BODY
-          name: position_ms
-          description: Indicates from what position to start playback. Must be a positive
-            number. Passing in a position that is greater than the length of the track
-            will cause the player to start playing the next song.
-          type: Integer
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: context_uri
+            description: "Spotify URI of the context to play. Valid contexts are albums,\
+              \ artists, playlists. Example: {\"context_uri\": \"spotify:album:1Je1IMUlBXcx1Fz0WE7oPT\"\
+              }"
+            type: String
+            required: false
+          - location: BODY
+            name: uris
+            description: "A JSON array of the Spotify track URIs to play. For example:\
+              \ {\"uris\": [\"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\", \"spotify:track:1301WleyT98MSxVHPZCA6M\"\
+              ]}"
+            type: "Array[String]"
+            required: false
+          - location: BODY
+            name: offset
+            description: "Indicates from where in the context playback should start.\
+              \ Only available when context_uri corresponds to an album or playlist\
+              \ object, or when the uris parameter is used. “position” is zero based\
+              \ and can’t be negative. Example: \"offset\": {\"position\": 5} “uri”\
+              \ is a string representing the uri of the item to start at. Example:\
+              \ \"offset\": {\"uri\": \"spotify:track:1301WleyT98MSxVHPZCA6M\"}"
+            type: Object
+            required: false
+          - location: BODY
+            name: position_ms
+            description: Indicates from what position to start playback. Must be a
+              positive number. Passing in a position that is greater than the length
+              of the track will cause the player to start playing the next song.
+            type: Integer
+            required: false
+          contentType: application/json
         responseDescription: |-
           A completed request will return a `204 NO CONTENT` response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the [Get Information About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback) endpoint to check that your issued command was handled correctly by the player.
 
@@ -4599,20 +4647,25 @@ categories:
             \ scope authorized in order to control playback."
           type: String
           required: true
-        - location: BODY
-          name: device_ids
-          description: "A JSON array containing the ID of the device on which playback\
-            \ should be started/transferred.  \nFor example:`{device_ids:[\"74ASZWbe4lXaubB36ztrGX\"\
-            ]}`  \nNote: Although an array is accepted, only a single device_id is\
-            \ currently supported. Supplying more than one will return `400 Bad Request`"
-          type: "Array[String]"
-          required: true
-        - location: BODY
-          name: play
-          description: "**true** : ensure playback happens on new device.  \n**false**\
-            \ or not provided: keep the current playback state."
-          type: Boolean
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: device_ids
+            description: "A JSON array containing the ID of the device on which playback\
+              \ should be started/transferred.  \nFor example:`{device_ids:[\"74ASZWbe4lXaubB36ztrGX\"\
+              ]}`  \nNote: Although an array is accepted, only a single device_id\
+              \ is currently supported. Supplying more than one will return `400 Bad\
+              \ Request`"
+            type: "Array[String]"
+            required: true
+          - location: BODY
+            name: play
+            description: "**true** : ensure playback happens on new device.  \n**false**\
+              \ or not provided: keep the current playback state."
+            type: Boolean
+            required: false
+          contentType: application/json
         responseDescription: |-
           A completed request will return a `204 NO CONTENT` response code, and then issue the command to the player. Due to the asynchronous nature of the issuance of the command, you should use the [Get Information About The User's Current Playback](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback) endpoint to check that your issued command was handled correctly by the player.
 
@@ -4681,26 +4734,31 @@ categories:
             \ see below.*"
           type: String
           required: false
-        - location: BODY
-          name: uris
-          description: "A JSON array of the [Spotify URIs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ to add. For example: `{\"uris\": [\"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\"\
-            ,\"spotify:track:1301WleyT98MSxVHPZCA6M\", \"spotify:episode:512ojhOuo1ktJprKbVcKyQ\"\
-            ]}`  \nA maximum of 100 items can be added in one request. *Note: if the\
-            \ `uris` parameter is present in the query string, any URIs listed here\
-            \ in the body will be ignored.*"
-          type: "Array[String]"
-          required: false
-        - location: BODY
-          name: position
-          description: "The position to insert the items, a zero-based index. For\
-            \ example, to insert the items in the first position: `position=0` ; to\
-            \ insert the items in the third position: `position=2`. If omitted, the\
-            \ items will be appended to the playlist. Items are added in the order\
-            \ they appear in the uris array. For example: `{\"uris\": [\"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\"\
-            ,\"spotify:track:1301WleyT98MSxVHPZCA6M\"], \"position\": 3}`"
-          type: Integer
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: uris
+            description: "A JSON array of the [Spotify URIs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
+              \ to add. For example: `{\"uris\": [\"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\"\
+              ,\"spotify:track:1301WleyT98MSxVHPZCA6M\", \"spotify:episode:512ojhOuo1ktJprKbVcKyQ\"\
+              ]}`  \nA maximum of 100 items can be added in one request. *Note: if\
+              \ the `uris` parameter is present in the query string, any URIs listed\
+              \ here in the body will be ignored.*"
+            type: "Array[String]"
+            required: false
+          - location: BODY
+            name: position
+            description: "The position to insert the items, a zero-based index. For\
+              \ example, to insert the items in the first position: `position=0` ;\
+              \ to insert the items in the third position: `position=2`. If omitted,\
+              \ the items will be appended to the playlist. Items are added in the\
+              \ order they appear in the uris array. For example: `{\"uris\": [\"\
+              spotify:track:4iV5W9uYEdYUVa79Axb7Rh\",\"spotify:track:1301WleyT98MSxVHPZCA6M\"\
+              ], \"position\": 3}`"
+            type: Integer
+            required: false
+          contentType: application/json
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `201` Created. The response body contains a `snapshot_id` in JSON format.\
           \ The `snapshot_id` can be used to identify your playlist version in future\
@@ -4746,31 +4804,35 @@ categories:
             \ for the playlist."
           type: String
           required: true
-        - location: BODY
-          name: name
-          description: "The new name for the playlist, for example `\"My New Playlist\
-            \ Title\"`"
-          type: String
-          required: false
-        - location: BODY
-          name: public
-          description: "If `true` the playlist will be public, if `false` it will\
-            \ be private."
-          type: Boolean
-          required: false
-        - location: BODY
-          name: collaborative
-          description: "If `true` , the playlist will become collaborative and other\
-            \ users will be able to modify the playlist in their Spotify client. *Note:\
-            \ You can only set `collaborative` to `true` on non-public playlists.*"
-          type: Boolean
-          required: false
-        - location: BODY
-          name: description
-          description: Value for playlist description as displayed in Spotify Clients
-            and in the Web API.
-          type: String
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: name
+            description: "The new name for the playlist, for example `\"My New Playlist\
+              \ Title\"`"
+            type: String
+            required: false
+          - location: BODY
+            name: public
+            description: "If `true` the playlist will be public, if `false` it will\
+              \ be private."
+            type: Boolean
+            required: false
+          - location: BODY
+            name: collaborative
+            description: "If `true` , the playlist will become collaborative and other\
+              \ users will be able to modify the playlist in their Spotify client.\
+              \ *Note: You can only set `collaborative` to `true` on non-public playlists.*"
+            type: Boolean
+            required: false
+          - location: BODY
+            name: description
+            description: Value for playlist description as displayed in Spotify Clients
+              and in the Web API.
+            type: String
+            required: false
+          contentType: application/json
         responseDescription: |-
           On success the HTTP status code in the response header is `200` OK.
 
@@ -4811,35 +4873,39 @@ categories:
           description: "The user's [Spotify user ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)."
           type: String
           required: true
-        - location: BODY
-          name: name
-          description: "The name for the new playlist, for example `\"Your Coolest\
-            \ Playlist\"` . This name does not need to be unique; a user may have\
-            \ several playlists with the same name."
-          type: String
-          required: true
-        - location: BODY
-          name: public
-          description: "Defaults to `true` . If `true` the playlist will be public,\
-            \ if `false` it will be private. To be able to create private playlists,\
-            \ the user must have granted the `playlist-modify-private` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)"
-          type: Boolean
-          required: false
-        - location: BODY
-          name: collaborative
-          description: "Defaults to `false` . If `true` the playlist will be collaborative.\
-            \ Note that to create a collaborative playlist you must also set `public`\
-            \ to `false` . To create collaborative playlists you must have granted\
-            \ `playlist-modify-private` and `playlist-modify-public` [scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
-            \ ."
-          type: Boolean
-          required: false
-        - location: BODY
-          name: description
-          description: value for playlist description as displayed in Spotify Clients
-            and in the Web API.
-          type: String
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: name
+            description: "The name for the new playlist, for example `\"Your Coolest\
+              \ Playlist\"` . This name does not need to be unique; a user may have\
+              \ several playlists with the same name."
+            type: String
+            required: true
+          - location: BODY
+            name: public
+            description: "Defaults to `true` . If `true` the playlist will be public,\
+              \ if `false` it will be private. To be able to create private playlists,\
+              \ the user must have granted the `playlist-modify-private` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)"
+            type: Boolean
+            required: false
+          - location: BODY
+            name: collaborative
+            description: "Defaults to `false` . If `true` the playlist will be collaborative.\
+              \ Note that to create a collaborative playlist you must also set `public`\
+              \ to `false` . To create collaborative playlists you must have granted\
+              \ `playlist-modify-private` and `playlist-modify-public` [scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
+              \ ."
+            type: Boolean
+            required: false
+          - location: BODY
+            name: description
+            description: value for playlist description as displayed in Spotify Clients
+              and in the Web API.
+            type: String
+            required: false
+          contentType: application/json
         responseDescription: |-
           On success, the response body contains the created [playlist object](https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject)
           in JSON format and the HTTP status code in the response header is `200` OK or
@@ -5172,22 +5238,27 @@ categories:
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)"
           type: String
           required: true
-        - location: BODY
-          name: tracks
-          description: "An array of objects containing [Spotify URIs](https://developer.spotify.com/spotify-documentation/web-api/#spotify-uris-and-ids)\
-            \ of the tracks or episodes to remove. For example: `{ \"tracks\": [{\
-            \ \"uri\": \"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\" },{ \"uri\": \"spotify:track:1301WleyT98MSxVHPZCA6M\"\
-            \ }] }`. A maximum of 100 objects can be sent at once."
-          type: "Array[String]"
-          required: true
-        - location: BODY
-          name: snapshot_id
-          description: "The playlist's snapshot ID against which you want to make\
-            \ the changes. The API will validate that the specified items exist and\
-            \ in the specified positions and make the changes, even if more recent\
-            \ changes have been made to the playlist."
-          type: String
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: tracks
+            description: "An array of objects containing [Spotify URIs](https://developer.spotify.com/spotify-documentation/web-api/#spotify-uris-and-ids)\
+              \ of the tracks or episodes to remove. For example: `{ \"tracks\": [{\
+              \ \"uri\": \"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\" },{ \"uri\": \"\
+              spotify:track:1301WleyT98MSxVHPZCA6M\" }] }`. A maximum of 100 objects\
+              \ can be sent at once."
+            type: "Array[String]"
+            required: true
+          - location: BODY
+            name: snapshot_id
+            description: "The playlist's snapshot ID against which you want to make\
+              \ the changes. The API will validate that the specified items exist\
+              \ and in the specified positions and make the changes, even if more\
+              \ recent changes have been made to the playlist."
+            type: String
+            required: false
+          contentType: application/json
         responseDescription: |-
           On success, the response body contains a `snapshot_id` in JSON format
           and the HTTP status code in the response header is `200` OK. The `snapshot_id`
@@ -5258,44 +5329,48 @@ categories:
             \  \nA maximum of 100 items can be set in one request."
           type: String
           required: false
-        - location: BODY
-          name: uris
-          description: "A comma-separated list of [Spotify URIs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ to set, can be track or episode URIs. For example: `uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQ`\
-            \  \nA maximum of 100 items can be set in one request."
-          type: "Array[String]"
-          required: false
-        - location: BODY
-          name: range_start
-          description: The position of the first item to be reordered.
-          type: Integer
-          required: false
-        - location: BODY
-          name: insert_before
-          description: "The position where the items should be inserted.  \nTo reorder\
-            \ the items to the end of the playlist, simply set *insert_before* to\
-            \ the position after the last item.  \nExamples:  \nTo reorder the first\
-            \ item to the last position in a playlist with 10 items, set *range_start*\
-            \ to 0, and *insert_before* to 10.  \nTo reorder the last item in a playlist\
-            \ with 10 items to the start of the playlist, set *range_start* to 9,\
-            \ and *insert_before* to 0."
-          type: Integer
-          required: false
-        - location: BODY
-          name: range_length
-          description: "The amount of items to be reordered. Defaults to 1 if not\
-            \ set.  \nThe range of items to be reordered begins from the *range_start*\
-            \ position, and includes the *range_length* subsequent items.  \nExample:\
-            \  \nTo move the items at index 9-10 to the start of the playlist, *range_start*\
-            \ is set to 9, and *range_length* is set to 2."
-          type: Integer
-          required: false
-        - location: BODY
-          name: snapshot_id
-          description: The playlist's snapshot ID against which you want to make the
-            changes.
-          type: String
-          required: false
+        requestBody:
+          description: ""
+          parameters:
+          - location: BODY
+            name: uris
+            description: "A comma-separated list of [Spotify URIs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
+              \ to set, can be track or episode URIs. For example: `uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQ`\
+              \  \nA maximum of 100 items can be set in one request."
+            type: "Array[String]"
+            required: false
+          - location: BODY
+            name: range_start
+            description: The position of the first item to be reordered.
+            type: Integer
+            required: false
+          - location: BODY
+            name: insert_before
+            description: "The position where the items should be inserted.  \nTo reorder\
+              \ the items to the end of the playlist, simply set *insert_before* to\
+              \ the position after the last item.  \nExamples:  \nTo reorder the first\
+              \ item to the last position in a playlist with 10 items, set *range_start*\
+              \ to 0, and *insert_before* to 10.  \nTo reorder the last item in a\
+              \ playlist with 10 items to the start of the playlist, set *range_start*\
+              \ to 9, and *insert_before* to 0."
+            type: Integer
+            required: false
+          - location: BODY
+            name: range_length
+            description: "The amount of items to be reordered. Defaults to 1 if not\
+              \ set.  \nThe range of items to be reordered begins from the *range_start*\
+              \ position, and includes the *range_length* subsequent items.  \nExample:\
+              \  \nTo move the items at index 9-10 to the start of the playlist, *range_start*\
+              \ is set to 9, and *range_length* is set to 2."
+            type: Integer
+            required: false
+          - location: BODY
+            name: snapshot_id
+            description: The playlist's snapshot ID against which you want to make
+              the changes.
+            type: String
+            required: false
+          contentType: application/json
         responseDescription: |-
           On a successful **reorder** operation, the response body contains a `snapshot_id` in JSON format
           and the HTTP status code in the response header is `200` OK. The `snapshot_id`
@@ -5347,6 +5422,10 @@ categories:
             \ for the playlist."
           type: String
           required: true
+        requestBody:
+          description: The new cover image of the playlist as a Base64 encoded JPEG
+            image. Maximum payload size is 256KB.
+          contentType: image/jpeg
         responseDescription: |-
           If you get status code `429`, it means that you have sent too many requests.
           If this happens, have a look in the `Retry-After` header, where you will see a number displayed.

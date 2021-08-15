@@ -4,6 +4,7 @@ import de.sonallux.spotify.core.model.SpotifyWebApiCategory;
 import de.sonallux.spotify.core.model.SpotifyWebApiEndpoint;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
 import java.util.SortedMap;
 
 import static de.sonallux.spotify.core.model.SpotifyWebApiEndpoint.ParameterLocation.*;
@@ -20,6 +21,7 @@ class ApiEndpointFixes {
         fixRemoveUsersSavedShowsBodyParameter(categories);
         fixPlaylistsItemsRequireParameter(categories);
         fixMarketsApiAuthorizationHeader(categories);
+        fixUploadCustomPlaylistCoverImageBody(categories);
     }
 
     private static void fixChangePlaylistsDetails(SortedMap<String, SpotifyWebApiCategory> categories) {
@@ -58,7 +60,9 @@ class ApiEndpointFixes {
             return;
         }
 
-        var contextUriParam = endpoint.getParameters().stream()
+        var bodyParams = ((SpotifyWebApiEndpoint.JsonRequestBody) endpoint.getRequestBody()).getParameters();
+
+        var contextUriParam = bodyParams.stream()
                 .filter(p -> "context_uri".equals(p.getName()) && "string".equals(p.getDescription()))
                 .findFirst().orElse(null);
         if (contextUriParam == null){
@@ -67,7 +71,7 @@ class ApiEndpointFixes {
             contextUriParam.setDescription("Spotify URI of the context to play. Valid contexts are albums, artists, playlists. Example: {\"context_uri\": \"spotify:album:1Je1IMUlBXcx1Fz0WE7oPT\"}");
         }
 
-        var urisParam = endpoint.getParameters().stream()
+        var urisParam = bodyParams.stream()
                 .filter(p -> "uris".equals(p.getName()) && "Array of URIs".equals(p.getDescription()))
                 .findFirst().orElse(null);
         if (urisParam == null){
@@ -76,7 +80,7 @@ class ApiEndpointFixes {
             urisParam.setDescription("A JSON array of the Spotify track URIs to play. For example: {\"uris\": [\"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\", \"spotify:track:1301WleyT98MSxVHPZCA6M\"]}");
         }
 
-        var offsetParam = endpoint.getParameters().stream()
+        var offsetParam = bodyParams.stream()
                 .filter(p -> "offset".equals(p.getName()) && "object".equals(p.getDescription()))
                 .findFirst().orElse(null);
         if (offsetParam == null){
@@ -87,7 +91,7 @@ class ApiEndpointFixes {
                     "“uri” is a string representing the uri of the item to start at. Example: \"offset\": {\"uri\": \"spotify:track:1301WleyT98MSxVHPZCA6M\"}");
         }
 
-        var positionMsParam = endpoint.getParameters().stream()
+        var positionMsParam = bodyParams.stream()
                 .filter(p -> "position_ms".equals(p.getName()) && "integer".equals(p.getDescription()))
                 .findFirst().orElse(null);
         if (positionMsParam == null){
@@ -101,7 +105,9 @@ class ApiEndpointFixes {
         var endpoint = categories.get("category-playlists")
             .getEndpoints().get("endpoint-reorder-or-replace-playlists-tracks");
 
-        var urisBodyParameter = endpoint.getParameters().stream()
+        var requestBody = ((SpotifyWebApiEndpoint.JsonRequestBody) endpoint.getRequestBody());
+
+        var urisBodyParameter = requestBody.getParameters().stream()
             .filter(p -> p.getLocation() == BODY && "uris".equals(p.getName()))
             .findFirst().orElse(null);
         if (urisBodyParameter == null) {
@@ -128,38 +134,38 @@ class ApiEndpointFixes {
         var endpoint = categories.get("category-library")
             .getEndpoints().get("endpoint-save-shows-user");
 
-        if (endpoint.getParameters().stream().anyMatch(parameter -> parameter.getLocation() == BODY && "ids".equals(parameter.getName()))) {
+        if (endpoint.getRequestBody() != null) {
             log.warn("Missing body parameter for endpoint-save-shows-user has been fixed");
             return;
         }
 
-        endpoint.getParameters().add(new SpotifyWebApiEndpoint.Parameter(
+        endpoint.setRequestBody(new SpotifyWebApiEndpoint.JsonRequestBody("", List.of(new SpotifyWebApiEndpoint.Parameter(
             BODY,
             "ids",
             "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).  \n" +
                 "A maximum of 50 items can be specified in one request. *Note: if the `ids` parameter is present in the query string, " +
                 "any IDs listed here in the body will be ignored.*",
             "Array[String]",
-            false));
+            false))));
     }
 
     private static void fixRemoveUsersSavedShowsBodyParameter(SortedMap<String, SpotifyWebApiCategory> categories) {
         var endpoint = categories.get("category-library")
             .getEndpoints().get("endpoint-remove-shows-user");
 
-        if (endpoint.getParameters().stream().anyMatch(parameter -> parameter.getLocation() == BODY && "ids".equals(parameter.getName()))) {
+        if (endpoint.getRequestBody() != null) {
             log.warn("Missing body parameter for endpoint-remove-shows-user has been fixed");
             return;
         }
 
-        endpoint.getParameters().add(new SpotifyWebApiEndpoint.Parameter(
+        endpoint.setRequestBody(new SpotifyWebApiEndpoint.JsonRequestBody("", List.of(new SpotifyWebApiEndpoint.Parameter(
             BODY,
             "ids",
             "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).  \n" +
                 "A maximum of 50 items can be specified in one request. *Note: if the `ids` parameter is present in the query string, " +
                 "any IDs listed here in the body will be ignored.*",
             "Array[String]",
-            false));
+            false))));
     }
 
     private static void fixPlaylistsItemsRequireParameter(SortedMap<String, SpotifyWebApiCategory> categories) {
@@ -189,5 +195,18 @@ class ApiEndpointFixes {
             return;
         }
         authorizationHeader.setRequired(true);
+    }
+
+    private static void fixUploadCustomPlaylistCoverImageBody(SortedMap<String, SpotifyWebApiCategory> categories) {
+        var endpoint = categories.get("category-playlists")
+            .getEndpoints().get("endpoint-upload-custom-playlist-cover");
+
+        if (endpoint.getRequestBody() != null) {
+            log.warn("endpoint-upload-custom-playlist-cover already has a body parameter");
+            return;
+        }
+
+        endpoint.setRequestBody(new SpotifyWebApiEndpoint.Base64ImageRequestBody(
+            "The new cover image of the playlist as a Base64 encoded JPEG image. Maximum payload size is 256KB."));
     }
 }

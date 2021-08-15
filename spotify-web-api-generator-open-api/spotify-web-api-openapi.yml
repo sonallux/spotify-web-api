@@ -4839,6 +4839,15 @@ paths:
         required: true
         schema:
           type: string
+      requestBody:
+        description: The new cover image of the playlist as a Base64 encoded JPEG
+          image. Maximum payload size is 256KB.
+        content:
+          image/jpeg:
+            schema:
+              type: string
+              format: base64
+        required: true
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'

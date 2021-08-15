@@ -22,6 +22,7 @@ public final class Yaml {
         return new YAMLMapper()
                 .disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER)
                 .enable(YAMLGenerator.Feature.MINIMIZE_QUOTES)
+                .disable(YAMLGenerator.Feature.USE_NATIVE_TYPE_ID)
                 .setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 }

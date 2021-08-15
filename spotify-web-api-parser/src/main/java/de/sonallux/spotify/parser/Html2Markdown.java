@@ -6,7 +6,6 @@ import com.vladsch.flexmark.html2md.converter.HtmlLinkResolver;
 import com.vladsch.flexmark.html2md.converter.HtmlLinkResolverFactory;
 import com.vladsch.flexmark.html2md.converter.HtmlNodeConverterContext;
 import com.vladsch.flexmark.util.data.MutableDataSet;
-import org.jetbrains.annotations.Nullable;
 import org.jsoup.nodes.Node;
 
 import java.net.MalformedURLException;
@@ -61,12 +60,12 @@ class Html2Markdown {
 
     private static class HostHtmlLinkResolverFactory implements HtmlLinkResolverFactory {
         @Override
-        public @Nullable Set<Class<?>> getAfterDependents() {
+        public Set<Class<?>> getAfterDependents() {
             return null;
         }
 
         @Override
-        public @Nullable Set<Class<?>> getBeforeDependents() {
+        public Set<Class<?>> getBeforeDependents() {
             return null;
         }
 
