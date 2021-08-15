@@ -45,7 +45,7 @@ class ApiObjectFixes {
     private static void fixTracksTypeInAlbumObject(SortedMap<String, SpotifyWebApiObject> objects) {
         var tracksProperty = objects.get("AlbumObject")
             .getProperties().stream()
-            .filter(p -> "tracks".equals(p.getName()) && "Array[SimplifiedTrackObject]".equals(p.getType()))
+            .filter(p -> "tracks".equals(p.getName()) && "Object".equals(p.getType()))
             .findFirst().orElse(null);
         if (tracksProperty == null) {
             log.warn("AlbumObject: wrong type of property tracks has been fixed");
