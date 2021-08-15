@@ -174,15 +174,25 @@ public class OpenApiGenerator {
     }
 
     public RequestBody generateRequestBody(SpotifyWebApiEndpoint endpoint) {
-        var bodyParams = endpoint.getParameters().stream()
-                .filter(p -> p.getLocation() == BODY)
-                .collect(Collectors.toList());
-        if (bodyParams.isEmpty()) {
+        var requestBody = endpoint.getRequestBody();
+        if (requestBody == null) {
             return null;
         }
+
+        if (requestBody instanceof SpotifyWebApiEndpoint.JsonRequestBody) {
+            return generateJsonRequestBody((SpotifyWebApiEndpoint.JsonRequestBody) requestBody);
+        } else if (requestBody instanceof SpotifyWebApiEndpoint.Base64ImageRequestBody) {
+            return generateBase64ImageRequestBody((SpotifyWebApiEndpoint.Base64ImageRequestBody) requestBody);
+        } else {
+            log.warn("Unsupported RequestBody type: " + requestBody.getClass().getName());
+            return null;
+        }
+    }
+
+    private RequestBody generateJsonRequestBody(SpotifyWebApiEndpoint.JsonRequestBody requestBody) {
         var requiredProps = new ArrayList<String>();
         var props = new LinkedHashMap<String, Schema>();
-        for (var param : bodyParams) {
+        for (var param : requestBody.getParameters()) {
             var paramSchema = getSchema(param.getType(), Map.of());
             if (paramSchema == null) {
                 continue;
@@ -198,8 +208,19 @@ public class OpenApiGenerator {
             schema.required(requiredProps);
         }
         return new RequestBody()
-                .content(new Content().addMediaType(MEDIA_TYPE_JSON, new MediaType().schema(schema)))
-                .required(requiredProps.size() != 0);
+            .description(Strings.isNullOrEmpty(requestBody.getDescription()) ? null : requestBody.getDescription())
+            .content(new Content().addMediaType(requestBody.getContentType(), new MediaType().schema(schema)))
+            .required(requiredProps.size() != 0);
+    }
+
+    private RequestBody generateBase64ImageRequestBody(SpotifyWebApiEndpoint.Base64ImageRequestBody requestBody) {
+        return new RequestBody()
+            .description(requestBody.getDescription())
+            .content(new Content().addMediaType(requestBody.getContentType(), new MediaType()
+                .schema(new StringSchema()
+                    // in OAS 3.1 it should be contentEncoding("base64") see also https://github.com/OAI/OpenAPI-Specification/pull/2200
+                    .format("base64"))))
+            .required(true);
     }
 
     public ApiResponse getDefaultErrorResponse() {

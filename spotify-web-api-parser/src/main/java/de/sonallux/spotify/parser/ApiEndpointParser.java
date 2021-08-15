@@ -153,9 +153,29 @@ class ApiEndpointParser {
             throw new ApiParseException("Can not find response description for endpoint " + id);
         }
 
+        var requestBody = extractRequestBody(parameters);
+
         var scopes = extractScopes(id, parameters);
 
-        return new SpotifyWebApiEndpoint(id, name, link, description, httpMethod, path, parameters, responseDescription, scopes, notes);
+        return new SpotifyWebApiEndpoint(id, name, link, description, httpMethod, path, parameters, requestBody, responseDescription, scopes, notes);
+    }
+
+    private SpotifyWebApiEndpoint.RequestBody extractRequestBody(List<SpotifyWebApiEndpoint.Parameter> parameters) {
+        var bodyParameters = new ArrayList<SpotifyWebApiEndpoint.Parameter>();
+        var paramIterator = parameters.iterator();
+        while (paramIterator.hasNext()) {
+            var param = paramIterator.next();
+            if (param.getLocation() == BODY) {
+                bodyParameters.add(param);
+                paramIterator.remove();
+            }
+        }
+
+        if (bodyParameters.isEmpty()) {
+            return null;
+        }
+
+        return new SpotifyWebApiEndpoint.JsonRequestBody("", bodyParameters);
     }
 
     private List<SpotifyWebApiEndpoint.Parameter> parseRequestParameters(Elements elements) {
