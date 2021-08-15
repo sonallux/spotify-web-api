@@ -69,7 +69,7 @@ objects:
       type: Integer
       description: The total number of tracks in the album.
     - name: tracks
-      type: Object
+      type: "PagingObject[SimplifiedTrackObject]"
       description: The tracks of the album.
     - name: type
       type: String

@@ -16,8 +16,6 @@ class ApiEndpointFixes {
         fixChangePlaylistsDetails(categories);
         fixGetInfoAboutUsersCurrentPlayback(categories);
         fixStartAUsersPlayback(categories);
-        fixGetUsersSavedShowsScope(categories);
-        fixCheckUsersSavedShowsScope(categories);
         fixReplaceAndReorderPlaylistTrackUrisParameter(categories);
         fixSaveShowsForCurrentUserBodyParameter(categories);
         fixRemoveUsersSavedShowsBodyParameter(categories);
