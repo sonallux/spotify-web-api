@@ -4,7 +4,6 @@ import de.sonallux.spotify.core.model.SpotifyWebApiCategory;
 import de.sonallux.spotify.core.model.SpotifyWebApiEndpoint;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.List;
 import java.util.SortedMap;
 
 import static de.sonallux.spotify.core.model.SpotifyWebApiEndpoint.ParameterLocation.*;
@@ -96,26 +95,6 @@ class ApiEndpointFixes {
         } else {
             positionMsParam.setDescription("Indicates from what position to start playback. Must be a positive number. Passing in a position that is greater than the length of the track will cause the player to start playing the next song.");
         }
-    }
-
-    private static void fixGetUsersSavedShowsScope(SortedMap<String, SpotifyWebApiCategory> categories) {
-        var endpoint = categories.get("category-library")
-                .getEndpoints().get("endpoint-get-users-saved-shows");
-        if (!endpoint.getScopes().contains("user-libary-read")) {
-            log.warn("endpoint-get-users-saved-shows scope user-libary-read has been fixed");
-            return;
-        }
-        endpoint.setScopes(List.of("user-library-read"));
-    }
-
-    private static void fixCheckUsersSavedShowsScope(SortedMap<String, SpotifyWebApiCategory> categories) {
-        var endpoint = categories.get("category-library")
-                .getEndpoints().get("endpoint-check-users-saved-shows");
-        if (!endpoint.getScopes().contains("user-libary-read")) {
-            log.warn("endpoint-check-users-saved-shows scope user-libary-read has been fixed");
-            return;
-        }
-        endpoint.setScopes(List.of("user-library-read"));
     }
 
     private static void fixReplaceAndReorderPlaylistTrackUrisParameter(SortedMap<String, SpotifyWebApiCategory> categories) {
