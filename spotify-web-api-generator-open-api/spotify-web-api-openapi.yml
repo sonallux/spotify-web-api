@@ -2646,6 +2646,21 @@ paths:
         required: true
         schema:
           type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+                    \  \nA maximum of 50 items can be specified in one request. *Note:\
+                    \ if the `ids` parameter is present in the query string, any IDs\
+                    \ listed here in the body will be ignored.*"
+                  items:
+                    type: string
+        required: false
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
@@ -2698,6 +2713,21 @@ paths:
         required: false
         schema:
           type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+                    \  \nA maximum of 50 items can be specified in one request. *Note:\
+                    \ if the `ids` parameter is present in the query string, any IDs\
+                    \ listed here in the body will be ignored.*"
+                  items:
+                    type: string
+        required: false
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'

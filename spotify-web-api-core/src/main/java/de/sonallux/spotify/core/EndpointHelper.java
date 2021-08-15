@@ -3,8 +3,10 @@ package de.sonallux.spotify.core;
 import de.sonallux.spotify.core.model.SpotifyWebApi;
 import de.sonallux.spotify.core.model.SpotifyWebApiEndpoint;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static de.sonallux.spotify.core.model.SpotifyWebApiEndpoint.ParameterLocation.*;
@@ -17,8 +19,8 @@ public class EndpointHelper {
 
     /**
      * Fixes duplicated endpoint parameters.
-     * Some endpoints allow to pass data either via query argument or via body. As the url has a length limit,
-     * passing to much data in the query string might result in an error response. Therefore this method removes
+     * Some endpoints allow passing data either via query argument or via body. As the url has a length limit,
+     * passing too much data in the query string might result in an error response. Therefore, this method removes
      * the option to pass the data via query argument and makes the body parameter mandatory.
      * @param spotifyWebApi the spotify web api documentation
      */
@@ -30,33 +32,43 @@ public class EndpointHelper {
 
     /**
      * Fixes duplicated endpoint parameters.
-     * Some endpoints allow to pass data either via query argument or via body. As the url has a length limit,
-     * passing to much data in the query string might result in an error response. Therefore this method removes
+     * Some endpoints allow passing data either via query argument or via body. As the url has a length limit,
+     * passing too much data in the query string might result in an error response. Therefore, this method removes
      * the option to pass the data via query argument and makes the body parameter mandatory.
      * @param endpoint the spotify api endpoint to fix
      */
     public static void fixDuplicateEndpointParameters(SpotifyWebApiEndpoint endpoint) {
-        var duplicates = endpoint.getParameters().stream()
-            .collect(Collectors.groupingBy(SpotifyWebApiEndpoint.Parameter::getName))
-            .entrySet().stream()
-            .filter(e -> e.getValue().size() > 1)
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        if (endpoint.getRequestBody() == null || !(endpoint.getRequestBody() instanceof SpotifyWebApiEndpoint.JsonRequestBody)) {
+            return;
+        }
+        var requestBody = ((SpotifyWebApiEndpoint.JsonRequestBody) endpoint.getRequestBody());
 
-        duplicates.forEach((paramName, parameters) -> {
-            if (!parameters.stream().map(SpotifyWebApiEndpoint.Parameter::getLocation).sorted().collect(Collectors.toList()).equals(List.of(QUERY, BODY))) {
-                System.err.println("Endpoint " + endpoint.getName() + " has unfixable duplicate parameters");
-                return;
+        var iterator = endpoint.getParameters().iterator();
+        while (iterator.hasNext()) {
+            var parameter = iterator.next();
+            var bodyParameter = getBodyParameter(requestBody, parameter.getName());
+            if (bodyParameter.isEmpty()) {
+                continue;
             }
-            endpoint.getParameters().removeIf(p -> p.getLocation() == QUERY && paramName.equals(p.getName()));
-            for (var param : endpoint.getParameters()) {
-                if (param.getLocation() == BODY && paramName.equals(param.getName())) {
-                    if (!("endpoint-add-tracks-to-playlist".equals(endpoint.getId()) && "position".equals(param.getName()))) {
-                        param.setRequired(true);
-                    }
-                } else if (param.getLocation() == HEADER && "Content-Type".equals(param.getName())) {
-                    param.setRequired(true);
-                }
+
+            //Remove the query parameter
+            iterator.remove();
+
+            // Parameter position in endpoint-add-tracks-to-playlist is optional
+            if ("endpoint-add-tracks-to-playlist".equals(endpoint.getId()) && "position".equals(parameter.getName())) {
+                continue;
             }
-        });
+
+            // Mark body parameter and Content-Type header as required
+            bodyParameter.get().setRequired(true);
+            endpoint.getParameters().stream()
+                .filter(p -> p.getLocation() == HEADER && "Content-Type".equals(p.getName()))
+                .findFirst().ifPresent(p -> p.setRequired(true));
+
+        }
+    }
+
+    private static Optional<SpotifyWebApiEndpoint.Parameter> getBodyParameter(SpotifyWebApiEndpoint.JsonRequestBody requestBody, String name) {
+        return requestBody.getParameters().stream().filter(p -> p.getName().equals(name)).findFirst();
     }
 }

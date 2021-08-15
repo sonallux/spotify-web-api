@@ -88,6 +88,8 @@ public class EndpointSplitter {
         var endpoint = category.getEndpoint("endpoint-reorder-or-replace-playlists-tracks")
                 .orElseThrow(() -> new IllegalArgumentException("Can not find endpoint-reorder-or-replace-playlists-tracks"));
 
+        var requestBody = ((SpotifyWebApiEndpoint.JsonRequestBody) endpoint.getRequestBody());
+
         var reorderParameterNames = List.of("Authorization", "Content-Type", "playlist_id", "range_start", "insert_before", "range_length", "snapshot_id");
         var replaceParameterNames = List.of("Authorization", "Content-Type", "playlist_id", "uris");
 
@@ -107,15 +109,17 @@ public class EndpointSplitter {
                 endpoint.getHttpMethod(),
                 endpoint.getPath(),
                 endpoint.getParameters().stream().filter(p -> reorderParameterNames.contains(p.getName())).collect(Collectors.toList()),
-                null,
+                new SpotifyWebApiEndpoint.JsonRequestBody("", requestBody.getParameters().stream().filter(p -> reorderParameterNames.contains(p.getName())).collect(Collectors.toList())),
                 responseDescriptionParts[0] + "\n\n" + responseDescriptionParts[2],
                 endpoint.getScopes(),
                 endpoint.getNotes(),
                 List.of(new SpotifyWebApiEndpoint.ResponseType("SnapshotIdObject", 200))
         );
 
-        reorderEndpoint.getParameters().stream().filter(p -> "range_start".equals(p.getName())).findFirst().get().setRequired(true);
-        reorderEndpoint.getParameters().stream().filter(p -> "insert_before".equals(p.getName())).findFirst().get().setRequired(true);
+        ((SpotifyWebApiEndpoint.JsonRequestBody) reorderEndpoint.getRequestBody()).getParameters().stream()
+            .filter(p -> "range_start".equals(p.getName())).findFirst().get().setRequired(true);
+        ((SpotifyWebApiEndpoint.JsonRequestBody) reorderEndpoint.getRequestBody()).getParameters().stream()
+            .filter(p -> "insert_before".equals(p.getName())).findFirst().get().setRequired(true);
 
         var replaceEndpoint = new SpotifyWebApiEndpoint(
                 "endpoint-replace-playlists-tracks",
@@ -125,8 +129,8 @@ public class EndpointSplitter {
                 endpoint.getHttpMethod(),
                 endpoint.getPath(),
                 endpoint.getParameters().stream().filter(p -> replaceParameterNames.contains(p.getName())).collect(Collectors.toList()),
-                null,
-            responseDescriptionParts[1] + "\n\n" + responseDescriptionParts[2],
+                new SpotifyWebApiEndpoint.JsonRequestBody("", requestBody.getParameters().stream().filter(p -> reorderParameterNames.contains(p.getName())).collect(Collectors.toList())),
+                responseDescriptionParts[1] + "\n\n" + responseDescriptionParts[2],
                 endpoint.getScopes(),
                 endpoint.getNotes(),
                 List.of(new SpotifyWebApiEndpoint.ResponseType("SnapshotIdObject", 201))

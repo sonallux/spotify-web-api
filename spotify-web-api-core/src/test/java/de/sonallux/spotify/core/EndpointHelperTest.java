@@ -6,7 +6,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -32,7 +34,12 @@ class EndpointHelperTest {
     }
 
     private boolean hasDuplicateEndpointParameters(SpotifyWebApiEndpoint endpoint) {
-        return endpoint.getParameters().stream()
+        var bodyParameters = new ArrayList<SpotifyWebApiEndpoint.Parameter>();
+        if (endpoint.getRequestBody() != null && endpoint.getRequestBody() instanceof SpotifyWebApiEndpoint.JsonRequestBody) {
+            bodyParameters.addAll(((SpotifyWebApiEndpoint.JsonRequestBody) endpoint.getRequestBody()).getParameters());
+        }
+
+        return Stream.concat(endpoint.getParameters().stream(), bodyParameters.stream())
             .collect(Collectors.groupingBy(SpotifyWebApiEndpoint.Parameter::getName))
             .entrySet().stream()
             .anyMatch(entry -> entry.getValue().size() > 1);
