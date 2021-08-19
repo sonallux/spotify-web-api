@@ -1,0 +1,123 @@
+{
+  "failureCases": [
+    {
+      "op": {
+        "op": "add",
+        "path": "$",
+        "value": 1
+      },
+      "node": {},
+      "message": "Invalid add operation. $ is not an array"
+    },
+    {
+      "op": {
+        "op": "add",
+        "path": "$.a",
+        "value": 1
+      },
+      "node": {
+        "a": "Test"
+      },
+      "message": "Can only add to an array"
+    }
+  ],
+  "successCases": [
+    {
+      "op": {
+        "op": "add",
+        "path": "$",
+        "value": "Test"
+      },
+      "node": [],
+      "expected": [
+        "Test"
+      ]
+    },
+    {
+      "op": {
+        "op": "add",
+        "path": "$",
+        "value": 3
+      },
+      "node": [
+        1,
+        2
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "op": {
+        "op": "add",
+        "path": "$",
+        "value": "Test"
+      },
+      "node": [
+        1,
+        2
+      ],
+      "expected": [
+        1,
+        2,
+        "Test"
+      ]
+    },
+    {
+      "op": {
+        "op": "add",
+        "path": "$",
+        "value": null
+      },
+      "node": [
+        "Test"
+      ],
+      "expected": [
+        "Test",
+        null
+      ]
+    },
+    {
+      "op": {
+        "op": "add",
+        "path": "$.a",
+        "value": "b"
+      },
+      "node": {
+        "a": []
+      },
+      "expected": {
+        "a": [
+          "b"
+        ]
+      }
+    },
+    {
+      "op": {
+        "op": "add",
+        "path": "$.*",
+        "value": 3
+      },
+      "node": {
+        "a": [
+          1
+        ],
+        "b": [
+          2
+        ]
+      },
+      "expected": {
+        "a": [
+          1,
+          3
+        ],
+        "b": [
+          2,
+          3
+        ]
+      }
+    }
+  ]
+}

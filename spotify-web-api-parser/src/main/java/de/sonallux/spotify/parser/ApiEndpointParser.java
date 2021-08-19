@@ -50,8 +50,6 @@ class ApiEndpointParser {
 
         addResponseTypes(categories);
 
-        //Apply fixes
-        ApiEndpointFixes.fixApiEndpoints(categories);
         return categories;
     }
 

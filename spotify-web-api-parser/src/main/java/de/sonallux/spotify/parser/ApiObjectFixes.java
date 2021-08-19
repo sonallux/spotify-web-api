@@ -11,11 +11,24 @@ import java.util.SortedMap;
 class ApiObjectFixes {
 
     static void fixApiObjects(SortedMap<String, SpotifyWebApiObject> objects) {
+        fixObjectNames(objects);
+
         fixLinkedTrackObjectReferenceInTrackObject(objects);
         fixTracksTypeInPlaylistObject(objects);
-        fixTracksTypeInAlbumObject(objects);
+        fixMissingTracksPropertyInAlbumObject(objects);
         fixEpisodesTypeInShowObject(objects);
         fixTracksPropertyInRecommendationsObject(objects);
+    }
+
+    private static void fixObjectNames(SortedMap<String, SpotifyWebApiObject> objects) {
+        List.of("AlbumBase", "EpisodeBase", "ShowBase").forEach(oldName -> {
+            var newName = oldName.replace("Base", "Object");
+            var object = objects.remove(oldName);
+            object.setId(null);//TODO: check if ok
+            object.setName(newName);
+            objects.put(newName, object);
+        });
+
     }
 
     private static void fixLinkedTrackObjectReferenceInTrackObject(SortedMap<String, SpotifyWebApiObject> objects) {
@@ -33,7 +46,7 @@ class ApiObjectFixes {
     private static void fixTracksTypeInPlaylistObject(SortedMap<String, SpotifyWebApiObject> objects) {
         var tracksProperty = objects.get("PlaylistObject")
             .getProperties().stream()
-            .filter(p -> "tracks".equals(p.getName()) && "Array[PlaylistTrackObject]".equals(p.getType()))
+            .filter(p -> "tracks".equals(p.getName()) && "Object".equals(p.getType()))
             .findFirst().orElse(null);
         if (tracksProperty == null) {
             log.warn("PlaylistObject: wrong type of property tracks has been fixed");
@@ -42,7 +55,7 @@ class ApiObjectFixes {
         }
     }
 
-    private static void fixTracksTypeInAlbumObject(SortedMap<String, SpotifyWebApiObject> objects) {
+    private static void fixMissingTracksPropertyInAlbumObject(SortedMap<String, SpotifyWebApiObject> objects) {
         var tracksProperty = objects.get("AlbumObject")
             .getProperties().stream()
             .filter(p -> "tracks".equals(p.getName()) && "Object".equals(p.getType()))

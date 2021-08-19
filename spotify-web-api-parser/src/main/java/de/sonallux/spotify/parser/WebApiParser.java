@@ -1,12 +1,14 @@
 package de.sonallux.spotify.parser;
 
 import de.sonallux.spotify.core.model.SpotifyWebApi;
+import de.sonallux.spotify.core.model.SpotifyWebApiObject;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Comparator;
 
 @Slf4j
 public class WebApiParser {
@@ -40,7 +42,18 @@ public class WebApiParser {
         var objects = apiObjectParser.parseSpotifyObjects(allSections, documentationUrl);
         var categories = apiEndpointParser.parseSpotifyApiCategories(allSections, documentationUrl, endpointUrl, responseTypesFile);
         var scopes = apiScopesParser.parseScopes();
-        apiScopesParser.validateScopes(scopes, categories);
-        return new SpotifyWebApi(documentationUrl, endpointUrl, objects, categories, scopes);
+
+        var spotifyWebApi = new SpotifyWebApi(documentationUrl, endpointUrl, objects, categories, scopes);
+
+        var apiPatches = new ApiPatches();
+        spotifyWebApi = apiPatches.applyPatches(spotifyWebApi);
+
+        // Sort object properties by name
+        for (var object : spotifyWebApi.getObjectList()) {
+            object.getProperties().sort(Comparator.comparing(SpotifyWebApiObject.Property::getName));
+        }
+
+        ScopeValidator.validateScopes(spotifyWebApi);
+        return spotifyWebApi;
     }
 }

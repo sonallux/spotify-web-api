@@ -1,0 +1,86 @@
+{
+  "failureCases": [
+    {
+      "op": {
+        "op": "set",
+        "path": "$",
+        "value": 42
+      },
+      "node": [],
+      "message": "Invalid set operation"
+    },
+    {
+      "op": {
+        "op": "set",
+        "path": "$",
+        "value": 42
+      },
+      "node": {},
+      "message": "Invalid set operation"
+    },
+    {
+      "op": {
+        "op": "set",
+        "path": "$.x.y",
+        "value": 42
+      },
+      "node": {
+        "a": {}
+      },
+      "message": "Missing property in path $['x']"
+    }
+  ],
+  "successCases": [
+    {
+      "op": {
+        "op": "set",
+        "path": "$.[1]",
+        "value": 2
+      },
+      "node": [
+        1
+      ],
+      "expected": [
+        1,
+        2
+      ]
+    },
+    {
+      "op": {
+        "op": "set",
+        "path": "$.[0]",
+        "value": "a"
+      },
+      "node": [
+        1,
+        2
+      ],
+      "expected": [
+        "a",
+        2
+      ]
+    },
+    {
+      "op": {
+        "op": "set",
+        "path": "$.a",
+        "value": 2
+      },
+      "node": {},
+      "expected": {}
+    },
+    {
+      "op": {
+        "op": "set",
+        "path": "$.a",
+        "value": "d"
+      },
+      "node": {
+        "a": "b"
+      },
+      "expected": {
+        "a": "d"
+      }
+    }
+  ]
+}
