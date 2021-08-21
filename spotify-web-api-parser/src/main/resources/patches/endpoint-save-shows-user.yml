@@ -1,9 +1,8 @@
 description: Body parameter ids is missing
 operations:
-# TODO: Add support for testing non existence
-#  - op: test
-#    path: "$.categories.category-library.endpoints.endpoint-save-shows-user"
-#    value: null
+  - op: test
+    path: "$.categories.category-library.endpoints.endpoint-save-shows-user.requestBody"
+    value: null
   - op: put
     path: "$.categories.category-library.endpoints.endpoint-save-shows-user"
     key: requestBody

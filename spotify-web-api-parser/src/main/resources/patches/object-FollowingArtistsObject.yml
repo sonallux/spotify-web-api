@@ -1,0 +1,14 @@
+description: Add FollowingArtistsObject
+operations:
+  - op: test
+    path: "$.objects.FollowingArtistsObject"
+    value: null
+  - op: put
+    path: "$.objects"
+    key: FollowingArtistsObject
+    value:
+      name: FollowingArtistsObject
+      properties:
+        - name: artists
+          type: "CursorPagingObject[ArtistObject]"
+          description: ""

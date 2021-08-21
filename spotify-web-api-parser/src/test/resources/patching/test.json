@@ -43,6 +43,15 @@
       },
       "node": 1.00,
       "message": "Value differs from expected value"
+    },
+    {
+      "op": {
+        "op": "test",
+        "path": "$.a",
+        "value": null
+      },
+      "node": {"a": "test"},
+      "message": "Value differs from expected value"
     }
   ],
   "successCases": [
@@ -93,6 +102,24 @@
           true
         ]
       }
+    },
+    {
+      "op": {
+        "op": "test",
+        "path": "$.a",
+        "value": null
+      },
+      "node": {},
+      "expected": {}
+    },
+    {
+      "op": {
+        "op": "test",
+        "path": "$.a",
+        "value": null
+      },
+      "node": {"a": null},
+      "expected": {"a": null}
     }
   ]
 }

@@ -1,9 +1,8 @@
 description: Add correct request body
 operations:
-# TODO: Add support for testing non existence
-#  - op: test
-#    path: "$.categories.category-playlists.endpoints.endpoint-upload-custom-playlist-cover.requestBody"
-#    value: [ false ]
+  - op: test
+    path: "$.categories.category-playlists.endpoints.endpoint-upload-custom-playlist-cover.requestBody"
+    value: null
   - op: put
     path: "$.categories.category-playlists.endpoints.endpoint-upload-custom-playlist-cover"
     key: requestBody

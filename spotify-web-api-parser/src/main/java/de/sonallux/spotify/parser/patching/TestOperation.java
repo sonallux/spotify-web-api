@@ -31,6 +31,10 @@ public class TestOperation extends PatchOperation {
 
             return node.deepCopy();
         } catch (PathNotFoundException e) {
+            if (value.isNull()) {
+                // Null is used to test non-existence
+                return node.deepCopy();
+            }
             throw new PatchException("Path did not exist", e);
         }
         catch (JsonPathException e) {

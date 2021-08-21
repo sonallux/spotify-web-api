@@ -18,6 +18,7 @@ import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
     @JsonSubTypes.Type(name = "set", value = SetOperation.class),
     @JsonSubTypes.Type(name = "delete", value = DeleteOperation.class),
     @JsonSubTypes.Type(name = "put", value = PutOperation.class),
+    @JsonSubTypes.Type(name = "rename", value = RenameOperation.class),
     @JsonSubTypes.Type(name = "test", value = TestOperation.class)
 })
 @AllArgsConstructor(access = AccessLevel.PROTECTED)

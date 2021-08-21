@@ -1,0 +1,17 @@
+description: Add FeaturedPlaylistObject
+operations:
+  - op: test
+    path: "$.objects.FeaturedPlaylistObject"
+    value: null
+  - op: put
+    path: "$.objects"
+    key: FeaturedPlaylistObject
+    value:
+      name: FeaturedPlaylistObject
+      properties:
+        - name: message
+          type: String
+          description: ""
+        - name: playlists
+          type: "PagingObject[SimplifiedPlaylistObject]"
+          description: ""

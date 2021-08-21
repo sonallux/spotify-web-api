@@ -1,0 +1,14 @@
+description: Add PlaylistPagingObject
+operations:
+  - op: test
+    path: "$.objects.PlaylistPagingObject"
+    value: null
+  - op: put
+    path: "$.objects"
+    key: PlaylistPagingObject
+    value:
+      name: PlaylistPagingObject
+      properties:
+        - name: playlists
+          type: "PagingObject[SimplifiedPlaylistObject]"
+          description: ""

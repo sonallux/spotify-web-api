@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -29,19 +28,6 @@ class ApiObjectParser {
         }
         //Apply fixes and add missing objects
         ApiObjectFixes.fixApiObjects(objects);
-        for (var object : ApiObjectFixes.getMissingObjects()) {
-            if (objects.containsKey(object.getName())) {
-                log.warn("Object {} is no longer missing", object.getName());
-            }
-            else {
-                objects.put(object.getName(), object);
-            }
-        }
-
-        // Sort object properties by name
-        for (var object : objects.values()) {
-            object.getProperties().sort(Comparator.comparing(SpotifyWebApiObject.Property::getName));
-        }
 
         return objects;
     }

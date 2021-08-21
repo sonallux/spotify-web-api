@@ -1,0 +1,14 @@
+description: Add TracksObject
+operations:
+  - op: test
+    path: "$.objects.TracksObject"
+    value: null
+  - op: put
+    path: "$.objects"
+    key: TracksObject
+    value:
+      name: TracksObject
+      properties:
+        - name: tracks
+          type: "Array[TrackObject]"
+          description: ""

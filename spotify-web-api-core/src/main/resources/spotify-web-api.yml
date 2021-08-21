@@ -5248,7 +5248,7 @@ categories:
               \ \"uri\": \"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\" },{ \"uri\": \"\
               spotify:track:1301WleyT98MSxVHPZCA6M\" }] }`. A maximum of 100 objects\
               \ can be sent at once."
-            type: "Array[String]"
+            type: "Array[Object]"
             required: true
           - location: BODY
             name: snapshot_id
