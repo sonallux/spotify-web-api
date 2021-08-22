@@ -1,0 +1,70 @@
+description: Add ShowObject
+operations:
+  - op: test
+    path: "$.objects.ShowObject"
+    value: null
+  - op: put
+    path: "$.objects"
+    key: ShowObject
+    value:
+      name: ShowObject
+      properties:
+        - name: available_markets
+          type: "Array[String]"
+          description: "A list of the countries in which the show can be played, identified\
+          \ by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
+          \ code."
+        - name: copyrights
+          type: "Array[CopyrightObject]"
+          description: The copyright statements of the show.
+        - name: description
+          type: String
+          description: "A description of the show. HTML tags are stripped away from this\
+          \ field, use `html_description` field in case HTML tags are needed."
+        - name: episodes
+          type: "PagingObject[SimplifiedEpisodeObject]"
+          description: A list of the show's episodes.
+        - name: explicit
+          type: Boolean
+          description: Whether or not the show has explicit content (true = yes it does;
+            false = no it does not OR unknown).
+        - name: external_urls
+          type: ExternalUrlObject
+          description: External URLs for this show.
+        - name: href
+          type: String
+          description: A link to the Web API endpoint providing full details of the show.
+        - name: html_description
+          type: String
+          description: A description of the show. This field may contain HTML tags.
+        - name: id
+          type: String
+          description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
+          \ for the show."
+        - name: images
+          type: "Array[ImageObject]"
+          description: "The cover art for the show in various sizes, widest first."
+        - name: is_externally_hosted
+          type: Boolean
+          description: True if all of the show's episodes are hosted outside of Spotify's
+            CDN. This field might be `null` in some cases.
+        - name: languages
+          type: "Array[String]"
+          description: "A list of the languages used in the show, identified by their\
+          \ [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code."
+        - name: media_type
+          type: String
+          description: The media type of the show.
+        - name: name
+          type: String
+          description: The name of the episode.
+        - name: publisher
+          type: String
+          description: The publisher of the show.
+        - name: type
+          type: String
+          description: The object type.
+        - name: uri
+          type: String
+          description: "The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
+          \ for the show."

@@ -1,0 +1,8 @@
+description: Fix type of linked_from property
+operations:
+  - op: test
+    path: "$.objects.TrackObject.properties.[?(@.name=='linked_from')].type"
+    value: [""]
+  - op: set
+    path: "$.objects.TrackObject.properties.[?(@.name=='linked_from')].type"
+    value: LinkedTrackObject

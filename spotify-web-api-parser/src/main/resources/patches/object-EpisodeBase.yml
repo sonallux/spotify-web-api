@@ -1,0 +1,12 @@
+description: Rename EpisodeBase to SimplifiedEpisodeObject
+operations:
+  - op: test
+    path: "$.objects.EpisodeBase.name"
+    value: EpisodeBase
+  - op: rename
+    path: "$.objects"
+    oldKey: EpisodeBase
+    newKey: SimplifiedEpisodeObject
+  - op: set
+    path: "$.objects.SimplifiedEpisodeObject.name"
+    value: SimplifiedEpisodeObject

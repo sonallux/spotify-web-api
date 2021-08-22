@@ -26,8 +26,6 @@ class ApiObjectParser {
                 objects.put(object.getName(), object);
             }
         }
-        //Apply fixes and add missing objects
-        ApiObjectFixes.fixApiObjects(objects);
 
         return objects;
     }
@@ -36,7 +34,7 @@ class ApiObjectParser {
         var id = objectHeader.attributes().get("id");
         var link = this.baseUrl + "/#" + id;
         var objectName = objectHeader.text();
-        var spotifyObject = new SpotifyWebApiObject(objectName, id, link);
+        var spotifyObject = new SpotifyWebApiObject(objectName, link);
         for (var prop : objectHeader.nextElementSibling().select("tbody > tr")) {
             /*
             Properties have the following structure:
