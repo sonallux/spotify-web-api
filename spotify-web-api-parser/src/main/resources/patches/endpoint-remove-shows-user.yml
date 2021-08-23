@@ -1,0 +1,20 @@
+description: Body parameter ids is missing
+operations:
+  - op: test
+    path: "$.categories.category-library.endpoints.endpoint-remove-shows-user.requestBody"
+    value: null
+  - op: put
+    path: "$.categories.category-library.endpoints.endpoint-remove-shows-user"
+    key: requestBody
+    value:
+      description: ""
+      parameters:
+        - location: BODY
+          name: ids
+          description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+                    \  \nA maximum of 50 items can be specified in one request. *Note: if\
+                    \ the `ids` parameter is present in the query string, any IDs listed\
+                    \ here in the body will be ignored.*"
+          type: "Array[String]"
+          required: false
+      contentType: application/json

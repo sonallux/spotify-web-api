@@ -7,12 +7,12 @@
     <parent>
         <groupId>de.sonallux.spotify</groupId>
         <artifactId>spotify-web-api-parent</artifactId>
-        <version>2021.8.15</version>
+        <version>2021.8.23</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>spotify-web-api-parser</artifactId>
-    <version>2021.8.15</version>
+    <version>2021.8.23</version>
     <packaging>jar</packaging>
 
     <name>spotify-web-api-parser</name>
@@ -21,6 +21,7 @@
 
     <properties>
         <jsoup.version>1.14.1</jsoup.version>
+        <jsonpath.version>2.5.0</jsonpath.version>
 
         <moditect.module.name>de.sonallux.spotify.parser</moditect.module.name>
     </properties>
@@ -29,7 +30,7 @@
         <dependency>
             <groupId>de.sonallux.spotify</groupId>
             <artifactId>spotify-web-api-core</artifactId>
-            <version>2021.8.15</version>
+            <version>2021.8.23</version>
         </dependency>
         <dependency>
             <groupId>org.jsoup</groupId>
@@ -43,6 +44,11 @@
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-yaml</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <version>${jsonpath.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -75,6 +81,12 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito-junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

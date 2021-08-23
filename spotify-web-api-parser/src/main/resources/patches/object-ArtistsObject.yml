@@ -1,0 +1,14 @@
+description: Add ArtistsObject
+operations:
+  - op: test
+    path: "$.objects.ArtistsObject"
+    value: null
+  - op: put
+    path: "$.objects"
+    key: ArtistsObject
+    value:
+      name: ArtistsObject
+      properties:
+        - name: artists
+          type: "Array[ArtistObject]"
+          description: ""

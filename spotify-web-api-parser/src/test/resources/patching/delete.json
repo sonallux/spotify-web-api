@@ -1,0 +1,117 @@
+{
+  "failureCases": [
+    {
+      "op": {
+        "op": "delete",
+        "path": "$.x.y"
+      },
+      "node": {},
+      "message": "Missing property in path $['x']"
+    }
+  ],
+  "successCases": [
+    {
+      "op": {
+        "op": "delete",
+        "path": "$.x.y"
+      },
+      "node": {
+        "x": {}
+      },
+      "expected": {
+        "x": {}
+      }
+    },
+    {
+      "op": {
+        "op": "delete",
+        "path": "$.[2]"
+      },
+      "node": [],
+      "expected": []
+    },
+    {
+      "op": {
+        "op": "delete",
+        "path": "$.x.y"
+      },
+      "node": {
+        "x": {
+          "a": "b",
+          "y": {}
+        }
+      },
+      "expected": {
+        "x": {
+          "a": "b"
+        }
+      }
+    },
+    {
+      "op": {
+        "op": "delete",
+        "path": "$.[0].[2]"
+      },
+      "node": [
+        [
+          "a",
+          "b",
+          "c"
+        ],
+        "d",
+        "e"
+      ],
+      "expected": [
+        [
+          "a",
+          "b"
+        ],
+        "d",
+        "e"
+      ]
+    },
+    {
+      "op": {
+        "op": "delete",
+        "path": "$.x.[0]"
+      },
+      "node": {
+        "x": [
+          "y",
+          "z"
+        ],
+        "foo": "bar"
+      },
+      "expected": {
+        "x": [
+          "z"
+        ],
+        "foo": "bar"
+      }
+    },
+    {
+      "op": {
+        "op": "delete",
+        "path": "$.*.[0]"
+      },
+      "node": {
+        "a": [
+          "y",
+          "z"
+        ],
+        "b": [
+          1,
+          2
+        ]
+      },
+      "expected": {
+        "a": [
+          "z"
+        ],
+        "b": [
+          2
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+description: Add ErrorResponseObject
+operations:
+  - op: test
+    path: "$.objects.ErrorResponseObject"
+    value: null
+  - op: put
+    path: "$.objects"
+    key: ErrorResponseObject
+    value:
+      name: ErrorResponseObject
+      properties:
+        - name: error
+          type: ErrorObject
+          description: ""

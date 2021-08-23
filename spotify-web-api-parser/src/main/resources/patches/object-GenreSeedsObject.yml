@@ -1,0 +1,14 @@
+description: Add GenreSeedsObject
+operations:
+  - op: test
+    path: "$.objects.GenreSeedsObject"
+    value: null
+  - op: put
+    path: "$.objects"
+    key: GenreSeedsObject
+    value:
+      name: GenreSeedsObject
+      properties:
+        - name: genres
+          type: "Array[String]"
+          description: ""

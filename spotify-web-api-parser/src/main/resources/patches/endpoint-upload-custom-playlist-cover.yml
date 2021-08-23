@@ -1,0 +1,11 @@
+description: Add correct request body
+operations:
+  - op: test
+    path: "$.categories.category-playlists.endpoints.endpoint-upload-custom-playlist-cover.requestBody"
+    value: null
+  - op: put
+    path: "$.categories.category-playlists.endpoints.endpoint-upload-custom-playlist-cover"
+    key: requestBody
+    value:
+      description: The new cover image of the playlist as a Base64 encoded JPEG image. Maximum payload size is 256KB.
+      contentType: image/jpeg

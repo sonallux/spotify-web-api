@@ -16,24 +16,19 @@ public class SpotifyWebApiObject {
     @ToString.Include
     @EqualsAndHashCode.Include
     private String name;
-    private String id;
     private String link;
     private List<Property> properties;
 
-    public SpotifyWebApiObject(String name, String id, String link) {
-        this(name, id, link, new ArrayList<>());
-    }
-
     public SpotifyWebApiObject(String name) {
-        this(name, null, null, new ArrayList<>());
+        this(name, null, new ArrayList<>());
     }
 
     public SpotifyWebApiObject(String name, String link) {
-        this(name, null, link, new ArrayList<>());
+        this(name, link, new ArrayList<>());
     }
 
     public SpotifyWebApiObject(String name, List<Property> properties) {
-        this(name, null, null, properties);
+        this(name, null, properties);
     }
 
     public SpotifyWebApiObject addProperty(Property property) {

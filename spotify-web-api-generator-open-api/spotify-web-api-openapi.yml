@@ -4,7 +4,7 @@ info:
   contact:
     name: sonallux
     url: https://github.com/sonallux/spotify-web-api
-  version: 2021.8.15
+  version: 2021.8.23
 externalDocs:
   description: Find more info on the official Spotify Web API Reference
   url: https://developer.spotify.com/documentation/web-api/reference
@@ -193,7 +193,7 @@ paths:
                       result of the request
                   items:
                     type: array
-                    description: The requested data.
+                    description: The requested content
                     items:
                       $ref: '#/components/schemas/SimplifiedTrackObject'
                   limit:
@@ -387,7 +387,7 @@ paths:
                       result of the request
                   items:
                     type: array
-                    description: The requested data.
+                    description: The requested content
                     items:
                       $ref: '#/components/schemas/SimplifiedAlbumObject'
                   limit:
@@ -2153,7 +2153,7 @@ paths:
                       result of the request
                   items:
                     type: array
-                    description: The requested data.
+                    description: The requested content
                     items:
                       $ref: '#/components/schemas/SavedAlbumObject'
                   limit:
@@ -2380,7 +2380,7 @@ paths:
                       result of the request
                   items:
                     type: array
-                    description: The requested data.
+                    description: The requested content
                     items:
                       $ref: '#/components/schemas/SavedEpisodeObject'
                   limit:
@@ -2591,7 +2591,7 @@ paths:
                       result of the request
                   items:
                     type: array
-                    description: The requested data.
+                    description: The requested content
                     items:
                       $ref: '#/components/schemas/SavedShowObject'
                   limit:
@@ -2803,7 +2803,7 @@ paths:
                       result of the request
                   items:
                     type: array
-                    description: The requested data.
+                    description: The requested content
                     items:
                       $ref: '#/components/schemas/SavedTrackObject'
                   limit:
@@ -3065,7 +3065,7 @@ paths:
                       result of the request
                   items:
                     type: array
-                    description: The requested data.
+                    description: The requested content
                     items:
                       oneOf:
                       - $ref: '#/components/schemas/ArtistObject'
@@ -3962,7 +3962,7 @@ paths:
                       result of the request
                   items:
                     type: array
-                    description: The requested data.
+                    description: The requested content
                     items:
                       $ref: '#/components/schemas/PlaylistTrackObject'
                   limit:
@@ -4280,7 +4280,7 @@ paths:
                     uri\": \"spotify:track:1301WleyT98MSxVHPZCA6M\" }] }`. A maximum\
                     \ of 100 objects can be sent at once."
                   items:
-                    type: string
+                    type: object
                 snapshot_id:
                   type: string
                   description: "The playlist's snapshot ID against which you want\
@@ -4534,7 +4534,7 @@ paths:
                       result of the request
                   items:
                     type: array
-                    description: The requested data.
+                    description: The requested content
                     items:
                       $ref: '#/components/schemas/SimplifiedPlaylistObject'
                   limit:
@@ -4728,7 +4728,7 @@ paths:
                       result of the request
                   items:
                     type: array
-                    description: The requested data.
+                    description: The requested content
                     items:
                       $ref: '#/components/schemas/SimplifiedPlaylistObject'
                   limit:
@@ -5099,7 +5099,7 @@ paths:
                       result of the request
                   items:
                     type: array
-                    description: The requested data.
+                    description: The requested content
                     items:
                       $ref: '#/components/schemas/SimplifiedEpisodeObject'
                   limit:
@@ -5578,7 +5578,7 @@ components:
                 of the request
             items:
               type: array
-              description: The requested data.
+              description: The requested content
               items:
                 $ref: '#/components/schemas/SimplifiedTrackObject'
             limit:
@@ -5611,9 +5611,6 @@ components:
         uri:
           type: string
           description: The Spotify URI for the album.
-      externalDocs:
-        description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference/#object-albumobject
     AlbumRestrictionObject:
       type: object
       properties:
@@ -5744,8 +5741,8 @@ components:
             acoustic. 1.0 represents high confidence the track is acoustic.
         analysis_url:
           type: string
-          description: An HTTP URL to access the full audio analysis of this track.
-            An access token is required to access this data.
+          description: A URL to access the full audio analysis of this track. An access
+            token is required to access this data.
         danceability:
           type: number
           description: "Danceability describes how suitable a track is for dancing\
@@ -5827,7 +5824,7 @@ components:
             track.
         type:
           type: string
-          description: "The object type: \"audio_features\""
+          description: The object type.
         uri:
           type: string
           description: The Spotify URI for the track.
@@ -5852,7 +5849,7 @@ components:
                 of the request
             items:
               type: array
-              description: The requested data.
+              description: The requested content
               items:
                 $ref: '#/components/schemas/CategoryObject'
             limit:
@@ -6198,9 +6195,6 @@ components:
           type: string
           description: "The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
             \ for the episode."
-      externalDocs:
-        description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference/#object-episodeobject
     EpisodeRestrictionObject:
       type: object
       properties:
@@ -6298,7 +6292,7 @@ components:
                 of the request
             items:
               type: array
-              description: The requested data.
+              description: The requested content
               items:
                 $ref: '#/components/schemas/SimplifiedPlaylistObject'
             limit:
@@ -6330,9 +6324,8 @@ components:
       properties:
         href:
           type: string
-          description: "A link to the Web API endpoint providing full details of the\
-            \ followers; `null` if not available. Please note that this will always\
-            \ be set to null, as the Web API does not support it at the moment."
+          description: "This will always be set to null, as the Web API does not support\
+            \ it at the moment."
         total:
           type: integer
           description: The total number of followers.
@@ -6441,7 +6434,7 @@ components:
                 of the request
             items:
               type: array
-              description: The requested data.
+              description: The requested content
               items:
                 $ref: '#/components/schemas/SimplifiedAlbumObject'
             limit:
@@ -6477,7 +6470,7 @@ components:
             the request
         items:
           type: array
-          description: The requested data.
+          description: The requested content
           items:
             type: object
         limit:
@@ -6607,7 +6600,7 @@ components:
                 of the request
             items:
               type: array
-              description: The requested data.
+              description: The requested content
               items:
                 $ref: '#/components/schemas/PlaylistTrackObject'
             limit:
@@ -6630,8 +6623,7 @@ components:
               type: integer
               description: The total number of items available to return.
               format: int32
-          description: "Information about the tracks of the playlist. Note, a track\
-            \ object may be `null`. This can happen if a track is no longer available."
+          description: The tracks of the playlist.
           externalDocs:
             description: Find more info on the official Spotify Web API Reference
             url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
@@ -6657,7 +6649,7 @@ components:
                 of the request
             items:
               type: array
-              description: The requested data.
+              description: The requested content
               items:
                 $ref: '#/components/schemas/SimplifiedPlaylistObject'
             limit:
@@ -6946,7 +6938,7 @@ components:
                 of the request
             items:
               type: array
-              description: The requested data.
+              description: The requested content
               items:
                 $ref: '#/components/schemas/SimplifiedAlbumObject'
             limit:
@@ -6982,7 +6974,7 @@ components:
                 of the request
             items:
               type: array
-              description: The requested data.
+              description: The requested content
               items:
                 $ref: '#/components/schemas/ArtistObject'
             limit:
@@ -7018,7 +7010,7 @@ components:
                 of the request
             items:
               type: array
-              description: The requested data.
+              description: The requested content
               items:
                 $ref: '#/components/schemas/SimplifiedEpisodeObject'
             limit:
@@ -7054,7 +7046,7 @@ components:
                 of the request
             items:
               type: array
-              description: The requested data.
+              description: The requested content
               items:
                 $ref: '#/components/schemas/SimplifiedPlaylistObject'
             limit:
@@ -7090,7 +7082,7 @@ components:
                 of the request
             items:
               type: array
-              description: The requested data.
+              description: The requested content
               items:
                 $ref: '#/components/schemas/SimplifiedShowObject'
             limit:
@@ -7126,7 +7118,7 @@ components:
                 of the request
             items:
               type: array
-              description: The requested data.
+              description: The requested content
               items:
                 $ref: '#/components/schemas/TrackObject'
             limit:
@@ -7267,7 +7259,7 @@ components:
                 of the request
             items:
               type: array
-              description: The requested data.
+              description: The requested content
               items:
                 $ref: '#/components/schemas/SimplifiedEpisodeObject'
             limit:
@@ -7342,9 +7334,6 @@ components:
           type: string
           description: "The [Spotify URI](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
             \ for the show."
-      externalDocs:
-        description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference/#object-showobject
     ShowsObject:
       type: object
       properties:
@@ -7418,7 +7407,7 @@ components:
             \ for the album."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-albumbase
     SimplifiedArtistObject:
       type: object
       properties:
@@ -7492,14 +7481,13 @@ components:
             false.
         language:
           type: string
-          description: "**Note: This field is deprecated and might be removed in the\
-            \ future. Please use the `languages` field instead.** The language used\
-            \ in the episode, identified by a [ISO 639](https://en.wikipedia.org/wiki/ISO_639)\
-            \ code."
+          description: "The language used in the episode, identified by a [ISO 639](https://en.wikipedia.org/wiki/ISO_639)\
+            \ code. This field is deprecated and might be removed in the future. Please\
+            \ use the `languages` field instead."
         languages:
           type: array
           description: "A list of the languages used in the episode, identified by\
-            \ their [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code."
+            \ their [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) code."
           items:
             type: string
         name:
@@ -7526,7 +7514,7 @@ components:
             \ for the episode."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-episodebase
     SimplifiedPlaylistObject:
       type: object
       properties:
@@ -7652,7 +7640,7 @@ components:
             \ for the show."
       externalDocs:
         description: Find more info on the official Spotify Web API Reference
-        url: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedshowobject
+        url: https://developer.spotify.com/documentation/web-api/reference/#object-showbase
     SimplifiedTrackObject:
       type: object
       properties:

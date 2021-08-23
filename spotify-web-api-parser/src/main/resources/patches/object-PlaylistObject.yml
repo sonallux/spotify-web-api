@@ -1,0 +1,8 @@
+description: Fix type of tracks property
+operations:
+  - op: test
+    path: "$.objects.PlaylistObject.properties.[?(@.name=='tracks')].type"
+    value: ["Object"]
+  - op: set
+    path: "$.objects.PlaylistObject.properties.[?(@.name=='tracks')].type"
+    value: "PagingObject[PlaylistTrackObject]"

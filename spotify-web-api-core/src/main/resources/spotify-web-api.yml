@@ -3,8 +3,6 @@ endpointUrl: https://api.spotify.com/v1
 objects:
   AlbumObject:
     name: AlbumObject
-    id: object-albumobject
-    link: https://developer.spotify.com/documentation/web-api/reference/#object-albumobject
     properties:
     - name: album_type
       type: String
@@ -79,7 +77,6 @@ objects:
       description: The Spotify URI for the album.
   AlbumRestrictionObject:
     name: AlbumRestrictionObject
-    id: object-albumrestrictionobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-albumrestrictionobject
     properties:
     - name: reason
@@ -96,7 +93,6 @@ objects:
       description: ""
   ArtistObject:
     name: ArtistObject
-    id: object-artistobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-artistobject
     properties:
     - name: external_urls
@@ -175,7 +171,6 @@ objects:
       description: ""
   AudioFeaturesObject:
     name: AudioFeaturesObject
-    id: object-audiofeaturesobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-audiofeaturesobject
     properties:
     - name: acousticness
@@ -184,8 +179,8 @@ objects:
         1.0 represents high confidence the track is acoustic.
     - name: analysis_url
       type: String
-      description: An HTTP URL to access the full audio analysis of this track. An
-        access token is required to access this data.
+      description: A URL to access the full audio analysis of this track. An access
+        token is required to access this data.
     - name: danceability
       type: Float
       description: "Danceability describes how suitable a track is for dancing based\
@@ -260,7 +255,7 @@ objects:
       description: A link to the Web API endpoint providing full details of the track.
     - name: type
       type: String
-      description: "The object type: \"audio_features\""
+      description: The object type.
     - name: uri
       type: String
       description: The Spotify URI for the track.
@@ -278,7 +273,6 @@ objects:
       description: ""
   CategoryObject:
     name: CategoryObject
-    id: object-categoryobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-categoryobject
     properties:
     - name: href
@@ -296,7 +290,6 @@ objects:
       description: The name of the category.
   ContextObject:
     name: ContextObject
-    id: object-contextobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-contextobject
     properties:
     - name: external_urls
@@ -315,7 +308,6 @@ objects:
         \ for the context."
   CopyrightObject:
     name: CopyrightObject
-    id: object-copyrightobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-copyrightobject
     properties:
     - name: text
@@ -327,7 +319,6 @@ objects:
         \ (performance) copyright."
   CurrentlyPlayingContextObject:
     name: CurrentlyPlayingContextObject
-    id: object-currentlyplayingcontextobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-currentlyplayingcontextobject
     properties:
     - name: actions
@@ -364,7 +355,6 @@ objects:
       description: Unix Millisecond Timestamp when data was fetched.
   CurrentlyPlayingObject:
     name: CurrentlyPlayingObject
-    id: object-currentlyplayingobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-currentlyplayingobject
     properties:
     - name: context
@@ -388,7 +378,6 @@ objects:
       description: Unix Millisecond Timestamp when data was fetched
   CursorObject:
     name: CursorObject
-    id: object-cursorobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-cursorobject
     properties:
     - name: after
@@ -396,7 +385,6 @@ objects:
       description: The cursor to use as key to find the next page of items.
   CursorPagingObject:
     name: CursorPagingObject
-    id: object-cursorpagingobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-cursorpagingobject
     properties:
     - name: cursors
@@ -421,7 +409,6 @@ objects:
       description: The total number of items available to return.
   DeviceObject:
     name: DeviceObject
-    id: object-deviceobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-deviceobject
     properties:
     - name: id
@@ -449,7 +436,6 @@ objects:
       description: The current volume in percent.
   DevicesObject:
     name: DevicesObject
-    id: object-devicesobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-devicesobject
     properties:
     - name: devices
@@ -457,7 +443,6 @@ objects:
       description: A list of 0..n Device objects
   DisallowsObject:
     name: DisallowsObject
-    id: object-disallowsobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-disallowsobject
     properties:
     - name: interrupting_playback
@@ -492,8 +477,6 @@ objects:
       description: Transfering playback between devices. Optional field.
   EpisodeObject:
     name: EpisodeObject
-    id: object-episodeobject
-    link: https://developer.spotify.com/documentation/web-api/reference/#object-episodeobject
     properties:
     - name: audio_preview_url
       type: String
@@ -574,7 +557,6 @@ objects:
         \ for the episode."
   EpisodeRestrictionObject:
     name: EpisodeRestrictionObject
-    id: object-episoderestrictionobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-episoderestrictionobject
     properties:
     - name: reason
@@ -594,7 +576,6 @@ objects:
       description: ""
   ErrorObject:
     name: ErrorObject
-    id: object-errorobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-errorobject
     properties:
     - name: message
@@ -613,7 +594,6 @@ objects:
       description: ""
   ExplicitContentSettingsObject:
     name: ExplicitContentSettingsObject
-    id: object-explicitcontentsettingsobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-explicitcontentsettingsobject
     properties:
     - name: filter_enabled
@@ -625,7 +605,6 @@ objects:
         \ and can't be changed by the user."
   ExternalIdObject:
     name: ExternalIdObject
-    id: object-externalidobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-externalidobject
     properties:
     - name: ean
@@ -639,7 +618,6 @@ objects:
       description: "[Universal Product Code](http://en.wikipedia.org/wiki/Universal_Product_Code)"
   ExternalUrlObject:
     name: ExternalUrlObject
-    id: object-externalurlobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-externalurlobject
     properties:
     - name: spotify
@@ -657,14 +635,12 @@ objects:
       description: ""
   FollowersObject:
     name: FollowersObject
-    id: object-followersobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-followersobject
     properties:
     - name: href
       type: String
-      description: "A link to the Web API endpoint providing full details of the followers;\
-        \ `null` if not available. Please note that this will always be set to null,\
-        \ as the Web API does not support it at the moment."
+      description: "This will always be set to null, as the Web API does not support\
+        \ it at the moment."
     - name: total
       type: Integer
       description: The total number of followers.
@@ -682,7 +658,6 @@ objects:
       description: ""
   ImageObject:
     name: ImageObject
-    id: object-imageobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-imageobject
     properties:
     - name: height
@@ -696,7 +671,6 @@ objects:
       description: The image width in pixels.
   LinkedTrackObject:
     name: LinkedTrackObject
-    id: object-linkedtrackobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-linkedtrackobject
     properties:
     - name: external_urls
@@ -730,7 +704,6 @@ objects:
       description: ""
   PagingObject:
     name: PagingObject
-    id: object-pagingobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
     properties:
     - name: href
@@ -739,7 +712,7 @@ objects:
         request
     - name: items
       type: "Array[Object]"
-      description: The requested data.
+      description: The requested content
     - name: limit
       type: Integer
       description: The maximum number of items in the response (as set in the query
@@ -758,7 +731,6 @@ objects:
       description: The total number of items available to return.
   PlayHistoryObject:
     name: PlayHistoryObject
-    id: object-playhistoryobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-playhistoryobject
     properties:
     - name: context
@@ -772,7 +744,6 @@ objects:
       description: The track the user listened to.
   PlayerErrorObject:
     name: PlayerErrorObject
-    id: object-playererrorobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-playererrorobject
     properties:
     - name: message
@@ -805,7 +776,6 @@ objects:
         Also returned in the response header.
   PlaylistObject:
     name: PlaylistObject
-    id: object-playlistobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-playlistobject
     properties:
     - name: collaborative
@@ -852,8 +822,7 @@ objects:
         in other requests to target a specific playlist version
     - name: tracks
       type: "PagingObject[PlaylistTrackObject]"
-      description: "Information about the tracks of the playlist. Note, a track object\
-        \ may be `null`. This can happen if a track is no longer available."
+      description: The tracks of the playlist.
     - name: type
       type: String
       description: "The object type: \"playlist\""
@@ -869,7 +838,6 @@ objects:
       description: ""
   PlaylistTrackObject:
     name: PlaylistTrackObject
-    id: object-playlisttrackobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-playlisttrackobject
     properties:
     - name: added_at
@@ -889,7 +857,6 @@ objects:
       description: Information about the track or episode.
   PlaylistTracksRefObject:
     name: PlaylistTracksRefObject
-    id: object-playlisttracksrefobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-playlisttracksrefobject
     properties:
     - name: href
@@ -901,7 +868,6 @@ objects:
       description: Number of tracks in the playlist.
   PrivateUserObject:
     name: PrivateUserObject
-    id: object-privateuserobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-privateuserobject
     properties:
     - name: country
@@ -958,7 +924,6 @@ objects:
         \ for the user."
   PublicUserObject:
     name: PublicUserObject
-    id: object-publicuserobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-publicuserobject
     properties:
     - name: display_name
@@ -989,7 +954,6 @@ objects:
         \ for this user."
   RecommendationSeedObject:
     name: RecommendationSeedObject
-    id: object-recommendationseedobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-recommendationseedobject
     properties:
     - name: afterFilteringSize
@@ -1017,7 +981,6 @@ objects:
       description: "The entity type of this seed. One of `artist`, `track` or `genre`."
   RecommendationsObject:
     name: RecommendationsObject
-    id: object-recommendationsobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-recommendationsobject
     properties:
     - name: seeds
@@ -1029,7 +992,6 @@ objects:
         \ ordered according to the parameters supplied."
   ResumePointObject:
     name: ResumePointObject
-    id: object-resumepointobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-resumepointobject
     properties:
     - name: fully_played
@@ -1040,7 +1002,6 @@ objects:
       description: The user's most recent position in the episode in milliseconds.
   SavedAlbumObject:
     name: SavedAlbumObject
-    id: object-savedalbumobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-savedalbumobject
     properties:
     - name: added_at
@@ -1055,7 +1016,6 @@ objects:
       description: Information about the album.
   SavedEpisodeObject:
     name: SavedEpisodeObject
-    id: object-savedepisodeobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-savedepisodeobject
     properties:
     - name: added_at
@@ -1068,7 +1028,6 @@ objects:
       description: Information about the episode.
   SavedShowObject:
     name: SavedShowObject
-    id: object-savedshowobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-savedshowobject
     properties:
     - name: added_at
@@ -1083,7 +1042,6 @@ objects:
       description: Information about the show.
   SavedTrackObject:
     name: SavedTrackObject
-    id: object-savedtrackobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-savedtrackobject
     properties:
     - name: added_at
@@ -1194,8 +1152,6 @@ objects:
       description: ""
   ShowObject:
     name: ShowObject
-    id: object-showobject
-    link: https://developer.spotify.com/documentation/web-api/reference/#object-showobject
     properties:
     - name: available_markets
       type: "Array[String]"
@@ -1264,8 +1220,7 @@ objects:
       description: ""
   SimplifiedAlbumObject:
     name: SimplifiedAlbumObject
-    id: object-simplifiedalbumobject
-    link: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedalbumobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-albumbase
     properties:
     - name: album_group
       type: String
@@ -1322,7 +1277,6 @@ objects:
         \ for the album."
   SimplifiedArtistObject:
     name: SimplifiedArtistObject
-    id: object-simplifiedartistobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedartistobject
     properties:
     - name: external_urls
@@ -1347,8 +1301,7 @@ objects:
         \ for the artist."
   SimplifiedEpisodeObject:
     name: SimplifiedEpisodeObject
-    id: object-simplifiedepisodeobject
-    link: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedepisodeobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-episodebase
     properties:
     - name: audio_preview_url
       type: String
@@ -1390,13 +1343,13 @@ objects:
         false.
     - name: language
       type: String
-      description: "**Note: This field is deprecated and might be removed in the future.\
-        \ Please use the `languages` field instead.** The language used in the episode,\
-        \ identified by a [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code."
+      description: "The language used in the episode, identified by a [ISO 639](https://en.wikipedia.org/wiki/ISO_639)\
+        \ code. This field is deprecated and might be removed in the future. Please\
+        \ use the `languages` field instead."
     - name: languages
       type: "Array[String]"
       description: "A list of the languages used in the episode, identified by their\
-        \ [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code."
+        \ [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) code."
     - name: name
       type: String
       description: The name of the episode.
@@ -1426,7 +1379,6 @@ objects:
         \ for the episode."
   SimplifiedPlaylistObject:
     name: SimplifiedPlaylistObject
-    id: object-simplifiedplaylistobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedplaylistobject
     properties:
     - name: collaborative
@@ -1483,8 +1435,7 @@ objects:
         \ for the playlist."
   SimplifiedShowObject:
     name: SimplifiedShowObject
-    id: object-simplifiedshowobject
-    link: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedshowobject
+    link: https://developer.spotify.com/documentation/web-api/reference/#object-showbase
     properties:
     - name: available_markets
       type: "Array[String]"
@@ -1544,7 +1495,6 @@ objects:
         \ for the show."
   SimplifiedTrackObject:
     name: SimplifiedTrackObject
-    id: object-simplifiedtrackobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject
     properties:
     - name: artists
@@ -1636,7 +1586,6 @@ objects:
       description: The starting point (in seconds) of the time interval.
   TrackObject:
     name: TrackObject
-    id: object-trackobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-trackobject
     properties:
     - name: album
@@ -1728,7 +1677,6 @@ objects:
         \ for the track."
   TrackRestrictionObject:
     name: TrackRestrictionObject
-    id: object-trackrestrictionobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-trackrestrictionobject
     properties:
     - name: reason
@@ -1748,7 +1696,6 @@ objects:
       description: ""
   TuneableTrackObject:
     name: TuneableTrackObject
-    id: object-tuneabletrackobject
     link: https://developer.spotify.com/documentation/web-api/reference/#object-tuneabletrackobject
     properties:
     - name: acousticness
@@ -5248,7 +5195,7 @@ categories:
               \ \"uri\": \"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\" },{ \"uri\": \"\
               spotify:track:1301WleyT98MSxVHPZCA6M\" }] }`. A maximum of 100 objects\
               \ can be sent at once."
-            type: "Array[String]"
+            type: "Array[Object]"
             required: true
           - location: BODY
             name: snapshot_id

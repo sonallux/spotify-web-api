@@ -1,0 +1,14 @@
+description: Add EpisodesObject
+operations:
+  - op: test
+    path: "$.objects.EpisodesObject"
+    value: null
+  - op: put
+    path: "$.objects"
+    key: EpisodesObject
+    value:
+      name: EpisodesObject
+      properties:
+        - name: episodes
+          type: "Array[EpisodeObject]"
+          description: ""

@@ -1,0 +1,27 @@
+description: Rename AlbumBase to SimplifiedAlbumObject
+operations:
+  - op: test
+    path: "$.objects.AlbumBase.name"
+    value: AlbumBase
+  - op: rename
+    path: "$.objects"
+    oldKey: AlbumBase
+    newKey: SimplifiedAlbumObject
+  - op: set
+    path: "$.objects.SimplifiedAlbumObject.name"
+    value: SimplifiedAlbumObject
+  - op: add
+    path: "$.objects.SimplifiedAlbumObject.properties"
+    value:
+      name: album_group
+      type: String
+      description: The field is present when getting an artist's albums. Compare to album_type this field represents relationship between the artist and the album.
+  - op: add
+    path: "$.objects.SimplifiedAlbumObject.properties"
+    value:
+      name: artists
+      type: "Array[SimplifiedArtistObject]"
+      description: The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
+
+
+

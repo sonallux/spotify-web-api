@@ -1,0 +1,14 @@
+description: Add CategoriesObject
+operations:
+  - op: test
+    path: "$.objects.CategoriesObject"
+    value: null
+  - op: put
+    path: "$.objects"
+    key: CategoriesObject
+    value:
+      name: CategoriesObject
+      properties:
+        - name: categories
+          type: "PagingObject[CategoryObject]"
+          description: ""

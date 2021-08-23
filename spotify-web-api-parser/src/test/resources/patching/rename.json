@@ -1,0 +1,48 @@
+{
+  "failureCases": [
+    {
+      "op": {
+        "op": "rename",
+        "path": "$.a",
+        "oldKey": "a",
+        "newKey": "b"
+      },
+      "node": {"a": 123},
+      "message": "Can only rename properties in a map"
+    }
+  ],
+  "successCases": [
+    {
+      "op": {
+        "op": "rename",
+        "path": "$",
+        "oldKey": "a",
+        "newKey": "b"
+      },
+      "node": {
+        "a": 123
+      },
+      "expected": {
+        "b": 123
+      }
+    },
+    {
+      "op": {
+        "op": "rename",
+        "path": "$.a",
+        "oldKey": "b",
+        "newKey": "c"
+      },
+      "node": {
+        "a": {
+          "b": [1,2]
+        }
+      },
+      "expected": {
+        "a": {
+          "c": [1,2]
+        }
+      }
+    }
+  ]
+}

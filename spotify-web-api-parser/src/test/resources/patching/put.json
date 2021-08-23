@@ -1,0 +1,71 @@
+{
+  "failureCases": [
+    {
+      "op": {
+        "op": "put",
+        "path": "$",
+        "key": "a",
+        "value": 42
+      },
+      "node": [],
+      "message": "Invalid put operation. $ is not a map"
+    },
+    {
+      "op": {
+        "op": "put",
+        "path": "$.a",
+        "key": "test",
+        "value": 42
+      },
+      "node": {
+        "a": "foo"
+      },
+      "message": "Can only add properties to a map"
+    },
+    {
+      "op": {
+        "op": "put",
+        "path": "$.x.y",
+        "key": "d",
+        "value": 42
+      },
+      "node": {
+        "a": {}
+      },
+      "message": "Missing property in path $['x']"
+    }
+  ],
+  "successCases": [
+    {
+      "op": {
+        "op": "put",
+        "path": "$",
+        "key": "a",
+        "value": 2
+      },
+      "node": {},
+      "expected": {
+        "a": 2
+      }
+    },
+    {
+      "op": {
+        "op": "put",
+        "path": "$.x",
+        "key": "c",
+        "value": "d"
+      },
+      "node": {
+        "x": {
+          "a": "b"
+        }
+      },
+      "expected": {
+        "x": {
+          "a": "b",
+          "c": "d"
+        }
+      }
+    }
+  ]
+}

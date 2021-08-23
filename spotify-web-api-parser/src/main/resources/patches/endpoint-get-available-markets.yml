@@ -1,0 +1,8 @@
+description: Authorization header is not optional
+operations:
+  - op: test
+    path: "$.categories.category-markets.endpoints.endpoint-get-available-markets.parameters.[?(@.name=='Authorization')].required"
+    value: [ false ]
+  - op: set
+    path: "$.categories.category-markets.endpoints.endpoint-get-available-markets.parameters.[?(@.name=='Authorization')].required"
+    value: true

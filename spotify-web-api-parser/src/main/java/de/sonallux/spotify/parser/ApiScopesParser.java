@@ -1,17 +1,14 @@
 package de.sonallux.spotify.parser;
 
-import de.sonallux.spotify.core.model.SpotifyWebApiCategory;
-import de.sonallux.spotify.core.model.SpotifyScope;
 import de.sonallux.spotify.core.model.SpotifyAuthorizationScopes;
+import de.sonallux.spotify.core.model.SpotifyScope;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 class ApiScopesParser {
 
@@ -82,42 +79,6 @@ class ApiScopesParser {
         } else {
             //Links to other apis have following schema: `/documentation/<api>`
             return new SpotifyScope.EndpointLink(absUrl, urlSegments[2]);
-        }
-    }
-
-    void validateScopes(SpotifyAuthorizationScopes scopes, SortedMap<String, SpotifyWebApiCategory> categories) throws ApiParseException {
-        var error = new StringBuilder();
-
-        //Validate if endpoints referenced by scopes are present
-        for (var scope : scopes.getScopeList()) {
-            for (var link : scope.getEndpoints()) {
-                if (link.getEndpoint() == null) {
-                    continue;
-                }
-                var endpoint = categories.values().stream()
-                        .flatMap(c -> c.getEndpointList().stream())
-                        .filter(e -> e.getId().equals(link.getEndpoint()))
-                        .findFirst();
-                if (endpoint.isEmpty()) {
-                    error.append(String.format("Scope %s has unknown endpoint reference: %s", scope.getId(), link.getEndpoint())).append("\n");
-                }
-            }
-        }
-
-        //Validate if scopes referenced by endpoints are present
-        var endpointScopes = categories.values().stream().flatMap(c -> c.getEndpointList().stream())
-                .flatMap(e -> e.getScopes().stream())
-                .distinct()
-                .collect(Collectors.toList());
-        for (var endpointScope : endpointScopes) {
-            var scope = scopes.getScope(endpointScope);
-            if (scope.isEmpty()) {
-                error.append(String.format("Endpoint has unknown scope: %s", endpointScope)).append("\n");
-            }
-        }
-        var errorText = error.toString();
-        if (!errorText.isEmpty()) {
-            throw new ApiParseException(errorText);
         }
     }
 }
