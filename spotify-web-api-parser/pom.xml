@@ -21,7 +21,7 @@
 
     <properties>
         <jsoup.version>1.14.2</jsoup.version>
-        <jsonpath.version>2.5.0</jsonpath.version>
+        <jsonpath.version>2.6.0</jsonpath.version>
 
         <moditect.module.name>de.sonallux.spotify.parser</moditect.module.name>
     </properties>
