@@ -4,7 +4,7 @@ info:
   contact:
     name: sonallux
     url: https://github.com/sonallux/spotify-web-api
-  version: 2021.8.23
+  version: 2021.8.28
 externalDocs:
   description: Find more info on the official Spotify Web API Reference
   url: https://developer.spotify.com/documentation/web-api/reference
@@ -4274,7 +4274,7 @@ paths:
               properties:
                 tracks:
                   type: array
-                  description: "An array of objects containing [Spotify URIs](https://developer.spotify.com/spotify-documentation/web-api/#spotify-uris-and-ids)\
+                  description: "An array of objects containing [Spotify URIs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
                     \ of the tracks or episodes to remove. For example: `{ \"tracks\"\
                     : [{ \"uri\": \"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\" },{ \"\
                     uri\": \"spotify:track:1301WleyT98MSxVHPZCA6M\" }] }`. A maximum\
@@ -4297,7 +4297,7 @@ paths:
             and the HTTP status code in the response header is `200` OK. The `snapshot_id`
             can be used to identify your playlist version in future requests.
 
-            On error, the header status code is an [error code](https://developer.spotify.com/spotify-documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/spotify-documentation/web-api/#response-schema).
+            On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
             Trying to remove an item when you do not have the user's authorization returns error `403` Forbidden.
             Attempting to use several different ways to remove items returns `400` Bad Request.
             Other client errors returning `400` Bad Request include specifying invalid positions.
