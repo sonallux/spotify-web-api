@@ -144,7 +144,7 @@ category-playlists:
     - type: SnapshotIdObject
       status: 201
   endpoint-remove-tracks-playlist:
-    md5Hash: 107d5d272102840530c11312eb72cd7c
+    md5Hash: aee80a524ff2921f7cede8189e02ea9d
     responseTypes:
     - type: SnapshotIdObject
       status: 200
