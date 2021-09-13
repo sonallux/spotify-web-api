@@ -70,7 +70,7 @@
         <flexmark.version>0.62.2</flexmark.version>
 
         <!-- Test Dependencies -->
-        <junit.version>5.7.2</junit.version>
+        <junit.version>5.8.0</junit.version>
         <mockito-junit-jupiter.version>3.12.4</mockito-junit-jupiter.version>
 
         <moditect.sourceGroup>${project.groupId}</moditect.sourceGroup>
