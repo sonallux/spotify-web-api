@@ -19,8 +19,6 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.stream.Collectors;
 
-import static de.sonallux.spotify.core.model.SpotifyWebApiEndpoint.ParameterLocation.BODY;
-
 @Slf4j
 public class OpenApiGenerator {
 
