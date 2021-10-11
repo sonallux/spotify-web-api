@@ -71,7 +71,7 @@
 
         <!-- Test Dependencies -->
         <junit.version>5.8.1</junit.version>
-        <mockito-junit-jupiter.version>3.12.4</mockito-junit-jupiter.version>
+        <mockito-junit-jupiter.version>4.0.0</mockito-junit-jupiter.version>
 
         <moditect.sourceGroup>${project.groupId}</moditect.sourceGroup>
         <moditect.sourceArtifact>${project.artifactId}</moditect.sourceArtifact>
