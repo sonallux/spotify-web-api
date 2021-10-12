@@ -59,7 +59,7 @@
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
-        <moditect-maven-plugin.version>1.0.0.RC1</moditect-maven-plugin.version>
+        <moditect-maven-plugin.version>1.0.0.RC2</moditect-maven-plugin.version>
 
         <!-- Dependencies -->
         <lombok.version>1.18.20</lombok.version>
