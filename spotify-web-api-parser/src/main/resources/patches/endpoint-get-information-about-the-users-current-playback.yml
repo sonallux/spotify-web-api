@@ -1,8 +1,0 @@
-description: Missing scope user-read-playback-state
-operations:
-  - op: test
-    path: "$.categories.category-player.endpoints.endpoint-get-information-about-the-users-current-playback.scopes"
-    value: [ ]
-  - op: add
-    path: "$.categories.category-player.endpoints.endpoint-get-information-about-the-users-current-playback.scopes"
-    value: user-read-playback-state

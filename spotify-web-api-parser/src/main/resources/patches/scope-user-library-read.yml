@@ -1,0 +1,23 @@
+description: Add missing endpoint links to scope user-library-read
+operations:
+  - op: test
+    path: "$.scopes.scopes.user-library-read.endpoints.[*].endpoint"
+    value:
+      - "endpoint-check-users-saved-albums"
+      - "endpoint-check-users-saved-tracks"
+      - "endpoint-get-users-saved-albums"
+      - "endpoint-get-users-saved-tracks"
+      - "endpoint-check-users-saved-episodes"
+      - "endpoint-get-users-saved-episodes"
+  - op: add
+    path: "$.scopes.scopes.user-library-read.endpoints"
+    value:
+      url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-shows
+      api: web-api
+      endpoint: endpoint-check-users-saved-shows
+  - op: add
+    path: "$.scopes.scopes.user-library-read.endpoints"
+    value:
+      url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-shows
+      api: web-api
+      endpoint: endpoint-get-users-saved-shows

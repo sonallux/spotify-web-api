@@ -1390,7 +1390,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/EpisodeObject'
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-read-playback-position
   /episodes:
     get:
       tags:
@@ -1441,7 +1442,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/EpisodesObject'
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-read-playback-position
   /me/following/contains:
     get:
       tags:
@@ -1482,7 +1484,8 @@ paths:
                 items:
                   type: boolean
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-follow-read
   /playlists/{playlist_id}/followers/contains:
     get:
       tags:
@@ -1524,7 +1527,8 @@ paths:
                 items:
                   type: boolean
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - playlist-read-private
   /me/following:
     get:
       tags:
@@ -1569,7 +1573,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/FollowingArtistsObject'
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-follow-read
     put:
       tags:
       - category-follow
@@ -1620,7 +1625,8 @@ paths:
             On success, the HTTP status code in the response header is `204` No Content and the response body is empty.
             On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-follow-modify
     delete:
       tags:
       - category-follow
@@ -1670,7 +1676,8 @@ paths:
             On success, the HTTP status code in the response header is `204` No Content and the response body is empty.
             On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-follow-modify
   /playlists/{playlist_id}/followers:
     put:
       tags:
@@ -1709,7 +1716,9 @@ paths:
             On success, the HTTP status code in the response header is `200` OK and the response body is empty.
             On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - playlist-modify-private
+        - playlist-modify-public
     delete:
       tags:
       - category-follow
@@ -1735,7 +1744,9 @@ paths:
             On success, the HTTP status code in the response header is `200` OK and the response body is empty.
             On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - playlist-modify-private
+        - playlist-modify-public
   /me/albums/contains:
     get:
       tags:
@@ -1769,7 +1780,8 @@ paths:
                 items:
                   type: boolean
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-read
   /me/episodes/contains:
     get:
       tags:
@@ -1805,7 +1817,8 @@ paths:
                 items:
                   type: boolean
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-read
   /me/shows/contains:
     get:
       tags:
@@ -1841,7 +1854,8 @@ paths:
                 items:
                   type: boolean
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-read
   /me/tracks/contains:
     get:
       tags:
@@ -1876,7 +1890,8 @@ paths:
                 items:
                   type: boolean
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-read
   /me/albums:
     get:
       tags:
@@ -1964,7 +1979,8 @@ paths:
                   description: Find more info on the official Spotify Web API Reference
                   url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-read
     put:
       tags:
       - category-library
@@ -2008,7 +2024,8 @@ paths:
             \ Trying to add an album when you do not have the user's authorization\
             \ returns error `403` Forbidden."
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-modify
     delete:
       tags:
       - category-library
@@ -2053,7 +2070,8 @@ paths:
             \ Trying to remove an album when you do not have the user's authorization\
             \ returns error `403` Forbidden."
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-modify
   /me/episodes:
     get:
       tags:
@@ -2145,7 +2163,8 @@ paths:
                   description: Find more info on the official Spotify Web API Reference
                   url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-read
     put:
       tags:
       - category-library
@@ -2191,7 +2210,8 @@ paths:
             \ Trying to add an episode when you do not have the user's authorization,\
             \ returns error `403` Forbidden."
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-modify
     delete:
       tags:
       - category-library
@@ -2238,7 +2258,8 @@ paths:
             \ Trying to remove an episode when you do not have the user's authorization\
             \ returns error `403` Forbidden."
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-modify
   /me/shows:
     get:
       tags:
@@ -2313,7 +2334,8 @@ paths:
                   description: Find more info on the official Spotify Web API Reference
                   url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-read
     put:
       tags:
       - category-library
@@ -2357,7 +2379,8 @@ paths:
             \ user's authorisation or when the user already has have over 10,000 items\
             \ saved in library."
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-modify
     delete:
       tags:
       - category-library
@@ -2411,7 +2434,8 @@ paths:
             On success, the HTTP status code in the response header is `200` OK.
             On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#error-details). A `403 Forbidden` while trying to add a show when you do not have the user's authorisation.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-modify
   /me/tracks:
     get:
       tags:
@@ -2500,7 +2524,8 @@ paths:
                   description: Find more info on the official Spotify Web API Reference
                   url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-read
     put:
       tags:
       - category-library
@@ -2546,7 +2571,8 @@ paths:
             \ or when you have over 10.000 tracks in Your Music, returns error `403`\
             \ Forbidden."
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-modify
     delete:
       tags:
       - category-library
@@ -2592,7 +2618,8 @@ paths:
             \ Trying to remove an album when you do not have the user's authorization\
             \ returns error `403` Forbidden."
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-library-modify
   /markets:
     get:
       tags:
@@ -2713,7 +2740,8 @@ paths:
                   description: Find more info on the official Spotify Web API Reference
                   url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-top-read
   /me/player/queue:
     post:
       tags:
@@ -2750,7 +2778,8 @@ paths:
 
             If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-modify-playback-state
   /me/player/devices:
     get:
       tags:
@@ -2774,7 +2803,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/DevicesObject'
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-read-playback-state
   /me/player:
     get:
       tags:
@@ -2874,7 +2904,8 @@ paths:
 
             If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-modify-playback-state
   /me/player/recently-played:
     get:
       tags:
@@ -2959,7 +2990,8 @@ paths:
 
             If private session is enabled the response will be a `204 NO CONTENT` with an empty payload.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-read-recently-played
   /me/player/currently-playing:
     get:
       tags:
@@ -3022,7 +3054,8 @@ paths:
 
             If private session is enabled the response will be a `204 NO CONTENT` with an empty payload.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-read-currently-playing
   /me/player/pause:
     put:
       tags:
@@ -3052,7 +3085,8 @@ paths:
 
             If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-modify-playback-state
   /me/player/seek:
     put:
       tags:
@@ -3091,7 +3125,8 @@ paths:
 
             If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-modify-playback-state
   /me/player/repeat:
     put:
       tags:
@@ -3131,7 +3166,8 @@ paths:
 
             If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-modify-playback-state
   /me/player/volume:
     put:
       tags:
@@ -3168,7 +3204,8 @@ paths:
 
             If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-modify-playback-state
   /me/player/next:
     post:
       tags:
@@ -3198,7 +3235,8 @@ paths:
 
             If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-modify-playback-state
   /me/player/previous:
     post:
       tags:
@@ -3228,7 +3266,8 @@ paths:
 
             If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-modify-playback-state
   /me/player/play:
     put:
       tags:
@@ -3294,7 +3333,8 @@ paths:
 
             If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-modify-playback-state
   /me/player/shuffle:
     put:
       tags:
@@ -3331,7 +3371,8 @@ paths:
 
             If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-modify-playback-state
   /playlists/{playlist_id}/tracks:
     get:
       tags:
@@ -3575,7 +3616,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/SnapshotIdObject'
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - playlist-modify-private
+        - playlist-modify-public
     post:
       tags:
       - category-playlists
@@ -3661,7 +3704,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/SnapshotIdObject'
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - playlist-modify-private
+        - playlist-modify-public
     delete:
       tags:
       - category-playlists
@@ -3721,7 +3766,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/SnapshotIdObject'
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - playlist-modify-private
+        - playlist-modify-public
   /playlists/{playlist_id}:
     get:
       tags:
@@ -3850,7 +3897,9 @@ paths:
 
             On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema). Trying to change a playlist when you do not have the user's authorization returns error `403` Forbidden.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - playlist-modify-private
+        - playlist-modify-public
   /users/{user_id}/playlists:
     get:
       tags:
@@ -3933,7 +3982,9 @@ paths:
                   description: Find more info on the official Spotify Web API Reference
                   url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - playlist-read-collaborative
+        - playlist-read-private
     post:
       tags:
       - category-playlists
@@ -4011,7 +4062,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/PlaylistObject'
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - playlist-modify-private
+        - playlist-modify-public
   /me/playlists:
     get:
       tags:
@@ -4091,7 +4144,9 @@ paths:
                   description: Find more info on the official Spotify Web API Reference
                   url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - playlist-read-collaborative
+        - playlist-read-private
   /playlists/{playlist_id}/images:
     get:
       tags:
@@ -4161,7 +4216,10 @@ paths:
             If this happens, have a look in the `Retry-After` header, where you will see a number displayed.
             This is the amount of seconds that you need to wait, before you can retry sending your requests.
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - playlist-modify-private
+        - playlist-modify-public
+        - ugc-image-upload
   /search:
     get:
       tags:
@@ -4252,7 +4310,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/SearchResponseObject'
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-read-private
   /shows/{id}:
     get:
       tags:
@@ -4301,7 +4360,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ShowObject'
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-read-playback-position
   /shows/{id}/episodes:
     get:
       tags:
@@ -4401,7 +4461,8 @@ paths:
                   description: Find more info on the official Spotify Web API Reference
                   url: https://developer.spotify.com/documentation/web-api/reference/#object-pagingobject
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-read-playback-position
   /shows:
     get:
       tags:
@@ -4450,7 +4511,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ShowsObject'
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-read-playback-position
   /audio-analysis/{id}:
     get:
       tags:
@@ -4677,7 +4739,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/PrivateUserObject'
       security:
-      - spotify_auth: []
+      - spotify_auth:
+        - user-read-email
+        - user-read-private
   /users/{user_id}:
     get:
       tags:
