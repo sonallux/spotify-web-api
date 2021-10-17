@@ -7,12 +7,12 @@
     <parent>
         <groupId>de.sonallux.spotify</groupId>
         <artifactId>spotify-web-api-parent</artifactId>
-        <version>2021.8.28</version>
+        <version>2021.10.17</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>spotify-web-api-core</artifactId>
-    <version>2021.8.28</version>
+    <version>2021.10.17</version>
     <packaging>jar</packaging>
 
     <name>spotify-web-api-core</name>
