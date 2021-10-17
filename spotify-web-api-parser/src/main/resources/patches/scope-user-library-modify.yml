@@ -1,0 +1,23 @@
+description: Add missing endpoint links to scope user-library-modify
+operations:
+  - op: test
+    path: "$.scopes.scopes.user-library-modify.endpoints.[*].endpoint"
+    value:
+      - "endpoint-remove-albums-user"
+      - "endpoint-remove-tracks-user"
+      - "endpoint-remove-episodes-user"
+      - "endpoint-save-albums-user"
+      - "endpoint-save-tracks-user"
+      - "endpoint-save-episodes-user"
+  - op: add
+    path: "$.scopes.scopes.user-library-modify.endpoints"
+    value:
+      url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-shows-user
+      api: web-api
+      endpoint: endpoint-remove-shows-user
+  - op: add
+    path: "$.scopes.scopes.user-library-modify.endpoints"
+    value:
+      url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-shows-user
+      api: web-api
+      endpoint: endpoint-save-shows-user

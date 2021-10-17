@@ -48,12 +48,13 @@ public class WebApiParser {
         var apiPatches = new ApiPatches();
         spotifyWebApi = apiPatches.applyPatches(spotifyWebApi);
 
+        ScopeInjector.run(spotifyWebApi);
+
         // Sort object properties by name
         for (var object : spotifyWebApi.getObjectList()) {
             object.getProperties().sort(Comparator.comparing(SpotifyWebApiObject.Property::getName));
         }
 
-        ScopeValidator.validateScopes(spotifyWebApi);
         return spotifyWebApi;
     }
 }

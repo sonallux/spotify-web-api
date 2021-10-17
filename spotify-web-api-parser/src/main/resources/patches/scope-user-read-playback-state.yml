@@ -1,0 +1,7 @@
+description: Remove endpoint-get-recently-played link from user-read-playback-state
+operations:
+  - op: test
+    path: "$.scopes.scopes.user-read-playback-state.endpoints.[?(@.endpoint=='endpoint-get-recently-played')].url"
+    value: ["https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recently-played"]
+  - op: delete
+    path: "$.scopes.scopes.user-read-playback-state.endpoints.[?(@.endpoint=='endpoint-get-recently-played')]"

@@ -1,0 +1,11 @@
+description: Fix endpoint link in user-read-currently-playing
+operations:
+  - op: test
+    path: "$.scopes.scopes.user-read-currently-playing.endpoints.[?(@.endpoint=='endpoint-get-recently-played')].url"
+    value: ["https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recently-played"]
+  - op: set
+    path: "$.scopes.scopes.user-read-currently-playing.endpoints.[?(@.endpoint=='endpoint-get-recently-played')]"
+    value:
+      url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-the-users-currently-playing-track
+      api: web-api
+      endpoint: endpoint-get-the-users-currently-playing-track

@@ -153,7 +153,7 @@ class ApiEndpointParser {
 
         var requestBody = extractRequestBody(parameters);
 
-        var scopes = extractScopes(id, parameters);
+        var scopes = new ArrayList<String>();
 
         return new SpotifyWebApiEndpoint(id, name, link, description, httpMethod, path, parameters, requestBody, responseDescription, scopes, notes);
     }
@@ -224,21 +224,5 @@ class ApiEndpointParser {
         //Remove, if it is just a link to the spotify web console
         elements.removeIf(e -> "Try in our Web Console".equalsIgnoreCase(e.text()));
         return Html2Markdown.convert(elements);
-    }
-
-    private List<String> extractScopes(String id, List<SpotifyWebApiEndpoint.Parameter> parameters) {
-        var authHeader = parameters.stream().filter(p -> "Authorization".equals(p.getName())).findFirst();
-        if (authHeader.isEmpty()) {
-            log.warn("Endpoint {} has no Authorization header", id);
-            return new ArrayList<>();
-        }
-
-        var codePattern = Pattern.compile("`([a-z-]+)`");
-        var matcher = codePattern.matcher(authHeader.get().getDescription());
-        var scopes = new ArrayList<String>();
-        while (matcher.find()) {
-            scopes.add(matcher.group(1));
-        }
-        return scopes;
     }
 }

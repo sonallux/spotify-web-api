@@ -212,7 +212,7 @@ objects:
     - name: key
       type: Integer
       description: "The key the track is in. Integers map to pitches using standard\
-        \ [Pitch Class notation](https://en.wikipedia.org/wiki/Pitch_class) . E.g.\
+        \ [Pitch Class notation](https://en.wikipedia.org/wiki/Pitch_class). E.g.\
         \ 0 = C, 1 = C♯/D♭, 2 = D, and so on."
     - name: liveness
       type: Float
@@ -803,8 +803,8 @@ objects:
       description: "Images for the playlist. The array may be empty or contain up\
         \ to three images. The images are returned by size in descending order. See\
         \ [Working with Playlists](https://developer.spotify.com/documentation/general/guides/working-with-playlists/).\
-        \ *Note: If returned, the source URL for the image (`url`) is temporary and\
-        \ will expire in less than a day.*"
+        \ ***Note** : If returned, the source URL for the image (`url`) is temporary\
+        \ and will expire in less than a day.*"
     - name: name
       type: String
       description: The name of the playlist.
@@ -842,12 +842,12 @@ objects:
     properties:
     - name: added_at
       type: Timestamp
-      description: The date and time the track or episode was added. *Note that some
-        very old playlists may return `null` in this field.*
+      description: "The date and time the track or episode was added. ***Note** :\
+        \ some very old playlists may return `null` in this field.*"
     - name: added_by
       type: PublicUserObject
-      description: The Spotify user who added the track or episode. *Note that some
-        very old playlists may return `null` in this field.*
+      description: "The Spotify user who added the track or episode. ***Note** : some\
+        \ very old playlists may return `null` in this field.*"
     - name: is_local
       type: Boolean
       description: "Whether this track or episode is a [local file](https://developer.spotify.com/web-api/local-files-spotify-playlists/)\
@@ -1236,9 +1236,9 @@ objects:
     - name: available_markets
       type: "Array[String]"
       description: "The markets in which the album is available: [ISO 3166-1 alpha-2\
-        \ country codes](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Note that\
+        \ country codes](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). ***NOTE**:\
         \ an album is considered available in a market when at least 1 of its tracks\
-        \ is available in that market."
+        \ is available in that market.*"
     - name: external_urls
       type: ExternalUrlObject
       description: Known external URLs for this album.
@@ -1403,8 +1403,8 @@ objects:
       description: "Images for the playlist. The array may be empty or contain up\
         \ to three images. The images are returned by size in descending order. See\
         \ [Working with Playlists](https://developer.spotify.com/documentation/general/guides/working-with-playlists/).\
-        \ *Note: If returned, the source URL for the image (`url`) is temporary and\
-        \ will expire in less than a day.*"
+        \ ***Note** : If returned, the source URL for the image (`url`) is temporary\
+        \ and will expire in less than a day.*"
     - name: name
       type: String
       description: The name of the playlist.
@@ -1533,7 +1533,7 @@ objects:
     - name: is_playable
       type: Boolean
       description: "Part of the response when [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/)\
-        \ is applied. If `true` , the track is playable in the given market. Otherwise\
+        \ is applied. If `true`, the track is playable in the given market. Otherwise\
         \ `false`."
     - name: linked_from
       type: LinkedTrackObject
@@ -1631,7 +1631,7 @@ objects:
     - name: is_playable
       type: Boolean
       description: "Part of the response when [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/)\
-        \ is applied. If `true` , the track is playable in the given market. Otherwise\
+        \ is applied. If `true`, the track is playable in the given market. Otherwise\
         \ `false`."
     - name: linked_from
       type: LinkedTrackObject
@@ -1652,9 +1652,9 @@ objects:
         \ songs that are being played a lot now will have a higher popularity than\
         \ songs that were played a lot in the past. Duplicate tracks (e.g. the same\
         \ track from a single and an album) are rated independently. Artist and album\
-        \ popularity is derived mathematically from track popularity. Note that the\
+        \ popularity is derived mathematically from track popularity. ***Note**: the\
         \ popularity value may lag actual popularity by a few days: the value is not\
-        \ updated in real time."
+        \ updated in real time.*"
     - name: preview_url
       type: String
       description: A link to a 30 second preview (MP3 format) of the track. Can be
@@ -1754,7 +1754,7 @@ objects:
       description: "The popularity of the track. The value will be between 0 and 100,\
         \ with 100 being the most popular. The popularity is calculated by algorithm\
         \ and is based, in the most part, on the total number of plays the track has\
-        \ had and how recent those plays are. *Note: When applying track relinking\
+        \ had and how recent those plays are. ***Note** : When applying track relinking\
         \ via the `market` parameter, it is expected to find relinked tracks with\
         \ popularities that do not match `min_*`, `max_*`and `target_*` popularities.\
         \ These relinked tracks are accurate replacements for unplayable tracks with\
@@ -1799,19 +1799,22 @@ categories:
         httpMethod: GET
         path: "/albums/{id}"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
         - location: PATH
           name: id
-          description: The Spotify ID of the album.
+          description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
+            \ of the album."
           type: String
           required: true
         - location: QUERY
           name: market
-          description: The market you'd like to request. Synonym for `country`.
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
@@ -1832,33 +1835,34 @@ categories:
         httpMethod: GET
         path: "/albums/{id}/tracks"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
         - location: PATH
           name: id
-          description: The Spotify ID of the album.
+          description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
+            \ of the album."
           type: String
           required: true
         - location: QUERY
           name: market
-          description: "An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ or the string from_token. Provide this parameter if you want to apply\
-            \ [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/)."
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
         - location: QUERY
           name: limit
-          description: "The maximum number of tracks to return. Default: 20. Minimum:\
+          description: "The maximum number of items to return. Default: 20. Minimum:\
             \ 1. Maximum: 50."
           type: Integer
           required: false
         - location: QUERY
           name: offset
-          description: "The index of the first track to return. Default: 0 (the first\
-            \ object). Use with limit to get the next set of tracks."
+          description: "The index of the first item to return. Default: 0 (the first\
+            \ item). Use with limit to get the next set of items."
           type: Integer
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
@@ -1878,11 +1882,6 @@ categories:
         httpMethod: GET
         path: /albums
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
         - location: QUERY
           name: ids
           description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -1891,9 +1890,14 @@ categories:
           required: true
         - location: QUERY
           name: market
-          description: "An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ or the string from_token. Provide this parameter if you want to apply\
-            \ [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/)."
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
         responseDescription: |-
@@ -1918,14 +1922,10 @@ categories:
         httpMethod: GET
         path: "/artists/{id}"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
         - location: PATH
           name: id
-          description: The Spotify ID of the artist.
+          description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
+            \ of the artist."
           type: String
           required: true
         responseDescription: "On success, the HTTP status code in the response header\
@@ -1944,45 +1944,42 @@ categories:
         httpMethod: GET
         path: "/artists/{id}/albums"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
         - location: PATH
           name: id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ for the artist."
+            \ of the artist."
           type: String
           required: true
         - location: QUERY
           name: include_groups
           description: "A comma-separated list of keywords that will be used to filter\
-            \ the response. If not supplied, all album types will be returned. Valid\
-            \ values are:  \n- `album`  \n- `single`  \n- `appears_on`  \n- `compilation`\
+            \ the response. If not supplied, all album types will be returned.   \n\
+            Valid values are:  \n- `album`  \n- `single`  \n- `appears_on`  \n- `compilation`\
             \  \nFor example: `include_groups=album,single`."
           type: String
           required: false
         - location: QUERY
           name: market
-          description: "Synonym for `country`. An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ or the string `from_token`.  \nSupply this parameter to limit the response\
-            \ to one particular geographical market. For example, for albums available\
-            \ in Sweden: `market=SE`.  \n*If not given, results will be returned for\
-            \ all markets and you are likely to get duplicate results per album, one\
-            \ for each market in which the album is available!*"
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
         - location: QUERY
           name: limit
-          description: "The number of album objects to return. Default: 20. Minimum:\
-            \ 1. Maximum: 50. For example: `limit=2`"
+          description: "The maximum number of items to return. Default: 20. Minimum:\
+            \ 1. Maximum: 50."
           type: Integer
           required: false
         - location: QUERY
           name: offset
-          description: "The index of the first album to return. Default: 0 (i.e.,\
-            \ the first album). Use with `limit` to get the next set of albums."
+          description: "The index of the first item to return. Default: 0 (the first\
+            \ item). Use with limit to get the next set of items."
           type: Integer
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
@@ -2005,15 +2002,10 @@ categories:
         httpMethod: GET
         path: "/artists/{id}/related-artists"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
         - location: PATH
           name: id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ for the artist"
+            \ of the artist."
           type: String
           required: true
         responseDescription: "On success, the HTTP status code in the response header\
@@ -2034,23 +2026,24 @@ categories:
         httpMethod: GET
         path: "/artists/{id}/top-tracks"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
         - location: PATH
           name: id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ for the artist"
+            \ of the artist."
           type: String
           required: true
         - location: QUERY
           name: market
-          description: "An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ or the string `from_token`. Synonym for `country`."
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
-          required: true
+          required: false
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200` OK and the response body contains an object whose key is `\"\
           tracks\"` and whose value is an array of up to 10 [track objects](https://developer.spotify.com/documentation/web-api/reference/#object-trackobject)\
@@ -2069,11 +2062,6 @@ categories:
         httpMethod: GET
         path: /artists
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
         - location: QUERY
           name: ids
           description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -2101,11 +2089,6 @@ categories:
         httpMethod: GET
         path: "/browse/categories/{category_id}/playlists"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
         - location: PATH
           name: category_id
           description: "The [Spotify category ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -2128,7 +2111,7 @@ categories:
         - location: QUERY
           name: offset
           description: "The index of the first item to return. Default: 0 (the first\
-            \ object). Use with `limit` to get the next set of items."
+            \ item). Use with limit to get the next set of items."
           type: Integer
           required: false
         responseDescription: |-
@@ -2148,11 +2131,6 @@ categories:
         httpMethod: GET
         path: "/browse/categories/{category_id}"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
         - location: PATH
           name: category_id
           description: "The [Spotify category ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -2172,9 +2150,9 @@ categories:
             \ language code and an [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2),\
             \ joined by an underscore. For example: `es_MX`, meaning \"Spanish (Mexico)\"\
             . Provide this parameter if you want the category strings returned in\
-            \ a particular language. Note that, if `locale` is not supplied, or if\
-            \ the specified language is not available, the category strings returned\
-            \ will be in the Spotify default language (American English)."
+            \ a particular language.  \n***Note** : if `locale` is not supplied, or\
+            \ if the specified language is not available, the category strings returned\
+            \ will be in the Spotify default language (American English).*"
           type: String
           required: false
         responseDescription: |-
@@ -2194,11 +2172,6 @@ categories:
         httpMethod: GET
         path: /browse/categories
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
         - location: QUERY
           name: country
           description: "A country: an [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
@@ -2213,24 +2186,24 @@ categories:
             \ language code and an [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2),\
             \ joined by an underscore. For example: `es_MX`, meaning \"Spanish (Mexico)\"\
             . Provide this parameter if you want the category metadata returned in\
-            \ a particular language. Note that, if `locale` is not supplied, or if\
-            \ the specified language is not available, all strings will be returned\
+            \ a particular language.   \n***Note** : if `locale` is not supplied,\
+            \ or if the specified language is not available, all strings will be returned\
             \ in the Spotify default language (American English). The `locale` parameter,\
             \ combined with the `country` parameter, may give odd results if not carefully\
             \ matched. For example `country=SE&locale=de_DE` will return a list of\
-            \ categories relevant to Sweden but as German language strings."
+            \ categories relevant to Sweden but as German language strings.*"
           type: String
           required: false
         - location: QUERY
           name: limit
-          description: "The maximum number of categories to return. Default: 20. Minimum:\
+          description: "The maximum number of items to return. Default: 20. Minimum:\
             \ 1. Maximum: 50."
           type: Integer
           required: false
         - location: QUERY
           name: offset
           description: "The index of the first item to return. Default: 0 (the first\
-            \ object). Use with `limit` to get the next set of categories."
+            \ item). Use with limit to get the next set of items."
           type: Integer
           required: false
         responseDescription: |-
@@ -2250,11 +2223,6 @@ categories:
         httpMethod: GET
         path: /browse/featured-playlists
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
         - location: QUERY
           name: country
           description: "A country: an [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
@@ -2270,12 +2238,12 @@ categories:
             \ [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2),\
             \ joined by an underscore. For example: `es_MX`, meaning \"Spanish (Mexico)\"\
             . Provide this parameter if you want the results returned in a particular\
-            \ language (where available). Note that, if `locale` is not supplied,\
+            \ language (where available).   \n***Note** : if `locale` is not supplied,\
             \ or if the specified language is not available, all strings will be returned\
             \ in the Spotify default language (American English). The `locale` parameter,\
             \ combined with the `country` parameter, may give odd results if not carefully\
             \ matched. For example `country=SE&locale=de_DE` will return a list of\
-            \ categories relevant to Sweden but as German language strings."
+            \ categories relevant to Sweden but as German language strings.*"
           type: String
           required: false
         - location: QUERY
@@ -2298,7 +2266,7 @@ categories:
         - location: QUERY
           name: offset
           description: "The index of the first item to return. Default: 0 (the first\
-            \ object). Use with `limit` to get the next set of items."
+            \ item). Use with limit to get the next set of items."
           type: Integer
           required: false
         responseDescription: |-
@@ -2318,11 +2286,6 @@ categories:
         httpMethod: GET
         path: /browse/new-releases
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
         - location: QUERY
           name: country
           description: "A country: an [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
@@ -2340,7 +2303,7 @@ categories:
         - location: QUERY
           name: offset
           description: "The index of the first item to return. Default: 0 (the first\
-            \ object). Use with `limit` to get the next set of items."
+            \ item). Use with limit to get the next set of items."
           type: Integer
           required: false
         responseDescription: |-
@@ -2361,12 +2324,7 @@ categories:
           \ [recommendations](https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recommendations)."
         httpMethod: GET
         path: /recommendations/available-genre-seeds
-        parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
+        parameters: []
         responseDescription: "On success, the HTTP status code in the response header\
           \ is `200 OK` and the response body contains a recommendations response\
           \ object in JSON format."
@@ -2385,11 +2343,6 @@ categories:
         httpMethod: GET
         path: /recommendations
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
         - location: QUERY
           name: limit
           description: "The target size of the list of recommended tracks. For seeds\
@@ -2401,13 +2354,14 @@ categories:
           required: false
         - location: QUERY
           name: market
-          description: "An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ or the string `from_token`. Provide this parameter if you want to apply\
-            \ [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide).\
-            \ Because `min_*`, `max_*` and `target_*` are applied to pools before\
-            \ relinking, the generated results may not precisely match the filters\
-            \ applied. Original, non-relinked tracks are available via the `linked_from`\
-            \ attribute of the [relinked track response](https://developer.spotify.com/documentation/general/guides/track-relinking-guide)."
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
         - location: QUERY
@@ -2809,13 +2763,6 @@ categories:
         httpMethod: GET
         path: "/episodes/{id}"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details."
-          type: String
-          required: true
         - location: PATH
           name: id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -2825,11 +2772,11 @@ categories:
         - location: QUERY
           name: market
           description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
-            \ If a country code is specified, only shows and episodes that are available\
-            \ in that market will be returned.  \nIf a valid user access token is\
-            \ specified in the request header, the country associated with the user\
-            \ account will take priority over this parameter.  \n*Note: If neither\
-            \ market or user country are provided, the content is considered unavailable\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
             \ for the client.*   \nUsers can view the country that is associated with\
             \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
@@ -2840,7 +2787,8 @@ categories:
           and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
           \  \n\nIf an episode is unavailable in the given `market` the HTTP status\
           \ code in the response header is `404` NOT FOUND."
-        scopes: []
+        scopes:
+        - user-read-playback-position
         responseTypes:
         - type: EpisodeObject
           status: 200
@@ -2853,13 +2801,6 @@ categories:
         httpMethod: GET
         path: /episodes
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details."
-          type: String
-          required: true
         - location: QUERY
           name: ids
           description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -2869,11 +2810,11 @@ categories:
         - location: QUERY
           name: market
           description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
-            \ If a country code is specified, only shows and episodes that are available\
-            \ in that market will be returned.  \nIf a valid user access token is\
-            \ specified in the request header, the country associated with the user\
-            \ account will take priority over this parameter.  \n*Note: If neither\
-            \ market or user country are provided, the content is considered unavailable\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
             \ for the client.*   \nUsers can view the country that is associated with\
             \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
@@ -2887,7 +2828,8 @@ categories:
           Objects are returned in the order requested. If an object is not found, a `null` value is returned in the appropriate position.
           Duplicate `ids` in the query will result in duplicate objects in the response. If an episode is unavailable in the given `market`, a `null` value is returned.
           On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
-        scopes: []
+        scopes:
+        - user-read-playback-position
         responseTypes:
         - type: EpisodesObject
           status: 200
@@ -2905,12 +2847,6 @@ categories:
         httpMethod: GET
         path: /me/following/contains
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials. Requires
-            the `user-follow-read` scope.
-          type: String
-          required: true
         - location: QUERY
           name: type
           description: "The ID type: either `artist` or `user`."
@@ -2941,12 +2877,6 @@ categories:
         httpMethod: GET
         path: "/playlists/{playlist_id}/followers/contains"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials. Requires
-            the `playlist-read-private` scope if a private playlist is requested.
-          type: String
-          required: true
         - location: PATH
           name: playlist_id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -2977,18 +2907,6 @@ categories:
         httpMethod: PUT
         path: /me/following
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials. Requires
-            the `user-follow-modify` scope.
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "*Required if IDs are passed in the request body, otherwise\
-            \ ignored* . The content type of the request body: `application/json`"
-          type: String
-          required: false
         - location: QUERY
           name: type
           description: The ID type.
@@ -3008,9 +2926,9 @@ categories:
             name: ids
             description: "A JSON array of the artist or user [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
               \ For example: `{ids:[\"74ASZWbe4lXaubB36ztrGX\", \"08td7MxkoHQkXnWAYD8d6Q\"\
-              ]}`. A maximum of 50 IDs can be sent in one request. *Note: if the `ids`\
-              \ parameter is present in the query string, any IDs listed here in the\
-              \ body will be ignored.*"
+              ]}`. A maximum of 50 IDs can be sent in one request. ***Note** : if\
+              \ the `ids` parameter is present in the query string, any IDs listed\
+              \ here in the body will be ignored.*"
             type: "Array[String]"
             required: true
           contentType: application/json
@@ -3030,31 +2948,10 @@ categories:
         httpMethod: PUT
         path: "/playlists/{playlist_id}/followers"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of the\
-            \ user.  \nFollowing a playlist publicly requires authorization of the\
-            \ `playlist-modify-public` scope; following a playlist privately requires\
-            \ the `playlist-modify-private` scope. See [Using Scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes).\
-            \  \n*Note that the scopes you provide relate only to whether the current\
-            \ user is following the playlist publicly or privately (i.e. showing others\
-            \ what they are following), not whether the playlist itself is public\
-            \ or private.*"
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "The content type of the request body: `application/json`"
-          type: String
-          required: true
         - location: PATH
           name: playlist_id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ of the playlist. Any playlist can be followed, regardless of its [public/private\
-            \ status](https://developer.spotify.com/documentation/general/guides/working-with-playlists/#public-private-and-collaborative-status),\
-            \ as long as you know its playlist ID."
+            \ of the playlist."
           type: String
           required: true
         requestBody:
@@ -3071,8 +2968,8 @@ categories:
           On success, the HTTP status code in the response header is `200` OK and the response body is empty.
           On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes:
-        - playlist-modify-public
         - playlist-modify-private
+        - playlist-modify-public
         responseTypes:
         - type: Void
           status: 200
@@ -3084,12 +2981,6 @@ categories:
         httpMethod: GET
         path: /me/following
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials. Requires
-            the `user-follow-modify` scope.
-          type: String
-          required: true
         - location: QUERY
           name: type
           description: "The ID type: currently only `artist` is supported."
@@ -3111,7 +3002,7 @@ categories:
           The `artists` object in turn contains a [cursor-based paging object](https://developer.spotify.com/documentation/web-api/reference/#object-cursorpagingobject) of [Artists](https://developer.spotify.com/documentation/web-api/reference/#object-artistobject).
           On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes:
-        - user-follow-modify
+        - user-follow-read
         responseTypes:
         - type: FollowingArtistsObject
           status: 200
@@ -3124,18 +3015,6 @@ categories:
         httpMethod: DELETE
         path: /me/following
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials. Requires
-            the `user-follow-modify` scope.
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "*Required if IDs are passed in the request body, otherwise\
-            \ ignored* . The content type of the request body: `application/json`."
-          type: String
-          required: false
         - location: QUERY
           name: type
           description: "The ID type: either `artist` or `user`."
@@ -3156,9 +3035,9 @@ categories:
             name: ids
             description: "A JSON array of the artist or user [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
               \ For example: `{ids:[\"74ASZWbe4lXaubB36ztrGX\", \"08td7MxkoHQkXnWAYD8d6Q\"\
-              ]}`. A maximum of 50 IDs can be sent in one request. *Note: if the `ids`\
-              \ parameter is present in the query string, any IDs listed here in the\
-              \ body will be ignored.*"
+              ]}`. A maximum of 50 IDs can be sent in one request. ***Note** : if\
+              \ the `ids` parameter is present in the query string, any IDs listed\
+              \ here in the body will be ignored.*"
             type: "Array[String]"
             required: false
           contentType: application/json
@@ -3178,33 +3057,18 @@ categories:
         httpMethod: DELETE
         path: "/playlists/{playlist_id}/followers"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of the\
-            \ user.  \nUnfollowing a publicly followed playlist for a user requires\
-            \ authorization of the `playlist-modify-public` scope; unfollowing a privately\
-            \ followed playlist requires the `playlist-modify-private` scope. See\
-            \ [Using Scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes).\
-            \  \n*Note that the scopes you provide relate only to whether the current\
-            \ user is following the playlist publicly or privately (i.e. showing others\
-            \ what they are following), not whether the playlist itself is public\
-            \ or private.*"
-          type: String
-          required: true
         - location: PATH
           name: playlist_id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ of the playlist that is to be no longer followed."
+            \ of the playlist."
           type: String
           required: true
         responseDescription: |-
           On success, the HTTP status code in the response header is `200` OK and the response body is empty.
           On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
         scopes:
-        - playlist-modify-public
         - playlist-modify-private
+        - playlist-modify-public
         responseTypes:
         - type: Void
           status: 200
@@ -3222,18 +3086,10 @@ categories:
         httpMethod: GET
         path: /me/albums/contains
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The `user-library-read` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
-            \ must have been authorized by the user."
-          type: String
-          required: true
         - location: QUERY
           name: ids
           description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ for the albums. Maximum: 50 IDs."
+            \ for the albums. Maximum: 20 IDs."
           type: String
           required: true
         responseDescription: |-
@@ -3255,14 +3111,6 @@ categories:
         httpMethod: GET
         path: /me/episodes/contains
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The `user-library-read` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
-            \ must have been authorized by the user."
-          type: String
-          required: true
         - location: QUERY
           name: ids
           description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -3286,19 +3134,10 @@ categories:
         httpMethod: GET
         path: /me/shows/contains
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been isued on behalf of the\
-            \ user. The `user-library-read` scope must have been authorised by the\
-            \ user."
-          type: String
-          required: true
         - location: QUERY
           name: ids
-          description: "A comma-separated list of the Spotify IDs for the shows. Maximum:\
-            \ 50 ids."
+          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
+            \ for the shows. Maximum: 50 IDs."
           type: String
           required: true
         responseDescription: "On success, the HTTP status code in the response header\
@@ -3320,18 +3159,11 @@ categories:
         httpMethod: GET
         path: /me/tracks/contains
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The `user-library-read` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
-            \ must have been authorized by the user."
-          type: String
-          required: true
         - location: QUERY
           name: ids
-          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ for the tracks. Maximum: 50 IDs."
+          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+            \ For example: `ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M`. Maximum:\
+            \ 50 IDs."
           type: String
           required: true
         responseDescription: |-
@@ -3351,31 +3183,28 @@ categories:
         httpMethod: GET
         path: /me/albums
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The `user-library-read` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
-            \ must have been authorized by the user."
-          type: String
-          required: true
         - location: QUERY
           name: limit
-          description: "The maximum number of objects to return. Default: 20. Minimum:\
+          description: "The maximum number of items to return. Default: 20. Minimum:\
             \ 1. Maximum: 50."
           type: Integer
           required: false
         - location: QUERY
           name: offset
-          description: "The index of the first object to return. Default: 0 (i.e.,\
-            \ the first object). Use with `limit` to get the next set of objects."
+          description: "The index of the first item to return. Default: 0 (the first\
+            \ item). Use with limit to get the next set of items."
           type: Integer
           required: false
         - location: QUERY
           name: market
-          description: "An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ or the string `from_token`. Provide this parameter if you want to apply\
-            \ [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/)."
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
         responseDescription: |-
@@ -3398,21 +3227,13 @@ categories:
         httpMethod: GET
         path: /me/episodes
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The `user-library-read` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
-            \ must have been authorized by the user."
-          type: String
-          required: true
         - location: QUERY
           name: market
           description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
             \ If a country code is specified, only episodes that are available in\
             \ that market will be returned.  \nIf a valid user access token is specified\
             \ in the request header, the country associated with the user account\
-            \ will take priority over this parameter.  \n*Note: If neither market\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
             \ or user country are provided, the content is considered unavailable\
             \ for the client.*   \nUsers can view the country that is associated with\
             \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
@@ -3420,14 +3241,14 @@ categories:
           required: false
         - location: QUERY
           name: limit
-          description: "The maximum number of objects to return. Default: 20. Minimum:\
+          description: "The maximum number of items to return. Default: 20. Minimum:\
             \ 1. Maximum: 50."
           type: Integer
           required: false
         - location: QUERY
           name: offset
-          description: "The index of the first object to return. Default: 0 (i.e.,\
-            \ the first object). Use with `limit` to get the next set of objects."
+          description: "The index of the first item to return. Default: 0 (the first\
+            \ item). Use with limit to get the next set of items."
           type: Integer
           required: false
         responseDescription: "- On success, the HTTP status code in the response header\
@@ -3450,25 +3271,16 @@ categories:
         httpMethod: GET
         path: /me/shows
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been isued on behalf of the\
-            \ user. The `user-library-read` scope must have been authorised by the\
-            \ user."
-          type: String
-          required: true
         - location: QUERY
           name: limit
-          description: "The maximum number of shows to return. Default: 20. Minimum:\
-            \ 1. Maximum: 50"
+          description: "The maximum number of items to return. Default: 20. Minimum:\
+            \ 1. Maximum: 50."
           type: Integer
           required: false
         - location: QUERY
           name: offset
-          description: "The index of the first show to return. Default: 0 (the first\
-            \ object). Use with limit to get the next set of shows."
+          description: "The index of the first item to return. Default: 0 (the first\
+            \ item). Use with limit to get the next set of items."
           type: Integer
           required: false
         responseDescription: |-
@@ -3489,31 +3301,28 @@ categories:
         httpMethod: GET
         path: /me/tracks
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The `user-library-read` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
-            \ must have been authorized by the user."
-          type: String
-          required: true
         - location: QUERY
           name: market
-          description: "An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ or the string `from_token`. Provide this parameter if you want to apply\
-            \ [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/)."
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
         - location: QUERY
           name: limit
-          description: "The maximum number of objects to return. Default: 20. Minimum:\
+          description: "The maximum number of items to return. Default: 20. Minimum:\
             \ 1. Maximum: 50."
           type: Integer
           required: false
         - location: QUERY
           name: offset
-          description: "The index of the first object to return. Default: 0 (i.e.,\
-            \ the first object). Use with `limit` to get the next set of objects."
+          description: "The index of the first item to return. Default: 0 (the first\
+            \ item). Use with limit to get the next set of items."
           type: Integer
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
@@ -3535,25 +3344,10 @@ categories:
         httpMethod: DELETE
         path: /me/albums
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nModification of the current user's \"Your Music\" collection\
-            \ requires authorization of the `user-library-modify` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "*Required if the IDs are passed in the request body, otherwise\
-            \ ignored.* The content type of the request body: `application/json`"
-          type: String
-          required: false
         - location: QUERY
           name: ids
-          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-            \ For example: `ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M`. Maximum:\
-            \ 50 IDs."
+          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
+            \ for the albums. Maximum: 20 IDs."
           type: String
           required: true
         requestBody:
@@ -3563,8 +3357,8 @@ categories:
             name: ids
             description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
               \ For example: `[\"4iV5W9uYEdYUVa79Axb7Rh\", \"1301WleyT98MSxVHPZCA6M\"\
-              ]`  \nA maximum of 50 items can be specified in one request. *Note:\
-              \ if the `ids` parameter is present in the query string, any IDs listed\
+              ]`  \nA maximum of 50 items can be specified in one request. ***Note**\
+              \ : if the `ids` parameter is present in the query string, any IDs listed\
               \ here in the body will be ignored.*"
             type: "Array[String]"
             required: false
@@ -3590,24 +3384,11 @@ categories:
         httpMethod: DELETE
         path: /me/episodes
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nModification of the current user's collection requires\
-            \ authorization of the `user-library-modify` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "*Required if the IDs are passed in the request body, otherwise\
-            \ ignored.* The content type of the request body: `application/json`"
-          type: String
-          required: false
         - location: QUERY
           name: ids
           description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-            \ Maximum: 50 IDs."
+            \ For example: `ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M`. Maximum:\
+            \ 50 IDs."
           type: String
           required: true
         requestBody:
@@ -3616,8 +3397,8 @@ categories:
           - location: BODY
             name: ids
             description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-              \   \nA maximum of 50 items can be specified in one request. *Note:\
-              \ if the `ids` parameter is present in the query string, any IDs listed\
+              \   \nA maximum of 50 items can be specified in one request. ***Note**\
+              \ : if the `ids` parameter is present in the query string, any IDs listed\
               \ here in the body will be ignored.*"
             type: "Array[String]"
             required: false
@@ -3640,28 +3421,19 @@ categories:
         httpMethod: DELETE
         path: /me/shows
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of the\
-            \ user. The `user-library-modify` scope must have been authorized by the\
-            \ user."
-          type: String
-          required: true
         - location: QUERY
           name: ids
-          description: A comma-separated list of Spotify IDs for the shows to be deleted
-            from the user's library.
+          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
+            \ for the shows. Maximum: 50 IDs."
           type: String
           required: true
         - location: QUERY
           name: market
           description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
-            \ If a country code is specified, only shows that are available in that\
-            \ market will be removed.  \nIf a valid user access token is specified\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
             \ in the request header, the country associated with the user account\
-            \ will take priority over this parameter.  \n*Note: If neither market\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
             \ or user country are provided, the content is considered unavailable\
             \ for the client.*   \nUsers can view the country that is associated with\
             \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
@@ -3696,20 +3468,6 @@ categories:
         httpMethod: DELETE
         path: /me/tracks
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nModification of the current user's \"Your Music\" collection\
-            \ requires authorization of the `user-library-modify` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "*Required if the IDs are passed in the request body, otherwise\
-            \ ignored.* The content type of the request body: `application/json`"
-          type: String
-          required: false
         - location: QUERY
           name: ids
           description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
@@ -3724,8 +3482,8 @@ categories:
             name: ids
             description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
               \ For example: `[\"4iV5W9uYEdYUVa79Axb7Rh\", \"1301WleyT98MSxVHPZCA6M\"\
-              ]`  \nA maximum of 50 items can be specified in one request. *Note:\
-              \ if the `ids` parameter is present in the query string, any IDs listed\
+              ]`  \nA maximum of 50 items can be specified in one request. ***Note**\
+              \ : if the `ids` parameter is present in the query string, any IDs listed\
               \ here in the body will be ignored.*"
             type: "Array[String]"
             required: false
@@ -3748,25 +3506,10 @@ categories:
         httpMethod: PUT
         path: /me/albums
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nModification of the current user's \"Your Music\" collection\
-            \ requires authorization of the `user-library-modify` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "*Required if the IDs are passed in the request body, otherwise\
-            \ ignored.* The content type of the request body: `application/json`"
-          type: String
-          required: false
         - location: QUERY
           name: ids
-          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-            \ For example: `ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M`. Maximum:\
-            \ 50 IDs."
+          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
+            \ for the albums. Maximum: 20 IDs."
           type: String
           required: true
         requestBody:
@@ -3776,8 +3519,8 @@ categories:
             name: ids
             description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
               \ For example: `[\"4iV5W9uYEdYUVa79Axb7Rh\", \"1301WleyT98MSxVHPZCA6M\"\
-              ]`  \nA maximum of 50 items can be specified in one request. *Note:\
-              \ if the `ids` parameter is present in the query string, any IDs listed\
+              ]`  \nA maximum of 50 items can be specified in one request. ***Note**\
+              \ : if the `ids` parameter is present in the query string, any IDs listed\
               \ here in the body will be ignored.*"
             type: "Array[String]"
             required: false
@@ -3803,20 +3546,6 @@ categories:
         httpMethod: PUT
         path: /me/episodes
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nModification of the current user's \"Your Music\" collection\
-            \ requires authorization of the `user-library-modify` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "*Required if the IDs are passed in the request body, otherwise\
-            \ ignored.* The content type of the request body: `application/json`"
-          type: String
-          required: false
         - location: QUERY
           name: ids
           description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
@@ -3829,8 +3558,8 @@ categories:
           - location: BODY
             name: ids
             description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-              \   \nA maximum of 50 items can be specified in one request. *Note:\
-              \ if the `ids` parameter is present in the query string, any IDs listed\
+              \   \nA maximum of 50 items can be specified in one request. ***Note**\
+              \ : if the `ids` parameter is present in the query string, any IDs listed\
               \ here in the body will be ignored.*"
             type: "Array[String]"
             required: false
@@ -3853,19 +3582,10 @@ categories:
         httpMethod: PUT
         path: /me/shows
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of the\
-            \ user. The `user-library-modify` scope must have been authorized by the\
-            \ user."
-          type: String
-          required: true
         - location: QUERY
           name: ids
-          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
-            \ Maximum: 50 IDs."
+          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
+            \ for the shows. Maximum: 50 IDs."
           type: String
           required: true
         requestBody:
@@ -3899,20 +3619,6 @@ categories:
         httpMethod: PUT
         path: /me/tracks
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nModification of the current user's \"Your Music\" collection\
-            \ requires authorization of the `user-library-modify` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "*Required if the IDs are passed in the request body, otherwise\
-            \ ignored.* The content type of the request body: `application/json`"
-          type: String
-          required: false
         - location: QUERY
           name: ids
           description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
@@ -3927,8 +3633,8 @@ categories:
             name: ids
             description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
               \ For example: `[\"4iV5W9uYEdYUVa79Axb7Rh\", \"1301WleyT98MSxVHPZCA6M\"\
-              ]`  \nA maximum of 50 items can be specified in one request. *Note:\
-              \ if the `ids` parameter is present in the query string, any IDs listed\
+              ]`  \nA maximum of 50 items can be specified in one request. ***Note**\
+              \ : if the `ids` parameter is present in the query string, any IDs listed\
               \ here in the body will be ignored.*"
             type: "Array[String]"
             required: false
@@ -3955,12 +3661,7 @@ categories:
         description: Get the list of markets where Spotify is available.
         httpMethod: GET
         path: /markets
-        parameters:
-        - location: HEADER
-          name: Authorization
-          description: A valid user access token or your client credentials.
-          type: String
-          required: true
+        parameters: []
         responseDescription: "On success, the HTTP status code in the response header\
           \ is 200 OK and the response body contains a list of the countries in which\
           \ Spotify is available, identified by their [ISO 3166-1 alpha-2 country\
@@ -3985,15 +3686,6 @@ categories:
         httpMethod: GET
         path: "/me/top/{type}"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of the\
-            \ current user.  \nGetting details of a user's top artists and tracks\
-            \ requires authorization of the `user-top-read` scope. See [Using Scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
-          type: String
-          required: true
         - location: PATH
           name: type
           description: "The type of entity to return. Valid values: `artists` or `tracks`"
@@ -4009,14 +3701,14 @@ categories:
           required: false
         - location: QUERY
           name: limit
-          description: "The number of entities to return. Default: 20. Minimum: 1.\
-            \ Maximum: 50. For example: `limit=2`"
+          description: "The maximum number of items to return. Default: 20. Minimum:\
+            \ 1. Maximum: 50."
           type: Integer
           required: false
         - location: QUERY
           name: offset
-          description: "The index of the first entity to return. Default: 0 (i.e.,\
-            \ the first track). Use with limit to get the next set of entities."
+          description: "The index of the first item to return. Default: 0 (the first\
+            \ item). Use with limit to get the next set of items."
           type: Integer
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
@@ -4043,15 +3735,6 @@ categories:
         httpMethod: POST
         path: /me/player/queue
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nThe access token must have been issued on behalf of\
-            \ a user.  \nThe access token must have the `user-modify-playback-state`\
-            \ scope authorized in order to control playback"
-          type: String
-          required: true
         - location: QUERY
           name: uri
           description: The uri of the item to add to the queue. Must be a track or
@@ -4082,16 +3765,7 @@ categories:
         description: Get information about a user's available devices.
         httpMethod: GET
         path: /me/player/devices
-        parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of a user.\
-            \ The access token must have the `user-read-playback-state` scope authorized\
-            \ in order to read information."
-          type: String
-          required: true
+        parameters: []
         responseDescription: |-
           A successful request will return a `200 OK` response code with a json payload that contains the device objects (see below).
           When no available devices are found, the request will return a 200 OK response with an empty devices list.
@@ -4109,29 +3783,27 @@ categories:
         httpMethod: GET
         path: /me/player
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details."
-          type: String
-          required: true
         - location: QUERY
           name: market
-          description: |-
-            An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or the string `from_token`. Provide this parameter if you want to apply [Track
-            Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/).
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
         - location: QUERY
           name: additional_types
           description: "A comma-separated list of item types that your client supports\
             \ besides the default `track` type. Valid types are: `track` and `episode`.\
-            \ An unsupported type in the response is expected to be represented as\
-            \ `null` value in the `item` field. **Note**: This parameter was introduced\
-            \ to allow existing clients to maintain their current behaviour and might\
-            \ be deprecated in the future. In addition to providing this parameter,\
-            \ make sure that your client properly handles cases of new"
+            \  \n***Note**: This parameter was introduced to allow existing clients\
+            \ to maintain their current behaviour and might be deprecated in the future.*\
+            \   \nIn addition to providing this parameter, make sure that your client\
+            \ properly handles cases of new types in the future by checking against\
+            \ the `type` field of each object."
           type: String
           required: false
         responseDescription: |-
@@ -4150,17 +3822,10 @@ categories:
         link: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recently-played
         description: |-
           Get tracks from the current user's recently played tracks.
-          *Note: Currently doesn't support podcast episodes.*
+          ***Note**: Currently doesn't support podcast episodes.*
         httpMethod: GET
         path: /me/player/recently-played
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of a user."
-          type: String
-          required: true
         - location: QUERY
           name: limit
           description: "The maximum number of items to return. Default: 20. Minimum:\
@@ -4185,7 +3850,8 @@ categories:
           On success, the HTTP status code in the response header is `200` OK and the response body contains an array of [play history objects](#play-history-object) (wrapped in a [cursor-based paging object](#cursor-based-paging-object)) in JSON format. The play history items each contain the context the track was played from (e.g. playlist, album), the date and time the track was played, and a [track object (simplified)](https://developer.spotify.com/documentation/web-api/reference/#object-simplifiedtrackobject). On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
 
           If private session is enabled the response will be a `204 NO CONTENT` with an empty payload.
-        scopes: []
+        scopes:
+        - user-read-recently-played
         responseTypes:
         - type: "CursorPagingObject[PlayHistoryObject]"
           status: 200
@@ -4199,32 +3865,27 @@ categories:
         httpMethod: GET
         path: /me/player/currently-playing
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of a user.\
-            \ The access token must have the `user-read-currently-playing` and/or\
-            \ `user-read-playback-state` scope authorized in order to read information."
-          type: String
-          required: true
         - location: QUERY
           name: market
-          description: |-
-            An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or the string `from_token`. Provide this parameter if you want to apply [Track
-            Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/).
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
-          required: true
+          required: false
         - location: QUERY
           name: additional_types
           description: "A comma-separated list of item types that your client supports\
             \ besides the default `track` type. Valid types are: `track` and `episode`.\
-            \ An unsupported type in the response is expected to be represented as\
-            \ `null` value in the `item` field. **Note** : This parameter was introduced\
-            \ to allow existing clients to maintain their current behaviour and might\
-            \ be deprecated in the future. In addition to providing this parameter,\
-            \ make sure that your client properly handles cases of new types in the\
-            \ future by checking against the `currently_playing_type` field."
+            \  \n***Note**: This parameter was introduced to allow existing clients\
+            \ to maintain their current behaviour and might be deprecated in the future.*\
+            \   \nIn addition to providing this parameter, make sure that your client\
+            \ properly handles cases of new types in the future by checking against\
+            \ the `type` field of each object."
           type: String
           required: false
         responseDescription: |-
@@ -4237,7 +3898,6 @@ categories:
           If private session is enabled the response will be a `204 NO CONTENT` with an empty payload.
         scopes:
         - user-read-currently-playing
-        - user-read-playback-state
         responseTypes:
         - type: CurrentlyPlayingObject
           status: 200
@@ -4251,14 +3911,6 @@ categories:
         httpMethod: PUT
         path: /me/player/pause
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nThe access token must have been issued on behalf of\
-            \ a user."
-          type: String
-          required: true
         - location: QUERY
           name: device_id
           description: "The id of the device this command is targeting. If not supplied,\
@@ -4271,7 +3923,8 @@ categories:
           If the device is not found, the request will return `404 NOT FOUND` response code.
 
           If the user making the request is non-premium, a `403 FORBIDDEN` response code will be returned.
-        scopes: []
+        scopes:
+        - user-modify-playback-state
         responseTypes:
         - type: Void
           status: 204
@@ -4283,15 +3936,6 @@ categories:
         httpMethod: PUT
         path: /me/player/seek
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nThe access token must have been issued on behalf of\
-            \ a user.  \nThe access token must have the `user-modify-playback-state`\
-            \ scope authorized in order to control playback"
-          type: String
-          required: true
         - location: QUERY
           name: position_ms
           description: The position in milliseconds to seek to. Must be a positive
@@ -4326,15 +3970,6 @@ categories:
         httpMethod: PUT
         path: /me/player/repeat
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nThe access token must have been issued on behalf of\
-            \ a user.  \nThe access token must have the `user-modify-playback-state`\
-            \ scope authorized in order to control playback."
-          type: String
-          required: true
         - location: QUERY
           name: state
           description: "**track** , **context** or **off** .  \n**track** will repeat\
@@ -4367,15 +4002,6 @@ categories:
         httpMethod: PUT
         path: /me/player/volume
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nThe access token must have been issued on behalf of\
-            \ a user.  \nThe access token must have the `user-modify-playback-state`\
-            \ scope authorized in order to control playback."
-          type: String
-          required: true
         - location: QUERY
           name: volume_percent
           description: The volume to set. Must be a value from 0 to 100 inclusive.
@@ -4406,15 +4032,6 @@ categories:
         httpMethod: POST
         path: /me/player/next
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nThe access token must have been issued on behalf of\
-            \ a user.  \nThe access token must have the `user-modify-playback-state`\
-            \ scope authorized in order to control playback."
-          type: String
-          required: true
         - location: QUERY
           name: device_id
           description: "The id of the device this command is targeting. If not supplied,\
@@ -4440,15 +4057,6 @@ categories:
         httpMethod: POST
         path: /me/player/previous
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nThe access token must have been issued on behalf of\
-            \ a user.  \nThe access token must have the `user-modify-playback-state`\
-            \ scope authorized in order to control playback."
-          type: String
-          required: true
         - location: QUERY
           name: device_id
           description: "The id of the device this command is targeting. If not supplied,\
@@ -4475,15 +4083,6 @@ categories:
         httpMethod: PUT
         path: /me/player/play
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nThe access token must have been issued on behalf of\
-            \ a user.  \nThe access token must have the `user-modify-playback-state`\
-            \ scope authorized in order to control playback."
-          type: String
-          required: true
         - location: QUERY
           name: device_id
           description: "The id of the device this command is targeting. If not supplied,\
@@ -4544,15 +4143,6 @@ categories:
         httpMethod: PUT
         path: /me/player/shuffle
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nThe access token must have been issued on behalf of\
-            \ a user.  \nThe access token must have the `user-modify-playback-state`\
-            \ scope authorized in order to control playback."
-          type: String
-          required: true
         - location: QUERY
           name: state
           description: "**true** : Shuffle user's playback.  \n**false** : Do not\
@@ -4584,16 +4174,7 @@ categories:
           start playing.
         httpMethod: PUT
         path: /me/player
-        parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nThe access token must have been issued on behalf of\
-            \ a user.  \nThe access token must have the `user-modify-playback-state`\
-            \ scope authorized in order to control playback."
-          type: String
-          required: true
+        parameters: []
         requestBody:
           description: ""
           parameters:
@@ -4601,9 +4182,9 @@ categories:
             name: device_ids
             description: "A JSON array containing the ID of the device on which playback\
               \ should be started/transferred.  \nFor example:`{device_ids:[\"74ASZWbe4lXaubB36ztrGX\"\
-              ]}`  \nNote: Although an array is accepted, only a single device_id\
+              ]}`  \n***Note** : Although an array is accepted, only a single device_id\
               \ is currently supported. Supplying more than one will return `400 Bad\
-              \ Request`"
+              \ Request`*"
             type: "Array[String]"
             required: true
           - location: BODY
@@ -4637,34 +4218,17 @@ categories:
         httpMethod: POST
         path: "/playlists/{playlist_id}/tracks"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of the\
-            \ user.  \nAdding items to the current user's public playlists requires\
-            \ authorization of the `playlist-modify-public` scope; adding items to\
-            \ the current user's private playlist (including collaborative playlists)\
-            \ requires the `playlist-modify-private` scope. See [Using Scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "*Required if URIs are passed in the request body, otherwise\
-            \ ignored.* The content type of the request body: `application/json`"
-          type: String
-          required: true
         - location: PATH
           name: playlist_id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ for the playlist."
+            \ of the playlist."
           type: String
           required: true
         - location: QUERY
           name: position
           description: "The position to insert the items, a zero-based index. For\
             \ example, to insert the items in the first position: `position=0`; to\
-            \ insert the items in the third position: `position=2` . If omitted, the\
+            \ insert the items in the third position: `position=2`. If omitted, the\
             \ items will be appended to the playlist. Items are added in the order\
             \ they are listed in the query string or request body."
           type: Integer
@@ -4674,8 +4238,8 @@ categories:
           description: "A comma-separated list of [Spotify URIs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
             \ to add, can be track or episode URIs. For example:  \n`uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,\
             \ spotify:track:1301WleyT98MSxVHPZCA6M, spotify:episode:512ojhOuo1ktJprKbVcKyQ`\
-            \  \nA maximum of 100 items can be added in one request. *Note: it is\
-            \ likely that passing a large number of item URIs as a query parameter\
+            \  \nA maximum of 100 items can be added in one request.   \n***Note**:\
+            \ it is likely that passing a large number of item URIs as a query parameter\
             \ will exceed the maximum length of the request URI. When adding a large\
             \ number of items, it is recommended to pass them in the request body,\
             \ see below.*"
@@ -4689,9 +4253,9 @@ categories:
             description: "A JSON array of the [Spotify URIs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
               \ to add. For example: `{\"uris\": [\"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\"\
               ,\"spotify:track:1301WleyT98MSxVHPZCA6M\", \"spotify:episode:512ojhOuo1ktJprKbVcKyQ\"\
-              ]}`  \nA maximum of 100 items can be added in one request. *Note: if\
-              \ the `uris` parameter is present in the query string, any URIs listed\
-              \ here in the body will be ignored.*"
+              ]}`  \nA maximum of 100 items can be added in one request. ***Note**\
+              \ : if the `uris` parameter is present in the query string, any URIs\
+              \ listed here in the body will be ignored.*"
             type: "Array[String]"
             required: false
           - location: BODY
@@ -4715,8 +4279,8 @@ categories:
           \ when there are more than 10.000 items in the playlist, returns error `403`\
           \ Forbidden."
         scopes:
-        - playlist-modify-public
         - playlist-modify-private
+        - playlist-modify-public
         responseTypes:
         - type: SnapshotIdObject
           status: 201
@@ -4730,25 +4294,10 @@ categories:
         httpMethod: PUT
         path: "/playlists/{playlist_id}"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of the\
-            \ user.  \nChanging a public playlist for a user requires authorization\
-            \ of the `playlist-modify-public` scope; changing a private playlist requires\
-            \ the `playlist-modify-private` scope. See [Using Scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "The content type of the request body: `application/json`"
-          type: String
-          required: true
         - location: PATH
           name: playlist_id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ for the playlist."
+            \ of the playlist."
           type: String
           required: true
         requestBody:
@@ -4768,9 +4317,10 @@ categories:
             required: false
           - location: BODY
             name: collaborative
-            description: "If `true` , the playlist will become collaborative and other\
+            description: "If `true`, the playlist will become collaborative and other\
               \ users will be able to modify the playlist in their Spotify client.\
-              \ *Note: You can only set `collaborative` to `true` on non-public playlists.*"
+              \   \n***Note** : You can only set `collaborative` to `true` on non-public\
+              \ playlists.*"
             type: Boolean
             required: false
           - location: BODY
@@ -4785,8 +4335,8 @@ categories:
 
           On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema). Trying to change a playlist when you do not have the user's authorization returns error `403` Forbidden.
         scopes:
-        - playlist-modify-public
         - playlist-modify-private
+        - playlist-modify-public
         responseTypes:
         - type: Void
           status: 200
@@ -4800,21 +4350,6 @@ categories:
         httpMethod: POST
         path: "/users/{user_id}/playlists"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of the\
-            \ user. Creating a public playlist for a user requires authorization of\
-            \ the `playlist-modify-public` scope; creating a private playlist requires\
-            \ the `playlist-modify-private` scope. See [Using Scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "The content type of the request body: `application/json`"
-          type: String
-          required: false
         - location: PATH
           name: user_id
           description: "The user's [Spotify user ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)."
@@ -4826,24 +4361,23 @@ categories:
           - location: BODY
             name: name
             description: "The name for the new playlist, for example `\"Your Coolest\
-              \ Playlist\"` . This name does not need to be unique; a user may have\
+              \ Playlist\"`. This name does not need to be unique; a user may have\
               \ several playlists with the same name."
             type: String
             required: true
           - location: BODY
             name: public
-            description: "Defaults to `true` . If `true` the playlist will be public,\
+            description: "Defaults to `true`. If `true` the playlist will be public,\
               \ if `false` it will be private. To be able to create private playlists,\
               \ the user must have granted the `playlist-modify-private` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)"
             type: Boolean
             required: false
           - location: BODY
             name: collaborative
-            description: "Defaults to `false` . If `true` the playlist will be collaborative.\
-              \ Note that to create a collaborative playlist you must also set `public`\
-              \ to `false` . To create collaborative playlists you must have granted\
-              \ `playlist-modify-private` and `playlist-modify-public` [scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
-              \ ."
+            description: "Defaults to `false`. If `true` the playlist will be collaborative.\
+              \ ***Note** : to create a collaborative playlist you must also set `public`\
+              \ to `false`. To create collaborative playlists you must have granted\
+              \ `playlist-modify-private` and `playlist-modify-public` [scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes).*"
             type: Boolean
             required: false
           - location: BODY
@@ -4861,8 +4395,8 @@ categories:
 
           On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema). Trying to create a playlist when you do not have the user's authorization returns error `403` Forbidden.
         scopes:
-        - playlist-modify-public
         - playlist-modify-private
+        - playlist-modify-public
         responseTypes:
         - type: PlaylistObject
           status: 200
@@ -4878,23 +4412,10 @@ categories:
         httpMethod: GET
         path: /me/playlists
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nPrivate playlists are only retrievable *for the current\
-            \ user* and requires the `playlist-read-private` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
-            \ to have been authorized by the user. Note that this scope alone will\
-            \ not return collaborative playlists, even though they are always private.\
-            \  \nCollaborative playlists are only retrievable *for the current user*\
-            \ and requires the `playlist-read-collaborative` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
-            \ to have been authorized by the user."
-          type: String
-          required: true
         - location: QUERY
           name: limit
-          description: "'The maximum number of playlists to return. Default: 20. Minimum:\
-            \ 1. Maximum: 50.'"
+          description: "The maximum number of items to return. Default: 20. Minimum:\
+            \ 1. Maximum: 50."
           type: Integer
           required: false
         - location: QUERY
@@ -4912,8 +4433,8 @@ categories:
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
           \ Please note that the access token has to be tied to a user."
         scopes:
-        - playlist-read-private
         - playlist-read-collaborative
+        - playlist-read-private
         responseTypes:
         - type: "PagingObject[SimplifiedPlaylistObject]"
           status: 200
@@ -4925,19 +4446,6 @@ categories:
         httpMethod: GET
         path: "/users/{user_id}/playlists"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details.  \nPrivate playlists are only retrievable *for the current\
-            \ user* and requires the `playlist-read-private` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
-            \ to have been authorized by the user. Note that this scope alone will\
-            \ not return collaborative playlists, even though they are always private.\
-            \  \nCollaborative playlists are only retrievable *for the current user*\
-            \ and requires the `playlist-read-collaborative` [scope](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)\
-            \ to have been authorized by the user."
-          type: String
-          required: true
         - location: PATH
           name: user_id
           description: "The user's [Spotify user ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)."
@@ -4945,7 +4453,7 @@ categories:
           required: true
         - location: QUERY
           name: limit
-          description: "The maximum number of playlists to return. Default: 20. Minimum:\
+          description: "The maximum number of items to return. Default: 20. Minimum:\
             \ 1. Maximum: 50."
           type: Integer
           required: false
@@ -4963,8 +4471,8 @@ categories:
           \ in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes)\
           \ and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema)."
         scopes:
-        - playlist-read-private
         - playlist-read-collaborative
+        - playlist-read-private
         responseTypes:
         - type: "PagingObject[SimplifiedPlaylistObject]"
           status: 200
@@ -4976,29 +4484,22 @@ categories:
         httpMethod: GET
         path: "/playlists/{playlist_id}"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. Both Public and Private playlists belonging to any user\
-            \ are retrievable on provision of a valid access token."
-          type: String
-          required: true
         - location: PATH
           name: playlist_id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ for the playlist."
+            \ of the playlist."
           type: String
           required: true
         - location: QUERY
           name: market
-          description: "An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ or the string `from_token`. Provide this parameter if you want to apply\
-            \ [Track\nRelinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/).\
-            \ For episodes, if a valid user access token is specified in the request\
-            \ header, the country associated with the user account will take priority\
-            \ over this parameter.  \n*Note: If neither market or user country are\
-            \ provided, the episode is considered unavailable for the client.*"
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
         - location: QUERY
@@ -5019,9 +4520,9 @@ categories:
           name: additional_types
           description: "A comma-separated list of item types that your client supports\
             \ besides the default `track` type. Valid types are: `track` and `episode`.\
-            \ **Note** : This parameter was introduced to allow existing clients to\
-            \ maintain their current behaviour and might be deprecated in the future.\
-            \ In addition to providing this parameter, make sure that your client\
+            \  \n***Note**: This parameter was introduced to allow existing clients\
+            \ to maintain their current behaviour and might be deprecated in the future.*\
+            \   \nIn addition to providing this parameter, make sure that your client\
             \ properly handles cases of new types in the future by checking against\
             \ the `type` field of each object."
           type: String
@@ -5046,20 +4547,10 @@ categories:
         httpMethod: GET
         path: "/playlists/{playlist_id}/images"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of the\
-            \ user.  \nThis access token must be issued on behalf of the user.   \n\
-            Current playlist image for both Public and Private playlists of any user\
-            \ are retrievable on provision of a valid access token."
-          type: String
-          required: true
         - location: PATH
           name: playlist_id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ for the playlist."
+            \ of the playlist."
           type: String
           required: true
         responseDescription: "On success, the response body contains a list of [image\
@@ -5080,29 +4571,22 @@ categories:
         httpMethod: GET
         path: "/playlists/{playlist_id}/tracks"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. Both Public and Private playlists belonging to any user\
-            \ are retrievable on provision of a valid access token."
-          type: String
-          required: true
         - location: PATH
           name: playlist_id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ for the playlist."
+            \ of the playlist."
           type: String
           required: true
         - location: QUERY
           name: market
-          description: "An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ or the string `from_token`. Provide this parameter if you want to apply\
-            \ [Track\nRelinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/).\
-            \ For episodes, if a valid user access token is specified in the request\
-            \ header, the country associated with the user account will take priority\
-            \ over this parameter.  \n*Note: If neither market or user country are\
-            \ provided, the episode is considered unavailable for the client.*"
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
         - location: QUERY
@@ -5121,23 +4605,23 @@ categories:
           required: false
         - location: QUERY
           name: limit
-          description: "The maximum number of items to return. Default: 100. Minimum:\
-            \ 1. Maximum: 100."
+          description: "The maximum number of items to return. Default: 20. Minimum:\
+            \ 1. Maximum: 50."
           type: Integer
           required: false
         - location: QUERY
           name: offset
           description: "The index of the first item to return. Default: 0 (the first\
-            \ object)."
+            \ item). Use with limit to get the next set of items."
           type: Integer
           required: false
         - location: QUERY
           name: additional_types
           description: "A comma-separated list of item types that your client supports\
             \ besides the default `track` type. Valid types are: `track` and `episode`.\
-            \ **Note** : This parameter was introduced to allow existing clients to\
-            \ maintain their current behaviour and might be deprecated in the future.\
-            \ In addition to providing this parameter, make sure that your client\
+            \  \n***Note**: This parameter was introduced to allow existing clients\
+            \ to maintain their current behaviour and might be deprecated in the future.*\
+            \   \nIn addition to providing this parameter, make sure that your client\
             \ properly handles cases of new types in the future by checking against\
             \ the `type` field of each object."
           type: String
@@ -5165,24 +4649,10 @@ categories:
         httpMethod: DELETE
         path: "/playlists/{playlist_id}/tracks"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of the\
-            \ user. Removing items from a user's public playlist requires authorization\
-            \ of the `playlist-modify-public` scope; removing items from a private\
-            \ playlist requires the `playlist-modify-private` scope. See [Using Scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "The content type of the request body: `application/json`"
-          type: String
-          required: true
         - location: PATH
           name: playlist_id
-          description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)"
+          description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
+            \ of the playlist."
           type: String
           required: true
         requestBody:
@@ -5216,8 +4686,8 @@ categories:
           Attempting to use several different ways to remove items returns `400` Bad Request.
           Other client errors returning `400` Bad Request include specifying invalid positions.
         scopes:
-        - playlist-modify-public
         - playlist-modify-private
+        - playlist-modify-public
         notes: |-
           ### Frequently Asked Questions:
 
@@ -5245,28 +4715,10 @@ categories:
         httpMethod: PUT
         path: "/playlists/{playlist_id}/tracks"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of the\
-            \ user.   \nReordering or replacing items in the current user's public\
-            \ playlists requires authorization of the `playlist-modify-public` scope;\
-            \ reordering or replacing items in the current user's private playlist\
-            \ (including collaborative playlists) requires the `playlist-modify-private`\
-            \ scope. See [Using Scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "*Required if URIs are passed in the request body, otherwise\
-            \ ignored.* The content type of the request body: `application/json`"
-          type: String
-          required: false
         - location: PATH
           name: playlist_id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ for the playlist."
+            \ of the playlist."
           type: String
           required: true
         - location: QUERY
@@ -5331,8 +4783,8 @@ categories:
           and the existing playlist is unmodified.
           Trying to set an item when you do not have the user's authorization returns error `403` Forbidden.
         scopes:
-        - playlist-modify-public
         - playlist-modify-private
+        - playlist-modify-public
         responseTypes:
         - type: SnapshotIdObject
           status: 200
@@ -5346,27 +4798,10 @@ categories:
         httpMethod: PUT
         path: "/playlists/{playlist_id}/images"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of the\
-            \ user.  \nThis access token must be tied to the user who owns the playlist,\
-            \ and must have the scope `ugc-image-upload` granted. In addition, the\
-            \ token must also contain `playlist-modify-public` and/or `playlist-modify-private`,\
-            \ depending the public status of the playlist you want to update . See\
-            \ [Using Scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
-          type: String
-          required: true
-        - location: HEADER
-          name: Content-Type
-          description: "The content type of the request body: `image/jpeg`"
-          type: String
-          required: true
         - location: PATH
           name: playlist_id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ for the playlist."
+            \ of the playlist."
           type: String
           required: true
         requestBody:
@@ -5378,9 +4813,9 @@ categories:
           If this happens, have a look in the `Retry-After` header, where you will see a number displayed.
           This is the amount of seconds that you need to wait, before you can retry sending your requests.
         scopes:
-        - ugc-image-upload
-        - playlist-modify-public
         - playlist-modify-private
+        - playlist-modify-public
+        - ugc-image-upload
         notes: |-
           The request should contain a Base64 encoded JPEG image data, maximum payload size is 256 KB.
 
@@ -5404,13 +4839,6 @@ categories:
         httpMethod: GET
         path: /search
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details."
-          type: String
-          required: true
         - location: QUERY
           name: q
           description: "Search [query](#writing-a-query---guidelines) keywords and\
@@ -5420,7 +4848,7 @@ categories:
         - location: QUERY
           name: type
           description: "A comma-separated list of item types to search across.   \n\
-            Valid types are: `album` , `artist`, `playlist`, `track`, `show` and `episode`.\
+            Valid types are: `album`, `artist`, `playlist`, `track`, `show` and `episode`.\
             \   \nSearch results include hits from all the specified item types. \
             \  \nFor example: `q=name:abacab&type=album,track` returns both albums\
             \ ***and*** tracks with \"abacab\" included in their name."
@@ -5428,16 +4856,14 @@ categories:
           required: true
         - location: QUERY
           name: market
-          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ or the string `from_token`.   \nIf a country code is specified, only\
-            \ content that is playable in that market is returned.   \n**Note** :\
-            \   \n- Playlist results are not affected by the market parameter.   \n\
-            - If market is set to `from_token`, and a valid access token is specified\
-            \ in the request header, only content playable in the country associated\
-            \ with the user account, is returned.   \n- Users can view the country\
-            \ that is associated with their account in the [account settings](https://www.spotify.com/se/account/overview/).\
-            \ A user must grant access to the `user-read-private` scope prior to when\
-            \ the access token is issued."
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
         - location: QUERY
@@ -5474,7 +4900,8 @@ categories:
 
           - The ***header*** status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes).
           - The response ***body*** contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
-        scopes: []
+        scopes:
+        - user-read-private
         notes: |-
           **Writing a Query - Guidelines**
 
@@ -5544,13 +4971,6 @@ categories:
         httpMethod: GET
         path: "/shows/{id}"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details."
-          type: String
-          required: true
         - location: PATH
           name: id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -5560,11 +4980,11 @@ categories:
         - location: QUERY
           name: market
           description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
-            \ If a country code is specified, only shows and episodes that are available\
-            \ in that market will be returned.  \nIf a valid user access token is\
-            \ specified in the request header, the country associated with the user\
-            \ account will take priority over this parameter.  \n*Note: If neither\
-            \ market or user country are provided, the content is considered unavailable\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
             \ for the client.*   \nUsers can view the country that is associated with\
             \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
@@ -5575,7 +4995,8 @@ categories:
           and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).\
           \  \n\nIf a show is unavailable in the given `market` the HTTP status code\
           \ in the response header is `404` NOT FOUND."
-        scopes: []
+        scopes:
+        - user-read-playback-position
         responseTypes:
         - type: ShowObject
           status: 200
@@ -5588,13 +5009,6 @@ categories:
         httpMethod: GET
         path: "/shows/{id}/episodes"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details."
-          type: String
-          required: true
         - location: PATH
           name: id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -5604,25 +5018,25 @@ categories:
         - location: QUERY
           name: market
           description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
-            \ If a country code is specified, only shows and episodes that are available\
-            \ in that market will be returned.  \nIf a valid user access token is\
-            \ specified in the request header, the country associated with the user\
-            \ account will take priority over this parameter.  \n*Note: If neither\
-            \ market or user country are provided, the content is considered unavailable\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
             \ for the client.*   \nUsers can view the country that is associated with\
             \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
         - location: QUERY
           name: limit
-          description: "The maximum number of episodes to return. Default: 20. Minimum:\
+          description: "The maximum number of items to return. Default: 20. Minimum:\
             \ 1. Maximum: 50."
           type: Integer
           required: false
         - location: QUERY
           name: offset
-          description: "The index of the first episode to return. Default: 0 (the\
-            \ first object). Use with limit to get the next set of episodes."
+          description: "The index of the first item to return. Default: 0 (the first\
+            \ item). Use with limit to get the next set of items."
           type: Integer
           required: false
         responseDescription: "On success, the HTTP status code in the response header\
@@ -5634,7 +5048,8 @@ categories:
           \  \n\nIf a show is unavailable in the given `market` the HTTP status code\
           \ in the response header is `404` NOT FOUND. Unavailable episodes are filtered\
           \ out."
-        scopes: []
+        scopes:
+        - user-read-playback-position
         responseTypes:
         - type: "PagingObject[SimplifiedEpisodeObject]"
           status: 200
@@ -5647,31 +5062,24 @@ categories:
         httpMethod: GET
         path: /shows
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details."
+        - location: QUERY
+          name: market
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
-          required: true
+          required: false
         - location: QUERY
           name: ids
           description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
             \ for the shows. Maximum: 50 IDs."
           type: String
           required: true
-        - location: QUERY
-          name: market
-          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
-            \ If a country code is specified, only shows and episodes that are available\
-            \ in that market will be returned.  \nIf a valid user access token is\
-            \ specified in the request header, the country associated with the user\
-            \ account will take priority over this parameter.  \n*Note: If neither\
-            \ market or user country are provided, the content is considered unavailable\
-            \ for the client.*   \nUsers can view the country that is associated with\
-            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
-          type: String
-          required: false
         responseDescription: |-
           On success, the HTTP status code in the response header is `200`
           OK and the response body contains an object whose key is `shows` and whose
@@ -5679,7 +5087,8 @@ categories:
           in JSON format.
 
           Objects are returned in the order requested. If an object is not found, a `null` value is returned in the appropriate position. If a show is unavailable in the given `market`, a `null` value is returned. Duplicate `ids` in the query will result in duplicate objects in the response. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema).
-        scopes: []
+        scopes:
+        - user-read-playback-position
         responseTypes:
         - type: ShowsObject
           status: 200
@@ -5698,13 +5107,6 @@ categories:
         httpMethod: GET
         path: "/audio-analysis/{id}"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details."
-          type: String
-          required: true
         - location: PATH
           name: id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -5729,13 +5131,6 @@ categories:
         httpMethod: GET
         path: "/audio-features/{id}"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details."
-          type: String
-          required: true
         - location: PATH
           name: id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -5759,13 +5154,6 @@ categories:
         httpMethod: GET
         path: /audio-features
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details."
-          type: String
-          required: true
         - location: QUERY
           name: ids
           description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -5791,26 +5179,25 @@ categories:
         httpMethod: GET
         path: /tracks
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details."
-          type: String
-          required: true
-        - location: QUERY
-          name: ids
-          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
-            \ for the tracks. Maximum: 50 IDs."
-          type: String
-          required: true
         - location: QUERY
           name: market
-          description: "An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\
-            \ or the string `from_token`. Provide this parameter if you want to apply\
-            \ [Track Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/)."
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
+        - location: QUERY
+          name: ids
+          description: "A comma-separated list of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+            \ For example: `ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M`. Maximum:\
+            \ 50 IDs."
+          type: String
+          required: true
         responseDescription: |-
           On success, the HTTP status code in the response header is `200`
           OK and the response body contains an object whose key is `tracks` and whose
@@ -5832,13 +5219,6 @@ categories:
         httpMethod: GET
         path: "/tracks/{id}"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details."
-          type: String
-          required: true
         - location: PATH
           name: id
           description: "The [Spotify ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)\
@@ -5847,9 +5227,14 @@ categories:
           required: true
         - location: QUERY
           name: market
-          description: |-
-            An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or the string `from_token`. Provide this parameter if you want to apply [Track
-            Relinking](https://developer.spotify.com/documentation/general/guides/track-relinking-guide/).
+          description: "An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).\
+            \ If a country code is specified, only episodes that are available in\
+            \ that market will be returned.  \nIf a valid user access token is specified\
+            \ in the request header, the country associated with the user account\
+            \ will take priority over this parameter.  \n***Note**: If neither market\
+            \ or user country are provided, the content is considered unavailable\
+            \ for the client.*   \nUsers can view the country that is associated with\
+            \ their account in the [account settings](https://www.spotify.com/se/account/overview/)."
           type: String
           required: false
         responseDescription: |-
@@ -5875,17 +5260,7 @@ categories:
           current user's username).
         httpMethod: GET
         path: /me
-        parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details. The access token must have been issued on behalf of the\
-            \ current user.  \nReading the user's email address requires the `user-read-email`\
-            \ scope; reading country, product subscription level and explicit content\
-            \ settings requires the `user-read-private` scope. See [Using Scopes](https://developer.spotify.com/documentation/general/guides/authorization-guide/#list-of-scopes)."
-          type: String
-          required: true
+        parameters: []
         responseDescription: |-
           On success, the HTTP status code in the response header is `200` OK and the response body contains a [user object](https://developer.spotify.com/documentation/web-api/reference/#object-privateuserobject) in JSON format. On error, the header status code is an [error code](https://developer.spotify.com/documentation/web-api/#response-status-codes) and the response body contains an [error object](https://developer.spotify.com/documentation/web-api/#response-schema). When requesting fields that you don't have the user's authorization to access, it will return error `403` Forbidden.
 
@@ -5904,13 +5279,6 @@ categories:
         httpMethod: GET
         path: "/users/{user_id}"
         parameters:
-        - location: HEADER
-          name: Authorization
-          description: "A valid access token from the Spotify Accounts service: see\
-            \ the [Web API Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)\
-            \ for details."
-          type: String
-          required: true
         - location: PATH
           name: user_id
           description: "The user's [Spotify user ID](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)."
@@ -5967,9 +5335,6 @@ scopes:
       - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks
         api: web-api
         endpoint: endpoint-reorder-or-replace-playlists-tracks
-      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks
-        api: web-api
-        endpoint: endpoint-reorder-or-replace-playlists-tracks
       - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-upload-custom-playlist-cover
         api: web-api
         endpoint: endpoint-upload-custom-playlist-cover
@@ -5997,9 +5362,6 @@ scopes:
       - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-tracks-playlist
         api: web-api
         endpoint: endpoint-remove-tracks-playlist
-      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks
-        api: web-api
-        endpoint: endpoint-reorder-or-replace-playlists-tracks
       - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-reorder-or-replace-playlists-tracks
         api: web-api
         endpoint: endpoint-reorder-or-replace-playlists-tracks
@@ -6101,6 +5463,12 @@ scopes:
       - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-episodes-user
         api: web-api
         endpoint: endpoint-save-episodes-user
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-remove-shows-user
+        api: web-api
+        endpoint: endpoint-remove-shows-user
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-save-shows-user
+        api: web-api
+        endpoint: endpoint-save-shows-user
     user-library-read:
       id: user-library-read
       link: https://developer.spotify.com/documentation/general/guides/scopes/#user-library-read
@@ -6125,6 +5493,12 @@ scopes:
       - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-episodes
         api: web-api
         endpoint: endpoint-get-users-saved-episodes
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-check-users-saved-shows
+        api: web-api
+        endpoint: endpoint-check-users-saved-shows
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-saved-shows
+        api: web-api
+        endpoint: endpoint-get-users-saved-shows
     user-modify-playback-state:
       id: user-modify-playback-state
       link: https://developer.spotify.com/documentation/general/guides/scopes/#user-modify-playback-state
@@ -6159,18 +5533,18 @@ scopes:
       - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-transfer-a-users-playback
         api: web-api
         endpoint: endpoint-transfer-a-users-playback
-      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-seek-to-position-in-currently-playing-track
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-add-to-queue
         api: web-api
-        endpoint: endpoint-seek-to-position-in-currently-playing-track
+        endpoint: endpoint-add-to-queue
     user-read-currently-playing:
       id: user-read-currently-playing
       link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-currently-playing
       description: Read access to a user’s currently playing content.
       userDescription: Read your currently playing content.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recently-played
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-the-users-currently-playing-track
         api: web-api
-        endpoint: endpoint-get-recently-played
+        endpoint: endpoint-get-the-users-currently-playing-track
     user-read-email:
       id: user-read-email
       link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-email
@@ -6214,9 +5588,6 @@ scopes:
       - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-information-about-the-users-current-playback
         api: web-api
         endpoint: endpoint-get-information-about-the-users-current-playback
-      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recently-played
-        api: web-api
-        endpoint: endpoint-get-recently-played
     user-read-private:
       id: user-read-private
       link: https://developer.spotify.com/documentation/general/guides/scopes/#user-read-private
@@ -6235,9 +5606,9 @@ scopes:
       description: Read access to a user’s recently played tracks.
       userDescription: Access your recently played items.
       endpoints:
-      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-the-users-currently-playing-track
+      - url: https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-recently-played
         api: web-api
-        endpoint: endpoint-get-the-users-currently-playing-track
+        endpoint: endpoint-get-recently-played
     user-top-read:
       id: user-top-read
       link: https://developer.spotify.com/documentation/general/guides/scopes/#user-top-read

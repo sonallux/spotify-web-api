@@ -38,6 +38,11 @@ public class SpotifyWebApiEndpoint {
         this(id, name, link, description, httpMethod, path, parameters, requestBody, responseDescription, scopes, notes, new ArrayList<>());
     }
 
+    public SpotifyWebApiEndpoint addScope(String scope) {
+        this.scopes.add(scope);
+        return this;
+    }
+
     @Getter
     @Setter
     @NoArgsConstructor
