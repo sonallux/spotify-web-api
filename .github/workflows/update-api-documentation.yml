@@ -19,10 +19,12 @@ jobs:
           cache: 'maven'
       - name: Build tools
         run: ./mvnw -B package -Pcli
-      - name: Parse Web API
-        run: ./scripts/parse-web-api.sh
-      - name: Generate Open API
-        run: ./scripts/generate-open-api.sh
+#      - name: Parse Web API
+#        run: ./scripts/parse-web-api.sh
+#      - name: Generate Open API
+#        run: ./scripts/generate-open-api.sh
+      - name: Download Spotify's OpenAPI
+        run: wget -O official-spotify-open-api.yml https://developer.spotify.com/_data/documentation/web-api/reference/open-api-schema.yml
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
