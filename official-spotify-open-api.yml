@@ -2487,8 +2487,7 @@ paths:
       summary: |
         Get Track's Audio Analysis
       description: |
-        Get a detailed audio analysis for a single track identified by its unique
-        Spotify ID.
+        Get a low-level audio analysis for a track in the Spotify catalog. The audio analysis describes the track’s structure and musical content, including rhythm, pitch, and timbre. 
       parameters:
         -
           name: id
@@ -2503,7 +2502,7 @@ paths:
             type: string
       responses:
         "200":
-          description: Audio analysis data
+          $ref: "#/components/responses/OneAudioAnalysis"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -4028,6 +4027,13 @@ components:
           schema:
             $ref: "#/components/schemas/AudioFeaturesObject"
 
+    OneAudioAnalysis:
+      description: Audio analysis for one track
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/AudioAnalysisObject"
+
     OneArtist:
       description: An artist
       content:
@@ -4609,6 +4615,345 @@ components:
           description: |
             The [Spotify URI](/documentation/web-api/#spotify-uris-and-ids) for this user.
 
+    AudioAnalysisObject:
+      type: object
+      x-spotify-docs-type: AudioAnalysisObject
+      properties:
+        meta:
+          type: object
+          properties:
+            analyzer_version:
+              type: string
+              example: "4.0.0"
+              description: The version of the Analyzer used to analyze this track.
+            platform:
+              type: string
+              example: "Linux"
+              description: The platform used to read the track's audio data.
+            detailed_status:
+              type: string
+              example: "OK"
+              description: A detailed status code for this track. If analysis data is missing, this code may explain why.
+            status_code:
+              type: integer
+              example: 0
+              description: The return code of the analyzer process. 0 if successful, 1 if any errors occurred.
+            timestamp:
+              type: integer
+              example: 1495193577
+              description: The Unix timestamp (in seconds) at which this track was analyzed.
+            analysis_time:
+              type: number
+              example: 6.93906
+              description: The amount of time taken to analyze this track.
+            input_process:
+              type: string
+              example: libvorbisfile L+R 44100->22050
+              description: The method used to read the track's audio data.
+        track:
+          type: object
+          properties:
+            num_samples:
+              type: integer
+              example: 4585515
+              description: The exact number of audio samples analyzed from this track. See also `analysis_sample_rate`.
+            duration:
+              type: number
+              description: Length of the track in seconds.
+              example: 207.95985
+            sample_md5:
+              type: string
+              description: This field will always contain the empty string.
+            offset_seconds:
+              type: integer
+              example: 0
+              description: An offset to the start of the region of the track that was analyzed. (As the entire track is analyzed, this should always be 0.)
+            window_seconds:
+              type: integer
+              example: 0
+              description: The length of the region of the track was analyzed, if a subset of the track was analyzed. (As the entire track is analyzed, this should always be 0.)
+            analysis_sample_rate:
+              type: integer
+              example: 22050
+              description: The sample rate used to decode and analyze this track. May differ from the actual sample rate of this track available on Spotify.
+            analysis_channels:
+              type: integer
+              example: 1
+              description: The number of channels used for analysis. If 1, all channels are summed together to mono before analysis.
+            end_of_fade_in:
+              type: number
+              example: 0.0
+              description: The time, in seconds, at which the track's fade-in period ends. If the track has no fade-in, this will be 0.0.
+            start_of_fade_out:
+              type: number
+              example: 201.13705
+              description: The time, in seconds, at which the track's fade-out period starts. If the track has no fade-out, this should match the track's length.
+            loudness:
+              $ref: '#/components/schemas/Loudness'
+            tempo:
+              $ref: '#/components/schemas/Tempo'
+            tempo_confidence:
+              type: number
+              example: 0.73
+              minimum: 0
+              maximum: 1
+              description: The confidence, from 0.0 to 1.0, of the reliability of the `tempo`.
+            time_signature:
+              $ref: '#/components/schemas/TimeSignature'
+            time_signature_confidence:
+              type: number
+              example:  0.994
+              minimum: 0
+              maximum: 1
+              description: The confidence, from 0.0 to 1.0, of the reliability of the `time_signature`.
+            key:
+              $ref: '#/components/schemas/Key'
+            key_confidence:
+              type: number
+              example: 0.408
+              minimum: 0
+              maximum: 1
+              description: The confidence, from 0.0 to 1.0, of the reliability of the `key`.
+            mode:
+              $ref: '#/components/schemas/Mode'
+            mode_confidence:
+              type: number
+              example: 0.485
+              minimum: 0
+              maximum: 1
+              description: The confidence, from 0.0 to 1.0, of the reliability of the `mode`.
+            codestring:
+              type: string
+              description: An [Echo Nest Musical Fingerprint (ENMFP)](https://academiccommons.columbia.edu/doi/10.7916/D8Q248M4) codestring for this track.
+            code_version:
+              type: number
+              example: 3.15
+              description: A version number for the Echo Nest Musical Fingerprint format used in the codestring field.
+            echoprintstring:
+              type: string
+              description: An [EchoPrint](https://github.com/spotify/echoprint-codegen) codestring for this track.
+            echoprint_version:
+              type: number
+              example: 4.15
+              description: A version number for the EchoPrint format used in the echoprintstring field.
+            synchstring:
+              type: string
+              description: A [Synchstring](https://github.com/echonest/synchdata) for this track.
+            synch_version:
+              type: number
+              example: 1.0
+              description: A version number for the Synchstring used in the synchstring field.
+            rhythmstring:
+              type: string
+              description: A Rhythmstring for this track. The format of this string is similar to the Synchstring.
+            rhythm_version:
+              type: number
+              example: 1.0
+              description: A version number for the Rhythmstring used in the rhythmstring field.
+        bars:
+          type: array
+          description: The time intervals of the bars throughout the track. A bar (or measure) is a segment of time defined as a given number of beats.
+          items:
+            $ref: '#/components/schemas/TimeIntervalObject'
+        beats:
+          type: array
+          description: The time intervals of beats throughout the track. A beat is the basic time unit of a piece of music; for example, each tick of a metronome. Beats are typically multiples of tatums.
+          items:
+            $ref: '#/components/schemas/TimeIntervalObject'
+        sections:
+          type: array
+          description: Sections are defined by large variations in rhythm or timbre, e.g. chorus, verse, bridge, guitar solo, etc. Each section contains its own descriptions of tempo, key, mode, time_signature, and loudness.
+          items:
+            $ref: '#/components/schemas/SectionObject'
+        segments:
+          type: array
+          description: Each segment contains a roughly conisistent sound throughout its duration.
+          items:
+            $ref: '#/components/schemas/SegmentObject'
+        tatums:
+          type: array
+          description: A tatum represents the lowest regular pulse train that a listener intuitively infers from the timing of perceived musical events (segments).
+          items:
+            $ref: '#/components/schemas/TimeIntervalObject'
+
+    TimeIntervalObject:
+      type: object
+      properties:
+        start:
+          type: number
+          description: The starting point (in seconds) of the time interval.
+          example: 0.49567
+        duration:
+          type: number
+          description: The duration (in seconds) of the time interval.
+          example: 2.18749
+        confidence:
+          type: number
+          description: The confidence, from 0.0 to 1.0, of the reliability of the interval.
+          example: 0.925
+          minimum: 0
+          maximum: 1
+
+    SectionObject:
+      type: object
+      properties:
+        start:
+          type: number
+          description: The starting point (in seconds) of the section.
+          example: 0.0
+        duration:
+          type: number
+          description: The duration (in seconds) of the section.
+          example: 6.97092
+        confidence:
+          type: number
+          description: The confidence, from 0.0 to 1.0, of the reliability of the section's "designation".
+          example: 1.0
+          minimum: 0
+          maximum: 1
+        loudness:
+          type: number
+          description: The overall loudness of the section in decibels (dB). Loudness values are useful for comparing relative loudness of sections within tracks.
+          example: -14.938
+        tempo:
+          type: number
+          description: The overall estimated tempo of the section in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.
+          example: 113.178
+        tempo_confidence:
+          type: number
+          description: The confidence, from 0.0 to 1.0, of the reliability of the tempo. Some tracks contain tempo changes or sounds which don't contain tempo (like pure speech) which would correspond to a low value in this field.
+          example: 0.647
+          minimum: 0
+          maximum: 1
+        key:
+          type: integer
+          description: The estimated overall key of the section. The values in this field ranging from 0 to 11 mapping to pitches using standard Pitch Class notation (E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on). If no key was detected, the value is -1.
+          example: 9
+        key_confidence:
+          type: number
+          description: The confidence, from 0.0 to 1.0, of the reliability of the key. Songs with many key changes may correspond to low values in this field.
+          example: 0.297
+          minimum: 0
+          maximum: 1
+        mode:
+          type: number
+          description: Indicates the modality (major or minor) of a section, the type of scale from which its melodic content is derived. This field will contain a 0 for "minor", a 1 for "major", or a -1 for no result. Note that the major key (e.g. C major) could more likely be confused with the minor key at 3 semitones lower (e.g. A minor) as both keys carry the same pitches.
+          enum:
+            - -1
+            - 0
+            - 1
+        mode_confidence:
+          type: number
+          description: The confidence, from 0.0 to 1.0, of the reliability of the `mode`.
+          example: 0.471
+          minimum: 0
+          maximum: 1
+        time_signature:
+          $ref: '#/components/schemas/TimeSignature'
+        time_signature_confidence:
+          type: number
+          description: The confidence, from 0.0 to 1.0, of the reliability of the `time_signature`. Sections with time signature changes may correspond to low values in this field.
+          example: 1.0
+          minimum: 0
+          maximum: 1
+
+    SegmentObject:
+      type: object
+      properties:
+        start:
+          type: number
+          description: The starting point (in seconds) of the segment.
+          example: 0.70154
+        duration:
+          type: number
+          description: The duration (in seconds) of the segment.
+          example: 0.19891
+        confidence:
+          type: number
+          example: 0.435
+          minimum: 0
+          maximum: 1
+          description: |
+            The confidence, from 0.0 to 1.0, of the reliability of the segmentation. Segments of the song which are difficult to logically segment (e.g: noise) may correspond to low values in this field.
+        loudness_start:
+          type: number
+          description: The onset loudness of the segment in decibels (dB). Combined with `loudness_max` and `loudness_max_time`, these components can be used to describe the "attack" of the segment.
+          example: -23.053
+        loudness_max:
+          type: number
+          description: The peak loudness of the segment in decibels (dB). Combined with `loudness_start` and `loudness_max_time`, these components can be used to describe the "attack" of the segment.
+          example: -14.25
+        loudness_max_time:
+          type: number
+          description: The segment-relative offset of the segment peak loudness in seconds. Combined with `loudness_start` and `loudness_max`, these components can be used to desctibe the "attack" of the segment.
+          example: 0.07305
+        loudness_end:
+          type: number
+          description:  The offset loudness of the segment in decibels (dB). This value should be equivalent to the loudness_start of the following segment.
+          example: 0.0
+        pitches:
+          type: array
+          description: |
+            Pitch content is given by a “chroma” vector, corresponding to the 12 pitch classes C, C#, D to B, with values ranging from 0 to 1 that describe the relative dominance of every pitch in the chromatic scale. For example a C Major chord would likely be represented by large values of C, E and G (i.e. classes 0, 4, and 7).
+
+            Vectors are normalized to 1 by their strongest dimension, therefore noisy sounds are likely represented by values that are all close to 1, while pure tones are described by one value at 1 (the pitch) and others near 0.
+            As can be seen below, the 12 vector indices are a combination of low-power spectrum values at their respective pitch frequencies.
+            <img src="https://developer.spotify.com/assets/audio/Pitch_vector.png" />
+          items:
+            type: number
+            minimum: 0
+            maximum: 1
+          example: [0.212, 0.141, 0.294]
+        timbre:
+          type: array
+          description: |
+            Timbre is the quality of a musical note or sound that distinguishes different types of musical instruments, or voices. It is a complex notion also referred to as sound color, texture, or tone quality, and is derived from the shape of a segment’s spectro-temporal surface, independently of pitch and loudness. The timbre feature is a vector that includes 12 unbounded values roughly centered around 0. Those values are high level abstractions of the spectral surface, ordered by degree of importance.
+
+            For completeness however, the first dimension represents the average loudness of the segment; second emphasizes brightness; third is more closely correlated to the flatness of a sound; fourth to sounds with a stronger attack; etc. See an image below representing the 12 basis functions (i.e. template segments).
+            <img src="https://developer.spotify.com/assets/audio/Timbre_basis_functions.png" />
+
+            The actual timbre of the segment is best described as a linear combination of these 12 basis functions weighted by the coefficient values: timbre = c1 x b1 + c2 x b2 + ... + c12 x b12, where c1 to c12 represent the 12 coefficients and b1 to b12 the 12 basis functions as displayed below. Timbre vectors are best used in comparison with each other.
+          items:
+            type: number
+          example: [42.115, 64.373, -0.233]
+
+    TimeSignature:
+      type: integer
+      description: An estimated time signature. The time signature (meter) is a notational convention to specify how many beats are in each bar (or measure). The time signature ranges from 3 to 7 indicating time signatures of "3/4", to "7/4".
+      example: 4
+      minimum: 3
+      maximum: 7
+
+    Tempo:
+      type: number
+      example: 118.211
+      format: float
+      x-spotify-docs-type: Float
+      description: |
+        The overall estimated tempo of a track in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.
+
+    Loudness:
+      type: number
+      example: -5.883
+      format: float
+      x-spotify-docs-type: Float
+      description: |
+        The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Values typically range between -60 and 0 db.
+
+    Key:
+      type: integer
+      example: 9
+      minimum: -1
+      maximum: 11
+      description: |
+        The key the track is in. Integers map to pitches using standard [Pitch Class notation](https://en.wikipedia.org/wiki/Pitch_class). E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on. If no key was detected, the value is -1.
+
+    Mode:
+      type: integer
+      example: 0
+      description: |
+        Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0.
+
     AudioFeaturesObject:
       type: object
       x-spotify-docs-type: AudioFeaturesObject
@@ -4660,10 +5005,7 @@ components:
           description: |
             Predicts whether a track contains no vocals. "Ooh" and "aah" sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly "vocal". The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0.
         key:
-          type: integer
-          example: 9
-          description: |
-            The key the track is in. Integers map to pitches using standard [Pitch Class notation](https://en.wikipedia.org/wiki/Pitch_class). E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on.
+          $ref: '#/components/schemas/Key'
         liveness:
           type: number
           example: 0.0866
@@ -4672,17 +5014,9 @@ components:
           description: |
             Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.
         loudness:
-          type: number
-          example: -5.883
-          format: float
-          x-spotify-docs-type: Float
-          description: |
-            The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Values typical range between -60 and 0 db.
+          $ref: '#/components/schemas/Loudness'
         mode:
-          type: integer
-          example: 0
-          description: |
-            Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0.
+          $ref: '#/components/schemas/Mode'
         speechiness:
           type: number
           example: 0.0556
@@ -4691,17 +5025,9 @@ components:
           description: |
             Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.
         tempo:
-          type: number
-          example: 118.211
-          format: float
-          x-spotify-docs-type: Float
-          description: |
-            The overall estimated tempo of a track in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.
+          $ref: '#/components/schemas/Tempo'
         time_signature:
-          type: integer
-          example: 4
-          description: |
-            An estimated overall time signature of a track. The time signature (meter) is a notational convention to specify how many beats are in each bar (or measure).
+          $ref: '#/components/schemas/TimeSignature'
         track_href:
           type: string
           example: |
@@ -4721,6 +5047,8 @@ components:
         valence:
           type: number
           example: 0.428
+          minimum: 0
+          maximum: 1
           format: float
           x-spotify-docs-type: Float
           description: |
@@ -5078,9 +5406,7 @@ components:
           description: |
             Predicts whether a track contains no vocals. "Ooh" and "aah" sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly "vocal". The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0.
         key:
-          type: integer
-          description: |
-            The key the track is in. Integers map to pitches using standard [Pitch Class notation](https://en.wikipedia.org/wiki/Pitch_class). E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on.
+          $ref: '#/components/schemas/Key'
         liveness:
           type: number
           format: float
@@ -5088,15 +5414,9 @@ components:
           description: |
             Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.
         loudness:
-          type: number
-          format: float
-          x-spotify-docs-type: Float
-          description: |
-            The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Values typical range between -60 and 0 db.
+          $ref: '#/components/schemas/Loudness'
         mode:
-          type: integer
-          description: |
-            Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0.
+          $ref: '#/components/schemas/Mode'
         popularity:
           type: number
           format: float
@@ -5110,15 +5430,9 @@ components:
           description: |
             Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.
         tempo:
-          type: number
-          format: float
-          x-spotify-docs-type: Float
-          description: |
-            The overall estimated tempo of a track in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.
+          $ref: '#/components/schemas/Tempo'
         time_signature:
-          type: integer
-          description: |
-            An estimated overall time signature of a track. The time signature (meter) is a notational convention to specify how many beats are in each bar (or measure).
+          $ref: '#/components/schemas/TimeSignature'
         valence:
           type: number
           format: float
