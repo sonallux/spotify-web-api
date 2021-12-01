@@ -510,7 +510,7 @@ paths:
             title: Query
             description: |
               Your search query.
-              
+
               You can narrow down your search using field filters. The available filters are `album`, `artist`, `track`, `year`, `upc`, `tag:hipster`, `tag:new`, `isrc`, and `genre`. Each field filter only applies to certain result types.
 
               The `artist` filter can be used while searching albums, artists or tracks.<br />
@@ -551,7 +551,7 @@ paths:
           schema:
             title: Limit
             description: |
-              The maximum number of results to return in each item type. 
+              The maximum number of results to return in each item type.
             default: 20
             example: 10
             type: integer
@@ -1697,7 +1697,7 @@ paths:
         Create Playlist
       description: |
         Create a playlist for a Spotify user. (The playlist will be empty until
-        you [add tracks](/documentation/web-api/reference/#endpoint-add-tracks-to-playlist).)
+        you [add tracks](/documentation/web-api/reference/#/operations/add-tracks-to-playlist).)
       parameters:
         - $ref: '#/components/parameters/PathUserId'
       requestBody:
@@ -2487,7 +2487,7 @@ paths:
       summary: |
         Get Track's Audio Analysis
       description: |
-        Get a low-level audio analysis for a track in the Spotify catalog. The audio analysis describes the track’s structure and musical content, including rhythm, pitch, and timbre. 
+        Get a low-level audio analysis for a track in the Spotify catalog. The audio analysis describes the track’s structure and musical content, including rhythm, pitch, and timbre.
       parameters:
         -
           name: id
@@ -3033,7 +3033,7 @@ paths:
       summary: |
         Get Available Genre Seeds
       description: |
-        Retrieve a list of available genres seed parameter values for [recommendations](/documentation/web-api/reference/#endpoint-get-recommendations).
+        Retrieve a list of available genres seed parameter values for [recommendations](/documentation/web-api/reference/#/operations/get-recommendations).
       responses:
         "200":
           $ref: "#/components/responses/ManyGenres"
