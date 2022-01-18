@@ -1,4 +1,4 @@
-package de.sonallux.spotify.parser.patching;
+package de.sonallux.json.patching;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,13 +13,13 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class TestOperationTest extends PatchOperationTest {
+class SetOperationTest extends PatchOperationTest {
 
-    private static OperationTestData<TestOperation> testData;
+    private static OperationTestData<SetOperation> testData;
 
     @BeforeAll
     static void setup() throws IOException {
-        testData = loadTestData("test", new TypeReference<>() {});
+        testData = loadTestData("set", new TypeReference<>() {});
     }
 
     static Stream<Arguments> testOperationIsApplied() {
@@ -28,7 +28,7 @@ class TestOperationTest extends PatchOperationTest {
 
     @ParameterizedTest
     @MethodSource
-    void testOperationIsApplied(OperationTestData.SuccessTestCase<TestOperation> testCase) throws Exception {
+    void testOperationIsApplied(OperationTestData.SuccessTestCase<SetOperation> testCase) throws Exception {
         assertPatchIsApplied(testCase);
     }
 
@@ -38,17 +38,17 @@ class TestOperationTest extends PatchOperationTest {
 
     @ParameterizedTest
     @MethodSource
-    void testOperationThrowsError(OperationTestData.FailureTestCase<TestOperation> testCase) throws Exception {
+    void testOperationThrowsError(OperationTestData.FailureTestCase<SetOperation> testCase) {
         assertPatchThrowsError(testCase);
     }
 
     @Test
     void testDeserialization() throws IOException {
-        var opAsJson = "{\"op\": \"test\", \"path\":\"$.a\", \"value\": [1,2]}";
+        var opAsJson = "{\"op\": \"set\", \"path\":\"$.a\", \"value\": [1,2]}";
 
-        var op = OBJECT_MAPPER.readValue(opAsJson, TestOperation.class);
+        var op = OBJECT_MAPPER.readValue(opAsJson, SetOperation.class);
 
-        assertEquals("test", op.getOp());
+        assertEquals("set", op.getOp());
         assertEquals("$.a", op.getPath());
         assertTrue(op.getValue().isArray());
         assertEquals(1, op.getValue().get(0).numberValue());
@@ -57,10 +57,10 @@ class TestOperationTest extends PatchOperationTest {
 
     @Test
     void testSerialization() throws IOException {
-        var op = new TestOperation("$.a", OBJECT_MAPPER.createObjectNode());
+        var op = new SetOperation("$.a", OBJECT_MAPPER.createObjectNode());
 
         var opAsJson = OBJECT_MAPPER.writeValueAsString(op);
 
-        assertEquals("{\"op\":\"test\",\"path\":\"$.a\",\"value\":{}}", opAsJson);
+        assertEquals("{\"op\":\"set\",\"path\":\"$.a\",\"value\":{}}", opAsJson);
     }
 }

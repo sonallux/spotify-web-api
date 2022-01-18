@@ -8,6 +8,7 @@ module de.sonallux.spotify.parser {
     requires org.slf4j;
     requires org.jsoup;
     requires de.sonallux.spotify.core;
+    requires de.sonallux.json;
     requires static lombok;
 
     exports de.sonallux.spotify.parser;

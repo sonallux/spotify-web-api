@@ -1,4 +1,4 @@
-package de.sonallux.spotify.parser.patching;
+package de.sonallux.json.patching;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,19 +7,15 @@ import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.JsonPathException;
 import lombok.Getter;
 
-public class PutOperation extends PatchOperation {
-    @Getter
-    @JsonProperty
-    protected final String key;
+public class SetOperation extends PatchOperation {
 
     @Getter
     @JsonProperty
     protected final JsonNode value;
 
     @JsonCreator
-    public PutOperation(@JsonProperty("path") String path, @JsonProperty("key") String key, @JsonProperty("value") JsonNode value) {
-        super("put", path);
-        this.key = key;
+    public SetOperation(@JsonProperty("path") String path, @JsonProperty("value") JsonNode value) {
+        super("set", path);
         this.value = value;
     }
 
@@ -27,7 +23,7 @@ public class PutOperation extends PatchOperation {
     public JsonNode apply(JsonNode node) throws PatchException {
         try {
             var jsonPath = JsonPath.compile(path);
-            return jsonPath.put(node.deepCopy(), key, value, JSON_PATH_CONFIG);
+            return jsonPath.set(node.deepCopy(), value, JSON_PATH_CONFIG);
         } catch (JsonPathException e) {
             throw new PatchException(e.getMessage(), e);
         }

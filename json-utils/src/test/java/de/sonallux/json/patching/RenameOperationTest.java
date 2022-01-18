@@ -1,4 +1,4 @@
-package de.sonallux.spotify.parser.patching;
+package de.sonallux.json.patching;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.jupiter.api.BeforeAll;
@@ -37,7 +37,7 @@ class RenameOperationTest extends PatchOperationTest {
 
     @ParameterizedTest
     @MethodSource
-    void testOperationThrowsError(OperationTestData.FailureTestCase<RenameOperation> testCase) throws Exception {
+    void testOperationThrowsError(OperationTestData.FailureTestCase<RenameOperation> testCase) {
         assertPatchThrowsError(testCase);
     }
 

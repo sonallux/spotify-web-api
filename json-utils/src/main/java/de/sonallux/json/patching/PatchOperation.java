@@ -1,4 +1,4 @@
-package de.sonallux.spotify.parser.patching;
+package de.sonallux.json.patching;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -22,7 +22,7 @@ import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
     @JsonSubTypes.Type(name = "test", value = TestOperation.class)
 })
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-abstract class PatchOperation {
+public abstract class PatchOperation {
 
     protected static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 

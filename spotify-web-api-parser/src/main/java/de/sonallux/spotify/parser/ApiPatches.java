@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.sonallux.spotify.core.Yaml;
 import de.sonallux.spotify.core.model.SpotifyWebApi;
-import de.sonallux.spotify.parser.patching.Patch;
-import de.sonallux.spotify.parser.patching.PatchException;
+import de.sonallux.json.patching.Patch;
+import de.sonallux.json.patching.PatchException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
