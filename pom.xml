@@ -17,6 +17,7 @@
         <module>spotify-web-api-core</module>
         <module>spotify-web-api-generator-open-api</module>
         <module>spotify-web-api-parser</module>
+        <module>json-utils</module>
     </modules>
 
     <licenses>

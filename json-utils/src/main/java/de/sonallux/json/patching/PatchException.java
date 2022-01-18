@@ -1,4 +1,4 @@
-package de.sonallux.spotify.parser.patching;
+package de.sonallux.json.patching;
 
 public class PatchException extends Exception {
     public PatchException(String message) {

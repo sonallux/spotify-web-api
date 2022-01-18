@@ -1,4 +1,4 @@
-package de.sonallux.spotify.parser.patching;
+package de.sonallux.json.patching;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
