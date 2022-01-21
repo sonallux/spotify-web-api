@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public class OpenApiGenerator {
 
     private static final String MEDIA_TYPE_JSON = "application/json";
-    private static final String SPOTIFY_SECURITY_SCHEME = "spotify_auth";
+    private static final String SPOTIFY_SECURITY_SCHEME = "oauth_2_0";
 
     //TODO: possible response status codes: https://developer.spotify.com/documentation/web-api/#response-status-codes
 
@@ -37,7 +37,7 @@ public class OpenApiGenerator {
     public OpenAPI generate(SpotifyWebApi apiDocumentation) {
         this.openAPI = new OpenAPI();
         this.openAPI
-                .externalDocs(generateExternalDocumentation(apiDocumentation.getApiDocumentationUrl()))
+                .openapi("3.0.3")
                 .info(new Info()
                         .title("Spotify Web API")
                         .version(VersionProvider.getVersion())
@@ -120,10 +120,9 @@ public class OpenApiGenerator {
         }
 
         return new Operation()
-                .operationId(endpoint.getId())
+                .operationId(endpoint.getId().replace("endpoint-", ""))
                 .summary(endpoint.getName())
                 .description(endpoint.getDescription())
-                .externalDocs(generateExternalDocumentation(endpoint.getLink()))
                 .parameters(parameters)
                 .requestBody(requestBody)
                 .responses(apiResponses)
@@ -147,9 +146,10 @@ public class OpenApiGenerator {
     private io.swagger.v3.oas.models.parameters.Parameter generateParameter(SpotifyWebApiEndpoint.Parameter param) {
         var parameter = new io.swagger.v3.oas.models.parameters.Parameter()
                 .name(param.getName())
-                .description(param.getDescription())
                 .required(param.isRequired())
-                .schema(getSchema(param.getType(), Map.of()));
+                .schema(getSchema(param.getType(), Map.of())
+                    .description(param.getDescription())
+                );
         switch (param.getLocation()) {
             case HEADER:
                 parameter.in("header");
@@ -234,15 +234,9 @@ public class OpenApiGenerator {
                 .map(c -> new Tag()
                         .name(c.getId())
                         .description(c.getName())
-                        .externalDocs(generateExternalDocumentation(c.getLink())))
+                )
                 .sorted(Comparator.comparing(Tag::getName))
                 .collect(Collectors.toList());
-    }
-
-    private ExternalDocumentation generateExternalDocumentation(String link) {
-        return new ExternalDocumentation()
-                .url(link)
-                .description("Find more info on the official Spotify Web API Reference");
     }
 
     private Map<String, Schema> generateSchemaObjects(Collection<SpotifyWebApiObject> objects) {
@@ -259,9 +253,6 @@ public class OpenApiGenerator {
                 cursorPagingObject = object;
             }
             var objectSchema = new ObjectSchema();
-            if (!Strings.isNullOrEmpty(object.getLink())) {
-                objectSchema.externalDocs(generateExternalDocumentation(object.getLink()));
-            }
             schemas.put(object.getName(), objectSchema);
         }
 
@@ -287,8 +278,15 @@ public class OpenApiGenerator {
             if (schema == null) {
                 continue;
             }
-            schema.description(prop.getDescription());
-            properties.put(prop.getName(), schema);
+            if (schema.get$ref() != null) {
+                var newSchema = new ComposedSchema()
+                    .allOf(List.of(schema))
+                    .description(prop.getDescription());
+                properties.put(prop.getName(), newSchema);
+            } else {
+                schema.description(prop.getDescription());
+                properties.put(prop.getName(), schema);
+            }
         }
         return properties;
     }
