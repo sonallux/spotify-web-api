@@ -1,0 +1,17 @@
+description: "Add missing requestBody to PUT /playlists/{playlist_id}/images"
+operations:
+  - op: test
+    path: "$.paths./playlists/{playlist_id}/images.put.requestBody"
+    value: null
+  - op: put
+    path: "$.paths./playlists/{playlist_id}/images.put"
+    key: requestBody
+    value:
+      description: The new cover image of the playlist as a Base64 encoded JPEG
+        image. Maximum payload size is 256KB.
+      content:
+        image/jpeg:
+          schema:
+            type: string
+            format: base64
+      required: true

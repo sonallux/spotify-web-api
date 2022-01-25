@@ -1,0 +1,8 @@
+description: update response type to PlaylistsPagingObject
+operations:
+  - op: test
+    path: "$.paths./me/playlists.get.responses.200.$ref"
+    value: '#/components/responses/PagingObject'
+  - op: set
+    path: "$.paths./me/playlists.get.responses.200.$ref"
+    value: '#/components/responses/PlaylistsPagingObject'

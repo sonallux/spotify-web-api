@@ -1,0 +1,17 @@
+description: Fix type of artists property of CursorPagedArtists response
+operations:
+  - op: test
+    path: "$.components.responses.CursorPagedArtists.content.application/json.schema.properties.artists"
+    value:
+      $ref: '#/components/schemas/CursorPagingObject'
+  - op: set
+    path: "$.components.responses.CursorPagedArtists.content.application/json.schema.properties.artists"
+    value:
+      allOf:
+        - $ref: '#/components/schemas/CursorPagingObject'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/ArtistObject'

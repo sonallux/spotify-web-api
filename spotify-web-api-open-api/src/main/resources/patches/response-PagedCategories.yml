@@ -1,0 +1,17 @@
+description: Fix type of categories property of PagedCategories response
+operations:
+  - op: test
+    path: "$.components.responses.PagedCategories.content.application/json.schema.properties.categories"
+    value:
+      $ref: '#/components/schemas/PagingObject'
+  - op: set
+    path: "$.components.responses.PagedCategories.content.application/json.schema.properties.categories"
+    value:
+      allOf:
+        - $ref: '#/components/schemas/PagingObject'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/CategoryObject'

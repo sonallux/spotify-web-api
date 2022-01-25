@@ -1,0 +1,8 @@
+description: update response type to SavedShowsPagingObject
+operations:
+  - op: test
+    path: "$.paths./me/shows.get.responses.200.$ref"
+    value: '#/components/responses/PagingObject'
+  - op: set
+    path: "$.paths./me/shows.get.responses.200.$ref"
+    value: '#/components/responses/SavedShowsPagingObject'

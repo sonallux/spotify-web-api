@@ -1,0 +1,14 @@
+description: Add response for AlbumsPagingObject
+operations:
+  - op: test
+    path: "$.components.responses.AlbumsPagingObject"
+    value: null
+  - op: put
+    path: "$.components.responses"
+    key: AlbumsPagingObject
+    value:
+      description: Pages of albums
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AlbumsPagingObject'

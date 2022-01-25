@@ -1,0 +1,17 @@
+description: Add schema for ArtistsPagingObject
+operations:
+  - op: test
+    path: "$.components.schemas.ArtistsPagingObject"
+    value: null
+  - op: put
+    path: "$.components.schemas"
+    key: ArtistsPagingObject
+    value:
+      allOf:
+        - $ref: '#/components/schemas/PagingObject'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/SimplifiedArtistObject'

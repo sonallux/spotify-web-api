@@ -1,0 +1,7 @@
+description: 'SimplifiedEpisodeObject: second item of allOf property is unnecessary'
+operations:
+  - op: test
+    path: "$.components.schemas.SimplifiedEpisodeObject.allOf[1].type"
+    value: object
+  - op: delete
+    path: "$.components.schemas.SimplifiedEpisodeObject.allOf[1]"

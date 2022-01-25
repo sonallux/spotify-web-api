@@ -90,7 +90,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/PagingObject'
+          $ref: '#/components/responses/TracksPagingObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -181,7 +181,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/PagingObject'
+          $ref: '#/components/responses/AlbumsPagingObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -321,7 +321,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/PagingObject'
+          $ref: '#/components/responses/EpisodesPagingObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -736,7 +736,7 @@ paths:
       - $ref: '#/components/parameters/QueryAdditionalTypes'
       responses:
         "200":
-          $ref: '#/components/responses/PagingObject'
+          $ref: '#/components/responses/PlaylistTracksPagingObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -962,7 +962,7 @@ paths:
           type: integer
       responses:
         "200":
-          $ref: '#/components/responses/PagingObject'
+          $ref: '#/components/responses/PlaylistsPagingObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -992,7 +992,7 @@ paths:
       - $ref: '#/components/parameters/QueryMarket'
       responses:
         "200":
-          $ref: '#/components/responses/PagingObject'
+          $ref: '#/components/responses/SavedAlbumsPagingObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -1126,7 +1126,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/PagingObject'
+          $ref: '#/components/responses/SavedTracksPagingObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -1156,7 +1156,7 @@ paths:
               type: object
               additionalProperties: true
               required:
-              - uris
+              - ids
               properties:
                 ids:
                   type: array
@@ -1263,7 +1263,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/PagingObject'
+          $ref: '#/components/responses/SavedEpisodesPagingObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -1303,7 +1303,7 @@ paths:
               type: object
               additionalProperties: true
               required:
-              - uris
+              - ids
               properties:
                 ids:
                   type: array
@@ -1424,7 +1424,7 @@ paths:
         "429":
           $ref: '#/components/responses/TooManyRequests'
         "200":
-          $ref: '#/components/responses/PagingObject'
+          $ref: '#/components/responses/SavedShowsPagingObject'
       security:
       - oauth_2_0:
         - user-library-read
@@ -1453,6 +1453,20 @@ paths:
       security:
       - oauth_2_0:
         - user-library-modify
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+                    \  \nA maximum of 50 items can be specified in one request. *Note:\
+                    \ if the `ids` parameter is present in the query string, any IDs\
+                    \ listed here in the body will be ignored.*"
+                  items:
+                    type: string
     delete:
       tags:
       - Shows
@@ -1479,6 +1493,20 @@ paths:
       security:
       - oauth_2_0:
         - user-library-modify
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+                    \  \nA maximum of 50 items can be specified in one request. *Note:\
+                    \ if the `ids` parameter is present in the query string, any IDs\
+                    \ listed here in the body will be ignored.*"
+                  items:
+                    type: string
   /me/shows/contains:
     x-spotify-docs-display-name: current-user-contains-saved-shows
     x-spotify-docs-category: Library
@@ -1613,7 +1641,7 @@ paths:
           type: integer
       responses:
         "200":
-          $ref: '#/components/responses/PagingObject'
+          $ref: '#/components/responses/PlaylistsPagingObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -1999,6 +2027,15 @@ paths:
         - ugc-image-upload
         - playlist-modify-public
         - playlist-modify-private
+      requestBody:
+        description: The new cover image of the playlist as a Base64 encoded JPEG
+          image. Maximum payload size is 256KB.
+        content:
+          image/jpeg:
+            schema:
+              type: string
+              format: base64
+        required: true
   /browse/new-releases:
     x-spotify-docs-display-name: new-releases
     x-spotify-docs-category: Browse
@@ -3011,7 +3048,7 @@ paths:
       - $ref: '#/components/parameters/QueryAdditionalTypes'
       responses:
         "200":
-          description: '#/components/responses/OneCurrentlyPlayingTrack'
+          $ref: '#/components/responses/OneCurrentlyPlayingTrack'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -3429,7 +3466,7 @@ paths:
           type: integer
       responses:
         "200":
-          $ref: '#/components/responses/CursorPaging'
+          $ref: '#/components/responses/PlayHistoryCursorPagingObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -3644,7 +3681,7 @@ components:
             - albums
             properties:
               albums:
-                $ref: '#/components/schemas/PagingObject'
+                $ref: '#/components/schemas/AlbumsPagingObject'
     PagedCategories:
       description: A paged set of categories
       content:
@@ -3655,9 +3692,16 @@ components:
             - categories
             properties:
               categories:
-                $ref: '#/components/schemas/PagingObject'
+                allOf:
+                - $ref: '#/components/schemas/PagingObject'
+                - type: object
+                  properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/CategoryObject'
     PagedPlaylistsAndMessage:
-      description: A paged set of albums
+      description: A paged set of playlists
       content:
         application/json:
           schema:
@@ -3666,13 +3710,13 @@ components:
             - playlists
             - message
             properties:
-              albums:
-                $ref: '#/components/schemas/PagingObject'
               message:
                 type: string
                 description: A description of the playlists
+              playlists:
+                $ref: '#/components/schemas/PlaylistsPagingObject'
     PagedPlaylists:
-      description: A paged set of albums
+      description: A paged set of playlists
       content:
         application/json:
           schema:
@@ -3680,11 +3724,11 @@ components:
             required:
             - playlists
             properties:
-              albums:
-                $ref: '#/components/schemas/PagingObject'
               message:
                 type: string
                 description: A description of the playlists
+              playlists:
+                $ref: '#/components/schemas/PlaylistsPagingObject'
     CursorPagedArtists:
       description: A paged set of artists
       content:
@@ -3695,7 +3739,14 @@ components:
             - artists
             properties:
               artists:
-                $ref: '#/components/schemas/CursorPagingObject'
+                allOf:
+                - $ref: '#/components/schemas/CursorPagingObject'
+                - type: object
+                  properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/ArtistObject'
     CursorPaging:
       description: A paged set of objects
       content:
@@ -3871,17 +3922,17 @@ components:
             type: object
             properties:
               tracks:
-                $ref: '#/components/schemas/PagingObject'
+                $ref: '#/components/schemas/TracksPagingObject'
               artists:
-                $ref: '#/components/schemas/PagingObject'
+                $ref: '#/components/schemas/ArtistsPagingObject'
               albums:
-                $ref: '#/components/schemas/PagingObject'
+                $ref: '#/components/schemas/AlbumsPagingObject'
               playlists:
-                $ref: '#/components/schemas/PagingObject'
+                $ref: '#/components/schemas/PlaylistsPagingObject'
               shows:
-                $ref: '#/components/schemas/PagingObject'
+                $ref: '#/components/schemas/ShowsPagingObject'
               episodes:
-                $ref: '#/components/schemas/PagingObject'
+                $ref: '#/components/schemas/EpisodesPagingObject'
     OneRecommendations:
       description: A set of recommendations
       content:
@@ -3921,6 +3972,101 @@ components:
               snapshot_id:
                 type: string
                 example: abc
+    AlbumsPagingObject:
+      description: Pages of albums
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AlbumsPagingObject'
+    EpisodesPagingObject:
+      description: Pages of episodes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EpisodesPagingObject'
+    PlayHistoryCursorPagingObject:
+      description: Pages of PlayHistory objects
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/CursorPagingObject'
+            - type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/PlayHistoryObject'
+    PlaylistsPagingObject:
+      description: Pages of playlists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlaylistsPagingObject'
+    PlaylistTracksPagingObject:
+      description: Pages of playlist tracks
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlaylistTracksPagingObject'
+    SavedAlbumsPagingObject:
+      description: Pages of saved albums
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/PagingObject'
+            - type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SavedAlbumObject'
+    SavedEpisodesPagingObject:
+      description: Pages of saved episodes
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/PagingObject'
+            - type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SavedEpisodeObject'
+    SavedShowsPagingObject:
+      description: Pages of saved shows
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/PagingObject'
+            - type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SavedShowObject'
+    SavedTracksPagingObject:
+      description: Pages of saved tracks
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/PagingObject'
+            - type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SavedTrackObject'
+    TracksPagingObject:
+      description: Pages of tracks
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TracksPagingObject'
   schemas:
     LinkedTrackObject:
       type: object
@@ -5330,7 +5476,7 @@ components:
         tracks:
           type: object
           allOf:
-          - $ref: '#/components/schemas/PagingObject'
+          - $ref: '#/components/schemas/PlaylistTracksPagingObject'
           description: |
             The tracks of the playlist.
         type:
@@ -5547,15 +5693,16 @@ components:
         - show
         properties:
           show:
-            $ref: '#/components/schemas/SimplifiedShowObject'
             description: |
               The show on which the episode belongs.
+            type: object
+            allOf:
+            - $ref: '#/components/schemas/SimplifiedShowObject'
     SimplifiedEpisodeObject:
       x-spotify-docs-type: SimplifiedEpisodeObject
       type: object
       allOf:
       - $ref: '#/components/schemas/EpisodeBase'
-      - type: object
     EpisodeBase:
       type: object
       required:
@@ -5809,14 +5956,13 @@ components:
           episodes:
             type: object
             allOf:
-            - $ref: '#/components/schemas/PagingObject'
+            - $ref: '#/components/schemas/EpisodesPagingObject'
             description: |
               The episodes of the show.
     SimplifiedShowObject:
       x-spotify-docs-type: SimplifiedShowObject
       allOf:
       - $ref: '#/components/schemas/ShowBase'
-      - type: object
     AlbumBase:
       type: object
       required:
@@ -5949,9 +6095,28 @@ components:
           tracks:
             type: object
             allOf:
-            - $ref: '#/components/schemas/PagingObject'
+            - $ref: '#/components/schemas/TracksPagingObject'
             description: |
               The tracks of the album.
+          popularity:
+            type: integer
+            description: "The popularity of the album, with 100 being the most popular.\
+              \ The popularity is calculated from the popularity of the album's individual\
+              \ tracks."
+          label:
+            type: string
+            description: The label for the album.
+          external_ids:
+            allOf:
+            - $ref: '#/components/schemas/ExternalIdObject'
+            description: |
+              Known external IDs for the album.
+          genres:
+            type: array
+            description: "A list of the genres used to classify the album. (If not\
+              \ yet classified, the array is empty.)"
+            items:
+              type: string
     ContextObject:
       type: object
       x-spotify-docs-type: ContextObject
@@ -6059,6 +6224,69 @@ components:
           type: boolean
           description: |
             When `true`, indicates that the explicit content setting is locked and can't be changed by the user.
+    AlbumsPagingObject:
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedAlbumObject'
+    ArtistsPagingObject:
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedArtistObject'
+    EpisodesPagingObject:
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedEpisodeObject'
+    PlaylistsPagingObject:
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedPlaylistObject'
+    PlaylistTracksPagingObject:
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/PlaylistTrackObject'
+    ShowsPagingObject:
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedShowObject'
+    TracksPagingObject:
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedTrackObject'
   parameters:
     PathAlbumId:
       in: path
