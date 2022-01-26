@@ -5939,7 +5939,7 @@ components:
         is_externally_hosted:
           type: boolean
           description: |
-            True if all of the show's episodes are hosted outside of Spotify's CDN. This field might be `null` in some cases.
+            True if all of the shows episodes are hosted outside of Spotify's CDN. This field might be `null` in some cases.
         languages:
           type: array
           items:
@@ -6254,7 +6254,7 @@ components:
         title: Market
         description: |
           An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
-            If a country code is specified, only episodes that are available in that market will be returned.<br>
+            If a country code is specified, only content that is available in that market will be returned.<br>
             If a valid user access token is specified in the request header, the country associated with
             the user account will take priority over this parameter.<br>
             _**Note**: If neither market or user country are provided, the content is considered unavailable for the client._<br>
