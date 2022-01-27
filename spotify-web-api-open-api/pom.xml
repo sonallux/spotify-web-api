@@ -22,8 +22,6 @@
     <properties>
         <swagger-core.version>2.1.12</swagger-core.version>
         <swagger-parser.version>2.0.29</swagger-parser.version>
-        <javers.version>6.5.3</javers.version>
-        <guava.version>31.0.1-jre</guava.version>
 
         <moditect.module.name>de.sonallux.spotify.openapi</moditect.module.name>
     </properties>
@@ -35,11 +33,6 @@
             <version>2021.10.17</version>
         </dependency>
         <dependency>
-            <groupId>org.javers</groupId>
-            <artifactId>javers-core</artifactId>
-            <version>${javers.version}</version>
-        </dependency>
-        <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-core</artifactId>
             <version>${swagger-core.version}</version>
@@ -48,11 +41,6 @@
             <groupId>io.swagger.parser.v3</groupId>
             <artifactId>swagger-parser-v3</artifactId>
             <version>${swagger-parser.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -89,11 +77,6 @@
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>${assertj.version}</version>
         </dependency>
     </dependencies>
 

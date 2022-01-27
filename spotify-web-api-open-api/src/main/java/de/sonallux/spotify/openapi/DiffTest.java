@@ -1,15 +1,9 @@
 package de.sonallux.spotify.openapi;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
-import com.google.common.collect.Lists;
-import de.sonallux.json.patching.Patch;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Map;
 
 public class DiffTest {
     private static final ObjectMapper OPEN_API_YAML = io.swagger.v3.core.util.Yaml.mapper();

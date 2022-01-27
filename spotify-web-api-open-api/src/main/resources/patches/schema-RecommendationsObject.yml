@@ -1,0 +1,24 @@
+description: fix type of tracks property
+operations:
+  - op: test
+    path: "$.components.schemas.RecommendationsObject.properties.tracks.items.$ref"
+    value: '#/components/schemas/SimplifiedTrackObject'
+  - op: set
+    path: "$.components.schemas.RecommendationsObject.properties.tracks.items.$ref"
+    value: '#/components/schemas/TrackObject'
+  - op: test
+    path: "$.components.schemas.RecommendationsObject.properties.tracks.description"
+    value: |
+      An array of [track object (simplified)](/documentation/web-api/reference/#object-simplifiedtrackobject) ordered according to the parameters supplied.
+  - op: set
+    path: "$.components.schemas.RecommendationsObject.properties.tracks.description"
+    value: |
+      An array of track objects ordered according to the parameters supplied.
+  - op: test
+    path: "$.components.schemas.RecommendationsObject.properties.seeds.description"
+    value: |
+      An array of [recommendation seed objects](/documentation/web-api/reference/#object-recommendationseedobject).
+  - op: set
+    path: "$.components.schemas.RecommendationsObject.properties.seeds.description"
+    value: |
+      An array of recommendation seed objects.

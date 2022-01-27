@@ -1,4 +1,4 @@
-description: Fix PagedPlaylists description and wrong albums property
+description: Fix PagedPlaylists description and wrong albums property and remove message property
 operations:
   - op: test
     path: "$.components.responses.PagedPlaylists.description"
@@ -17,3 +17,10 @@ operations:
   - op: set
     path: "$.components.responses.PagedPlaylists.content.application/json.schema.properties.playlists.$ref"
     value: '#/components/schemas/PlaylistsPagingObject'
+  - op: test
+    path: "$.components.responses.PagedPlaylists.content.application/json.schema.properties.message"
+    value:
+      type: string
+      description: A description of the playlists
+  - op: delete
+    path: "$.components.responses.PagedPlaylists.content.application/json.schema.properties.message"

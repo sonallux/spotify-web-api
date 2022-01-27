@@ -3724,9 +3724,6 @@ components:
             required:
             - playlists
             properties:
-              message:
-                type: string
-                description: A description of the playlists
               playlists:
                 $ref: '#/components/schemas/PlaylistsPagingObject'
     CursorPagedArtists:
@@ -5256,13 +5253,13 @@ components:
           items:
             $ref: '#/components/schemas/RecommendationSeedObject'
           description: |
-            An array of [recommendation seed objects](/documentation/web-api/reference/#object-recommendationseedobject).
+            An array of recommendation seed objects.
         tracks:
           type: array
           items:
-            $ref: '#/components/schemas/SimplifiedTrackObject'
+            $ref: '#/components/schemas/TrackObject'
           description: |
-            An array of [track object (simplified)](/documentation/web-api/reference/#object-simplifiedtrackobject) ordered according to the parameters supplied.
+            An array of track objects ordered according to the parameters supplied.
     RecommendationSeedObject:
       type: object
       x-spotify-docs-type: RecommendationSeedObject
@@ -5646,7 +5643,7 @@ components:
             Part of the response when [Track Relinking](/documentation/general/guides/track-relinking-guide/) is applied. If `true`, the track is playable in the given market. Otherwise `false`.
         linked_from:
           allOf:
-          - $ref: '#/components/schemas/TrackObject'
+          - $ref: '#/components/schemas/LinkedTrackObject'
           description: |
             Part of the response when [Track Relinking](/documentation/general/guides/track-relinking-guide/) is applied, and the requested track has been replaced with different track. The track in the `linked_from` object contains information about the originally requested track.
         restrictions:
@@ -5916,7 +5913,7 @@ components:
         is_externally_hosted:
           type: boolean
           description: |
-            True if all of the show's episodes are hosted outside of Spotify's CDN. This field might be `null` in some cases.
+            True if all of the shows episodes are hosted outside of Spotify's CDN. This field might be `null` in some cases.
         languages:
           type: array
           items:
@@ -6316,7 +6313,7 @@ components:
         title: Market
         description: |
           An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
-            If a country code is specified, only episodes that are available in that market will be returned.<br>
+            If a country code is specified, only content that is available in that market will be returned.<br>
             If a valid user access token is specified in the request header, the country associated with
             the user account will take priority over this parameter.<br>
             _**Note**: If neither market or user country are provided, the content is considered unavailable for the client._<br>
