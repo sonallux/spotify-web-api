@@ -514,14 +514,16 @@ paths:
             example: `q=name:abacab&type=album,track` returns both albums and tracks
             with "abacab" included in their name.
           example: "track,artist"
-          enum:
-          - album
-          - artist
-          - playlist
-          - track
-          - show
-          - episode
           type: array
+          items:
+            type: string
+            enum:
+            - album
+            - artist
+            - playlist
+            - track
+            - show
+            - episode
       - $ref: '#/components/parameters/QueryMarket'
       - name: limit
         required: false

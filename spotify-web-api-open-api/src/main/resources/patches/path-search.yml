@@ -1,0 +1,28 @@
+description: Fix parameter type
+operations:
+  - op: test
+    path: "$.paths./search.get.parameters[?(@.name=='type')].schema.items"
+    value: []
+  - op: test
+    path: "$.paths./search.get.parameters[?(@.name=='type')].schema.enum"
+    value:
+      - - album
+        - artist
+        - playlist
+        - track
+        - show
+        - episode
+  - op: put
+    path: "$.paths./search.get.parameters[?(@.name=='type')].schema"
+    key: items
+    value:
+      type: string
+      enum:
+        - album
+        - artist
+        - playlist
+        - track
+        - show
+        - episode
+  - op: delete
+    path: "$.paths./search.get.parameters[?(@.name=='type')].schema.enum"
