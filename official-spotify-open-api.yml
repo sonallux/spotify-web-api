@@ -578,7 +578,7 @@ paths:
           schema:
             title: Include External
             description: |
-              If `include_external=audio` is specified it signals that the client can play externally hosted audio content, and marks  
+              If `include_external=audio` is specified it signals that the client can play externally hosted audio content, and marks
               the content as playable in the response. By default externally hosted audio content is marked as unplayable in the response.
             type: string
             enum:
@@ -4321,7 +4321,7 @@ components:
             The date and time the track or episode was added. _**Note**: some very old playlists may return `null` in this field._
         added_by:
           allOf:
-            - $ref: '#/components/schemas/PublicUserObject'
+            - $ref: '#/components/schemas/PlaylistUserObject'
           description: |
             The Spotify user who added the track or episode. _**Note**: some very old playlists may return `null` in this field._
         is_local:
@@ -5483,7 +5483,7 @@ components:
             The name of the playlist.
         owner:
           allOf:
-            - $ref: '#/components/schemas/PublicUserObject'
+            - $ref: '#/components/schemas/PlaylistOwnerObject'
           description: |
             The user who owns the playlist
         public:
@@ -5546,7 +5546,7 @@ components:
             The name of the playlist.
         owner:
           allOf:
-            - $ref: '#/components/schemas/PublicUserObject'
+            - $ref: '#/components/schemas/PlaylistOwnerObject'
           description: |
             The user who owns the playlist
         public:
@@ -5583,6 +5583,49 @@ components:
           type: integer
           description: |
             Number of tracks in the playlist.
+
+    PlaylistUserObject:
+      type: object
+      x-spotify-docs-type: PlaylistUserObject
+      properties:
+        external_urls:
+          allOf:
+            - $ref: '#/components/schemas/ExternalUrlObject'
+          description: |
+            Known public external URLs for this user.
+        followers:
+          allOf:
+            - $ref: '#/components/schemas/FollowersObject'
+          description: |
+            Information about the followers of this user.
+        href:
+          type: string
+          description: |
+            A link to the Web API endpoint for this user.
+        id:
+          type: string
+          description: |
+            The [Spotify user ID](/documentation/web-api/#spotify-uris-and-ids) for this user.
+        type:
+          type: string
+          enum: [ "user" ]
+          description: |
+            The object type.
+        uri:
+          type: string
+          description: |
+            The [Spotify URI](/documentation/web-api/#spotify-uris-and-ids) for this user.
+
+    PlaylistOwnerObject:
+      allOf:
+        - $ref: '#/components/schemas/PlaylistUserObject'
+        - type: object
+          properties:
+            display_name:
+              type: string
+              nullable: true
+              description: |
+                The name displayed on the user's profile. `null` if not available.
 
     CategoryObject:
       type: object
