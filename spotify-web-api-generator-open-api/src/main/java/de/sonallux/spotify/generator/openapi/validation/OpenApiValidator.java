@@ -1,9 +1,9 @@
 package de.sonallux.spotify.generator.openapi.validation;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.github.fge.jsonschema.core.report.ListProcessingReport;
 import com.github.fge.jsonschema.core.report.LogLevel;
 import com.github.fge.jsonschema.core.report.ProcessingMessage;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
@@ -27,37 +27,27 @@ public class OpenApiValidator {
 
         JsonNode spec = readNode(content);
         if (spec == null) {
-            ProcessingMessage pm = new ProcessingMessage();
-            pm.setLogLevel(LogLevel.ERROR);
-            pm.setMessage("Unable to read content.  It may be invalid JSON or YAML");
-            output.addValidationMessage(new SchemaValidationError(pm.asJson()));
+            ProcessingMessage pm = new ProcessingMessage()
+                .setLogLevel(LogLevel.ERROR)
+                .setMessage("Unable to read content.  It may be invalid JSON or YAML");
+            output.addValidationMessage(convertProcessingMessage(pm));
             return output;
         }
 
-        SwaggerParseResult result;
-        try {
-            result = readOpenApi(content);
-        } catch (Exception e) {
-            ProcessingMessage pm = new ProcessingMessage();
-            pm.setLogLevel(LogLevel.ERROR);
-            pm.setMessage("unable to parse OpenAPI: " + e.getMessage());
-            output.addValidationMessage(new SchemaValidationError(pm.asJson()));
-            return output;
-        }
-        if (result != null) {
-            for (String message : result.getMessages()) {
-                output.addMessage(message);
-            }
+        var result = readOpenApi(content);
+        for (var message : result.getMessages()) {
+            ProcessingMessage pm = new ProcessingMessage()
+                .setLogLevel(LogLevel.ERROR)
+                .setMessage("OpenAPI parse error: " + message);
+            output.addValidationMessage(convertProcessingMessage(pm));
         }
 
         // do actual JSON schema validation
         JsonSchema schema = getSchemaV3();
         ProcessingReport report = schema.validate(spec);
-        ListProcessingReport lp = new ListProcessingReport();
-        lp.mergeWith(report);
 
-        for (ProcessingMessage pm : lp) {
-            output.addValidationMessage(new SchemaValidationError(pm.asJson()));
+        for (ProcessingMessage pm : report) {
+            output.addValidationMessage(convertProcessingMessage(pm));
         }
 
         return output;
@@ -80,10 +70,23 @@ public class OpenApiValidator {
         return factory.getJsonSchema(schemaObject);
     }
 
-    private SwaggerParseResult readOpenApi(String content) throws IllegalArgumentException {
+    private SwaggerParseResult readOpenApi(String content) {
         OpenAPIV3Parser parser = new OpenAPIV3Parser();
         return parser.readContents(content, null, null);
 
+    }
+
+    private SchemaValidationError convertProcessingMessage(ProcessingMessage processingMessage) {
+        try {
+            var jsonNode = processingMessage.asJson();
+            return JSON_MAPPER.treeToValue(jsonNode, SchemaValidationError.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            var schemaValidationError = new SchemaValidationError();
+            schemaValidationError.setLevel("error");
+            schemaValidationError.setMessage("Failed to parse processing message: " + e.getMessage());
+            return schemaValidationError;
+        }
     }
 
     private JsonNode readNode(String text) {
