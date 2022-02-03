@@ -1,4 +1,4 @@
-module spotify.web.api.generator.open.api {
+module spotify.web.api.generator.openapi {
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
     requires com.google.common;
