@@ -13,6 +13,7 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -58,7 +59,10 @@ public class OpenApiPatches {
             } else {
                 path = Path.of(uri);
             }
-            Files.list(path).forEach(patchConsumer);
+            Files.list(path)
+                // Sort files by filename to have a consistent order
+                .sorted(Comparator.comparing(p -> p.getFileName().toString()))
+                .forEach(patchConsumer);
         } catch (IOException | URISyntaxException e) {
             throw new OpenApiPatchException("Failed to load patches", e);
         } finally {

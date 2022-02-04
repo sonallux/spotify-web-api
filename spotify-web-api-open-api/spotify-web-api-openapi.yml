@@ -3995,18 +3995,18 @@ components:
                   type: array
                   items:
                     $ref: '#/components/schemas/PlayHistoryObject'
-    PlaylistsPagingObject:
-      description: Pages of playlists
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlaylistsPagingObject'
     PlaylistTracksPagingObject:
       description: Pages of playlist tracks
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/PlaylistTracksPagingObject'
+    PlaylistsPagingObject:
+      description: Pages of playlists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlaylistsPagingObject'
     SavedAlbumsPagingObject:
       description: Pages of saved albums
       content:
@@ -6291,15 +6291,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/SimplifiedEpisodeObject'
-    PlaylistsPagingObject:
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/SimplifiedPlaylistObject'
     PlaylistTracksPagingObject:
       allOf:
       - $ref: '#/components/schemas/PagingObject'
@@ -6309,6 +6300,15 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/PlaylistTrackObject'
+    PlaylistsPagingObject:
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedPlaylistObject'
     ShowsPagingObject:
       allOf:
       - $ref: '#/components/schemas/PagingObject'
