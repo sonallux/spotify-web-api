@@ -1,0 +1,14 @@
+description: Add response for EpisodesPagingObject
+operations:
+  - op: test
+    path: "$.components.responses.EpisodesPagingObject"
+    value: null
+  - op: put
+    path: "$.components.responses"
+    key: EpisodesPagingObject
+    value:
+      description: Pages of episodes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EpisodesPagingObject'

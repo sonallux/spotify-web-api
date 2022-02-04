@@ -1,0 +1,17 @@
+description: Add schema for AlbumsPagingObject
+operations:
+  - op: test
+    path: "$.components.schemas.AlbumsPagingObject"
+    value: null
+  - op: put
+    path: "$.components.schemas"
+    key: AlbumsPagingObject
+    value:
+      allOf:
+        - $ref: '#/components/schemas/PagingObject'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/SimplifiedAlbumObject'

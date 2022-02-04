@@ -1,0 +1,8 @@
+description: Fix type of albums property of PagedAlbums response
+operations:
+  - op: test
+    path: "$.components.responses.PagedAlbums.content.application/json.schema.properties.albums.$ref"
+    value: '#/components/schemas/PagingObject'
+  - op: set
+    path: "$.components.responses.PagedAlbums.content.application/json.schema.properties.albums.$ref"
+    value: '#/components/schemas/AlbumsPagingObject'

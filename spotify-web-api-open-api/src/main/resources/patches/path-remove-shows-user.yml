@@ -1,0 +1,22 @@
+description: "delete on /me/shows is missing requestBody"
+operations:
+  - op: test
+    path: "$.paths./me/shows.delete.requestBody"
+    value: null
+  - op: put
+    path: "$.paths./me/shows.delete"
+    key: "requestBody"
+    value:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ids:
+                type: array
+                description: "A JSON array of the [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).\
+                          \  \nA maximum of 50 items can be specified in one request. *Note:\
+                          \ if the `ids` parameter is present in the query string, any IDs\
+                          \ listed here in the body will be ignored.*"
+                items:
+                  type: string

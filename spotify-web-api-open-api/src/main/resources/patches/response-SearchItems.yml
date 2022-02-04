@@ -1,0 +1,44 @@
+description: Fix SearchItems response
+operations:
+  # tracks
+  - op: test
+    path: "$.components.responses.SearchItems.content.application/json.schema.properties.tracks.$ref"
+    value: '#/components/schemas/PagingObject'
+  - op: set
+    path: "$.components.responses.SearchItems.content.application/json.schema.properties.tracks.$ref"
+    value: '#/components/schemas/TracksPagingObject'
+  # artists
+  - op: test
+    path: "$.components.responses.SearchItems.content.application/json.schema.properties.artists.$ref"
+    value: '#/components/schemas/PagingObject'
+  - op: set
+    path: "$.components.responses.SearchItems.content.application/json.schema.properties.artists.$ref"
+    value: '#/components/schemas/ArtistsPagingObject'
+  # albums
+  - op: test
+    path: "$.components.responses.SearchItems.content.application/json.schema.properties.albums.$ref"
+    value: '#/components/schemas/PagingObject'
+  - op: set
+    path: "$.components.responses.SearchItems.content.application/json.schema.properties.albums.$ref"
+    value: '#/components/schemas/AlbumsPagingObject'
+  # playlists
+  - op: test
+    path: "$.components.responses.SearchItems.content.application/json.schema.properties.playlists.$ref"
+    value: '#/components/schemas/PagingObject'
+  - op: set
+    path: "$.components.responses.SearchItems.content.application/json.schema.properties.playlists.$ref"
+    value: '#/components/schemas/PlaylistsPagingObject'
+  # shows
+  - op: test
+    path: "$.components.responses.SearchItems.content.application/json.schema.properties.shows.$ref"
+    value: '#/components/schemas/PagingObject'
+  - op: set
+    path: "$.components.responses.SearchItems.content.application/json.schema.properties.shows.$ref"
+    value: '#/components/schemas/ShowsPagingObject'
+  # episodes
+  - op: test
+    path: "$.components.responses.SearchItems.content.application/json.schema.properties.episodes.$ref"
+    value: '#/components/schemas/PagingObject'
+  - op: set
+    path: "$.components.responses.SearchItems.content.application/json.schema.properties.episodes.$ref"
+    value: '#/components/schemas/EpisodesPagingObject'

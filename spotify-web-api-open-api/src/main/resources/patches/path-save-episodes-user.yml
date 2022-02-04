@@ -1,0 +1,10 @@
+description: save-episodes-user put request body has wrong required type
+operations:
+  - op: test
+    path: "$.paths./me/episodes.put.requestBody.content.application/json.schema.required[0]"
+    value: uris
+  - op: delete
+    path: "$.paths./me/episodes.put.requestBody.content.application/json.schema.required[0]"
+  - op: add
+    path: "$.paths./me/episodes.put.requestBody.content.application/json.schema.required"
+    value: ids

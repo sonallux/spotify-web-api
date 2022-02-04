@@ -1,0 +1,19 @@
+description: Fix PagedPlaylistsAndMessage description and wrong albums property
+operations:
+  - op: test
+    path: "$.components.responses.PagedPlaylistsAndMessage.description"
+    value: A paged set of albums
+  - op: set
+    path: "$.components.responses.PagedPlaylistsAndMessage.description"
+    value: A paged set of playlists
+  - op: test
+    path: "$.components.responses.PagedPlaylistsAndMessage.content.application/json.schema.properties.albums"
+    value:
+      $ref: '#/components/schemas/PagingObject'
+  - op: rename
+    path: "$.components.responses.PagedPlaylistsAndMessage.content.application/json.schema.properties"
+    oldKey: albums
+    newKey: playlists
+  - op: set
+    path: "$.components.responses.PagedPlaylistsAndMessage.content.application/json.schema.properties.playlists.$ref"
+    value: '#/components/schemas/PlaylistsPagingObject'

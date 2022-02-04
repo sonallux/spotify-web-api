@@ -1,0 +1,10 @@
+description: save-tracks-user put request body has wrong required type
+operations:
+  - op: test
+    path: "$.paths./me/tracks.put.requestBody.content.application/json.schema.required[0]"
+    value: uris
+  - op: delete
+    path: "$.paths./me/tracks.put.requestBody.content.application/json.schema.required[0]"
+  - op: add
+    path: "$.paths./me/tracks.put.requestBody.content.application/json.schema.required"
+    value: ids

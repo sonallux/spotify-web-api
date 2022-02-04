@@ -1,0 +1,17 @@
+description: Add schema for EpisodesPagingObject
+operations:
+  - op: test
+    path: "$.components.schemas.EpisodesPagingObject"
+    value: null
+  - op: put
+    path: "$.components.schemas"
+    key: EpisodesPagingObject
+    value:
+      allOf:
+        - $ref: '#/components/schemas/PagingObject'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/SimplifiedEpisodeObject'

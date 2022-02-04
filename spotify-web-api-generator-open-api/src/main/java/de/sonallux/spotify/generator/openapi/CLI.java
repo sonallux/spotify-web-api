@@ -62,10 +62,6 @@ public class CLI implements Runnable {
 
             var hasErrors = false;
             var result = new OpenApiValidator().validateByContent(openApiString);
-            for (var msg : result.getMessages()) {
-                hasErrors = true;
-                System.err.println("Validation result: " + msg);
-            }
             for (var msg : result.getSchemaValidationMessages()) {
                 hasErrors = true;
                 System.err.println("Validation result: " + msg.getMessage() + " at " + msg.getSchema().getPointer());

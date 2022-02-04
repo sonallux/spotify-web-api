@@ -25,6 +25,8 @@ jobs:
 #        run: ./scripts/generate-open-api.sh
       - name: Download Spotify's OpenAPI
         run: wget -O official-spotify-open-api.yml https://developer.spotify.com/_data/documentation/web-api/reference/open-api-schema.yml
+      - name: Patch Spotify's OpenAPI
+        run: ./scripts/patch-open-api.sh
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3

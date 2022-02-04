@@ -1,0 +1,17 @@
+description: Add schema for PlaylistsPagingObject
+operations:
+  - op: test
+    path: "$.components.schemas.PlaylistsPagingObject"
+    value: null
+  - op: put
+    path: "$.components.schemas"
+    key: PlaylistsPagingObject
+    value:
+      allOf:
+        - $ref: '#/components/schemas/PagingObject'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/SimplifiedPlaylistObject'

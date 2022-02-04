@@ -1,0 +1,14 @@
+description: Add response for PlaylistsPagingObject
+operations:
+  - op: test
+    path: "$.components.responses.PlaylistsPagingObject"
+    value: null
+  - op: put
+    path: "$.components.responses"
+    key: PlaylistsPagingObject
+    value:
+      description: Pages of playlists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlaylistsPagingObject'
