@@ -1,0 +1,24 @@
+---
+node1:
+  inner1: test1
+  inner2: test2
+node2:
+  inner1: [42, 11]
+---
+node1:
+  inner1: test1
+  inner2: test3
+node2:
+  inner1: [11]
+  foo: bar
+---
+- type: ValueChanged
+  path: '$.node1.inner2'
+  left: test2
+  right: test3
+- type: ValueRemoved
+  path: '$.node2.inner1[0]'
+  item: 42
+- type: ValueAdded
+  path: '$.node2.foo'
+  item: bar

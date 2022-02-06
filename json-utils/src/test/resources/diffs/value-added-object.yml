@@ -1,0 +1,9 @@
+---
+test: bar
+---
+test: bar
+foo: 123
+---
+- type: ValueAdded
+  path: '$.foo'
+  item: 123

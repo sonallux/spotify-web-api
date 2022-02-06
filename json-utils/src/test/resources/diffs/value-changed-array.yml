@@ -1,0 +1,9 @@
+---
+[foo]
+---
+[bar]
+---
+- type: ValueChanged
+  path: '$[0]'
+  left: foo
+  right: bar

@@ -1,0 +1,9 @@
+---
+test: bar
+foo: 123
+---
+test: bar
+---
+- type: ValueRemoved
+  path: '$.foo'
+  item: 123

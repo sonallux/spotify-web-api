@@ -1,0 +1,8 @@
+---
+[test]
+---
+[test, bar]
+---
+- type: ValueAdded
+  path: '$[1]'
+  item: bar

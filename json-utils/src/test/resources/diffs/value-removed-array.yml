@@ -1,0 +1,8 @@
+---
+[foo, bar]
+---
+[bar]
+---
+- type: ValueRemoved
+  path: '$[0]'
+  item: foo

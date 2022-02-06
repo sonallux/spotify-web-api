@@ -1,0 +1,9 @@
+---
+test: foo
+---
+test: bar
+---
+- type: ValueChanged
+  path: '$.test'
+  left: foo
+  right: bar

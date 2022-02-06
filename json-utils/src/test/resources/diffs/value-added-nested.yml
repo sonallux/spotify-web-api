@@ -1,0 +1,11 @@
+---
+test:
+  - foo: bar
+---
+test:
+  - foo: bar
+    abc: def
+---
+- type: ValueAdded
+  path: '$.test[0].abc'
+  item: def
