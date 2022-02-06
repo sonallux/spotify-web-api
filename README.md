@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/sonallux/spotify-web-api/workflows/Build/badge.svg)](https://github.com/sonallux/spotify-web-api/actions?query=workflow%3ABuild)
 [![Update API documentation](https://github.com/sonallux/spotify-web-api/workflows/Update%20API%20documentation/badge.svg)](https://github.com/sonallux/spotify-web-api/actions?query=workflow%3A%22Update+API+documentation%22)
-[![Maven Central](https://img.shields.io/maven-central/v/de.sonallux.spotify/spotify-web-api-core.svg?label=Maven%20Central)](https://search.maven.org/artifact/de.sonallux.spotify/spotify-web-api-core)
+[![Maven Central](https://img.shields.io/maven-central/v/de.sonallux.spotify/spotify-web-api-parent.svg?label=Maven%20Central)](https://search.maven.org/artifact/de.sonallux.spotify/spotify-web-api-parent)
 [![GitHub](https://img.shields.io/github/license/sonallux/spotify-web-api)](https://github.com/sonallux/spotify-web-api/blob/main/LICENSE)
 
 This monorepo contains tools for fixing and improving the [official Spotify OpenAPI definition](https://developer.spotify.com/_data/documentation/web-api/reference/open-api-schema.yml).

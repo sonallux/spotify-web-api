@@ -1,4 +1,4 @@
-package de.sonallux.spotify.generator.openapi;
+package de.sonallux.spotify.openapi;
 
 import java.io.IOException;
 import java.nio.file.Files;

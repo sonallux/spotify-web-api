@@ -2,6 +2,7 @@ package de.sonallux.spotify.openapi;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersionDetector;
 import io.swagger.v3.core.util.Yaml;
@@ -40,6 +41,13 @@ public class CLI implements Runnable {
         var officialOpenApi = readOfficialOpenApi();
 
         var fixedOfficialOpenApi = applyPatches(officialOpenApi);
+
+        var infoNode = (ObjectNode)fixedOfficialOpenApi.get("info");
+        infoNode.put("version", VersionProvider.getVersion());
+        infoNode.put("title", "Spotify Web API with fixes and improvements from sonallux");
+        infoNode.set("contact", OPEN_API_YAML.createObjectNode()
+            .put("name", "sonallux")
+            .put("url", "https://github.com/sonallux/spotify-web-api"));
 
         if (shouldValidate) {
             validateOpenAPI(fixedOfficialOpenApi);
