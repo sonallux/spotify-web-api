@@ -23,9 +23,6 @@ jobs:
           cache: 'maven'
       - name: Build
         run: ./mvnw -B package -Pcli
-      # Do not run the parser, so we do not get failures because of breaking updates of the Spotify Web API reference
-      #- name: Parse web API
-      #  run: ./scripts/parse-web-api.sh
       - name: Patch Open API
         run: ./scripts/patch-open-api.sh
       - name: Check for generator results

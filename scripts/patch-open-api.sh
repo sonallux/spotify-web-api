@@ -4,7 +4,7 @@
 # This script must be run from the root directory.
 
 OFFICIAL_OPENAPI_FILE=./official-spotify-open-api.yml
-FIXED_OPENAPI_FILE=./spotify-web-api-open-api/spotify-web-api-openapi.yml
+FIXED_OPENAPI_FILE=./fixed-spotify-open-api.yml
 
 # Find a '*.cli-jar'
 cliJarFile=$(find ./spotify-web-api-open-api/target -maxdepth 1 -type f -name "*-cli.jar" -print -quit)

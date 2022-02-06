@@ -5,21 +5,14 @@
 [![Maven Central](https://img.shields.io/maven-central/v/de.sonallux.spotify/spotify-web-api-core.svg?label=Maven%20Central)](https://search.maven.org/artifact/de.sonallux.spotify/spotify-web-api-core)
 [![GitHub](https://img.shields.io/github/license/sonallux/spotify-web-api)](https://github.com/sonallux/spotify-web-api/blob/main/LICENSE)
 
-This monorepo contains tools for parsing the [Spotify Web API Reference](https://developer.spotify.com/documentation/web-api/reference-beta) into a machine-readable format and generating an [Open API Specification](https://github.com/OAI/OpenAPI-Specification) from it.
+This monorepo contains tools for fixing and improving the [official Spotify OpenAPI definition](https://developer.spotify.com/_data/documentation/web-api/reference/open-api-schema.yml).
 
 ## Modules
 
-| Module | Description |
-| --- | --- |
-| [spotify-web-api-core](spotify-web-api-core/README.md) | Contains the model for the Spotify Web API Reference | 
-| [spotify-web-api-parser](spotify-web-api-parser/README.md) | The parser for the Spotify Web API Reference | 
-| [spotify-web-api-generator-open-api](spotify-web-api-generator-open-api/README.md) | Generates an Open API Specification for Spotify's Web API |
-
-## Why the effort of parsing Spotify's Web API Reference?
-- Automated generation of an Open API Specification
-- Automated generation of wrapper
-- Get notified about changes
-
+| Module                                                                             | Description                                                         |
+|------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| [json-utils](json-utils/README.md)                                                 | Utility classes for JSON/YAML                                       |
+| [spotify-web-api-open-api](spotify-web-api-open-api/README.md)                     | Apply the fixes and improvements to the official OpenAPI definition |
 
 ## Versioning
 Unfortunately Spotify does not provide any version information with their Web API reference documentation. Therefore, I do **not** follow [semantic versioning](https://semver.org) when releasing new versions. Version do follow a schema based on the release date: `<year>.<month>.<day>` (e.g. a version released on 30th March 2021 will get the version number `2021.3.30`).

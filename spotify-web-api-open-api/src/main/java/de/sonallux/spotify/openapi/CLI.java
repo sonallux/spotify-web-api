@@ -35,9 +35,6 @@ public class CLI implements Runnable {
     @Option(names = { "-v", "--version"}, versionHelp = true, description = "Print version information")
     boolean versionRequested = false;
 
-    private static final Path OFFICIAL_OPENAPI_FILE = Path.of("official-spotify-open-api.yml");
-    private static final Path OFFICIAL_OPENAPI_FIXED_FILE = Path.of("spotify-web-api-open-api/spotify-web-api-openapi.yml");
-
     @Override
     public void run() {
         var officialOpenApi = readOfficialOpenApi();

@@ -48,5 +48,5 @@ jobs:
         with:
           body_path: release-notes.md
           files: |
-            spotify-web-api-core/src/main/resources/spotify-web-api.yml
-            spotify-web-api-generator-open-api/spotify-web-api-openapi.yml
+            official-spotify-open-api.yml
+            fixed-spotify-open-api.yml
