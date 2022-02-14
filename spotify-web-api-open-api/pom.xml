@@ -20,7 +20,7 @@
     <url>https://github.com/sonallux/spotify-web-api</url>
 
     <properties>
-        <swagger-core.version>2.1.12</swagger-core.version>
+        <swagger-core.version>2.1.13</swagger-core.version>
         <json-schema-validator.version>1.0.66</json-schema-validator.version>
 
         <moditect.module.name>de.sonallux.spotify.openapi</moditect.module.name>
