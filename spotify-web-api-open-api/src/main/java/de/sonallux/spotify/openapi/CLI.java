@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersionDetector;
 import io.swagger.v3.core.util.Yaml;
+import io.swagger.v3.parser.OpenAPIV3Parser;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.IVersionProvider;
@@ -84,6 +85,11 @@ public class CLI implements Runnable {
     }
 
     private static void validateOpenAPI(JsonNode node) {
+        var parseResult = new OpenAPIV3Parser().parseJsonNode(null, node);
+        for (var message : parseResult.getMessages()) {
+            System.err.println(message);
+        }
+
         var openApiJsonSchema = loadOpenApiSchema();
 
         var schemaFactory = JsonSchemaFactory.getInstance(SpecVersionDetector.detect(openApiJsonSchema));
@@ -94,7 +100,7 @@ public class CLI implements Runnable {
             System.err.println(msg);
         }
 
-        if (validationMessages.isEmpty()) {
+        if (validationMessages.isEmpty() && parseResult.getMessages().isEmpty()) {
             System.out.println("No errors on OpenApi found");
             return;
         }
