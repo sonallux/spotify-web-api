@@ -63,7 +63,7 @@
         <!-- Dependencies -->
         <lombok.version>1.18.22</lombok.version>
         <jackson.version>2.12.5</jackson.version>
-        <slf4j.version>1.7.35</slf4j.version>
+        <slf4j.version>1.7.36</slf4j.version>
         <picocli.version>4.6.2</picocli.version>
 
         <!-- Test Dependencies -->
