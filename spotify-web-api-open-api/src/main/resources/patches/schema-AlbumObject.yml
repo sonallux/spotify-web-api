@@ -46,3 +46,15 @@ operations:
       description: "A list of the genres used to classify the album. (If not yet classified, the array is empty.)"
       items:
         type: string
+  # copyrights
+  - op: test
+    path: "$.components.schemas.AlbumObject.allOf[1].properties.copyrights"
+    value: null
+  - op: put
+    path: "$.components.schemas.AlbumObject.allOf[1].properties"
+    key: copyrights
+    value:
+      type: array
+      items:
+        $ref: '#/components/schemas/CopyrightObject'
+      description: The copyright statements of the album.

@@ -6197,6 +6197,11 @@ components:
               \ yet classified, the array is empty.)"
             items:
               type: string
+          copyrights:
+            type: array
+            items:
+              $ref: '#/components/schemas/CopyrightObject'
+            description: The copyright statements of the album.
     ContextObject:
       type: object
       x-spotify-docs-type: ContextObject
