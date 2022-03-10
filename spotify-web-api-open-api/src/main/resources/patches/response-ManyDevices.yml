@@ -1,0 +1,17 @@
+description: Reuse DevicesObject for ManyDevices response
+operations:
+  - op: test
+    path: "$.components.responses.ManyDevices.content.application/json.schema"
+    value:
+      type: object
+      required:
+        - devices
+      properties:
+        devices:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeviceObject'
+  - op: set
+    path: "$.components.responses.ManyDevices.content.application/json.schema"
+    value:
+      $ref: '#/components/schemas/DevicesObject'

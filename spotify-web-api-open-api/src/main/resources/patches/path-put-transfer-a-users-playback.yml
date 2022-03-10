@@ -1,0 +1,7 @@
+description: remove wrong additionalProperties flag from body parameter
+operations:
+  - op: test
+    path: "$.paths./me/player.put.requestBody.content.application/json.schema.properties.play.additionalProperties"
+    value: true
+  - op: delete
+    path: "$.paths./me/player.put.requestBody.content.application/json.schema.properties.play.additionalProperties"

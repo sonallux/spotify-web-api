@@ -1,0 +1,35 @@
+description: Move markets to responses
+operations:
+  - op: test
+    path: "$.paths./markets.get.responses.200"
+    value:
+      description: A markets object with an array of country codes
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              markets:
+                type: array
+                items:
+                  type: string
+                example: ["CA", "BR", "IT"]
+  - op: set
+    path: "$.paths./markets.get.responses.200"
+    value:
+      $ref: "#/components/responses/Markets"
+  - op: put
+    path: "$.components.responses"
+    key: Markets
+    value:
+      description: A markets object with an array of country codes
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              markets:
+                type: array
+                items:
+                  type: string
+                example: ["CA", "BR", "IT"]

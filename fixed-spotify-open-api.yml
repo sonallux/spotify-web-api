@@ -2947,7 +2947,6 @@ paths:
                   type: boolean
                   description: |
                     **true**: ensure playback happens on new device.<br>**false** or not provided: keep the current playback state.
-                  additionalProperties: true
       responses:
         "204":
           description: Playback transferred
@@ -3051,22 +3050,22 @@ paths:
                 context_uri:
                   type: string
                   description: |
-                    string
-                  additionalProperties: true
+                    Spotify URI of the context to play. Valid contexts are albums, artists, playlists. Example: {"context_uri": "spotify:album:1Je1IMUlBXcx1Fz0WE7oPT"}
                 uris:
                   type: array
                   description: |
-                    Array of URIs
+                    A JSON array of the Spotify track URIs to play. For example: {"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh", "spotify:track:1301WleyT98MSxVHPZCA6M"]}
                   items:
                     type: string
                 offset:
                   type: object
-                  description: object
+                  description: |
+                    Indicates from where in the context playback should start. Only available when "context_uri" corresponds to an album or playlist object, or when the uris parameter is used. "position" is zero based and can't be negative. Example: "offset": {"position": 5} "uri" is a string representing the uri of the item to start at. Example: "offset": {"uri": "spotify:track:1301WleyT98MSxVHPZCA6M"}
                   additionalProperties: true
                 position_ms:
                   type: integer
-                  description: integer
-                  additionalProperties: true
+                  description: |
+                    Indicates from what position to start playback. Must be a positive number. Passing in a position that is greater than the length of the track will cause the player to start playing the next song.
       responses:
         "204":
           description: Playback started
@@ -3491,20 +3490,7 @@ paths:
         Get the list of markets where Spotify is available.
       responses:
         "200":
-          description: A markets object with an array of country codes
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  markets:
-                    type: array
-                    items:
-                      type: string
-                    example:
-                    - CA
-                    - BR
-                    - IT
+          $ref: '#/components/responses/Markets'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -3698,14 +3684,7 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            required:
-            - devices
-            properties:
-              devices:
-                type: array
-                items:
-                  $ref: '#/components/schemas/DeviceObject'
+            $ref: '#/components/schemas/DevicesObject'
     PagedAlbums:
       description: A paged set of albums
       content:
@@ -4004,6 +3983,21 @@ components:
               snapshot_id:
                 type: string
                 example: abc
+    Markets:
+      description: A markets object with an array of country codes
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              markets:
+                type: array
+                items:
+                  type: string
+                example:
+                - CA
+                - BR
+                - IT
     AlbumsPagingObject:
       description: Pages of albums
       content:
