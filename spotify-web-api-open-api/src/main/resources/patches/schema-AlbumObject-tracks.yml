@@ -5,4 +5,4 @@ operations:
     value: '#/components/schemas/PagingObject'
   - op: set
     path: "$.components.schemas.AlbumObject.allOf[1].properties.tracks.allOf[0].$ref"
-    value: '#/components/schemas/TracksPagingObject'
+    value: '#/components/schemas/SimplifiedTracksPagingObject'

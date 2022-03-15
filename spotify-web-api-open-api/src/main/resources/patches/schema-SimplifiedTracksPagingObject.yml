@@ -1,11 +1,11 @@
-description: Add schema for ArtistsPagingObject
+description: Add schema for SimplifiedTracksPagingObject
 operations:
   - op: test
-    path: "$.components.schemas.ArtistsPagingObject"
+    path: "$.components.schemas.SimplifiedTracksPagingObject"
     value: null
   - op: put
     path: "$.components.schemas"
-    key: ArtistsPagingObject
+    key: SimplifiedTracksPagingObject
     value:
       allOf:
         - $ref: '#/components/schemas/PagingObject'
@@ -14,4 +14,4 @@ operations:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/ArtistObject'
+                $ref: '#/components/schemas/SimplifiedTrackObject'

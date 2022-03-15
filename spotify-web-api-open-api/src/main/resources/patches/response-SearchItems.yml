@@ -6,14 +6,14 @@ operations:
     value: '#/components/schemas/PagingObject'
   - op: set
     path: "$.components.responses.SearchItems.content.application/json.schema.properties.tracks.$ref"
-    value: '#/components/schemas/TracksPagingObject'
+    value: '#/components/schemas/SimplifiedTracksPagingObject'
   # artists
   - op: test
     path: "$.components.responses.SearchItems.content.application/json.schema.properties.artists.$ref"
     value: '#/components/schemas/PagingObject'
   - op: set
     path: "$.components.responses.SearchItems.content.application/json.schema.properties.artists.$ref"
-    value: '#/components/schemas/ArtistsPagingObject'
+    value: '#/components/schemas/SimplifiedArtistsPagingObject'
   # albums
   - op: test
     path: "$.components.responses.SearchItems.content.application/json.schema.properties.albums.$ref"

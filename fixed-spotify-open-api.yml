@@ -93,7 +93,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/TracksPagingObject'
+          $ref: '#/components/responses/SimplifiedTracksPagingObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -3933,9 +3933,9 @@ components:
             type: object
             properties:
               tracks:
-                $ref: '#/components/schemas/TracksPagingObject'
+                $ref: '#/components/schemas/SimplifiedTracksPagingObject'
               artists:
-                $ref: '#/components/schemas/ArtistsPagingObject'
+                $ref: '#/components/schemas/SimplifiedArtistsPagingObject'
               albums:
                 $ref: '#/components/schemas/AlbumsPagingObject'
               playlists:
@@ -4093,6 +4093,18 @@ components:
                   type: array
                   items:
                     $ref: '#/components/schemas/SavedTrackObject'
+    SimplifiedArtistsPagingObject:
+      description: Pages of artists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SimplifiedArtistsPagingObject'
+    SimplifiedTracksPagingObject:
+      description: Pages of tracks
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SimplifiedTracksPagingObject'
     TracksPagingObject:
       description: Pages of tracks
       content:
@@ -6169,7 +6181,7 @@ components:
           tracks:
             type: object
             allOf:
-            - $ref: '#/components/schemas/TracksPagingObject'
+            - $ref: '#/components/schemas/SimplifiedTracksPagingObject'
             description: |
               The tracks of the album.
           popularity:
@@ -6320,7 +6332,7 @@ components:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/SimplifiedArtistObject'
+              $ref: '#/components/schemas/ArtistObject'
     EpisodesPagingObject:
       allOf:
       - $ref: '#/components/schemas/PagingObject'
@@ -6357,7 +6369,16 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/SimplifiedShowObject'
-    TracksPagingObject:
+    SimplifiedArtistsPagingObject:
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedArtistObject'
+    SimplifiedTracksPagingObject:
       allOf:
       - $ref: '#/components/schemas/PagingObject'
       - type: object
@@ -6366,6 +6387,15 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/SimplifiedTrackObject'
+    TracksPagingObject:
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/TrackObject'
   parameters:
     PathAlbumId:
       in: path

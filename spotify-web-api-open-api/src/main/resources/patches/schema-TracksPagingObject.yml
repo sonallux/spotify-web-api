@@ -14,4 +14,4 @@ operations:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/SimplifiedTrackObject'
+                $ref: '#/components/schemas/TrackObject'

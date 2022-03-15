@@ -5,4 +5,4 @@ operations:
     value: '#/components/responses/PagingObject'
   - op: set
     path: "$.paths./albums/{id}/tracks.get.responses.200.$ref"
-    value: '#/components/responses/TracksPagingObject'
+    value: '#/components/responses/SimplifiedTracksPagingObject'
