@@ -3972,7 +3972,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/CurrentlyPlayingContextObject'
+            $ref: '#/components/schemas/CurrentlyPlayingObject'
     PlaylistSnapshotId:
       description: A snapshot ID for the playlist
       content:

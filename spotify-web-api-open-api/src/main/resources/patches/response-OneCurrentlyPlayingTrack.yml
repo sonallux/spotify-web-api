@@ -1,0 +1,8 @@
+description: Fix type of OneCurrentlyPlayingTrack response
+operations:
+  - op: test
+    path: "$.components.responses.OneCurrentlyPlayingTrack.content.application/json.schema.$ref"
+    value: "#/components/schemas/CurrentlyPlayingContextObject"
+  - op: set
+    path: "$.components.responses.OneCurrentlyPlayingTrack.content.application/json.schema.$ref"
+    value: "#/components/schemas/CurrentlyPlayingObject"
