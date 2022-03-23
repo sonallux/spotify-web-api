@@ -5,7 +5,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/de.sonallux.spotify/spotify-web-api-parent.svg?label=Maven%20Central)](https://search.maven.org/artifact/de.sonallux.spotify/spotify-web-api-parent)
 [![GitHub](https://img.shields.io/github/license/sonallux/spotify-web-api)](https://github.com/sonallux/spotify-web-api/blob/main/LICENSE)
 
-This monorepo contains tools for fixing and improving the [official Spotify OpenAPI definition](https://developer.spotify.com/_data/documentation/web-api/reference/open-api-schema.yml).
+This monorepo contains tools for fixing and improving the [official Spotify OpenAPI definition](https://developer.spotify.com/_data/documentation/web-api/reference/open-api-schema.yml). The fixed OpenAPI definition can be found in the [fixed-spotify-open-api.yml](fixed-spotify-open-api.yml) file.
 
 ## Modules
 
