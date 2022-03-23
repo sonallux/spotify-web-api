@@ -21,13 +21,22 @@
     {
       "op": {
         "op": "set",
-        "path": "$.x.y",
+        "path": "$.a",
+        "value": 2
+      },
+      "node": {},
+      "message": "PathNotFoundException"
+    },
+    {
+      "op": {
+        "op": "set",
+        "path": "$.a.y",
         "value": 42
       },
       "node": {
         "a": {}
       },
-      "message": "Missing property in path $['x']"
+      "message": "PathNotFoundException"
     }
   ],
   "successCases": [
@@ -59,15 +68,6 @@
         "a",
         2
       ]
-    },
-    {
-      "op": {
-        "op": "set",
-        "path": "$.a",
-        "value": 2
-      },
-      "node": {},
-      "expected": {}
     },
     {
       "op": {

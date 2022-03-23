@@ -7,9 +7,7 @@
       },
       "node": {},
       "message": "Missing property in path $['x']"
-    }
-  ],
-  "successCases": [
+    },
     {
       "op": {
         "op": "delete",
@@ -18,10 +16,10 @@
       "node": {
         "x": {}
       },
-      "expected": {
-        "x": {}
-      }
-    },
+      "message": "PathNotFoundException"
+    }
+  ],
+  "successCases": [
     {
       "op": {
         "op": "delete",

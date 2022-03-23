@@ -18,7 +18,7 @@ public class DeleteOperation extends PatchOperation {
             var jsonPath = JsonPath.compile(path);
             return jsonPath.delete(node.deepCopy(), JSON_PATH_CONFIG);
         } catch (JsonPathException e) {
-            throw new PatchException(e.getMessage(), e);
+            throw wrapException(e);
         }
     }
 }
