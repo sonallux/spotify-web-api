@@ -29,7 +29,7 @@ public class PutOperation extends PatchOperation {
             var jsonPath = JsonPath.compile(path);
             return jsonPath.put(node.deepCopy(), key, value, JSON_PATH_CONFIG);
         } catch (JsonPathException e) {
-            throw new PatchException(e.getMessage(), e);
+            throw wrapException(e);
         }
     }
 }

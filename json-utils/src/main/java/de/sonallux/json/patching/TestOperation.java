@@ -38,7 +38,7 @@ public class TestOperation extends PatchOperation {
             throw new PatchException("Path did not exist", e);
         }
         catch (JsonPathException e) {
-            throw new PatchException(e.getMessage(), e);
+            throw wrapException(e);
         }
     }
 }

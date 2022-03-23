@@ -31,6 +31,16 @@ class DeleteOperationTest extends PatchOperationTest {
         assertPatchIsApplied(testCase);
     }
 
+    static Stream<Arguments> testOperationThrowsError() {
+        return testData.failureCases.stream().map(Arguments::of);
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    void testOperationThrowsError(OperationTestData.FailureTestCase<DeleteOperation> testCase) {
+        assertPatchThrowsError(testCase);
+    }
+
     @Test
     void testDeserialization() throws IOException {
         var opAsJson = "{\"op\": \"delete\", \"path\":\"$.a\"}";

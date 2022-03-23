@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.JsonPathException;
 import com.jayway.jsonpath.spi.json.JacksonJsonNodeJsonProvider;
 import com.jayway.jsonpath.spi.mapper.JacksonMappingProvider;
 import lombok.AccessLevel;
@@ -41,4 +42,12 @@ public abstract class PatchOperation {
     protected final String path;
 
     public abstract JsonNode apply(JsonNode node) throws PatchException;
+
+    protected PatchException wrapException(JsonPathException e) {
+        var message = e.getMessage();
+        if (message == null) {
+            message = e.getClass().getSimpleName();
+        }
+        return new PatchException(message, e);
+    }
 }
