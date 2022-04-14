@@ -6175,7 +6175,7 @@ components:
           artists:
             type: array
             items:
-              $ref: '#/components/schemas/ArtistObject'
+              $ref: '#/components/schemas/SimplifiedArtistObject'
             description: |
               The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
           tracks:
