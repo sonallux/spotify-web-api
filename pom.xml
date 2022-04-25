@@ -61,7 +61,7 @@
         <moditect-maven-plugin.version>1.0.0.RC2</moditect-maven-plugin.version>
 
         <!-- Dependencies -->
-        <lombok.version>1.18.22</lombok.version>
+        <lombok.version>1.18.24</lombok.version>
         <jackson.version>2.13.2.20220328</jackson.version>
         <slf4j.version>1.7.36</slf4j.version>
         <picocli.version>4.6.3</picocli.version>
