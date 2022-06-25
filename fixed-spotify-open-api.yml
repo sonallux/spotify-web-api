@@ -3053,7 +3053,6 @@ paths:
                     Optional. Spotify URI of the context to play.
                     Valid contexts are albums, artists & playlists.
                     {context_uri:"spotify:album:1Je1IMUlBXcx1Fz0WE7oPT"}
-                  additionalProperties: true
                 uris:
                   type: array
                   description: |
@@ -3070,8 +3069,8 @@ paths:
                   additionalProperties: true
                 position_ms:
                   type: integer
-                  description: integer
-                  additionalProperties: true
+                  description: |
+                    Indicates from what position to start playback. Must be a positive number. Passing in a position that is greater than the length of the track will cause the player to start playing the next song.
       responses:
         "204":
           description: Playback started

@@ -6,29 +6,6 @@ operations:
   - op: delete
     path: "$.paths./me/player/play.put.requestBody.content.application/json.schema.properties.context_uri.additionalProperties"
   - op: test
-    path: "$.paths./me/player/play.put.requestBody.content.application/json.schema.properties.context_uri.description"
-    value: |
-      string
-  - op: set
-    path: "$.paths./me/player/play.put.requestBody.content.application/json.schema.properties.context_uri.description"
-    value: |
-      Spotify URI of the context to play. Valid contexts are albums, artists, playlists. Example: {"context_uri": "spotify:album:1Je1IMUlBXcx1Fz0WE7oPT"}
-  - op: test
-    path: "$.paths./me/player/play.put.requestBody.content.application/json.schema.properties.uris.description"
-    value: |
-      Array of URIs
-  - op: set
-    path: "$.paths./me/player/play.put.requestBody.content.application/json.schema.properties.uris.description"
-    value: |
-      A JSON array of the Spotify track URIs to play. For example: {"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh", "spotify:track:1301WleyT98MSxVHPZCA6M"]}
-  - op: test
-    path: "$.paths./me/player/play.put.requestBody.content.application/json.schema.properties.offset.description"
-    value: object
-  - op: set
-    path: "$.paths./me/player/play.put.requestBody.content.application/json.schema.properties.offset.description"
-    value: |
-      Indicates from where in the context playback should start. Only available when "context_uri" corresponds to an album or playlist object, or when the uris parameter is used. "position" is zero based and can't be negative. Example: "offset": {"position": 5} "uri" is a string representing the uri of the item to start at. Example: "offset": {"uri": "spotify:track:1301WleyT98MSxVHPZCA6M"}
-  - op: test
     path: "$.paths./me/player/play.put.requestBody.content.application/json.schema.properties.position_ms.additionalProperties"
     value: true
   - op: delete
