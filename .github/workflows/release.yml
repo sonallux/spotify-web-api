@@ -25,9 +25,6 @@ jobs:
     needs: create-version
     runs-on: ubuntu-latest
     steps:
-      - name: Print version
-        run: |
-          echo "Version ${{ needs.create-version.outputs.new-version }}"
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -35,3 +32,10 @@ jobs:
       - name: Print all tags
         run: |
           git tag
+      - name: Check
+        run: |
+          if [ $(git tag -l "${{ needs.create-version.outputs.new-version }}") ]; then
+            echo exists
+          else
+            echo "does not exist"
+          fi
