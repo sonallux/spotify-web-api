@@ -60,4 +60,8 @@ jobs:
       - name: Update Open API
         run: ./scripts/patch-open-api.sh
       - name: git status
-        run: git status
+        run: git diff
+      - name: Commit
+        run: |
+          git add --update
+          git status
