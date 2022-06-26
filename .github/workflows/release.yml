@@ -1,8 +1,6 @@
 name: Release
 on:
   workflow_dispatch:
-  pull_request:
-    branches: [ main ]
 
 jobs:
   create-version:
@@ -48,6 +46,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
+          ref: main
           token: ${{ secrets.GH_REPO_TOKEN }}
       - name: Setup java
         uses: actions/setup-java@v2
@@ -68,7 +67,6 @@ jobs:
           git add --update
           git commit -m "Bump version to ${{ needs.create-version.outputs.new-version }}"
           git tag "v${{ needs.create-version.outputs.new-version }}"
-      - name: git log
+      - name: Push
         run: |
-          git log
-          git tag -l
+          git push --follow-tags
