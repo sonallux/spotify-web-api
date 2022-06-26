@@ -16,7 +16,7 @@ jobs:
         run: |
           new_version=$(date +"%Y.%-m.%-d")
           echo "Releasing version $new_version"
-          echo "::set-output name=new-version::$new_version"
+          echo "::set-output name=new-version::2022.4.14"
       - name: Use version
         run: |
           echo "Version ${{ steps.create-version.outputs.new-version }}"
@@ -34,11 +34,11 @@ jobs:
           git tag
       - name: Check
         run: |
-          if [ $(git tag -l "${{ needs.create-version.outputs.new-version }}") ]; then
+          if [ $(git tag -l "v${{ needs.create-version.outputs.new-version }}") ]; then
             echo "Version ${{ needs.create-version.outputs.new-version }} already exists!"
             exit 1
           else
-            echo "does not exist"
+            echo "Version ${{ needs.create-version.outputs.new-version }} does not exist"
           fi
   update-code:
     name: Update code
@@ -54,4 +54,4 @@ jobs:
           distribution: 'zulu'
           cache: 'maven'
       - name: Update version in code
-        run: ./mvnw versions:set -DnewVersion="${{ needs.create-version.outputs.new-version }}" -DgenerateBackupPoms=false
+        run: ./mvnw -B versions:set -DnewVersion="${{ needs.create-version.outputs.new-version }}" -DgenerateBackupPoms=false
