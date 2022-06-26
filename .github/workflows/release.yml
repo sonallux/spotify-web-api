@@ -1,6 +1,8 @@
 name: Release
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [ main ]
 
 jobs:
   release:
@@ -20,5 +22,8 @@ jobs:
           echo "Releasing version $new_version"
           echo "new_version=$new_version" >> $GITHUB_ENV
       - name: Use version
-        run:
+        run: |
           echo "Version ${{ env.new_version }}"
+      - name: Print all tags
+        run: |
+          git tag
