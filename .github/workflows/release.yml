@@ -69,4 +69,4 @@ jobs:
           git tag "v${{ needs.create-version.outputs.new-version }}"
       - name: Push
         run: |
-          git push --follow-tags
+          git push --atomic origin main "v${{ needs.create-version.outputs.new-version }}"
