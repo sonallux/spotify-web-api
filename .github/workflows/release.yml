@@ -1,0 +1,72 @@
+name: Release
+on:
+  workflow_dispatch:
+
+jobs:
+  create-version:
+    name: Create version string
+    runs-on: ubuntu-latest
+    outputs:
+      new-version: ${{ steps.create-version.outputs.new-version }}
+    steps:
+      - name: Create version string
+        id: create-version
+        run: |
+          new_version=$(date +"%Y.%-m.%-d")
+          echo "Releasing version $new_version"
+          echo "::set-output name=new-version::$new_version"
+      - name: Use version
+        run: |
+          echo "Version ${{ steps.create-version.outputs.new-version }}"
+  check-version:
+    name: Check Version
+    needs: create-version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # We want all history so we can get all tags since previous git tag
+      - name: Print all tags
+        run: |
+          git tag
+      - name: Check
+        run: |
+          if [ $(git tag -l "v${{ needs.create-version.outputs.new-version }}") ]; then
+            echo "Version ${{ needs.create-version.outputs.new-version }} already exists!"
+            exit 1
+          else
+            echo "Version ${{ needs.create-version.outputs.new-version }} does not exist"
+          fi
+  perform-release:
+    name: Perform release
+    needs: [create-version, check-version]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          token: ${{ secrets.GH_REPO_TOKEN }}
+      - name: Setup java
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: 'zulu'
+          cache: 'maven'
+      - name: Update version in code
+        run: ./mvnw -B versions:set -DnewVersion="${{ needs.create-version.outputs.new-version }}" -DgenerateBackupPoms=false
+      - name: Build
+        run: ./mvnw -B package -Pcli
+      - name: Update Open API
+        run: ./scripts/patch-open-api.sh
+      - name: Commit and tag
+        run: |
+          git config user.name sonallux
+          git config user.email 13821543+sonallux@users.noreply.github.com
+          git add --update
+          git commit -m "Bump version to ${{ needs.create-version.outputs.new-version }}"
+          git tag "v${{ needs.create-version.outputs.new-version }}"
+      - name: Push
+        run: |
+          git push --follow-tags
