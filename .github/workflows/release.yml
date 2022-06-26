@@ -40,8 +40,8 @@ jobs:
           else
             echo "Version ${{ needs.create-version.outputs.new-version }} does not exist"
           fi
-  update-code:
-    name: Update code
+  perform-release:
+    name: Perform release
     needs: [create-version, check-version]
     runs-on: ubuntu-latest
     steps:
@@ -69,3 +69,4 @@ jobs:
       - name: git log
         run: |
           git log
+          git tag -l
