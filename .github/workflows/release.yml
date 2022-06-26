@@ -16,7 +16,7 @@ jobs:
         run: |
           new_version=$(date +"%Y.%-m.%-d")
           echo "Releasing version $new_version"
-          echo "::set-output name=new-version::2022.4.14"
+          echo "::set-output name=new-version::$new_version"
       - name: Use version
         run: |
           echo "Version ${{ steps.create-version.outputs.new-version }}"
@@ -55,3 +55,9 @@ jobs:
           cache: 'maven'
       - name: Update version in code
         run: ./mvnw -B versions:set -DnewVersion="${{ needs.create-version.outputs.new-version }}" -DgenerateBackupPoms=false
+      - name: Build
+        run: ./mvnw -B package -Pcli
+      - name: Update Open API
+        run: ./scripts/patch-open-api.sh
+      - name: git status
+        run: git status
