@@ -59,9 +59,13 @@ jobs:
         run: ./mvnw -B package -Pcli
       - name: Update Open API
         run: ./scripts/patch-open-api.sh
-      - name: git status
-        run: git diff
-      - name: Commit
+      - name: Commit and tag
         run: |
+          git config user.name sonallux
+          git config user.email 13821543+sonallux@users.noreply.github.com
           git add --update
-          git status
+          git commit -m "Bump version to ${{ needs.create-version.outputs.new-version }}"
+          git tag "v${{ needs.create-version.outputs.new-version }}"
+      - name: git log
+        run: |
+          git log
