@@ -35,7 +35,23 @@ jobs:
       - name: Check
         run: |
           if [ $(git tag -l "${{ needs.create-version.outputs.new-version }}") ]; then
-            echo exists
+            echo "Version ${{ needs.create-version.outputs.new-version }} already exists!"
+            exit 1
           else
             echo "does not exist"
           fi
+  update-code:
+    name: Update code
+    needs: [create-version, check-version]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup java
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: 'zulu'
+          cache: 'maven'
+      - name: Update version in code
+        run: ./mvnw versions:set -DnewVersion="${{ needs.create-version.outputs.new-version }}" -DgenerateBackupPoms=false
