@@ -21,6 +21,9 @@ Unfortunately Spotify does not provide any version information with their Web AP
 Because the documentation are only based on the Spotify Web API Reference, there might be difference to the actual behaviour of the Spotify Web API. Also, neither do I have any connections to Spotify nor am I an employee at Spotify.
 
 ## How to release a new version
+
+Just start the Release workflow in GitHub Actions or perform the following steps manually
+
 1. Update the version number with `./mvnw versions:set -DnewVersion="<version>" -DgenerateBackupPoms=false`
 2. Run OpenApiGenerator to update the openapi definition with new version
 3. Commit and push changes to GitHub
