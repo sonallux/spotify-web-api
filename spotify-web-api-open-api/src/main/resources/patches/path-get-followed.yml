@@ -15,9 +15,7 @@ operations:
           type: integer
           minimum: 0
           maximum: 50
-  - op: delete
+  - op: set
     path: "$.paths./me/following.get.parameters[?(@.name=='limit')]"
-  - op: add
-    path: "$.paths./me/following.get.parameters"
     value:
       $ref: '#/components/parameters/QueryLimit'

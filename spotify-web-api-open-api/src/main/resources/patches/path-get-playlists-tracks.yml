@@ -10,10 +10,8 @@ operations:
     path: "$.paths./playlists/{playlist_id}/tracks.get.parameters[?(@.$ref=='#/components/parameters/QueryLimit')]"
     value:
       - $ref: '#/components/parameters/QueryLimit'
-  - op: delete
+  - op: set
     path: "$.paths./playlists/{playlist_id}/tracks.get.parameters[?(@.$ref=='#/components/parameters/QueryLimit')]"
-  - op: add
-    path: "$.paths./playlists/{playlist_id}/tracks.get.parameters"
     value:
       name: limit
       required: false

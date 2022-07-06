@@ -735,8 +735,6 @@ paths:
             can be excluded by prefixing them with an exclamation mark, for example:<br>`fields=items.track.album(!external_urls,images)`
           example: "items(added_by.id,track(name,href,album(name,href)))"
           type: string
-      - $ref: '#/components/parameters/QueryOffset'
-      - $ref: '#/components/parameters/QueryAdditionalTypes'
       - name: limit
         required: false
         in: query
@@ -749,6 +747,8 @@ paths:
           type: integer
           minimum: 1
           maximum: 100
+      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: '#/components/parameters/QueryAdditionalTypes'
       responses:
         "200":
           $ref: '#/components/responses/PlaylistTracksPagingObject'
@@ -3390,6 +3390,7 @@ paths:
         Get tracks from the current user's recently played tracks.
         _**Note**: Currently doesn't support podcast episodes._
       parameters:
+      - $ref: '#/components/parameters/QueryLimit'
       - name: after
         required: false
         in: query
@@ -3411,7 +3412,6 @@ paths:
             before (but not including) this cursor position. If `before` is specified,
             `after` must not be specified.
           type: integer
-      - $ref: '#/components/parameters/QueryLimit'
       responses:
         "200":
           $ref: '#/components/responses/PlayHistoryCursorPagingObject'
