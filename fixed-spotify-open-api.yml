@@ -538,7 +538,7 @@ paths:
           default: 20
           example: 10
           type: integer
-          minimum: 0
+          minimum: 1
           maximum: 50
       - name: offset
         required: false
@@ -735,9 +735,20 @@ paths:
             can be excluded by prefixing them with an exclamation mark, for example:<br>`fields=items.track.album(!external_urls,images)`
           example: "items(added_by.id,track(name,href,album(name,href)))"
           type: string
-      - $ref: '#/components/parameters/QueryLimit'
       - $ref: '#/components/parameters/QueryOffset'
       - $ref: '#/components/parameters/QueryAdditionalTypes'
+      - name: limit
+        required: false
+        in: query
+        schema:
+          title: Limit
+          description: |
+            The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 100.
+          default: 20
+          example: 10
+          type: integer
+          minimum: 1
+          maximum: 100
       responses:
         "200":
           $ref: '#/components/responses/PlaylistTracksPagingObject'
@@ -2063,18 +2074,7 @@ paths:
             The last artist ID retrieved from the previous request.
           example: 0I2XqVXqHScXjHhk6AYYRe
           type: string
-      - name: limit
-        required: false
-        in: query
-        schema:
-          title: Limit
-          description: |
-            The maximum number of items to return. Default: 20\. Minimum: 1\. Maximum: 50\.
-          default: 20
-          example: 10
-          type: integer
-          minimum: 0
-          maximum: 50
+      - $ref: '#/components/parameters/QueryLimit'
       responses:
         "200":
           $ref: '#/components/responses/CursorPagedArtists'
@@ -3390,18 +3390,6 @@ paths:
         Get tracks from the current user's recently played tracks.
         _**Note**: Currently doesn't support podcast episodes._
       parameters:
-      - name: limit
-        required: false
-        in: query
-        schema:
-          title: Limit
-          description: |
-            The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50.
-          default: 20
-          example: 10
-          type: integer
-          minimum: 0
-          maximum: 50
       - name: after
         required: false
         in: query
@@ -3423,6 +3411,7 @@ paths:
             before (but not including) this cursor position. If `before` is specified,
             `after` must not be specified.
           type: integer
+      - $ref: '#/components/parameters/QueryLimit'
       responses:
         "200":
           $ref: '#/components/responses/PlayHistoryCursorPagingObject'
@@ -6448,7 +6437,7 @@ components:
         default: 20
         example: 10
         type: integer
-        minimum: 0
+        minimum: 1
         maximum: 50
     QueryOffset:
       name: offset

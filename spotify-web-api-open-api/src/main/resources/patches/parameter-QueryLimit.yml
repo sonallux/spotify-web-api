@@ -1,0 +1,8 @@
+description: Minimum value for limit parameter is one not zero
+operations:
+  - op: test
+    path: "$.components.parameters.QueryLimit.schema.minimum"
+    value: 0
+  - op: set
+    path: "$.components.parameters.QueryLimit.schema.minimum"
+    value: 1

@@ -1,4 +1,4 @@
-description: Fix parameter type
+description: Fix schema of type parameter and fix minimum value of limit parameter
 operations:
   - op: test
     path: "$.paths./search.get.parameters[?(@.name=='type')].schema.items"
@@ -26,3 +26,9 @@ operations:
         - episode
   - op: delete
     path: "$.paths./search.get.parameters[?(@.name=='type')].schema.enum"
+  - op: test
+    path: "$.paths./search.get.parameters[?(@.name=='limit')].schema.minimum"
+    value: [0]
+  - op: set
+    path: "$.paths./search.get.parameters[?(@.name=='limit')].schema.minimum"
+    value: 1

@@ -1,4 +1,4 @@
-description: update response type to PlaylistTracksPagingObject
+description: update response type to PlaylistTracksPagingObject and fix maximum of limit parameter
 operations:
   - op: test
     path: "$.paths./playlists/{playlist_id}/tracks.get.responses.200.$ref"
@@ -6,3 +6,24 @@ operations:
   - op: set
     path: "$.paths./playlists/{playlist_id}/tracks.get.responses.200.$ref"
     value: '#/components/responses/PlaylistTracksPagingObject'
+  - op: test
+    path: "$.paths./playlists/{playlist_id}/tracks.get.parameters[?(@.$ref=='#/components/parameters/QueryLimit')]"
+    value:
+      - $ref: '#/components/parameters/QueryLimit'
+  - op: delete
+    path: "$.paths./playlists/{playlist_id}/tracks.get.parameters[?(@.$ref=='#/components/parameters/QueryLimit')]"
+  - op: add
+    path: "$.paths./playlists/{playlist_id}/tracks.get.parameters"
+    value:
+      name: limit
+      required: false
+      in: query
+      schema:
+        title: Limit
+        description: |
+          The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 100.
+        default: 20
+        example: 10
+        type: integer
+        minimum: 1
+        maximum: 100

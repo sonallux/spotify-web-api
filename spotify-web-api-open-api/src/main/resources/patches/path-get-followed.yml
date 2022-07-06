@@ -1,0 +1,23 @@
+description: Use existing QueryLimit parameter
+operations:
+  - op: test
+    path: "$.paths./me/following.get.parameters[?(@.name=='limit')]"
+    value:
+      - name: limit
+        required: false
+        in: query
+        schema:
+          title: Limit
+          description: |
+            The maximum number of items to return. Default: 20\. Minimum: 1\. Maximum: 50\.
+          default: 20
+          example: 10
+          type: integer
+          minimum: 0
+          maximum: 50
+  - op: delete
+    path: "$.paths./me/following.get.parameters[?(@.name=='limit')]"
+  - op: add
+    path: "$.paths./me/following.get.parameters"
+    value:
+      $ref: '#/components/parameters/QueryLimit'
