@@ -2429,7 +2429,7 @@ paths:
           maximum: 100
       - $ref: '#/components/parameters/QueryMarket'
       - name: seed_artists
-        required: true
+        required: false
         in: query
         schema:
           title: Spotify Artist ID Seeds
@@ -2438,7 +2438,7 @@ paths:
           example: 4NHQUGzhtTLFvgF5SZesLK
           type: string
       - name: seed_genres
-        required: true
+        required: false
         in: query
         schema:
           title: Genres Seeds
@@ -2447,7 +2447,7 @@ paths:
           example: "classical,country"
           type: string
       - name: seed_tracks
-        required: true
+        required: false
         in: query
         schema:
           title: Spotify Track ID Seeds

@@ -1,0 +1,20 @@
+description: seed_artists, seed_genres and seed_tracks are not all required but at least one is required
+operations:
+  - op: test
+    path: "$.paths./recommendations.get.parameters[?(@.name=='seed_artists')].required"
+    value: [true]
+  - op: set
+    path: "$.paths./recommendations.get.parameters[?(@.name=='seed_artists')].required"
+    value: false
+  - op: test
+    path: "$.paths./recommendations.get.parameters[?(@.name=='seed_genres')].required"
+    value: [true]
+  - op: set
+    path: "$.paths./recommendations.get.parameters[?(@.name=='seed_genres')].required"
+    value: false
+  - op: test
+    path: "$.paths./recommendations.get.parameters[?(@.name=='seed_tracks')].required"
+    value: [true]
+  - op: set
+    path: "$.paths./recommendations.get.parameters[?(@.name=='seed_tracks')].required"
+    value: false
