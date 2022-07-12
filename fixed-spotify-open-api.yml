@@ -8,7 +8,7 @@ info:
     The base URI for all Web API requests is `https://api.spotify.com/v1`.
 
     Need help? See our <a href="https://developer.spotify.com/documentation/web-api/guides/">Web API guides</a> for more information, or visit the <a href="https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer">Spotify for Developers community forum</a> to ask questions and connect with other developers.
-  version: 2022.7.6
+  version: 2022.7.12
   title: Spotify Web API with fixes and improvements from sonallux
   termsOfService: https://developer.spotify.com/terms/
   contact:
