@@ -513,14 +513,13 @@ paths:
 
               You can narrow down your search using field filters. The available filters are `album`, `artist`, `track`, `year`, `upc`, `tag:hipster`, `tag:new`, `isrc`, and `genre`. Each field filter only applies to certain result types.
 
-              The `artist` filter can be used while searching albums, artists or tracks.<br />
-              The `album` and `year` filters can be used while searching albums or tracks. You can filter on a single `year` or a range (e.g. 1955-1960).<br />
-              The `genre` filter can be use while searching tracks and artists.<br />
+              The `artist` and `year` filters can be used while searching albums, artists and tracks. You can filter on a single `year` or a range (e.g. 1955-1960).<br />
+              The `album` filter can be used while searching albums and tracks.<br />
+              The `genre` filter can be used while searching artists and tracks.<br />
               The `isrc` and `track` filters can be used while searching tracks.<br />
               The `upc`, `tag:new` and `tag:hipster` filters can only be used while searching albums. The `tag:new` filter will return albums released in the past two weeks and `tag:hipster` can be used to return only albums with the lowest 10% popularity.<br />
 
-              You can also use the `NOT` operator to exclude keywords from your search.
-            example: remaster%20track:Doxy+artist:Miles%20Davis
+            example: remaster%20track:Doxy%20artist:Miles%20Davis
             type: string
         -
           name: type
@@ -530,10 +529,9 @@ paths:
           schema:
             title: Item type
             description: |
-              A comma-separated list of item types to search
-              across. Search results include hits from all the specified item types. For
-              example: `q=name:abacab&type=album,track` returns both albums and tracks
-              with "abacab" included in their name.
+              A comma-separated list of item types to search across. Search results include hits
+              from all the specified item types. For example: `q=abacab&type=album,track` returns
+              both albums and tracks matching "abacab".
             example: track,artist
             enum:
               - album
@@ -3167,7 +3165,7 @@ paths:
         - $ref: '#/components/parameters/QueryAdditionalTypes'
       responses:
         "200":
-          description: "#/components/responses/OneCurrentlyPlayingTrack"
+          $ref: "#/components/responses/OneCurrentlyPlayingTrack"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -3178,6 +3176,7 @@ paths:
         -
           oauth_2_0:
             - user-read-currently-playing
+
   /me/player/play:
     x-spotify-docs-display-name: play
     x-spotify-docs-category: Player
@@ -3631,6 +3630,29 @@ paths:
   /me/player/queue:
     x-spotify-docs-display-name: queue
     x-spotify-docs-category: Player
+    get:
+      tags:
+        - Player
+      operationId: get-queue
+      x-spotify-docs-endpoint-name: Get the User's Queue
+      x-spotify-docs-console-url: /console/get-queue/
+      summary: |
+        Get the User's Queue
+      description: |
+        Get the list of objects that make up the user's queue.
+      responses:
+        "200":
+          $ref: "#/components/responses/Queue"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+      security:
+        -
+          oauth_2_0:
+            - user-read-playback-state
     post:
       tags:
         - Player
@@ -4119,6 +4141,13 @@ components:
             items:
               type: boolean
 
+    Queue:
+      description: Information about the queue
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/QueueObject"
+
     OneCurrentlyPlaying:
       description: Information about playback
       content:
@@ -4368,6 +4397,25 @@ components:
           type: string
           description: |
             The object type of the currently playing item. Can be one of `track`, `episode`, `ad` or `unknown`.
+
+    QueueObject:
+      type: object
+      x-spotify-docs-type: QueueObject
+      properties:
+        currently_playing:
+          oneOf:
+            - $ref: '#/components/schemas/TrackObject'
+            - $ref: '#/components/schemas/EpisodeObject'
+          x-spotify-docs-type: TrackObject | EpisodeObject
+          description: The currently playing track or episode. Can be `null`.
+        queue:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/TrackObject'
+              - $ref: '#/components/schemas/EpisodeObject'
+            x-spotify-docs-type: TrackObject | EpisodeObject
+          description: The tracks or episodes in the queue. Can be empty.
 
     CurrentlyPlayingContextObject:
       type: object
