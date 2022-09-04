@@ -1,9 +1,0 @@
-description: response had description instead of $ref
-operations:
-  - op: test
-    path: "$.paths./me/player/currently-playing.get.responses.200.description"
-    value: "#/components/responses/OneCurrentlyPlayingTrack"
-  - op: rename
-    path: "$.paths./me/player/currently-playing.get.responses.200"
-    oldKey: description
-    newKey: $ref
