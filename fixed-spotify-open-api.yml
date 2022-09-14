@@ -5226,8 +5226,10 @@ components:
             this is "true" then no Web API commands will be accepted by this device.
         name:
           type: string
-          example: Loudest speaker
-          description: The name of the device.
+          example: Kitchen speaker
+          description: A human-readable name for the device. Some devices have a name
+            that the user can configure (e.g. \"Loudest speaker\") and some devices
+            have a generic name associated with the manufacturer or device model.
         type:
           type: string
           example: computer
