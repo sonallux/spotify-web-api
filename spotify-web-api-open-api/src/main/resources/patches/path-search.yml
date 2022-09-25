@@ -12,6 +12,7 @@ operations:
         - track
         - show
         - episode
+        - audiobook
   - op: put
     path: "$.paths./search.get.parameters[?(@.name=='type')].schema"
     key: items
@@ -24,6 +25,7 @@ operations:
         - track
         - show
         - episode
+        - audiobook
   - op: delete
     path: "$.paths./search.get.parameters[?(@.name=='type')].schema.enum"
   - op: test

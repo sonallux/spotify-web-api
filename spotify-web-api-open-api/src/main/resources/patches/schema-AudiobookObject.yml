@@ -1,0 +1,8 @@
+description: Fix type of chapters property to ChaptersPagingObject
+operations:
+  - op: test
+    path: "$.components.schemas.AudiobookObject.allOf[1].properties.chapters.allOf[0].$ref"
+    value: '#/components/schemas/PagingObject'
+  - op: set
+    path: "$.components.schemas.AudiobookObject.allOf[1].properties.chapters.allOf[0].$ref"
+    value: '#/components/schemas/ChaptersPagingObject'

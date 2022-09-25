@@ -1,0 +1,17 @@
+description: Add schema for ChaptersPagingObject
+operations:
+  - op: test
+    path: "$.components.schemas.ChaptersPagingObject"
+    value: null
+  - op: put
+    path: "$.components.schemas"
+    key: ChaptersPagingObject
+    value:
+      allOf:
+        - $ref: '#/components/schemas/PagingObject'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/SimplifiedChapterObject'

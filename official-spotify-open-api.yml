@@ -1,13 +1,13 @@
 openapi: "3.0.3"
 info:
   description: |
-      You can use Spotify's Web API to discover music and podcasts, manage your Spotify library, control audio playback, and much more. Browse our available Web API endpoints using the sidebar at left, or via the navigation bar on top of this page on smaller screens.
-
-      In order to make successful Web API requests your app will need a valid access token. One can be obtained through <a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/">OAuth 2.0</a>.
-
-      The base URI for all Web API requests is `https://api.spotify.com/v1`.
-
-      Need help? See our <a href="https://developer.spotify.com/documentation/web-api/guides/">Web API guides</a> for more information, or visit the <a href="https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer">Spotify for Developers community forum</a> to ask questions and connect with other developers.
+    You can use Spotify's Web API to discover music and podcasts, manage your Spotify library, control audio playback, and much more. Browse our available Web API endpoints using the sidebar at left, or via the navigation bar on top of this page on smaller screens.
+    
+    In order to make successful Web API requests your app will need a valid access token. One can be obtained through <a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/">OAuth 2.0</a>.
+    
+    The base URI for all Web API requests is `https://api.spotify.com/v1`.
+    
+    Need help? See our <a href="https://developer.spotify.com/documentation/web-api/guides/">Web API guides</a> for more information, or visit the <a href="https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer">Spotify for Developers community forum</a> to ask questions and connect with other developers.
   version: "1.0.0"
   title: "Spotify Web API"
   termsOfService: "https://developer.spotify.com/terms/"
@@ -420,6 +420,122 @@ paths:
         -
           oauth_2_0:
             - user-read-playback-position
+  /audiobooks/{id}:
+    x-spotify-docs-display-name: audiobook
+    x-spotify-docs-category: Audiobooks
+    get:
+      operationId: get-an-audiobook
+      tags:
+        - Audiobooks
+      x-spotify-docs-endpoint-name: Get an Audiobook
+      x-spotify-docs-console-url: /console/get-audiobook/?id=5thw29eqjomhIDMY1XKsLk
+      summary: |
+        Get an Audiobook
+      description: |
+        Get Spotify catalog information for a single audiobook.<br />
+        **Note: Audiobooks are only available for the US market.**
+      parameters:
+        - $ref: '#/components/parameters/PathAudiobookId'
+        - $ref: '#/components/parameters/QueryMarket'
+      responses:
+        "200":
+          $ref: "#/components/responses/OneAudiobook"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+      security:
+        -
+          oauth_2_0: []
+  /audiobooks:
+    x-spotify-docs-display-name: several-audiobooks
+    x-spotify-docs-category: Audiobooks
+    get:
+      operationId: get-multiple-audiobooks
+      tags:
+        - Audiobooks
+      x-spotify-docs-endpoint-name: Get Several Audiobooks
+      x-spotify-docs-console-url: /console/get-several-audiobooks/?ids=5thw29eqjomhIDMY1XKsLk,2IEBhnu61ieYGFRPEJIO40
+      summary: |
+        Get Several Audiobooks
+      description: |
+        Get Spotify catalog information for several audiobooks identified by their Spotify IDs.<br />
+        **Note: Audiobooks are only available for the US market.**
+      parameters:
+        - $ref: '#/components/parameters/QueryAudiobookIds'
+        - $ref: '#/components/parameters/QueryMarket'
+      responses:
+        "200":
+          $ref: "#/components/responses/ManyAudiobooks"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+      security:
+        -
+          oauth_2_0: []
+  /chapters/{id}:
+    x-spotify-docs-display-name: chapters
+    x-spotify-docs-category: Chapters
+    get:
+      operationId: get-a-chapter
+      tags:
+        - Chapters
+      x-spotify-docs-endpoint-name: Get a Chapter
+      x-spotify-docs-console-url: /console/get-chapter/?id=2i47HuOBSV2XaJNy0NCZXM
+      summary: |
+        Get a Chapter
+      description: |
+        Get Spotify catalog information for a single chapter.<br />
+        **Note: Chapters are only available for the US market.**
+      parameters:
+        - $ref: '#/components/parameters/PathChapterId'
+        - $ref: '#/components/parameters/QueryMarket'
+      responses:
+        "200":
+          $ref: "#/components/responses/OneChapter"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+      security:
+        -
+          oauth_2_0: []
+  /chapters:
+    x-spotify-docs-display-name: several-chapters
+    x-spotify-docs-category: Chapters
+    get:
+      operationId: get-several-chapters
+      tags:
+        - Chapters
+      x-spotify-docs-endpoint-name: Get Several Chapters
+      x-spotify-docs-console-url: /console/get-several-chapters/?ids=2i47HuOBSV2XaJNy0NCZXM,2GUbORsUnP1qVVlLwd9DzP
+      summary: |
+        Get Several Chapters
+      description: |
+        Get Spotify catalog information for several chapters identified by their Spotify IDs.<br />
+        **Note: Chapters are only available for the US market.**
+      parameters:
+        - $ref: '#/components/parameters/QueryChapterIds'
+        - $ref: '#/components/parameters/QueryMarket'
+      responses:
+        "200":
+          $ref: "#/components/responses/ManyChapters"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+      security:
+        -
+          oauth_2_0: []
   /tracks/{id}:
     x-spotify-docs-display-name: track
     x-spotify-docs-category: Tracks
@@ -499,8 +615,9 @@ paths:
       summary: |
         Search for Item
       description: |
-        Get Spotify catalog information about albums, artists, playlists, tracks, shows or episodes
-        that match a keyword string.
+        Get Spotify catalog information about albums, artists, playlists, tracks, shows, episodes or audiobooks
+        that match a keyword string.<br />
+        **Note: Audiobooks are only available for the US market.**
       parameters:
         -
           name: q
@@ -540,6 +657,7 @@ paths:
               - track
               - show
               - episode
+              - audiobook
             type: array
         - $ref: '#/components/parameters/QueryMarket'
         -
@@ -953,7 +1071,7 @@ paths:
                     even if more recent changes have been made to the playlist.
       responses:
         "200":
-           $ref: "#/components/responses/PlaylistSnapshotId"
+          $ref: "#/components/responses/PlaylistSnapshotId"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -3799,8 +3917,8 @@ components:
 
     Forbidden:
       description: |
-              Bad OAuth request (wrong consumer key, bad nonce, expired
-              timestamp...). Unfortunately, re-authenticating the user won't help here.
+        Bad OAuth request (wrong consumer key, bad nonce, expired
+        timestamp...). Unfortunately, re-authenticating the user won't help here.
       content:
         application/json:
           schema:
@@ -3813,7 +3931,7 @@ components:
 
     TooManyRequests:
       description: |
-              The app has exceeded its rate limits.
+        The app has exceeded its rate limits.
       content:
         application/json:
           schema:
@@ -3837,6 +3955,34 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/AlbumObject'
+
+    ManyAudiobooks:
+      description: A set of audiobooks
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - audiobooks
+            properties:
+              audiobooks:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AudiobookObject'
+
+    ManyChapters:
+      description: A set of chapters
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - chapters
+            properties:
+              chapters:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChapterObject'
 
     ManyDevices:
       description: A set of devices
@@ -3990,6 +4136,20 @@ components:
           schema:
             $ref: "#/components/schemas/EpisodeObject"
 
+    OneChapter:
+      description: A Chapter
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ChapterObject"
+
+    OneAudiobook:
+      description: An Audiobook
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/AudiobookObject"
+
     OneAlbum:
       description: An album
       content:
@@ -4122,6 +4282,8 @@ components:
               shows:
                 $ref: "#/components/schemas/PagingObject"
               episodes:
+                $ref: "#/components/schemas/PagingObject"
+              audiobooks:
                 $ref: "#/components/schemas/PagingObject"
 
     OneRecommendations:
@@ -4365,8 +4527,8 @@ components:
             Whether this track or episode is a [local file](https://developer.spotify.com/web-api/local-files-spotify-playlists/) or not.
         track:
           oneOf:
-           - $ref: '#/components/schemas/TrackObject'
-           - $ref: '#/components/schemas/EpisodeObject'
+            - $ref: '#/components/schemas/TrackObject'
+            - $ref: '#/components/schemas/EpisodeObject'
           x-spotify-docs-type: TrackObject | EpisodeObject
           description: Information about the track or episode.
 
@@ -4389,8 +4551,8 @@ components:
           description: If something is currently playing, return `true`.
         item:
           oneOf:
-           - $ref: '#/components/schemas/TrackObject'
-           - $ref: '#/components/schemas/EpisodeObject'
+            - $ref: '#/components/schemas/TrackObject'
+            - $ref: '#/components/schemas/EpisodeObject'
           x-spotify-docs-type: TrackObject | EpisodeObject
           description: The currently playing track or episode. Can be `null`.
         currently_playing_type:
@@ -4447,8 +4609,8 @@ components:
           description: If something is currently playing, return `true`.
         item:
           oneOf:
-           - $ref: '#/components/schemas/TrackObject'
-           - $ref: '#/components/schemas/EpisodeObject'
+            - $ref: '#/components/schemas/TrackObject'
+            - $ref: '#/components/schemas/EpisodeObject'
           x-spotify-docs-type: TrackObject | EpisodeObject
           description: The currently playing track or episode. Can be `null`.
         currently_playing_type:
@@ -5282,7 +5444,7 @@ components:
           items:
             type: object
           description: |
-             The requested content
+            The requested content
         limit:
           type: integer
           example: 20
@@ -5530,7 +5692,7 @@ components:
           items:
             $ref: '#/components/schemas/ImageObject'
           description: |
-             Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](/documentation/general/guides/working-with-playlists/). _**Note**: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day._
+            Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](/documentation/general/guides/working-with-playlists/). _**Note**: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day._
         name:
           type: string
           description: |
@@ -5593,7 +5755,7 @@ components:
           items:
             $ref: '#/components/schemas/ImageObject'
           description: |
-             Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](/documentation/general/guides/working-with-playlists/). _**Note**: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day._
+            Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](/documentation/general/guides/working-with-playlists/). _**Note**: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day._
         name:
           type: string
           description: |
@@ -5743,7 +5905,7 @@ components:
         explicit:
           type: boolean
           description: |
-             Whether or not the track has explicit lyrics ( `true` = yes it does; `false` = no it does not OR unknown).
+            Whether or not the track has explicit lyrics ( `true` = yes it does; `false` = no it does not OR unknown).
         external_ids:
           allOf:
             - $ref: '#/components/schemas/ExternalIdObject'
@@ -5780,7 +5942,7 @@ components:
         name:
           type: string
           description: |
-             The name of the track.
+            The name of the track.
         popularity:
           type: integer
           description: |
@@ -6086,6 +6248,135 @@ components:
         - $ref: '#/components/schemas/ShowBase'
         - type: object
 
+    AudiobookBase:
+      type: object
+      required:
+        - authors
+        - available_markets
+        - copyrights
+        - description
+        - explicit
+        - external_urls
+        - href
+        - html_description
+        - id
+        - images
+        - languages
+        - media_type
+        - name
+        - narrators
+        - publisher
+        - total_chapters
+        - type
+        - uri
+      properties:
+        authors:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthorObject'
+          description: |
+            The author(s) for the audiobook.
+        available_markets:
+          type: array
+          items:
+            type: string
+          description: |
+            A list of the countries in which the audiobook can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.
+        copyrights:
+          type: array
+          items:
+            $ref: '#/components/schemas/CopyrightObject'
+          description: |
+            The copyright statements of the audiobook.
+        description:
+          type: string
+          description: |
+            A description of the audiobook. HTML tags are stripped away from this field, use `html_description` field in case HTML tags are needed.
+        html_description:
+          type: string
+          description: |
+            A description of the audiobook. This field may contain HTML tags.
+        explicit:
+          type: boolean
+          description: |
+            Whether or not the audiobook has explicit content (true = yes it does; false = no it does not OR unknown).
+        external_urls:
+          allOf:
+            - $ref: '#/components/schemas/ExternalUrlObject'
+          description: |
+            External URLs for this audiobook.
+        href:
+          type: string
+          description: |
+            A link to the Web API endpoint providing full details of the audiobook.
+        id:
+          type: string
+          description: |
+            The [Spotify ID](/documentation/web-api/#spotify-uris-and-ids) for the audiobook.
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageObject'
+          description: |
+            The cover art for the audiobook in various sizes, widest first.
+        languages:
+          type: array
+          items:
+            type: string
+          description: |
+            A list of the languages used in the audiobook, identified by their [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code.
+        media_type:
+          type: string
+          description: |
+            The media type of the audiobook.
+        name:
+          type: string
+          description: |
+            The name of the audiobook.
+        narrators:
+          type: array
+          $ref: '#/components/schemas/NarratorObject'
+          description: |
+            The narrator(s) for the audiobook.
+        publisher:
+          type: string
+          description: |
+            The publisher of the audiobook.
+        type:
+          type: string
+          enum: ["audiobook"]
+          description: |
+            The object type.
+        uri:
+          type: string
+          description: |
+            The [Spotify URI](/documentation/web-api/#spotify-uris-and-ids) for the audiobook.
+        total_chapters:
+          type: integer
+          description: |
+            The number of chapters in this audiobook.
+
+    AudiobookObject:
+      x-spotify-docs-type: AudiobookObject
+      allOf:
+        - $ref: '#/components/schemas/AudiobookBase'
+        - type: object
+          required:
+            - chapters
+          properties:
+            chapters:
+              type: object
+              allOf:
+                - $ref: '#/components/schemas/PagingObject'
+              description: |
+                The chapters of the audiobook.
+
+    SimplifiedAudiobookObject:
+      x-spotify-docs-type: SimplifiedAudiobookObject
+      allOf:
+        - $ref: '#/components/schemas/AudiobookBase'
+        - type: object
+
     AlbumBase:
       type: object
       required:
@@ -6191,6 +6482,151 @@ components:
               description: |
                 The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
 
+    ChapterObject:
+      x-spotify-docs-type: ChapterObject
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ChapterBase'
+        - type: object
+          required:
+            - audiobook
+          properties:
+            audiobook:
+              $ref: '#/components/schemas/SimplifiedAudiobookObject'
+              description: |
+                The audiobook for which the chapter belongs.
+
+    SimplifiedChapterObject:
+      x-spotify-docs-type: SimplifiedChapterObject
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ChapterBase'
+        - type: object
+
+    ChapterBase:
+      type: object
+      required:
+        - audio_preview_url
+        - chapter_number
+        - description
+        - html_description
+        - duration_ms
+        - explicit
+        - external_urls
+        - href
+        - id
+        - images
+        - is_playable
+        - languages
+        - name
+        - release_date
+        - release_date_precision
+        - resume_point
+        - type
+        - uri
+      properties:
+        audio_preview_url:
+          type: string
+          example: https://p.scdn.co/mp3-preview/2f37da1d4221f40b9d1a98cd191f4d6f1646ad17
+          description: |
+            A URL to a 30 second preview (MP3 format) of the episode. `null` if not available.
+        chapter_number:
+          type: integer
+          example: 1
+          description: |
+            The number of the chapter
+        description:
+          type: string
+          example: |
+            A Spotify podcast sharing fresh insights on important topics of the moment—in a way only Spotify can. You’ll hear from experts in the music, podcast and tech industries as we discover and uncover stories about our work and the world around us.
+          description: |
+            A description of the episode. HTML tags are stripped away from this field, use `html_description` field in case HTML tags are needed.
+        html_description:
+          type: string
+          example: |
+            <p>A Spotify podcast sharing fresh insights on important topics of the moment—in a way only Spotify can. You’ll hear from experts in the music, podcast and tech industries as we discover and uncover stories about our work and the world around us.</p>
+          description: |
+            A description of the episode. This field may contain HTML tags.
+        duration_ms:
+          type: integer
+          example: 1686230
+          description: |
+            The episode length in milliseconds.
+        explicit:
+          type: boolean
+          description: |
+            Whether or not the episode has explicit content (true = yes it does; false = no it does not OR unknown).
+        external_urls:
+          allOf:
+            - $ref: '#/components/schemas/ExternalUrlObject'
+          description: |
+            External URLs for this episode.
+        href:
+          type: string
+          example: https://api.spotify.com/v1/episodes/5Xt5DXGzch68nYYamXrNxZ
+          description: |
+            A link to the Web API endpoint providing full details of the episode.
+        id:
+          type: string
+          example: 5Xt5DXGzch68nYYamXrNxZ
+          description: |
+            The [Spotify ID](/documentation/web-api/#spotify-uris-and-ids) for the episode.
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageObject'
+          description: |
+            The cover art for the episode in various sizes, widest first.
+        is_playable:
+          type: boolean
+          description: |
+            True if the episode is playable in the given market. Otherwise false.
+        languages:
+          type: array
+          items:
+            type: string
+          example: ["fr", "en"]
+          description: |
+            A list of the languages used in the episode, identified by their [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) code.
+        name:
+          type: string
+          example: |
+            Starting Your Own Podcast: Tips, Tricks, and Advice From Anchor Creators
+          description: |
+            The name of the episode.
+        release_date:
+          type: string
+          example: 1981-12-15
+          description: |
+            The date the episode was first released, for example `"1981-12-15"`. Depending on the precision, it might be shown as `"1981"` or `"1981-12"`.
+        release_date_precision:
+          type: string
+          example: day
+          enum: ["year", "month", "day"]
+          description: |
+            The precision with which `release_date` value is known.
+        resume_point:
+          allOf:
+            - $ref: '#/components/schemas/ResumePointObject'
+          description: |
+            The user's most recent position in the episode. Set if the supplied access token is a user token and has the scope 'user-read-playback-position'.
+        type:
+          type: string
+          enum: ["episode"]
+          description: |
+            The object type.
+        uri:
+          type: string
+          example: spotify:episode:0zLhl3WsOCQHbe1BPTiHgr
+          description: |
+            The [Spotify URI](/documentation/web-api/#spotify-uris-and-ids) for the episode.
+        restrictions:
+          allOf:
+            - $ref: '#/components/schemas/EpisodeRestrictionObject'
+          description: |
+            Included in the response when a content restriction is applied.
+            See [Restriction Object](/documentation/web-api/reference/#object-episoderestrictionobject) for more details.
+
     AlbumObject:
       x-spotify-docs-type: AlbumObject
       allOf:
@@ -6242,6 +6678,24 @@ components:
           type: string
           description: |
             The type of copyright: `C` = the copyright, `P` = the sound recording (performance) copyright.
+
+    AuthorObject:
+      type: object
+      x-spotify-docs-type: AuthorObject
+      properties:
+        name:
+          type: string
+          description: |
+            The name of the author.
+
+    NarratorObject:
+      type: object
+      x-spotify-docs-type: NarratorObject
+      properties:
+        name:
+          type: string
+          description: |
+            The name of the Narrator.
 
     ExternalIdObject:
       type: object
@@ -6423,6 +6877,48 @@ components:
           The [Spotify ID](/documentation/web-api/#spotify-uris-and-ids)
           for the show.
         example: 38bS44xjbVVZ3No3ByF1dJ
+        type: string
+    PathAudiobookId:
+      name: id
+      required: true
+      in: path
+      schema:
+        title: Spotify Audiobook ID
+        description: |
+          The [Spotify ID](/documentation/web-api/#spotify-uris-and-ids)
+          for the audiobook.
+        example: 38bS44xjbVVZ3No3ByF1dJ
+        type: string
+    QueryAudiobookIds:
+      name: ids
+      required: true
+      in: query
+      schema:
+        title: Spotify Audiobook IDs
+        description: |
+          A comma-separated list of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). For example: `ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M`. Maximum: 50 IDs.
+        example: 7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B
+        type: string
+    PathChapterId:
+      name: id
+      required: true
+      in: path
+      schema:
+        title: Spotify Chapter ID
+        description: |
+          The [Spotify ID](/documentation/web-api/#spotify-uris-and-ids)
+          for the chapter.
+        example: 38bS44xjbVVZ3No3ByF1dJ
+        type: string
+    QueryChapterIds:
+      name: ids
+      required: true
+      in: query
+      schema:
+        title: Spotify Chapter IDs
+        description: |
+          A comma-separated list of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). For example: `ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M`. Maximum: 50 IDs.
+        example: 7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B
         type: string
     QueryTrackIds:
       name: ids

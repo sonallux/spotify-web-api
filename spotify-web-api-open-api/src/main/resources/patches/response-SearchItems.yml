@@ -42,3 +42,10 @@ operations:
   - op: set
     path: "$.components.responses.SearchItems.content.application/json.schema.properties.episodes.$ref"
     value: '#/components/schemas/EpisodesPagingObject'
+  # audiobooks
+  - op: test
+    path: "$.components.responses.SearchItems.content.application/json.schema.properties.audiobooks.$ref"
+    value: '#/components/schemas/PagingObject'
+  - op: set
+    path: "$.components.responses.SearchItems.content.application/json.schema.properties.audiobooks.$ref"
+    value: '#/components/schemas/AudiobooksPagingObject'

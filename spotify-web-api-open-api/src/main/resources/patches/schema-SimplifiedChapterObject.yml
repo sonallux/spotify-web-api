@@ -1,0 +1,7 @@
+description: 'SimplifiedChapterObject: second item of allOf property is unnecessary'
+operations:
+  - op: test
+    path: "$.components.schemas.SimplifiedChapterObject.allOf[1].type"
+    value: object
+  - op: delete
+    path: "$.components.schemas.SimplifiedChapterObject.allOf[1]"
