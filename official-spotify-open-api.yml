@@ -1,13 +1,13 @@
 openapi: "3.0.3"
 info:
   description: |
-    You can use Spotify's Web API to discover music and podcasts, manage your Spotify library, control audio playback, and much more. Browse our available Web API endpoints using the sidebar at left, or via the navigation bar on top of this page on smaller screens.
-    
-    In order to make successful Web API requests your app will need a valid access token. One can be obtained through <a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/">OAuth 2.0</a>.
-    
-    The base URI for all Web API requests is `https://api.spotify.com/v1`.
-    
-    Need help? See our <a href="https://developer.spotify.com/documentation/web-api/guides/">Web API guides</a> for more information, or visit the <a href="https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer">Spotify for Developers community forum</a> to ask questions and connect with other developers.
+      You can use Spotify's Web API to discover music and podcasts, manage your Spotify library, control audio playback, and much more. Browse our available Web API endpoints using the sidebar at left, or via the navigation bar on top of this page on smaller screens.
+
+      In order to make successful Web API requests your app will need a valid access token. One can be obtained through <a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/">OAuth 2.0</a>.
+
+      The base URI for all Web API requests is `https://api.spotify.com/v1`.
+
+      Need help? See our <a href="https://developer.spotify.com/documentation/web-api/guides/">Web API guides</a> for more information, or visit the <a href="https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer">Spotify for Developers community forum</a> to ask questions and connect with other developers.
   version: "1.0.0"
   title: "Spotify Web API"
   termsOfService: "https://developer.spotify.com/terms/"
@@ -1071,7 +1071,7 @@ paths:
                     even if more recent changes have been made to the playlist.
       responses:
         "200":
-          $ref: "#/components/responses/PlaylistSnapshotId"
+           $ref: "#/components/responses/PlaylistSnapshotId"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -3917,8 +3917,8 @@ components:
 
     Forbidden:
       description: |
-        Bad OAuth request (wrong consumer key, bad nonce, expired
-        timestamp...). Unfortunately, re-authenticating the user won't help here.
+              Bad OAuth request (wrong consumer key, bad nonce, expired
+              timestamp...). Unfortunately, re-authenticating the user won't help here.
       content:
         application/json:
           schema:
@@ -3931,7 +3931,7 @@ components:
 
     TooManyRequests:
       description: |
-        The app has exceeded its rate limits.
+              The app has exceeded its rate limits.
       content:
         application/json:
           schema:
@@ -4527,8 +4527,8 @@ components:
             Whether this track or episode is a [local file](https://developer.spotify.com/web-api/local-files-spotify-playlists/) or not.
         track:
           oneOf:
-            - $ref: '#/components/schemas/TrackObject'
-            - $ref: '#/components/schemas/EpisodeObject'
+           - $ref: '#/components/schemas/TrackObject'
+           - $ref: '#/components/schemas/EpisodeObject'
           x-spotify-docs-type: TrackObject | EpisodeObject
           description: Information about the track or episode.
 
@@ -4551,8 +4551,8 @@ components:
           description: If something is currently playing, return `true`.
         item:
           oneOf:
-            - $ref: '#/components/schemas/TrackObject'
-            - $ref: '#/components/schemas/EpisodeObject'
+           - $ref: '#/components/schemas/TrackObject'
+           - $ref: '#/components/schemas/EpisodeObject'
           x-spotify-docs-type: TrackObject | EpisodeObject
           description: The currently playing track or episode. Can be `null`.
         currently_playing_type:
@@ -4609,8 +4609,8 @@ components:
           description: If something is currently playing, return `true`.
         item:
           oneOf:
-            - $ref: '#/components/schemas/TrackObject'
-            - $ref: '#/components/schemas/EpisodeObject'
+           - $ref: '#/components/schemas/TrackObject'
+           - $ref: '#/components/schemas/EpisodeObject'
           x-spotify-docs-type: TrackObject | EpisodeObject
           description: The currently playing track or episode. Can be `null`.
         currently_playing_type:
@@ -5444,7 +5444,7 @@ components:
           items:
             type: object
           description: |
-            The requested content
+             The requested content
         limit:
           type: integer
           example: 20
@@ -5692,7 +5692,7 @@ components:
           items:
             $ref: '#/components/schemas/ImageObject'
           description: |
-            Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](/documentation/general/guides/working-with-playlists/). _**Note**: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day._
+             Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](/documentation/general/guides/working-with-playlists/). _**Note**: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day._
         name:
           type: string
           description: |
@@ -5755,7 +5755,7 @@ components:
           items:
             $ref: '#/components/schemas/ImageObject'
           description: |
-            Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](/documentation/general/guides/working-with-playlists/). _**Note**: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day._
+             Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](/documentation/general/guides/working-with-playlists/). _**Note**: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day._
         name:
           type: string
           description: |
@@ -5905,7 +5905,7 @@ components:
         explicit:
           type: boolean
           description: |
-            Whether or not the track has explicit lyrics ( `true` = yes it does; `false` = no it does not OR unknown).
+             Whether or not the track has explicit lyrics ( `true` = yes it does; `false` = no it does not OR unknown).
         external_ids:
           allOf:
             - $ref: '#/components/schemas/ExternalIdObject'
@@ -5942,7 +5942,7 @@ components:
         name:
           type: string
           description: |
-            The name of the track.
+             The name of the track.
         popularity:
           type: integer
           description: |
