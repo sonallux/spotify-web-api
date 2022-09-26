@@ -18,7 +18,7 @@ jobs:
       #   uses: actions/setup-java@v3
       #   with:
       #     java-version: 17
-      #     distribution: 'zulu'
+      #     distribution: 'temurin'
       #     cache: 'maven'
       #     server-id: ossrh
       #     server-username: OSSRH_USERNAME # env variable for username in deploy

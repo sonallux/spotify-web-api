@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [ '17' ]
+        java: [ '17', '19' ]
     name: Build on Java ${{ matrix.java }}
     steps:
       - name: Checkout
@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java }}
-          distribution: 'zulu'
+          distribution: 'temurin'
           cache: 'maven'
       - name: Build
         run: ./mvnw -B package -Pcli

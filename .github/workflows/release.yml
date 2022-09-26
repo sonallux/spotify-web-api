@@ -52,7 +52,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: 17
-          distribution: 'zulu'
+          distribution: 'temurin'
           cache: 'maven'
       - name: Update version in code
         run: ./mvnw -B versions:set -DnewVersion="${{ needs.create-version.outputs.new-version }}" -DgenerateBackupPoms=false
