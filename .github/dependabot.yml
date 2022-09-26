@@ -8,3 +8,10 @@ updates:
     open-pull-requests-limit: 10
     reviewers:
       - sonallux
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: weekly
+      time: '02:00'
+    reviewers:
+      - sonallux
