@@ -485,7 +485,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/PagingObject'
+          $ref: '#/components/responses/ChaptersPagingObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
