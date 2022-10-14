@@ -463,6 +463,37 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
       security:
       - oauth_2_0: []
+  /audiobooks/{id}/chapters:
+    x-spotify-docs-display-name: audiobook-chapters
+    x-spotify-docs-category: Audiobooks
+    get:
+      operationId: get-audiobook-chapters
+      tags:
+      - Audiobooks
+      - Chapters
+      x-spotify-docs-endpoint-name: Get an Audiobook's Chapters
+      x-spotify-docs-console-url: /console/get-audiobook-chapters/?id=5thw29eqjomhIDMY1XKsLk
+      summary: |
+        Get Audiobook Chapters
+      description: |
+        Get Spotify catalog information about an audiobook's chapters.<br />
+        **Note: Audiobooks are only available for the US market.**
+      parameters:
+      - $ref: '#/components/parameters/PathAudiobookId'
+      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: '#/components/parameters/QueryLimit'
+      - $ref: '#/components/parameters/QueryOffset'
+      responses:
+        "200":
+          $ref: '#/components/responses/ChaptersPagingObject'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "429":
+          $ref: '#/components/responses/TooManyRequests'
+      security:
+      - oauth_2_0: []
   /chapters/{id}:
     x-spotify-docs-display-name: chapters
     x-spotify-docs-category: Chapters
