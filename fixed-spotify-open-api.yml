@@ -4214,6 +4214,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ArtistsPagingObject'
+    ChaptersPagingObject:
+      description: Pages of chapters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ChaptersPagingObject'
     EpisodesPagingObject:
       description: Pages of episodes
       content:
