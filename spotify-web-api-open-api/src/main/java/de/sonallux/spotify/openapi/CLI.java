@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersionDetector;
+import de.sonallux.json.ReferenceValidator;
 import io.swagger.v3.core.util.Yaml;
 import io.swagger.v3.parser.OpenAPIV3Parser;
 import picocli.CommandLine;
@@ -86,9 +87,7 @@ public class CLI implements Runnable {
 
     private static void validateOpenAPI(JsonNode node) {
         var parseResult = new OpenAPIV3Parser().parseJsonNode(null, node);
-        for (var message : parseResult.getMessages()) {
-            System.err.println(message);
-        }
+        parseResult.getMessages().forEach(System.err::println);
 
         var openApiJsonSchema = loadOpenApiSchema();
 
@@ -96,11 +95,12 @@ public class CLI implements Runnable {
         var schema = schemaFactory.getSchema(openApiJsonSchema);
 
         var validationMessages = schema.validate(node);
-        for (var msg : validationMessages) {
-            System.err.println(msg);
-        }
+        validationMessages.forEach(System.err::println);
 
-        if (validationMessages.isEmpty() && parseResult.getMessages().isEmpty()) {
+        var referenceValidationMessages = new ReferenceValidator().validateReference(node);
+        referenceValidationMessages.forEach(System.err::println);
+
+        if (validationMessages.isEmpty() && parseResult.getMessages().isEmpty() && referenceValidationMessages.isEmpty()) {
             System.out.println("No errors on OpenApi found");
             return;
         }
