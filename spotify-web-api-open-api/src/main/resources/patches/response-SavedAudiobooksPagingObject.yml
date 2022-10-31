@@ -1,0 +1,21 @@
+description: Add response for SavedAudiobooksPagingObject
+operations:
+  - op: test
+    path: "$.components.responses.SavedAudiobooksPagingObject"
+    value: null
+  - op: put
+    path: "$.components.responses"
+    key: SavedAudiobooksPagingObject
+    value:
+      description: Pages of saved audiobooks
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/PagingObject'
+              - type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SavedAudiobookObject'
