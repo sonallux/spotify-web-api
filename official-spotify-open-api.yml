@@ -510,6 +510,117 @@ paths:
       security:
         -
           oauth_2_0: []
+  /me/audiobooks:
+    x-spotify-docs-display-name: current-user-saved-audiobooks
+    x-spotify-docs-category: Library
+    get:
+      tags:
+        - Audiobooks
+        - Library
+      operationId: get-users-saved-audiobooks
+      x-spotify-docs-endpoint-name: Get User's Saved Audiobooks
+      x-spotify-docs-console-url: /console/get-current-user-saved-audiobooks/?limit=1
+      summary: |
+        Get User's Saved Audiobooks
+      description: |
+        Get a list of the audiobooks saved in the current Spotify user's 'Your Music' library.
+      parameters:
+        - $ref: '#/components/parameters/QueryLimit'
+        - $ref: '#/components/parameters/QueryOffset'
+      responses:
+        "200":
+          $ref: "#/components/responses/PagingObject"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+      security:
+        -
+          oauth_2_0:
+            - user-library-read
+    put:
+      tags:
+        - Audiobooks
+        - Library
+      operationId: save-audiobooks-user
+      x-spotify-docs-endpoint-name: Save Audiobooks for Current User
+      x-spotify-docs-console-url: /console/put-current-user-saved-audiobooks/?ids=07bYtmE3bPsLB6ZbmmFi8d%2C48JYNjh7GMie6NjqYHMmtT%2C27cZdqrQiKt3IT00338dws
+      summary: |
+        Save Audiobooks for Current User
+      description: |
+        Save one or more audiobooks to the current Spotify user's library.
+      parameters:
+        - $ref: '#/components/parameters/QueryAudiobookIds'
+      responses:
+        "200":
+          description: Audiobook(s) are saved to the library
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+      security:
+        -
+          oauth_2_0:
+            - user-library-modify
+    delete:
+      tags:
+        - Audiobooks
+        - Library
+      operationId: remove-audiobooks-user
+      x-spotify-docs-endpoint-name: Remove Audiobooks for Current User
+      x-spotify-docs-console-url: /console/delete-current-user-saved-audiobooks/?ids=07bYtmE3bPsLB6ZbmmFi8d%2C48JYNjh7GMie6NjqYHMmtT%2C27cZdqrQiKt3IT00338dws
+      summary: |
+        Remove User's Saved Audiobooks
+      description: |
+        Remove one or more audiobooks from the Spotify user's library.
+      parameters:
+        - $ref: '#/components/parameters/QueryAudiobookIds'
+      responses:
+        "200":
+          description: Audiobook(s) have been removed from the library
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+      security:
+        -
+          oauth_2_0:
+            - user-library-modify
+  /me/audiobooks/contains:
+    x-spotify-docs-display-name: current-user-contains-saved-audiobooks
+    x-spotify-docs-category: Library
+    get:
+      tags:
+        - Audiobooks
+        - Library
+      operationId: check-users-saved-audiobooks
+      x-spotify-docs-endpoint-name: Check User's Saved Audiobooks
+      x-spotify-docs-console-url: /console/get-current-user-contains-saved-audiobooks/?ids=0pJJgBzj26qnE1nSQUxaB0%2C5ZAKzV4ZIa5Gt7z29OYHv0
+      summary: |
+        Check User's Saved Audiobooks
+      description: |
+        Check if one or more audiobooks are already saved in the current Spotify user's library.
+      parameters:
+        - $ref: '#/components/parameters/QueryAudiobookIds'
+      responses:
+        "200":
+          $ref: "#/components/responses/ArrayOfBooleans"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+      security:
+        -
+          oauth_2_0:
+            - user-library-read
   /chapters/{id}:
     x-spotify-docs-display-name: chapters
     x-spotify-docs-category: Chapters
@@ -1169,7 +1280,7 @@ paths:
       x-spotify-docs-endpoint-name: Get User's Saved Albums
       x-spotify-docs-console-url: /console/get-current-user-saved-albums/?limit=1
       summary: |
-        Get Saved Albums
+        Get User's Saved Albums
       description: |
         Get a list of the albums saved in the current Spotify user's 'Your Music' library.
       parameters:
@@ -1197,7 +1308,7 @@ paths:
       x-spotify-docs-endpoint-name: Save Albums for Current User
       x-spotify-docs-console-url: /console/put-current-user-saved-albums/?ids=07bYtmE3bPsLB6ZbmmFi8d%2C48JYNjh7GMie6NjqYHMmtT%2C27cZdqrQiKt3IT00338dws
       summary: |
-        Save Albums
+        Save Albums for Current User
       description: |
         Save one or more albums to the current user's 'Your Music' library.
       parameters:
@@ -1236,7 +1347,7 @@ paths:
       x-spotify-docs-endpoint-name: Remove Albums for Current User
       x-spotify-docs-console-url: /console/delete-current-user-saved-albums/?ids=07bYtmE3bPsLB6ZbmmFi8d%2C48JYNjh7GMie6NjqYHMmtT%2C27cZdqrQiKt3IT00338dws
       summary: |
-        Remove Albums
+        Remove Users' Saved Albums
       description: |
         Remove one or more albums from the current user's 'Your Music' library.
       parameters:
@@ -1278,7 +1389,7 @@ paths:
       x-spotify-docs-endpoint-name: Check User's Saved Albums
       x-spotify-docs-console-url: /console/get-current-user-contains-saved-albums/?ids=0pJJgBzj26qnE1nSQUxaB0%2C5ZAKzV4ZIa5Gt7z29OYHv0
       summary: |
-        Check Saved Albums
+        Check User's Saved Albums
       description: |
         Check if one or more albums is already saved in the current Spotify user's 'Your Music' library.
       parameters:
@@ -1376,7 +1487,7 @@ paths:
       x-spotify-docs-endpoint-name: Remove User's Saved Tracks
       x-spotify-docs-console-url: /console/delete-current-user-saved-tracks/?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B
       summary: |
-        Remove Tracks for Current User
+        Remove User's Saved Tracks
       description: |
         Remove one or more tracks from the current user's 'Your Music' library.
       parameters:
@@ -1474,10 +1585,10 @@ paths:
         - Episodes
         - Library
       operationId: save-episodes-user
-      x-spotify-docs-endpoint-name: Save Episodes for User
+      x-spotify-docs-endpoint-name: Save Episodes for Current User
       x-spotify-docs-console-url: /console/put-current-user-saved-episodes/?ids=77o6BIVlYM3msb4MMIL1jH%2C0Q86acNRm6V9GYx55SXKwf
       summary: |
-        Save Episodes for User
+        Save Episodes for Current User
       description: |
         Save one or more episodes to the current user's library.<br>
         This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
