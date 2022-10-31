@@ -1,0 +1,24 @@
+description: Add schema for SavedAudiobookObject
+operations:
+  - op: test
+    path: "$.components.schemas.SavedAudiobookObject"
+    value: null
+  - op: put
+    path: "$.components.schemas"
+    key: SavedAudiobookObject
+    value:
+      type: object
+      x-spotify-docs-type: SavedAudiobookObject
+      properties:
+        added_at:
+          type: string
+          format: date-time
+          x-spotify-docs-type: Timestamp
+          description: |
+            The date and time the audiobook was saved
+            Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ.
+            If the time is imprecise (for example, the date/time of an album release), an additional field indicates the precision; see for example, release_date in an album object.
+        album:
+          allOf:
+            - $ref: '#/components/schemas/AudiobookObject'
+          description: Information about the audiobook.
