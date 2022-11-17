@@ -1,4 +1,4 @@
-description: Add response for PlaylistsPagingObject
+description: Change name from PagingPlaylistObject to PlaylistsPagingObject
 operations:
   - op: test
     path: "$.components.responses.PlaylistsPagingObject"
@@ -7,7 +7,7 @@ operations:
     path: "$.components.responses"
     key: PlaylistsPagingObject
     value:
-      description: Pages of playlists
+      description: A paged set of playlists
       content:
         application/json:
           schema:

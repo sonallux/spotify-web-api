@@ -1226,7 +1226,7 @@ paths:
           type: integer
       responses:
         "200":
-          $ref: '#/components/responses/PagedPlaylists'
+          $ref: '#/components/responses/PlaylistsPagingObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -1856,7 +1856,7 @@ paths:
           type: integer
       responses:
         "200":
-          $ref: '#/components/responses/PagedPlaylists'
+          $ref: '#/components/responses/PlaylistsPagingObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -2037,7 +2037,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/PagedPlaylists'
+          $ref: '#/components/responses/PagedPlaylistsAndMessage'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -3992,7 +3992,12 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingPlaylistObject'
+            type: object
+            required:
+            - playlists
+            properties:
+              playlists:
+                $ref: '#/components/schemas/PlaylistsPagingObject'
     PagedCategories:
       description: A paged set of categories
       content:
@@ -4313,6 +4318,27 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/EpisodesPagingObject'
+    PagedPlaylistsAndMessage:
+      description: A paged set of playlists
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - playlists
+            - message
+            properties:
+              message:
+                type: string
+                description: A description of the playlists
+              playlists:
+                $ref: '#/components/schemas/PlaylistsPagingObject'
+    PlaylistsPagingObject:
+      description: A paged set of playlists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlaylistsPagingObject'
     PlayHistoryCursorPagingObject:
       description: Pages of PlayHistory objects
       content:
@@ -4332,12 +4358,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/PlaylistTracksPagingObject'
-    PlaylistsPagingObject:
-      description: Pages of playlists
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlaylistsPagingObject'
     SavedAlbumsPagingObject:
       description: Pages of saved albums
       content:
@@ -5618,16 +5638,6 @@ components:
           example: 4
           description: |
             The total number of items available to return.
-    PagingPlaylistObject:
-      type: object
-      x-spotify-docs-type: PagingPlaylistObject
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SimplifiedPlaylistObject'
     RecommendationsObject:
       type: object
       x-spotify-docs-type: RecommendationsObject
@@ -6989,6 +6999,16 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/SimplifiedEpisodeObject'
+    PlaylistsPagingObject:
+      type: object
+      x-spotify-docs-type: PlaylistsPagingObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimplifiedPlaylistObject'
     PlaylistTracksPagingObject:
       allOf:
       - $ref: '#/components/schemas/PagingObject'
@@ -6998,15 +7018,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/PlaylistTrackObject'
-    PlaylistsPagingObject:
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/SimplifiedPlaylistObject'
     SavedAudiobookObject:
       type: object
       x-spotify-docs-type: SavedAudiobookObject
