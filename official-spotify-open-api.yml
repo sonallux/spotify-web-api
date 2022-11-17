@@ -1258,7 +1258,7 @@ paths:
             type: integer
       responses:
         "200":
-          $ref: "#/components/responses/PagingObject"
+          $ref: "#/components/responses/PagedPlaylists"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -1933,7 +1933,7 @@ paths:
             type: integer
       responses:
         "200":
-          $ref: "#/components/responses/PagingObject"
+          $ref: "#/components/responses/PagedPlaylists"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -2121,7 +2121,7 @@ paths:
         - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: "#/components/responses/PagedPlaylistsAndMessage"
+          $ref: "#/components/responses/PagedPlaylists"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -4152,7 +4152,14 @@ components:
             properties:
               albums:
                 $ref: '#/components/schemas/PagingObject'
-
+    
+    PagedPlaylists:
+      description: A paged set of playlists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingPlaylistObject'
+    
     PagedCategories:
       description: A paged set of categories
       content:
@@ -4164,37 +4171,6 @@ components:
             properties:
               categories:
                 $ref: '#/components/schemas/PagingObject'
-
-    PagedPlaylistsAndMessage:
-      description: A paged set of albums
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-              - playlists
-              - message
-            properties:
-              albums:
-                $ref: '#/components/schemas/PagingObject'
-              message:
-                type: string
-                description: A description of the playlists
-
-    PagedPlaylists:
-      description: A paged set of albums
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-              - playlists
-            properties:
-              albums:
-                $ref: '#/components/schemas/PagingObject'
-              message:
-                type: string
-                description: A description of the playlists
 
     CursorPagedArtists:
       description: A paged set of artists
@@ -5615,6 +5591,17 @@ components:
           example: 4
           description: |
             The total number of items available to return.
+    
+    PagingPlaylistObject:
+      type: object
+      x-spotify-docs-type: PagingPlaylistObject
+      allOf:
+        - $ref: '#/components/schemas/PagingObject'
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimplifiedPlaylistObject'
 
     RecommendationsObject:
       type: object

@@ -1,26 +1,24 @@
-description: Fix PagedPlaylists description and wrong albums property and remove message property
+description: Add PagedPlaylists response
 operations:
   - op: test
-    path: "$.components.responses.PagedPlaylists.description"
-    value: A paged set of albums
-  - op: set
-    path: "$.components.responses.PagedPlaylists.description"
-    value: A paged set of playlists
-  - op: test
-    path: "$.components.responses.PagedPlaylists.content.application/json.schema.properties.albums"
+    path: "$.components.responses.PagedPlaylists"
     value:
-      $ref: '#/components/schemas/PagingObject'
-  - op: rename
-    path: "$.components.responses.PagedPlaylists.content.application/json.schema.properties"
-    oldKey: albums
-    newKey: playlists
-  - op: set
-    path: "$.components.responses.PagedPlaylists.content.application/json.schema.properties.playlists.$ref"
-    value: '#/components/schemas/PlaylistsPagingObject'
-  - op: test
-    path: "$.components.responses.PagedPlaylists.content.application/json.schema.properties.message"
+      description: A paged set of playlists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingPlaylistObject'
+  - op: put
+    path: "$.components.responses"
+    key: PagedPlaylists
     value:
-      type: string
-      description: A description of the playlists
-  - op: delete
-    path: "$.components.responses.PagedPlaylists.content.application/json.schema.properties.message"
+      description: A paged set of playlists
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - playlists
+            properties:
+              playlists:
+                $ref: '#/components/schemas/PlaylistsPagingObject'

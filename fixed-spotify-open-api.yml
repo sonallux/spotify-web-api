@@ -3987,6 +3987,17 @@ components:
             properties:
               albums:
                 $ref: '#/components/schemas/AlbumsPagingObject'
+    PagedPlaylists:
+      description: A paged set of playlists
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - playlists
+            properties:
+              playlists:
+                $ref: '#/components/schemas/PlaylistsPagingObject'
     PagedCategories:
       description: A paged set of categories
       content:
@@ -4005,32 +4016,6 @@ components:
                       type: array
                       items:
                         $ref: '#/components/schemas/CategoryObject'
-    PagedPlaylistsAndMessage:
-      description: A paged set of playlists
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-            - playlists
-            - message
-            properties:
-              message:
-                type: string
-                description: A description of the playlists
-              playlists:
-                $ref: '#/components/schemas/PlaylistsPagingObject'
-    PagedPlaylists:
-      description: A paged set of playlists
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-            - playlists
-            properties:
-              playlists:
-                $ref: '#/components/schemas/PlaylistsPagingObject'
     CursorPagedArtists:
       description: A paged set of artists
       content:
@@ -4333,6 +4318,27 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/EpisodesPagingObject'
+    PagedPlaylistsAndMessage:
+      description: A paged set of playlists
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - playlists
+            - message
+            properties:
+              message:
+                type: string
+                description: A description of the playlists
+              playlists:
+                $ref: '#/components/schemas/PlaylistsPagingObject'
+    PlaylistsPagingObject:
+      description: A paged set of playlists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlaylistsPagingObject'
     PlayHistoryCursorPagingObject:
       description: Pages of PlayHistory objects
       content:
@@ -4352,12 +4358,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/PlaylistTracksPagingObject'
-    PlaylistsPagingObject:
-      description: Pages of playlists
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlaylistsPagingObject'
     SavedAlbumsPagingObject:
       description: Pages of saved albums
       content:
@@ -6999,6 +6999,16 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/SimplifiedEpisodeObject'
+    PlaylistsPagingObject:
+      type: object
+      x-spotify-docs-type: PlaylistsPagingObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimplifiedPlaylistObject'
     PlaylistTracksPagingObject:
       allOf:
       - $ref: '#/components/schemas/PagingObject'
@@ -7008,15 +7018,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/PlaylistTrackObject'
-    PlaylistsPagingObject:
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/SimplifiedPlaylistObject'
     SavedAudiobookObject:
       type: object
       x-spotify-docs-type: SavedAudiobookObject

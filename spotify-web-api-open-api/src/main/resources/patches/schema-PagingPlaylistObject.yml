@@ -1,0 +1,15 @@
+description: Change name from PagingPlaylistObject to PlaylistsPagingObject
+operations:
+  - op: test
+    path: "$.components.schemas.PlaylistsPagingObject"
+    value: null
+  - op: rename
+    path: "$.components.schemas"
+    oldKey: PagingPlaylistObject
+    newKey: PlaylistsPagingObject
+  - op: test
+    path: "$.components.schemas.PlaylistsPagingObject.x-spotify-docs-type"
+    value: PagingPlaylistObject
+  - op: set
+    path: "$.components.schemas.PlaylistsPagingObject.x-spotify-docs-type"
+    value: PlaylistsPagingObject
