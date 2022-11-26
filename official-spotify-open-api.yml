@@ -433,7 +433,7 @@ paths:
         Get an Audiobook
       description: |
         Get Spotify catalog information for a single audiobook.<br />
-        **Note: Audiobooks are only available for the US market.**
+        **Note: Audiobooks are only available for the US, UK, Ireland, New Zealand and Australia markets.**
       parameters:
         - $ref: '#/components/parameters/PathAudiobookId'
         - $ref: '#/components/parameters/QueryMarket'
@@ -462,7 +462,7 @@ paths:
         Get Several Audiobooks
       description: |
         Get Spotify catalog information for several audiobooks identified by their Spotify IDs.<br />
-        **Note: Audiobooks are only available for the US market.**
+        **Note: Audiobooks are only available for the US, UK, Ireland, New Zealand and Australia markets.**
       parameters:
         - $ref: '#/components/parameters/QueryAudiobookIds'
         - $ref: '#/components/parameters/QueryMarket'
@@ -492,7 +492,7 @@ paths:
         Get Audiobook Chapters
       description: |
         Get Spotify catalog information about an audiobook's chapters.<br />
-        **Note: Audiobooks are only available for the US market.**
+        **Note: Audiobooks are only available for the US, UK, Ireland, New Zealand and Australia markets.**
       parameters:
         - $ref: '#/components/parameters/PathAudiobookId'
         - $ref: '#/components/parameters/QueryMarket'
@@ -634,7 +634,7 @@ paths:
         Get a Chapter
       description: |
         Get Spotify catalog information for a single chapter.<br />
-        **Note: Chapters are only available for the US market.**
+        **Note: Chapters are only available for the US, UK, Ireland, New Zealand and Australia markets.**
       parameters:
         - $ref: '#/components/parameters/PathChapterId'
         - $ref: '#/components/parameters/QueryMarket'
@@ -663,7 +663,7 @@ paths:
         Get Several Chapters
       description: |
         Get Spotify catalog information for several chapters identified by their Spotify IDs.<br />
-        **Note: Chapters are only available for the US market.**
+        **Note: Chapters are only available for the US, UK, Ireland, New Zealand and Australia markets.**
       parameters:
         - $ref: '#/components/parameters/QueryChapterIds'
         - $ref: '#/components/parameters/QueryMarket'
@@ -760,7 +760,7 @@ paths:
       description: |
         Get Spotify catalog information about albums, artists, playlists, tracks, shows, episodes or audiobooks
         that match a keyword string.<br />
-        **Note: Audiobooks are only available for the US market.**
+        **Note: Audiobooks are only available for the US, UK, Ireland, New Zealand and Australia markets.**
       parameters:
         -
           name: q
