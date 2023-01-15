@@ -4711,7 +4711,7 @@ components:
           type: string
           description: off, track, context
         shuffle_state:
-          type: string
+          type: boolean
           description: If shuffle is on or off.
         context:
           allOf:
