@@ -1,34 +1,6 @@
 description: Fix schema of type parameter and fix minimum value of limit parameter
 operations:
   - op: test
-    path: "$.paths./search.get.parameters[?(@.name=='type')].schema.items"
-    value: []
-  - op: test
-    path: "$.paths./search.get.parameters[?(@.name=='type')].schema.enum"
-    value:
-      - - album
-        - artist
-        - playlist
-        - track
-        - show
-        - episode
-        - audiobook
-  - op: put
-    path: "$.paths./search.get.parameters[?(@.name=='type')].schema"
-    key: items
-    value:
-      type: string
-      enum:
-        - album
-        - artist
-        - playlist
-        - track
-        - show
-        - episode
-        - audiobook
-  - op: delete
-    path: "$.paths./search.get.parameters[?(@.name=='type')].schema.enum"
-  - op: test
     path: "$.paths./search.get.parameters[?(@.name=='limit')].schema.minimum"
     value: [0]
   - op: set

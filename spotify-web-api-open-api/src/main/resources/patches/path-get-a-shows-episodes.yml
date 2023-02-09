@@ -1,8 +1,0 @@
-description: update response type to EpisodesPagingObject
-operations:
-  - op: test
-    path: "$.paths./shows/{id}/episodes.get.responses.200.$ref"
-    value: '#/components/responses/PagingObject'
-  - op: set
-    path: "$.paths./shows/{id}/episodes.get.responses.200.$ref"
-    value: '#/components/responses/EpisodesPagingObject'

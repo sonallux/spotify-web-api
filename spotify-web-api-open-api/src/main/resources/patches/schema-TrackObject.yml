@@ -1,8 +1,15 @@
 description: fix type of linked_from property
 operations:
   - op: test
-    path: "$.components.schemas.TrackObject.properties.linked_from.allOf[0].$ref"
-    value: '#/components/schemas/TrackObject'
+    path: "$.components.schemas.TrackObject.properties.linked_from"
+    value:
+      type: object
+      description: |
+        Part of the response when [Track Relinking](/documentation/general/guides/track-relinking-guide/) is applied, and the requested track has been replaced with different track. The track in the `linked_from` object contains information about the originally requested track.
   - op: set
-    path: "$.components.schemas.TrackObject.properties.linked_from.allOf[0].$ref"
-    value: '#/components/schemas/LinkedTrackObject'
+    path: "$.components.schemas.TrackObject.properties.linked_from"
+    value:
+      allOf:
+        - $ref: '#/components/schemas/LinkedTrackObject'
+      description: Part of the response when [Track Relinking](/documentation/general/guides/track-relinking-guide/) is applied and is only part of the response if the track linking, in fact, exists. The requested track has been replaced with a different track. The track in the `linked_from` object contains information about the originally requested track.
+
