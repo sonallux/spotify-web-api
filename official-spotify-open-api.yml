@@ -1505,8 +1505,7 @@ paths:
       summary: |
         Get User's Saved Episodes
       description: |
-        Get a list of the episodes saved in the current Spotify user's library.<br/>
-        This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Get a list of the episodes saved in the current Spotify user's library.
       parameters:
         - $ref: '#/components/parameters/QueryMarket'
         - $ref: '#/components/parameters/QueryLimit'
@@ -1534,8 +1533,7 @@ paths:
       summary: |
         Save Episodes for Current User
       description: |
-        Save one or more episodes to the current user's library.<br/>
-        This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Save one or more episodes to the current user's library.
       parameters:
         - name: ids
           required: true
@@ -1583,8 +1581,7 @@ paths:
       summary: |
         Remove User's Saved Episodes
       description: |
-        Remove one or more episodes from the current user's library.<br/>
-        This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Remove one or more episodes from the current user's library.
       parameters:
         - $ref: '#/components/parameters/QueryTrackIds'
       requestBody:
@@ -1625,8 +1622,7 @@ paths:
       summary: |
         Check User's Saved Episodes
       description: |
-        Check if one or more episodes is already saved in the current Spotify user's 'Your Episodes' library.<br/>
-        This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer)..
+        Check if one or more episodes is already saved in the current Spotify user's 'Your Episodes' library.
       parameters:
         - name: ids
           required: true
