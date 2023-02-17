@@ -93,7 +93,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/SimplifiedTracksPagingObject'
+          $ref: '#/components/responses/PagingSimplifiedTrackObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -184,7 +184,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/AlbumsPagingObject'
+          $ref: '#/components/responses/PagingSimplifiedAlbumObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -324,7 +324,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/EpisodesPagingObject'
+          $ref: '#/components/responses/PagingSimplifiedEpisodeObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -485,7 +485,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/ChaptersPagingObject'
+          $ref: '#/components/responses/PagingSimplifiedChapterObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -513,7 +513,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/SavedAudiobooksPagingObject'
+          $ref: '#/components/responses/PagingSimplifiedAudiobookObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -764,8 +764,6 @@ paths:
             A comma-separated list of item types to search across. Search results include hits
             from all the specified item types. For example: `q=abacab&type=album,track` returns
             both albums and tracks matching "abacab".
-          example: "track,artist"
-          type: array
           items:
             type: string
             enum:
@@ -776,6 +774,7 @@ paths:
             - show
             - episode
             - audiobook
+          type: array
       - $ref: '#/components/parameters/QueryMarket'
       - name: limit
         required: false
@@ -932,7 +931,7 @@ paths:
                 collaborative:
                   type: boolean
                   description: |
-                    If `true`, the playlist will become collaborative and other users will be able to modify the playlist in their Spotify client. <br>
+                    If `true`, the playlist will become collaborative and other users will be able to modify the playlist in their Spotify client. <br/>
                     _**Note**: You can only set `collaborative` to `true` on non-public playlists._
                 description:
                   type: string
@@ -976,12 +975,12 @@ paths:
           description: |
             Filters for the query: a comma-separated list of the
             fields to return. If omitted, all fields are returned. For example, to get
-            just the total number of items and the request limit:<br>`fields=total,limit`<br>A
+            just the total number of items and the request limit:<br/>`fields=total,limit`<br/>A
             dot separator can be used to specify non-reoccurring fields, while parentheses
             can be used to specify reoccurring fields within objects. For example, to
-            get just the added date and user ID of the adder:<br>`fields=items(added_at,added_by.id)`<br>Use
-            multiple parentheses to drill down into nested objects, for example:<br>`fields=items(track(name,href,album(name,href)))`<br>Fields
-            can be excluded by prefixing them with an exclamation mark, for example:<br>`fields=items.track.album(!external_urls,images)`
+            get just the added date and user ID of the adder:<br/>`fields=items(added_at,added_by.id)`<br/>Use
+            multiple parentheses to drill down into nested objects, for example:<br/>`fields=items(track(name,href,album(name,href)))`<br/>Fields
+            can be excluded by prefixing them with an exclamation mark, for example:<br/>`fields=items.track.album(!external_urls,images)`
           example: "items(added_by.id,track(name,href,album(name,href)))"
           type: string
       - name: limit
@@ -1000,7 +999,7 @@ paths:
       - $ref: '#/components/parameters/QueryAdditionalTypes'
       responses:
         "200":
-          $ref: '#/components/responses/PlaylistTracksPagingObject'
+          $ref: '#/components/responses/PagingPlaylistTrackObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -1009,7 +1008,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
       security:
       - oauth_2_0:
-        - playlist-read-public
         - playlist-read-private
     post:
       tags:
@@ -1039,7 +1037,7 @@ paths:
         schema:
           title: Spotify Track URIs
           description: |
-            A comma-separated list of [Spotify URIs](/documentation/web-api/#spotify-uris-and-ids) to add, can be track or episode URIs. For example:<br>`uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh, spotify:track:1301WleyT98MSxVHPZCA6M, spotify:episode:512ojhOuo1ktJprKbVcKyQ`<br>A maximum of 100 items can be added in one request. <br>
+            A comma-separated list of [Spotify URIs](/documentation/web-api/#spotify-uris-and-ids) to add, can be track or episode URIs. For example:<br/>`uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh, spotify:track:1301WleyT98MSxVHPZCA6M, spotify:episode:512ojhOuo1ktJprKbVcKyQ`<br/>A maximum of 100 items can be added in one request. <br/>
             _**Note**: it is likely that passing a large number of item URIs as a query parameter will exceed the maximum length of the request URI. When adding a large number of items, it is recommended to pass them in the request body, see below._
           example: "spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M"
           type: string
@@ -1052,7 +1050,7 @@ paths:
               properties:
                 uris:
                   description: |
-                    A JSON array of the [Spotify URIs](/documentation/web-api/#spotify-uris-and-ids) to add. For example: `{"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh","spotify:track:1301WleyT98MSxVHPZCA6M", "spotify:episode:512ojhOuo1ktJprKbVcKyQ"]}`<br>A maximum of 100 items can be added in one request. _**Note**: if the `uris` parameter is present in the query string, any URIs listed here in the body will be ignored._
+                    A JSON array of the [Spotify URIs](/documentation/web-api/#spotify-uris-and-ids) to add. For example: `{"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh","spotify:track:1301WleyT98MSxVHPZCA6M", "spotify:episode:512ojhOuo1ktJprKbVcKyQ"]}`<br/>A maximum of 100 items can be added in one request. _**Note**: if the `uris` parameter is present in the query string, any URIs listed here in the body will be ignored._
                   type: array
                   items:
                     type: string
@@ -1087,7 +1085,7 @@ paths:
         To reorder items, include `range_start`, `insert_before`, `range_length` and `snapshot_id` in the request's body.
         To replace items, include `uris` as either a query parameter or in the request's body.
         Replacing items in a playlist will overwrite its existing items. This operation can be used for replacing or clearing items in a playlist.
-        <br>
+        <br/>
         **Note**: Replace and reorder are mutually exclusive operations which share the same endpoint, but have different parameters.
         These operations can't be applied together in a single request.
       parameters:
@@ -1098,7 +1096,7 @@ paths:
         schema:
           title: Spotify Track URIs
           description: |
-            A comma-separated list of [Spotify URIs](/documentation/web-api/#spotify-uris-and-ids) to set, can be track or episode URIs. For example: `uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQ`<br>A maximum of 100 items can be set in one request.
+            A comma-separated list of [Spotify URIs](/documentation/web-api/#spotify-uris-and-ids) to set, can be track or episode URIs. For example: `uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQ`<br/>A maximum of 100 items can be set in one request.
           type: string
       requestBody:
         content:
@@ -1122,11 +1120,11 @@ paths:
                 insert_before:
                   type: integer
                   description: |
-                    The position where the items should be inserted.<br>To reorder the items to the end of the playlist, simply set _insert_before_ to the position after the last item.<br>Examples:<br>To reorder the first item to the last position in a playlist with 10 items, set _range_start_ to 0, and _insert_before_ to 10.<br>To reorder the last item in a playlist with 10 items to the start of the playlist, set _range_start_ to 9, and _insert_before_ to 0.
+                    The position where the items should be inserted.<br/>To reorder the items to the end of the playlist, simply set _insert_before_ to the position after the last item.<br/>Examples:<br/>To reorder the first item to the last position in a playlist with 10 items, set _range_start_ to 0, and _insert_before_ to 10.<br/>To reorder the last item in a playlist with 10 items to the start of the playlist, set _range_start_ to 9, and _insert_before_ to 0.
                 range_length:
                   type: integer
                   description: |
-                    The amount of items to be reordered. Defaults to 1 if not set.<br>The range of items to be reordered begins from the _range_start_ position, and includes the _range_length_ subsequent items.<br>Example:<br>To move the items at index 9-10 to the start of the playlist, _range_start_ is set to 9, and _range_length_ is set to 2.
+                    The amount of items to be reordered. Defaults to 1 if not set.<br/>The range of items to be reordered begins from the _range_start_ position, and includes the _range_length_ subsequent items.<br/>Example:<br/>To move the items at index 9-10 to the start of the playlist, _range_start_ is set to 9, and _range_length_ is set to 2.
                 snapshot_id:
                   type: string
                   description: |
@@ -1226,7 +1224,7 @@ paths:
           type: integer
       responses:
         "200":
-          $ref: '#/components/responses/PlaylistsPagingObject'
+          $ref: '#/components/responses/PagedPlaylists'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -1256,7 +1254,7 @@ paths:
       - $ref: '#/components/parameters/QueryMarket'
       responses:
         "200":
-          $ref: '#/components/responses/SavedAlbumsPagingObject'
+          $ref: '#/components/responses/PagingSavedAlbumObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -1289,7 +1287,7 @@ paths:
                 ids:
                   type: array
                   description: |
-                    A JSON array of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). For example: `["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]`<br>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._
+                    A JSON array of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). For example: `["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]`<br/>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._
                   items:
                     type: string
       responses:
@@ -1327,7 +1325,7 @@ paths:
                 ids:
                   type: array
                   description: |
-                    A JSON array of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). For example: `["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]`<br>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._
+                    A JSON array of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). For example: `["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]`<br/>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._
                   items:
                     type: string
       responses:
@@ -1390,7 +1388,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/SavedTracksPagingObject'
+          $ref: '#/components/responses/PagingSavedTrackObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -1425,7 +1423,7 @@ paths:
                 ids:
                   type: array
                   description: |
-                    A JSON array of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). For example: `["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]`<br>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._
+                    A JSON array of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). For example: `["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]`<br/>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._
                   items:
                     type: string
       responses:
@@ -1463,7 +1461,7 @@ paths:
                 ids:
                   type: array
                   description: |
-                    A JSON array of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). For example: `["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]`<br>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._
+                    A JSON array of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). For example: `["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]`<br/>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._
                   items:
                     type: string
       responses:
@@ -1519,15 +1517,14 @@ paths:
       summary: |
         Get User's Saved Episodes
       description: |
-        Get a list of the episodes saved in the current Spotify user's library.<br>
-        This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Get a list of the episodes saved in the current Spotify user's library.
       parameters:
       - $ref: '#/components/parameters/QueryMarket'
       - $ref: '#/components/parameters/QueryLimit'
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/SavedEpisodesPagingObject'
+          $ref: '#/components/responses/PagingSavedEpisodeObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -1548,8 +1545,7 @@ paths:
       summary: |
         Save Episodes for Current User
       description: |
-        Save one or more episodes to the current user's library.<br>
-        This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Save one or more episodes to the current user's library.
       parameters:
       - name: ids
         required: true
@@ -1572,7 +1568,7 @@ paths:
                 ids:
                   type: array
                   description: |
-                    A JSON array of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). <br>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._
+                    A JSON array of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). <br/>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._
                   items:
                     type: string
       responses:
@@ -1597,8 +1593,7 @@ paths:
       summary: |
         Remove User's Saved Episodes
       description: |
-        Remove one or more episodes from the current user's library.<br>
-        This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Remove one or more episodes from the current user's library.
       parameters:
       - $ref: '#/components/parameters/QueryTrackIds'
       requestBody:
@@ -1611,7 +1606,7 @@ paths:
                 ids:
                   type: array
                   description: |
-                    A JSON array of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). <br>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._
+                    A JSON array of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). <br/>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._
                   items:
                     type: string
       responses:
@@ -1639,8 +1634,7 @@ paths:
       summary: |
         Check User's Saved Episodes
       description: |
-        Check if one or more episodes is already saved in the current Spotify user's 'Your Episodes' library.<br>
-        This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer)..
+        Check if one or more episodes is already saved in the current Spotify user's 'Your Episodes' library.
       parameters:
       - name: ids
         required: true
@@ -1688,7 +1682,7 @@ paths:
         "429":
           $ref: '#/components/responses/TooManyRequests'
         "200":
-          $ref: '#/components/responses/SavedShowsPagingObject'
+          $ref: '#/components/responses/PagingSavedShowObject'
       security:
       - oauth_2_0:
         - user-library-read
@@ -1856,7 +1850,7 @@ paths:
           type: integer
       responses:
         "200":
-          $ref: '#/components/responses/PlaylistsPagingObject'
+          $ref: '#/components/responses/PagedPlaylists'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -2020,7 +2014,7 @@ paths:
         schema:
           title: Locale
           description: |
-            The desired language, consisting of a lowercase [ISO 639-1 language code](http://en.wikipedia.org/wiki/ISO_639-1) and an uppercase [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), joined by an underscore. For example: `es_MX`, meaning "Spanish (Mexico)". Provide this parameter if you want the results returned in a particular language (where available). <br>
+            The desired language, consisting of a lowercase [ISO 639-1 language code](http://en.wikipedia.org/wiki/ISO_639-1) and an uppercase [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), joined by an underscore. For example: `es_MX`, meaning "Spanish (Mexico)". Provide this parameter if you want the results returned in a particular language (where available). <br/>
             _**Note**: if `locale` is not supplied, or if the specified language is not available, all strings will be returned in the Spotify default language (American English). The `locale` parameter, combined with the `country` parameter, may give odd results if not carefully matched. For example `country=SE&locale=de_DE` will return a list of categories relevant to Sweden but as German language strings._
           example: sv_SE
           type: string
@@ -2037,7 +2031,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/PagedPlaylistsAndMessage'
+          $ref: '#/components/responses/PagedFeaturedPlaylists'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -2075,7 +2069,7 @@ paths:
         schema:
           title: Locale
           description: |
-            The desired language, consisting of an [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code and an [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), joined by an underscore. For example: `es_MX`, meaning "Spanish (Mexico)". Provide this parameter if you want the category metadata returned in a particular language. <br>
+            The desired language, consisting of an [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code and an [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), joined by an underscore. For example: `es_MX`, meaning "Spanish (Mexico)". Provide this parameter if you want the category metadata returned in a particular language. <br/>
             _**Note**: if `locale` is not supplied, or if the specified language is not available, all strings will be returned in the Spotify default language (American English). The `locale` parameter, combined with the `country` parameter, may give odd results if not carefully matched. For example `country=SE&locale=de_DE` will return a list of categories relevant to Sweden but as German language strings._
           example: sv_SE
           type: string
@@ -2130,7 +2124,7 @@ paths:
         schema:
           title: Locale
           description: |
-            The desired language, consisting of an [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code and an [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), joined by an underscore. For example: `es_MX`, meaning &quot;Spanish (Mexico)&quot;. Provide this parameter if you want the category strings returned in a particular language.<br> _**Note**: if `locale` is not supplied, or if the specified language is not available, the category strings returned will be in the Spotify default language (American English)._
+            The desired language, consisting of an [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code and an [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), joined by an underscore. For example: `es_MX`, meaning &quot;Spanish (Mexico)&quot;. Provide this parameter if you want the category strings returned in a particular language.<br/> _**Note**: if `locale` is not supplied, or if the specified language is not available, the category strings returned will be in the Spotify default language (American English)._
           example: sv_SE
           type: string
       responses:
@@ -2181,7 +2175,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/PagedPlaylists'
+          $ref: '#/components/responses/PagedFeaturedPlaylists'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -3189,13 +3183,13 @@ paths:
                 device_ids:
                   type: array
                   description: |
-                    A JSON array containing the ID of the device on which playback should be started/transferred.<br>For example:`{device_ids:["74ASZWbe4lXaubB36ztrGX"]}`<br>_**Note**: Although an array is accepted, only a single device_id is currently supported. Supplying more than one will return `400 Bad Request`_
+                    A JSON array containing the ID of the device on which playback should be started/transferred.<br/>For example:`{device_ids:["74ASZWbe4lXaubB36ztrGX"]}`<br/>_**Note**: Although an array is accepted, only a single device_id is currently supported. Supplying more than one will return `400 Bad Request`_
                   items:
                     type: string
                 play:
                   type: boolean
                   description: |
-                    **true**: ensure playback happens on new device.<br>**false** or not provided: keep the current playback state.
+                    **true**: ensure playback happens on new device.<br/>**false** or not provided: keep the current playback state.
       responses:
         "204":
           description: Playback transferred
@@ -3301,20 +3295,20 @@ paths:
                   description: |
                     Optional. Spotify URI of the context to play.
                     Valid contexts are albums, artists & playlists.
-                    {context_uri:"spotify:album:1Je1IMUlBXcx1Fz0WE7oPT"}
+                    `{context_uri:"spotify:album:1Je1IMUlBXcx1Fz0WE7oPT"}`
                 uris:
                   type: array
                   description: |
                     Optional. A JSON array of the Spotify track URIs to play.
-                    For example: {"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh", "spotify:track:1301WleyT98MSxVHPZCA6M"]}
+                    For example: `{"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh", "spotify:track:1301WleyT98MSxVHPZCA6M"]}`
                   items:
                     type: string
                 offset:
                   type: object
                   description: |
                     Optional. Indicates from where in the context playback should start. Only available when context_uri corresponds to an album or playlist object
-                    "position" is zero based and can’t be negative. Example: "offset": {"position": 5}
-                    "uri" is a string representing the uri of the item to start at. Example: "offset": {"uri": "spotify:track:1301WleyT98MSxVHPZCA6M"}
+                    "position" is zero based and can’t be negative. Example: `"offset": {"position": 5}`
+                    "uri" is a string representing the uri of the item to start at. Example: `"offset": {"uri": "spotify:track:1301WleyT98MSxVHPZCA6M"}`
                   additionalProperties: true
                 position_ms:
                   type: integer
@@ -3506,9 +3500,9 @@ paths:
         schema:
           title: State
           description: |
-            **track**, **context** or **off**.<br>
-            **track** will repeat the current track.<br>
-            **context** will repeat the current context.<br>
+            **track**, **context** or **off**.<br/>
+            **track** will repeat the current track.<br/>
+            **context** will repeat the current context.<br/>
             **off** will turn repeat off.
           example: context
           type: string
@@ -3598,7 +3592,7 @@ paths:
         schema:
           title: State
           description: |
-            **true** : Shuffle user's playback.<br>
+            **true** : Shuffle user's playback.<br/>
             **false** : Do not shuffle user's playback.
           example: true
           type: boolean
@@ -3663,7 +3657,7 @@ paths:
           type: integer
       responses:
         "200":
-          $ref: '#/components/responses/PlayHistoryCursorPagingObject'
+          $ref: '#/components/responses/CursorPagedPlayHistory'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -3794,7 +3788,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/ArtistsPagingObject'
+          $ref: '#/components/responses/PagingArtistObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -3834,7 +3828,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/TracksPagingObject'
+          $ref: '#/components/responses/PagingTrackObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -3986,18 +3980,19 @@ components:
             - albums
             properties:
               albums:
-                $ref: '#/components/schemas/AlbumsPagingObject'
+                $ref: '#/components/schemas/PagingSimplifiedAlbumObject'
     PagedPlaylists:
       description: A paged set of playlists
       content:
         application/json:
           schema:
-            type: object
-            required:
-            - playlists
-            properties:
-              playlists:
-                $ref: '#/components/schemas/PlaylistsPagingObject'
+            $ref: '#/components/schemas/PagingPlaylistObject'
+    PagedFeaturedPlaylists:
+      description: A paged set of playlists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingFeaturedPlaylistObject'
     PagedCategories:
       description: A paged set of categories
       content:
@@ -4026,20 +4021,13 @@ components:
             - artists
             properties:
               artists:
-                allOf:
-                - $ref: '#/components/schemas/CursorPagingObject'
-                - type: object
-                  properties:
-                    items:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/ArtistObject'
-    CursorPaging:
-      description: A paged set of objects
+                $ref: '#/components/schemas/CursorPagingSimplifiedArtistObject'
+    CursorPagedPlayHistory:
+      description: A paged set of tracks
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/CursorPagingObject'
+            $ref: '#/components/schemas/CursorPagingPlayHistoryObject'
     ManyArtists:
       description: A set of artists
       content:
@@ -4207,12 +4195,78 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/SimplifiedShowObject'
-    PagingObject:
-      description: Pages of content
+    PagingSimplifiedTrackObject:
+      description: Pages of tracks
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingObject'
+            $ref: '#/components/schemas/PagingSimplifiedTrackObject'
+    PagingSavedTrackObject:
+      description: Pages of tracks
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingSavedTrackObject'
+    PagingPlaylistTrackObject:
+      description: Pages of tracks
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingPlaylistTrackObject'
+    PagingSimplifiedAlbumObject:
+      description: Pages of albums
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingSimplifiedAlbumObject'
+    PagingSavedAlbumObject:
+      description: Pages of albums
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingSavedAlbumObject'
+    PagingSimplifiedArtistObject:
+      description: Pages of artists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingSimplifiedArtistObject'
+    PagingSimplifiedShowObject:
+      description: Pages of shows
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingSimplifiedShowObject'
+    PagingSavedShowObject:
+      description: Pages of shows
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingSavedShowObject'
+    PagingSimplifiedEpisodeObject:
+      description: Pages of episodes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingSimplifiedEpisodeObject'
+    PagingSavedEpisodeObject:
+      description: Pages of episodes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingSavedEpisodeObject'
+    PagingSimplifiedAudiobookObject:
+      description: Pages of audiobooks
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingSimplifiedAudiobookObject'
+    PagingSimplifiedChapterObject:
+      description: Pages of chapters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingSimplifiedChapterObject'
     SearchItems:
       description: Search response
       content:
@@ -4221,19 +4275,19 @@ components:
             type: object
             properties:
               tracks:
-                $ref: '#/components/schemas/SimplifiedTracksPagingObject'
+                $ref: '#/components/schemas/PagingTrackObject'
               artists:
-                $ref: '#/components/schemas/SimplifiedArtistsPagingObject'
+                $ref: '#/components/schemas/PagingArtistObject'
               albums:
-                $ref: '#/components/schemas/AlbumsPagingObject'
+                $ref: '#/components/schemas/PagingSimplifiedAlbumObject'
               playlists:
-                $ref: '#/components/schemas/PlaylistsPagingObject'
+                $ref: '#/components/schemas/PagingPlaylistObject'
               shows:
-                $ref: '#/components/schemas/ShowsPagingObject'
+                $ref: '#/components/schemas/PagingSimplifiedShowObject'
               episodes:
-                $ref: '#/components/schemas/EpisodesPagingObject'
+                $ref: '#/components/schemas/PagingSimplifiedEpisodeObject'
               audiobooks:
-                $ref: '#/components/schemas/AudiobooksPagingObject'
+                $ref: '#/components/schemas/PagingSimplifiedAudiobookObject'
     OneRecommendations:
       description: A set of recommendations
       content:
@@ -4294,153 +4348,18 @@ components:
                 - CA
                 - BR
                 - IT
-    AlbumsPagingObject:
-      description: Pages of albums
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AlbumsPagingObject'
-    ArtistsPagingObject:
+    PagingArtistObject:
       description: Pages of artists
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ArtistsPagingObject'
-    ChaptersPagingObject:
-      description: Pages of chapters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ChaptersPagingObject'
-    EpisodesPagingObject:
-      description: Pages of episodes
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/EpisodesPagingObject'
-    PagedPlaylistsAndMessage:
-      description: A paged set of playlists
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-            - playlists
-            - message
-            properties:
-              message:
-                type: string
-                description: A description of the playlists
-              playlists:
-                $ref: '#/components/schemas/PlaylistsPagingObject'
-    PlaylistsPagingObject:
-      description: A paged set of playlists
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlaylistsPagingObject'
-    PlayHistoryCursorPagingObject:
-      description: Pages of PlayHistory objects
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/CursorPagingObject'
-            - type: object
-              properties:
-                items:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/PlayHistoryObject'
-    PlaylistTracksPagingObject:
-      description: Pages of playlist tracks
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlaylistTracksPagingObject'
-    SavedAlbumsPagingObject:
-      description: Pages of saved albums
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/PagingObject'
-            - type: object
-              properties:
-                items:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/SavedAlbumObject'
-    SavedAudiobooksPagingObject:
-      description: Pages of saved audiobooks
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/PagingObject'
-            - type: object
-              properties:
-                items:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/SavedAudiobookObject'
-    SavedEpisodesPagingObject:
-      description: Pages of saved episodes
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/PagingObject'
-            - type: object
-              properties:
-                items:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/SavedEpisodeObject'
-    SavedShowsPagingObject:
-      description: Pages of saved shows
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/PagingObject'
-            - type: object
-              properties:
-                items:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/SavedShowObject'
-    SavedTracksPagingObject:
-      description: Pages of saved tracks
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/PagingObject'
-            - type: object
-              properties:
-                items:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/SavedTrackObject'
-    SimplifiedArtistsPagingObject:
-      description: Pages of artists
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/SimplifiedArtistsPagingObject'
-    SimplifiedTracksPagingObject:
+            $ref: '#/components/schemas/PagingArtistObject'
+    PagingTrackObject:
       description: Pages of tracks
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/SimplifiedTracksPagingObject'
-    TracksPagingObject:
-      description: Pages of tracks
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TracksPagingObject'
+            $ref: '#/components/schemas/PagingTrackObject'
   schemas:
     LinkedTrackObject:
       type: object
@@ -4474,10 +4393,11 @@ components:
         reason:
           type: string
           description: |
-            The reason for the restriction. Supported values:<br>
-            - `market` - The content item is not available in the given market.<br>
-            - `product` - The content item is not available for the user's subscription type.<br>
-            - `explicit` - The content item is explicit and the user's account is set to not play explicit content.<br>
+            The reason for the restriction. Supported values:
+            - `market` - The content item is not available in the given market.
+            - `product` - The content item is not available for the user's subscription type.
+            - `explicit` - The content item is explicit and the user's account is set to not play explicit content.
+
             Additional reasons may be added in the future.
             **Note**: If you use this field, make sure that your application safely handles unknown values.
     AlbumRestrictionObject:
@@ -4500,10 +4420,26 @@ components:
         reason:
           type: string
           description: |
-            The reason for the restriction. Supported values:<br>
-            - `market` - The content item is not available in the given market.<br>
-            - `product` - The content item is not available for the user's subscription type.<br>
-            - `explicit` - The content item is explicit and the user's account is set to not play explicit content.<br>
+            The reason for the restriction. Supported values:
+            - `market` - The content item is not available in the given market.
+            - `product` - The content item is not available for the user's subscription type.
+            - `explicit` - The content item is explicit and the user's account is set to not play explicit content.
+
+            Additional reasons may be added in the future.
+            **Note**: If you use this field, make sure that your application safely handles unknown values.
+    ChapterRestrictionObject:
+      type: object
+      x-spotify-docs-type: ChapterRestrictionObject
+      properties:
+        reason:
+          type: string
+          description: |
+            The reason for the restriction. Supported values:
+            - `market` - The content item is not available in the given market.
+            - `product` - The content item is not available for the user's subscription type.
+            - `explicit` - The content item is explicit and the user's account is set to not play explicit content.
+            - `payment_required` - Payment is required to play the content item.
+
             Additional reasons may be added in the future.
             **Note**: If you use this field, make sure that your application safely handles unknown values.
     ArtistObject:
@@ -4598,7 +4534,7 @@ components:
       properties:
         track:
           allOf:
-          - $ref: '#/components/schemas/SimplifiedTrackObject'
+          - $ref: '#/components/schemas/TrackObject'
           description: The track the user listened to.
         played_at:
           type: string
@@ -4634,6 +4570,8 @@ components:
           - $ref: '#/components/schemas/EpisodeObject'
           x-spotify-docs-type: TrackObject | EpisodeObject
           description: Information about the track or episode.
+          discriminator:
+            propertyName: type
     CurrentlyPlayingObject:
       type: object
       x-spotify-docs-type: CurrentlyPlayingObject
@@ -4656,6 +4594,8 @@ components:
           oneOf:
           - $ref: '#/components/schemas/TrackObject'
           - $ref: '#/components/schemas/EpisodeObject'
+          discriminator:
+            propertyName: type
           x-spotify-docs-type: TrackObject | EpisodeObject
           description: The currently playing track or episode. Can be `null`.
         currently_playing_type:
@@ -4670,6 +4610,8 @@ components:
           oneOf:
           - $ref: '#/components/schemas/TrackObject'
           - $ref: '#/components/schemas/EpisodeObject'
+          discriminator:
+            propertyName: type
           x-spotify-docs-type: TrackObject | EpisodeObject
           description: The currently playing track or episode. Can be `null`.
         queue:
@@ -4678,6 +4620,8 @@ components:
             oneOf:
             - $ref: '#/components/schemas/TrackObject'
             - $ref: '#/components/schemas/EpisodeObject'
+            discriminator:
+              propertyName: type
             x-spotify-docs-type: TrackObject | EpisodeObject
           description: The tracks or episodes in the queue. Can be empty.
     CurrentlyPlayingContextObject:
@@ -4713,6 +4657,8 @@ components:
           oneOf:
           - $ref: '#/components/schemas/TrackObject'
           - $ref: '#/components/schemas/EpisodeObject'
+          discriminator:
+            propertyName: type
           x-spotify-docs-type: TrackObject | EpisodeObject
           description: The currently playing track or episode. Can be `null`.
         currently_playing_type:
@@ -5268,7 +5214,7 @@ components:
 
             Vectors are normalized to 1 by their strongest dimension, therefore noisy sounds are likely represented by values that are all close to 1, while pure tones are described by one value at 1 (the pitch) and others near 0.
             As can be seen below, the 12 vector indices are a combination of low-power spectrum values at their respective pitch frequencies.
-            <img src="https://developer.spotify.com/assets/audio/Pitch_vector.png" />
+            ![pitch vector](https://developer.spotify.com/assets/audio/Pitch_vector.png)
           items:
             type: number
             minimum: 0
@@ -5283,7 +5229,7 @@ components:
             Timbre is the quality of a musical note or sound that distinguishes different types of musical instruments, or voices. It is a complex notion also referred to as sound color, texture, or tone quality, and is derived from the shape of a segment’s spectro-temporal surface, independently of pitch and loudness. The timbre feature is a vector that includes 12 unbounded values roughly centered around 0. Those values are high level abstractions of the spectral surface, ordered by degree of importance.
 
             For completeness however, the first dimension represents the average loudness of the segment; second emphasizes brightness; third is more closely correlated to the flatness of a sound; fourth to sounds with a stronger attack; etc. See an image below representing the 12 basis functions (i.e. template segments).
-            <img src="https://developer.spotify.com/assets/audio/Timbre_basis_functions.png" />
+            ![timbre basis functions](https://developer.spotify.com/assets/audio/Timbre_basis_functions.png)
 
             The actual timbre of the segment is best described as a linear combination of these 12 basis functions weighted by the coefficient values: timbre = c1 x b1 + c2 x b2 + ... + c12 x b12, where c1 to c12 represent the 12 coefficients and b1 to b12 the 12 basis functions as displayed below. Timbre vectors are best used in comparison with each other.
           items:
@@ -5484,7 +5430,6 @@ components:
           - $ref: '#/components/schemas/TrackRestrictionObject'
           description: |
             Included in the response when a content restriction is applied.
-            See [Restriction Object](/documentation/web-api/reference/#object-trackrestrictionobject) for more details.
         name:
           type: string
           description: The name of the track.
@@ -5560,6 +5505,9 @@ components:
         after:
           type: string
           description: The cursor to use as key to find the next page of items.
+        before:
+          type: string
+          description: The cursor to use as key to find the previous page of items.
     CursorPagingObject:
       type: object
       x-spotify-docs-type: CursorPagingObject
@@ -5568,11 +5516,6 @@ components:
           type: string
           description: A link to the Web API endpoint returning the full result of
             the request.
-        items:
-          type: array
-          items:
-            type: object
-          description: The requested data.
         limit:
           type: integer
           description: The maximum number of items in the response (as set in the
@@ -5587,6 +5530,28 @@ components:
         total:
           type: integer
           description: The total number of items available to return.
+    CursorPagingPlayHistoryObject:
+      type: object
+      x-spotify-docs-type: PagingTrackObject
+      allOf:
+      - $ref: '#/components/schemas/CursorPagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/PlayHistoryObject'
+    CursorPagingSimplifiedArtistObject:
+      type: object
+      x-spotify-docs-type: PagingArtistObject
+      allOf:
+      - $ref: '#/components/schemas/CursorPagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/ArtistObject'
     PagingObject:
       type: object
       x-spotify-docs-type: PagingObject
@@ -5605,12 +5570,6 @@ components:
             https://api.spotify.com/v1/me/shows?offset=0&limit=20
           description: |
             A link to the Web API endpoint returning the full result of the request
-        items:
-          type: array
-          items:
-            type: object
-          description: |
-            The requested content
         limit:
           type: integer
           example: 20
@@ -5638,6 +5597,179 @@ components:
           example: 4
           description: |
             The total number of items available to return.
+    PagingPlaylistObject:
+      type: object
+      x-spotify-docs-type: PagingPlaylistObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedPlaylistObject'
+    PagingFeaturedPlaylistObject:
+      type: object
+      x-spotify-docs-type: PagingFeaturedPlaylistObject
+      properties:
+        message:
+          type: string
+        playlists:
+          $ref: '#/components/schemas/PagingPlaylistObject'
+    PagingSimplifiedAlbumObject:
+      type: object
+      x-spotify-docs-type: PagingAlbumObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedAlbumObject'
+    PagingSavedAlbumObject:
+      type: object
+      x-spotify-docs-type: PagingSavedAlbumObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SavedAlbumObject'
+    PagingSimplifiedTrackObject:
+      type: object
+      x-spotify-docs-type: PagingTrackObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedTrackObject'
+    PagingSavedTrackObject:
+      type: object
+      x-spotify-docs-type: PagingTrackObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SavedTrackObject'
+    PagingTrackObject:
+      type: object
+      x-spotify-docs-type: PagingTrackObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/TrackObject'
+    PagingPlaylistTrackObject:
+      type: object
+      x-spotify-docs-type: PagingPlaylistTrackObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/PlaylistTrackObject'
+    PagingSimplifiedShowObject:
+      type: object
+      x-spotify-docs-type: PagingShowObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedShowObject'
+    PagingSavedShowObject:
+      type: object
+      x-spotify-docs-type: PagingShowObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SavedShowObject'
+    PagingSimplifiedEpisodeObject:
+      type: object
+      x-spotify-docs-type: PagingEpisodeObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedEpisodeObject'
+    PagingSavedEpisodeObject:
+      type: object
+      x-spotify-docs-type: PagingEpisodeObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SavedEpisodeObject'
+    PagingSimplifiedAudiobookObject:
+      type: object
+      x-spotify-docs-type: PagingAudiobookObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedAudiobookObject'
+    PagingSimplifiedArtistObject:
+      type: object
+      x-spotify-docs-type: PagingArtistObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedArtistObject'
+    PagingArtistObject:
+      type: object
+      x-spotify-docs-type: PagingArtistObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/ArtistObject'
+    PagingSimplifiedChapterObject:
+      type: object
+      x-spotify-docs-type: PagingSimplifiedChapterObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedChapterObject'
     RecommendationsObject:
       type: object
       x-spotify-docs-type: RecommendationsObject
@@ -5672,7 +5804,7 @@ components:
         href:
           type: string
           description: |
-            A link to the full track or artist data for this seed. For tracks this will be a link to a [Track Object](/documentation/web-api/reference/#object-trackobject). For artists a link to [an Artist Object](/documentation/web-api/reference/#object-artistobject). For genre seeds, this value will be `null`.
+            A link to the full track or artist data for this seed. For tracks this will be a link to a Track Object. For artists a link to an Artist Object. For genre seeds, this value will be `null`.
         id:
           type: string
           description: |
@@ -5870,7 +6002,7 @@ components:
         tracks:
           type: object
           allOf:
-          - $ref: '#/components/schemas/PlaylistTracksPagingObject'
+          - $ref: '#/components/schemas/PagingPlaylistTrackObject'
           description: |
             The tracks of the playlist.
         type:
@@ -6083,14 +6215,16 @@ components:
         linked_from:
           allOf:
           - $ref: '#/components/schemas/LinkedTrackObject'
-          description: |
-            Part of the response when [Track Relinking](/documentation/general/guides/track-relinking-guide/) is applied, and the requested track has been replaced with different track. The track in the `linked_from` object contains information about the originally requested track.
+          description: "Part of the response when [Track Relinking](/documentation/general/guides/track-relinking-guide/)\
+            \ is applied and is only part of the response if the track linking, in\
+            \ fact, exists. The requested track has been replaced with a different\
+            \ track. The track in the `linked_from` object contains information about\
+            \ the originally requested track."
         restrictions:
           allOf:
           - $ref: '#/components/schemas/TrackRestrictionObject'
           description: |
             Included in the response when a content restriction is applied.
-            See [Restriction Object](/documentation/web-api/reference/#object-trackrestrictionobject) for more details.
         name:
           type: string
           description: |
@@ -6098,7 +6232,7 @@ components:
         popularity:
           type: integer
           description: |
-            The popularity of the track. The value will be between 0 and 100, with 100 being the most popular.<br>The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are.<br>Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. _**Note**: the popularity value may lag actual popularity by a few days: the value is not updated in real time._
+            The popularity of the track. The value will be between 0 and 100, with 100 being the most popular.<br/>The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are.<br/>Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. _**Note**: the popularity value may lag actual popularity by a few days: the value is not updated in real time._
         preview_url:
           type: string
           description: |
@@ -6111,6 +6245,8 @@ components:
           type: string
           description: |
             The object type: "track".
+          enum:
+          - track
         uri:
           type: string
           description: |
@@ -6129,11 +6265,9 @@ components:
         - show
         properties:
           show:
+            $ref: '#/components/schemas/SimplifiedShowObject'
             description: |
               The show on which the episode belongs.
-            type: object
-            allOf:
-            - $ref: '#/components/schemas/SimplifiedShowObject'
     SimplifiedEpisodeObject:
       x-spotify-docs-type: SimplifiedEpisodeObject
       type: object
@@ -6272,7 +6406,6 @@ components:
           - $ref: '#/components/schemas/EpisodeRestrictionObject'
           description: |
             Included in the response when a content restriction is applied.
-            See [Restriction Object](/documentation/web-api/reference/#object-episoderestrictionobject) for more details.
     ResumePointObject:
       type: object
       x-spotify-docs-type: ResumePointObject
@@ -6381,6 +6514,10 @@ components:
           type: string
           description: |
             The [Spotify URI](/documentation/web-api/#spotify-uris-and-ids) for the show.
+        total_episodes:
+          type: integer
+          description: |
+            The total number of episodes in the show.
     ShowObject:
       x-spotify-docs-type: ShowObject
       allOf:
@@ -6392,7 +6529,7 @@ components:
           episodes:
             type: object
             allOf:
-            - $ref: '#/components/schemas/EpisodesPagingObject'
+            - $ref: '#/components/schemas/PagingSimplifiedEpisodeObject'
             description: |
               The episodes of the show.
     SimplifiedShowObject:
@@ -6447,6 +6584,11 @@ components:
           type: string
           description: |
             A description of the audiobook. This field may contain HTML tags.
+        edition:
+          type: string
+          description: |
+            The edition of the audiobook.
+          example: Unabridged
         explicit:
           type: boolean
           description: |
@@ -6486,7 +6628,8 @@ components:
             The name of the audiobook.
         narrators:
           type: array
-          $ref: '#/components/schemas/NarratorObject'
+          items:
+            $ref: '#/components/schemas/NarratorObject'
           description: |
             The narrator(s) for the audiobook.
         publisher:
@@ -6518,7 +6661,7 @@ components:
           chapters:
             type: object
             allOf:
-            - $ref: '#/components/schemas/ChaptersPagingObject'
+            - $ref: '#/components/schemas/PagingSimplifiedChapterObject'
             description: |
               The chapters of the audiobook.
     SimplifiedAudiobookObject:
@@ -6618,6 +6761,34 @@ components:
           example: spotify:album:2up3OPMp9Tb4dAKM2erWXQ
           description: |
             The [Spotify URI](/documentation/web-api/#spotify-uris-and-ids) for the album.
+        copyrights:
+          type: array
+          items:
+            $ref: '#/components/schemas/CopyrightObject'
+          description: |
+            The copyright statements of the album.
+        external_ids:
+          allOf:
+          - $ref: '#/components/schemas/ExternalIdObject'
+          description: |
+            Known external IDs for the album.
+        genres:
+          type: array
+          items:
+            type: string
+          example:
+          - Egg punk
+          - Noise rock
+          description: |
+            A list of the genres the album is associated with. If not yet classified, the array is empty.
+        label:
+          type: string
+          description: |
+            The label associated with the album.
+        popularity:
+          type: integer
+          description: |
+            The popularity of the album. The value will be between 0 and 100, with 100 being the most popular.
     SimplifiedAlbumObject:
       x-spotify-docs-type: SimplifiedAlbumObject
       allOf:
@@ -6687,6 +6858,12 @@ components:
           example: https://p.scdn.co/mp3-preview/2f37da1d4221f40b9d1a98cd191f4d6f1646ad17
           description: |
             A URL to a 30 second preview (MP3 format) of the episode. `null` if not available.
+        available_markets:
+          type: array
+          items:
+            type: string
+          description: |
+            A list of the countries in which the chapter can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.
         chapter_number:
           type: integer
           example: 1
@@ -6785,10 +6962,9 @@ components:
             The [Spotify URI](/documentation/web-api/#spotify-uris-and-ids) for the episode.
         restrictions:
           allOf:
-          - $ref: '#/components/schemas/EpisodeRestrictionObject'
+          - $ref: '#/components/schemas/ChapterRestrictionObject'
           description: |
             Included in the response when a content restriction is applied.
-            See [Restriction Object](/documentation/web-api/reference/#object-episoderestrictionobject) for more details.
     AlbumObject:
       x-spotify-docs-type: AlbumObject
       allOf:
@@ -6802,9 +6978,7 @@ components:
             description: |
               The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
           tracks:
-            type: object
-            allOf:
-            - $ref: '#/components/schemas/SimplifiedTracksPagingObject'
+            $ref: '#/components/schemas/PagingSimplifiedTrackObject'
             description: |
               The tracks of the album.
           popularity:
@@ -6954,70 +7128,6 @@ components:
           type: boolean
           description: |
             When `true`, indicates that the explicit content setting is locked and can't be changed by the user.
-    AlbumsPagingObject:
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/SimplifiedAlbumObject'
-    ArtistsPagingObject:
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/ArtistObject'
-    AudiobooksPagingObject:
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/SimplifiedAudiobookObject'
-    ChaptersPagingObject:
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/SimplifiedChapterObject'
-    EpisodesPagingObject:
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/SimplifiedEpisodeObject'
-    PlaylistsPagingObject:
-      type: object
-      x-spotify-docs-type: PlaylistsPagingObject
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SimplifiedPlaylistObject'
-    PlaylistTracksPagingObject:
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/PlaylistTrackObject'
     SavedAudiobookObject:
       type: object
       x-spotify-docs-type: SavedAudiobookObject
@@ -7034,42 +7144,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/AudiobookObject'
           description: Information about the audiobook.
-    ShowsPagingObject:
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/SimplifiedShowObject'
-    SimplifiedArtistsPagingObject:
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/SimplifiedArtistObject'
-    SimplifiedTracksPagingObject:
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/SimplifiedTrackObject'
-    TracksPagingObject:
-      allOf:
-      - $ref: '#/components/schemas/PagingObject'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/TrackObject'
   parameters:
     PathAlbumId:
       in: path
@@ -7099,10 +7173,10 @@ components:
         title: Market
         description: |
           An [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
-            If a country code is specified, only content that is available in that market will be returned.<br>
+            If a country code is specified, only content that is available in that market will be returned.<br/>
             If a valid user access token is specified in the request header, the country associated with
-            the user account will take priority over this parameter.<br>
-            _**Note**: If neither market or user country are provided, the content is considered unavailable for the client._<br>
+            the user account will take priority over this parameter.<br/>
+            _**Note**: If neither market or user country are provided, the content is considered unavailable for the client._<br/>
             Users can view the country that is associated with their account in the [account settings](https://www.spotify.com/se/account/overview/).
         example: ES
         type: string
@@ -7137,8 +7211,8 @@ components:
       schema:
         title: Additional Types
         description: |
-          A comma-separated list of item types that your client supports besides the default `track` type. Valid types are: `track` and `episode`.<br>
-          _**Note**: This parameter was introduced to allow existing clients to maintain their current behaviour and might be deprecated in the future._<br>
+          A comma-separated list of item types that your client supports besides the default `track` type. Valid types are: `track` and `episode`.<br/>
+          _**Note**: This parameter was introduced to allow existing clients to maintain their current behaviour and might be deprecated in the future._<br/>
           In addition to providing this parameter, make sure that your client properly handles cases of new types in the future by checking against the `type` field of each object.
         type: string
     QueryAlbumIds:
@@ -7181,7 +7255,7 @@ components:
         description: |
           The [Spotify ID](/documentation/web-api/#spotify-uris-and-ids)
           for the audiobook.
-        example: 38bS44xjbVVZ3No3ByF1dJ
+        example: 7iHfbu1YPACw6oZPAFJtqe
         type: string
     QueryAudiobookIds:
       name: ids
@@ -7190,8 +7264,8 @@ components:
       schema:
         title: Spotify Audiobook IDs
         description: |
-          A comma-separated list of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). For example: `ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M`. Maximum: 50 IDs.
-        example: "7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B"
+          A comma-separated list of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). For example: `ids=18yVqkdbdRvS24c0Ilj2ci,1HGw3J3NxZO1TP1BTtVhpZ`. Maximum: 50 IDs.
+        example: "18yVqkdbdRvS24c0Ilj2ci,1HGw3J3NxZO1TP1BTtVhpZ,7iHfbu1YPACw6oZPAFJtqe"
         type: string
     PathChapterId:
       name: id
@@ -7202,7 +7276,7 @@ components:
         description: |
           The [Spotify ID](/documentation/web-api/#spotify-uris-and-ids)
           for the chapter.
-        example: 38bS44xjbVVZ3No3ByF1dJ
+        example: 0D5wENdkdwbqlrHoaJ9g29
         type: string
     QueryChapterIds:
       name: ids
@@ -7211,8 +7285,8 @@ components:
       schema:
         title: Spotify Chapter IDs
         description: |
-          A comma-separated list of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). For example: `ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M`. Maximum: 50 IDs.
-        example: "7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B"
+          A comma-separated list of the [Spotify IDs](/documentation/web-api/#spotify-uris-and-ids). For example: `ids=0IsXVP0JmcB2adSE338GkK,3ZXb8FKZGU0EHALYX6uCzU`. Maximum: 50 IDs.
+        example: "0IsXVP0JmcB2adSE338GkK,3ZXb8FKZGU0EHALYX6uCzU,0D5wENdkdwbqlrHoaJ9g29"
         type: string
     QueryTrackIds:
       name: ids
@@ -7231,8 +7305,8 @@ components:
       schema:
         title: "Groups to include (single, album, appears_on, compilation)"
         description: |
-          A comma-separated list of keywords that will be used to filter the response. If not supplied, all album types will be returned. <br>
-          Valid values are:<br>- `album`<br>- `single`<br>- `appears_on`<br>- `compilation`<br>For example: `include_groups=album,single`.
+          A comma-separated list of keywords that will be used to filter the response. If not supplied, all album types will be returned. <br/>
+          Valid values are:<br/>- `album`<br/>- `single`<br/>- `appears_on`<br/>- `compilation`<br/>For example: `include_groups=album,single`.
         example: "single,appears_on"
         type: string
     QueryShowIds:

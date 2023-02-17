@@ -1,8 +1,0 @@
-description: update response type to SavedAudiobooksPagingObject
-operations:
-  - op: test
-    path: "$.paths./me/audiobooks.get.responses.200.$ref"
-    value: '#/components/responses/PagingObject'
-  - op: set
-    path: "$.paths./me/audiobooks.get.responses.200.$ref"
-    value: '#/components/responses/SavedAudiobooksPagingObject'

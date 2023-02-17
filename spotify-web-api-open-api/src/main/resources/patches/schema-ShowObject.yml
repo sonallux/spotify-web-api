@@ -1,8 +1,0 @@
-description: Fix type of episodes property to EpisodesPagingObject
-operations:
-  - op: test
-    path: "$.components.schemas.ShowObject.allOf[1].properties.episodes.allOf[0].$ref"
-    value: '#/components/schemas/PagingObject'
-  - op: set
-    path: "$.components.schemas.ShowObject.allOf[1].properties.episodes.allOf[0].$ref"
-    value: '#/components/schemas/EpisodesPagingObject'

@@ -1,12 +1,6 @@
 description: update response type to PlaylistTracksPagingObject and fix maximum of limit parameter
 operations:
   - op: test
-    path: "$.paths./playlists/{playlist_id}/tracks.get.responses.200.$ref"
-    value: '#/components/responses/PagingObject'
-  - op: set
-    path: "$.paths./playlists/{playlist_id}/tracks.get.responses.200.$ref"
-    value: '#/components/responses/PlaylistTracksPagingObject'
-  - op: test
     path: "$.paths./playlists/{playlist_id}/tracks.get.parameters[?(@.$ref=='#/components/parameters/QueryLimit')]"
     value:
       - $ref: '#/components/parameters/QueryLimit'

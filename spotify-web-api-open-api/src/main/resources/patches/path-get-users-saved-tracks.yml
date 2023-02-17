@@ -1,8 +1,0 @@
-description: update response type to SavedTracksPagingObject
-operations:
-  - op: test
-    path: "$.paths./me/tracks.get.responses.200.$ref"
-    value: '#/components/responses/PagingObject'
-  - op: set
-    path: "$.paths./me/tracks.get.responses.200.$ref"
-    value: '#/components/responses/SavedTracksPagingObject'

@@ -1,12 +1,6 @@
 description: update response type to PlayHistoryCursorPagingObject and use existing QueryLimit parameter
 operations:
   - op: test
-    path: "$.paths./me/player/recently-played.get.responses.200.$ref"
-    value: '#/components/responses/CursorPaging'
-  - op: set
-    path: "$.paths./me/player/recently-played.get.responses.200.$ref"
-    value: '#/components/responses/PlayHistoryCursorPagingObject'
-  - op: test
     path: "$.paths./me/player/recently-played.get.parameters[?(@.name=='limit')]"
     value:
       - name: limit

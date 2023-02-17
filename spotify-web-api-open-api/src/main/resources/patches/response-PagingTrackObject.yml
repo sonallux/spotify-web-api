@@ -1,0 +1,14 @@
+description:
+operations:
+  - op: test
+    path: '$.components.responses.PagingTrackObject'
+    value: null
+  - op: put
+    path: '$.components.responses'
+    key: PagingTrackObject
+    value:
+      description: Pages of tracks
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingTrackObject'

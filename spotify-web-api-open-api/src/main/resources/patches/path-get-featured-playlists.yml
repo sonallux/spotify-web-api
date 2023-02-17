@@ -1,8 +1,0 @@
-description: Fix response
-operations:
-  - op: test
-    path: "$.paths./browse/featured-playlists.get.responses.200.$ref"
-    value: '#/components/responses/PagedPlaylists'
-  - op: set
-    path: "$.paths./browse/featured-playlists.get.responses.200.$ref"
-    value: '#/components/responses/PagedPlaylistsAndMessage'

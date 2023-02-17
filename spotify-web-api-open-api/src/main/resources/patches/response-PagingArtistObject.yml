@@ -1,0 +1,14 @@
+description:
+operations:
+  - op: test
+    path: '$.components.responses.PagingArtistObject'
+    value: null
+  - op: put
+    path: '$.components.responses'
+    key: PagingArtistObject
+    value:
+      description: Pages of artists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingArtistObject'

@@ -1,8 +1,0 @@
-description: update response type to ChaptersPagingObject
-operations:
-  - op: test
-    path: "$.paths./audiobooks/{id}/chapters.get.responses.200.$ref"
-    value: '#/components/responses/PagingObject'
-  - op: set
-    path: "$.paths./audiobooks/{id}/chapters.get.responses.200.$ref"
-    value: '#/components/responses/ChaptersPagingObject'
