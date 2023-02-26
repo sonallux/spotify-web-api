@@ -1,0 +1,6 @@
+description: Remove the spotify policy stuff
+operations:
+  - op: delete
+    path: "$.components.x-spotify-policy"
+  - op: delete
+    path: "$..x-spotify-policy-list"

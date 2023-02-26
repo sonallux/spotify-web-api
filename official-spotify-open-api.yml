@@ -19,6 +19,8 @@ paths:
     x-spotify-docs-category: Albums
     get:
       operationId: get-an-album
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       tags:
         - Albums
       x-spotify-docs-endpoint-name: Get an Album
@@ -46,6 +48,8 @@ paths:
     x-spotify-docs-category: Albums
     get:
       operationId: get-multiple-albums
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       tags:
         - Albums
       x-spotify-docs-endpoint-name: Get Multiple Albums
@@ -73,6 +77,8 @@ paths:
     x-spotify-docs-category: Albums
     get:
       operationId: get-an-albums-tracks
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       tags:
         - Albums
         - Tracks
@@ -106,6 +112,8 @@ paths:
       tags:
         - Artists
       operationId: get-an-artist
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get an Artist
       x-spotify-docs-console-url: /console/get-artist/?id=0OdUWJ0sBjDrqHygGUXeCF
       summary: |
@@ -132,6 +140,8 @@ paths:
       tags:
         - Artists
       operationId: get-multiple-artists
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get Multiple Artists
       x-spotify-docs-console-url: /console/get-several-artists/?ids=0oSGxfWSnnOXhD2fKuz2Gy,3dBVyJ7JuOMt4GE9607Qin
       summary: |
@@ -167,6 +177,8 @@ paths:
         - Artists
         - Albums
       operationId: get-an-artists-albums
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get an Artist's Albums
       x-spotify-docs-console-url: /console/get-artist-albums/?album_type=single&amp;limit=2&amp;market=ES&amp;id=1vCWHaC5f2uS3yhpwWbIA6
       summary: |
@@ -198,6 +210,8 @@ paths:
         - Artists
         - Tracks
       operationId: get-an-artists-top-tracks
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get an Artist's Top Tracks
       x-spotify-docs-console-url: /console/get-artist-top-tracks/?country=SE&amp;id=43ZHCT0cAZBISjO8DG9PnE
       summary: |
@@ -225,6 +239,8 @@ paths:
       tags:
         - Artists
       operationId: get-an-artists-related-artists
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get an Artist's Related Artists
       x-spotify-docs-console-url: /console/get-artist-related-artists/?id=43ZHCT0cAZBISjO8DG9PnE
       summary: |
@@ -251,6 +267,8 @@ paths:
       tags:
         - Shows
       operationId: get-a-show
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get a Show
       x-spotify-docs-console-url: /console/get-show/?id=38bS44xjbVVZ3No3ByF1dJ
       summary: |
@@ -280,6 +298,8 @@ paths:
       tags:
         - Shows
       operationId: get-multiple-shows
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get Multiple Shows
       x-spotify-docs-console-url: /console/get-several-shows/?ids=5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ
       summary: |
@@ -308,6 +328,8 @@ paths:
         - Shows
         - Episodes
       operationId: get-a-shows-episodes
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get a Show's Episodes
       x-spotify-docs-console-url: /console/get-show-episodes/
       summary: |
@@ -338,6 +360,8 @@ paths:
       tags:
         - Episodes
       operationId: get-an-episode
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get an Episode
       x-spotify-docs-console-url: /console/get-episode/?id=512ojhOuo1ktJprKbVcKyQ
       summary: |
@@ -376,6 +400,8 @@ paths:
       tags:
         - Episodes
       operationId: get-multiple-episodes
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get Multiple Episodes
       x-spotify-docs-console-url: /console/get-several-episodes/?ids=77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf
       summary: |
@@ -410,6 +436,8 @@ paths:
     x-spotify-docs-category: Audiobooks
     get:
       operationId: get-an-audiobook
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       tags:
         - Audiobooks
       x-spotify-docs-endpoint-name: Get an Audiobook
@@ -438,6 +466,8 @@ paths:
     x-spotify-docs-category: Audiobooks
     get:
       operationId: get-multiple-audiobooks
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       tags:
         - Audiobooks
       x-spotify-docs-endpoint-name: Get Several Audiobooks
@@ -466,6 +496,8 @@ paths:
     x-spotify-docs-category: Audiobooks
     get:
       operationId: get-audiobook-chapters
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       tags:
         - Audiobooks
         - Chapters
@@ -604,6 +636,8 @@ paths:
     x-spotify-docs-category: Chapters
     get:
       operationId: get-a-chapter
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       tags:
         - Chapters
       x-spotify-docs-endpoint-name: Get a Chapter
@@ -632,6 +666,8 @@ paths:
     x-spotify-docs-category: Chapters
     get:
       operationId: get-several-chapters
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       tags:
         - Chapters
       x-spotify-docs-endpoint-name: Get Several Chapters
@@ -662,6 +698,8 @@ paths:
       tags:
         - Tracks
       operationId: get-track
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get a Track
       x-spotify-docs-console-url: /console/get-track/?id=3n3Ppam7vgaVa1iaRUc9Lp
       summary: |
@@ -699,6 +737,8 @@ paths:
       tags:
         - Tracks
       operationId: get-several-tracks
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get Several Tracks
       x-spotify-docs-console-url: /console/get-several-tracks/?ids=3n3Ppam7vgaVa1iaRUc9Lp,3twNvmDtFQtAd5gMKedhLD
       summary: |
@@ -856,6 +896,8 @@ paths:
       tags:
         - Playlists
       operationId: get-playlist
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get a Playlist
       x-spotify-docs-console-url: /console/get-playlist/?playlist_id=59ZbFPES4DQwEjBpWHzrtC&amp;user_id=spotify
       summary: |
@@ -957,6 +999,8 @@ paths:
         - Playlists
         - Tracks
       operationId: get-playlists-tracks
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get a Playlist's Items
       x-spotify-docs-console-url: /console/get-playlist-tracks/?playlist_id=21THa8j9TaSGuXYNBU5tsC&amp;user_id=spotify_espa%C3%B1a
       summary: |
@@ -2003,6 +2047,8 @@ paths:
       operationId: get-featured-playlists
       x-spotify-docs-endpoint-name: Get All Featured Playlists
       x-spotify-docs-console-url: /console/get-featured-playlists/?country=SE&amp;limit=2
+      x-spotify-policy-list:
+        - $ref: '#/components/x-spotify-policy/MultipleIntegrations'
       summary: |
         Get Featured Playlists
       description: |
@@ -2200,6 +2246,8 @@ paths:
       tags:
         - Playlists
       operationId: get-playlist-cover
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataPolicyList'
       x-spotify-docs-endpoint-name: Get a Playlist Cover Image
       x-spotify-docs-console-url: /console/get-playlist-images?playlist_id=3cEYpjA9oz9GiPac4AsH4n
       summary: |
@@ -2254,6 +2302,8 @@ paths:
       operationId: get-new-releases
       x-spotify-docs-endpoint-name: Get All New Releases
       x-spotify-docs-console-url: /console/get-new-releases/?country=SE
+      x-spotify-policy-list:
+        - $ref: '#/components/x-spotify-policy/MultipleIntegrations'
       summary: |
         Get New Releases
       description: |
@@ -3147,6 +3197,8 @@ paths:
       tags:
         - Player
       operationId: get-information-about-the-users-current-playback
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/playerPolicyList'
       x-spotify-docs-endpoint-name: Get Information About The User's Current Playback
       x-spotify-docs-console-url: /console/get-user-player/
       summary: |
@@ -3174,6 +3226,8 @@ paths:
       tags:
         - Player
       operationId: transfer-a-users-playback
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/playerPolicyList'
       x-spotify-docs-endpoint-name: Transfer a User's Playback
       x-spotify-docs-console-url: /console/put-user-player
       summary: |
@@ -3247,6 +3301,8 @@ paths:
       tags:
         - Player
       operationId: get-the-users-currently-playing-track
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/playerPolicyList'
       x-spotify-docs-endpoint-name: Get the User's Currently Playing Track
       x-spotify-docs-console-url: /console/get-users-currently-playing-track/
       summary: |
@@ -3276,6 +3332,8 @@ paths:
       tags:
         - Player
       operationId: start-a-users-playback
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/playerPolicyList'
       x-spotify-docs-endpoint-name: Start/Resume a User's Playback
       x-spotify-docs-console-url: /console/put-play/
       summary: |
@@ -3348,6 +3406,8 @@ paths:
       tags:
         - Player
       operationId: pause-a-users-playback
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/playerPolicyList'
       x-spotify-docs-endpoint-name: Pause a User's Playback
       x-spotify-docs-console-url: /console/put-pause/
       summary: |
@@ -3383,6 +3443,8 @@ paths:
       tags:
         - Player
       operationId: skip-users-playback-to-next-track
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/playerPolicyList'
       x-spotify-docs-endpoint-name: Skip User’s Playback To Next Track
       x-spotify-docs-console-url: /console/post-next/
       summary: |
@@ -3418,6 +3480,8 @@ paths:
       tags:
         - Player
       operationId: skip-users-playback-to-previous-track
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/playerPolicyList'
       x-spotify-docs-endpoint-name: Skip User’s Playback To Previous Track
       x-spotify-docs-console-url: /console/post-previous/
       summary: |
@@ -3454,6 +3518,8 @@ paths:
       tags:
         - Player
       operationId: seek-to-position-in-currently-playing-track
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/playerPolicyList'
       x-spotify-docs-endpoint-name: Seek To Position In Currently Playing Track
       x-spotify-docs-console-url: /console/put-seek/
       summary: |
@@ -3640,6 +3706,8 @@ paths:
       tags:
         - Player
       operationId: get-recently-played
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/playerPolicyList'
       x-spotify-docs-endpoint-name: Get Current User's Recently Played Tracks
       x-spotify-docs-console-url: /console/get-recently-played/
       summary: |
@@ -3700,6 +3768,8 @@ paths:
       tags:
         - Player
       operationId: get-queue
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/playerPolicyList'
       x-spotify-docs-endpoint-name: Get the User's Queue
       x-spotify-docs-console-url: /console/get-queue/
       summary: |
@@ -3722,6 +3792,8 @@ paths:
       tags:
         - Player
       operationId: add-to-queue
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/playerPolicyList'
       x-spotify-docs-endpoint-name: Add an item to queue
       x-spotify-docs-console-url: /console/post-queue/
       summary: |
@@ -3843,6 +3915,17 @@ components:
               Upload images to Spotify on your behalf.
             streaming: |
               Play content and control playback on your other devices.
+  x-spotify-policy:
+    $ref: '../policies.yaml'
+    metadataPolicyList:
+      - $ref: '#/components/x-spotify-policy/Downloading'
+      - $ref: '#/components/x-spotify-policy/VisualAlteration'
+      - $ref: '#/components/x-spotify-policy/Attribution'
+    playerPolicyList:
+      - $ref: '#/components/x-spotify-policy/CommercialStreaming'
+      - $ref: '#/components/x-spotify-policy/ContentAlteration'
+      - $ref: '#/components/x-spotify-policy/Synchronization'
+      - $ref: '#/components/x-spotify-policy/Broadcasting'
   responses:
     Unauthorized:
       description: |
@@ -5377,6 +5460,8 @@ components:
           type: string
           description: |
             A URL to a 30 second preview (MP3 format) of the track.
+          x-spotify-policy-list:
+            - $ref: '#/components/x-spotify-policy/StandalonePreview'
         track_number:
           type: integer
           description: |
@@ -6205,6 +6290,8 @@ components:
           type: string
           description: |
             A link to a 30 second preview (MP3 format) of the track. Can be `null`
+          x-spotify-policy-list:
+            - $ref: '#/components/x-spotify-policy/StandalonePreview'
         track_number:
           type: integer
           description: |
@@ -6271,6 +6358,8 @@ components:
           example: https://p.scdn.co/mp3-preview/2f37da1d4221f40b9d1a98cd191f4d6f1646ad17
           description: |
             A URL to a 30 second preview (MP3 format) of the episode. `null` if not available.
+          x-spotify-policy-list:
+            - $ref: '#/components/x-spotify-policy/StandalonePreview'
         description:
           type: string
           example: |
@@ -6820,6 +6909,8 @@ components:
           example: https://p.scdn.co/mp3-preview/2f37da1d4221f40b9d1a98cd191f4d6f1646ad17
           description: |
             A URL to a 30 second preview (MP3 format) of the episode. `null` if not available.
+          x-spotify-policy-list:
+            - $ref: '#/components/x-spotify-policy/StandalonePreview'
         available_markets:
           type: array
           items:
