@@ -6265,7 +6265,8 @@ components:
         - show
         properties:
           show:
-            $ref: '#/components/schemas/SimplifiedShowObject'
+            allOf:
+            - $ref: '#/components/schemas/SimplifiedShowObject'
             description: |
               The show on which the episode belongs.
     SimplifiedEpisodeObject:
@@ -6795,7 +6796,8 @@ components:
         - audiobook
         properties:
           audiobook:
-            $ref: '#/components/schemas/SimplifiedAudiobookObject'
+            allOf:
+            - $ref: '#/components/schemas/SimplifiedAudiobookObject'
             description: |
               The audiobook for which the chapter belongs.
     SimplifiedChapterObject:
@@ -6950,7 +6952,8 @@ components:
             description: |
               The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
           tracks:
-            $ref: '#/components/schemas/PagingSimplifiedTrackObject'
+            allOf:
+            - $ref: '#/components/schemas/PagingSimplifiedTrackObject'
             description: |
               The tracks of the album.
           popularity:

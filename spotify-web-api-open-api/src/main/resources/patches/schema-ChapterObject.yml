@@ -1,0 +1,16 @@
+description: fix audiobook property of ChapterObject
+operations:
+  # popularity
+  - op: test
+    path: "$.components.schemas.ChapterObject.allOf[1].properties.audiobook"
+    value:
+      $ref: '#/components/schemas/SimplifiedAudiobookObject'
+      description: |
+        The audiobook for which the chapter belongs.
+  - op: set
+    path: "$.components.schemas.ChapterObject.allOf[1].properties.audiobook"
+    value:
+      allOf:
+        - $ref: '#/components/schemas/SimplifiedAudiobookObject'
+      description: |
+        The audiobook for which the chapter belongs.
