@@ -6761,34 +6761,6 @@ components:
           example: spotify:album:2up3OPMp9Tb4dAKM2erWXQ
           description: |
             The [Spotify URI](/documentation/web-api/#spotify-uris-and-ids) for the album.
-        copyrights:
-          type: array
-          items:
-            $ref: '#/components/schemas/CopyrightObject'
-          description: |
-            The copyright statements of the album.
-        external_ids:
-          allOf:
-          - $ref: '#/components/schemas/ExternalIdObject'
-          description: |
-            Known external IDs for the album.
-        genres:
-          type: array
-          items:
-            type: string
-          example:
-          - Egg punk
-          - Noise rock
-          description: |
-            A list of the genres the album is associated with. If not yet classified, the array is empty.
-        label:
-          type: string
-          description: |
-            The label associated with the album.
-        popularity:
-          type: integer
-          description: |
-            The popularity of the album. The value will be between 0 and 100, with 100 being the most popular.
     SimplifiedAlbumObject:
       x-spotify-docs-type: SimplifiedAlbumObject
       allOf:
