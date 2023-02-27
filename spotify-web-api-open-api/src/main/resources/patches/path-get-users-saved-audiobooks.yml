@@ -1,0 +1,8 @@
+description: Fix response type to SavedAudiobook
+operations:
+  - op: test
+    path: "$.paths./me/audiobooks.get.responses.200.$ref"
+    value: "#/components/responses/PagingSimplifiedAudiobookObject"
+  - op: set
+    path: "$.paths./me/audiobooks.get.responses.200.$ref"
+    value: "#/components/responses/PagingSavedAudiobookObject"

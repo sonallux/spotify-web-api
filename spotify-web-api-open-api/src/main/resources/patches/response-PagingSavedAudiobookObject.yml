@@ -1,0 +1,14 @@
+description: Add missing PagingSavedAudiobookObject
+operations:
+  - op: test
+    path: "$.components.responses.PagingSavedAudiobookObject"
+    value: null
+  - op: put
+    path: "$.components.responses"
+    key: PagingSavedAudiobookObject
+    value:
+      description: Pages of saved audiobooks
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingSavedAudiobookObject'

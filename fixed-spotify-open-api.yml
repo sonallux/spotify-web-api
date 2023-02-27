@@ -513,7 +513,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/PagingSimplifiedAudiobookObject'
+          $ref: '#/components/responses/PagingSavedAudiobookObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -4354,6 +4354,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/PagingArtistObject'
+    PagingSavedAudiobookObject:
+      description: Pages of saved audiobooks
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PagingSavedAudiobookObject'
     PagingTrackObject:
       description: Pages of tracks
       content:
@@ -7119,6 +7125,16 @@ components:
           allOf:
           - $ref: '#/components/schemas/AudiobookObject'
           description: Information about the audiobook.
+    PagingSavedAudiobookObject:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SavedAudiobookObject'
   parameters:
     PathAlbumId:
       in: path
