@@ -20,7 +20,7 @@
     <url>https://github.com/sonallux/spotify-web-api</url>
 
     <properties>
-        <jsonpath.version>2.7.0</jsonpath.version>
+        <jsonpath.version>2.8.0</jsonpath.version>
 
         <moditect.module.name>de.sonallux.spotify.json</moditect.module.name>
     </properties>
