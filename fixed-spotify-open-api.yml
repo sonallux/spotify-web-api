@@ -6223,9 +6223,12 @@ components:
           description: |
             Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking) is applied. If `true`, the track is playable in the given market. Otherwise `false`.
         linked_from:
-          type: object
-          description: |
-            Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking) is applied, and the requested track has been replaced with different track. The track in the `linked_from` object contains information about the originally requested track.
+          allOf:
+          - $ref: '#/components/schemas/LinkedTrackObject'
+          description: "Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking)\
+            \ is applied, and the requested track has been replaced with different\
+            \ track. The track in the `linked_from` object contains information about\
+            \ the originally requested track."
         restrictions:
           allOf:
           - $ref: '#/components/schemas/TrackRestrictionObject'
