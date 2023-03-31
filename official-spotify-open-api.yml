@@ -453,10 +453,14 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/OneAudiobook'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
         '429':
           $ref: '#/components/responses/TooManyRequests'
       security:
@@ -3949,6 +3953,32 @@ components:
       description: |
         Bad OAuth request (wrong consumer key, bad nonce, expired
         timestamp...). Unfortunately, re-authenticating the user won't help here.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - error
+            properties:
+              error:
+                $ref: '#/components/schemas/ErrorObject'
+
+    NotFound:
+      description: |
+        The requested resource cannot be found.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - error
+            properties:
+              error:
+                $ref: '#/components/schemas/ErrorObject'
+
+    BadRequest:
+      description: |
+        The request contains malformed data in path, query parameters, or body.
       content:
         application/json:
           schema:
