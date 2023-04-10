@@ -25,7 +25,7 @@ jobs:
         run: ./scripts/patch-open-api.sh
       - name: Create Pull Request
         id: cpr
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           # Use a PAT so GitHub actions are triggered on the PR
           token: ${{ secrets.GH_REPO_TOKEN }}
