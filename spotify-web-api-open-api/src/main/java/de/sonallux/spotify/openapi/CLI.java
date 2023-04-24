@@ -8,6 +8,7 @@ import com.networknt.schema.SpecVersionDetector;
 import de.sonallux.json.ReferenceValidator;
 import io.swagger.v3.core.util.Yaml;
 import io.swagger.v3.parser.OpenAPIV3Parser;
+import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.IVersionProvider;
@@ -19,6 +20,7 @@ import java.nio.file.Path;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 
+@Slf4j
 @Command(versionProvider = CLI.ManifestVersionProvider.class)
 public class CLI implements Runnable {
     private static final ObjectMapper OPEN_API_YAML = Yaml.mapper();
@@ -59,7 +61,7 @@ public class CLI implements Runnable {
             OPEN_API_YAML.writeValue(outputStream, fixedOfficialOpenApi);
         }
         catch (IOException e) {
-            System.err.println("Failed to write generated file: " + e.getMessage());
+            log.error("Failed to write generated file", e);
             System.exit(1);
         }
     }
@@ -68,7 +70,7 @@ public class CLI implements Runnable {
         try (var inputStream = Files.newInputStream(officialOpenApiFile)) {
             return OPEN_API_YAML.readTree(inputStream);
         } catch (IOException e) {
-            System.err.println("Failed to read official OpenAPI file: " + e.getMessage());
+            log.error("Failed to read official OpenAPI file", e);
             System.exit(1);
             return null;
         }
@@ -79,7 +81,7 @@ public class CLI implements Runnable {
             var openApiPatches = new OpenApiPatches();
             return openApiPatches.applyPatches(node);
         } catch (OpenApiPatchException e) {
-            System.err.println("Failed to patch official OpenAPI: " + e.getMessage());
+            log.error("Failed to patch official OpenAPI", e);
             System.exit(1);
             return null;
         }
@@ -87,7 +89,7 @@ public class CLI implements Runnable {
 
     private static void validateOpenAPI(JsonNode node) {
         var parseResult = new OpenAPIV3Parser().parseJsonNode(null, node);
-        parseResult.getMessages().forEach(System.err::println);
+        parseResult.getMessages().forEach(log::error);
 
         var openApiJsonSchema = loadOpenApiSchema();
 
@@ -95,13 +97,13 @@ public class CLI implements Runnable {
         var schema = schemaFactory.getSchema(openApiJsonSchema);
 
         var validationMessages = schema.validate(node);
-        validationMessages.forEach(System.err::println);
+        validationMessages.forEach(msg -> log.error(msg.toString()));
 
         var referenceValidationMessages = new ReferenceValidator().validateReference(node);
-        referenceValidationMessages.forEach(System.err::println);
+        referenceValidationMessages.forEach(log::error);
 
         if (validationMessages.isEmpty() && parseResult.getMessages().isEmpty() && referenceValidationMessages.isEmpty()) {
-            System.out.println("No errors on OpenApi found");
+            log.info("No errors on OpenApi found");
             return;
         }
 
@@ -113,7 +115,7 @@ public class CLI implements Runnable {
             var mapper = new ObjectMapper();
             return mapper.readTree(CLI.class.getResourceAsStream("/open-api-spec-schema.json"));
         } catch (IOException e) {
-            System.err.println("Failed to load OpenAPI schema: " + e.getMessage());
+            log.error("Failed to load OpenAPI schema", e);
             System.exit(1);
             return null;
         }

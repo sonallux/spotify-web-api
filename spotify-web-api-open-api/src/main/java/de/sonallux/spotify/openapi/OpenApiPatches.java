@@ -32,6 +32,7 @@ public class OpenApiPatches {
     }
 
     private void applyPatch(Path path) {
+        log.debug("Applying patch {}", path);
         try {
             var patch = loadPatch(path);
             openApiJsonNode = patch.apply(openApiJsonNode);
