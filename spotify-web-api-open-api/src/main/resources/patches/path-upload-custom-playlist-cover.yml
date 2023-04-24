@@ -2,16 +2,24 @@ description: "Add missing requestBody to PUT /playlists/{playlist_id}/images"
 operations:
   - op: test
     path: "$.paths./playlists/{playlist_id}/images.put.requestBody"
-    value: null
+    value:
+      content:
+        image/jpeg:
+          schema:
+            example: /9j/2wCEABoZGSccJz4lJT5CLy8vQkc9Ozs9R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHCcnMyYzPSYmPUc9Mj1HR0dEREdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//dAAQAAf/uAA5BZG9iZQBkwAAAAAH/wAARCAABAAEDACIAAREBAhEB/8QASwABAQAAAAAAAAAAAAAAAAAAAAYBAQAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwAAARECEQA/AJgAH//Z
+            format: byte
+            type: string
+            required: true
+            description: Base64 encoded JPEG image data, maximum payload size is 256 KB.
   - op: put
     path: "$.paths./playlists/{playlist_id}/images.put"
     key: requestBody
     value:
-      description: The new cover image of the playlist as a Base64 encoded JPEG
-        image. Maximum payload size is 256KB.
       content:
         image/jpeg:
           schema:
+            example: /9j/2wCEABoZGSccJz4lJT5CLy8vQkc9Ozs9R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHCcnMyYzPSYmPUc9Mj1HR0dEREdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//dAAQAAf/uAA5BZG9iZQBkwAAAAAH/wAARCAABAAEDACIAAREBAhEB/8QASwABAQAAAAAAAAAAAAAAAAAAAAYBAQAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwAAARECEQA/AJgAH//Z
             type: string
             format: base64
+            description: Base64 encoded JPEG image data, maximum payload size is 256 KB.
       required: true

@@ -2230,8 +2230,18 @@ paths:
         Replace the image used to represent a specific playlist.
       parameters:
       - $ref: '#/components/parameters/PathPlaylistId'
+      requestBody:
+        content:
+          image/jpeg:
+            schema:
+              example: /9j/2wCEABoZGSccJz4lJT5CLy8vQkc9Ozs9R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHCcnMyYzPSYmPUc9Mj1HR0dEREdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//dAAQAAf/uAA5BZG9iZQBkwAAAAAH/wAARCAABAAEDACIAAREBAhEB/8QASwABAQAAAAAAAAAAAAAAAAAAAAYBAQAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwAAARECEQA/AJgAH//Z
+              type: string
+              format: base64
+              description: "Base64 encoded JPEG image data, maximum payload size is\
+                \ 256 KB."
+        required: true
       responses:
-        "200":
+        "202":
           description: Image uploaded
         "401":
           $ref: '#/components/responses/Unauthorized'
@@ -2244,15 +2254,6 @@ paths:
         - ugc-image-upload
         - playlist-modify-public
         - playlist-modify-private
-      requestBody:
-        description: The new cover image of the playlist as a Base64 encoded JPEG
-          image. Maximum payload size is 256KB.
-        content:
-          image/jpeg:
-            schema:
-              type: string
-              format: base64
-        required: true
   /browse/new-releases:
     x-spotify-docs-display-name: new-releases
     x-spotify-docs-category: Browse
