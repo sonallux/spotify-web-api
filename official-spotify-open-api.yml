@@ -15,16 +15,12 @@ servers:
   - url: https://api.spotify.com/v1
 paths:
   /albums/{id}:
-    x-spotify-docs-display-name: album
-    x-spotify-docs-category: Albums
     get:
       operationId: get-an-album
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
       tags:
         - Albums
-      x-spotify-docs-endpoint-name: Get an Album
-      x-spotify-docs-console-url: /console/get-album/?id=0sNOF9WDwhWunNAHPD3Baj
       summary: |
         Get Album
       description: |
@@ -44,16 +40,12 @@ paths:
       security:
         - oauth_2_0: []
   /albums:
-    x-spotify-docs-display-name: several-albums
-    x-spotify-docs-category: Albums
     get:
       operationId: get-multiple-albums
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
       tags:
         - Albums
-      x-spotify-docs-endpoint-name: Get Multiple Albums
-      x-spotify-docs-console-url: /console/get-several-albums/
       summary: |
         Get Several Albums
       description: |
@@ -73,8 +65,6 @@ paths:
       security:
         - oauth_2_0: []
   /albums/{id}/tracks:
-    x-spotify-docs-display-name: album-tracks
-    x-spotify-docs-category: Albums
     get:
       operationId: get-an-albums-tracks
       x-spotify-policy-list:
@@ -82,8 +72,6 @@ paths:
       tags:
         - Albums
         - Tracks
-      x-spotify-docs-endpoint-name: Get an Album's Tracks
-      x-spotify-docs-console-url: /console/get-album-tracks/
       summary: |
         Get Album Tracks
       description: |
@@ -106,16 +94,12 @@ paths:
       security:
         - oauth_2_0: []
   /artists/{id}:
-    x-spotify-docs-display-name: artist
-    x-spotify-docs-category: Artists
     get:
       tags:
         - Artists
       operationId: get-an-artist
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get an Artist
-      x-spotify-docs-console-url: /console/get-artist/?id=0OdUWJ0sBjDrqHygGUXeCF
       summary: |
         Get Artist
       description: |
@@ -134,16 +118,12 @@ paths:
       security:
         - oauth_2_0: []
   /artists:
-    x-spotify-docs-display-name: several-artists
-    x-spotify-docs-category: Artists
     get:
       tags:
         - Artists
       operationId: get-multiple-artists
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get Multiple Artists
-      x-spotify-docs-console-url: /console/get-several-artists/?ids=0oSGxfWSnnOXhD2fKuz2Gy,3dBVyJ7JuOMt4GE9607Qin
       summary: |
         Get Several Artists
       description: |
@@ -170,8 +150,6 @@ paths:
       security:
         - oauth_2_0: []
   /artists/{id}/albums:
-    x-spotify-docs-display-name: artist-albums
-    x-spotify-docs-category: Artists
     get:
       tags:
         - Artists
@@ -179,8 +157,6 @@ paths:
       operationId: get-an-artists-albums
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get an Artist's Albums
-      x-spotify-docs-console-url: /console/get-artist-albums/?album_type=single&amp;limit=2&amp;market=ES&amp;id=1vCWHaC5f2uS3yhpwWbIA6
       summary: |
         Get Artist's Albums
       description: |
@@ -203,8 +179,6 @@ paths:
       security:
         - oauth_2_0: []
   /artists/{id}/top-tracks:
-    x-spotify-docs-display-name: artist-top-tracks
-    x-spotify-docs-category: Artists
     get:
       tags:
         - Artists
@@ -212,8 +186,6 @@ paths:
       operationId: get-an-artists-top-tracks
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get an Artist's Top Tracks
-      x-spotify-docs-console-url: /console/get-artist-top-tracks/?country=SE&amp;id=43ZHCT0cAZBISjO8DG9PnE
       summary: |
         Get Artist's Top Tracks
       description: |
@@ -233,16 +205,12 @@ paths:
       security:
         - oauth_2_0: []
   /artists/{id}/related-artists:
-    x-spotify-docs-display-name: artist-related-artists
-    x-spotify-docs-category: Artists
     get:
       tags:
         - Artists
       operationId: get-an-artists-related-artists
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get an Artist's Related Artists
-      x-spotify-docs-console-url: /console/get-artist-related-artists/?id=43ZHCT0cAZBISjO8DG9PnE
       summary: |
         Get Artist's Related Artists
       description: |
@@ -261,16 +229,12 @@ paths:
       security:
         - oauth_2_0: []
   /shows/{id}:
-    x-spotify-docs-display-name: show
-    x-spotify-docs-category: Shows
     get:
       tags:
         - Shows
       operationId: get-a-show
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get a Show
-      x-spotify-docs-console-url: /console/get-show/?id=38bS44xjbVVZ3No3ByF1dJ
       summary: |
         Get Show
       description: |
@@ -292,16 +256,12 @@ paths:
         - oauth_2_0:
             - user-read-playback-position
   /shows:
-    x-spotify-docs-display-name: several-shows
-    x-spotify-docs-category: Shows
     get:
       tags:
         - Shows
       operationId: get-multiple-shows
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get Multiple Shows
-      x-spotify-docs-console-url: /console/get-several-shows/?ids=5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ
       summary: |
         Get Several Shows
       description: |
@@ -321,8 +281,6 @@ paths:
       security:
         - oauth_2_0: []
   /shows/{id}/episodes:
-    x-spotify-docs-display-name: show-episodes
-    x-spotify-docs-category: Shows
     get:
       tags:
         - Shows
@@ -330,8 +288,6 @@ paths:
       operationId: get-a-shows-episodes
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get a Show's Episodes
-      x-spotify-docs-console-url: /console/get-show-episodes/
       summary: |
         Get Show Episodes
       description: |
@@ -354,16 +310,12 @@ paths:
         - oauth_2_0:
             - user-read-playback-position
   /episodes/{id}:
-    x-spotify-docs-display-name: episode
-    x-spotify-docs-category: Episodes
     get:
       tags:
         - Episodes
       operationId: get-an-episode
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get an Episode
-      x-spotify-docs-console-url: /console/get-episode/?id=512ojhOuo1ktJprKbVcKyQ
       summary: |
         Get Episode
       description: |
@@ -394,16 +346,12 @@ paths:
         - oauth_2_0:
             - user-read-playback-position
   /episodes:
-    x-spotify-docs-display-name: several-episodes
-    x-spotify-docs-category: Episodes
     get:
       tags:
         - Episodes
       operationId: get-multiple-episodes
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get Multiple Episodes
-      x-spotify-docs-console-url: /console/get-several-episodes/?ids=77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf
       summary: |
         Get Several Episodes
       description: |
@@ -432,16 +380,12 @@ paths:
         - oauth_2_0:
             - user-read-playback-position
   /audiobooks/{id}:
-    x-spotify-docs-display-name: audiobook
-    x-spotify-docs-category: Audiobooks
     get:
       operationId: get-an-audiobook
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
       tags:
         - Audiobooks
-      x-spotify-docs-endpoint-name: Get an Audiobook
-      x-spotify-docs-console-url: /console/get-audiobook/?id=5thw29eqjomhIDMY1XKsLk
       summary: |
         Get an Audiobook
       description: |
@@ -466,16 +410,12 @@ paths:
       security:
         - oauth_2_0: []
   /audiobooks:
-    x-spotify-docs-display-name: several-audiobooks
-    x-spotify-docs-category: Audiobooks
     get:
       operationId: get-multiple-audiobooks
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
       tags:
         - Audiobooks
-      x-spotify-docs-endpoint-name: Get Several Audiobooks
-      x-spotify-docs-console-url: /console/get-several-audiobooks/?ids=5thw29eqjomhIDMY1XKsLk,2IEBhnu61ieYGFRPEJIO40
       summary: |
         Get Several Audiobooks
       description: |
@@ -496,8 +436,6 @@ paths:
       security:
         - oauth_2_0: []
   /audiobooks/{id}/chapters:
-    x-spotify-docs-display-name: audiobook-chapters
-    x-spotify-docs-category: Audiobooks
     get:
       operationId: get-audiobook-chapters
       x-spotify-policy-list:
@@ -505,8 +443,6 @@ paths:
       tags:
         - Audiobooks
         - Chapters
-      x-spotify-docs-endpoint-name: Get an Audiobook's Chapters
-      x-spotify-docs-console-url: /console/get-audiobook-chapters/?id=5thw29eqjomhIDMY1XKsLk
       summary: |
         Get Audiobook Chapters
       description: |
@@ -529,15 +465,11 @@ paths:
       security:
         - oauth_2_0: []
   /me/audiobooks:
-    x-spotify-docs-display-name: current-user-saved-audiobooks
-    x-spotify-docs-category: Library
     get:
       tags:
         - Audiobooks
         - Library
       operationId: get-users-saved-audiobooks
-      x-spotify-docs-endpoint-name: Get User's Saved Audiobooks
-      x-spotify-docs-console-url: /console/get-current-user-saved-audiobooks/?limit=1
       summary: |
         Get User's Saved Audiobooks
       description: |
@@ -562,8 +494,6 @@ paths:
         - Audiobooks
         - Library
       operationId: save-audiobooks-user
-      x-spotify-docs-endpoint-name: Save Audiobooks for Current User
-      x-spotify-docs-console-url: /console/put-current-user-saved-audiobooks/?ids=07bYtmE3bPsLB6ZbmmFi8d%2C48JYNjh7GMie6NjqYHMmtT%2C27cZdqrQiKt3IT00338dws
       summary: |
         Save Audiobooks for Current User
       description: |
@@ -587,8 +517,6 @@ paths:
         - Audiobooks
         - Library
       operationId: remove-audiobooks-user
-      x-spotify-docs-endpoint-name: Remove Audiobooks for Current User
-      x-spotify-docs-console-url: /console/delete-current-user-saved-audiobooks/?ids=07bYtmE3bPsLB6ZbmmFi8d%2C48JYNjh7GMie6NjqYHMmtT%2C27cZdqrQiKt3IT00338dws
       summary: |
         Remove User's Saved Audiobooks
       description: |
@@ -608,15 +536,11 @@ paths:
         - oauth_2_0:
             - user-library-modify
   /me/audiobooks/contains:
-    x-spotify-docs-display-name: current-user-contains-saved-audiobooks
-    x-spotify-docs-category: Library
     get:
       tags:
         - Audiobooks
         - Library
       operationId: check-users-saved-audiobooks
-      x-spotify-docs-endpoint-name: Check User's Saved Audiobooks
-      x-spotify-docs-console-url: /console/get-current-user-contains-saved-audiobooks/?ids=0pJJgBzj26qnE1nSQUxaB0%2C5ZAKzV4ZIa5Gt7z29OYHv0
       summary: |
         Check User's Saved Audiobooks
       description: |
@@ -636,16 +560,12 @@ paths:
         - oauth_2_0:
             - user-library-read
   /chapters/{id}:
-    x-spotify-docs-display-name: chapters
-    x-spotify-docs-category: Chapters
     get:
       operationId: get-a-chapter
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
       tags:
         - Chapters
-      x-spotify-docs-endpoint-name: Get a Chapter
-      x-spotify-docs-console-url: /console/get-chapter/?id=2i47HuOBSV2XaJNy0NCZXM
       summary: |
         Get a Chapter
       description: |
@@ -666,16 +586,12 @@ paths:
       security:
         - oauth_2_0: []
   /chapters:
-    x-spotify-docs-display-name: several-chapters
-    x-spotify-docs-category: Chapters
     get:
       operationId: get-several-chapters
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
       tags:
         - Chapters
-      x-spotify-docs-endpoint-name: Get Several Chapters
-      x-spotify-docs-console-url: /console/get-several-chapters/?ids=2i47HuOBSV2XaJNy0NCZXM,2GUbORsUnP1qVVlLwd9DzP
       summary: |
         Get Several Chapters
       description: |
@@ -696,16 +612,12 @@ paths:
       security:
         - oauth_2_0: []
   /tracks/{id}:
-    x-spotify-docs-display-name: track
-    x-spotify-docs-category: Tracks
     get:
       tags:
         - Tracks
       operationId: get-track
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get a Track
-      x-spotify-docs-console-url: /console/get-track/?id=3n3Ppam7vgaVa1iaRUc9Lp
       summary: |
         Get Track
       description: |
@@ -735,16 +647,12 @@ paths:
       security:
         - oauth_2_0: []
   /tracks:
-    x-spotify-docs-display-name: several-tracks
-    x-spotify-docs-category: Tracks
     get:
       tags:
         - Tracks
       operationId: get-several-tracks
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get Several Tracks
-      x-spotify-docs-console-url: /console/get-several-tracks/?ids=3n3Ppam7vgaVa1iaRUc9Lp,3twNvmDtFQtAd5gMKedhLD
       summary: |
         Get Several Tracks
       description: |
@@ -764,14 +672,10 @@ paths:
       security:
         - oauth_2_0: []
   /search:
-    x-spotify-docs-display-name: search-item
-    x-spotify-docs-category: Search
     get:
       tags:
         - Search
       operationId: search
-      x-spotify-docs-endpoint-name: Search for an Item
-      x-spotify-docs-console-url: /console/get-search-item/?q=tania+bowra&amp;type=artist
       summary: |
         Search for Item
       description: |
@@ -867,14 +771,10 @@ paths:
       security:
         - oauth_2_0: []
   /me:
-    x-spotify-docs-display-name: current-user
-    x-spotify-docs-category: Users Profile
     get:
       tags:
         - Users
       operationId: get-current-users-profile
-      x-spotify-docs-endpoint-name: Get Current User's Profile
-      x-spotify-docs-console-url: /console/get-current-user/
       summary: |
         Get Current User's Profile
       description: |
@@ -894,16 +794,12 @@ paths:
             - user-read-private
             - user-read-email
   /playlists/{playlist_id}:
-    x-spotify-docs-display-name: playlist
-    x-spotify-docs-category: Playlists
     get:
       tags:
         - Playlists
       operationId: get-playlist
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get a Playlist
-      x-spotify-docs-console-url: /console/get-playlist/?playlist_id=59ZbFPES4DQwEjBpWHzrtC&amp;user_id=spotify
       summary: |
         Get Playlist
       description: |
@@ -945,8 +841,6 @@ paths:
         - Playlists
         - Library
       operationId: change-playlist-details
-      x-spotify-docs-endpoint-name: Change a Playlist's Details
-      x-spotify-docs-console-url: /console/put-playlist/
       summary: |
         Change Playlist Details
       description: |
@@ -996,8 +890,6 @@ paths:
             - playlist-modify-public
             - playlist-modify-private
   /playlists/{playlist_id}/tracks:
-    x-spotify-docs-display-name: playlist-tracks
-    x-spotify-docs-category: Playlists
     get:
       tags:
         - Playlists
@@ -1005,8 +897,6 @@ paths:
       operationId: get-playlists-tracks
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get a Playlist's Items
-      x-spotify-docs-console-url: /console/get-playlist-tracks/?playlist_id=21THa8j9TaSGuXYNBU5tsC&amp;user_id=spotify_espa%C3%B1a
       summary: |
         Get Playlist Items
       description: |
@@ -1050,8 +940,6 @@ paths:
         - Playlists
         - Tracks
       operationId: add-tracks-to-playlist
-      x-spotify-docs-endpoint-name: Add Items to a Playlist
-      x-spotify-docs-console-url: /console/post-playlist-tracks/
       summary: |
         Add Items to Playlist
       description: |
@@ -1112,8 +1000,6 @@ paths:
         - Playlists
         - Tracks
       operationId: reorder-or-replace-playlists-tracks
-      x-spotify-docs-endpoint-name: Reorder or Replace a Playlist's Items
-      x-spotify-docs-console-url: /console/put-playlist-tracks/
       summary: |
         Update Playlist Items
       description: |
@@ -1183,8 +1069,6 @@ paths:
         - Playlists
         - Tracks
       operationId: remove-tracks-playlist
-      x-spotify-docs-endpoint-name: Remove Items from a Playlist
-      x-spotify-docs-console-url: /console/delete-playlist-tracks/
       summary: |
         Remove Playlist Items
       description: |
@@ -1230,15 +1114,11 @@ paths:
             - playlist-modify-public
             - playlist-modify-private
   /me/playlists:
-    x-spotify-docs-display-name: current-user-playlists
-    x-spotify-docs-category: Playlists
     get:
       tags:
         - Playlists
         - Library
       operationId: get-a-list-of-current-users-playlists
-      x-spotify-docs-endpoint-name: Get a List of Current User's Playlists
-      x-spotify-docs-console-url: /console/get-current-user-playlists/
       summary: |
         Get Current User's Playlists
       description: |
@@ -1271,15 +1151,11 @@ paths:
         - oauth_2_0:
             - playlist-read-private
   /me/albums:
-    x-spotify-docs-display-name: current-user-saved-albums
-    x-spotify-docs-category: Library
     get:
       tags:
         - Albums
         - Library
       operationId: get-users-saved-albums
-      x-spotify-docs-endpoint-name: Get User's Saved Albums
-      x-spotify-docs-console-url: /console/get-current-user-saved-albums/?limit=1
       summary: |
         Get User's Saved Albums
       description: |
@@ -1305,8 +1181,6 @@ paths:
         - Albums
         - Library
       operationId: save-albums-user
-      x-spotify-docs-endpoint-name: Save Albums for Current User
-      x-spotify-docs-console-url: /console/put-current-user-saved-albums/?ids=07bYtmE3bPsLB6ZbmmFi8d%2C48JYNjh7GMie6NjqYHMmtT%2C27cZdqrQiKt3IT00338dws
       summary: |
         Save Albums for Current User
       description: |
@@ -1343,8 +1217,6 @@ paths:
         - Albums
         - Library
       operationId: remove-albums-user
-      x-spotify-docs-endpoint-name: Remove Albums for Current User
-      x-spotify-docs-console-url: /console/delete-current-user-saved-albums/?ids=07bYtmE3bPsLB6ZbmmFi8d%2C48JYNjh7GMie6NjqYHMmtT%2C27cZdqrQiKt3IT00338dws
       summary: |
         Remove Users' Saved Albums
       description: |
@@ -1377,15 +1249,11 @@ paths:
         - oauth_2_0:
             - user-library-modify
   /me/albums/contains:
-    x-spotify-docs-display-name: current-user-contains-saved-albums
-    x-spotify-docs-category: Library
     get:
       tags:
         - Albums
         - Library
       operationId: check-users-saved-albums
-      x-spotify-docs-endpoint-name: Check User's Saved Albums
-      x-spotify-docs-console-url: /console/get-current-user-contains-saved-albums/?ids=0pJJgBzj26qnE1nSQUxaB0%2C5ZAKzV4ZIa5Gt7z29OYHv0
       summary: |
         Check User's Saved Albums
       description: |
@@ -1405,15 +1273,11 @@ paths:
         - oauth_2_0:
             - user-library-read
   /me/tracks:
-    x-spotify-docs-display-name: current-user-saved-tracks
-    x-spotify-docs-category: Library
     get:
       tags:
         - Tracks
         - Library
       operationId: get-users-saved-tracks
-      x-spotify-docs-endpoint-name: Get User's Saved Tracks
-      x-spotify-docs-console-url: /console/get-current-user-saved-tracks/
       summary: |
         Get User's Saved Tracks
       description: |
@@ -1439,8 +1303,6 @@ paths:
         - Tracks
         - Library
       operationId: save-tracks-user
-      x-spotify-docs-endpoint-name: Save Tracks for User
-      x-spotify-docs-console-url: /console/put-current-user-saved-tracks/?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B
       summary: |
         Save Tracks for Current User
       description: |
@@ -1479,8 +1341,6 @@ paths:
         - Tracks
         - Library
       operationId: remove-tracks-user
-      x-spotify-docs-endpoint-name: Remove User's Saved Tracks
-      x-spotify-docs-console-url: /console/delete-current-user-saved-tracks/?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B
       summary: |
         Remove User's Saved Tracks
       description: |
@@ -1513,15 +1373,11 @@ paths:
         - oauth_2_0:
             - user-library-modify
   /me/tracks/contains:
-    x-spotify-docs-display-name: current-user-contains-saved-tracks
-    x-spotify-docs-category: Library
     get:
       tags:
         - Tracks
         - Library
       operationId: check-users-saved-tracks
-      x-spotify-docs-endpoint-name: Check User's Saved Tracks
-      x-spotify-docs-console-url: /console/get-current-user-contains-saved-tracks/?ids=0udZHhCi7p1YzMlvI4fXoK%2C3SF5puV5eb6bgRSxBeMOk9
       summary: |
         Check User's Saved Tracks
       description: |
@@ -1541,15 +1397,11 @@ paths:
         - oauth_2_0:
             - user-library-read
   /me/episodes:
-    x-spotify-docs-display-name: current-user-saved-episodes
-    x-spotify-docs-category: Library
     get:
       tags:
         - Episodes
         - Library
       operationId: get-users-saved-episodes
-      x-spotify-docs-endpoint-name: Get User's Saved Episodes
-      x-spotify-docs-console-url: /console/get-current-user-saved-episodes/
       summary: |
         Get User's Saved Episodes
       description: |
@@ -1577,8 +1429,6 @@ paths:
         - Episodes
         - Library
       operationId: save-episodes-user
-      x-spotify-docs-endpoint-name: Save Episodes for Current User
-      x-spotify-docs-console-url: /console/put-current-user-saved-episodes/?ids=77o6BIVlYM3msb4MMIL1jH%2C0Q86acNRm6V9GYx55SXKwf
       summary: |
         Save Episodes for Current User
       description: |
@@ -1626,8 +1476,6 @@ paths:
         - Episodes
         - Library
       operationId: remove-episodes-user
-      x-spotify-docs-endpoint-name: Remove User's Saved Episodes
-      x-spotify-docs-console-url: /console/delete-current-user-saved-episodes/?ids=77o6BIVlYM3msb4MMIL1jH%2C0Q86acNRm6V9GYx55SXKwf
       summary: |
         Remove User's Saved Episodes
       description: |
@@ -1661,15 +1509,11 @@ paths:
         - oauth_2_0:
             - user-library-modify
   /me/episodes/contains:
-    x-spotify-docs-display-name: current-user-contains-saved-episodes
-    x-spotify-docs-category: Library
     get:
       tags:
         - Episodes
         - Library
       operationId: check-users-saved-episodes
-      x-spotify-docs-endpoint-name: Check User's Saved Episodes
-      x-spotify-docs-console-url: /console/get-current-user-contains-saved-episodes/?ids=77o6BIVlYM3msb4MMIL1jH%2C0Q86acNRm6V9GYx55SXKwf
       summary: |
         Check User's Saved Episodes
       description: |
@@ -1698,15 +1542,11 @@ paths:
         - oauth_2_0:
             - user-library-read
   /me/shows:
-    x-spotify-docs-display-name: current-user-saved-shows
-    x-spotify-docs-category: Library
     get:
       tags:
         - Shows
         - Library
       operationId: get-users-saved-shows
-      x-spotify-docs-endpoint-name: Get User's Saved Shows
-      x-spotify-docs-console-url: /console/get-current-user-saved-shows/
       summary: |
         Get User's Saved Shows
       description: |
@@ -1731,8 +1571,6 @@ paths:
         - Shows
         - Library
       operationId: save-shows-user
-      x-spotify-docs-endpoint-name: Save Shows for Current User
-      x-spotify-docs-console-url: /console/put-current-user-saved-shows/?ids=5AvwZVawapvyhJUIx71pdJ%2C6ups0LMt1G8n81XLlkbsPo%2C5AvwZVawapvyhJUIx71pdJ
       summary: |
         Save Shows for Current User
       description: |
@@ -1756,8 +1594,6 @@ paths:
         - Shows
         - Library
       operationId: remove-shows-user
-      x-spotify-docs-endpoint-name: Remove User's Saved Shows
-      x-spotify-docs-console-url: /console/delete-current-user-saved-shows/?ids=5AvwZVawapvyhJUIx71pdJ%2C6ups0LMt1G8n81XLlkbsPo%2C5AvwZVawapvyhJUIx71pdJ
       summary: |
         Remove User's Saved Shows
       description: |
@@ -1778,15 +1614,11 @@ paths:
         - oauth_2_0:
             - user-library-modify
   /me/shows/contains:
-    x-spotify-docs-display-name: current-user-contains-saved-shows
-    x-spotify-docs-category: Library
     get:
       tags:
         - Shows
         - Library
       operationId: check-users-saved-shows
-      x-spotify-docs-endpoint-name: Check User's Saved Shows
-      x-spotify-docs-console-url: /console/get-current-user-contains-saved-shows/?ids=5AvwZVawapvyhJUIx71pdJ%2C6ups0LMt1G8n81XLlkbsPo%2C5AvwZVawapvyhJUIx71pdJ
       summary: |
         Check User's Saved Shows
       description: |
@@ -1806,16 +1638,12 @@ paths:
         - oauth_2_0:
             - user-library-read
   /me/top/{type}:
-    x-spotify-docs-display-name: current-user-top-artists-and-tracks
-    x-spotify-docs-category: Personalization
     get:
       tags:
         - Users
         - Tracks
         - Library
       operationId: get-users-top-artists-and-tracks
-      x-spotify-docs-endpoint-name: Get a User's Top Artists and Tracks
-      x-spotify-docs-console-url: /console/get-current-user-top-artists-and-tracks/?type=artists
       summary: |
         Get User's Top Items
       description: |
@@ -1855,14 +1683,10 @@ paths:
         - oauth_2_0:
             - user-top-read
   /users/{user_id}:
-    x-spotify-docs-display-name: users-profile
-    x-spotify-docs-category: Users Profile
     get:
       tags:
         - Users
       operationId: get-users-profile
-      x-spotify-docs-endpoint-name: Get a User's Profile
-      x-spotify-docs-console-url: /console/get-users-profile/?user_id=wizzler
       summary: |
         Get User's Profile
       description: |
@@ -1881,15 +1705,11 @@ paths:
       security:
         - oauth_2_0: []
   /users/{user_id}/playlists:
-    x-spotify-docs-display-name: playlists
-    x-spotify-docs-category: Playlists
     get:
       tags:
         - Playlists
         - Users
       operationId: get-list-users-playlists
-      x-spotify-docs-endpoint-name: Get a List of a User's Playlists
-      x-spotify-docs-console-url: /console/get-playlists/?user_id=wizzler
       summary: |
         Get User's Playlists
       description: |
@@ -1927,8 +1747,6 @@ paths:
         - Playlists
         - Library
       operationId: create-playlist
-      x-spotify-docs-endpoint-name: Create a Playlist
-      x-spotify-docs-console-url: /console/post-playlists/
       summary: |
         Create Playlist
       description: |
@@ -1979,15 +1797,11 @@ paths:
             - playlist-modify-public
             - playlist-modify-private
   /playlists/{playlist_id}/followers:
-    x-spotify-docs-display-name: playlist-followers
-    x-spotify-docs-category: Follow
     put:
       tags:
         - Users
         - Playlists
       operationId: follow-playlist
-      x-spotify-docs-endpoint-name: Follow a Playlist
-      x-spotify-docs-console-url: /console/put-playlist-followers/?playlist_id=2v3iNvBX8Ay1Gt2uXtUKUT&amp;body-json=%7B%0D%0A++%22public%22%3A+true%0D%0A%7D&amp;user_id=jmperezperez
       description: |
         Add the current user as a follower of a playlist.
       summary: |
@@ -2025,8 +1839,6 @@ paths:
         - Users
         - Playlists
       operationId: unfollow-playlist
-      x-spotify-docs-endpoint-name: Unfollow Playlist
-      x-spotify-docs-console-url: /console/delete-playlist-followers/?playlist_id=2v3iNvBX8Ay1Gt2uXtUKUT&amp;user_id=jmperezperez
       summary: |
         Unfollow Playlist
       description: |
@@ -2047,14 +1859,10 @@ paths:
             - playlist-modify-public
             - playlist-modify-private
   /browse/featured-playlists:
-    x-spotify-docs-display-name: featured-playlists
-    x-spotify-docs-category: Browse
     get:
       tags:
         - Playlists
       operationId: get-featured-playlists
-      x-spotify-docs-endpoint-name: Get All Featured Playlists
-      x-spotify-docs-console-url: /console/get-featured-playlists/?country=SE&amp;limit=2
       x-spotify-policy-list:
         - $ref: '#/components/x-spotify-policy/MultipleIntegrations'
       summary: |
@@ -2104,14 +1912,10 @@ paths:
       security:
         - oauth_2_0: []
   /browse/categories:
-    x-spotify-docs-display-name: browse-categories
-    x-spotify-docs-category: Browse
     get:
       tags:
         - Categories
       operationId: get-categories
-      x-spotify-docs-endpoint-name: Get All Categories
-      x-spotify-docs-console-url: /console/get-browse-categories/
       summary: |
         Get Several Browse Categories
       description: |
@@ -2150,14 +1954,10 @@ paths:
       security:
         - oauth_2_0: []
   /browse/categories/{category_id}:
-    x-spotify-docs-display-name: browse-category
-    x-spotify-docs-category: Browse
     get:
       tags:
         - Categories
       operationId: get-a-category
-      x-spotify-docs-endpoint-name: Get a Category
-      x-spotify-docs-console-url: /console/get-browse-category/
       summary: |
         Get Single Browse Category
       description: |
@@ -2202,15 +2002,11 @@ paths:
       security:
         - oauth_2_0: []
   /browse/categories/{category_id}/playlists:
-    x-spotify-docs-display-name: category-playlists
-    x-spotify-docs-category: Browse
     get:
       tags:
         - Playlists
         - Categories
       operationId: get-a-categories-playlists
-      x-spotify-docs-endpoint-name: Get a Category's Playlists
-      x-spotify-docs-console-url: /console/get-category-playlists/?country=BR&amp;category_id=party&amp;limit=2
       summary: |
         Get Category's Playlists
       description: |
@@ -2248,16 +2044,12 @@ paths:
       security:
         - oauth_2_0: []
   /playlists/{playlist_id}/images:
-    x-spotify-docs-display-name: playlist-images
-    x-spotify-docs-category: Playlists
     get:
       tags:
         - Playlists
       operationId: get-playlist-cover
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataPolicyList'
-      x-spotify-docs-endpoint-name: Get a Playlist Cover Image
-      x-spotify-docs-console-url: /console/get-playlist-images?playlist_id=3cEYpjA9oz9GiPac4AsH4n
       summary: |
         Get Playlist Cover Image
       description: |
@@ -2279,8 +2071,6 @@ paths:
       tags:
         - Playlists
       operationId: upload-custom-playlist-cover
-      x-spotify-docs-endpoint-name: Upload a Custom Playlist Cover Image
-      x-spotify-docs-console-url: /console/put-playlist-images?playlist_id=3cEYpjA9oz9GiPac4AsH4n
       summary: |
         Add Custom Playlist Cover Image
       description: |
@@ -2311,14 +2101,10 @@ paths:
             - playlist-modify-public
             - playlist-modify-private
   /browse/new-releases:
-    x-spotify-docs-display-name: new-releases
-    x-spotify-docs-category: Browse
     get:
       tags:
         - Albums
       operationId: get-new-releases
-      x-spotify-docs-endpoint-name: Get All New Releases
-      x-spotify-docs-console-url: /console/get-new-releases/?country=SE
       x-spotify-policy-list:
         - $ref: '#/components/x-spotify-policy/MultipleIntegrations'
       summary: |
@@ -2349,16 +2135,12 @@ paths:
       security:
         - oauth_2_0: []
   /me/following:
-    x-spotify-docs-display-name: following
-    x-spotify-docs-category: Follow
     get:
       tags:
         - Users
         - Library
         - Artists
       operationId: get-followed
-      x-spotify-docs-endpoint-name: Get User's Followed Artists
-      x-spotify-docs-console-url: /console/get-following/?type=artist&amp;limit=20
       summary: |
         Get Followed Artists
       description: |
@@ -2414,8 +2196,6 @@ paths:
         - Artists
         - Library
       operationId: follow-artists-users
-      x-spotify-docs-endpoint-name: Follow Artists or Users
-      x-spotify-docs-console-url: /console/put-following/?type=user&amp;ids=exampleuser01
       summary: |
         Follow Artists or Users
       description: |
@@ -2478,8 +2258,6 @@ paths:
         - Artists
         - Library
       operationId: unfollow-artists-users
-      x-spotify-docs-endpoint-name: Unfollow Artists or Users
-      x-spotify-docs-console-url: /console/delete-following/?type=user&amp;ids=exampleuser01
       summary: |
         Unfollow Artists or Users
       description: |
@@ -2532,16 +2310,12 @@ paths:
         - oauth_2_0:
             - user-follow-modify
   /me/following/contains:
-    x-spotify-docs-display-name: following-contains
-    x-spotify-docs-category: Follow
     get:
       tags:
         - Users
         - Artists
         - Library
       operationId: check-current-user-follows
-      x-spotify-docs-endpoint-name: Get Following State for Artists/Users
-      x-spotify-docs-console-url: /console/get-following-contains/?type=user&amp;ids=exampleuser01
       summary: |
         Check If User Follows Artists or Users
       description: |
@@ -2581,15 +2355,11 @@ paths:
         - oauth_2_0:
             - user-follow-read
   /playlists/{playlist_id}/followers/contains:
-    x-spotify-docs-display-name: playlist-followers-contains
-    x-spotify-docs-category: Follow
     get:
       tags:
         - Users
         - Playlists
       operationId: check-if-user-follows-playlist
-      x-spotify-docs-endpoint-name: Check if Users Follow a Playlist
-      x-spotify-docs-console-url: /console/get-playlist-followers-contains/?ids=possan,elogain&amp;user_id=jmperezperez&amp;playlist_id=2v3iNvBX8Ay1Gt2uXtUKUT
       summary: |
         Check if Users Follow Playlist
       description: |
@@ -2617,14 +2387,10 @@ paths:
       security:
         - oauth_2_0: []
   /audio-features:
-    x-spotify-docs-display-name: audio-features-several-tracks
-    x-spotify-docs-category: Tracks
     get:
       tags:
         - Tracks
       operationId: get-several-audio-features
-      x-spotify-docs-endpoint-name: Get Audio Features for Several Tracks
-      x-spotify-docs-console-url: /console/get-audio-features-several-tracks/?ids=4JpKVNYnVcJ8tuMKjAj50A,2NRANZE9UCmPAS5XVbXL40,24JygzOLM0EmRQeGtFcIcG
       summary: |
         Get Tracks' Audio Features
       description: |
@@ -2652,14 +2418,10 @@ paths:
       security:
         - oauth_2_0: []
   /audio-features/{id}:
-    x-spotify-docs-display-name: audio-features-track
-    x-spotify-docs-category: Tracks
     get:
       tags:
         - Tracks
       operationId: get-audio-features
-      x-spotify-docs-endpoint-name: Get Audio Features for a Track
-      x-spotify-docs-console-url: /console/get-audio-features-track/?id=06AKEBrKUckW0KREUWRnvT
       summary: |
         Get Track's Audio Features
       description: |
@@ -2687,14 +2449,10 @@ paths:
       security:
         - oauth_2_0: []
   /audio-analysis/{id}:
-    x-spotify-docs-display-name: audio-analysis-track
-    x-spotify-docs-category: Tracks
     get:
       tags:
         - Tracks
       operationId: get-audio-analysis
-      x-spotify-docs-endpoint-name: Get Audio Analysis for a Track
-      x-spotify-docs-console-url: /console/get-audio-analysis-track/?id=06AKEBrKUckW0KREUWRnvT
       summary: |
         Get Track's Audio Analysis
       description: |
@@ -2722,14 +2480,10 @@ paths:
       security:
         - oauth_2_0: []
   /recommendations:
-    x-spotify-docs-display-name: recommendations
-    x-spotify-docs-category: Browse
     get:
       tags:
         - Tracks
       operationId: get-recommendations
-      x-spotify-docs-endpoint-name: Get Recommendations
-      x-spotify-docs-console-url: /console/get-recommendations/?seed_artists=4NHQUGzhtTLFvgF5SZesLK&amp;seed_tracks=0c6xIDDpzE81m2q797ordA&amp;min_energy=0.4&amp;min_popularity=50&amp;market=US
       summary: |
         Get Recommendations
       description: |
@@ -3184,14 +2938,10 @@ paths:
       security:
         - oauth_2_0: []
   /recommendations/available-genre-seeds:
-    x-spotify-docs-display-name: available-genre-seeds
-    x-spotify-docs-category: Browse
     get:
       tags:
         - Genres
       operationId: get-recommendation-genres
-      x-spotify-docs-endpoint-name: Get Recommendation Genres
-      x-spotify-docs-console-url: /console/get-available-genre-seeds/
       summary: |
         Get Available Genre Seeds
       description: |
@@ -3208,16 +2958,12 @@ paths:
       security:
         - oauth_2_0: []
   /me/player:
-    x-spotify-docs-display-name: user-player
-    x-spotify-docs-category: Player
     get:
       tags:
         - Player
       operationId: get-information-about-the-users-current-playback
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/playerPolicyList'
-      x-spotify-docs-endpoint-name: Get Information About The User's Current Playback
-      x-spotify-docs-console-url: /console/get-user-player/
       summary: |
         Get Playback State
       description: |
@@ -3245,8 +2991,6 @@ paths:
       operationId: transfer-a-users-playback
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/playerPolicyList'
-      x-spotify-docs-endpoint-name: Transfer a User's Playback
-      x-spotify-docs-console-url: /console/put-user-player
       summary: |
         Transfer Playback
       description: |
@@ -3287,14 +3031,10 @@ paths:
         - oauth_2_0:
             - user-modify-playback-state
   /me/player/devices:
-    x-spotify-docs-display-name: users-available-devices
-    x-spotify-docs-category: Player
     get:
       tags:
         - Player
       operationId: get-a-users-available-devices
-      x-spotify-docs-endpoint-name: Get a User's Available Devices
-      x-spotify-docs-console-url: /console/get-users-available-devices/
       summary: |
         Get Available Devices
       description: |
@@ -3312,16 +3052,12 @@ paths:
         - oauth_2_0:
             - user-read-playback-state
   /me/player/currently-playing:
-    x-spotify-docs-display-name: users-currently-playing-track
-    x-spotify-docs-category: Player
     get:
       tags:
         - Player
       operationId: get-the-users-currently-playing-track
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/playerPolicyList'
-      x-spotify-docs-endpoint-name: Get the User's Currently Playing Track
-      x-spotify-docs-console-url: /console/get-users-currently-playing-track/
       summary: |
         Get Currently Playing Track
       description: |
@@ -3343,16 +3079,12 @@ paths:
             - user-read-currently-playing
 
   /me/player/play:
-    x-spotify-docs-display-name: play
-    x-spotify-docs-category: Player
     put:
       tags:
         - Player
       operationId: start-a-users-playback
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/playerPolicyList'
-      x-spotify-docs-endpoint-name: Start/Resume a User's Playback
-      x-spotify-docs-console-url: /console/put-play/
       summary: |
         Start/Resume Playback
       description: |
@@ -3417,16 +3149,12 @@ paths:
         - oauth_2_0:
             - user-modify-playback-state
   /me/player/pause:
-    x-spotify-docs-display-name: pause
-    x-spotify-docs-category: Player
     put:
       tags:
         - Player
       operationId: pause-a-users-playback
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/playerPolicyList'
-      x-spotify-docs-endpoint-name: Pause a User's Playback
-      x-spotify-docs-console-url: /console/put-pause/
       summary: |
         Pause Playback
       description: |
@@ -3454,16 +3182,12 @@ paths:
         - oauth_2_0:
             - user-modify-playback-state
   /me/player/next:
-    x-spotify-docs-display-name: next
-    x-spotify-docs-category: Player
     post:
       tags:
         - Player
       operationId: skip-users-playback-to-next-track
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/playerPolicyList'
-      x-spotify-docs-endpoint-name: Skip User’s Playback To Next Track
-      x-spotify-docs-console-url: /console/post-next/
       summary: |
         Skip To Next
       description: |
@@ -3491,16 +3215,12 @@ paths:
         - oauth_2_0:
             - user-modify-playback-state
   /me/player/previous:
-    x-spotify-docs-display-name: previous
-    x-spotify-docs-category: Player
     post:
       tags:
         - Player
       operationId: skip-users-playback-to-previous-track
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/playerPolicyList'
-      x-spotify-docs-endpoint-name: Skip User’s Playback To Previous Track
-      x-spotify-docs-console-url: /console/post-previous/
       summary: |
         Skip To Previous
       description: |
@@ -3529,16 +3249,12 @@ paths:
         - oauth_2_0:
             - user-modify-playback-state
   /me/player/seek:
-    x-spotify-docs-display-name: seek
-    x-spotify-docs-category: Player
     put:
       tags:
         - Player
       operationId: seek-to-position-in-currently-playing-track
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/playerPolicyList'
-      x-spotify-docs-endpoint-name: Seek To Position In Currently Playing Track
-      x-spotify-docs-console-url: /console/put-seek/
       summary: |
         Seek To Position
       description: |
@@ -3578,14 +3294,10 @@ paths:
         - oauth_2_0:
             - user-modify-playback-state
   /me/player/repeat:
-    x-spotify-docs-display-name: repeat
-    x-spotify-docs-category: Player
     put:
       tags:
         - Player
       operationId: set-repeat-mode-on-users-playback
-      x-spotify-docs-endpoint-name: Set Repeat Mode On User’s Playback
-      x-spotify-docs-console-url: /console/put-repeat/
       summary: |
         Set Repeat Mode
       description: |
@@ -3627,14 +3339,10 @@ paths:
         - oauth_2_0:
             - user-modify-playback-state
   /me/player/volume:
-    x-spotify-docs-display-name: volume
-    x-spotify-docs-category: Player
     put:
       tags:
         - Player
       operationId: set-volume-for-users-playback
-      x-spotify-docs-endpoint-name: Set Volume For User's Playback
-      x-spotify-docs-console-url: /console/put-volume/
       summary: |
         Set Playback Volume
       description: |
@@ -3671,14 +3379,10 @@ paths:
         - oauth_2_0:
             - user-modify-playback-state
   /me/player/shuffle:
-    x-spotify-docs-display-name: shuffle
-    x-spotify-docs-category: Player
     put:
       tags:
         - Player
       operationId: toggle-shuffle-for-users-playback
-      x-spotify-docs-endpoint-name: Toggle Shuffle For User’s Playback
-      x-spotify-docs-console-url: /console/put-shuffle/?state=true
       summary: |
         Toggle Playback Shuffle
       description: |
@@ -3717,16 +3421,12 @@ paths:
         - oauth_2_0:
             - user-modify-playback-state
   /me/player/recently-played:
-    x-spotify-docs-display-name: recently-played
-    x-spotify-docs-category: Player
     get:
       tags:
         - Player
       operationId: get-recently-played
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/playerPolicyList'
-      x-spotify-docs-endpoint-name: Get Current User's Recently Played Tracks
-      x-spotify-docs-console-url: /console/get-recently-played/
       summary: |
         Get Recently Played Tracks
       description: |
@@ -3779,16 +3479,12 @@ paths:
         - oauth_2_0:
             - user-read-recently-played
   /me/player/queue:
-    x-spotify-docs-display-name: queue
-    x-spotify-docs-category: Player
     get:
       tags:
         - Player
       operationId: get-queue
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/playerPolicyList'
-      x-spotify-docs-endpoint-name: Get the User's Queue
-      x-spotify-docs-console-url: /console/get-queue/
       summary: |
         Get the User's Queue
       description: |
@@ -3811,8 +3507,6 @@ paths:
       operationId: add-to-queue
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/playerPolicyList'
-      x-spotify-docs-endpoint-name: Add an item to queue
-      x-spotify-docs-console-url: /console/post-queue/
       summary: |
         Add Item to Playback Queue
       description: |
@@ -3850,14 +3544,10 @@ paths:
         - oauth_2_0:
             - user-modify-playback-state
   /markets:
-    x-spotify-docs-display-name: available-markets
-    x-spotify-docs-category: Markets
     get:
       tags:
         - Markets
       operationId: get-available-markets
-      x-spotify-docs-endpoint-name: Get Available Markets
-      x-spotify-docs-console-url: /console/get-available-markets/
       summary: |
         Get Available Markets
       description: |
