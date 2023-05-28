@@ -617,7 +617,7 @@ paths:
         - Tracks
       operationId: get-track
       x-spotify-policy-list:
-        $ref: '#/components/x-spotify-policy/metadataPolicyList'
+        $ref: '#/components/x-spotify-policy/metadataWithMachineLearningPolicyList'
       summary: |
         Get Track
       description: |
@@ -652,7 +652,7 @@ paths:
         - Tracks
       operationId: get-several-tracks
       x-spotify-policy-list:
-        $ref: '#/components/x-spotify-policy/metadataPolicyList'
+        $ref: '#/components/x-spotify-policy/metadataWithMachineLearningPolicyList'
       summary: |
         Get Several Tracks
       description: |
@@ -676,6 +676,8 @@ paths:
       tags:
         - Search
       operationId: search
+      x-spotify-policy-list:
+        - $ref: '#/components/x-spotify-policy/MachineLearning'
       summary: |
         Search for Item
       description: |
@@ -799,7 +801,7 @@ paths:
         - Playlists
       operationId: get-playlist
       x-spotify-policy-list:
-        $ref: '#/components/x-spotify-policy/metadataPolicyList'
+        $ref: '#/components/x-spotify-policy/metadataWithMachineLearningPolicyList'
       summary: |
         Get Playlist
       description: |
@@ -896,7 +898,7 @@ paths:
         - Tracks
       operationId: get-playlists-tracks
       x-spotify-policy-list:
-        $ref: '#/components/x-spotify-policy/metadataPolicyList'
+        $ref: '#/components/x-spotify-policy/metadataWithMachineLearningPolicyList'
       summary: |
         Get Playlist Items
       description: |
@@ -2049,7 +2051,7 @@ paths:
         - Playlists
       operationId: get-playlist-cover
       x-spotify-policy-list:
-        $ref: '#/components/x-spotify-policy/metadataPolicyList'
+        $ref: '#/components/x-spotify-policy/metadataWithMachineLearningPolicyList'
       summary: |
         Get Playlist Cover Image
       description: |
@@ -2391,6 +2393,8 @@ paths:
       tags:
         - Tracks
       operationId: get-several-audio-features
+      x-spotify-policy-list:
+        - $ref: '#/components/x-spotify-policy/MachineLearning'
       summary: |
         Get Tracks' Audio Features
       description: |
@@ -2422,6 +2426,8 @@ paths:
       tags:
         - Tracks
       operationId: get-audio-features
+      x-spotify-policy-list:
+        - $ref: '#/components/x-spotify-policy/MachineLearning'
       summary: |
         Get Track's Audio Features
       description: |
@@ -2484,6 +2490,8 @@ paths:
       tags:
         - Tracks
       operationId: get-recommendations
+      x-spotify-policy-list:
+        - $ref: '#/components/x-spotify-policy/MachineLearning'
       summary: |
         Get Recommendations
       description: |
@@ -3628,6 +3636,11 @@ components:
       - $ref: '#/components/x-spotify-policy/Downloading'
       - $ref: '#/components/x-spotify-policy/VisualAlteration'
       - $ref: '#/components/x-spotify-policy/Attribution'
+    metadataWithMachineLearningPolicyList:
+      - $ref: '#/components/x-spotify-policy/Downloading'
+      - $ref: '#/components/x-spotify-policy/VisualAlteration'
+      - $ref: '#/components/x-spotify-policy/Attribution'
+      - $ref: '#/components/x-spotify-policy/MachineLearning'
     playerPolicyList:
       - $ref: '#/components/x-spotify-policy/CommercialStreaming'
       - $ref: '#/components/x-spotify-policy/ContentAlteration'
