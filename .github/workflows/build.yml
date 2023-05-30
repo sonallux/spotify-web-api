@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [ '17', '19' ]
+        java: [ '17', '20' ]
     name: Build on Java ${{ matrix.java }}
     steps:
       - name: Checkout
