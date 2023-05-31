@@ -3,16 +3,12 @@ operations:
   - op: test
     path: "$.paths./me/top/{type}"
     value:
-      x-spotify-docs-display-name: current-user-top-artists-and-tracks
-      x-spotify-docs-category: Personalization
       get:
         tags:
           - Users
           - Tracks
           - Library
         operationId: get-users-top-artists-and-tracks
-        x-spotify-docs-endpoint-name: Get a User's Top Artists and Tracks
-        x-spotify-docs-console-url: /console/get-current-user-top-artists-and-tracks/?type=artists
         summary: |
           Get User's Top Items
         description: |
@@ -61,16 +57,12 @@ operations:
     path: "$.paths"
     key: "/me/top/artists"
     value:
-      x-spotify-docs-display-name: current-user-top-artists
-      x-spotify-docs-category: Personalization
       get:
         tags:
           - Users
           - Artists
           - Library
         operationId: get-users-top-artists
-        x-spotify-docs-endpoint-name: Get a User's Top Artists
-        x-spotify-docs-console-url: /console/get-current-user-top-artists-and-tracks/?type=artists
         summary: |
           Get User's Top Artists
         description: |
@@ -104,16 +96,12 @@ operations:
     path: "$.paths"
     key: "/me/top/tracks"
     value:
-      x-spotify-docs-display-name: current-user-top-tracks
-      x-spotify-docs-category: Personalization
       get:
         tags:
           - Users
           - Tracks
           - Library
         operationId: get-users-top-tracks
-        x-spotify-docs-endpoint-name: Get a User's Top Tracks
-        x-spotify-docs-console-url: /console/get-current-user-top-artists-and-tracks/?type=tracks
         summary: |
           Get User's Top Tracks
         description: |

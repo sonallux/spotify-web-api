@@ -1633,53 +1633,6 @@ paths:
       security:
       - oauth_2_0:
         - user-library-read
-  /me/top/{type}:
-    get:
-      tags:
-      - Users
-      - Tracks
-      - Library
-      operationId: get-users-top-artists-and-tracks
-      summary: |
-        Get User's Top Items
-      description: |
-        Get the current user's top artists or tracks based on calculated affinity.
-      parameters:
-      - name: type
-        required: true
-        in: path
-        schema:
-          title: Type
-          description: |
-            The type of entity to return. Valid values: `artists` or `tracks`
-          enum:
-          - artists
-          - tracks
-          type: string
-      - name: time_range
-        required: false
-        in: query
-        schema:
-          title: Time Range
-          description: |
-            Over what time frame the affinities are computed. Valid values: `long_term` (calculated from several years of data and including all new data as it becomes available), `medium_term` (approximately last 6 months), `short_term` (approximately last 4 weeks). Default: `medium_term`
-          default: medium_term
-          example: medium_term
-          type: string
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
-      responses:
-        "200":
-          $ref: '#/components/responses/PagingArtistOrTrackObject'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "429":
-          $ref: '#/components/responses/TooManyRequests'
-      security:
-      - oauth_2_0:
-        - user-top-read
   /users/{user_id}:
     get:
       tags:
@@ -3508,6 +3461,78 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
       security:
       - oauth_2_0: []
+  /me/top/artists:
+    get:
+      tags:
+      - Users
+      - Artists
+      - Library
+      operationId: get-users-top-artists
+      summary: |
+        Get User's Top Artists
+      description: |
+        Get the current user's top artists based on calculated affinity.
+      parameters:
+      - name: time_range
+        required: false
+        in: query
+        schema:
+          title: Time Range
+          description: |
+            Over what time frame the affinities are computed. Valid values: `long_term` (calculated from several years of data and including all new data as it becomes available), `medium_term` (approximately last 6 months), `short_term` (approximately last 4 weeks). Default: `medium_term`
+          default: medium_term
+          example: medium_term
+          type: string
+      - $ref: '#/components/parameters/QueryLimit'
+      - $ref: '#/components/parameters/QueryOffset'
+      responses:
+        "200":
+          $ref: '#/components/responses/PagingArtistObject'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "429":
+          $ref: '#/components/responses/TooManyRequests'
+      security:
+      - oauth_2_0:
+        - user-top-read
+  /me/top/tracks:
+    get:
+      tags:
+      - Users
+      - Tracks
+      - Library
+      operationId: get-users-top-tracks
+      summary: |
+        Get User's Top Tracks
+      description: |
+        Get the current user's top tracks based on calculated affinity.
+      parameters:
+      - name: time_range
+        required: false
+        in: query
+        schema:
+          title: Time Range
+          description: |
+            Over what time frame the affinities are computed. Valid values: `long_term` (calculated from several years of data and including all new data as it becomes available), `medium_term` (approximately last 6 months), `short_term` (approximately last 4 weeks). Default: `medium_term`
+          default: medium_term
+          example: medium_term
+          type: string
+      - $ref: '#/components/parameters/QueryLimit'
+      - $ref: '#/components/parameters/QueryOffset'
+      responses:
+        "200":
+          $ref: '#/components/responses/PagingTrackObject'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "429":
+          $ref: '#/components/responses/TooManyRequests'
+      security:
+      - oauth_2_0:
+        - user-top-read
 components:
   securitySchemes:
     oauth_2_0:
@@ -3961,25 +3986,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/PagingSimplifiedChapterObject'
-    PagingArtistOrTrackObject:
-      description: Pages of artists or tracks
-      content:
-        application/json:
-          schema:
-            type: object
-            allOf:
-            - $ref: '#/components/schemas/PagingObject'
-            - type: object
-              properties:
-                items:
-                  type: array
-                  items:
-                    type: object
-                    oneOf:
-                    - $ref: '#/components/schemas/ArtistObject'
-                    - $ref: '#/components/schemas/TrackObject'
-                    discriminator:
-                      propertyName: type
     SearchItems:
       description: Search response
       content:
