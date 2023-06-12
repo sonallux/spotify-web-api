@@ -19,4 +19,7 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
       - name: Validate
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
         run: ./mvnw -B test --projects open-api-response-validator --also-make
