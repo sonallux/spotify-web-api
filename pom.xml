@@ -16,6 +16,7 @@
     <modules>
         <module>json-utils</module>
         <module>spotify-web-api-open-api</module>
+        <module>open-api-response-validator</module>
     </modules>
 
     <licenses>
