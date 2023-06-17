@@ -5,4 +5,4 @@ operations:
     value: 0
   - op: set
     path: "$.components.parameters.QueryLimit.schema.minimum"
-    value: 1
+    value: 2
