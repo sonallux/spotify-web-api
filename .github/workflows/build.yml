@@ -22,7 +22,7 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
       - name: Setup cache
-        uses: actions/setup-cache@v3
+        uses: actions/cache@v3
         with:
           path: ~/.m2/build-cache
           key: maven-build-cache-${{ runner.os }}-java-${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
