@@ -21,6 +21,11 @@ jobs:
           java-version: ${{ matrix.java }}
           distribution: 'temurin'
           cache: 'maven'
+      - name: Setup cache
+        uses: actions/setup-cache@v3
+        with:
+          path: ~/.m2/build-cache
+          key: maven-build-cache-${{ runner.os }}-java-${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
       - name: Build
         run: ./mvnw -B package -Pcli --projects spotify-web-api-open-api --also-make
       - name: Patch Open API
