@@ -8,8 +8,8 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    # Secrets are not available on forks, so only run this action on my repo
-    if: github.repository == 'sonallux/spotify-web-api'
+    # Secrets are not available on forks and on builds from dependabot
+    if: github.repository == 'sonallux/spotify-web-api' && github.actor != 'dependabot[bot]'
     name: Validation Open API
     steps:
       - name: Checkout
