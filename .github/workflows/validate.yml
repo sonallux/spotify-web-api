@@ -6,21 +6,10 @@ on:
     branches: [ main ]
 
 jobs:
-  pre-validate:
-    runs-on: ubuntu-latest
-    name: Check for secret
-    steps:
-      - name: Check for secret
-        env:
-          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
-        if: ${{ env.SPOTIFY_CLIENT_ID == null || env.SPOTIFY_CLIENT_SECRET == null }}
-        run: |
-          echo "::notice::Secret SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET are required to run the Open API validation"
-          exit 1
   validate:
     runs-on: ubuntu-latest
-    needs: [pre-validate]
+    # Secrets are not available on forks, so only run this action on my repo
+    if: github.repository == 'sonallux/spotify-web-api'
     name: Validation Open API
     steps:
       - name: Checkout
