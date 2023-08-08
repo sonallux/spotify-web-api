@@ -677,7 +677,7 @@ paths:
         - Search
       operationId: search
       x-spotify-policy-list:
-        - $ref: '#/components/x-spotify-policy/MachineLearning'
+        - $ref: '#/components/x-spotify-policy/policies/MachineLearning'
       summary: |
         Search for Item
       description: |
@@ -1866,7 +1866,7 @@ paths:
         - Playlists
       operationId: get-featured-playlists
       x-spotify-policy-list:
-        - $ref: '#/components/x-spotify-policy/MultipleIntegrations'
+        - $ref: '#/components/x-spotify-policy/policies/MultipleIntegrations'
       summary: |
         Get Featured Playlists
       description: |
@@ -2108,7 +2108,7 @@ paths:
         - Albums
       operationId: get-new-releases
       x-spotify-policy-list:
-        - $ref: '#/components/x-spotify-policy/MultipleIntegrations'
+        - $ref: '#/components/x-spotify-policy/policies/MultipleIntegrations'
       summary: |
         Get New Releases
       description: |
@@ -2394,7 +2394,7 @@ paths:
         - Tracks
       operationId: get-several-audio-features
       x-spotify-policy-list:
-        - $ref: '#/components/x-spotify-policy/MachineLearning'
+        - $ref: '#/components/x-spotify-policy/policies/MachineLearning'
       summary: |
         Get Tracks' Audio Features
       description: |
@@ -2427,7 +2427,7 @@ paths:
         - Tracks
       operationId: get-audio-features
       x-spotify-policy-list:
-        - $ref: '#/components/x-spotify-policy/MachineLearning'
+        - $ref: '#/components/x-spotify-policy/policies/MachineLearning'
       summary: |
         Get Track's Audio Features
       description: |
@@ -2491,7 +2491,7 @@ paths:
         - Tracks
       operationId: get-recommendations
       x-spotify-policy-list:
-        - $ref: '#/components/x-spotify-policy/MachineLearning'
+        - $ref: '#/components/x-spotify-policy/policies/MachineLearning'
       summary: |
         Get Recommendations
       description: |
@@ -3631,21 +3631,24 @@ components:
             streaming: |
               Play content and control playback on your other devices.
   x-spotify-policy:
-    $ref: '../policies.yaml'
+    policies:
+      $ref: '../policies.yaml'
     metadataPolicyList:
-      - $ref: '#/components/x-spotify-policy/Downloading'
-      - $ref: '#/components/x-spotify-policy/VisualAlteration'
-      - $ref: '#/components/x-spotify-policy/Attribution'
+      - $ref: '#/components/x-spotify-policy/policies/Downloading'
+      - $ref: '#/components/x-spotify-policy/policies/VisualAlteration'
+      - $ref: '#/components/x-spotify-policy/policies/Attribution'
     metadataWithMachineLearningPolicyList:
-      - $ref: '#/components/x-spotify-policy/Downloading'
-      - $ref: '#/components/x-spotify-policy/VisualAlteration'
-      - $ref: '#/components/x-spotify-policy/Attribution'
-      - $ref: '#/components/x-spotify-policy/MachineLearning'
+      - $ref: '#/components/x-spotify-policy/policies/Downloading'
+      - $ref: '#/components/x-spotify-policy/policies/VisualAlteration'
+      - $ref: '#/components/x-spotify-policy/policies/Attribution'
+      - $ref: '#/components/x-spotify-policy/policies/MachineLearning'
     playerPolicyList:
-      - $ref: '#/components/x-spotify-policy/CommercialStreaming'
-      - $ref: '#/components/x-spotify-policy/ContentAlteration'
-      - $ref: '#/components/x-spotify-policy/Synchronization'
-      - $ref: '#/components/x-spotify-policy/Broadcasting'
+      - $ref: '#/components/x-spotify-policy/policies/CommercialStreaming'
+      - $ref: '#/components/x-spotify-policy/policies/ContentAlteration'
+      - $ref: '#/components/x-spotify-policy/policies/Synchronization'
+      - $ref: '#/components/x-spotify-policy/policies/Broadcasting'
+    downloading:
+      $ref: '#/components/x-spotify-policy/policies/Downloading'
   responses:
     Unauthorized:
       description: |
@@ -5207,7 +5210,7 @@ components:
           description: |
             A URL to a 30 second preview (MP3 format) of the track.
           x-spotify-policy-list:
-            - $ref: '#/components/x-spotify-policy/StandalonePreview'
+            - $ref: '#/components/x-spotify-policy/policies/StandalonePreview'
         track_number:
           type: integer
           description: |
@@ -6037,7 +6040,7 @@ components:
           description: |
             A link to a 30 second preview (MP3 format) of the track. Can be `null`
           x-spotify-policy-list:
-            - $ref: '#/components/x-spotify-policy/StandalonePreview'
+            - $ref: '#/components/x-spotify-policy/policies/StandalonePreview'
         track_number:
           type: integer
           description: |
@@ -6105,7 +6108,7 @@ components:
           description: |
             A URL to a 30 second preview (MP3 format) of the episode. `null` if not available.
           x-spotify-policy-list:
-            - $ref: '#/components/x-spotify-policy/StandalonePreview'
+            - $ref: '#/components/x-spotify-policy/policies/StandalonePreview'
         description:
           type: string
           example: |
@@ -6656,7 +6659,7 @@ components:
           description: |
             A URL to a 30 second preview (MP3 format) of the episode. `null` if not available.
           x-spotify-policy-list:
-            - $ref: '#/components/x-spotify-policy/StandalonePreview'
+            - $ref: '#/components/x-spotify-policy/policies/StandalonePreview'
         available_markets:
           type: array
           items:
