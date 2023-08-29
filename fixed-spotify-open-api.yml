@@ -5223,6 +5223,9 @@ components:
           maximum: 100
           nullable: true
           description: The current volume in percent.
+        supports_volume:
+          type: boolean
+          description: If this device can be used to set the volume.
     CursorObject:
       type: object
       x-spotify-docs-type: CursorObject
