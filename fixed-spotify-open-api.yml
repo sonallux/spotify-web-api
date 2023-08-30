@@ -160,7 +160,7 @@ paths:
       - $ref: '#/components/parameters/QueryOffset'
       responses:
         "200":
-          $ref: '#/components/responses/PagingSimplifiedAlbumObject'
+          $ref: '#/components/responses/PagingArtistDiscographyAlbumObject'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -3932,12 +3932,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/PagingPlaylistTrackObject'
-    PagingSimplifiedAlbumObject:
+    PagingArtistDiscographyAlbumObject:
       description: Pages of albums
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingSimplifiedAlbumObject'
+            $ref: '#/components/schemas/PagingArtistDiscographyAlbumObject'
     PagingSavedAlbumObject:
       description: Pages of albums
       content:
@@ -5345,6 +5345,17 @@ components:
           type: string
         playlists:
           $ref: '#/components/schemas/PagingPlaylistObject'
+    PagingArtistDiscographyAlbumObject:
+      type: object
+      x-spotify-docs-type: PagingArtistDiscographyAlbumObject
+      allOf:
+      - $ref: '#/components/schemas/PagingObject'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/ArtistDiscographyAlbumObject'
     PagingSimplifiedAlbumObject:
       type: object
       x-spotify-docs-type: PagingAlbumObject
@@ -6500,6 +6511,20 @@ components:
         required:
         - artists
         properties:
+          artists:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimplifiedArtistObject'
+            description: |
+              The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
+    ArtistDiscographyAlbumObject:
+      x-spotify-docs-type: ArtistDiscographyAlbumObject
+      allOf:
+      - $ref: '#/components/schemas/SimplifiedAlbumObject'
+      - type: object
+        required:
+        - album_group
+        properties:
           album_group:
             type: string
             enum:
@@ -6509,13 +6534,7 @@ components:
             - appears_on
             example: compilation
             description: |
-              The field is present when getting an artist's albums. Compare to album_type this field represents relationship between the artist and the album.
-          artists:
-            type: array
-            items:
-              $ref: '#/components/schemas/SimplifiedArtistObject'
-            description: |
-              The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
+              This field describes the relationship between the artist and the album.
     ChapterObject:
       x-spotify-docs-type: ChapterObject
       type: object
@@ -6672,6 +6691,14 @@ components:
             Included in the response when a content restriction is applied.
     AlbumObject:
       x-spotify-docs-type: AlbumObject
+      required:
+      - artists
+      - tracks
+      - copyrights
+      - external_ids
+      - genres
+      - label
+      - popularity
       allOf:
       - $ref: '#/components/schemas/AlbumBase'
       - type: object
@@ -6687,14 +6714,12 @@ components:
             - $ref: '#/components/schemas/PagingSimplifiedTrackObject'
             description: |
               The tracks of the album.
-          popularity:
-            type: integer
-            description: "The popularity of the album, with 100 being the most popular.\
-              \ The popularity is calculated from the popularity of the album's individual\
-              \ tracks."
-          label:
-            type: string
-            description: The label for the album.
+          copyrights:
+            type: array
+            items:
+              $ref: '#/components/schemas/CopyrightObject'
+            description: |
+              The copyright statements of the album.
           external_ids:
             allOf:
             - $ref: '#/components/schemas/ExternalIdObject'
@@ -6702,15 +6727,21 @@ components:
               Known external IDs for the album.
           genres:
             type: array
-            description: "A list of the genres used to classify the album. (If not\
-              \ yet classified, the array is empty.)"
             items:
               type: string
-          copyrights:
-            type: array
-            items:
-              $ref: '#/components/schemas/CopyrightObject'
-            description: The copyright statements of the album.
+            example:
+            - Egg punk
+            - Noise rock
+            description: |
+              A list of the genres the album is associated with. If not yet classified, the array is empty.
+          label:
+            type: string
+            description: |
+              The label associated with the album.
+          popularity:
+            type: integer
+            description: |
+              The popularity of the album. The value will be between 0 and 100, with 100 being the most popular.
     ContextObject:
       type: object
       x-spotify-docs-type: ContextObject

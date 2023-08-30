@@ -1,8 +1,0 @@
-description: Fix type of artists property to SimplifiedArtistObject
-operations:
-  - op: test
-    path: "$.components.schemas.AlbumObject.allOf[1].properties.artists.items.$ref"
-    value: '#/components/schemas/ArtistObject'
-  - op: set
-    path: "$.components.schemas.AlbumObject.allOf[1].properties.artists.items.$ref"
-    value: '#/components/schemas/SimplifiedArtistObject'
