@@ -1,4 +1,4 @@
-name: Validation Open API
+name: Validate Open API
 on:
   push:
     branches: [ main ]

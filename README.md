@@ -1,7 +1,8 @@
 # Spotify Web API Tools
 
 [![Build](https://github.com/sonallux/spotify-web-api/workflows/Build/badge.svg)](https://github.com/sonallux/spotify-web-api/actions?query=workflow%3ABuild)
-[![Update API documentation](https://github.com/sonallux/spotify-web-api/workflows/Update%20API%20documentation/badge.svg)](https://github.com/sonallux/spotify-web-api/actions?query=workflow%3A%22Update+API+documentation%22)
+[![Update OpenAPI definition](https://github.com/sonallux/spotify-web-api/actions/workflows/update-openapi.yml/badge.svg)](https://github.com/sonallux/spotify-web-api/actions/workflows/update-openapi.yml)
+[![Validate Open API](https://github.com/sonallux/spotify-web-api/actions/workflows/validate.yml/badge.svg)](https://github.com/sonallux/spotify-web-api/actions/workflows/validate.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/de.sonallux.spotify/spotify-web-api-parent.svg?label=Maven%20Central)](https://search.maven.org/artifact/de.sonallux.spotify/spotify-web-api-parent)
 [![GitHub](https://img.shields.io/github/license/sonallux/spotify-web-api)](https://github.com/sonallux/spotify-web-api/blob/main/LICENSE)
 
