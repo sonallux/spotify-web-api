@@ -11,8 +11,27 @@ info:
   version: '1.0.0'
   title: 'Spotify Web API'
   termsOfService: 'https://developer.spotify.com/terms/'
+  contact:
+    name: Spotify for Developers Community
+    url: https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer
 servers:
   - url: https://api.spotify.com/v1
+tags:
+  - name: Albums
+  - name: Artists
+  - name: Audiobooks
+  - name: Categories
+  - name: Chapters
+  - name: Episodes
+  - name: Library
+  - name: Genres
+  - name: Markets
+  - name: Player
+  - name: Playlists
+  - name: Search
+  - name: Shows
+  - name: Tracks
+  - name: Users
 paths:
   /albums/{id}:
     get:
@@ -6086,7 +6105,8 @@ components:
             - show
           properties:
             show:
-              $ref: '#/components/schemas/SimplifiedShowObject'
+              allOf:
+                - $ref: '#/components/schemas/SimplifiedShowObject'
               description: |
                 The show on which the episode belongs.
 
@@ -6621,7 +6641,8 @@ components:
             - audiobook
           properties:
             audiobook:
-              $ref: '#/components/schemas/SimplifiedAudiobookObject'
+              allOf:
+                - $ref: '#/components/schemas/SimplifiedAudiobookObject'
               description: |
                 The audiobook for which the chapter belongs.
 
@@ -6785,7 +6806,8 @@ components:
               description: |
                 The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
             tracks:
-              $ref: '#/components/schemas/PagingSimplifiedTrackObject'
+              allOf:
+                - $ref: '#/components/schemas/PagingSimplifiedTrackObject'
               description: |
                 The tracks of the album.
             copyrights:
