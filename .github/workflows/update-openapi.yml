@@ -24,6 +24,7 @@ jobs:
       - name: Patch Spotify's OpenAPI
         run: ./scripts/patch-open-api.sh
       - name: Create Pull Request
+        if: success() || failure()
         id: cpr
         uses: peter-evans/create-pull-request@v5
         with:
@@ -42,7 +43,7 @@ jobs:
       - name: Check outputs
         run: 'echo "Pull Request ${{ steps.cpr.outputs.pull-request-operation }}: ${{ steps.cpr.outputs.pull-request-url }}"'
       - name: Comment on PR
-        if: steps.cpr.outputs.pull-request-operation == 'created'
+        if: (success() || failure()) && steps.cpr.outputs.pull-request-operation == 'created'
         uses: actions/github-script@v6
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
