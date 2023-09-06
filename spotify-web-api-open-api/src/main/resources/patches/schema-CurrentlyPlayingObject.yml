@@ -1,0 +1,42 @@
+description: Add missing CurrentlyPlayingObject
+operations:
+  - op: test
+    path: "$.components.schemas.CurrentlyPlayingObject"
+    value: null
+  - op: put
+    path: "$.components.schemas"
+    key: CurrentlyPlayingObject
+    value:
+      type: object
+      x-spotify-docs-type: CurrentlyPlayingObject
+      properties:
+        context:
+          allOf:
+            - $ref: '#/components/schemas/ContextObject'
+          description: A Context Object. Can be `null`.
+        timestamp:
+          type: integer
+          description: Unix Millisecond Timestamp when data was fetched
+        progress_ms:
+          type: integer
+          description: Progress into the currently playing track or episode. Can be `null`.
+        is_playing:
+          type: boolean
+          description: If something is currently playing, return `true`.
+        item:
+          oneOf:
+            - $ref: '#/components/schemas/TrackObject'
+            - $ref: '#/components/schemas/EpisodeObject'
+          discriminator:
+            propertyName: type
+          x-spotify-docs-type: TrackObject | EpisodeObject
+          description: The currently playing track or episode. Can be `null`.
+        currently_playing_type:
+          type: string
+          description: |
+            The object type of the currently playing item. Can be one of `track`, `episode`, `ad` or `unknown`.
+        actions:
+          allOf:
+            - $ref: '#/components/schemas/DisallowsObject'
+          description: |
+            Allows to update the user interface based on which playback actions are available within the current context.
