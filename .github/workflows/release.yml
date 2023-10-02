@@ -13,11 +13,8 @@ jobs:
         id: create-version
         run: |
           new_version=$(date +"%Y.%-m.%-d")
-          echo "Releasing version $new_version"
-          echo "::set-output name=new-version::$new_version"
-      - name: Use version
-        run: |
-          echo "Version ${{ steps.create-version.outputs.new-version }}"
+          echo "Releasing version: $new_version"
+          echo "new-version=$new_version" >> $GITHUB_OUTPUT
   check-version:
     name: Check Version
     needs: create-version
