@@ -10,7 +10,10 @@ updates:
       - sonallux
     groups:
       maven-plugins:
-        dependency-type: development
+        patterns:
+          - "org.apache.maven.plugins:*"
+          - "org.moditect:moditect-maven-plugin"
+          - "org.sonatype.plugins:nexus-staging-maven-plugin"
       test-dependencies:
         patterns:
           - "org.junit.jupiter:junit-jupiter"
