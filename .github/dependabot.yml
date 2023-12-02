@@ -8,6 +8,13 @@ updates:
     open-pull-requests-limit: 10
     reviewers:
       - sonallux
+    groups:
+      maven-plugins:
+        dependency-type: development
+      test-dependencies:
+        patterns:
+          - "org.junit.jupiter:junit-jupiter"
+          - "org.mockito:mockito-junit-jupiter"
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
