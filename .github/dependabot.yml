@@ -25,3 +25,7 @@ updates:
       time: '02:00'
     reviewers:
       - sonallux
+    groups:
+      github-actions:
+        patterns:
+          - "*"
