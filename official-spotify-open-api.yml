@@ -408,8 +408,7 @@ paths:
       summary: |
         Get an Audiobook
       description: |
-        Get Spotify catalog information for a single audiobook.<br />
-        **Note: Audiobooks are only available for the US, UK, Ireland, New Zealand and Australia markets.**
+        Get Spotify catalog information for a single audiobook. Audiobooks are only available within the US, UK, Canada, Ireland, New Zealand and Australia markets.
       parameters:
         - $ref: '#/components/parameters/PathAudiobookId'
         - $ref: '#/components/parameters/QueryMarket'
@@ -438,8 +437,7 @@ paths:
       summary: |
         Get Several Audiobooks
       description: |
-        Get Spotify catalog information for several audiobooks identified by their Spotify IDs.<br />
-        **Note: Audiobooks are only available for the US, UK, Ireland, New Zealand and Australia markets.**
+        Get Spotify catalog information for several audiobooks identified by their Spotify IDs. Audiobooks are only available within the US, UK, Canada, Ireland, New Zealand and Australia markets.
       parameters:
         - $ref: '#/components/parameters/QueryAudiobookIds'
         - $ref: '#/components/parameters/QueryMarket'
@@ -465,8 +463,7 @@ paths:
       summary: |
         Get Audiobook Chapters
       description: |
-        Get Spotify catalog information about an audiobook's chapters.<br />
-        **Note: Audiobooks are only available for the US, UK, Ireland, New Zealand and Australia markets.**
+        Get Spotify catalog information about an audiobook's chapters. Audiobooks are only available within the US, UK, Canada, Ireland, New Zealand and Australia markets.
       parameters:
         - $ref: '#/components/parameters/PathAudiobookId'
         - $ref: '#/components/parameters/QueryMarket'
@@ -588,8 +585,7 @@ paths:
       summary: |
         Get a Chapter
       description: |
-        Get Spotify catalog information for a single chapter.<br />
-        **Note: Chapters are only available for the US, UK, Ireland, New Zealand and Australia markets.**
+        Get Spotify catalog information for a single audiobook chapter. Chapters are only available within the US, UK, Canada, Ireland, New Zealand and Australia markets.
       parameters:
         - $ref: '#/components/parameters/PathChapterId'
         - $ref: '#/components/parameters/QueryMarket'
@@ -614,8 +610,7 @@ paths:
       summary: |
         Get Several Chapters
       description: |
-        Get Spotify catalog information for several chapters identified by their Spotify IDs.<br />
-        **Note: Chapters are only available for the US, UK, Ireland, New Zealand and Australia markets.**
+        Get Spotify catalog information for several audiobook chapters identified by their Spotify IDs. Chapters are only available within the US, UK, Canada, Ireland, New Zealand and Australia markets.
       parameters:
         - $ref: '#/components/parameters/QueryChapterIds'
         - $ref: '#/components/parameters/QueryMarket'
@@ -701,8 +696,7 @@ paths:
         Search for Item
       description: |
         Get Spotify catalog information about albums, artists, playlists, tracks, shows, episodes or audiobooks
-        that match a keyword string.<br />
-        **Note: Audiobooks are only available for the US, UK, Ireland, New Zealand and Australia markets.**
+        that match a keyword string. Audiobooks are only available within the US, UK, Canada, Ireland, New Zealand and Australia markets.
       parameters:
         - name: q
           required: true
@@ -3022,7 +3016,7 @@ paths:
       summary: |
         Transfer Playback
       description: |
-        Transfer playback to a new device and determine if it should start playing.
+        Transfer playback to a new device and optionally begin playback. This API only works for users who have Spotify Premium. The order of execution is not guaranteed when you use this API with other Player API endpoints.
       requestBody:
         content:
           application/json:
@@ -3066,7 +3060,7 @@ paths:
       summary: |
         Get Available Devices
       description: |
-        Get information about a user’s available devices.
+        Get information about a user’s available Spotify Connect devices. Some device models are not supported and will not be listed in the API response.
       responses:
         '200':
           $ref: '#/components/responses/ManyDevices'
@@ -3116,7 +3110,7 @@ paths:
       summary: |
         Start/Resume Playback
       description: |
-        Start a new context or resume current playback on the user's active device.
+        Start a new context or resume current playback on the user's active device. This API only works for users who have Spotify Premium. The order of execution is not guaranteed when you use this API with other Player API endpoints.
       parameters:
         - name: device_id
           required: false
@@ -3186,7 +3180,7 @@ paths:
       summary: |
         Pause Playback
       description: |
-        Pause playback on the user's account.
+        Pause playback on the user's account. This API only works for users who have Spotify Premium. The order of execution is not guaranteed when you use this API with other Player API endpoints.
       parameters:
         - name: device_id
           required: false
@@ -3219,7 +3213,7 @@ paths:
       summary: |
         Skip To Next
       description: |
-        Skips to next track in the user’s queue.
+        Skips to next track in the user’s queue. This API only works for users who have Spotify Premium. The order of execution is not guaranteed when you use this API with other Player API endpoints.
       parameters:
         - name: device_id
           required: false
@@ -3252,7 +3246,7 @@ paths:
       summary: |
         Skip To Previous
       description: |
-        Skips to previous track in the user’s queue.
+        Skips to previous track in the user’s queue. This API only works for users who have Spotify Premium. The order of execution is not guaranteed when you use this API with other Player API endpoints.
       parameters:
         - name: device_id
           required: false
@@ -3286,7 +3280,7 @@ paths:
       summary: |
         Seek To Position
       description: |
-        Seeks to the given position in the user’s currently playing track.
+        Seeks to the given position in the user’s currently playing track. This API only works for users who have Spotify Premium. The order of execution is not guaranteed when you use this API with other Player API endpoints.
       parameters:
         - name: position_ms
           required: true
@@ -3329,8 +3323,7 @@ paths:
       summary: |
         Set Repeat Mode
       description: |
-        Set the repeat mode for the user's playback. Options are repeat-track,
-        repeat-context, and off.
+        Set the repeat mode for the user's playback. This API only works for users who have Spotify Premium. The order of execution is not guaranteed when you use this API with other Player API endpoints.
       parameters:
         - name: state
           required: true
@@ -3374,7 +3367,7 @@ paths:
       summary: |
         Set Playback Volume
       description: |
-        Set the volume for the user’s current playback device.
+        Set the volume for the user’s current playback device. This API only works for users who have Spotify Premium. The order of execution is not guaranteed when you use this API with other Player API endpoints.
       parameters:
         - name: volume_percent
           required: true
@@ -3414,7 +3407,7 @@ paths:
       summary: |
         Toggle Playback Shuffle
       description: |
-        Toggle shuffle on or off for user’s playback.
+        Toggle shuffle on or off for user’s playback. This API only works for users who have Spotify Premium. The order of execution is not guaranteed when you use this API with other Player API endpoints.
       parameters:
         - name: state
           required: true
@@ -3528,6 +3521,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
       security:
         - oauth_2_0:
+            - user-read-currently-playing
             - user-read-playback-state
     post:
       tags:
@@ -3538,7 +3532,7 @@ paths:
       summary: |
         Add Item to Playback Queue
       description: |
-        Add an item to the end of the user's current playback queue.
+        Add an item to the end of the user's current playback queue. This API only works for users who have Spotify Premium. The order of execution is not guaranteed when you use this API with other Player API endpoints.
       parameters:
         - name: uri
           required: true
@@ -5155,7 +5149,7 @@ components:
         id:
           type: string
           nullable: true
-          description: The device ID.
+          description: The device ID. This ID is unique and persistent to some extent. However, this is not guaranteed and any cached `device_id` should periodically be cleared out and refetched as necessary.
         is_active:
           type: boolean
           description: If this device is the currently active device.
