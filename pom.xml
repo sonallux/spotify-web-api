@@ -68,7 +68,7 @@
         <picocli.version>4.7.5</picocli.version>
 
         <!-- Test Dependencies -->
-        <junit.version>5.10.0</junit.version>
+        <junit.version>5.10.1</junit.version>
         <assertj.version>3.22.0</assertj.version>
         <mockito-junit-jupiter.version>5.5.0</mockito-junit-jupiter.version>
 
