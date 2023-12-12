@@ -3746,7 +3746,7 @@ components:
                   $ref: '#/components/schemas/AlbumObject'
 
     ManyAudiobooks:
-      description: A set of audiobooks
+      description: A set of audiobooks. If one of the requested audiobooks is unavailable then you'll find a `null` item in the `audiobooks` array where the audiobook object would otherwise be.
       content:
         application/json:
           schema:
@@ -6485,7 +6485,7 @@ components:
           nullable: true
           example: https://p.scdn.co/mp3-preview/2f37da1d4221f40b9d1a98cd191f4d6f1646ad17
           description: |
-            A URL to a 30 second preview (MP3 format) of the episode. `null` if not available.
+            A URL to a 30 second preview (MP3 format) of the chapter. `null` if not available.
           x-spotify-policy-list:
             - $ref: '#/components/x-spotify-policy/policies/StandalonePreview'
         available_markets:
@@ -6502,67 +6502,67 @@ components:
         description:
           type: string
           example: |
-            A Spotify podcast sharing fresh insights on important topics of the moment—in a way only Spotify can. You’ll hear from experts in the music, podcast and tech industries as we discover and uncover stories about our work and the world around us.
+            We kept on ascending, with occasional periods of quick descent, but in the main always ascending. Suddenly, I became conscious of the fact that the driver was in the act of pulling up the horses in the courtyard of a vast ruined castle, from whose tall black windows came no ray of light, and whose broken battlements showed a jagged line against the moonlit sky.
           description: |
-            A description of the episode. HTML tags are stripped away from this field, use `html_description` field in case HTML tags are needed.
-        html_description:
+            A description of the chapter. HTML tags are stripped away from this field, use `html_description` field in case HTML tags are needed.
+        html_description: 
           type: string
           example: |
-            <p>A Spotify podcast sharing fresh insights on important topics of the moment—in a way only Spotify can. You’ll hear from experts in the music, podcast and tech industries as we discover and uncover stories about our work and the world around us.</p>
+            <p>We kept on ascending, with occasional periods of quick descent, but in the main always ascending. Suddenly, I became conscious of the fact that the driver was in the act of pulling up the horses in the courtyard of a vast ruined castle, from whose tall black windows came no ray of light, and whose broken battlements showed a jagged line against the moonlit sky.</p>
           description: |
-            A description of the episode. This field may contain HTML tags.
+            A description of the chapter. This field may contain HTML tags.
         duration_ms:
           type: integer
           example: 1686230
           description: |
-            The episode length in milliseconds.
+            The chapter length in milliseconds.
         explicit:
           type: boolean
           description: |
-            Whether or not the episode has explicit content (true = yes it does; false = no it does not OR unknown).
+            Whether or not the chapter has explicit content (true = yes it does; false = no it does not OR unknown).
         external_urls:
           allOf:
             - $ref: '#/components/schemas/ExternalUrlObject'
           description: |
-            External URLs for this episode.
+            External URLs for this chapter.
         href:
           type: string
           example: https://api.spotify.com/v1/episodes/5Xt5DXGzch68nYYamXrNxZ
           description: |
-            A link to the Web API endpoint providing full details of the episode.
+            A link to the Web API endpoint providing full details of the chapter.
         id:
           type: string
           example: 5Xt5DXGzch68nYYamXrNxZ
           description: |
-            The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) for the episode.
+            The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) for the chapter.
         images:
           type: array
           items:
             $ref: '#/components/schemas/ImageObject'
           description: |
-            The cover art for the episode in various sizes, widest first.
+            The cover art for the chapter in various sizes, widest first.
         is_playable:
           type: boolean
           description: |
-            True if the episode is playable in the given market. Otherwise false.
+            True if the chapter is playable in the given market. Otherwise false.
         languages:
           type: array
           items:
             type: string
           example: ['fr', 'en']
           description: |
-            A list of the languages used in the episode, identified by their [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) code.
+            A list of the languages used in the chapter, identified by their [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) code.
         name:
           type: string
           example: |
             Starting Your Own Podcast: Tips, Tricks, and Advice From Anchor Creators
           description: |
-            The name of the episode.
+            The name of the chapter.
         release_date:
           type: string
           example: '1981-12-15'
           description: |
-            The date the episode was first released, for example `"1981-12-15"`. Depending on the precision, it might be shown as `"1981"` or `"1981-12"`.
+            The date the chapter was first released, for example `"1981-12-15"`. Depending on the precision, it might be shown as `"1981"` or `"1981-12"`.
         release_date_precision:
           type: string
           example: day
@@ -6573,7 +6573,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/ResumePointObject'
           description: |
-            The user's most recent position in the episode. Set if the supplied access token is a user token and has the scope 'user-read-playback-position'.
+            The user's most recent position in the chapter. Set if the supplied access token is a user token and has the scope 'user-read-playback-position'.
         type:
           type: string
           enum: ['episode']
@@ -6583,7 +6583,7 @@ components:
           type: string
           example: spotify:episode:0zLhl3WsOCQHbe1BPTiHgr
           description: |
-            The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for the episode.
+            The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for the chapter.
         restrictions:
           allOf:
             - $ref: '#/components/schemas/ChapterRestrictionObject'
