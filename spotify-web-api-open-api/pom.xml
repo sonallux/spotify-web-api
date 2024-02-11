@@ -20,8 +20,8 @@
     <url>https://github.com/sonallux/spotify-web-api</url>
 
     <properties>
-        <swagger-parser.version>2.1.19</swagger-parser.version>
-        <json-schema-validator.version>1.0.87</json-schema-validator.version>
+        <swagger-parser.version>2.1.20</swagger-parser.version>
+        <json-schema-validator.version>1.1.0</json-schema-validator.version>
 
         <moditect.module.name>de.sonallux.spotify.openapi</moditect.module.name>
     </properties>
@@ -55,14 +55,6 @@
             <groupId>com.networknt</groupId>
             <artifactId>json-schema-validator</artifactId>
             <version>${json-schema-validator.version}</version>
-            <!-- commons-lang3 is no longer required, but it is included as runtime dependency. Therefore, exclude it.
-            see https://github.com/networknt/json-schema-validator/pull/594 -->
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.commons</groupId>
-                    <artifactId>commons-lang3</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
