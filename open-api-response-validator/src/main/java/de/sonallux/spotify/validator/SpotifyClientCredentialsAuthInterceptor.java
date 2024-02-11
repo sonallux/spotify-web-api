@@ -1,13 +1,17 @@
 package de.sonallux.spotify.validator;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.*;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
@@ -18,13 +22,13 @@ public class SpotifyClientCredentialsAuthInterceptor implements ClientHttpReques
 
     private final String spotifyClientId;
     private final String spotifyClientSecret;
-    private final RestTemplate restTemplate;
+    private final RestClient restClient;
     private AccessToken accessToken = null;
 
     public SpotifyClientCredentialsAuthInterceptor() {
         this.spotifyClientId = requireNonNull(System.getenv("SPOTIFY_CLIENT_ID"), "Missing SPOTIFY_CLIENT_ID environment variable");
         this.spotifyClientSecret = requireNonNull(System.getenv("SPOTIFY_CLIENT_SECRET"), "Missing SPOTIFY_CLIENT_SECRET environment variable");
-        this.restTemplate = new RestTemplate();
+        this.restClient = RestClient.builder().build();
     }
 
     @Override
@@ -37,38 +41,33 @@ public class SpotifyClientCredentialsAuthInterceptor implements ClientHttpReques
             retrieveNewAccessToken();
         }
 
-        if (accessToken != null) {
-            request.getHeaders().add(HttpHeaders.AUTHORIZATION, accessToken.asHeaderValue());
+        if (accessToken != null && "Bearer".equals(accessToken.tokenType)) {
+            request.getHeaders().setBearerAuth(accessToken.accessToken());
         }
 
         return execution.execute(request, body);
     }
 
     private void retrieveNewAccessToken() {
-        var headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        headers.setBasicAuth(spotifyClientId, spotifyClientSecret);
-
         var body = new LinkedMultiValueMap<String, String>();
         body.add("grant_type", "client_credentials");
 
-        var httpEntity = new HttpEntity<>(body, headers);
-
         try {
-            var response = restTemplate.exchange("https://accounts.spotify.com/api/token", HttpMethod.POST, httpEntity, AccessToken.class);
-            if (response.getStatusCode() == HttpStatus.OK) {
-                this.accessToken = response.getBody();
-            } else {
-                log.warn("Failed to retrieve access token: " + response.getStatusCode());
-            }
+            this.accessToken = restClient.post()
+                .uri("https://accounts.spotify.com/api/token")
+                .headers(headers -> {
+                    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+                    headers.setBasicAuth(spotifyClientId, spotifyClientSecret);
+                })
+                .body(body)
+                .retrieve()
+                .body(AccessToken.class);
         } catch (RestClientException e) {
             log.warn("Failed to retrieve access token", e);
         }
     }
 
-    private record AccessToken(String token_type, String access_token) {
-        public String asHeaderValue() {
-            return "%s %s".formatted(token_type, access_token);
-        }
+    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+    private record AccessToken(String tokenType, String accessToken) {
     }
 }
