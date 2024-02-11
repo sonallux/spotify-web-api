@@ -6,15 +6,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.DefaultUriBuilderFactory;
-
-import java.util.List;
+import org.springframework.web.client.RestClient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ArtistsApiValidationTest {
-    private static RestTemplate restTemplate;
+    private static RestClient restClient;
 
     @BeforeAll
     static void setupRestTemplate() {
@@ -25,20 +22,22 @@ class ArtistsApiValidationTest {
                 .withResolveCombinators(true)
                 .build());
 
-        restTemplate = new RestTemplate();
-        restTemplate.setInterceptors(List.of(spotifyAuthInterceptor, validationInterceptor));
-        restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory("https://api.spotify.com/v1"));
+        restClient = RestClient.builder()
+            .requestInterceptor(spotifyAuthInterceptor)
+            .requestInterceptor(validationInterceptor)
+            .baseUrl("https://api.spotify.com/v1")
+            .build();
     }
 
     @Test
     void validateGetArtist() {
-        var response = restTemplate.getForEntity("/artists/{id}", String.class, "4lDiJcOJ2GLCK6p9q5BgfK");
+        var response = restClient.get().uri("/artists/{id}", "4lDiJcOJ2GLCK6p9q5BgfK").retrieve().toBodilessEntity();
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 
     @Test
     void validateGetSeveralArtist() {
-        var response = restTemplate.getForEntity("/artists?ids={ids}", String.class, "0Dvx6p8JDyzeOPGmaCIH1L,5Y5TRrQiqgUO4S36tzjIRZ");
+        var response = restClient.get().uri("/artists?ids={ids}", "0Dvx6p8JDyzeOPGmaCIH1L,5Y5TRrQiqgUO4S36tzjIRZ").retrieve().toBodilessEntity();
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 
@@ -46,16 +45,16 @@ class ArtistsApiValidationTest {
     void validateGetArtistsAlbums() {
         var artistId = "6XyY86QOPPrYVGvF9ch6wz";
 
-        var responseFirstPage = restTemplate.getForEntity("/artists/{id}/albums?limit=5", String.class, artistId);
+        var responseFirstPage = restClient.get().uri("/artists/{id}/albums?limit=5", artistId).retrieve().toBodilessEntity();
         assertEquals(responseFirstPage.getStatusCode(), HttpStatus.OK);
 
-        var responseMiddlePage = restTemplate.getForEntity("/artists/{id}/albums?limit=5&offset=50", String.class, artistId);
+        var responseMiddlePage = restClient.get().uri("/artists/{id}/albums?limit=5&offset=50", artistId).retrieve().toBodilessEntity();
         assertEquals(responseMiddlePage.getStatusCode(), HttpStatus.OK);
 
-        var responseLastPage = restTemplate.getForEntity("/artists/{id}/albums?limit=20&offset=360", String.class, artistId);
+        var responseLastPage = restClient.get().uri("/artists/{id}/albums?limit=20&offset=360", artistId).retrieve().toBodilessEntity();
         assertEquals(responseLastPage.getStatusCode(), HttpStatus.OK);
 
-        var responseEmptyPage = restTemplate.getForEntity("/artists/{id}/albums?limit=20&offset=380", String.class, artistId);
+        var responseEmptyPage = restClient.get().uri("/artists/{id}/albums?limit=20&offset=380", artistId).retrieve().toBodilessEntity();
         assertEquals(responseEmptyPage.getStatusCode(), HttpStatus.OK);
     }
 
@@ -67,13 +66,13 @@ class ArtistsApiValidationTest {
     @Disabled
     @Test
     void validateGetArtistsTopTracks() {
-        var response = restTemplate.getForEntity("/artists/{id}/top-tracks?market=DE", String.class, "0Dvx6p8JDyzeOPGmaCIH1L");
+        var response = restClient.get().uri("/artists/{id}/top-tracks?market=DE", "0Dvx6p8JDyzeOPGmaCIH1L").retrieve().toBodilessEntity();
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 
     @Test
     void validateGetArtistsRelatedArtists() {
-        var response = restTemplate.getForEntity("/artists/{id}/related-artists", String.class, "0Dvx6p8JDyzeOPGmaCIH1L");
+        var response = restClient.get().uri("/artists/{id}/related-artists", "0Dvx6p8JDyzeOPGmaCIH1L").retrieve().toBodilessEntity();
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 

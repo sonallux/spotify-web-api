@@ -3,18 +3,14 @@ package de.sonallux.spotify.validator;
 import com.atlassian.oai.validator.OpenApiInteractionValidator;
 import com.atlassian.oai.validator.springweb.client.OpenApiValidationClientHttpRequestInterceptor;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.DefaultUriBuilderFactory;
-
-import java.util.List;
+import org.springframework.web.client.RestClient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AlbumApiValidationTest {
-    private static RestTemplate restTemplate;
+    private static RestClient restClient;
 
     @BeforeAll
     static void setupRestTemplate() {
@@ -25,26 +21,28 @@ class AlbumApiValidationTest {
                 .withResolveCombinators(true)
                 .build());
 
-        restTemplate = new RestTemplate();
-        restTemplate.setInterceptors(List.of(spotifyAuthInterceptor, validationInterceptor));
-        restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory("https://api.spotify.com/v1"));
+        restClient = RestClient.builder()
+            .requestInterceptor(spotifyAuthInterceptor)
+            .requestInterceptor(validationInterceptor)
+            .baseUrl("https://api.spotify.com/v1")
+            .build();
     }
 
     @Test
     void validateGetAlbum() {
-        var response = restTemplate.getForEntity("/albums/{id}", String.class, "3Q9wXhEAX7NYCPP0hxIuDz");
+        var response = restClient.get().uri("/albums/{id}", "3Q9wXhEAX7NYCPP0hxIuDz").retrieve().toBodilessEntity();
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 
     @Test
     void validateGetSeveralAlbums() {
-        var response = restTemplate.getForEntity("/albums?ids={ids}", String.class, "3Q9wXhEAX7NYCPP0hxIuDz,5Eevxp2BCbWq25ZdiXRwYd");
+        var response = restClient.get().uri("/albums?ids={ids}", "3Q9wXhEAX7NYCPP0hxIuDz,5Eevxp2BCbWq25ZdiXRwYd").retrieve().toBodilessEntity();
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 
     @Test
     void validateGetAlbumTracks() {
-        var response = restTemplate.getForEntity("/albums/{id}/tracks", String.class, "3Q9wXhEAX7NYCPP0hxIuDz");
+        var response = restClient.get().uri("/albums/{id}/tracks", "3Q9wXhEAX7NYCPP0hxIuDz").retrieve().toBodilessEntity();
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 }
