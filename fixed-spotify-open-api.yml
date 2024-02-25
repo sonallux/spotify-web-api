@@ -144,7 +144,7 @@ paths:
         schema:
           title: Spotify Artist IDs
           description: |
-            A comma-separated list of the [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids) for the artists. Maximum: 50 IDs.
+            A comma-separated list of the [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids) for the artists. Maximum: 100 IDs.
           example: "2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6"
           type: string
       responses:
@@ -632,7 +632,15 @@ paths:
         Get Spotify catalog information for multiple tracks based on their Spotify IDs.
       parameters:
       - $ref: '#/components/parameters/QueryMarket'
-      - $ref: '#/components/parameters/QueryTrackIds'
+      - name: ids
+        required: true
+        in: query
+        schema:
+          title: Spotify Track IDs
+          description: |
+            A comma-separated list of the [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example: `ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M`. Maximum: 100 IDs.
+          example: "7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B"
+          type: string
       responses:
         "200":
           $ref: '#/components/responses/ManyTracks'
