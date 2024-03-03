@@ -1,0 +1,13 @@
+description: Fix type of timestamp property for AudioAnalysisObject
+operations:
+  - op: test
+    path: "$.components.schemas.AudioAnalysisObject.properties.meta.properties.timestamp"
+    value:
+      type: integer
+      example: 1495193577
+      description: The Unix timestamp (in seconds) at which this track was
+        analyzed.
+  - op: put
+    path: "$.components.schemas.AudioAnalysisObject.properties.meta.properties.timestamp"
+    key: format
+    value: int64

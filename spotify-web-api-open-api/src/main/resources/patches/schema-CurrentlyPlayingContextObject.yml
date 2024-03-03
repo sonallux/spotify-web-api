@@ -1,0 +1,11 @@
+description: Fix type of timestamp property for CurrentlyPlayingContextObject
+operations:
+  - op: test
+    path: "$.components.schemas.CurrentlyPlayingContextObject.properties.timestamp"
+    value:
+      type: integer
+      description: Unix Millisecond Timestamp when data was fetched.
+  - op: put
+    path: "$.components.schemas.CurrentlyPlayingContextObject.properties.timestamp"
+    key: format
+    value: int64

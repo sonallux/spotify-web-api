@@ -16,6 +16,7 @@ operations:
           description: A Context Object. Can be `null`.
         timestamp:
           type: integer
+          format: int64
           description: Unix Millisecond Timestamp when data was fetched
         progress_ms:
           type: integer

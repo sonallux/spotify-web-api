@@ -4302,6 +4302,7 @@ components:
         timestamp:
           type: integer
           description: Unix Millisecond Timestamp when data was fetched.
+          format: int64
         progress_ms:
           type: integer
           description: Progress into the currently playing track or episode. Can be
@@ -4504,6 +4505,7 @@ components:
               example: 1495193577
               description: The Unix timestamp (in seconds) at which this track was
                 analyzed.
+              format: int64
             analysis_time:
               type: number
               example: 6.93906
@@ -6670,6 +6672,7 @@ components:
           description: A Context Object. Can be `null`.
         timestamp:
           type: integer
+          format: int64
           description: Unix Millisecond Timestamp when data was fetched
         progress_ms:
           type: integer
