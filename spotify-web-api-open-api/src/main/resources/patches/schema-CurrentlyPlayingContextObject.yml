@@ -4,7 +4,7 @@ operations:
     path: "$.components.schemas.CurrentlyPlayingContextObject.properties.timestamp"
     value:
       type: integer
-      description: Unix Millisecond Timestamp when data was fetched.
+      description: Unix Millisecond Timestamp when playback state was last changed (play, pause, skip, scrub, new song, etc.).
   - op: put
     path: "$.components.schemas.CurrentlyPlayingContextObject.properties.timestamp"
     key: format

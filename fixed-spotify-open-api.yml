@@ -843,7 +843,7 @@ paths:
                 public:
                   type: boolean
                   description: |
-                    If `true` the playlist will be public, if `false` it will be private.
+                    The playlist's public/private status (if it should be added to the user's profile or not): `true` the playlist will be public, `false` the playlist will be private, `null` the playlist status is not relevant. For more about public/private status, see [Working with Playlists](/documentation/web-api/concepts/playlists)
                 collaborative:
                   type: boolean
                   description: |
@@ -1744,7 +1744,7 @@ paths:
                 public:
                   type: boolean
                   description: |
-                    Defaults to `true`. If `true` the playlist will be public, if `false` it will be private. To be able to create private playlists, the user must have granted the `playlist-modify-private` [scope](/documentation/web-api/concepts/scopes/#list-of-scopes)
+                    Defaults to `true`. The playlist's public/private status (if it should be added to the user's profile or not): `true` the playlist will be public, `false` the playlist will be private. To be able to create private playlists, the user must have granted the `playlist-modify-private` [scope](/documentation/web-api/concepts/scopes/#list-of-scopes). For more about public/private status, see [Working with Playlists](/documentation/web-api/concepts/playlists)
                 collaborative:
                   type: boolean
                   description: |
@@ -1790,7 +1790,7 @@ paths:
                 public:
                   type: boolean
                   description: |
-                    Defaults to `true`. If `true` the playlist will be included in user's public playlists, if `false` it will remain private.
+                    Defaults to `true`. If `true` the playlist will be included in user's public playlists (added to profile), if `false` it will remain private. For more about public/private status, see [Working with Playlists](/documentation/web-api/concepts/playlists)
       responses:
         "200":
           description: Playlist followed
@@ -2258,23 +2258,23 @@ paths:
       - Playlists
       operationId: check-if-user-follows-playlist
       summary: |
-        Check if Users Follow Playlist
+        Check if Current User Follows Playlist
       description: |
-        Check to see if one or more Spotify users are following a specified playlist.
+        Check to see if the current user is following a specified playlist.
       parameters:
       - $ref: '#/components/parameters/PathPlaylistId'
       - name: ids
-        required: true
+        required: false
         in: query
         schema:
           title: Spotify user IDs
           description: |
-            A comma-separated list of [Spotify User IDs](/documentation/web-api/concepts/spotify-uris-ids) ; the ids of the users that you want to check to see if they follow the playlist. Maximum: 5 ids.
-          example: "jmperezperez,thelinmichael,wizzler"
+            **Deprecated** A single item list containing current user's [Spotify Username](/documentation/web-api/concepts/spotify-uris-ids). Maximum: 1 id.
+          example: jmperezperez
           type: string
       responses:
         "200":
-          $ref: '#/components/responses/ArrayOfBooleans'
+          $ref: '#/components/responses/SingletonArrayOfBoolean'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -3985,6 +3985,16 @@ components:
             - true
             items:
               type: boolean
+    SingletonArrayOfBoolean:
+      description: "Array of boolean, containing a single boolean"
+      content:
+        application/json:
+          schema:
+            type: array
+            example:
+            - true
+            items:
+              type: boolean
     Queue:
       description: Information about the queue
       content:
@@ -4301,7 +4311,8 @@ components:
           description: A Context Object. Can be `null`.
         timestamp:
           type: integer
-          description: Unix Millisecond Timestamp when data was fetched.
+          description: "Unix Millisecond Timestamp when playback state was last changed\
+            \ (play, pause, skip, scrub, new song, etc.)."
           format: int64
         progress_ms:
           type: integer
@@ -5531,7 +5542,7 @@ components:
         public:
           type: boolean
           description: |
-            The playlist's public/private status: `true` the playlist is public, `false` the playlist is private, `null` the playlist status is not relevant. For more about public/private status, see [Working with Playlists](/documentation/web-api/concepts/playlists)
+            The playlist's public/private status (if it is added to the user's profile): `true` the playlist is public, `false` the playlist is private, `null` the playlist status is not relevant. For more about public/private status, see [Working with Playlists](/documentation/web-api/concepts/playlists)
         snapshot_id:
           type: string
           description: |
@@ -5593,7 +5604,7 @@ components:
         public:
           type: boolean
           description: |
-            The playlist's public/private status: `true` the playlist is public, `false` the playlist is private, `null` the playlist status is not relevant. For more about public/private status, see [Working with Playlists](/documentation/web-api/concepts/playlists)
+            The playlist's public/private status (if it is added to the user's profile): `true` the playlist is public, `false` the playlist is private, `null` the playlist status is not relevant. For more about public/private status, see [Working with Playlists](/documentation/web-api/concepts/playlists)
         snapshot_id:
           type: string
           description: |
