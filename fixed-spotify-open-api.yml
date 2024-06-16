@@ -43,17 +43,17 @@ paths:
       description: |
         Get Spotify catalog information for a single album.
       parameters:
-      - $ref: '#/components/parameters/PathAlbumId'
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/PathAlbumId"
+      - $ref: "#/components/parameters/QueryMarket"
       responses:
         "200":
-          $ref: '#/components/responses/OneAlbum'
+          $ref: "#/components/responses/OneAlbum"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /albums:
@@ -66,17 +66,17 @@ paths:
       description: |
         Get Spotify catalog information for multiple albums identified by their Spotify IDs.
       parameters:
-      - $ref: '#/components/parameters/QueryAlbumIds'
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/QueryAlbumIds"
+      - $ref: "#/components/parameters/QueryMarket"
       responses:
         "200":
-          $ref: '#/components/responses/ManyAlbums'
+          $ref: "#/components/responses/ManyAlbums"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /albums/{id}/tracks:
@@ -91,19 +91,19 @@ paths:
         Get Spotify catalog information about an album’s tracks.
         Optional parameters can be used to limit the number of tracks returned.
       parameters:
-      - $ref: '#/components/parameters/PathAlbumId'
-      - $ref: '#/components/parameters/QueryMarket'
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: "#/components/parameters/PathAlbumId"
+      - $ref: "#/components/parameters/QueryMarket"
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
       responses:
         "200":
-          $ref: '#/components/responses/PagingSimplifiedTrackObject'
+          $ref: "#/components/responses/PagingSimplifiedTrackObject"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /artists/{id}:
@@ -116,16 +116,16 @@ paths:
       description: |
         Get Spotify catalog information for a single artist identified by their unique Spotify ID.
       parameters:
-      - $ref: '#/components/parameters/PathArtistId'
+      - $ref: "#/components/parameters/PathArtistId"
       responses:
         "200":
-          $ref: '#/components/responses/OneArtist'
+          $ref: "#/components/responses/OneArtist"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /artists:
@@ -149,13 +149,13 @@ paths:
           type: string
       responses:
         "200":
-          $ref: '#/components/responses/ManyArtists'
+          $ref: "#/components/responses/ManyArtists"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /artists/{id}/albums:
@@ -169,20 +169,20 @@ paths:
       description: |
         Get Spotify catalog information about an artist's albums.
       parameters:
-      - $ref: '#/components/parameters/PathArtistId'
-      - $ref: '#/components/parameters/QueryIncludeGroups'
-      - $ref: '#/components/parameters/QueryMarket'
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: "#/components/parameters/PathArtistId"
+      - $ref: "#/components/parameters/QueryIncludeGroups"
+      - $ref: "#/components/parameters/QueryMarket"
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
       responses:
         "200":
-          $ref: '#/components/responses/PagingArtistDiscographyAlbumObject'
+          $ref: "#/components/responses/PagingArtistDiscographyAlbumObject"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /artists/{id}/top-tracks:
@@ -196,17 +196,17 @@ paths:
       description: |
         Get Spotify catalog information about an artist's top tracks by country.
       parameters:
-      - $ref: '#/components/parameters/PathArtistId'
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/PathArtistId"
+      - $ref: "#/components/parameters/QueryMarket"
       responses:
         "200":
-          $ref: '#/components/responses/ManyTracks'
+          $ref: "#/components/responses/ManyTracks"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /artists/{id}/related-artists:
@@ -219,16 +219,16 @@ paths:
       description: |
         Get Spotify catalog information about artists similar to a given artist. Similarity is based on analysis of the Spotify community's listening history.
       parameters:
-      - $ref: '#/components/parameters/PathArtistId'
+      - $ref: "#/components/parameters/PathArtistId"
       responses:
         "200":
-          $ref: '#/components/responses/ManyArtists'
+          $ref: "#/components/responses/ManyArtists"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /shows/{id}:
@@ -242,17 +242,17 @@ paths:
         Get Spotify catalog information for a single show identified by its
         unique Spotify ID.
       parameters:
-      - $ref: '#/components/parameters/QueryMarket'
-      - $ref: '#/components/parameters/PathShowId'
+      - $ref: "#/components/parameters/QueryMarket"
+      - $ref: "#/components/parameters/PathShowId"
       responses:
         "200":
-          $ref: '#/components/responses/OneShow'
+          $ref: "#/components/responses/OneShow"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-read-playback-position
@@ -266,17 +266,17 @@ paths:
       description: |
         Get Spotify catalog information for several shows based on their Spotify IDs.
       parameters:
-      - $ref: '#/components/parameters/QueryMarket'
-      - $ref: '#/components/parameters/QueryShowIds'
+      - $ref: "#/components/parameters/QueryMarket"
+      - $ref: "#/components/parameters/QueryShowIds"
       responses:
         "200":
-          $ref: '#/components/responses/ManySimplifiedShows'
+          $ref: "#/components/responses/ManySimplifiedShows"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /shows/{id}/episodes:
@@ -290,19 +290,19 @@ paths:
       description: |
         Get Spotify catalog information about an show’s episodes. Optional parameters can be used to limit the number of episodes returned.
       parameters:
-      - $ref: '#/components/parameters/PathShowId'
-      - $ref: '#/components/parameters/QueryMarket'
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: "#/components/parameters/PathShowId"
+      - $ref: "#/components/parameters/QueryMarket"
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
       responses:
         "200":
-          $ref: '#/components/responses/PagingSimplifiedEpisodeObject'
+          $ref: "#/components/responses/PagingSimplifiedEpisodeObject"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-read-playback-position
@@ -326,16 +326,16 @@ paths:
             \ for the episode."
           example: 512ojhOuo1ktJprKbVcKyQ
           type: string
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/QueryMarket"
       responses:
         "200":
-          $ref: '#/components/responses/OneEpisode'
+          $ref: "#/components/responses/OneEpisode"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-read-playback-position
@@ -358,16 +358,16 @@ paths:
             A comma-separated list of the [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids) for the episodes. Maximum: 50 IDs.
           example: "77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf"
           type: string
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/QueryMarket"
       responses:
         "200":
-          $ref: '#/components/responses/ManyEpisodes'
+          $ref: "#/components/responses/ManyEpisodes"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-read-playback-position
@@ -381,21 +381,21 @@ paths:
       description: |
         Get Spotify catalog information for a single audiobook. Audiobooks are only available within the US, UK, Canada, Ireland, New Zealand and Australia markets.
       parameters:
-      - $ref: '#/components/parameters/PathAudiobookId'
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/PathAudiobookId"
+      - $ref: "#/components/parameters/QueryMarket"
       responses:
         "200":
-          $ref: '#/components/responses/OneAudiobook'
+          $ref: "#/components/responses/OneAudiobook"
         "400":
-          $ref: '#/components/responses/BadRequest'
+          $ref: "#/components/responses/BadRequest"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "404":
-          $ref: '#/components/responses/NotFound'
+          $ref: "#/components/responses/NotFound"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /audiobooks:
@@ -408,17 +408,17 @@ paths:
       description: |
         Get Spotify catalog information for several audiobooks identified by their Spotify IDs. Audiobooks are only available within the US, UK, Canada, Ireland, New Zealand and Australia markets.
       parameters:
-      - $ref: '#/components/parameters/QueryAudiobookIds'
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/QueryAudiobookIds"
+      - $ref: "#/components/parameters/QueryMarket"
       responses:
         "200":
-          $ref: '#/components/responses/ManyAudiobooks'
+          $ref: "#/components/responses/ManyAudiobooks"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /audiobooks/{id}/chapters:
@@ -432,19 +432,19 @@ paths:
       description: |
         Get Spotify catalog information about an audiobook's chapters. Audiobooks are only available within the US, UK, Canada, Ireland, New Zealand and Australia markets.
       parameters:
-      - $ref: '#/components/parameters/PathAudiobookId'
-      - $ref: '#/components/parameters/QueryMarket'
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: "#/components/parameters/PathAudiobookId"
+      - $ref: "#/components/parameters/QueryMarket"
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
       responses:
         "200":
-          $ref: '#/components/responses/PagingSimplifiedChapterObject'
+          $ref: "#/components/responses/PagingSimplifiedChapterObject"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /me/audiobooks:
@@ -458,17 +458,17 @@ paths:
       description: |
         Get a list of the audiobooks saved in the current Spotify user's 'Your Music' library.
       parameters:
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
       responses:
         "200":
-          $ref: '#/components/responses/PagingSavedAudiobookObject'
+          $ref: "#/components/responses/PagingSavedAudiobookObject"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-read
@@ -482,16 +482,16 @@ paths:
       description: |
         Save one or more audiobooks to the current Spotify user's library.
       parameters:
-      - $ref: '#/components/parameters/QueryAudiobookIds'
+      - $ref: "#/components/parameters/QueryAudiobookIds"
       responses:
         "200":
           description: Audiobook(s) are saved to the library
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-modify
@@ -505,16 +505,16 @@ paths:
       description: |
         Remove one or more audiobooks from the Spotify user's library.
       parameters:
-      - $ref: '#/components/parameters/QueryAudiobookIds'
+      - $ref: "#/components/parameters/QueryAudiobookIds"
       responses:
         "200":
           description: Audiobook(s) have been removed from the library
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-modify
@@ -529,16 +529,16 @@ paths:
       description: |
         Check if one or more audiobooks are already saved in the current Spotify user's library.
       parameters:
-      - $ref: '#/components/parameters/QueryAudiobookIds'
+      - $ref: "#/components/parameters/QueryAudiobookIds"
       responses:
         "200":
-          $ref: '#/components/responses/ArrayOfBooleans'
+          $ref: "#/components/responses/ArrayOfBooleans"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-read
@@ -552,17 +552,17 @@ paths:
       description: |
         Get Spotify catalog information for a single audiobook chapter. Chapters are only available within the US, UK, Canada, Ireland, New Zealand and Australia markets.
       parameters:
-      - $ref: '#/components/parameters/PathChapterId'
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/PathChapterId"
+      - $ref: "#/components/parameters/QueryMarket"
       responses:
         "200":
-          $ref: '#/components/responses/OneChapter'
+          $ref: "#/components/responses/OneChapter"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /chapters:
@@ -575,17 +575,17 @@ paths:
       description: |
         Get Spotify catalog information for several audiobook chapters identified by their Spotify IDs. Chapters are only available within the US, UK, Canada, Ireland, New Zealand and Australia markets.
       parameters:
-      - $ref: '#/components/parameters/QueryChapterIds'
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/QueryChapterIds"
+      - $ref: "#/components/parameters/QueryMarket"
       responses:
         "200":
-          $ref: '#/components/responses/ManyChapters'
+          $ref: "#/components/responses/ManyChapters"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /tracks/{id}:
@@ -609,16 +609,16 @@ paths:
             for the track.
           example: 11dFghVXANMlKmJXsNCbNl
           type: string
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/QueryMarket"
       responses:
         "200":
-          $ref: '#/components/responses/OneTrack'
+          $ref: "#/components/responses/OneTrack"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /tracks:
@@ -631,7 +631,7 @@ paths:
       description: |
         Get Spotify catalog information for multiple tracks based on their Spotify IDs.
       parameters:
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/QueryMarket"
       - name: ids
         required: true
         in: query
@@ -643,13 +643,13 @@ paths:
           type: string
       responses:
         "200":
-          $ref: '#/components/responses/ManyTracks'
+          $ref: "#/components/responses/ManyTracks"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /search:
@@ -701,7 +701,7 @@ paths:
             - episode
             - audiobook
           type: array
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/QueryMarket"
       - name: limit
         required: false
         in: query
@@ -740,13 +740,13 @@ paths:
           - audio
       responses:
         "200":
-          $ref: '#/components/responses/SearchItems'
+          $ref: "#/components/responses/SearchItems"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /me:
@@ -761,13 +761,13 @@ paths:
         current user's username).
       responses:
         "200":
-          $ref: '#/components/responses/OnePrivateUser'
+          $ref: "#/components/responses/OnePrivateUser"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-read-private
@@ -782,8 +782,8 @@ paths:
       description: |
         Get a playlist owned by a Spotify user.
       parameters:
-      - $ref: '#/components/parameters/PathPlaylistId'
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/PathPlaylistId"
+      - $ref: "#/components/parameters/QueryMarket"
       - name: fields
         required: false
         in: query
@@ -801,16 +801,16 @@ paths:
             `fields=tracks.items(track(name,href,album(!name,href)))`
           example: "items(added_by.id,track(name,href,album(name,href)))"
           type: string
-      - $ref: '#/components/parameters/QueryAdditionalTypes'
+      - $ref: "#/components/parameters/QueryAdditionalTypes"
       responses:
         "200":
-          $ref: '#/components/responses/OnePlaylist'
+          $ref: "#/components/responses/OnePlaylist"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
     put:
@@ -824,7 +824,7 @@ paths:
         Change a playlist's name and public/private state. (The user must, of
         course, own the playlist.)
       parameters:
-      - $ref: '#/components/parameters/PathPlaylistId'
+      - $ref: "#/components/parameters/PathPlaylistId"
       requestBody:
         content:
           application/json:
@@ -857,11 +857,11 @@ paths:
         "200":
           description: Playlist updated
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - playlist-modify-public
@@ -877,8 +877,8 @@ paths:
       description: |
         Get full details of the items of a playlist owned by a Spotify user.
       parameters:
-      - $ref: '#/components/parameters/PathPlaylistId'
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/PathPlaylistId"
+      - $ref: "#/components/parameters/QueryMarket"
       - name: fields
         required: false
         in: query
@@ -907,17 +907,17 @@ paths:
           type: integer
           minimum: 1
           maximum: 100
-      - $ref: '#/components/parameters/QueryOffset'
-      - $ref: '#/components/parameters/QueryAdditionalTypes'
+      - $ref: "#/components/parameters/QueryOffset"
+      - $ref: "#/components/parameters/QueryAdditionalTypes"
       responses:
         "200":
-          $ref: '#/components/responses/PagingPlaylistTrackObject'
+          $ref: "#/components/responses/PagingPlaylistTrackObject"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - playlist-read-private
@@ -931,7 +931,7 @@ paths:
       description: |
         Add one or more items to a user's playlist.
       parameters:
-      - $ref: '#/components/parameters/PathPlaylistId'
+      - $ref: "#/components/parameters/PathPlaylistId"
       - name: position
         required: false
         in: query
@@ -970,13 +970,13 @@ paths:
                   type: integer
       responses:
         "201":
-          $ref: '#/components/responses/PlaylistSnapshotId'
+          $ref: "#/components/responses/PlaylistSnapshotId"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - playlist-modify-public
@@ -997,7 +997,7 @@ paths:
         **Note**: Replace and reorder are mutually exclusive operations which share the same endpoint, but have different parameters.
         These operations can't be applied together in a single request.
       parameters:
-      - $ref: '#/components/parameters/PathPlaylistId'
+      - $ref: "#/components/parameters/PathPlaylistId"
       - name: uris
         required: false
         in: query
@@ -1039,13 +1039,13 @@ paths:
                     The playlist's snapshot ID against which you want to make the changes.
       responses:
         "200":
-          $ref: '#/components/responses/PlaylistSnapshotId'
+          $ref: "#/components/responses/PlaylistSnapshotId"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - playlist-modify-public
@@ -1060,7 +1060,7 @@ paths:
       description: |
         Remove one or more items from a user's playlist.
       parameters:
-      - $ref: '#/components/parameters/PathPlaylistId'
+      - $ref: "#/components/parameters/PathPlaylistId"
       requestBody:
         content:
           application/json:
@@ -1088,13 +1088,13 @@ paths:
                     even if more recent changes have been made to the playlist.
       responses:
         "200":
-          $ref: '#/components/responses/PlaylistSnapshotId'
+          $ref: "#/components/responses/PlaylistSnapshotId"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - playlist-modify-public
@@ -1111,7 +1111,7 @@ paths:
         Get a list of the playlists owned or followed by the current Spotify
         user.
       parameters:
-      - $ref: '#/components/parameters/QueryLimit'
+      - $ref: "#/components/parameters/QueryLimit"
       - name: offset
         required: false
         in: query
@@ -1126,13 +1126,13 @@ paths:
           type: integer
       responses:
         "200":
-          $ref: '#/components/responses/PagedPlaylists'
+          $ref: "#/components/responses/PagedPlaylists"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - playlist-read-private
@@ -1147,18 +1147,18 @@ paths:
       description: |
         Get a list of the albums saved in the current Spotify user's 'Your Music' library.
       parameters:
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
+      - $ref: "#/components/parameters/QueryMarket"
       responses:
         "200":
-          $ref: '#/components/responses/PagingSavedAlbumObject'
+          $ref: "#/components/responses/PagingSavedAlbumObject"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-read
@@ -1172,7 +1172,7 @@ paths:
       description: |
         Save one or more albums to the current user's 'Your Music' library.
       parameters:
-      - $ref: '#/components/parameters/QueryAlbumIds'
+      - $ref: "#/components/parameters/QueryAlbumIds"
       requestBody:
         content:
           application/json:
@@ -1190,11 +1190,11 @@ paths:
         "200":
           description: The album is saved
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-modify
@@ -1208,7 +1208,7 @@ paths:
       description: |
         Remove one or more albums from the current user's 'Your Music' library.
       parameters:
-      - $ref: '#/components/parameters/QueryAlbumIds'
+      - $ref: "#/components/parameters/QueryAlbumIds"
       requestBody:
         content:
           application/json:
@@ -1226,11 +1226,11 @@ paths:
         "200":
           description: Album(s) have been removed from the library
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-modify
@@ -1245,16 +1245,16 @@ paths:
       description: |
         Check if one or more albums is already saved in the current Spotify user's 'Your Music' library.
       parameters:
-      - $ref: '#/components/parameters/QueryAlbumIds'
+      - $ref: "#/components/parameters/QueryAlbumIds"
       responses:
         "200":
-          $ref: '#/components/responses/ArrayOfBooleans'
+          $ref: "#/components/responses/ArrayOfBooleans"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-read
@@ -1269,18 +1269,18 @@ paths:
       description: |
         Get a list of the songs saved in the current Spotify user's 'Your Music' library.
       parameters:
-      - $ref: '#/components/parameters/QueryMarket'
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: "#/components/parameters/QueryMarket"
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
       responses:
         "200":
-          $ref: '#/components/responses/PagingSavedTrackObject'
+          $ref: "#/components/responses/PagingSavedTrackObject"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-read
@@ -1294,7 +1294,7 @@ paths:
       description: |
         Save one or more tracks to the current user's 'Your Music' library.
       parameters:
-      - $ref: '#/components/parameters/QueryTrackIds'
+      - $ref: "#/components/parameters/QueryTrackIds"
       requestBody:
         content:
           application/json:
@@ -1314,11 +1314,11 @@ paths:
         "200":
           description: Track saved
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-modify
@@ -1332,7 +1332,7 @@ paths:
       description: |
         Remove one or more tracks from the current user's 'Your Music' library.
       parameters:
-      - $ref: '#/components/parameters/QueryTrackIds'
+      - $ref: "#/components/parameters/QueryTrackIds"
       requestBody:
         content:
           application/json:
@@ -1350,11 +1350,11 @@ paths:
         "200":
           description: Track removed
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-modify
@@ -1369,16 +1369,16 @@ paths:
       description: |
         Check if one or more tracks is already saved in the current Spotify user's 'Your Music' library.
       parameters:
-      - $ref: '#/components/parameters/QueryTrackIds'
+      - $ref: "#/components/parameters/QueryTrackIds"
       responses:
         "200":
-          $ref: '#/components/responses/ArrayOfBooleans'
+          $ref: "#/components/responses/ArrayOfBooleans"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-read
@@ -1394,18 +1394,18 @@ paths:
         Get a list of the episodes saved in the current Spotify user's library.<br/>
         This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
       parameters:
-      - $ref: '#/components/parameters/QueryMarket'
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: "#/components/parameters/QueryMarket"
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
       responses:
         "200":
-          $ref: '#/components/responses/PagingSavedEpisodeObject'
+          $ref: "#/components/responses/PagingSavedEpisodeObject"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-read
@@ -1449,11 +1449,11 @@ paths:
         "200":
           description: Episode saved
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-modify
@@ -1468,7 +1468,7 @@ paths:
         Remove one or more episodes from the current user's library.<br/>
         This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
       parameters:
-      - $ref: '#/components/parameters/QueryTrackIds'
+      - $ref: "#/components/parameters/QueryTrackIds"
       requestBody:
         content:
           application/json:
@@ -1486,11 +1486,11 @@ paths:
         "200":
           description: Episode removed
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-modify
@@ -1517,13 +1517,13 @@ paths:
           type: string
       responses:
         "200":
-          $ref: '#/components/responses/ArrayOfBooleans'
+          $ref: "#/components/responses/ArrayOfBooleans"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-read
@@ -1538,17 +1538,17 @@ paths:
       description: |
         Get a list of shows saved in the current Spotify user's library. Optional parameters can be used to limit the number of shows returned.
       parameters:
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
       responses:
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
         "200":
-          $ref: '#/components/responses/PagingSavedShowObject'
+          $ref: "#/components/responses/PagingSavedShowObject"
       security:
       - oauth_2_0:
         - user-library-read
@@ -1562,16 +1562,16 @@ paths:
       description: |
         Save one or more shows to current Spotify user's library.
       parameters:
-      - $ref: '#/components/parameters/QueryShowIds'
+      - $ref: "#/components/parameters/QueryShowIds"
       responses:
         "200":
           description: Show saved
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-modify
@@ -1599,17 +1599,17 @@ paths:
       description: |
         Delete one or more shows from current Spotify user's library.
       parameters:
-      - $ref: '#/components/parameters/QueryShowIds'
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/QueryShowIds"
+      - $ref: "#/components/parameters/QueryMarket"
       responses:
         "200":
           description: Show removed
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-modify
@@ -1638,16 +1638,16 @@ paths:
       description: |
         Check if one or more shows is already saved in the current Spotify user's library.
       parameters:
-      - $ref: '#/components/parameters/QueryShowIds'
+      - $ref: "#/components/parameters/QueryShowIds"
       responses:
         "200":
-          $ref: '#/components/responses/ArrayOfBooleans'
+          $ref: "#/components/responses/ArrayOfBooleans"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-library-read
@@ -1661,16 +1661,16 @@ paths:
       description: |
         Get public profile information about a Spotify user.
       parameters:
-      - $ref: '#/components/parameters/PathUserId'
+      - $ref: "#/components/parameters/PathUserId"
       responses:
         "200":
-          $ref: '#/components/responses/OnePublicUser'
+          $ref: "#/components/responses/OnePublicUser"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /users/{user_id}/playlists:
@@ -1684,8 +1684,8 @@ paths:
       description: |
         Get a list of the playlists owned or followed by a Spotify user.
       parameters:
-      - $ref: '#/components/parameters/PathUserId'
-      - $ref: '#/components/parameters/QueryLimit'
+      - $ref: "#/components/parameters/PathUserId"
+      - $ref: "#/components/parameters/QueryLimit"
       - name: offset
         required: false
         in: query
@@ -1700,13 +1700,13 @@ paths:
           type: integer
       responses:
         "200":
-          $ref: '#/components/responses/PagedPlaylists'
+          $ref: "#/components/responses/PagedPlaylists"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - playlist-read-private
@@ -1723,7 +1723,7 @@ paths:
         you [add tracks](/documentation/web-api/reference/add-tracks-to-playlist).)
         Each user is generally limited to a maximum of 11000 playlists.
       parameters:
-      - $ref: '#/components/parameters/PathUserId'
+      - $ref: "#/components/parameters/PathUserId"
       requestBody:
         content:
           application/json:
@@ -1755,13 +1755,13 @@ paths:
                     value for playlist description as displayed in Spotify Clients and in the Web API.
       responses:
         "201":
-          $ref: '#/components/responses/OnePlaylist'
+          $ref: "#/components/responses/OnePlaylist"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - playlist-modify-public
@@ -1777,7 +1777,7 @@ paths:
       summary: |
         Follow Playlist
       parameters:
-      - $ref: '#/components/parameters/PathPlaylistId'
+      - $ref: "#/components/parameters/PathPlaylistId"
       requestBody:
         content:
           application/json:
@@ -1795,11 +1795,11 @@ paths:
         "200":
           description: Playlist followed
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - playlist-modify-public
@@ -1814,16 +1814,16 @@ paths:
       description: |
         Remove the current user as a follower of a playlist.
       parameters:
-      - $ref: '#/components/parameters/PathPlaylistId'
+      - $ref: "#/components/parameters/PathPlaylistId"
       responses:
         "200":
           description: Playlist unfollowed
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - playlist-modify-public
@@ -1847,17 +1847,17 @@ paths:
             The desired language, consisting of an [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code and an [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), joined by an underscore. For example: `es_MX`, meaning &quot;Spanish (Mexico)&quot;. Provide this parameter if you want the category strings returned in a particular language.<br/> _**Note**: if `locale` is not supplied, or if the specified language is not available, the category strings returned will be in the Spotify default language (American English)._
           example: sv_SE
           type: string
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
       responses:
         "200":
-          $ref: '#/components/responses/PagedFeaturedPlaylists'
+          $ref: "#/components/responses/PagedFeaturedPlaylists"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /browse/categories:
@@ -1879,17 +1879,17 @@ paths:
             The desired language, consisting of an [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code and an [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), joined by an underscore. For example: `es_MX`, meaning &quot;Spanish (Mexico)&quot;. Provide this parameter if you want the category strings returned in a particular language.<br/> _**Note**: if `locale` is not supplied, or if the specified language is not available, the category strings returned will be in the Spotify default language (American English)._
           example: sv_SE
           type: string
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
       responses:
         "200":
-          $ref: '#/components/responses/PagedCategories'
+          $ref: "#/components/responses/PagedCategories"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /browse/categories/{category_id}:
@@ -1922,13 +1922,13 @@ paths:
           type: string
       responses:
         "200":
-          $ref: '#/components/responses/OneCategory'
+          $ref: "#/components/responses/OneCategory"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /browse/categories/{category_id}/playlists:
@@ -1951,17 +1951,17 @@ paths:
             The [Spotify category ID](/documentation/web-api/concepts/spotify-uris-ids) for the category.
           example: dinner
           type: string
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
       responses:
         "200":
-          $ref: '#/components/responses/PagedFeaturedPlaylists'
+          $ref: "#/components/responses/PagedFeaturedPlaylists"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /playlists/{playlist_id}/images:
@@ -1974,16 +1974,16 @@ paths:
       description: |
         Get the current image associated with a specific playlist.
       parameters:
-      - $ref: '#/components/parameters/PathPlaylistId'
+      - $ref: "#/components/parameters/PathPlaylistId"
       responses:
         "200":
-          $ref: '#/components/responses/ArrayOfImages'
+          $ref: "#/components/responses/ArrayOfImages"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
     put:
@@ -1995,7 +1995,7 @@ paths:
       description: |
         Replace the image used to represent a specific playlist.
       parameters:
-      - $ref: '#/components/parameters/PathPlaylistId'
+      - $ref: "#/components/parameters/PathPlaylistId"
       requestBody:
         content:
           image/jpeg:
@@ -2010,11 +2010,11 @@ paths:
         "202":
           description: Image uploaded
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - ugc-image-upload
@@ -2030,17 +2030,17 @@ paths:
       description: |
         Get a list of new album releases featured in Spotify (shown, for example, on a Spotify player’s “Browse” tab).
       parameters:
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
       responses:
         "200":
-          $ref: '#/components/responses/PagedAlbums'
+          $ref: "#/components/responses/PagedAlbums"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /me/following:
@@ -2075,16 +2075,16 @@ paths:
             The last artist ID retrieved from the previous request.
           example: 0I2XqVXqHScXjHhk6AYYRe
           type: string
-      - $ref: '#/components/parameters/QueryLimit'
+      - $ref: "#/components/parameters/QueryLimit"
       responses:
         "200":
-          $ref: '#/components/responses/CursorPagedArtists'
+          $ref: "#/components/responses/CursorPagedArtists"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-follow-read
@@ -2141,11 +2141,11 @@ paths:
         "204":
           description: Artist or user followed
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-follow-modify
@@ -2198,11 +2198,11 @@ paths:
         "200":
           description: Artist or user unfollowed
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-follow-modify
@@ -2241,13 +2241,13 @@ paths:
           type: string
       responses:
         "200":
-          $ref: '#/components/responses/ArrayOfBooleans'
+          $ref: "#/components/responses/ArrayOfBooleans"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-follow-read
@@ -2262,7 +2262,7 @@ paths:
       description: |
         Check to see if the current user is following a specified playlist.
       parameters:
-      - $ref: '#/components/parameters/PathPlaylistId'
+      - $ref: "#/components/parameters/PathPlaylistId"
       - name: ids
         required: false
         in: query
@@ -2274,13 +2274,13 @@ paths:
           type: string
       responses:
         "200":
-          $ref: '#/components/responses/SingletonArrayOfBoolean'
+          $ref: "#/components/responses/SingletonArrayOfBoolean"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /audio-features:
@@ -2305,13 +2305,13 @@ paths:
           type: string
       responses:
         "200":
-          $ref: '#/components/responses/ManyAudioFeatures'
+          $ref: "#/components/responses/ManyAudioFeatures"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /audio-features/{id}:
@@ -2336,13 +2336,13 @@ paths:
           type: string
       responses:
         "200":
-          $ref: '#/components/responses/OneAudioFeatures'
+          $ref: "#/components/responses/OneAudioFeatures"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /audio-analysis/{id}:
@@ -2367,13 +2367,13 @@ paths:
           type: string
       responses:
         "200":
-          $ref: '#/components/responses/OneAudioAnalysis'
+          $ref: "#/components/responses/OneAudioAnalysis"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /recommendations:
@@ -2400,7 +2400,7 @@ paths:
           type: integer
           minimum: 1
           maximum: 100
-      - $ref: '#/components/parameters/QueryMarket'
+      - $ref: "#/components/parameters/QueryMarket"
       - name: seed_artists
         required: false
         in: query
@@ -2825,13 +2825,13 @@ paths:
           maximum: 1
       responses:
         "200":
-          $ref: '#/components/responses/OneRecommendations'
+          $ref: "#/components/responses/OneRecommendations"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /recommendations/available-genre-seeds:
@@ -2845,13 +2845,13 @@ paths:
         Retrieve a list of available genres seed parameter values for [recommendations](/documentation/web-api/reference/get-recommendations).
       responses:
         "200":
-          $ref: '#/components/responses/ManyGenres'
+          $ref: "#/components/responses/ManyGenres"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /me/player:
@@ -2864,19 +2864,19 @@ paths:
       description: |
         Get information about the user’s current playback state, including track or episode, progress, and active device.
       parameters:
-      - $ref: '#/components/parameters/QueryMarket'
-      - $ref: '#/components/parameters/QueryAdditionalTypes'
+      - $ref: "#/components/parameters/QueryMarket"
+      - $ref: "#/components/parameters/QueryAdditionalTypes"
       responses:
         "200":
-          $ref: '#/components/responses/OneCurrentlyPlaying'
+          $ref: "#/components/responses/OneCurrentlyPlaying"
         "204":
           description: Playback not available or active
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-read-playback-state
@@ -2914,11 +2914,11 @@ paths:
         "204":
           description: Playback transferred
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-modify-playback-state
@@ -2933,13 +2933,13 @@ paths:
         Get information about a user’s available Spotify Connect devices. Some device models are not supported and will not be listed in the API response.
       responses:
         "200":
-          $ref: '#/components/responses/ManyDevices'
+          $ref: "#/components/responses/ManyDevices"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-read-playback-state
@@ -2953,17 +2953,17 @@ paths:
       description: |
         Get the object currently being played on the user's Spotify account.
       parameters:
-      - $ref: '#/components/parameters/QueryMarket'
-      - $ref: '#/components/parameters/QueryAdditionalTypes'
+      - $ref: "#/components/parameters/QueryMarket"
+      - $ref: "#/components/parameters/QueryAdditionalTypes"
       responses:
         "200":
-          $ref: '#/components/responses/OneCurrentlyPlayingTrack'
+          $ref: "#/components/responses/OneCurrentlyPlayingTrack"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-read-currently-playing
@@ -3026,11 +3026,11 @@ paths:
         "204":
           description: Playback started
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-modify-playback-state
@@ -3057,11 +3057,11 @@ paths:
         "204":
           description: Playback paused
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-modify-playback-state
@@ -3088,11 +3088,11 @@ paths:
         "204":
           description: Command sent
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-modify-playback-state
@@ -3120,11 +3120,11 @@ paths:
         "204":
           description: Command sent
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-modify-playback-state
@@ -3163,11 +3163,11 @@ paths:
         "204":
           description: Command sent
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-modify-playback-state
@@ -3207,11 +3207,11 @@ paths:
         "204":
           description: Command sent
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-modify-playback-state
@@ -3247,11 +3247,11 @@ paths:
         "204":
           description: Command sent
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-modify-playback-state
@@ -3289,11 +3289,11 @@ paths:
         "204":
           description: Command sent
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-modify-playback-state
@@ -3308,7 +3308,7 @@ paths:
         Get tracks from the current user's recently played tracks.
         _**Note**: Currently doesn't support podcast episodes._
       parameters:
-      - $ref: '#/components/parameters/QueryLimit'
+      - $ref: "#/components/parameters/QueryLimit"
       - name: after
         required: false
         in: query
@@ -3332,13 +3332,13 @@ paths:
           type: integer
       responses:
         "200":
-          $ref: '#/components/responses/CursorPagedPlayHistory'
+          $ref: "#/components/responses/CursorPagedPlayHistory"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-read-recently-played
@@ -3353,13 +3353,13 @@ paths:
         Get the list of objects that make up the user's queue.
       responses:
         "200":
-          $ref: '#/components/responses/Queue'
+          $ref: "#/components/responses/Queue"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-read-currently-playing
@@ -3396,11 +3396,11 @@ paths:
         "204":
           description: Command received
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-modify-playback-state
@@ -3415,13 +3415,13 @@ paths:
         Get the list of markets where Spotify is available.
       responses:
         "200":
-          $ref: '#/components/responses/Markets'
+          $ref: "#/components/responses/Markets"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0: []
   /me/top/artists:
@@ -3446,17 +3446,17 @@ paths:
           default: medium_term
           example: medium_term
           type: string
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
       responses:
         "200":
-          $ref: '#/components/responses/PagingArtistObject'
+          $ref: "#/components/responses/PagingArtistObject"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-top-read
@@ -3482,17 +3482,17 @@ paths:
           default: medium_term
           example: medium_term
           type: string
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: "#/components/parameters/QueryLimit"
+      - $ref: "#/components/parameters/QueryOffset"
       responses:
         "200":
-          $ref: '#/components/responses/PagingTrackObject'
+          $ref: "#/components/responses/PagingTrackObject"
         "401":
-          $ref: '#/components/responses/Unauthorized'
+          $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: '#/components/responses/Forbidden'
+          $ref: "#/components/responses/Forbidden"
         "429":
-          $ref: '#/components/responses/TooManyRequests'
+          $ref: "#/components/responses/TooManyRequests"
       security:
       - oauth_2_0:
         - user-top-read
@@ -3557,7 +3557,7 @@ components:
             - error
             properties:
               error:
-                $ref: '#/components/schemas/ErrorObject'
+                $ref: "#/components/schemas/ErrorObject"
     Forbidden:
       description: |
         Bad OAuth request (wrong consumer key, bad nonce, expired
@@ -3570,7 +3570,7 @@ components:
             - error
             properties:
               error:
-                $ref: '#/components/schemas/ErrorObject'
+                $ref: "#/components/schemas/ErrorObject"
     NotFound:
       description: |
         The requested resource cannot be found.
@@ -3582,7 +3582,7 @@ components:
             - error
             properties:
               error:
-                $ref: '#/components/schemas/ErrorObject'
+                $ref: "#/components/schemas/ErrorObject"
     BadRequest:
       description: |
         The request contains malformed data in path, query parameters, or body.
@@ -3594,7 +3594,7 @@ components:
             - error
             properties:
               error:
-                $ref: '#/components/schemas/ErrorObject'
+                $ref: "#/components/schemas/ErrorObject"
     TooManyRequests:
       description: |
         The app has exceeded its rate limits.
@@ -3606,7 +3606,7 @@ components:
             - error
             properties:
               error:
-                $ref: '#/components/schemas/ErrorObject'
+                $ref: "#/components/schemas/ErrorObject"
     ManyAlbums:
       description: A set of albums
       content:
@@ -3619,7 +3619,7 @@ components:
               albums:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AlbumObject'
+                  $ref: "#/components/schemas/AlbumObject"
     ManyAudiobooks:
       description: A set of audiobooks. If one of the requested audiobooks is unavailable
         then you'll find a `null` item in the `audiobooks` array where the audiobook
@@ -3634,7 +3634,7 @@ components:
               audiobooks:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AudiobookObject'
+                  $ref: "#/components/schemas/AudiobookObject"
     ManyChapters:
       description: A set of chapters
       content:
@@ -3647,7 +3647,7 @@ components:
               chapters:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ChapterObject'
+                  $ref: "#/components/schemas/ChapterObject"
     ManyDevices:
       description: A set of devices
       content:
@@ -3660,7 +3660,7 @@ components:
               devices:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DeviceObject'
+                  $ref: "#/components/schemas/DeviceObject"
     PagedAlbums:
       description: A paged set of albums
       content:
@@ -3671,19 +3671,19 @@ components:
             - albums
             properties:
               albums:
-                $ref: '#/components/schemas/PagingSimplifiedAlbumObject'
+                $ref: "#/components/schemas/PagingSimplifiedAlbumObject"
     PagedPlaylists:
       description: A paged set of playlists
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingPlaylistObject'
+            $ref: "#/components/schemas/PagingPlaylistObject"
     PagedFeaturedPlaylists:
       description: A paged set of playlists
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingFeaturedPlaylistObject'
+            $ref: "#/components/schemas/PagingFeaturedPlaylistObject"
     PagedCategories:
       description: A paged set of categories
       content:
@@ -3696,13 +3696,13 @@ components:
               categories:
                 type: object
                 allOf:
-                - $ref: '#/components/schemas/PagingObject'
+                - $ref: "#/components/schemas/PagingObject"
                 - type: object
                   properties:
                     items:
                       type: array
                       items:
-                        $ref: '#/components/schemas/CategoryObject'
+                        $ref: "#/components/schemas/CategoryObject"
     CursorPagedArtists:
       description: A paged set of artists
       content:
@@ -3713,13 +3713,13 @@ components:
             - artists
             properties:
               artists:
-                $ref: '#/components/schemas/CursorPagingSimplifiedArtistObject'
+                $ref: "#/components/schemas/CursorPagingSimplifiedArtistObject"
     CursorPagedPlayHistory:
       description: A paged set of tracks
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/CursorPagingPlayHistoryObject'
+            $ref: "#/components/schemas/CursorPagingPlayHistoryObject"
     ManyArtists:
       description: A set of artists
       content:
@@ -3732,7 +3732,7 @@ components:
               artists:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ArtistObject'
+                  $ref: "#/components/schemas/ArtistObject"
     ManyAudioFeatures:
       description: A set of audio features
       content:
@@ -3745,7 +3745,7 @@ components:
               audio_features:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AudioFeaturesObject'
+                  $ref: "#/components/schemas/AudioFeaturesObject"
     ManyEpisodes:
       description: A set of episodes
       content:
@@ -3758,7 +3758,7 @@ components:
               episodes:
                 type: array
                 items:
-                  $ref: '#/components/schemas/EpisodeObject'
+                  $ref: "#/components/schemas/EpisodeObject"
     ManyGenres:
       description: A set of genres
       content:
@@ -3780,25 +3780,25 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/EpisodeObject'
+            $ref: "#/components/schemas/EpisodeObject"
     OneChapter:
       description: A Chapter
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ChapterObject'
+            $ref: "#/components/schemas/ChapterObject"
     OneAudiobook:
       description: An Audiobook
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/AudiobookObject'
+            $ref: "#/components/schemas/AudiobookObject"
     OneAlbum:
       description: An album
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/AlbumObject'
+            $ref: "#/components/schemas/AlbumObject"
     ArrayOfImages:
       description: A set of images
       content:
@@ -3806,61 +3806,61 @@ components:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/ImageObject'
+              $ref: "#/components/schemas/ImageObject"
     OnePrivateUser:
       description: A user
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PrivateUserObject'
+            $ref: "#/components/schemas/PrivateUserObject"
     OnePublicUser:
       description: A user
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PublicUserObject'
+            $ref: "#/components/schemas/PublicUserObject"
     OneTrack:
       description: A track
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/TrackObject'
+            $ref: "#/components/schemas/TrackObject"
     OneShow:
       description: A show
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ShowObject'
+            $ref: "#/components/schemas/ShowObject"
     OneCategory:
       description: A category
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/CategoryObject'
+            $ref: "#/components/schemas/CategoryObject"
     OnePlaylist:
       description: A playlist
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PlaylistObject'
+            $ref: "#/components/schemas/PlaylistObject"
     OneAudioFeatures:
       description: Audio features for one track
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/AudioFeaturesObject'
+            $ref: "#/components/schemas/AudioFeaturesObject"
     OneAudioAnalysis:
       description: Audio analysis for one track
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/AudioAnalysisObject'
+            $ref: "#/components/schemas/AudioAnalysisObject"
     OneArtist:
       description: An artist
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ArtistObject'
+            $ref: "#/components/schemas/ArtistObject"
     ManyTracks:
       description: A set of tracks
       content:
@@ -3873,7 +3873,7 @@ components:
               tracks:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TrackObject'
+                  $ref: "#/components/schemas/TrackObject"
     ManySimplifiedShows:
       description: A set of shows
       content:
@@ -3886,67 +3886,67 @@ components:
               shows:
                 type: array
                 items:
-                  $ref: '#/components/schemas/SimplifiedShowObject'
+                  $ref: "#/components/schemas/SimplifiedShowObject"
     PagingSimplifiedTrackObject:
       description: Pages of tracks
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingSimplifiedTrackObject'
+            $ref: "#/components/schemas/PagingSimplifiedTrackObject"
     PagingSavedTrackObject:
       description: Pages of tracks
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingSavedTrackObject'
+            $ref: "#/components/schemas/PagingSavedTrackObject"
     PagingPlaylistTrackObject:
       description: Pages of tracks
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingPlaylistTrackObject'
+            $ref: "#/components/schemas/PagingPlaylistTrackObject"
     PagingArtistDiscographyAlbumObject:
       description: Pages of albums
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingArtistDiscographyAlbumObject'
+            $ref: "#/components/schemas/PagingArtistDiscographyAlbumObject"
     PagingSavedAlbumObject:
       description: Pages of albums
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingSavedAlbumObject'
+            $ref: "#/components/schemas/PagingSavedAlbumObject"
     PagingSavedShowObject:
       description: Pages of shows
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingSavedShowObject'
+            $ref: "#/components/schemas/PagingSavedShowObject"
     PagingSimplifiedEpisodeObject:
       description: Pages of episodes
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingSimplifiedEpisodeObject'
+            $ref: "#/components/schemas/PagingSimplifiedEpisodeObject"
     PagingSavedEpisodeObject:
       description: Pages of episodes
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingSavedEpisodeObject'
+            $ref: "#/components/schemas/PagingSavedEpisodeObject"
     PagingSimplifiedAudiobookObject:
       description: Pages of audiobooks
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingSimplifiedAudiobookObject'
+            $ref: "#/components/schemas/PagingSimplifiedAudiobookObject"
     PagingSimplifiedChapterObject:
       description: Pages of chapters
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingSimplifiedChapterObject'
+            $ref: "#/components/schemas/PagingSimplifiedChapterObject"
     SearchItems:
       description: Search response
       content:
@@ -3955,25 +3955,25 @@ components:
             type: object
             properties:
               tracks:
-                $ref: '#/components/schemas/PagingTrackObject'
+                $ref: "#/components/schemas/PagingTrackObject"
               artists:
-                $ref: '#/components/schemas/PagingArtistObject'
+                $ref: "#/components/schemas/PagingArtistObject"
               albums:
-                $ref: '#/components/schemas/PagingSimplifiedAlbumObject'
+                $ref: "#/components/schemas/PagingSimplifiedAlbumObject"
               playlists:
-                $ref: '#/components/schemas/PagingPlaylistObject'
+                $ref: "#/components/schemas/PagingPlaylistObject"
               shows:
-                $ref: '#/components/schemas/PagingSimplifiedShowObject'
+                $ref: "#/components/schemas/PagingSimplifiedShowObject"
               episodes:
-                $ref: '#/components/schemas/PagingSimplifiedEpisodeObject'
+                $ref: "#/components/schemas/PagingSimplifiedEpisodeObject"
               audiobooks:
-                $ref: '#/components/schemas/PagingSimplifiedAudiobookObject'
+                $ref: "#/components/schemas/PagingSimplifiedAudiobookObject"
     OneRecommendations:
       description: A set of recommendations
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/RecommendationsObject'
+            $ref: "#/components/schemas/RecommendationsObject"
     ArrayOfBooleans:
       description: Array of booleans
       content:
@@ -4000,19 +4000,19 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/QueueObject'
+            $ref: "#/components/schemas/QueueObject"
     OneCurrentlyPlaying:
       description: Information about playback
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/CurrentlyPlayingContextObject'
+            $ref: "#/components/schemas/CurrentlyPlayingContextObject"
     OneCurrentlyPlayingTrack:
       description: Information about the currently playing track
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/CurrentlyPlayingObject'
+            $ref: "#/components/schemas/CurrentlyPlayingObject"
     PlaylistSnapshotId:
       description: A snapshot ID for the playlist
       content:
@@ -4043,19 +4043,19 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingArtistObject'
+            $ref: "#/components/schemas/PagingArtistObject"
     PagingSavedAudiobookObject:
       description: Pages of saved audiobooks
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingSavedAudiobookObject'
+            $ref: "#/components/schemas/PagingSavedAudiobookObject"
     PagingTrackObject:
       description: Pages of tracks
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PagingTrackObject'
+            $ref: "#/components/schemas/PagingTrackObject"
   schemas:
     LinkedTrackObject:
       type: object
@@ -4063,7 +4063,7 @@ components:
       properties:
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             Known external URLs for this track.
         href:
@@ -4144,12 +4144,12 @@ components:
       properties:
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             Known external URLs for this artist.
         followers:
           allOf:
-          - $ref: '#/components/schemas/FollowersObject'
+          - $ref: "#/components/schemas/FollowersObject"
           description: |
             Information about the followers of the artist.
         genres:
@@ -4172,7 +4172,7 @@ components:
         images:
           type: array
           items:
-            $ref: '#/components/schemas/ImageObject'
+            $ref: "#/components/schemas/ImageObject"
           description: |
             Images of the artist in various sizes, widest first.
         name:
@@ -4199,7 +4199,7 @@ components:
       properties:
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             Known external URLs for this artist.
         href:
@@ -4230,7 +4230,7 @@ components:
       properties:
         track:
           allOf:
-          - $ref: '#/components/schemas/TrackObject'
+          - $ref: "#/components/schemas/TrackObject"
           description: The track the user listened to.
         played_at:
           type: string
@@ -4239,7 +4239,7 @@ components:
           description: The date and time the track was played.
         context:
           allOf:
-          - $ref: '#/components/schemas/ContextObject'
+          - $ref: "#/components/schemas/ContextObject"
           description: The context the track was played from.
     PlaylistTrackObject:
       type: object
@@ -4253,7 +4253,7 @@ components:
             The date and time the track or episode was added. _**Note**: some very old playlists may return `null` in this field._
         added_by:
           allOf:
-          - $ref: '#/components/schemas/PlaylistUserObject'
+          - $ref: "#/components/schemas/PlaylistUserObject"
           description: |
             The Spotify user who added the track or episode. _**Note**: some very old playlists may return `null` in this field._
         is_local:
@@ -4262,8 +4262,8 @@ components:
             Whether this track or episode is a [local file](/documentation/web-api/concepts/playlists/#local-files) or not.
         track:
           oneOf:
-          - $ref: '#/components/schemas/TrackObject'
-          - $ref: '#/components/schemas/EpisodeObject'
+          - $ref: "#/components/schemas/TrackObject"
+          - $ref: "#/components/schemas/EpisodeObject"
           x-spotify-docs-type: TrackObject | EpisodeObject
           description: Information about the track or episode.
           discriminator:
@@ -4274,8 +4274,8 @@ components:
       properties:
         currently_playing:
           oneOf:
-          - $ref: '#/components/schemas/TrackObject'
-          - $ref: '#/components/schemas/EpisodeObject'
+          - $ref: "#/components/schemas/TrackObject"
+          - $ref: "#/components/schemas/EpisodeObject"
           discriminator:
             propertyName: type
           x-spotify-docs-type: TrackObject | EpisodeObject
@@ -4284,8 +4284,8 @@ components:
           type: array
           items:
             oneOf:
-            - $ref: '#/components/schemas/TrackObject'
-            - $ref: '#/components/schemas/EpisodeObject'
+            - $ref: "#/components/schemas/TrackObject"
+            - $ref: "#/components/schemas/EpisodeObject"
             discriminator:
               propertyName: type
             x-spotify-docs-type: TrackObject | EpisodeObject
@@ -4296,7 +4296,7 @@ components:
       properties:
         device:
           allOf:
-          - $ref: '#/components/schemas/DeviceObject'
+          - $ref: "#/components/schemas/DeviceObject"
           description: |
             The device that is currently active.
         repeat_state:
@@ -4307,7 +4307,7 @@ components:
           description: If shuffle is on or off.
         context:
           allOf:
-          - $ref: '#/components/schemas/ContextObject'
+          - $ref: "#/components/schemas/ContextObject"
           description: A Context Object. Can be `null`.
         timestamp:
           type: integer
@@ -4323,8 +4323,8 @@ components:
           description: "If something is currently playing, return `true`."
         item:
           oneOf:
-          - $ref: '#/components/schemas/TrackObject'
-          - $ref: '#/components/schemas/EpisodeObject'
+          - $ref: "#/components/schemas/TrackObject"
+          - $ref: "#/components/schemas/EpisodeObject"
           discriminator:
             propertyName: type
           x-spotify-docs-type: TrackObject | EpisodeObject
@@ -4335,7 +4335,7 @@ components:
             The object type of the currently playing item. Can be one of `track`, `episode`, `ad` or `unknown`.
         actions:
           allOf:
-          - $ref: '#/components/schemas/DisallowsObject'
+          - $ref: "#/components/schemas/DisallowsObject"
           description: |
             Allows to update the user interface based on which playback actions are available within the current context.
     DisallowsObject:
@@ -4407,16 +4407,16 @@ components:
             The user's email address, as entered by the user when creating their account. _**Important!** This email address is unverified; there is no proof that it actually belongs to the user._ _This field is only available when the current user has granted access to the [user-read-email](/documentation/web-api/concepts/scopes/#list-of-scopes) scope._
         explicit_content:
           allOf:
-          - $ref: '#/components/schemas/ExplicitContentSettingsObject'
+          - $ref: "#/components/schemas/ExplicitContentSettingsObject"
           description: |
             The user's explicit content settings. _This field is only available when the current user has granted access to the [user-read-private](/documentation/web-api/concepts/scopes/#list-of-scopes) scope._
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: Known external URLs for this user.
         followers:
           allOf:
-          - $ref: '#/components/schemas/FollowersObject'
+          - $ref: "#/components/schemas/FollowersObject"
           description: Information about the followers of the user.
         href:
           type: string
@@ -4429,7 +4429,7 @@ components:
         images:
           type: array
           items:
-            $ref: '#/components/schemas/ImageObject'
+            $ref: "#/components/schemas/ImageObject"
           description: The user's profile image.
         product:
           type: string
@@ -4454,12 +4454,12 @@ components:
             The name displayed on the user's profile. `null` if not available.
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             Known public external URLs for this user.
         followers:
           allOf:
-          - $ref: '#/components/schemas/FollowersObject'
+          - $ref: "#/components/schemas/FollowersObject"
           description: |
             Information about the followers of this user.
         href:
@@ -4473,7 +4473,7 @@ components:
         images:
           type: array
           items:
-            $ref: '#/components/schemas/ImageObject'
+            $ref: "#/components/schemas/ImageObject"
           description: |
             The user's profile image.
         type:
@@ -4575,9 +4575,9 @@ components:
                 \ starts. If the track has no fade-out, this should match the track's\
                 \ length."
             loudness:
-              $ref: '#/components/schemas/Loudness'
+              $ref: "#/components/schemas/Loudness"
             tempo:
-              $ref: '#/components/schemas/Tempo'
+              $ref: "#/components/schemas/Tempo"
             tempo_confidence:
               type: number
               example: 0.73
@@ -4586,7 +4586,7 @@ components:
               description: "The confidence, from 0.0 to 1.0, of the reliability of\
                 \ the `tempo`."
             time_signature:
-              $ref: '#/components/schemas/TimeSignature'
+              $ref: "#/components/schemas/TimeSignature"
             time_signature_confidence:
               type: number
               example: 0.994
@@ -4595,7 +4595,7 @@ components:
               description: "The confidence, from 0.0 to 1.0, of the reliability of\
                 \ the `time_signature`."
             key:
-              $ref: '#/components/schemas/Key'
+              $ref: "#/components/schemas/Key"
             key_confidence:
               type: number
               example: 0.408
@@ -4604,7 +4604,7 @@ components:
               description: "The confidence, from 0.0 to 1.0, of the reliability of\
                 \ the `key`."
             mode:
-              $ref: '#/components/schemas/Mode'
+              $ref: "#/components/schemas/Mode"
             mode_confidence:
               type: number
               example: 0.485
@@ -4653,33 +4653,33 @@ components:
           description: The time intervals of the bars throughout the track. A bar
             (or measure) is a segment of time defined as a given number of beats.
           items:
-            $ref: '#/components/schemas/TimeIntervalObject'
+            $ref: "#/components/schemas/TimeIntervalObject"
         beats:
           type: array
           description: "The time intervals of beats throughout the track. A beat is\
             \ the basic time unit of a piece of music; for example, each tick of a\
             \ metronome. Beats are typically multiples of tatums."
           items:
-            $ref: '#/components/schemas/TimeIntervalObject'
+            $ref: "#/components/schemas/TimeIntervalObject"
         sections:
           type: array
           description: "Sections are defined by large variations in rhythm or timbre,\
             \ e.g. chorus, verse, bridge, guitar solo, etc. Each section contains\
             \ its own descriptions of tempo, key, mode, time_signature, and loudness."
           items:
-            $ref: '#/components/schemas/SectionObject'
+            $ref: "#/components/schemas/SectionObject"
         segments:
           type: array
           description: Each segment contains a roughly conisistent sound throughout
             its duration.
           items:
-            $ref: '#/components/schemas/SegmentObject'
+            $ref: "#/components/schemas/SegmentObject"
         tatums:
           type: array
           description: A tatum represents the lowest regular pulse train that a listener
             intuitively infers from the timing of perceived musical events (segments).
           items:
-            $ref: '#/components/schemas/TimeIntervalObject'
+            $ref: "#/components/schemas/TimeIntervalObject"
     TimeIntervalObject:
       type: object
       properties:
@@ -4771,7 +4771,7 @@ components:
           minimum: 0
           maximum: 1
         time_signature:
-          $ref: '#/components/schemas/TimeSignature'
+          $ref: "#/components/schemas/TimeSignature"
         time_signature_confidence:
           type: number
           description: "The confidence, from 0.0 to 1.0, of the reliability of the\
@@ -4938,7 +4938,7 @@ components:
           description: |
             Predicts whether a track contains no vocals. "Ooh" and "aah" sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly "vocal". The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0.
         key:
-          $ref: '#/components/schemas/Key'
+          $ref: "#/components/schemas/Key"
         liveness:
           type: number
           example: 0.0866
@@ -4947,9 +4947,9 @@ components:
           description: |
             Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.
         loudness:
-          $ref: '#/components/schemas/Loudness'
+          $ref: "#/components/schemas/Loudness"
         mode:
-          $ref: '#/components/schemas/Mode'
+          $ref: "#/components/schemas/Mode"
         speechiness:
           type: number
           example: 0.0556
@@ -4958,9 +4958,9 @@ components:
           description: |
             Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.
         tempo:
-          $ref: '#/components/schemas/Tempo'
+          $ref: "#/components/schemas/Tempo"
         time_signature:
-          $ref: '#/components/schemas/TimeSignature'
+          $ref: "#/components/schemas/TimeSignature"
         track_href:
           type: string
           example: |
@@ -4994,7 +4994,7 @@ components:
         artists:
           type: array
           items:
-            $ref: '#/components/schemas/SimplifiedArtistObject'
+            $ref: "#/components/schemas/SimplifiedArtistObject"
           description: The artists who performed the track. Each artist object includes
             a link in `href` to more detailed information about the artist.
         available_markets:
@@ -5016,7 +5016,7 @@ components:
             it does; `false` = no it does not OR unknown).
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             External URLs for this track.
         href:
@@ -5033,7 +5033,7 @@ components:
             Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking/) is applied. If `true`, the track is playable in the given market. Otherwise `false`.
         linked_from:
           allOf:
-          - $ref: '#/components/schemas/LinkedTrackObject'
+          - $ref: "#/components/schemas/LinkedTrackObject"
           description: "Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking/)\
             \ is applied and is only part of the response if the track linking, in\
             \ fact, exists. The requested track has been replaced with a different\
@@ -5041,7 +5041,7 @@ components:
             \ the originally requested track."
         restrictions:
           allOf:
-          - $ref: '#/components/schemas/TrackRestrictionObject'
+          - $ref: "#/components/schemas/TrackRestrictionObject"
           description: |
             Included in the response when a content restriction is applied.
         name:
@@ -5136,7 +5136,7 @@ components:
           description: URL to the next page of items. ( `null` if none)
         cursors:
           allOf:
-          - $ref: '#/components/schemas/CursorObject'
+          - $ref: "#/components/schemas/CursorObject"
           description: The cursors used to find the next set of items.
         total:
           type: integer
@@ -5145,24 +5145,24 @@ components:
       type: object
       x-spotify-docs-type: PagingTrackObject
       allOf:
-      - $ref: '#/components/schemas/CursorPagingObject'
+      - $ref: "#/components/schemas/CursorPagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/PlayHistoryObject'
+              $ref: "#/components/schemas/PlayHistoryObject"
     CursorPagingSimplifiedArtistObject:
       type: object
       x-spotify-docs-type: PagingArtistObject
       allOf:
-      - $ref: '#/components/schemas/CursorPagingObject'
+      - $ref: "#/components/schemas/CursorPagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/ArtistObject'
+              $ref: "#/components/schemas/ArtistObject"
     PagingObject:
       type: object
       x-spotify-docs-type: PagingObject
@@ -5212,13 +5212,13 @@ components:
       type: object
       x-spotify-docs-type: PagingPlaylistObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/SimplifiedPlaylistObject'
+              $ref: "#/components/schemas/SimplifiedPlaylistObject"
     PagingFeaturedPlaylistObject:
       type: object
       x-spotify-docs-type: PagingFeaturedPlaylistObject
@@ -5229,161 +5229,161 @@ components:
             The localized message of a playlist.
           example: Popular Playlists
         playlists:
-          $ref: '#/components/schemas/PagingPlaylistObject'
+          $ref: "#/components/schemas/PagingPlaylistObject"
     PagingArtistDiscographyAlbumObject:
       type: object
       x-spotify-docs-type: PagingArtistDiscographyAlbumObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/ArtistDiscographyAlbumObject'
+              $ref: "#/components/schemas/ArtistDiscographyAlbumObject"
     PagingSimplifiedAlbumObject:
       type: object
       x-spotify-docs-type: PagingAlbumObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/SimplifiedAlbumObject'
+              $ref: "#/components/schemas/SimplifiedAlbumObject"
     PagingSavedAlbumObject:
       type: object
       x-spotify-docs-type: PagingSavedAlbumObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/SavedAlbumObject'
+              $ref: "#/components/schemas/SavedAlbumObject"
     PagingSimplifiedTrackObject:
       type: object
       x-spotify-docs-type: PagingTrackObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/SimplifiedTrackObject'
+              $ref: "#/components/schemas/SimplifiedTrackObject"
     PagingSavedTrackObject:
       type: object
       x-spotify-docs-type: PagingTrackObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/SavedTrackObject'
+              $ref: "#/components/schemas/SavedTrackObject"
     PagingTrackObject:
       type: object
       x-spotify-docs-type: PagingTrackObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/TrackObject'
+              $ref: "#/components/schemas/TrackObject"
     PagingPlaylistTrackObject:
       type: object
       x-spotify-docs-type: PagingPlaylistTrackObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/PlaylistTrackObject'
+              $ref: "#/components/schemas/PlaylistTrackObject"
     PagingSimplifiedShowObject:
       type: object
       x-spotify-docs-type: PagingShowObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/SimplifiedShowObject'
+              $ref: "#/components/schemas/SimplifiedShowObject"
     PagingSavedShowObject:
       type: object
       x-spotify-docs-type: PagingShowObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/SavedShowObject'
+              $ref: "#/components/schemas/SavedShowObject"
     PagingSimplifiedEpisodeObject:
       type: object
       x-spotify-docs-type: PagingEpisodeObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/SimplifiedEpisodeObject'
+              $ref: "#/components/schemas/SimplifiedEpisodeObject"
     PagingSavedEpisodeObject:
       type: object
       x-spotify-docs-type: PagingEpisodeObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/SavedEpisodeObject'
+              $ref: "#/components/schemas/SavedEpisodeObject"
     PagingSimplifiedAudiobookObject:
       type: object
       x-spotify-docs-type: PagingAudiobookObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/SimplifiedAudiobookObject'
+              $ref: "#/components/schemas/SimplifiedAudiobookObject"
     PagingArtistObject:
       type: object
       x-spotify-docs-type: PagingArtistObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/ArtistObject'
+              $ref: "#/components/schemas/ArtistObject"
     PagingSimplifiedChapterObject:
       type: object
       x-spotify-docs-type: PagingSimplifiedChapterObject
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/SimplifiedChapterObject'
+              $ref: "#/components/schemas/SimplifiedChapterObject"
     RecommendationsObject:
       type: object
       x-spotify-docs-type: RecommendationsObject
@@ -5394,13 +5394,13 @@ components:
         seeds:
           type: array
           items:
-            $ref: '#/components/schemas/RecommendationSeedObject'
+            $ref: "#/components/schemas/RecommendationSeedObject"
           description: |
             An array of recommendation seed objects.
         tracks:
           type: array
           items:
-            $ref: '#/components/schemas/TrackObject'
+            $ref: "#/components/schemas/TrackObject"
           description: |
             An array of track objects ordered according to the parameters supplied.
     RecommendationSeedObject:
@@ -5445,7 +5445,7 @@ components:
             If the time is imprecise (for example, the date/time of an album release), an additional field indicates the precision; see for example, release_date in an album object.
         album:
           allOf:
-          - $ref: '#/components/schemas/AlbumObject'
+          - $ref: "#/components/schemas/AlbumObject"
           description: Information about the album.
     SavedTrackObject:
       type: object
@@ -5461,7 +5461,7 @@ components:
             If the time is imprecise (for example, the date/time of an album release), an additional field indicates the precision; see for example, release_date in an album object.
         track:
           allOf:
-          - $ref: '#/components/schemas/TrackObject'
+          - $ref: "#/components/schemas/TrackObject"
           description: Information about the track.
     SavedEpisodeObject:
       type: object
@@ -5476,7 +5476,7 @@ components:
             Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ.
         episode:
           allOf:
-          - $ref: '#/components/schemas/EpisodeObject'
+          - $ref: "#/components/schemas/EpisodeObject"
           description: Information about the episode.
     SavedShowObject:
       type: object
@@ -5492,7 +5492,7 @@ components:
             If the time is imprecise (for example, the date/time of an album release), an additional field indicates the precision; see for example, release_date in an album object.
         show:
           allOf:
-          - $ref: '#/components/schemas/SimplifiedShowObject'
+          - $ref: "#/components/schemas/SimplifiedShowObject"
           description: Information about the show.
     PlaylistObject:
       type: object
@@ -5509,12 +5509,12 @@ components:
             The playlist description. _Only returned for modified, verified playlists, otherwise_ `null`.
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             Known external URLs for this playlist.
         followers:
           allOf:
-          - $ref: '#/components/schemas/FollowersObject'
+          - $ref: "#/components/schemas/FollowersObject"
           description: Information about the followers of the playlist.
         href:
           type: string
@@ -5527,7 +5527,7 @@ components:
         images:
           type: array
           items:
-            $ref: '#/components/schemas/ImageObject'
+            $ref: "#/components/schemas/ImageObject"
           description: |
             Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](/documentation/web-api/concepts/playlists). _**Note**: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day._
         name:
@@ -5536,7 +5536,7 @@ components:
             The name of the playlist.
         owner:
           allOf:
-          - $ref: '#/components/schemas/PlaylistOwnerObject'
+          - $ref: "#/components/schemas/PlaylistOwnerObject"
           description: |
             The user who owns the playlist
         public:
@@ -5550,7 +5550,7 @@ components:
         tracks:
           type: object
           allOf:
-          - $ref: '#/components/schemas/PagingPlaylistTrackObject'
+          - $ref: "#/components/schemas/PagingPlaylistTrackObject"
           description: |
             The tracks of the playlist.
         type:
@@ -5575,7 +5575,7 @@ components:
             The playlist description. _Only returned for modified, verified playlists, otherwise_ `null`.
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             Known external URLs for this playlist.
         href:
@@ -5589,7 +5589,7 @@ components:
         images:
           type: array
           items:
-            $ref: '#/components/schemas/ImageObject'
+            $ref: "#/components/schemas/ImageObject"
           description: |
             Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](/documentation/web-api/concepts/playlists). _**Note**: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day._
         name:
@@ -5598,7 +5598,7 @@ components:
             The name of the playlist.
         owner:
           allOf:
-          - $ref: '#/components/schemas/PlaylistOwnerObject'
+          - $ref: "#/components/schemas/PlaylistOwnerObject"
           description: |
             The user who owns the playlist
         public:
@@ -5611,7 +5611,7 @@ components:
             The version identifier for the current playlist. Can be supplied in other requests to target a specific playlist version
         tracks:
           allOf:
-          - $ref: '#/components/schemas/PlaylistTracksRefObject'
+          - $ref: "#/components/schemas/PlaylistTracksRefObject"
           description: |
             A collection containing a link ( `href` ) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the `total` number of tracks in the playlist. Note, a track object may be `null`. This can happen if a track is no longer available.
         type:
@@ -5640,12 +5640,12 @@ components:
       properties:
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             Known public external URLs for this user.
         followers:
           allOf:
-          - $ref: '#/components/schemas/FollowersObject'
+          - $ref: "#/components/schemas/FollowersObject"
           description: |
             Information about the followers of this user.
         href:
@@ -5668,7 +5668,7 @@ components:
             The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for this user.
     PlaylistOwnerObject:
       allOf:
-      - $ref: '#/components/schemas/PlaylistUserObject'
+      - $ref: "#/components/schemas/PlaylistUserObject"
       - type: object
         properties:
           display_name:
@@ -5692,7 +5692,7 @@ components:
         icons:
           type: array
           items:
-            $ref: '#/components/schemas/ImageObject'
+            $ref: "#/components/schemas/ImageObject"
           description: |
             The category icon, in various sizes.
         id:
@@ -5711,13 +5711,13 @@ components:
       properties:
         album:
           allOf:
-          - $ref: '#/components/schemas/SimplifiedAlbumObject'
+          - $ref: "#/components/schemas/SimplifiedAlbumObject"
           description: |
             The album on which the track appears. The album object includes a link in `href` to full information about the album.
         artists:
           type: array
           items:
-            $ref: '#/components/schemas/ArtistObject'
+            $ref: "#/components/schemas/ArtistObject"
           description: |
             The artists who performed the track. Each artist object includes a link in `href` to more detailed information about the artist.
         available_markets:
@@ -5740,12 +5740,12 @@ components:
             Whether or not the track has explicit lyrics ( `true` = yes it does; `false` = no it does not OR unknown).
         external_ids:
           allOf:
-          - $ref: '#/components/schemas/ExternalIdObject'
+          - $ref: "#/components/schemas/ExternalIdObject"
           description: |
             Known external IDs for the track.
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             Known external URLs for this track.
         href:
@@ -5762,14 +5762,14 @@ components:
             Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking) is applied. If `true`, the track is playable in the given market. Otherwise `false`.
         linked_from:
           allOf:
-          - $ref: '#/components/schemas/LinkedTrackObject'
+          - $ref: "#/components/schemas/LinkedTrackObject"
           description: "Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking)\
             \ is applied, and the requested track has been replaced with different\
             \ track. The track in the `linked_from` object contains information about\
             \ the originally requested track."
         restrictions:
           allOf:
-          - $ref: '#/components/schemas/TrackRestrictionObject'
+          - $ref: "#/components/schemas/TrackRestrictionObject"
           description: |
             Included in the response when a content restriction is applied.
         name:
@@ -5807,21 +5807,21 @@ components:
       x-spotify-docs-type: EpisodeObject
       type: object
       allOf:
-      - $ref: '#/components/schemas/EpisodeBase'
+      - $ref: "#/components/schemas/EpisodeBase"
       - type: object
         required:
         - show
         properties:
           show:
             allOf:
-            - $ref: '#/components/schemas/SimplifiedShowObject'
+            - $ref: "#/components/schemas/SimplifiedShowObject"
             description: |
               The show on which the episode belongs.
     SimplifiedEpisodeObject:
       x-spotify-docs-type: SimplifiedEpisodeObject
       type: object
       allOf:
-      - $ref: '#/components/schemas/EpisodeBase'
+      - $ref: "#/components/schemas/EpisodeBase"
     EpisodeBase:
       type: object
       required:
@@ -5872,7 +5872,7 @@ components:
             Whether or not the episode has explicit content (true = yes it does; false = no it does not OR unknown).
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             External URLs for this episode.
         href:
@@ -5888,7 +5888,7 @@ components:
         images:
           type: array
           items:
-            $ref: '#/components/schemas/ImageObject'
+            $ref: "#/components/schemas/ImageObject"
           description: |
             The cover art for the episode in various sizes, widest first.
         is_externally_hosted:
@@ -5936,7 +5936,7 @@ components:
             The precision with which `release_date` value is known.
         resume_point:
           allOf:
-          - $ref: '#/components/schemas/ResumePointObject'
+          - $ref: "#/components/schemas/ResumePointObject"
           description: |
             The user's most recent position in the episode. Set if the supplied access token is a user token and has the scope 'user-read-playback-position'.
         type:
@@ -5952,7 +5952,7 @@ components:
             The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for the episode.
         restrictions:
           allOf:
-          - $ref: '#/components/schemas/EpisodeRestrictionObject'
+          - $ref: "#/components/schemas/EpisodeRestrictionObject"
           description: |
             Included in the response when a content restriction is applied.
     ResumePointObject:
@@ -5997,7 +5997,7 @@ components:
         copyrights:
           type: array
           items:
-            $ref: '#/components/schemas/CopyrightObject'
+            $ref: "#/components/schemas/CopyrightObject"
           description: |
             The copyright statements of the show.
         description:
@@ -6014,7 +6014,7 @@ components:
             Whether or not the show has explicit content (true = yes it does; false = no it does not OR unknown).
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             External URLs for this show.
         href:
@@ -6028,7 +6028,7 @@ components:
         images:
           type: array
           items:
-            $ref: '#/components/schemas/ImageObject'
+            $ref: "#/components/schemas/ImageObject"
           description: |
             The cover art for the show in various sizes, widest first.
         is_externally_hosted:
@@ -6070,7 +6070,7 @@ components:
     ShowObject:
       x-spotify-docs-type: ShowObject
       allOf:
-      - $ref: '#/components/schemas/ShowBase'
+      - $ref: "#/components/schemas/ShowBase"
       - type: object
         required:
         - episodes
@@ -6078,13 +6078,13 @@ components:
           episodes:
             type: object
             allOf:
-            - $ref: '#/components/schemas/PagingSimplifiedEpisodeObject'
+            - $ref: "#/components/schemas/PagingSimplifiedEpisodeObject"
             description: |
               The episodes of the show.
     SimplifiedShowObject:
       x-spotify-docs-type: SimplifiedShowObject
       allOf:
-      - $ref: '#/components/schemas/ShowBase'
+      - $ref: "#/components/schemas/ShowBase"
     AudiobookBase:
       type: object
       required:
@@ -6110,7 +6110,7 @@ components:
         authors:
           type: array
           items:
-            $ref: '#/components/schemas/AuthorObject'
+            $ref: "#/components/schemas/AuthorObject"
           description: |
             The author(s) for the audiobook.
         available_markets:
@@ -6122,7 +6122,7 @@ components:
         copyrights:
           type: array
           items:
-            $ref: '#/components/schemas/CopyrightObject'
+            $ref: "#/components/schemas/CopyrightObject"
           description: |
             The copyright statements of the audiobook.
         description:
@@ -6144,7 +6144,7 @@ components:
             Whether or not the audiobook has explicit content (true = yes it does; false = no it does not OR unknown).
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             External URLs for this audiobook.
         href:
@@ -6158,7 +6158,7 @@ components:
         images:
           type: array
           items:
-            $ref: '#/components/schemas/ImageObject'
+            $ref: "#/components/schemas/ImageObject"
           description: |
             The cover art for the audiobook in various sizes, widest first.
         languages:
@@ -6178,7 +6178,7 @@ components:
         narrators:
           type: array
           items:
-            $ref: '#/components/schemas/NarratorObject'
+            $ref: "#/components/schemas/NarratorObject"
           description: |
             The narrator(s) for the audiobook.
         publisher:
@@ -6202,7 +6202,7 @@ components:
     AudiobookObject:
       x-spotify-docs-type: AudiobookObject
       allOf:
-      - $ref: '#/components/schemas/AudiobookBase'
+      - $ref: "#/components/schemas/AudiobookBase"
       - type: object
         required:
         - chapters
@@ -6210,13 +6210,13 @@ components:
           chapters:
             type: object
             allOf:
-            - $ref: '#/components/schemas/PagingSimplifiedChapterObject'
+            - $ref: "#/components/schemas/PagingSimplifiedChapterObject"
             description: |
               The chapters of the audiobook.
     SimplifiedAudiobookObject:
       x-spotify-docs-type: SimplifiedAudiobookObject
       allOf:
-      - $ref: '#/components/schemas/AudiobookBase'
+      - $ref: "#/components/schemas/AudiobookBase"
     AlbumBase:
       type: object
       required:
@@ -6258,7 +6258,7 @@ components:
             The markets in which the album is available: [ISO 3166-1 alpha-2 country codes](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). _**NOTE**: an album is considered available in a market when at least 1 of its tracks is available in that market._
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             Known external URLs for this album.
         href:
@@ -6273,7 +6273,7 @@ components:
         images:
           type: array
           items:
-            $ref: '#/components/schemas/ImageObject'
+            $ref: "#/components/schemas/ImageObject"
           description: |
             The cover art for the album in various sizes, widest first.
         name:
@@ -6296,7 +6296,7 @@ components:
             The precision with which `release_date` value is known.
         restrictions:
           allOf:
-          - $ref: '#/components/schemas/AlbumRestrictionObject'
+          - $ref: "#/components/schemas/AlbumRestrictionObject"
           description: |
             Included in the response when a content restriction is applied.
         type:
@@ -6313,7 +6313,7 @@ components:
     SimplifiedAlbumObject:
       x-spotify-docs-type: SimplifiedAlbumObject
       allOf:
-      - $ref: '#/components/schemas/AlbumBase'
+      - $ref: "#/components/schemas/AlbumBase"
       - type: object
         required:
         - artists
@@ -6321,13 +6321,13 @@ components:
           artists:
             type: array
             items:
-              $ref: '#/components/schemas/SimplifiedArtistObject'
+              $ref: "#/components/schemas/SimplifiedArtistObject"
             description: |
               The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
     ArtistDiscographyAlbumObject:
       x-spotify-docs-type: ArtistDiscographyAlbumObject
       allOf:
-      - $ref: '#/components/schemas/SimplifiedAlbumObject'
+      - $ref: "#/components/schemas/SimplifiedAlbumObject"
       - type: object
         required:
         - album_group
@@ -6346,21 +6346,21 @@ components:
       x-spotify-docs-type: ChapterObject
       type: object
       allOf:
-      - $ref: '#/components/schemas/ChapterBase'
+      - $ref: "#/components/schemas/ChapterBase"
       - type: object
         required:
         - audiobook
         properties:
           audiobook:
             allOf:
-            - $ref: '#/components/schemas/SimplifiedAudiobookObject'
+            - $ref: "#/components/schemas/SimplifiedAudiobookObject"
             description: |
               The audiobook for which the chapter belongs.
     SimplifiedChapterObject:
       x-spotify-docs-type: SimplifiedChapterObject
       type: object
       allOf:
-      - $ref: '#/components/schemas/ChapterBase'
+      - $ref: "#/components/schemas/ChapterBase"
     ChapterBase:
       type: object
       required:
@@ -6422,7 +6422,7 @@ components:
             Whether or not the chapter has explicit content (true = yes it does; false = no it does not OR unknown).
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             External URLs for this chapter.
         href:
@@ -6438,7 +6438,7 @@ components:
         images:
           type: array
           items:
-            $ref: '#/components/schemas/ImageObject'
+            $ref: "#/components/schemas/ImageObject"
           description: |
             The cover art for the chapter in various sizes, widest first.
         is_playable:
@@ -6476,7 +6476,7 @@ components:
             The precision with which `release_date` value is known.
         resume_point:
           allOf:
-          - $ref: '#/components/schemas/ResumePointObject'
+          - $ref: "#/components/schemas/ResumePointObject"
           description: |
             The user's most recent position in the chapter. Set if the supplied access token is a user token and has the scope 'user-read-playback-position'.
         type:
@@ -6492,7 +6492,7 @@ components:
             The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for the chapter.
         restrictions:
           allOf:
-          - $ref: '#/components/schemas/ChapterRestrictionObject'
+          - $ref: "#/components/schemas/ChapterRestrictionObject"
           description: |
             Included in the response when a content restriction is applied.
     AlbumObject:
@@ -6506,29 +6506,29 @@ components:
       - label
       - popularity
       allOf:
-      - $ref: '#/components/schemas/AlbumBase'
+      - $ref: "#/components/schemas/AlbumBase"
       - type: object
         properties:
           artists:
             type: array
             items:
-              $ref: '#/components/schemas/SimplifiedArtistObject'
+              $ref: "#/components/schemas/SimplifiedArtistObject"
             description: |
               The artists of the album. Each artist object includes a link in `href` to more detailed information about the artist.
           tracks:
             allOf:
-            - $ref: '#/components/schemas/PagingSimplifiedTrackObject'
+            - $ref: "#/components/schemas/PagingSimplifiedTrackObject"
             description: |
               The tracks of the album.
           copyrights:
             type: array
             items:
-              $ref: '#/components/schemas/CopyrightObject'
+              $ref: "#/components/schemas/CopyrightObject"
             description: |
               The copyright statements of the album.
           external_ids:
             allOf:
-            - $ref: '#/components/schemas/ExternalIdObject'
+            - $ref: "#/components/schemas/ExternalIdObject"
             description: |
               Known external IDs for the album.
           genres:
@@ -6562,7 +6562,7 @@ components:
             track.
         external_urls:
           allOf:
-          - $ref: '#/components/schemas/ExternalUrlObject'
+          - $ref: "#/components/schemas/ExternalUrlObject"
           description: External URLs for this context.
         uri:
           type: string
@@ -6677,7 +6677,7 @@ components:
       properties:
         context:
           allOf:
-          - $ref: '#/components/schemas/ContextObject'
+          - $ref: "#/components/schemas/ContextObject"
           description: A Context Object. Can be `null`.
         timestamp:
           type: integer
@@ -6692,8 +6692,8 @@ components:
           description: "If something is currently playing, return `true`."
         item:
           oneOf:
-          - $ref: '#/components/schemas/TrackObject'
-          - $ref: '#/components/schemas/EpisodeObject'
+          - $ref: "#/components/schemas/TrackObject"
+          - $ref: "#/components/schemas/EpisodeObject"
           discriminator:
             propertyName: type
           x-spotify-docs-type: TrackObject | EpisodeObject
@@ -6704,7 +6704,7 @@ components:
             The object type of the currently playing item. Can be one of `track`, `episode`, `ad` or `unknown`.
         actions:
           allOf:
-          - $ref: '#/components/schemas/DisallowsObject'
+          - $ref: "#/components/schemas/DisallowsObject"
           description: |
             Allows to update the user interface based on which playback actions are available within the current context.
     SavedAudiobookObject:
@@ -6721,18 +6721,18 @@ components:
             If the time is imprecise (for example, the date/time of an album release), an additional field indicates the precision; see for example, release_date in an album object.
         audiobook:
           allOf:
-          - $ref: '#/components/schemas/AudiobookObject'
+          - $ref: "#/components/schemas/AudiobookObject"
           description: Information about the audiobook.
     PagingSavedAudiobookObject:
       type: object
       allOf:
-      - $ref: '#/components/schemas/PagingObject'
+      - $ref: "#/components/schemas/PagingObject"
       - type: object
         properties:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/SavedAudiobookObject'
+              $ref: "#/components/schemas/SavedAudiobookObject"
   parameters:
     PathAlbumId:
       in: path
