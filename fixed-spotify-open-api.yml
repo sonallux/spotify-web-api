@@ -4313,6 +4313,7 @@ components:
           type: integer
           description: "Unix Millisecond Timestamp when playback state was last changed\
             \ (play, pause, skip, scrub, new song, etc.)."
+          format: int64
         progress_ms:
           type: integer
           description: Progress into the currently playing track or episode. Can be
