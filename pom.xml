@@ -6,7 +6,7 @@
 
     <groupId>de.sonallux.spotify</groupId>
     <artifactId>spotify-web-api-parent</artifactId>
-    <version>2024.3.3</version>
+    <version>2024.6.16</version>
     <packaging>pom</packaging>
 
     <name>spotify-web-api-parent</name>
