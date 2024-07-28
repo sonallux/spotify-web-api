@@ -5717,7 +5717,7 @@ components:
         artists:
           type: array
           items:
-            $ref: "#/components/schemas/ArtistObject"
+            $ref: "#/components/schemas/SimplifiedArtistObject"
           description: |
             The artists who performed the track. Each artist object includes a link in `href` to more detailed information about the artist.
         available_markets:
