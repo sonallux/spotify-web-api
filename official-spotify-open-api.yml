@@ -5788,7 +5788,7 @@ components:
         artists:
           type: array
           items:
-            $ref: '#/components/schemas/ArtistObject'
+            $ref: '#/components/schemas/SimplifiedArtistObject'
           description: |
             The artists who performed the track. Each artist object includes a link in `href` to more detailed information about the artist.
         available_markets:
@@ -6776,7 +6776,7 @@ components:
             If a valid user access token is specified in the request header, the country associated with
             the user account will take priority over this parameter.<br/>
             _**Note**: If neither market or user country are provided, the content is considered unavailable for the client._<br/>
-            Users can view the country that is associated with their account in the [account settings](https://www.spotify.com/se/account/overview/).
+            Users can view the country that is associated with their account in the [account settings](https://www.spotify.com/account/overview/).
         example: ES
         type: string
     QueryLimit:
