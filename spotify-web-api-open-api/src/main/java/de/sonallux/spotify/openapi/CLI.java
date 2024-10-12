@@ -3,6 +3,7 @@ package de.sonallux.spotify.openapi;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersionDetector;
 import de.sonallux.json.ReferenceValidator;
@@ -91,12 +92,9 @@ public class CLI implements Runnable {
         var parseResult = new OpenAPIV3Parser().parseJsonNode(null, node);
         parseResult.getMessages().forEach(log::error);
 
-        var openApiJsonSchema = loadOpenApiSchema();
+        var openApiJsonSchema = loadOpenApiJsonSchema();
 
-        var schemaFactory = JsonSchemaFactory.getInstance(SpecVersionDetector.detect(openApiJsonSchema));
-        var schema = schemaFactory.getSchema(openApiJsonSchema);
-
-        var validationMessages = schema.validate(node);
+        var validationMessages = openApiJsonSchema.validate(node);
         validationMessages.forEach(msg -> log.error(msg.toString()));
 
         var referenceValidationMessages = new ReferenceValidator().validateReference(node);
@@ -110,10 +108,14 @@ public class CLI implements Runnable {
         System.exit(1);
     }
 
-    private static JsonNode loadOpenApiSchema() {
+    private static JsonSchema loadOpenApiJsonSchema() {
         try {
             var mapper = new ObjectMapper();
-            return mapper.readTree(CLI.class.getResourceAsStream("/open-api-spec-schema.json"));
+            var schemaJsonNode = mapper.readTree(CLI.class.getResourceAsStream("/open-api-spec-schema.json"));
+
+            return JsonSchemaFactory
+                .getInstance(SpecVersionDetector.detect(schemaJsonNode))
+                .getSchema(schemaJsonNode);
         } catch (IOException e) {
             log.error("Failed to load OpenAPI schema", e);
             System.exit(1);
