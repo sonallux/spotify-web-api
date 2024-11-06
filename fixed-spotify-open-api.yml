@@ -2195,7 +2195,7 @@ paths:
                   items:
                     type: string
       responses:
-        "200":
+        "204":
           description: Artist or user unfollowed
         "401":
           $ref: "#/components/responses/Unauthorized"
