@@ -211,6 +211,7 @@ paths:
       - oauth_2_0: []
   /artists/{id}/related-artists:
     get:
+      deprecated: true
       tags:
       - Artists
       operationId: get-an-artists-related-artists
@@ -1830,6 +1831,7 @@ paths:
         - playlist-modify-private
   /browse/featured-playlists:
     get:
+      deprecated: true
       tags:
       - Playlists
       operationId: get-featured-playlists
@@ -1933,6 +1935,7 @@ paths:
       - oauth_2_0: []
   /browse/categories/{category_id}/playlists:
     get:
+      deprecated: true
       tags:
       - Playlists
       - Categories
@@ -2195,7 +2198,7 @@ paths:
                   items:
                     type: string
       responses:
-        "200":
+        "204":
           description: Artist or user unfollowed
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -2285,6 +2288,7 @@ paths:
       - oauth_2_0: []
   /audio-features:
     get:
+      deprecated: true
       tags:
       - Tracks
       operationId: get-several-audio-features
@@ -2316,6 +2320,7 @@ paths:
       - oauth_2_0: []
   /audio-features/{id}:
     get:
+      deprecated: true
       tags:
       - Tracks
       operationId: get-audio-features
@@ -2347,6 +2352,7 @@ paths:
       - oauth_2_0: []
   /audio-analysis/{id}:
     get:
+      deprecated: true
       tags:
       - Tracks
       operationId: get-audio-analysis
@@ -2378,6 +2384,7 @@ paths:
       - oauth_2_0: []
   /recommendations:
     get:
+      deprecated: true
       tags:
       - Tracks
       operationId: get-recommendations
@@ -2836,6 +2843,7 @@ paths:
       - oauth_2_0: []
   /recommendations/available-genre-seeds:
     get:
+      deprecated: true
       tags:
       - Genres
       operationId: get-recommendation-genres
@@ -5048,6 +5056,7 @@ components:
           type: string
           description: The name of the track.
         preview_url:
+          deprecated: true
           type: string
           nullable: true
           description: |
@@ -5781,6 +5790,7 @@ components:
           description: |
             The popularity of the track. The value will be between 0 and 100, with 100 being the most popular.<br/>The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are.<br/>Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. _**Note**: the popularity value may lag actual popularity by a few days: the value is not updated in real time._
         preview_url:
+          deprecated: true
           type: string
           nullable: true
           description: |
@@ -5844,6 +5854,7 @@ components:
       - uri
       properties:
         audio_preview_url:
+          deprecated: true
           type: string
           nullable: true
           example: https://p.scdn.co/mp3-preview/2f37da1d4221f40b9d1a98cd191f4d6f1646ad17
@@ -6383,6 +6394,7 @@ components:
       - uri
       properties:
         audio_preview_url:
+          deprecated: true
           type: string
           nullable: true
           example: https://p.scdn.co/mp3-preview/2f37da1d4221f40b9d1a98cd191f4d6f1646ad17
@@ -6535,11 +6547,10 @@ components:
             type: array
             items:
               type: string
-            example:
-            - Egg punk
-            - Noise rock
+            deprecated: true
+            example: []
             description: |
-              A list of the genres the album is associated with. If not yet classified, the array is empty.
+              **Deprecated** The array is always empty.
           label:
             type: string
             description: |
