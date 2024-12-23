@@ -71,6 +71,7 @@ class ArtistsApiValidationTest {
     }
 
     @Test
+    @Disabled("The used spotify application is not longer allowed to call this endpoint.")
     void validateGetArtistsRelatedArtists() {
         var response = restClient.get().uri("/artists/{id}/related-artists", "0Dvx6p8JDyzeOPGmaCIH1L").retrieve().toBodilessEntity();
         assertEquals(response.getStatusCode(), HttpStatus.OK);
