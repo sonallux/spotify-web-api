@@ -70,7 +70,7 @@
         <!-- Test Dependencies -->
         <junit.version>5.11.4</junit.version>
         <assertj.version>3.22.0</assertj.version>
-        <mockito-junit-jupiter.version>5.14.2</mockito-junit-jupiter.version>
+        <mockito-junit-jupiter.version>5.15.2</mockito-junit-jupiter.version>
 
         <moditect.sourceGroup>${project.groupId}</moditect.sourceGroup>
         <moditect.sourceArtifact>${project.artifactId}</moditect.sourceArtifact>
