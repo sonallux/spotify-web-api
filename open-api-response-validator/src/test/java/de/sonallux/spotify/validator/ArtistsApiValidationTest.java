@@ -32,13 +32,13 @@ class ArtistsApiValidationTest {
     @Test
     void validateGetArtist() {
         var response = restClient.get().uri("/artists/{id}", "4lDiJcOJ2GLCK6p9q5BgfK").retrieve().toBodilessEntity();
-        assertEquals(response.getStatusCode(), HttpStatus.OK);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
     void validateGetSeveralArtist() {
         var response = restClient.get().uri("/artists?ids={ids}", "0Dvx6p8JDyzeOPGmaCIH1L,5Y5TRrQiqgUO4S36tzjIRZ").retrieve().toBodilessEntity();
-        assertEquals(response.getStatusCode(), HttpStatus.OK);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
@@ -46,16 +46,16 @@ class ArtistsApiValidationTest {
         var artistId = "6XyY86QOPPrYVGvF9ch6wz";
 
         var responseFirstPage = restClient.get().uri("/artists/{id}/albums?limit=5", artistId).retrieve().toBodilessEntity();
-        assertEquals(responseFirstPage.getStatusCode(), HttpStatus.OK);
+        assertEquals(HttpStatus.OK, responseFirstPage.getStatusCode());
 
         var responseMiddlePage = restClient.get().uri("/artists/{id}/albums?limit=5&offset=50", artistId).retrieve().toBodilessEntity();
-        assertEquals(responseMiddlePage.getStatusCode(), HttpStatus.OK);
+        assertEquals(HttpStatus.OK, responseMiddlePage.getStatusCode());
 
         var responseLastPage = restClient.get().uri("/artists/{id}/albums?limit=20&offset=360", artistId).retrieve().toBodilessEntity();
-        assertEquals(responseLastPage.getStatusCode(), HttpStatus.OK);
+        assertEquals(HttpStatus.OK, responseLastPage.getStatusCode());
 
         var responseEmptyPage = restClient.get().uri("/artists/{id}/albums?limit=20&offset=380", artistId).retrieve().toBodilessEntity();
-        assertEquals(responseEmptyPage.getStatusCode(), HttpStatus.OK);
+        assertEquals(HttpStatus.OK, responseEmptyPage.getStatusCode());
     }
 
     /*
@@ -67,14 +67,14 @@ class ArtistsApiValidationTest {
     @Test
     void validateGetArtistsTopTracks() {
         var response = restClient.get().uri("/artists/{id}/top-tracks?market=DE", "0Dvx6p8JDyzeOPGmaCIH1L").retrieve().toBodilessEntity();
-        assertEquals(response.getStatusCode(), HttpStatus.OK);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
     @Disabled("The used spotify application is not longer allowed to call this endpoint.")
     void validateGetArtistsRelatedArtists() {
         var response = restClient.get().uri("/artists/{id}/related-artists", "0Dvx6p8JDyzeOPGmaCIH1L").retrieve().toBodilessEntity();
-        assertEquals(response.getStatusCode(), HttpStatus.OK);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
 }

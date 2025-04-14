@@ -31,18 +31,18 @@ class AlbumApiValidationTest {
     @Test
     void validateGetAlbum() {
         var response = restClient.get().uri("/albums/{id}", "3Q9wXhEAX7NYCPP0hxIuDz").retrieve().toBodilessEntity();
-        assertEquals(response.getStatusCode(), HttpStatus.OK);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
     void validateGetSeveralAlbums() {
         var response = restClient.get().uri("/albums?ids={ids}", "3Q9wXhEAX7NYCPP0hxIuDz,5Eevxp2BCbWq25ZdiXRwYd").retrieve().toBodilessEntity();
-        assertEquals(response.getStatusCode(), HttpStatus.OK);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
     void validateGetAlbumTracks() {
         var response = restClient.get().uri("/albums/{id}/tracks", "3Q9wXhEAX7NYCPP0hxIuDz").retrieve().toBodilessEntity();
-        assertEquals(response.getStatusCode(), HttpStatus.OK);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 }
