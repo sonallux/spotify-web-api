@@ -5566,6 +5566,10 @@ components:
           type: string
           description: |
             The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for the playlist.
+        followers:
+          allOf:
+          - $ref: "#/components/schemas/FollowersObject"
+          description: Information about the followers of the playlist.
     SimplifiedPlaylistObject:
       type: object
       x-spotify-docs-type: SimplifiedPlaylistObject
