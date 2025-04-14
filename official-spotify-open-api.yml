@@ -5587,10 +5587,6 @@ components:
             - $ref: '#/components/schemas/ExternalUrlObject'
           description: |
             Known external URLs for this playlist.
-        followers:
-          allOf:
-            - $ref: '#/components/schemas/FollowersObject'
-          description: Information about the followers of the playlist.
         href:
           type: string
           description: |
@@ -5721,11 +5717,6 @@ components:
             - $ref: '#/components/schemas/ExternalUrlObject'
           description: |
             Known public external URLs for this user.
-        followers:
-          allOf:
-            - $ref: '#/components/schemas/FollowersObject'
-          description: |
-            Information about the followers of this user.
         href:
           type: string
           description: |

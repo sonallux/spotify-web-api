@@ -1,0 +1,12 @@
+description: add missing followers property to PlaylistObject
+operations:
+  - op: test
+    path: "$.components.schemas.PlaylistObject.properties.followers"
+    value: null
+  - op: put
+    path: "$.components.schemas.PlaylistObject.properties"
+    key: followers
+    value:
+      allOf:
+        - $ref: "#/components/schemas/FollowersObject"
+      description: Information about the followers of the playlist.

@@ -5521,10 +5521,6 @@ components:
           - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             Known external URLs for this playlist.
-        followers:
-          allOf:
-          - $ref: "#/components/schemas/FollowersObject"
-          description: Information about the followers of the playlist.
         href:
           type: string
           description: |
@@ -5570,6 +5566,10 @@ components:
           type: string
           description: |
             The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for the playlist.
+        followers:
+          allOf:
+          - $ref: "#/components/schemas/FollowersObject"
+          description: Information about the followers of the playlist.
     SimplifiedPlaylistObject:
       type: object
       x-spotify-docs-type: SimplifiedPlaylistObject
@@ -5652,11 +5652,6 @@ components:
           - $ref: "#/components/schemas/ExternalUrlObject"
           description: |
             Known public external URLs for this user.
-        followers:
-          allOf:
-          - $ref: "#/components/schemas/FollowersObject"
-          description: |
-            Information about the followers of this user.
         href:
           type: string
           description: |
