@@ -65,7 +65,7 @@
         <lombok.version>1.18.38</lombok.version>
         <jackson.version>2.18.3</jackson.version>
         <slf4j.version>2.0.17</slf4j.version>
-        <picocli.version>4.7.6</picocli.version>
+        <picocli.version>4.7.7</picocli.version>
 
         <!-- Test Dependencies -->
         <junit.version>5.12.1</junit.version>
