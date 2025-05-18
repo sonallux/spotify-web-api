@@ -7,12 +7,12 @@
     <parent>
         <groupId>de.sonallux.spotify</groupId>
         <artifactId>spotify-web-api-parent</artifactId>
-        <version>2024.12.23</version>
+        <version>2025.5.18</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>open-api-response-validator</artifactId>
-    <version>2024.12.23</version>
+    <version>2025.5.18</version>
     <packaging>jar</packaging>
 
     <name>open-api-response-validator</name>
