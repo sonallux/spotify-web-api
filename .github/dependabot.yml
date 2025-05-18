@@ -7,8 +7,6 @@ updates:
       day: 'friday'
       time: '01:00'
     open-pull-requests-limit: 10
-    reviewers:
-      - sonallux
     groups:
       maven-plugins:
         patterns:
@@ -24,8 +22,6 @@ updates:
     schedule:
       interval: weekly
       time: '02:00'
-    reviewers:
-      - sonallux
     groups:
       github-actions:
         patterns:
