@@ -14,23 +14,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # We want all history so we can get all commits since previous git tag
-      # - name: Setup java
-      #   uses: actions/setup-java@v3
-      #   with:
-      #     java-version: 17
-      #     distribution: 'temurin'
-      #     cache: 'maven'
-      #     server-id: ossrh
-      #     server-username: OSSRH_USERNAME # env variable for username in deploy
-      #     server-password: OSSRH_PASSWORD # env variable for password in deploy
-      #     gpg-private-key: ${{ secrets.OSSRH_GPG_PRIVATE_KEY }} # Value of the GPG private key to import
-      #     gpg-passphrase: OSSRH_GPG_PASSPHRASE # env variable for GPG private key passphrase
-      # - name: Deploy to Maven Central
-      #   env:
-      #     OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-      #     OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-      #     OSSRH_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
-      #   run: ./mvnw -B deploy -Pdeploy
       - name: Create release notes
         if: startsWith(github.ref, 'refs/tags/')
         run: |
