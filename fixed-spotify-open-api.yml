@@ -3379,7 +3379,7 @@ paths:
       summary: |
         Add Item to Playback Queue
       description: |
-        Add an item to the end of the user's current playback queue. This API only works for users who have Spotify Premium. The order of execution is not guaranteed when you use this API with other Player API endpoints.
+        Add an item to be played next in the user's current playback queue. This API only works for users who have Spotify Premium. The order of execution is not guaranteed when you use this API with other Player API endpoints.
       parameters:
       - name: uri
         required: true
