@@ -18,7 +18,7 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
       - name: Build tools
-        run: ./mvnw -B package -Pcli --projects spotify-web-api-open-api --also-make
+        run: ./mvnw -B -ntp package -Pcli --projects spotify-web-api-open-api --also-make
       - name: Download Spotify's OpenAPI
         run: wget -O official-spotify-open-api.yml https://developer.spotify.com/_data/documentation/web-api/reference/open-api-schema.yml
       - name: Patch Spotify's OpenAPI

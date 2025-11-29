@@ -22,7 +22,7 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
       - name: Build
-        run: ./mvnw -B package -Pcli --projects spotify-web-api-open-api --also-make
+        run: ./mvnw -B -ntp package -Pcli --projects spotify-web-api-open-api --also-make
       - name: Patch Open API
         run: ./scripts/patch-open-api.sh
       - name: Check for generator results

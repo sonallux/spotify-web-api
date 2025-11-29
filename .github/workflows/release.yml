@@ -52,9 +52,9 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
       - name: Update version in code
-        run: ./mvnw -B versions:set -DnewVersion="${{ needs.create-version.outputs.new-version }}" -DgenerateBackupPoms=false
+        run: ./mvnw -B -ntp versions:set -DnewVersion="${{ needs.create-version.outputs.new-version }}" -DgenerateBackupPoms=false
       - name: Build
-        run: ./mvnw -B package -Pcli --projects spotify-web-api-open-api --also-make
+        run: ./mvnw -B -ntp package -Pcli --projects spotify-web-api-open-api --also-make
       - name: Update Open API
         run: ./scripts/patch-open-api.sh
       - name: Commit and tag
