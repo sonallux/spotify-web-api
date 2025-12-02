@@ -3,9 +3,9 @@ package de.sonallux.spotify.openapi;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.networknt.schema.JsonSchema;
-import com.networknt.schema.JsonSchemaFactory;
-import com.networknt.schema.SpecVersionDetector;
+import com.networknt.schema.Schema;
+import com.networknt.schema.SchemaRegistry;
+import com.networknt.schema.SpecificationVersion;
 import de.sonallux.json.ReferenceValidator;
 import io.swagger.v3.core.util.Yaml;
 import io.swagger.v3.parser.OpenAPIV3Parser;
@@ -108,13 +108,12 @@ public class CLI implements Runnable {
         System.exit(1);
     }
 
-    private static JsonSchema loadOpenApiJsonSchema() {
+    private static Schema loadOpenApiJsonSchema() {
         try {
             var mapper = new ObjectMapper();
             var schemaJsonNode = mapper.readTree(CLI.class.getResourceAsStream("/open-api-spec-schema.json"));
 
-            return JsonSchemaFactory
-                .getInstance(SpecVersionDetector.detect(schemaJsonNode))
+            return SchemaRegistry.withDefaultDialect(SpecificationVersion.DRAFT_4)
                 .getSchema(schemaJsonNode);
         } catch (IOException e) {
             log.error("Failed to load OpenAPI schema", e);
