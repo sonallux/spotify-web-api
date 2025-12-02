@@ -33,7 +33,7 @@ public class SpotifyClientCredentialsAuthInterceptor implements ClientHttpReques
 
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
-        if (request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
+        if (request.getHeaders().containsHeader(HttpHeaders.AUTHORIZATION)) {
             return execution.execute(request, body);
         }
 
