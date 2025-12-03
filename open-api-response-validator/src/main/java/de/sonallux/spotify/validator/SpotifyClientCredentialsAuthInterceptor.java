@@ -3,6 +3,7 @@ package de.sonallux.spotify.validator;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.Nullable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
@@ -23,7 +24,7 @@ public class SpotifyClientCredentialsAuthInterceptor implements ClientHttpReques
     private final String spotifyClientId;
     private final String spotifyClientSecret;
     private final RestClient restClient;
-    private AccessToken accessToken = null;
+    private @Nullable AccessToken accessToken = null;
 
     public SpotifyClientCredentialsAuthInterceptor() {
         this.spotifyClientId = requireNonNull(System.getenv("SPOTIFY_CLIENT_ID"), "Missing SPOTIFY_CLIENT_ID environment variable");

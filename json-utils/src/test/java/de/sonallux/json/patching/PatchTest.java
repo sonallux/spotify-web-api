@@ -65,8 +65,8 @@ class PatchTest {
         assertNull(patch.getDescription());
         assertEquals(2, patch.getOperations().size());
 
-        assertEquals(AddOperation.class, patch.getOperations().get(0).getClass());
-        var addOp = (AddOperation) patch.getOperations().get(0);
+        assertEquals(AddOperation.class, patch.getOperations().getFirst().getClass());
+        var addOp = (AddOperation) patch.getOperations().getFirst();
         assertEquals("add", addOp.getOp());
         assertEquals("$.a", addOp.getPath());
         assertTrue(addOp.getValue().isArray());
@@ -88,8 +88,8 @@ class PatchTest {
         assertEquals("Test", patch.getDescription());
         assertEquals(2, patch.getOperations().size());
 
-        assertEquals(AddOperation.class, patch.getOperations().get(0).getClass());
-        var addOp = (AddOperation) patch.getOperations().get(0);
+        assertEquals(AddOperation.class, patch.getOperations().getFirst().getClass());
+        var addOp = (AddOperation) patch.getOperations().getFirst();
         assertEquals("add", addOp.getOp());
         assertEquals("$.a", addOp.getPath());
         assertTrue(addOp.getValue().isArray());

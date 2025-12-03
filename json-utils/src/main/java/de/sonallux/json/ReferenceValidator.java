@@ -7,10 +7,10 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * Validate that nodes referenced by <code>$ref</code> fields do exists. This currently only supports internal
+ * Validate that nodes referenced by <code>$ref</code> fields do exist. This currently only supports internal
  * references (e.g. <code>#/field1/field2</code>).
  * <br>
- * json-schema-validator can not provide this, because it is not part of the json-schema spec.
+ * json-schema-validator cannot provide this because it is not part of the json-schema spec.
  * <br>
  * swagger-parser only reports wrong references for schemas, but not responses, parameters, headers and others.
  * See <a href="https://github.com/swagger-api/swagger-parser/issues/1396">this issue on GitHub</a>

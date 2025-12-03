@@ -28,6 +28,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.jspecify</groupId>
+            <artifactId>jspecify</artifactId>
+            <version>${jspecify.version}</version>
+        </dependency>
+        <dependency>
             <groupId>de.sonallux.spotify</groupId>
             <artifactId>json-utils</artifactId>
             <version>2025.5.18</version>

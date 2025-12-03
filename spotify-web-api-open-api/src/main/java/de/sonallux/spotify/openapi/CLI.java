@@ -79,8 +79,7 @@ public class CLI implements Runnable {
 
     private JsonNode applyPatches(JsonNode node) {
         try {
-            var openApiPatches = new OpenApiPatches();
-            return openApiPatches.applyPatches(node);
+            return OpenApiPatches.applyPatches(node);
         } catch (OpenApiPatchException e) {
             log.error("Failed to patch official OpenAPI", e);
             System.exit(1);

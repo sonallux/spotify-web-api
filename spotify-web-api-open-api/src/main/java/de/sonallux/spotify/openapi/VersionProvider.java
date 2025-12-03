@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.util.regex.Pattern;
 
 public class VersionProvider {
-    private static final Pattern VERSION_PATTERN = Pattern.compile("<version>([0-9a-z\\.-]+)</version>");
+    private static final Pattern VERSION_PATTERN = Pattern.compile("<version>([0-9a-z.-]+)</version>");
 
     public static String getVersion() {
         try {

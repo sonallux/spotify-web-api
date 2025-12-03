@@ -23,12 +23,16 @@ public class OpenApiPatches {
 
     private JsonNode openApiJsonNode;
 
-    public JsonNode applyPatches(JsonNode openApiJsonNode) throws OpenApiPatchException {
+    private OpenApiPatches(JsonNode openApiJsonNode) {
         this.openApiJsonNode = openApiJsonNode;
+    }
 
-        walkPatches(this::applyPatch);
+    public static JsonNode applyPatches(JsonNode openApiJsonNode) throws OpenApiPatchException {
+        final var openApiPatches = new OpenApiPatches(openApiJsonNode);
 
-        return this.openApiJsonNode;
+        openApiPatches.walkPatches(openApiPatches::applyPatch);
+
+        return openApiPatches.openApiJsonNode;
     }
 
     private void applyPatch(Path path) {
