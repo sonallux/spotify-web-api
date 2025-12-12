@@ -20,7 +20,7 @@
     <url>https://github.com/sonallux/spotify-web-api</url>
 
     <properties>
-        <spring.version>7.0.1</spring.version>
+        <spring.version>7.0.2</spring.version>
         <swagger-request-validator.version>2.46.0</swagger-request-validator.version>
 
         <moditect.module.name>de.sonallux.spotify.validator</moditect.module.name>
