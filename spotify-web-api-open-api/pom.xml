@@ -21,7 +21,7 @@
 
     <properties>
         <swagger-parser.version>2.1.37</swagger-parser.version>
-        <json-schema-validator.version>2.0.0</json-schema-validator.version>
+        <json-schema-validator.version>3.0.0</json-schema-validator.version>
 
         <moditect.module.name>de.sonallux.spotify.openapi</moditect.module.name>
     </properties>
