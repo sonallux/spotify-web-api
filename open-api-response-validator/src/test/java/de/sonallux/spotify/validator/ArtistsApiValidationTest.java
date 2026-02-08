@@ -45,17 +45,8 @@ class ArtistsApiValidationTest {
     void validateGetArtistsAlbums() {
         var artistId = "6XyY86QOPPrYVGvF9ch6wz";
 
-        var responseFirstPage = restClient.get().uri("/artists/{id}/albums?limit=5", artistId).retrieve().toBodilessEntity();
+        var responseFirstPage = restClient.get().uri("/artists/{id}/albums?limit=10", artistId).retrieve().toBodilessEntity();
         assertEquals(HttpStatus.OK, responseFirstPage.getStatusCode());
-
-        var responseMiddlePage = restClient.get().uri("/artists/{id}/albums?limit=5&offset=50", artistId).retrieve().toBodilessEntity();
-        assertEquals(HttpStatus.OK, responseMiddlePage.getStatusCode());
-
-        var responseLastPage = restClient.get().uri("/artists/{id}/albums?limit=20&offset=360", artistId).retrieve().toBodilessEntity();
-        assertEquals(HttpStatus.OK, responseLastPage.getStatusCode());
-
-        var responseEmptyPage = restClient.get().uri("/artists/{id}/albums?limit=20&offset=380", artistId).retrieve().toBodilessEntity();
-        assertEquals(HttpStatus.OK, responseEmptyPage.getStatusCode());
     }
 
     /*

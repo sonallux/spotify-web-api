@@ -58,6 +58,7 @@ paths:
       - oauth_2_0: []
   /albums:
     get:
+      deprecated: true
       operationId: get-multiple-albums
       tags:
       - Albums
@@ -130,6 +131,7 @@ paths:
       - oauth_2_0: []
   /artists:
     get:
+      deprecated: true
       tags:
       - Artists
       operationId: get-multiple-artists
@@ -160,6 +162,7 @@ paths:
       - oauth_2_0: []
   /artists/{id}/albums:
     get:
+      deprecated: true
       tags:
       - Artists
       - Albums
@@ -172,7 +175,18 @@ paths:
       - $ref: "#/components/parameters/PathArtistId"
       - $ref: "#/components/parameters/QueryIncludeGroups"
       - $ref: "#/components/parameters/QueryMarket"
-      - $ref: "#/components/parameters/QueryLimit"
+      - name: limit
+        required: false
+        in: query
+        schema:
+          title: Limit
+          description: |
+            The maximum number of items to return. Default: 5. Minimum: 1. Maximum: 10.
+          default: 5
+          example: 5
+          type: integer
+          minimum: 0
+          maximum: 10
       - $ref: "#/components/parameters/QueryOffset"
       responses:
         "200":
@@ -187,6 +201,7 @@ paths:
       - oauth_2_0: []
   /artists/{id}/top-tracks:
     get:
+      deprecated: true
       tags:
       - Artists
       - Tracks
@@ -259,6 +274,7 @@ paths:
         - user-read-playback-position
   /shows:
     get:
+      deprecated: true
       tags:
       - Shows
       operationId: get-multiple-shows
@@ -342,6 +358,7 @@ paths:
         - user-read-playback-position
   /episodes:
     get:
+      deprecated: true
       tags:
       - Episodes
       operationId: get-multiple-episodes
@@ -401,6 +418,7 @@ paths:
       - oauth_2_0: []
   /audiobooks:
     get:
+      deprecated: true
       operationId: get-multiple-audiobooks
       tags:
       - Audiobooks
@@ -568,6 +586,7 @@ paths:
       - oauth_2_0: []
   /chapters:
     get:
+      deprecated: true
       operationId: get-several-chapters
       tags:
       - Chapters
@@ -624,6 +643,7 @@ paths:
       - oauth_2_0: []
   /tracks:
     get:
+      deprecated: true
       tags:
       - Tracks
       operationId: get-several-tracks
@@ -877,6 +897,8 @@ paths:
         Get Playlist Items
       description: |
         Get full details of the items of a playlist owned by a Spotify user.
+
+        **Note**: This endpoint is only accessible for playlists owned by the current user.
       parameters:
       - $ref: "#/components/parameters/PathPlaylistId"
       - $ref: "#/components/parameters/QueryMarket"
@@ -1137,6 +1159,59 @@ paths:
       security:
       - oauth_2_0:
         - playlist-read-private
+    post:
+      tags:
+      - Playlists
+      - Library
+      operationId: create-playlist
+      summary: |
+        Create Playlist
+      description: |
+        Create a playlist for the current Spotify user. (The playlist will be empty until
+        you [add tracks](/documentation/web-api/reference/add-tracks-to-playlist).)
+        Each user is generally limited to a maximum of 11000 playlists.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                name: New Playlist
+                description: New playlist description
+                public: false
+              type: object
+              additionalProperties: true
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                  description: |
+                    The name for the new playlist, for example `"Your Coolest Playlist"`. This name does not need to be unique; a user may have several playlists with the same name.
+                public:
+                  type: boolean
+                  description: |
+                    Defaults to `true`. The playlist's public/private status (if it should be added to the user's profile or not): `true` the playlist will be public, `false` the playlist will be private. To be able to create private playlists, the user must have granted the `playlist-modify-private` [scope](/documentation/web-api/concepts/scopes/#list-of-scopes). For more about public/private status, see [Working with Playlists](/documentation/web-api/concepts/playlists)
+                collaborative:
+                  type: boolean
+                  description: |
+                    Defaults to `false`. If `true` the playlist will be collaborative. _**Note**: to create a collaborative playlist you must also set `public` to `false`. To create collaborative playlists you must have granted `playlist-modify-private` and `playlist-modify-public` [scopes](/documentation/web-api/concepts/scopes/#list-of-scopes)._
+                description:
+                  type: string
+                  description: |
+                    value for playlist description as displayed in Spotify Clients and in the Web API.
+      responses:
+        "201":
+          $ref: "#/components/responses/OnePlaylist"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+      security:
+      - oauth_2_0:
+        - playlist-modify-public
+        - playlist-modify-private
   /me/albums:
     get:
       tags:
@@ -1672,6 +1747,7 @@ paths:
         - user-library-read
   /users/{user_id}:
     get:
+      deprecated: true
       tags:
       - Users
       operationId: get-users-profile
@@ -1694,6 +1770,7 @@ paths:
       - oauth_2_0: []
   /users/{user_id}/playlists:
     get:
+      deprecated: true
       tags:
       - Playlists
       - Users
@@ -1734,10 +1811,13 @@ paths:
       tags:
       - Playlists
       - Library
-      operationId: create-playlist
+      operationId: create-playlist-for-user
+      deprecated: true
       summary: |
-        Create Playlist
+        Create Playlist for user
       description: |
+        **Deprecated**: Use [Create Playlist](/documentation/web-api/reference/create-playlist) instead.
+
         Create a playlist for a Spotify user. (The playlist will be empty until
         you [add tracks](/documentation/web-api/reference/add-tracks-to-playlist).)
         Each user is generally limited to a maximum of 11000 playlists.
@@ -1882,6 +1962,7 @@ paths:
       - oauth_2_0: []
   /browse/categories:
     get:
+      deprecated: true
       tags:
       - Categories
       operationId: get-categories
@@ -1914,6 +1995,7 @@ paths:
       - oauth_2_0: []
   /browse/categories/{category_id}:
     get:
+      deprecated: true
       tags:
       - Categories
       operationId: get-a-category
@@ -2043,6 +2125,7 @@ paths:
         - playlist-modify-private
   /browse/new-releases:
     get:
+      deprecated: true
       tags:
       - Albums
       operationId: get-new-releases
@@ -3432,6 +3515,7 @@ paths:
         - user-modify-playback-state
   /markets:
     get:
+      deprecated: true
       tags:
       - Markets
       operationId: get-available-markets
@@ -4174,11 +4258,13 @@ components:
           description: |
             Known external URLs for this artist.
         followers:
+          deprecated: true
           allOf:
           - $ref: "#/components/schemas/FollowersObject"
           description: |
             Information about the followers of the artist.
         genres:
+          deprecated: true
           type: array
           items:
             type: string
@@ -4206,6 +4292,7 @@ components:
           description: |
             The name of the artist.
         popularity:
+          deprecated: true
           type: integer
           description: |
             The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist's popularity is calculated from the popularity of all the artist's tracks.
@@ -4420,6 +4507,7 @@ components:
       x-spotify-docs-type: PrivateUserObject
       properties:
         country:
+          deprecated: true
           type: string
           description: |
             The country of the user, as set in the user's account profile. An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). _This field is only available when the current user has granted access to the [user-read-private](/documentation/web-api/concepts/scopes/#list-of-scopes) scope._
@@ -4428,10 +4516,12 @@ components:
           description: |
             The name displayed on the user's profile. `null` if not available.
         email:
+          deprecated: true
           type: string
           description: |
             The user's email address, as entered by the user when creating their account. _**Important!** This email address is unverified; there is no proof that it actually belongs to the user._ _This field is only available when the current user has granted access to the [user-read-email](/documentation/web-api/concepts/scopes/#list-of-scopes) scope._
         explicit_content:
+          deprecated: true
           allOf:
           - $ref: "#/components/schemas/ExplicitContentSettingsObject"
           description: |
@@ -4441,6 +4531,7 @@ components:
           - $ref: "#/components/schemas/ExternalUrlObject"
           description: Known external URLs for this user.
         followers:
+          deprecated: true
           allOf:
           - $ref: "#/components/schemas/FollowersObject"
           description: Information about the followers of the user.
@@ -4458,6 +4549,7 @@ components:
             $ref: "#/components/schemas/ImageObject"
           description: The user's profile image.
         product:
+          deprecated: true
           type: string
           description: |
             The user's Spotify subscription level: "premium", "free", etc. (The subscription level "open" can be considered the same as "free".) _This field is only available when the current user has granted access to the [user-read-private](/documentation/web-api/concepts/scopes/#list-of-scopes) scope._
@@ -4484,6 +4576,7 @@ components:
           description: |
             Known public external URLs for this user.
         followers:
+          deprecated: true
           allOf:
           - $ref: "#/components/schemas/FollowersObject"
           description: |
@@ -5024,6 +5117,7 @@ components:
           description: The artists who performed the track. Each artist object includes
             a link in `href` to more detailed information about the artist.
         available_markets:
+          deprecated: true
           type: array
           items:
             type: string
@@ -5058,6 +5152,7 @@ components:
           description: |
             Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking/) is applied. If `true`, the track is playable in the given market. Otherwise `false`.
         linked_from:
+          deprecated: true
           allOf:
           - $ref: "#/components/schemas/LinkedTrackObject"
           description: "Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking/)\
@@ -5575,7 +5670,7 @@ components:
           allOf:
           - $ref: "#/components/schemas/PagingPlaylistTrackObject"
           description: |
-            The tracks of the playlist.
+            The tracks of the playlist. _**Note**: This field is only available for playlists owned by the current user._
         type:
           type: string
           description: |
@@ -5743,6 +5838,7 @@ components:
           description: |
             The artists who performed the track. Each artist object includes a link in `href` to more detailed information about the artist.
         available_markets:
+          deprecated: true
           type: array
           items:
             type: string
@@ -5761,6 +5857,7 @@ components:
           description: |
             Whether or not the track has explicit lyrics ( `true` = yes it does; `false` = no it does not OR unknown).
         external_ids:
+          deprecated: true
           allOf:
           - $ref: "#/components/schemas/ExternalIdObject"
           description: |
@@ -5783,6 +5880,7 @@ components:
           description: |
             Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking) is applied. If `true`, the track is playable in the given market. Otherwise `false`.
         linked_from:
+          deprecated: true
           allOf:
           - $ref: "#/components/schemas/LinkedTrackObject"
           description: "Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking)\
@@ -5799,6 +5897,7 @@ components:
           description: |
             The name of the track.
         popularity:
+          deprecated: true
           type: integer
           description: |
             The popularity of the track. The value will be between 0 and 100, with 100 being the most popular.<br/>The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are.<br/>Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. _**Note**: the popularity value may lag actual popularity by a few days: the value is not updated in real time._
@@ -6013,6 +6112,7 @@ components:
       - uri
       properties:
         available_markets:
+          deprecated: true
           type: array
           items:
             type: string
@@ -6074,6 +6174,7 @@ components:
           description: |
             The name of the episode.
         publisher:
+          deprecated: true
           type: string
           description: |
             The publisher of the show.
@@ -6138,6 +6239,7 @@ components:
           description: |
             The author(s) for the audiobook.
         available_markets:
+          deprecated: true
           type: array
           items:
             type: string
@@ -6206,6 +6308,7 @@ components:
           description: |
             The narrator(s) for the audiobook.
         publisher:
+          deprecated: true
           type: string
           description: |
             The publisher of the audiobook.
@@ -6271,6 +6374,7 @@ components:
           description: The number of tracks in the album.
           example: 9
         available_markets:
+          deprecated: true
           type: array
           items:
             type: string
@@ -6414,6 +6518,7 @@ components:
           description: |
             A URL to a 30 second preview (MP3 format) of the chapter. `null` if not available.
         available_markets:
+          deprecated: true
           type: array
           items:
             type: string
@@ -6552,6 +6657,7 @@ components:
             description: |
               The copyright statements of the album.
           external_ids:
+            deprecated: true
             allOf:
             - $ref: "#/components/schemas/ExternalIdObject"
             description: |
@@ -6565,10 +6671,12 @@ components:
             description: |
               **Deprecated** The array is always empty.
           label:
+            deprecated: true
             type: string
             description: |
               The label associated with the album.
           popularity:
+            deprecated: true
             type: integer
             description: |
               The popularity of the album. The value will be between 0 and 100, with 100 being the most popular.
