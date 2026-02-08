@@ -3,12 +3,14 @@ operations:
   - op: test
     path: "$.components.schemas.TrackObject.properties.linked_from"
     value:
+      deprecated: true
       type: object
       description: |
         Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking) is applied, and the requested track has been replaced with different track. The track in the `linked_from` object contains information about the originally requested track.
   - op: set
     path: "$.components.schemas.TrackObject.properties.linked_from"
     value:
+      deprecated: true
       allOf:
         - $ref: '#/components/schemas/LinkedTrackObject'
       description: Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking) is applied, and the requested track has been replaced with different track. The track in the `linked_from` object contains information about the originally requested track.
