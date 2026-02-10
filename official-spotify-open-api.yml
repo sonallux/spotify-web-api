@@ -172,7 +172,6 @@ paths:
         - oauth_2_0: []
   /artists/{id}/albums:
     get:
-      deprecated: true
       tags:
         - Artists
         - Albums
@@ -525,6 +524,7 @@ paths:
         - oauth_2_0:
             - user-library-read
     put:
+      deprecated: true
       tags:
         - Audiobooks
         - Library
@@ -548,6 +548,7 @@ paths:
         - oauth_2_0:
             - user-library-modify
     delete:
+      deprecated: true
       tags:
         - Audiobooks
         - Library
@@ -1276,6 +1277,7 @@ paths:
         - oauth_2_0:
             - user-library-read
     put:
+      deprecated: true
       tags:
         - Albums
         - Library
@@ -1312,6 +1314,7 @@ paths:
         - oauth_2_0:
             - user-library-modify
     delete:
+      deprecated: true
       tags:
         - Albums
         - Library
@@ -1398,6 +1401,7 @@ paths:
         - oauth_2_0:
             - user-library-read
     put:
+      deprecated: true
       tags:
         - Tracks
         - Library
@@ -1454,6 +1458,7 @@ paths:
         - oauth_2_0:
             - user-library-modify
     delete:
+      deprecated: true
       tags:
         - Tracks
         - Library
@@ -1542,6 +1547,7 @@ paths:
             - user-library-read
             - user-read-playback-position
     put:
+      deprecated: true
       tags:
         - Episodes
         - Library
@@ -1589,6 +1595,7 @@ paths:
         - oauth_2_0:
             - user-library-modify
     delete:
+      deprecated: true
       tags:
         - Episodes
         - Library
@@ -1684,6 +1691,7 @@ paths:
         - oauth_2_0:
             - user-library-read
     put:
+      deprecated: true
       tags:
         - Shows
         - Library
@@ -1707,6 +1715,7 @@ paths:
         - oauth_2_0:
             - user-library-modify
     delete:
+      deprecated: true
       tags:
         - Shows
         - Library
