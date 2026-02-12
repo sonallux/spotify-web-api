@@ -533,6 +533,8 @@ paths:
         Save Audiobooks for Current User
       description: |
         Save one or more audiobooks to the current Spotify user's library.
+
+        **Note:** This endpoint is deprecated. Use [Save Items to Library](/documentation/web-api/reference/save-library-items) instead.
       parameters:
         - $ref: '#/components/parameters/QueryAudiobookIds'
       responses:
@@ -557,6 +559,8 @@ paths:
         Remove User's Saved Audiobooks
       description: |
         Remove one or more audiobooks from the Spotify user's library.
+
+        **Note:** This endpoint is deprecated. Use [Remove Items from Library](/documentation/web-api/reference/remove-library-items) instead.
       parameters:
         - $ref: '#/components/parameters/QueryAudiobookIds'
       responses:
@@ -579,8 +583,11 @@ paths:
       operationId: check-users-saved-audiobooks
       summary: |
         Check User's Saved Audiobooks
+      deprecated: true
       description: |
         Check if one or more audiobooks are already saved in the current Spotify user's library.
+
+        **Note:** This endpoint is deprecated. Use [Check User's Saved Items](/documentation/web-api/reference/check-library-contains) instead.
       parameters:
         - $ref: '#/components/parameters/QueryAudiobookIds'
       responses:
@@ -940,14 +947,15 @@ paths:
         - Playlists
         - Tracks
       operationId: get-playlists-tracks
+      deprecated: true
       x-spotify-policy-list:
         $ref: '#/components/x-spotify-policy/metadataWithMachineLearningPolicyList'
       summary: |
-        Get Playlist Items
+        Get Playlist Items [DEPRECATED]
       description: |
-        Get full details of the items of a playlist owned by a Spotify user.
+        **Deprecated:** Use [Get Playlist Items](/documentation/web-api/reference/get-playlists-items) instead.
 
-        **Note**: This endpoint is only accessible for playlists owned by the current user.
+        Get full details of the items of a playlist owned by a Spotify user.
       parameters:
         - $ref: '#/components/parameters/PathPlaylistId'
         - $ref: '#/components/parameters/QueryMarket'
@@ -987,6 +995,241 @@ paths:
         - Playlists
         - Tracks
       operationId: add-tracks-to-playlist
+      deprecated: true
+      summary: |
+        Add Items to Playlist [DEPRECATED]
+      description: |
+        **Deprecated:** Use [Add Items to Playlist](/documentation/web-api/reference/add-items-to-playlist) instead.
+
+        Add one or more items to a user's playlist.
+      parameters:
+        - $ref: '#/components/parameters/PathPlaylistId'
+        - name: position
+          required: false
+          in: query
+          schema:
+            title: Position (append by default)
+            description: |
+              The position to insert the items, a zero-based index. For example, to insert the items in the first position: `position=0`; to insert the items in the third position: `position=2`. If omitted, the items will be appended to the playlist. Items are added in the order they are listed in the query string or request body.
+            example: 0
+            type: integer
+        - name: uris
+          required: false
+          in: query
+          schema:
+            title: Spotify Track URIs
+            description: |
+              A comma-separated list of [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) to add, can be track or episode URIs. For example:<br/>`uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh, spotify:track:1301WleyT98MSxVHPZCA6M, spotify:episode:512ojhOuo1ktJprKbVcKyQ`<br/>A maximum of 100 items can be added in one request. <br/>
+              _**Note**: it is likely that passing a large number of item URIs as a query parameter will exceed the maximum length of the request URI. When adding a large number of items, it is recommended to pass them in the request body, see below._
+            example: spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              properties:
+                uris:
+                  description: |
+                    A JSON array of the [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) to add. For example: `{"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh","spotify:track:1301WleyT98MSxVHPZCA6M", "spotify:episode:512ojhOuo1ktJprKbVcKyQ"]}`<br/>A maximum of 100 items can be added in one request. _**Note**: if the `uris` parameter is present in the query string, any URIs listed here in the body will be ignored._
+                  type: array
+                  items:
+                    type: string
+                position:
+                  description: |
+                    The position to insert the items, a zero-based index. For example, to insert the items in the first position: `position=0` ; to insert the items in the third position: `position=2`. If omitted, the items will be appended to the playlist. Items are added in the order they appear in the uris array. For example: `{"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh","spotify:track:1301WleyT98MSxVHPZCA6M"], "position": 3}`
+                  type: integer
+      responses:
+        '201':
+          $ref: '#/components/responses/PlaylistSnapshotId'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      security:
+        - oauth_2_0:
+            - playlist-modify-public
+            - playlist-modify-private
+    put:
+      tags:
+        - Playlists
+        - Tracks
+      operationId: reorder-or-replace-playlists-tracks
+      deprecated: true
+      summary: |
+        Update Playlist Items [DEPRECATED]
+      description: |
+        **Deprecated:** Use [Update Playlist Items](/documentation/web-api/reference/reorder-or-replace-playlists-items) instead.
+
+        Either reorder or replace items in a playlist depending on the request's parameters.
+        To reorder items, include `range_start`, `insert_before`, `range_length` and `snapshot_id` in the request's body.
+        To replace items, include `uris` as either a query parameter or in the request's body.
+        Replacing items in a playlist will overwrite its existing items. This operation can be used for replacing or clearing items in a playlist.
+        <br/>
+        **Note**: Replace and reorder are mutually exclusive operations which share the same endpoint, but have different parameters.
+        These operations can't be applied together in a single request.
+      parameters:
+        - $ref: '#/components/parameters/PathPlaylistId'
+        - name: uris
+          required: false
+          in: query
+          schema:
+            title: Spotify Track URIs
+            description: |
+              A comma-separated list of [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) to set, can be track or episode URIs. For example: `uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQ`<br/>A maximum of 100 items can be set in one request.
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                range_start: 1
+                insert_before: 3
+                range_length: 2
+              type: object
+              additionalProperties: true
+              properties:
+                uris:
+                  type: array
+                  items:
+                    type: string
+                range_start:
+                  type: integer
+                  description: |
+                    The position of the first item to be reordered.
+                insert_before:
+                  type: integer
+                  description: |
+                    The position where the items should be inserted.<br/>To reorder the items to the end of the playlist, simply set _insert_before_ to the position after the last item.<br/>Examples:<br/>To reorder the first item to the last position in a playlist with 10 items, set _range_start_ to 0, and _insert_before_ to 10.<br/>To reorder the last item in a playlist with 10 items to the start of the playlist, set _range_start_ to 9, and _insert_before_ to 0.
+                range_length:
+                  type: integer
+                  description: |
+                    The amount of items to be reordered. Defaults to 1 if not set.<br/>The range of items to be reordered begins from the _range_start_ position, and includes the _range_length_ subsequent items.<br/>Example:<br/>To move the items at index 9-10 to the start of the playlist, _range_start_ is set to 9, and _range_length_ is set to 2.
+                snapshot_id:
+                  type: string
+                  description: |
+                    The playlist's snapshot ID against which you want to make the changes.
+      responses:
+        '200':
+          $ref: '#/components/responses/PlaylistSnapshotId'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      security:
+        - oauth_2_0:
+            - playlist-modify-public
+            - playlist-modify-private
+    delete:
+      tags:
+        - Playlists
+        - Tracks
+      operationId: remove-tracks-playlist
+      deprecated: true
+      summary: |
+        Remove Playlist Items [DEPRECATED]
+      description: |
+        **Deprecated:** Use [Remove Playlist Items](/documentation/web-api/reference/remove-items-playlist) instead.
+
+        Remove one or more items from a user's playlist.
+      parameters:
+        - $ref: '#/components/parameters/PathPlaylistId'
+      requestBody: # Request body in DELETE is allowed, but discouraged (https://github.com/OAI/OpenAPI-Specification/pull/2117).
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - tracks
+              properties:
+                tracks:
+                  type: array
+                  description: |
+                    An array of objects containing [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) of the tracks or episodes to remove.
+                    For example: `{ "tracks": [{ "uri": "spotify:track:4iV5W9uYEdYUVa79Axb7Rh" },{ "uri": "spotify:track:1301WleyT98MSxVHPZCA6M" }] }`. A maximum of 100 objects can be sent at once.
+                  items:
+                    type: object
+                    properties:
+                      uri:
+                        type: string
+                        description: Spotify URI
+                snapshot_id:
+                  type: string
+                  description: |
+                    The playlist's snapshot ID against which you want to make the changes.
+                    The API will validate that the specified items exist and in the specified positions and make the changes,
+                    even if more recent changes have been made to the playlist.
+      responses:
+        '200':
+          $ref: '#/components/responses/PlaylistSnapshotId'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      security:
+        - oauth_2_0:
+            - playlist-modify-public
+            - playlist-modify-private
+  /playlists/{playlist_id}/items:
+    get:
+      tags:
+        - Playlists
+        - Tracks
+      operationId: get-playlists-items
+      x-spotify-policy-list:
+        $ref: '#/components/x-spotify-policy/metadataWithMachineLearningPolicyList'
+      summary: |
+        Get Playlist Items
+      description: |
+        Get full details of the items of a playlist owned by a Spotify user.
+
+        **Note**: This endpoint is only accessible for playlists owned by the current user or playlists the user is a collaborator of. A `403 Forbidden` status code will be returned if the user is neither the owner nor a collaborator of the playlist.
+      parameters:
+        - $ref: '#/components/parameters/PathPlaylistId'
+        - $ref: '#/components/parameters/QueryMarket'
+        - name: fields
+          required: false
+          in: query
+          schema:
+            title: Fields
+            description: |
+              Filters for the query: a comma-separated list of the
+              fields to return. If omitted, all fields are returned. For example, to get
+              just the total number of items and the request limit:<br/>`fields=total,limit`<br/>A
+              dot separator can be used to specify non-reoccurring fields, while parentheses
+              can be used to specify reoccurring fields within objects. For example, to
+              get just the added date and user ID of the adder:<br/>`fields=items(added_at,added_by.id)`<br/>Use
+              multiple parentheses to drill down into nested objects, for example:<br/>`fields=items(track(name,href,album(name,href)))`<br/>Fields
+              can be excluded by prefixing them with an exclamation mark, for example:<br/>`fields=items.track.album(!external_urls,images)`
+            example: items(added_by.id,track(name,href,album(name,href)))
+            type: string
+        - $ref: '#/components/parameters/QueryLimit'
+        - $ref: '#/components/parameters/QueryOffset'
+        - $ref: '#/components/parameters/QueryAdditionalTypes'
+      responses:
+        '200':
+          $ref: '#/components/responses/PagingPlaylistTrackObject'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      security:
+        - oauth_2_0:
+            - playlist-read-private
+    post:
+      tags:
+        - Playlists
+        - Tracks
+      operationId: add-items-to-playlist
       summary: |
         Add Items to Playlist
       description: |
@@ -1046,7 +1289,7 @@ paths:
       tags:
         - Playlists
         - Tracks
-      operationId: reorder-or-replace-playlists-tracks
+      operationId: reorder-or-replace-playlists-items
       summary: |
         Update Playlist Items
       description: |
@@ -1115,26 +1358,26 @@ paths:
       tags:
         - Playlists
         - Tracks
-      operationId: remove-tracks-playlist
+      operationId: remove-items-playlist
       summary: |
         Remove Playlist Items
       description: |
         Remove one or more items from a user's playlist.
       parameters:
         - $ref: '#/components/parameters/PathPlaylistId'
-      requestBody: # Request body in DELETE is allowed, but discouraged (https://github.com/OAI/OpenAPI-Specification/pull/2117).
+      requestBody:
         content:
           application/json:
             schema:
               type: object
               required:
-                - tracks
+                - items
               properties:
-                tracks:
+                items:
                   type: array
                   description: |
                     An array of objects containing [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) of the tracks or episodes to remove.
-                    For example: `{ "tracks": [{ "uri": "spotify:track:4iV5W9uYEdYUVa79Axb7Rh" },{ "uri": "spotify:track:1301WleyT98MSxVHPZCA6M" }] }`. A maximum of 100 objects can be sent at once.
+                    For example: `{ "items": [{ "uri": "spotify:track:4iV5W9uYEdYUVa79Axb7Rh" },{ "uri": "spotify:track:1301WleyT98MSxVHPZCA6M" }] }`. A maximum of 100 objects can be sent at once.
                   items:
                     type: object
                     properties:
@@ -1250,6 +1493,153 @@ paths:
         - oauth_2_0:
             - playlist-modify-public
             - playlist-modify-private
+  /me/library:
+    put:
+      tags:
+        - Library
+      operationId: save-library-items
+      summary: |
+        Save Items to Library
+      description: |
+        Add one or more items to the current user's library. Accepts Spotify URIs for tracks, albums, episodes, shows, audiobooks, users, and playlists.
+      parameters:
+        - name: uris
+          required: true
+          in: query
+          schema:
+            title: Spotify URIs
+            description: |
+              A comma-separated list of [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids). Maximum: 40 URIs.
+
+              Supported URI types:
+              - `spotify:track:{id}`
+              - `spotify:album:{id}`
+              - `spotify:episode:{id}`
+              - `spotify:show:{id}`
+              - `spotify:audiobook:{id}`
+              - `spotify:user:{id}`
+              - `spotify:playlist:{id}`
+            example: spotify:track:7a3LWj5xSFhFRYmztS8wgK,spotify:album:4aawyAB9vmqN3uQ7FjRGTy
+            type: string
+      responses:
+        '200':
+          description: Items saved to library
+        '400':
+          description: |
+            Bad Request. Possible reasons: missing `uris` parameter, invalid URI format, unsupported URI type, or more than 40 URIs provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorObject'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      security:
+        - oauth_2_0:
+            - user-library-modify
+            - user-follow-modify
+            - playlist-modify-public
+    delete:
+      tags:
+        - Library
+      operationId: remove-library-items
+      summary: |
+        Remove Items from Library
+      description: |
+        Remove one or more items from the current user's library. Accepts Spotify URIs for tracks, albums, episodes, shows, audiobooks, users, and playlists.
+      parameters:
+        - name: uris
+          required: true
+          in: query
+          schema:
+            title: Spotify URIs
+            description: |
+              A comma-separated list of [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids). Maximum: 40 URIs.
+
+              Supported URI types:
+              - `spotify:track:{id}`
+              - `spotify:album:{id}`
+              - `spotify:episode:{id}`
+              - `spotify:show:{id}`
+              - `spotify:audiobook:{id}`
+              - `spotify:user:{id}`
+              - `spotify:playlist:{id}`
+            example: spotify:track:7a3LWj5xSFhFRYmztS8wgK,spotify:album:4aawyAB9vmqN3uQ7FjRGTy
+            type: string
+      responses:
+        '200':
+          description: Items removed from library
+        '400':
+          description: |
+            Bad Request. Possible reasons: missing `uris` parameter, invalid URI format, unsupported URI type, or more than 40 URIs provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorObject'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      security:
+        - oauth_2_0:
+            - user-library-modify
+            - user-follow-modify
+            - playlist-modify-public
+  /me/library/contains:
+    get:
+      tags:
+        - Library
+      operationId: check-library-contains
+      summary: |
+        Check User's Saved Items
+      description: |
+        Check if one or more items are already saved in the current user's library. Accepts Spotify URIs for tracks, albums, episodes, shows, audiobooks, artists, users, and playlists.
+      parameters:
+        - name: uris
+          required: true
+          in: query
+          schema:
+            title: Spotify URIs
+            description: |
+              A comma-separated list of [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids). Maximum: 40 URIs.
+
+              Supported URI types:
+              - `spotify:track:{id}`
+              - `spotify:album:{id}`
+              - `spotify:episode:{id}`
+              - `spotify:show:{id}`
+              - `spotify:audiobook:{id}`
+              - `spotify:artist:{id}`
+              - `spotify:user:{id}`
+              - `spotify:playlist:{id}`
+            example: spotify:track:7a3LWj5xSFhFRYmztS8wgK,spotify:album:4aawyAB9vmqN3uQ7FjRGTy,spotify:artist:2takcwOaAZWiXQijPHIx7B
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ArrayOfBooleans'
+        '400':
+          description: |
+            Bad Request. Possible reasons: missing `uris` parameter, invalid URI format, unsupported URI type, or more than 40 URIs provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorObject'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      security:
+        - oauth_2_0:
+            - user-library-read
+            - user-follow-read
+            - playlist-read-private
   /me/albums:
     get:
       tags:
@@ -1286,6 +1676,8 @@ paths:
         Save Albums for Current User
       description: |
         Save one or more albums to the current user's 'Your Music' library.
+
+        **Note:** This endpoint is deprecated. Use [Save Items to Library](/documentation/web-api/reference/save-library-items) instead.
       parameters:
         - $ref: '#/components/parameters/QueryAlbumIds'
       requestBody:
@@ -1323,6 +1715,8 @@ paths:
         Remove Users' Saved Albums
       description: |
         Remove one or more albums from the current user's 'Your Music' library.
+
+        **Note:** This endpoint is deprecated. Use [Remove Items from Library](/documentation/web-api/reference/remove-library-items) instead.
       parameters:
         - $ref: '#/components/parameters/QueryAlbumIds'
       requestBody:
@@ -1358,8 +1752,11 @@ paths:
       operationId: check-users-saved-albums
       summary: |
         Check User's Saved Albums
+      deprecated: true
       description: |
         Check if one or more albums is already saved in the current Spotify user's 'Your Music' library.
+
+        **Note:** This endpoint is deprecated. Use [Check User's Saved Items](/documentation/web-api/reference/check-library-contains) instead.
       parameters:
         - $ref: '#/components/parameters/QueryAlbumIds'
       responses:
@@ -1410,6 +1807,8 @@ paths:
         Save Tracks for Current User
       description: |
         Save one or more tracks to the current user's 'Your Music' library.
+
+        **Note:** This endpoint is deprecated. Use [Save Items to Library](/documentation/web-api/reference/save-library-items) instead.
       requestBody:
         content:
           application/json:
@@ -1467,6 +1866,8 @@ paths:
         Remove User's Saved Tracks
       description: |
         Remove one or more tracks from the current user's 'Your Music' library.
+
+        **Note:** This endpoint is deprecated. Use [Remove Items from Library](/documentation/web-api/reference/remove-library-items) instead.
       parameters:
         - $ref: '#/components/parameters/QueryTrackIds'
       requestBody:
@@ -1502,8 +1903,11 @@ paths:
       operationId: check-users-saved-tracks
       summary: |
         Check User's Saved Tracks
+      deprecated: true
       description: |
         Check if one or more tracks is already saved in the current Spotify user's 'Your Music' library.
+
+        **Note:** This endpoint is deprecated. Use [Check User's Saved Items](/documentation/web-api/reference/check-library-contains) instead.
       parameters:
         - $ref: '#/components/parameters/QueryTrackIds'
       responses:
@@ -1527,8 +1931,7 @@ paths:
       summary: |
         Get User's Saved Episodes
       description: |
-        Get a list of the episodes saved in the current Spotify user's library.<br/>
-        This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Get a list of the episodes saved in the current Spotify user's library.
       parameters:
         - $ref: '#/components/parameters/QueryMarket'
         - $ref: '#/components/parameters/QueryLimit'
@@ -1555,8 +1958,9 @@ paths:
       summary: |
         Save Episodes for Current User
       description: |
-        Save one or more episodes to the current user's library.<br/>
-        This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Save one or more episodes to the current user's library.
+
+        **Note:** This endpoint is deprecated. Use [Save Items to Library](/documentation/web-api/reference/save-library-items) instead.
       parameters:
         - name: ids
           required: true
@@ -1603,8 +2007,9 @@ paths:
       summary: |
         Remove User's Saved Episodes
       description: |
-        Remove one or more episodes from the current user's library.<br/>
-        This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Remove one or more episodes from the current user's library.
+
+        **Note:** This endpoint is deprecated. Use [Remove Items from Library](/documentation/web-api/reference/remove-library-items) instead.
       parameters:
         - $ref: '#/components/parameters/QueryTrackIds'
       requestBody:
@@ -1640,9 +2045,11 @@ paths:
       operationId: check-users-saved-episodes
       summary: |
         Check User's Saved Episodes
+      deprecated: true
       description: |
-        Check if one or more episodes is already saved in the current Spotify user's 'Your Episodes' library.<br/>
-        This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer)..
+        Check if one or more episodes is already saved in the current Spotify user's 'Your Episodes' library.
+
+        **Note:** This endpoint is deprecated. Use [Check User's Saved Items](/documentation/web-api/reference/check-library-contains) instead.
       parameters:
         - name: ids
           required: true
@@ -1700,6 +2107,8 @@ paths:
         Save Shows for Current User
       description: |
         Save one or more shows to current Spotify user's library.
+
+        **Note:** This endpoint is deprecated. Use [Save Items to Library](/documentation/web-api/reference/save-library-items) instead.
       parameters:
         - $ref: '#/components/parameters/QueryShowIds'
       responses:
@@ -1724,6 +2133,8 @@ paths:
         Remove User's Saved Shows
       description: |
         Delete one or more shows from current Spotify user's library.
+
+        **Note:** This endpoint is deprecated. Use [Remove Items from Library](/documentation/web-api/reference/remove-library-items) instead.
       parameters:
         - $ref: '#/components/parameters/QueryShowIds'
         - $ref: '#/components/parameters/QueryMarket'
@@ -1747,8 +2158,11 @@ paths:
       operationId: check-users-saved-shows
       summary: |
         Check User's Saved Shows
+      deprecated: true
       description: |
         Check if one or more shows is already saved in the current Spotify user's library.
+
+        **Note:** This endpoint is deprecated. Use [Check User's Saved Items](/documentation/web-api/reference/check-library-contains) instead.
       parameters:
         - $ref: '#/components/parameters/QueryShowIds'
       responses:
@@ -1930,12 +2344,15 @@ paths:
             - playlist-modify-private
   /playlists/{playlist_id}/followers:
     put:
+      deprecated: true
       tags:
         - Users
         - Playlists
       operationId: follow-playlist
       description: |
         Add the current user as a follower of a playlist.
+
+        **Note:** This endpoint is deprecated. Use [Save Items to Library](/documentation/web-api/reference/save-library-items) instead.
       summary: |
         Follow Playlist
       parameters:
@@ -1967,6 +2384,7 @@ paths:
             - playlist-modify-public
             - playlist-modify-private
     delete:
+      deprecated: true
       tags:
         - Users
         - Playlists
@@ -1975,6 +2393,8 @@ paths:
         Unfollow Playlist
       description: |
         Remove the current user as a follower of a playlist.
+
+        **Note:** This endpoint is deprecated. Use [Remove Items from Library](/documentation/web-api/reference/remove-library-items) instead.
       parameters:
         - $ref: '#/components/parameters/PathPlaylistId'
       responses:
@@ -2272,6 +2692,7 @@ paths:
         - oauth_2_0:
             - user-follow-read
     put:
+      deprecated: true
       tags:
         - Users
         - Artists
@@ -2281,6 +2702,8 @@ paths:
         Follow Artists or Users
       description: |
         Add the current user as a follower of one or more artists or other Spotify users.
+
+        **Note:** This endpoint is deprecated. Use [Save Items to Library](/documentation/web-api/reference/save-library-items) instead.
       parameters:
         - name: type
           required: true
@@ -2334,6 +2757,7 @@ paths:
         - oauth_2_0:
             - user-follow-modify
     delete:
+      deprecated: true
       tags:
         - Users
         - Artists
@@ -2343,6 +2767,8 @@ paths:
         Unfollow Artists or Users
       description: |
         Remove the current user as a follower of one or more artists or other Spotify users.
+
+        **Note:** This endpoint is deprecated. Use [Remove Items from Library](/documentation/web-api/reference/remove-library-items) instead.
       parameters:
         - name: type
           required: true
@@ -2399,8 +2825,11 @@ paths:
       operationId: check-current-user-follows
       summary: |
         Check If User Follows Artists or Users
+      deprecated: true
       description: |
         Check to see if the current user is following one or more artists or other Spotify users.
+
+        **Note:** This endpoint is deprecated. Use [Check User's Saved Items](/documentation/web-api/reference/check-library-contains) instead.
       parameters:
         - name: type
           required: true
@@ -2443,8 +2872,11 @@ paths:
       operationId: check-if-user-follows-playlist
       summary: |
         Check if Current User Follows Playlist
+      deprecated: true
       description: |
         Check to see if the current user is following a specified playlist.
+
+        **Note:** This endpoint is deprecated. Use [Check User's Saved Items](/documentation/web-api/reference/check-library-contains) instead.
       parameters:
         - $ref: '#/components/parameters/PathPlaylistId'
         - name: ids
@@ -4490,12 +4922,22 @@ components:
           type: boolean
           description: |
             Whether this track or episode is a [local file](/documentation/web-api/concepts/playlists/#local-files) or not.
-        track:
+        item:
           oneOf:
             - $ref: '#/components/schemas/TrackObject'
             - $ref: '#/components/schemas/EpisodeObject'
           x-spotify-docs-type: TrackObject | EpisodeObject
           description: Information about the track or episode.
+          discriminator:
+            propertyName: type
+        track:
+          oneOf:
+            - $ref: '#/components/schemas/TrackObject'
+            - $ref: '#/components/schemas/EpisodeObject'
+          x-spotify-docs-type: TrackObject | EpisodeObject
+          deprecated: true
+          description: |
+            **Deprecated:** Use `item` instead. Information about the track or episode.
           discriminator:
             propertyName: type
 
@@ -5740,12 +6182,19 @@ components:
           type: string
           description: |
             The version identifier for the current playlist. Can be supplied in other requests to target a specific playlist version
-        tracks:
+        items:
           type: object
           allOf:
             - $ref: '#/components/schemas/PagingPlaylistTrackObject'
           description: |
-            The tracks of the playlist. _**Note**: This field is only available for playlists owned by the current user._
+            The items of the playlist. _**Note**: This field is only available for playlists owned by the current user or playlists the user is a collaborator of._
+        tracks:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/PagingPlaylistTrackObject'
+          deprecated: true
+          description: |
+            **Deprecated:** Use `items` instead. The tracks of the playlist.
         type:
           type: string
           description: |
@@ -5803,11 +6252,17 @@ components:
           type: string
           description: |
             The version identifier for the current playlist. Can be supplied in other requests to target a specific playlist version
-        tracks:
+        items:
           allOf:
             - $ref: '#/components/schemas/PlaylistTracksRefObject'
           description: |
-            A collection containing a link ( `href` ) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the `total` number of tracks in the playlist. Note, a track object may be `null`. This can happen if a track is no longer available.
+            A collection containing a link ( `href` ) to the Web API endpoint where full details of the playlist's items can be retrieved, along with the `total` number of items in the playlist. Note, a track object may be `null`. This can happen if a track is no longer available.
+        tracks:
+          allOf:
+            - $ref: '#/components/schemas/PlaylistTracksRefObject'
+          deprecated: true
+          description: |
+            **Deprecated:** Use `items` instead. A collection containing a link ( `href` ) to the Web API endpoint where full details of the playlist's tracks can be retrieved, along with the `total` number of tracks in the playlist. Note, a track object may be `null`. This can happen if a track is no longer available.
         type:
           type: string
           description: |
