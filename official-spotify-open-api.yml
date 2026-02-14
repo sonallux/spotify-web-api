@@ -782,11 +782,11 @@ paths:
             title: Limit
             description: |
               The maximum number of results to return in each item type.
-            default: 20
+            default: 5
             example: 10
             type: integer
             minimum: 0
-            maximum: 50
+            maximum: 10
         - name: offset
           required: false
           in: query
@@ -6990,6 +6990,7 @@ components:
             - album_group
           properties:
             album_group:
+              deprecated: true
               type: string
               enum: [album, single, compilation, appears_on]
               example: compilation
