@@ -6388,7 +6388,6 @@ components:
           description: |
             Whether or not the track has explicit lyrics ( `true` = yes it does; `false` = no it does not OR unknown).
         external_ids:
-          deprecated: true
           allOf:
             - $ref: '#/components/schemas/ExternalIdObject'
           description: |
@@ -7184,7 +7183,6 @@ components:
               description: |
                 The copyright statements of the album.
             external_ids:
-              deprecated: true
               allOf:
                 - $ref: '#/components/schemas/ExternalIdObject'
               description: |
