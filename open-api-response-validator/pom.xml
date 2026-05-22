@@ -21,7 +21,7 @@
 
     <properties>
         <spring.version>7.0.3</spring.version>
-        <swagger-request-validator.version>2.46.0</swagger-request-validator.version>
+        <swagger-request-validator.version>3.0.0</swagger-request-validator.version>
 
         <moditect.module.name>de.sonallux.spotify.validator</moditect.module.name>
     </properties>
