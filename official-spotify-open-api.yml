@@ -5067,6 +5067,11 @@ components:
       type: object
       x-spotify-docs-type: PrivateUserObject
       properties:
+        account_id:
+          type: string
+          description: |
+            A public, immutable, pseudoanonymous identifier for the user's account. Use this field for account linking rather than the `id` field, as it is stable and will not change over the lifetime of the account.
+          example: 'aB3dE5fG7h'
         country:
           deprecated: true
           type: string
@@ -5103,7 +5108,7 @@ components:
         id:
           type: string
           description: |
-            The [Spotify user ID](/documentation/web-api/concepts/spotify-uris-ids) for the user.
+            The [Spotify user ID](/documentation/web-api/concepts/spotify-uris-ids) for the user. Do not use this field for account linking — use `account_id` instead, which is immutable.
         images:
           type: array
           items:
