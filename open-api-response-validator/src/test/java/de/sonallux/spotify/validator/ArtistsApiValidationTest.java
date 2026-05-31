@@ -18,7 +18,7 @@ class ArtistsApiValidationTest {
         var spotifyAuthInterceptor = new SpotifyClientCredentialsAuthInterceptor();
         var validationInterceptor = new OpenApiValidationClientHttpRequestInterceptor(
             OpenApiInteractionValidator.createForSpecificationUrl("../fixed-spotify-open-api.yml")
-                // https://bitbucket.org/atlassian/swagger-request-validator/src/30f00b42a4bcc6bad7a68fe0c7491dd4aa5c3a67/docs/FAQ.md
+                // https://github.com/atlassian/openapi-request-validator/blob/master/docs/FAQ.md
                 .withResolveCombinators(true)
                 .build());
 
@@ -52,12 +52,11 @@ class ArtistsApiValidationTest {
     /*
      * disabled because of errors
      * - [Path '/tracks/0/album'] Object instance has properties which are not allowed by the schema: [\"is_playable\"]
-     * - [Path '/tracks/0/album'] Object has missing required properties ([\"available_markets\"])
      */
     @Disabled
     @Test
     void validateGetArtistsTopTracks() {
-        var response = restClient.get().uri("/artists/{id}/top-tracks?market=DE", "0Dvx6p8JDyzeOPGmaCIH1L").retrieve().toBodilessEntity();
+        var response = restClient.get().uri("/artists/{id}/top-tracks", "0Dvx6p8JDyzeOPGmaCIH1L").retrieve().toBodilessEntity();
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 

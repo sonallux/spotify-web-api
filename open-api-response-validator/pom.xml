@@ -21,7 +21,7 @@
 
     <properties>
         <spring.version>7.0.3</spring.version>
-        <swagger-request-validator.version>2.46.0</swagger-request-validator.version>
+        <openapi-request-validator.version>3.0.0</openapi-request-validator.version>
 
         <moditect.module.name>de.sonallux.spotify.validator</moditect.module.name>
     </properties>
@@ -39,8 +39,8 @@
         </dependency>
         <dependency>
             <groupId>com.atlassian.oai</groupId>
-            <artifactId>swagger-request-validator-spring-web-client</artifactId>
-            <version>${swagger-request-validator.version}</version>
+            <artifactId>openapi-request-validator-spring-web-client</artifactId>
+            <version>${openapi-request-validator.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
