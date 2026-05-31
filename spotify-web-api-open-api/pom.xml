@@ -7,12 +7,12 @@
     <parent>
         <groupId>de.sonallux.spotify</groupId>
         <artifactId>spotify-web-api-parent</artifactId>
-        <version>2025.5.18</version>
+        <version>2026.5.31</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>spotify-web-api-open-api</artifactId>
-    <version>2025.5.18</version>
+    <version>2026.5.31</version>
     <packaging>jar</packaging>
 
     <name>spotify-web-api-open-api</name>
@@ -35,7 +35,7 @@
         <dependency>
             <groupId>de.sonallux.spotify</groupId>
             <artifactId>json-utils</artifactId>
-            <version>2025.5.18</version>
+            <version>2026.5.31</version>
         </dependency>
         <dependency>
             <groupId>io.swagger.parser.v3</groupId>
