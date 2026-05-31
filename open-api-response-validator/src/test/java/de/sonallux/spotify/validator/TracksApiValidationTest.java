@@ -3,13 +3,14 @@ package de.sonallux.spotify.validator;
 import com.atlassian.oai.validator.OpenApiInteractionValidator;
 import com.atlassian.oai.validator.springweb.client.OpenApiValidationClientHttpRequestInterceptor;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.RestClient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class AlbumApiValidationTest {
+class TracksApiValidationTest {
     private static RestClient restClient;
 
     @BeforeAll
@@ -29,20 +30,14 @@ class AlbumApiValidationTest {
     }
 
     @Test
-    void validateGetAlbum() {
-        var response = restClient.get().uri("/albums/{id}", "3Q9wXhEAX7NYCPP0hxIuDz").retrieve().toBodilessEntity();
+    void validateGetTracks() {
+        var response = restClient.get().uri("/tracks/{id}", "11dFghVXANMlKmJXsNCbNl").retrieve().toBodilessEntity();
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
-    void validateGetSeveralAlbums() {
-        var response = restClient.get().uri("/albums?ids={ids}", "3Q9wXhEAX7NYCPP0hxIuDz,5Eevxp2BCbWq25ZdiXRwYd").retrieve().toBodilessEntity();
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-    }
-
-    @Test
-    void validateGetAlbumTracks() {
-        var response = restClient.get().uri("/albums/{id}/tracks", "3Q9wXhEAX7NYCPP0hxIuDz").retrieve().toBodilessEntity();
+    void validateGetSeveralTracks() {
+        var response = restClient.get().uri("/tracks?ids={ids}", "11dFghVXANMlKmJXsNCbNl,7ouMYWpwJ422jRcDASZB7P").retrieve().toBodilessEntity();
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 }
