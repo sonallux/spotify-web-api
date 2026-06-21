@@ -17,6 +17,10 @@ updates:
         patterns:
           - "org.junit.jupiter:junit-jupiter"
           - "org.mockito:mockito-junit-jupiter"
+    ignore:
+      - dependency-name: "com.networknt:json-schema-validator"
+        # Version 3.x requires Jackson 3
+        versions: ["3.x"]
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
